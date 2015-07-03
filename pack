@@ -1,0 +1,171 @@
+#!/bin/bash
+#
+#******************************************************************************
+# pack (yoshimi-doc)
+#------------------------------------------------------------------------------
+##
+# \file       	pack
+# \library    	yoshimi-doc
+# \author     	Chris Ahlstrom
+# \date       	2014-05-21
+# \update     	2014-07-03
+# \version    	$Revision$
+# \license    	$XPC_SUITE_GPL_LICENSE$
+#
+#  Packs up the current project directory, ignoring some of the derived
+#  junk and the version-control infrastructure.  Also does a "make clean" on
+#  the LaTeX source.
+#
+#  Run "./pack --help" for more information.
+#
+#-----------------------------------------------------------------------------
+
+CURRENTDATE=`date +%Y-%m-%d`
+CURRENTDIR=`pwd`
+WORKINGDIR=${CURRENTDIR##/*/}       # strip all but last part of path
+
+TAGSTRING="pack"
+DODRYRUN="no"
+DOCLEAN="yes"
+
+BRANCH=`git symbolic-ref -q HEAD 2> /dev/null`
+
+if [ $? == 0 ] ; then
+
+   ISGITBRANCH="yes"
+   GITBRANCH=${BRANCH##*/}
+
+else
+
+   ISGITBRANCH="no"
+   GITBRANCH=""
+
+fi
+
+if [ "$1" == "--help" ] || [ "$1" == "help" ] ; then
+
+   echo
+   echo "yoshimi-doc pack 0.1 edited on 2015-05-03"
+   echo
+   echo "Usage:  ./pack [--dry-run] [--no-clean] [tag]"
+   echo
+   echo "where tag is alternate information you want to include in the"
+   echo "name of the tarball; it replaces the current date."
+   echo
+   echo "This script packs the contents of the current directory into a"
+   echo "tarball that has the name of the directory and other information"
+   echo "as part of the filename."
+   echo
+   echo "This script packs the entire current directory ('$WORKINGDIR') into"
+   echo "a file named like the following (using no tag as an example):"
+   echo
+   echo "   $WORKINGDIR-master-$TAGSTRING-my-code.tar.xz"
+   echo "   $WORKINGDIR-$TAGSTRING-my-code.tar.xz"
+   echo
+   echo "Excluded from the tarball are derived products."
+   echo
+   echo "This script also detects the presence of a git branch, and incorporates"
+   echo "the branch name into the name of the tarball."
+   echo
+
+else
+
+   while [ "$1" != "" ] ; do
+
+      case "$1" in
+      
+#        Although this option is no longer needed, keep it around as an
+#        undocumented feature just in case the user wants to override the
+#        git discovery.
+
+        --branch | --git)
+            ISGITBRANCH="yes"
+            shift
+            GITBRANCH="$1"
+            ;;
+
+        --dry-run)
+            DODRYRUN="yes"
+            ;;
+
+        --no-clean)
+            DOCLEAN="no"
+            ;;
+
+        *)
+            TAGSTRING="$1"
+            ;;
+
+      esac
+
+      shift
+
+   done
+
+   if [ "$ISGITBRANCH" == "yes" ] ; then
+      TARBALLNAME="$WORKINGDIR-$GITBRANCH-$CURRENTDATE-$TAGSTRING.tar.xz"
+   else
+      TARBALLNAME="$WORKINGDIR-$CURRENTDATE-$TAGSTRING.tar.xz"
+   fi
+
+   echo "The tar-ball to be generated is '../$TARBALLNAME'..."
+
+   if [ "$DODRYRUN" == "yes" ] ; then
+      if [ "$DOCLEAN" == "yes" ] ; then
+         echo "yoshimi-doc will be cleaned by 'make clean'."
+      fi
+      exit 1
+   fi
+
+   if [ "$DOCLEAN" == "yes" ] ; then
+      pushd tex
+      make clean
+      popd
+   fi
+
+   pushd ..
+   if [ -d $WORKINGDIR ] ; then
+
+   tar cJf $TARBALLNAME $WORKINGDIR/ \
+  --exclude-vcs         \
+  --exclude="tex-stamp" \
+  --exclude="out.*"     \
+  --exclude="*.aux"     \
+  --exclude="*.bak"     \
+  --exclude="*.fdb_latexmk" \
+  --exclude="*.fls"     \
+  --exclude="*.idx"     \
+  --exclude="*.ilg"     \
+  --exclude="*.ind"     \
+  --exclude="*.lof"     \
+  --exclude="*.log"     \
+  --exclude="*.lot"     \
+  --exclude="*.out"     \
+  --exclude="*.toc"     \
+  --exclude="*.bak"     \
+  --exclude=".*.swp"    \
+  --exclude="*.t"       \
+  --exclude="*.tmp"
+
+      echo
+
+   else
+
+      echo "? Working directory $WORKINGDIR does not exist above this directory."
+      echo "  Are you running pack.sh from the proper directory?"
+      echo "  That is what you must do.  See './pack --help'."
+
+   fi
+
+   popd
+
+fi
+
+#******************************************************************************
+# pack (yoshimi-doc)
+#------------------------------------------------------------------------------
+# Local Variables:
+# End:
+#------------------------------------------------------------------------------
+# vim: ts=3 sw=3 et ft=sh
+#------------------------------------------------------------------------------

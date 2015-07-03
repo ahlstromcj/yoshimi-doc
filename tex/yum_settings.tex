@@ -1,0 +1,1555 @@
+%-------------------------------------------------------------------------------
+% yum_settings
+%-------------------------------------------------------------------------------
+%
+% \file        yum_settings.tex
+% \library     Documents
+% \author      Chris Ahlstrom
+% \date        2015-05-15
+% \update      2015-06-26
+% \version     $Revision$
+% \license     $XPC_GPL_LICENSE$
+%
+%     Provides the Menu section of yoshimi-user-manual.tex.
+%
+%-------------------------------------------------------------------------------
+
+\section{Stock Settings Elements}
+\label{sec:stock_settings_elements}
+
+   This section collects all of the setting values one will find for
+   audio parameters in the \textsl{Yoshimi} GUI.
+   Sometimes the labels and tool-tips
+   in the application are a bit too brief to understand. 
+   One will find their meanings in this section.
+
+   This section also covers the sub-panels that provide the settings.
+   By describing these deep details here, we can refer to them when
+   describing how to set up specific sounds in
+   \textsl{Yoshimi}.
+
+   Much of this material comes from
+   \url{http://sourceforge.net/zynaddsubfx/Doc}
+   and has been reorganized in minor ways.
+
+\paragraph{Title Bars}
+\label{paragraph:stock_settings_elements_title_bars}
+
+   The title bars of all editing windows display both the part number and the
+   current name of the instrument one are working on. In the ADDsynth
+   Oscillator Editor, one also sees the number of the oscillator one is
+   editing.
+
+\paragraph{Color Coding}
+\label{paragraph:stock_settings_elements_color_coding}
+
+   A GUI enhancement for \textsl{Yoshimi 1.3.5} is color-coded
+   identification of an instrument's use of Add, Sub, and Pad synth engines,
+   no matter where in the instrument's kit they may be. This can be
+   enabled/disabled in the mixer panel. It does slow down
+   \textsl{Yoshimi}'s startup,
+   but due to the banks reorganisation (done some time ago) it causes no
+   delay in changing banks/instruments once \textsl{Yoshimi} is
+   up and running.  Some
+   saved instruments seem to have had their Info section corrupted. Yoshimi
+   can detect this and step over it to find the true status. Also, if one
+   resaves the instrument, not only will the PADsynth status be restored, but
+   ADDsynth and SUBsynth will be included, allowing a faster scan next time.
+
+\paragraph{Knobs}
+\label{paragraph:stock_settings_elements_knobs}
+
+   Visual knobs are used for modifying numerical parameters.
+   Horizontal, as well as vertical, mouse movements will adjust the knob.
+   Holding down Ctrl provides finer adjustment.
+   One can also use the mouse scroll wheel to adjust rotary controls.
+
+\paragraph{Windows}
+\label{paragraph:stock_settings_elements_windows}
+
+   Part editing windows carry the part number and voice name in the title
+   bar. For the ADDsynth oscillator window this also includes the voice
+   number.
+
+\paragraph{Automation}
+\label{paragraph:stock_settings_elements_automation}
+
+   In \textsl{Yoshimi 1.3.5}, a number of existing, as well as new features
+   have come together to give much greater flexibility (especially for
+   automation) using standard MIDI messages. These are:
+
+   \begin{enumber}
+      \item textbf{NRPNs}
+      \item textbf{ZynAddSubFX controls}
+      \item textbf{Independent part control}
+      \item textbf{16, 32 or 64 parts}
+      \item textbf{Vector Control}
+      \item textbf{Direct part stereo audio output}
+   \end{enumber}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{NRPNs}{automation!NRPNs}
+   NRPNs can handle individual bytes appearing in either order, and usually the
+   same with the data bytes. Increment and decrement is also supported as
+   graduated values for both data LSB and MSB. Additionally, ALSA sequencer's
+   14bit NRPN blocks are supported.
+
+   \itempar{ZynAddSubFx controls}{automation!controls}
+   System \& Insertion Effect controls are fully supported, with extensions
+   to allow one to set the effect type and (for insertion effects) the
+   destination part number.
+
+   \itempar{Part control}{automation!part control}
+   Independent part control enables one to change instrument, volume, pan, or
+   indeed any other available control of just that part, without affecting any
+   others that are receiving the same MIDI channel. This can be particularly
+   interesting with multiply layered sounds. There are more extensions planned.
+
+   \itempar{16/32/64 Parts}{automation!16/32/64 parts}
+   With 32 and 64 parts, it helps to think of 2 or 4 rows of 16. When one
+   saves a parameter block, the number of parts is also saved, and will be
+   restored when one reloads.  By default each \textsl{column} has the same
+   MIDI channel number, but these can be independently switched around, and
+   by setting (say) number 17 taken right out of normal access.
+
+   In tests, \textsl{compiling} for 64 parts compared with 16 parts increased
+   processor load by a very small amount when \textsl{Yoshimi} was idling,
+   but this becomes virtually undetectable once one has 8 or more instruments
+   actually generating output. In normal use, selecting the different formats
+   makes no detectable difference, but using the default 16 reduces clutter
+   when one doesn't need the extras.
+
+   \itempar{Vector control}{automation!vector control}
+   Vector control is based on these parts columns, giving one either 2 (X
+   only) or 4 (X + Y) instruments in this channel. Currently the vector
+   CCs one set up can (as inverse pairs) vary any combination of volume, pan,
+   and filter cut-off.  More will be added.  To keep the processor load
+   reasonable it pays to use fairly simple instruments, but if one has
+   sufficient processing power, it would be theoretically possible to set up
+   all 16 channels with quite independent vector behavior!
+
+   \itempar{Direct part audio}{automation!part audio}
+   Direct part audio is JACK-specific, and allows one to apply further
+   processing to just the defined part's audio output (which can still output
+   to the main L+R if one wants). This setting is saved with parameter
+   blocks. Currently it is only set in the mixer panel window, but it will also
+   eventually come under MIDI direct part control.  Again, to reduce
+   unnecessary clutter, part ports are only registered with JACK if they are
+   both enabled, and set for direct output. However, once set they will remain
+   in place for the session to avoid disrupting other applications that may
+   have seen them.
+
+\subsection{Filter Settings}
+\label{subsec:filter_settings}
+
+   This section describes filtering at a high-level, in terms of frequency
+   responses and other concepts of filtering.
+   The end of this section covers a user interface used in filter settings.
+   It is a stock-panel re-used in other user-interface elements.
+   See section~\ref{subsubsec:filter_parameters_user_interface}
+   on page~\pageref{subsubsec:filter_parameters_user_interface}
+   if one is in a hurry.
+
+   \textsl{Yoshimi}
+   offers several different types of filters, which can be used to
+   shape the spectrum of a signal. The primary parameters that affect the
+   characteristics of the filter are the cutoff, resonance, filter stages, and
+   the filter type.
+
+   Filter stages are the number of times that this filter is applied in
+   series. So, if this number is 1, one simply has this one filter. If it is
+   two, the sound first passes the filter, and the results then pass the same
+   filter again. In \textsl{ZynAddSubFX}, the wetness is applied after all
+   stages were passed.
+
+\subsubsection{Filter Type}
+\label{subsubsec:filter_type}
+
+   \index{filter!type}
+   A filter removes or attenuates frequency elements or tones from a signal.
+   Filtering changes the character of a signal.
+
+   The basic analog filters that \textsl{Yoshimi} and \textsl{ZynAddSubFX}
+   offer are shown in figure~\ref{fig:basic_filter_types} on
+   page~\pageref{fig:basic_filter_types}, with
+   the center frequency being marked by the red
+   line. The state variable filters should look quite similar.
+
+\begin{figure}[H]          % keep figure closer, requires the 'float' package
+   \centering 
+   \includegraphics[scale=0.5]{zyn/zyn_filter_types_filter0.png}
+   \caption[Basic Filter Types]{Filter Types, Yoshimi/ZynAddSubFX}
+   \label{fig:basic_filter_types} 
+\end{figure}
+
+   \begin{enumber}
+      \item A \textbf{low-pass} filter makes the sound more muffled.
+      \item A \textbf{band-pass} filter makes the sound more tone-like, and
+         sometimes more penetrating, if the total energy in the passband is
+         preserved as the bandwidth decreases.
+      \item A \textbf{high-pass} filter makes the sound seem sharper or more
+         strident.
+   \end{enumber}
+
+\subsubsection{Filter Cutoff}
+\label{subsubsec:filter_cutoff}
+
+   \index{filter!cutoff}
+   The filter cutoff value determines which frequency marks the changing
+   point for the filter. In a low pass filter, this value marks the point
+   where higher frequencies begin to be attenuated.
+
+\subsubsection{Filter Resonance}
+\label{subsubsec:filter_resonance}
+
+   \index{filter!Q}
+   \index{filter!resonance}
+   The resonance of a filter determines how much excess energy is present at
+   the cutoff frequency. In \textsl{Yoshimi} and \textsl{ZynAddSubFX},
+   this is represented by the Q-factor,
+   which is defined to be the cutoff frequency divided by the bandwidth. In
+   other words higher Q values result in a much more narrow resonant spike.
+
+   The Q value of a filter affects how concentrated
+   the signal’s energy is at the cutoff frequency. The result of differing Q
+   values are shown in figure~\ref{fig:low_q_vs_high_q} on
+   page~\pageref{fig:low_q_vs_high_q}.
+   For many classical analog sounds, high Q values were used on sweeping
+   filters. A simple high Q low pass filter modulated by a strong envelope is
+   usually sufficient to get a good sound.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.5]{zyn/low_q_high_q_filter1.png}
+   \caption[Low Q vs. High Q]{The Effect of the Q Value}
+   \label{fig:low_q_vs_high_q} 
+\end{figure}
+
+\subsubsection{Filter Stages}
+\label{subsubsec:filter_stages}
+
+   \index{filter!stages}
+   \index{filter!order}
+   The number of stages in a given filter describes how sharply it is able to
+   make changes in the frequency response.
+   The more stages, the sharper the filter.
+   However, each added stage increases the processor time needed to make the
+   filter calculation.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.5]{zyn/2_pole_8_pole_filter2.png}
+   \caption[2 Pole vs. 8 Pole Filter]{The Effect of the Order of a Filter}
+   \label{fig:2_pole_vs_8_pole_filter}
+\end{figure}
+
+   The affect of the order of the filter can be seen in the figure above.
+%  in figure~\ref{fig:2_pole_vs_8_pole_filter}
+%  on page~\pageref{fig:2_pole_vs_8_pole_filter}.
+   This is roughly synonymous with the number of stages of the filter. For
+   more complex patches, it is important to realize that the extra sharpness
+   in the filter does not come for free, as it requires many more
+   calculations being performed. This phenomena is the most visible in
+   SUBsynth, where it is easy to need several \textsl{hundred} filter stages
+   to produce a given note.
+
+   There are different types of filters. The number of poles define what will
+   happen at a given frequency. Mathematically, the filters are functions which
+   have poles that correspond to that frequency. Usually, two poles mean that
+   the function has more "steepness", and that one can set the exact value of
+   the function at the poles by defining the "resonance value". Filters with
+   two poles are also often referred to as \textsl{Butterworth Filters}.
+
+   For the interested, functions having poles means that we are given a
+   quotient of polynomials. The denominator has degree 1 or 2, depending on the
+   filter having one or two poles. In the file \texttt{DSP/AnalogFilter.cpp},
+   \texttt{AnalogFilter::computefiltercoefs()} sets the coefficients (depending
+   on the filter type), and \\
+   \texttt{AnalogFilter::singlefilterout()} shows
+   the whole polynomial (in a formula where no quotient is needed).
+
+\subsubsection{Filter Parameters User Interface}
+\label{subsubsec:filter_parameters_user_interface}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{subpanels/Filter_Params.png}
+   \caption[Filter Parameters Sub-panel]{Stock Filter Parameters Sub-Panel}
+   \label{fig:filter_parameters_subpanel} 
+\end{figure}
+
+   The user interface for filter parameters is a small stock sub-panel that
+   is re-used in a number of larger dialog boxes, as shown in the figure
+   above.
+%  figure~\ref{fig:filter_parameters_subpanel} on
+%  page~\pageref{fig:filter_parameters_subpanel}.
+
+   Let's describe each item of this sub-panel.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/filter-category.jpg}
+   \caption[Filter Categories Dropdown]{Filter Categories, Dropdown Box}
+   \label{fig:filter_categories_dropdown} 
+\end{figure}
+
+   \begin{enumber}
+      \item \textbf{Category}
+      \item \textbf{Filter Type}
+      \item \textbf{C.freq}
+      \item \textbf{Q}
+      \item \textbf{V.SnsA}
+      \item \textbf{freq.tr}
+      \item \textbf{gain}
+      \item \textbf{St}
+      \item \textbf{C}
+      \item \textbf{P}
+   \end{enumber}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Category}{filter!category}
+   Determines the category of filter to be used.
+   There are three categories of filters
+   (as shown in the dropdown element shown in
+   figure~\ref{fig:filter_categories_dropdown} on
+   page~\pageref{fig:filter_categories_dropdown}.)
+
+\begin{enumber}                     % enumber is our arabic numbering style
+   \item \textbf{Analog} (the default)
+   \item \textbf{Formant}
+   \item \textbf{StVarF}
+\end{enumber}
+
+   An \textbf{analog} filter
+   \index{filter!analog}
+   is one that approximates a filter that is based on
+   a network of resistors, capacitors, and inductors.
+
+   A \textbf{formant} filter
+   \index{filter!formant}
+   is a more complex kind of filter that acts a lot
+   like the human vocal tract, allowing for sounds that
+   are a bit like human voices.
+
+   A \textbf{state variable} ("StVarF") filter
+   \index{filter!state variable}
+   \index{filter!StVarF}
+   \index{StVarF}
+   is a type of active filter.
+   The frequency of operation and the Q factor can be varied independently.
+   This and the ability to switch between different filter responses make the
+   state-variable filter widely used in analogue synthesizers.
+
+   Values: \texttt{Analog*, Formant, StVarF}
+
+   \itempar{Filter Type}{filter!type}
+   Selects the type of filter to be used, such as high-pass, low-pass,
+   and band-pass.
+   See the dropdown element in figure~\ref{fig:filter_type_dropdown} on
+   page~\pageref{fig:filter_type_dropdown}.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/filter-filtertype.jpg}
+   \caption[Filter Type Dropdown]{Type of Filter Passband, Dropdown Box}
+   \label{fig:filter_type_dropdown} 
+\end{figure}
+
+   Values: \texttt{LPF1, HPF1, LPF2*, HPF2, BPF2, NF2, PkF2, LSh2, HSh2}
+
+   \itempar{C.freq}{cutoff frequency}
+   \index{center frequency}
+   Cutoff frequency or center frequency.
+   This items has various definitions in the literature. 
+   Usually it refers to the frequency at which the level
+   drops to 3 Db below the maximum level.
+   In various dialogs, this value is the
+   center frequency of the filter or the base position in
+   a vowel's sequence.
+
+   Values: \texttt{0 to 127, 90*}
+
+   \itempar{Q}{resonance level}
+   The level of resonance for the filter. 
+   It indicates a measure of the sharpness of a filter.
+   The higher the Q, the sharper the filter.
+   Generally, a higher Q value leads to a louder, more tonal
+   affect for the filter.
+   Note that some filter types might ignore this parameter.
+
+   \itempar{V.SnsA}{velocity sensing amount}
+   Velocity sensing amount for filter cutoff.
+   Velocity sensing amount of the filter.
+
+   TODO.
+
+   Values: \texttt{0 to 127, 64*}
+
+   \itempar{V.Sns}{velocity sensing function}
+   \index{filter!velocity sensing function}
+   Velocity sensing function of the filter.
+   Set the amplitude of the velocity sensing.
+
+   Values: \texttt{0 to 127, 64*}
+
+   \itempar{freq.tr}{frequency tracking amount}
+   \index{filter!frequency tracking amount}
+   Filter Frequency Tracking Amount.
+   When this parameter is positive, higher note
+   frequencies shift the filter’s cutoff frequency higher.
+   For the filter frequency tracking knob, left is negative, middle is
+   zero, and right is positive.
+
+   Values: \texttt{0 to 127, 64*}
+
+   \itempar{gain}{filter!gain}
+   Filter gain.
+   Additional gain/attenuation for a filter.
+   Also described as the filter output gain/damping factor.
+
+   Values: \texttt{0 to 127, 64*}
+
+   \itempar{St}{filter!stages}
+   Filter stages.
+   The more filter stages applied to a signal, the stronger (in general) the
+   filtering.
+   It is the number of additional times the filter will be applied (in
+   order to create a very steep roll-off, such as 48 dB/octave).
+   This dropdown
+   element is shown in
+   figure~\ref{fig:filter_stage_dropdown} on
+   page~\pageref{fig:filter_stage_dropdown}.
+   Obviously, the more stages used, the more calculation-intensive the
+   filter will be.  This should also increase the latency (lag) of the
+   filter.
+
+   % \item \textbf{C} (See elsewhere)\\
+   % \item \textbf{P} (See elsewhere)\\
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/filter-stages.jpg}
+   \caption[Filter Stage Dropdown]{Filter Stage Dropdown}
+   \label{fig:filter_stage_dropdown} 
+\end{figure}
+
+   Also present in this sub-panel are the usual \textbf{C}opy
+   and \textbf{P}aste buttons that call up a copy-parameters or
+   paste-parameters dialog.
+
+\subsection{LFO Settings}
+\label{subsec:lfo_settings}
+
+   \textsl{Yoshimi} provides LFOs for it amplitude, frequency, and filtering
+   functions.
+   "LFO" means Low Frequency Oscillator. These oscillators are not used to make
+   sounds by themselves, but they change parameters cyclically as a sound
+   plays.
+
+   LFOs are, as the name says, oscillators with, compared to the frequency of
+   the sound, low frequency. They often appear in order to control the
+   effect.
+
+\subsubsection{LFO Basic Parameters}
+\label{subsubsec:lfo_basic_parameters}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{zyn/basic_parameters_lfo0.png}
+   \caption[Basic LFO Parameters]{Basic LFO Parameters}
+   \label{fig:basic_parameters_lfo} 
+\end{figure}
+
+   \begin{enumber}
+      \item \textbf{Delay}.
+      \item \textbf{Start Phase}.
+      \item \textbf{Frequency}.
+      \item \textbf{Depth}.
+   \end{enumber}
+
+   The LFOs has some basic parameters (see
+   figure~\ref{fig:basic_parameters_lfo} on
+   page~\pageref{fig:basic_parameters_lfo}.)
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Delay}{LFO!delay}
+   LFO Delay.
+   This parameter sets how much time takes since the start of the note to
+   start the cycling of the LFO.
+   When the LFO starts, it has a certain position called "start phase".
+
+   \itempar{Start Phase}{LFO!start phase}
+   LFO Start Phase.
+   The angular position at which a LFO waveform will start.
+
+   \itempar{Frequency}{LFO!frequency}
+   LFO Frequency.
+   How fast the LFO is (i.e. how fast the parameter controlled by
+   the LFO changes.)
+
+   \itempar{Depth}{LFO!depth}
+   LFO Depth.
+   The amplitude of the LFO (i.e. how much the parameter is controlled by
+   the LFO changes.)
+
+\subsubsection{LFO Function}
+\label{subsubsec:lfo_function}
+
+   \index{LFO!shape}
+   \index{LFO!type}
+   \index{LFO!function}
+   Another important additional LFO parameter is the shape or type of the
+   LFO. There are many LFO Types that vary according to the function used to
+   generate the LFO. \textsl{Yoshimi} supports the LFO shapes shown in
+   figure~\ref{fig:types_of_lfo} on
+   page~\pageref{fig:types_of_lfo}.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{zyn/types_of_lfo1.png}
+   \caption[LFO Functions]{LFO Types, Shapes, or Functions}
+   \label{fig:types_of_lfo}
+\end{figure}
+
+\subsubsection{LFO Randomness}
+\label{subsubsec:lfo_randomness}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{zyn/randomness_in_lfo2.png}
+   \caption[LFO Randomization]{LFO Randomization}
+   \label{fig:randomness_in_lfo}
+\end{figure}
+
+   \index{LFO!randomness}
+   Another parameter is the LFO Randomness. It modifies the LFO amplitude or
+   the LFO frequency at random. In \textsl{Yoshimi}
+   one can choose how much the LFO
+   frequency or LFO amplitude changes by this parameter. In
+   figure~\ref{fig:randomness_in_lfo} on
+   page~\pageref{fig:randomness_in_lfo}
+   are shown some examples of randomness and how it changes the shape of a
+   triangle LFO.
+
+\subsubsection{LFO, More Settings}
+\label{subsubsec:lfo_more_settings}
+
+   Other settings are available as well.
+
+   \index{LFO!continuous mode}
+   Continous mode: If this mode is used, the LFO will not start from "zero" on
+   each new note, but it will be continuous. This is very useful if one
+   applies on filters to make interesting sweeps.
+
+   \index{LFO!stretch}
+   Stretch: It controls how much the LFO frequency changes according to the
+   note’s frequency. It can vary from negative stretch (the LFO frequency is
+   decreased on higher notes) to zero (the LFO frequency will be the same
+   on all notes) to positive stretch (the LFO frequency will be
+   increased on higher notes).
+
+\subsubsection{LFO User Interface Panels}
+\label{subsubsec:lfo_user_interface_panels}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{subpanels/Amplitude_LFO.png}
+   \caption[Amplitude LFO Sub-Panel]{Amplitude LFO Sub-Panel}
+   \label{fig:amplitude_lfo}
+\end{figure}
+
+   In \textsl{Yoshimi}, LFO parameters are available for amplitude, filters,
+   and frequency.  They all have essentially the same interface elements.
+   Figure~\ref{fig:amplitude_lfo} shows an example of an LFO stock sub-panel.
+
+These parameters are:
+
+   \begin{enumber}
+      \item \textbf{Freq}
+      \item \textbf{Depth}
+      \item \textbf{Start}
+      \item \textbf{Delay}
+      \item \textbf{A.R}
+      \item \textbf{F.R}
+      \item \textbf{C} or \textbf{C.}
+      \item \textbf{Str}
+      \item \textbf{Type}
+      \item \textbf{C} (copy)
+      \item \textbf{P} (paste)
+   \end{enumber}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Freq}{LFO!frequency}
+   LFO Frequency.
+   This parameter varies from 0 to 1.
+   TODO: We still need to figure out what that scale means, however.
+
+   Values: \texttt{0 to 1, 0.63*}
+
+   \itempar{Depth}{LFO!depth}
+   \index{LFO!amount}
+   LFO Depth.  Also called "LFO Amount".
+
+   Values: \texttt{0* to 127}
+
+   \itempar{Start}{LFO!starting phase}
+   LFO Start Phase. If this knob is at the lowest value, the LFO Start
+   Phase will be random.
+
+   Values: \texttt{0 = random to 127, 64*}
+
+   \itempar{Delay}{LFO!delay}
+   LFO Delay.
+
+   Values: \texttt{0* to 127}
+
+   \itempar{A.R}{LFO!amplitude randomness}
+   LFO Amplitude Randomness.
+
+   Values: \texttt{0* to 127}
+
+   \itempar{F.R}{LFO!frequency randomness}
+   LFO Frequency Randomness.
+
+   Values: \texttt{0* to 127}
+
+   \itempar{C}{LFO!continuous mode}
+   LFO Continous Mode.
+
+   Values: \texttt{Off*, On}
+
+   \itempar{Str}{LFO!stretch}
+   LFO Stretch. In the image in
+   figure~\ref{fig:amplitude_lfo} on
+   page~\pageref{fig:amplitude_lfo}, the LFO stretch is set to zero,
+   though the tooltip would show it to be 64.
+
+   Values: \texttt{0 to 127, 64*}
+
+   \itempar{Type}{LFO!type}
+   LFO Function.
+
+   Values: \texttt{SINE*, TRI, SQR, R.up, R.dn, E1dn, E2dn}
+
+   Also present in this sub-panel are the usual \textbf{C}opy
+   and \textbf{P}aste buttons that call up a copy-parameters or
+   paste-parameters dialog.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/lfo-function-type.jpg}
+   \caption[LFO Type Dropdown]{LFO Function Type Dropdown Element}
+   \label{fig:lfo_function_type_dropdown}
+\end{figure}
+
+   \itempar{Type}{LFO!function type}
+   LFO Type (or Shape, or Function).
+   The various shapes of LFO functions are shown in
+   figure~\ref{fig:types_of_lfo} on
+   page~\pageref{fig:types_of_lfo}.
+   The values that can be selected are shown in
+   figure~\ref{fig:lfo_function_type_dropdown} on
+   page~\pageref{fig:lfo_function_type_dropdown}.
+
+   Values: \texttt{SINE*, TRI, SQR, R.up, R.dn, E1dn, E2dn}
+
+   % \item \textbf{C}
+   % \item \textbf{P}
+
+   Also present in this sub-panel are the usual \textbf{C}opy
+   and \textbf{P}aste buttons that call up a copy-parameters or
+   paste-parameters dialog.
+
+   For reference,
+   figure~\ref{fig:filter_lfo} on
+   page~\pageref{fig:filter_lfo} shows the LFO sub-panel for a filter, and
+   figure~\ref{fig:frequency_lfo} on 
+   page~\pageref{fig:frequency_lfo}
+   shows the LFO sub-panel for frequency.
+
+\subsubsection{Filter LFO Sub-panel}
+\label{subsubsec:filter_lfo_sub_panel}
+
+   % Obtain sub-items from checklist
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{subpanels/Filter_LFO.png}
+   \caption[Filter LFO Sub-Panel]{Filter LFO Sub-Panel}
+   \label{fig:filter_lfo}
+\end{figure}
+
+   \begin{enumber}
+      \item \textbf{Enable} (present on some versions of this sub-panel).
+      \item \textbf{Freq.}
+      \item \textbf{Depth}
+      \item \textbf{Start}
+      \item \textbf{Delay}
+      \item \textbf{Str.}
+      \item \textbf{C.}
+      \item \textbf{A.R.}
+      \item \textbf{F.R.}
+      \item \textbf{Type}
+      \item \textbf{C}
+      \item \textbf{P}
+   \end{enumber}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Enable}{lfo!enable}
+   Enable the panel.  (Present on some versions of this sub-panel).
+
+   \itempar{Freq.}{lfo!frequency}
+   LFO Frequency.
+
+   Values: \texttt{0 to 1, 0.64*}
+
+   \itempar{Depth}{lfo!depth}
+   LFO Amount.
+
+   Values: \texttt{0* to 127}
+
+   \itempar{Start}{lfo!start phase}
+   LFO Startphase (leftmost is random).
+
+   Values: \texttt{0 to 127, 64*}
+
+   \itempar{Delay}{lfo!delay}
+   LFO Delay.
+
+   Values: \texttt{0* to 127}
+
+   \itempar{Str.}{lfo!stretch}
+   LFO Stretch.
+
+   Values: \texttt{0 to 127, 64*}
+
+   \itempar{C.}{lfo!continuous}
+   Continuous LFO.
+
+   Values: \texttt{Off*, On}
+
+   \itempar{A.R.}{lfo!random amplitude}
+   LFO Amplitude Randomness.
+
+   Values: \texttt{0* to 127}
+
+   \itempar{F.R.}{lfo!random frequency}
+   LFO Frequency Randomness.
+
+   Values: \texttt{0* to 127}
+
+   \itempar{Type}{lfo!type}
+   LFO Type.
+
+      TODO Figure: bottom-panel/instrument-edit/ADD/lfo-function-type.jpg
+
+   Values: \texttt{SINE*, TRI, SQR, R.up, R.dn, E1dn, E2dn}
+
+   \itempar{C}{lfo!copy}
+   Copy to Clipboard/Preset.
+
+   \itempar{P}{lfo!paste}
+   Paste from Clipboard/Preset.
+
+\subsubsection{Frequency LFO Sub-panel}
+\label{subsubsec:frequency_lfo_sub_panel}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{subpanels/Frequency_LFO.png}
+   \caption[Frequency LFO Sub-Panel]{Frequency LFO Sub-Panel}
+   \label{fig:frequency_lfo}
+\end{figure}
+
+This panel is basically identical to the Filter LFO panel described
+in the previous section.
+
+% Move this section upward?
+
+\subsection{Envelope Settings}
+\label{subsec:envelope_settings}
+
+Envelopes control how the amplitude, the frequency, or the filter changes
+over time.  The general envelope generator has four sections:
+
+   \begin{enumber}
+      \item \textbf{Attack}.
+         \label{ref:attack}
+         \index{attack}
+         \index{envelope!attack}
+         The attack is the initial envelope response. 
+         It begins when the key for the note is first held down
+         (at Note On).
+         The volume starts at 0, and rises fast or slowly until a peak value.
+         In \textsl{Yoshimi}, the attack is always linear.
+      \item \textbf{Decay}
+         \label{ref:decay}
+         \index{decay}
+         \index{envelope!decay}
+         When the attack is at its highest value, it immediately begins
+         to decay to the sustain value.  The decay can be fast or slow.
+         The attack and decay together can be used to produce something like
+         horn blips, for example.
+      \item \textbf{Sustain}
+         \label{ref:sustain}
+         \index{sustain}
+         \index{envelope!sustain}
+         This is the level at which the parameter stays while the key is
+         held down, i.e. until a Note Off occurs.
+      \item \textbf{Release}
+         \label{ref:release}
+         \index{release}
+         \index{envelope!release}
+         When the key is released, the sound decays, either fast or slowly,
+         until it is off (the volume is 0).
+   \end{enumber}
+
+   The ADSR envelope generally controls the amplitude of the sound.
+   In \textsl{Yoshimi},
+   amplitude envelopes can be linear or logarithmic.
+
+   Together, these values are called "ADSR".  
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{zyn/ADSR_envelope1.png}
+   \caption{ADSR Envelope (Amplitude)}
+   \label{fig:adsr_envelope_depiction}
+\end{figure}
+
+   Figure~\ref{fig:adsr_envelope_depiction} on
+   page~\pageref{fig:adsr_envelope_depiction}
+   shows a depiction of an ADSR envelope.
+   The ADSR is mostly applied to amplitude envelopes.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{zyn/ASR_frequency_envelope2.png}
+   \caption{ASR Envelope, Frequency}
+   \label{fig:asr_envelope_depiction}
+\end{figure}
+
+   Frequency envelopes control the frequency (more exactly, the pitch) of the
+   oscillators. The following image depicts the stages of these envelopes.
+
+   For frequency envelopes, a simpler form of envelope is used.
+   This envelope, shown in
+   Figure~\ref{fig:asr_envelope_depiction} on
+   page~\pageref{fig:asr_envelope_depiction},
+   is an ASR envelope.
+   The dotted line represents the real pitch of the sound without the envelope.
+   The frequency envelopes are divided into 3 stages:
+
+   \begin{enumber}
+      \item Attack. 
+      It begins at the Note On. The frequency starts from a certain value and
+      glides to the real frequency of the note.
+      \item Sustain.
+      The frequency stays the same during the sustain period.
+      \item Release.
+      This stage begins on Note Off and glides the frequency of the note to a
+      certain value.
+   \end{enumber}
+
+\subsubsection{Amplitude Envelope Sub-Panel}
+\label{subsubsec:amplitude_envelope_subpanel}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{subpanels/Amplitude_Env.png}
+   \caption[Amplitude Envelope Sub-Panel]{Amplitude Envelope Sub-Panel}
+   \label{fig:amplitude_env}
+\end{figure}
+
+   \begin{enumber}
+      \item \textbf{A.dt}
+      \item \textbf{D.dt}
+      \item \textbf{S.val}
+      \item \textbf{R.dt}
+      \item \textbf{Str}
+      \item \textbf{L}
+      \item \textbf{frcR}
+      \item \textbf{C}
+      \item \textbf{P}
+      \item \textbf{E}
+   \end{enumber}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{A.dt}{envelope!attack time}
+   Attack duration, attack time.
+   TODO: determine the units of time at play for ADSR durations.
+
+   Values: \texttt{0* to 127}
+
+   \itempar{D.dt}{envelope!decay time}
+   Decay duration, decay time.
+
+   Values: \texttt{0 to 127, 44*}
+
+   \itempar{S.val}{envelope!sustain value}
+   Sustain value.
+   This is the (relative?) level at which the envelope will settle
+   while the note is held down.
+   The only stage that always remains defined is the Sustain, where the
+   envelopes freezes until a Note Off event.
+
+   Values: \texttt{0 to 127*}
+
+   \itempar{R.dt}{envelope!release time}
+   Release time.
+
+   Values: \texttt{0 to 127, 25*}
+
+   \itempar{Str}{envelope!stretch}
+   Stretch.
+   How the envelope is stretched according the note.
+   Envelope Stretch means that, on lower notes, the envelope will be longer.
+   On the higher notes the envelopes are shorter than lower notes. In the
+   leftmost value, the stretch is zero. The rightmost use a stretch of 200\%;
+   this means that the envelope is stretched about 4 times peroctave.
+
+   Values: \texttt{0 to 127, 64*}
+
+   \itempar{L}{envelope!linear}
+   Linear envelope.
+   If this option is set, the envelope is linear, otherwise, it will be
+   logarithmic.
+
+   Values: \texttt{Off*, On}
+
+   \itempar{frcR}{envelope!forced release}
+   Forced release.
+   This means that if this option is turned on, the release will go to the
+   final value, even if the sustain stage is not reached. Usually, this must
+   be set.
+
+   Values: \texttt{Off, On*}
+
+   If this option is turned on, the release will go to the
+   final value, even if the sustain level is not reached.
+
+   Also present in this sub-panel are the usual \textbf{C}opy
+   and \textbf{P}aste buttons that call up a copy-parameters or
+   paste-parameters dialog.
+
+   \itempar{C}
+   Copy to Clipboard/Preset.
+   TO BE DESCRIBED ELSEWHERE.
+
+   \itempar{P}
+   Paste from Clipboard/Preset.
+   TO BE DESCRIBED ELSEWHERE.
+
+   \itempar{E}
+   Amplitude Envelope Window.
+   TO BE DESCRIBED ELSEWHERE, such as next section (followed by freemode
+   section)
+
+\subsubsection{Envelope Settings}
+\label{subsubsec:envelope_settings}
+
+   Amplitude Envelope Window.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/amplitude-envelope.jpg}
+   \caption{Amplitude/Filter/Frequency Envelope Editor}
+   \label{fig:amplitude_envelope_editor}
+\end{figure}
+
+   \begin{enumber}
+      \item \textbf{Graph Window}
+      \item \textbf{FreeMode}
+      \item \textbf{C}
+      \item \textbf{P}
+      \item \textbf{Close}
+   \end{enumber}
+
+   \itempar{FreeMode}{envelope!freemode enable}
+   Freemode Enable.
+
+   Values: \texttt{Off*, On} \\
+
+\subsubsection{Freemode Envelope Settings}
+\label{subsubsec:freemode_envelope_settings}
+
+   The envelopes are parts that control a parameter (frequencies) of a sound. 
+
+   For all envelopes, there is a mode that allows the user to set an arbitrary
+   number of stages and control points. This mode is called Freemode.
+   The only stage that always remains defined is the Sustain, where the
+   envelopes freezes until a Note Off event.
+   The Freemode envelope editor has a separate window to set the parameters and
+   controls.
+
+   The main concept of the freemode editor window is the
+   \textsl{control point}.
+   \index{control point}
+   One can move the points using the mouse. In the right on the
+   window, it shows the total duration of the envelope. If the mouse button
+   is pressed on a control point, it will be shown the duration of the
+   stage where the point is.
+
+   Figure~\ref{fig:amplitude_envelope_freemode}
+   on page~\pageref{fig:amplitude_envelope_freemode}
+   shows an example of the stock freemode envelope editor, with
+   freemode enabled.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/amplitude-envelope-freemode.jpg}
+   \caption{Amplitude/Filter/Frequency Envelope Freemode Editor}
+   \label{fig:amplitude_envelope_freemode}
+\end{figure}
+
+   All of the envelope editors have some common controls.
+
+   \begin{enumber}
+      \item \textbf{Graph Window}
+      \item \textbf{Add point}
+      \item \textbf{E}
+      \item \textbf{FreeMode}
+      \item \textbf{Add point}
+      \item \textbf{Delete point}
+      \item \textbf{Sust}
+      \item \textbf{Stretch}
+      \item \textbf{L}
+      \item \textbf{frcR}
+      \item \textbf{Close}
+      \item \textbf{C}
+      \item \textbf{P}
+   \end{enumber}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{E}{envelope!editor}
+   Editor.  Graph Window.
+   Shows a window with the real envelope shape and the option to convert to
+   freemode to edit it.
+   The envelope editor shows a window in which one can view and modify the
+   detailed envelope shape, or convert it to "freemode" to edit it almost
+   without restriction.
+   By default, only the \textsl{Freemode} button/checkbox is visible.
+
+   If an envelope has the FreeMode mode enabled, it allows one to edit the
+   graph of the envelope directly. Select a point from the graph and move it.
+   Notice that \textsl{only the line before the currently edited point of the
+   envelope} changes its duration.
+
+   If a point is being dragged, the text on the right shows the duration of
+   the line before it. Otherwise, the text shows the total duration of the
+   envelope. 
+
+   If the envelope doesn't have the FreeMode mode enabled, it doesn't allow
+   one to move the points; the envelope window is then useful only to see
+   what happens if one changes the ADSR settings.
+
+   \itempar{FreeMode}{envelope!freemode}
+   FreeMode.  Provides a mode where completely arbitrary envelopes may be
+   drawn.
+
+   Values: \texttt{Off*, On}
+
+   Actually, the envelopes aren't completely arbitrary, as the sustain
+   section is always flat, and its duration corresponds with the duration
+   the note is held down.
+   When this mode is enabled, the rest of the controls shown in
+   \ref{fig:amplitude_envelope_freemode}
+   appear, and are described in the following paragraphs.
+
+   \itempar{Add point}{envelope!add point}
+   Add point.
+   Provides a way to add a data point to the Freemode envelope.
+   It adds the point after the currently-selected point. One can select a
+   point by clicking on it.
+
+   \itempar{Delete point}{envelope!delete point}
+   Delete point.
+   Provides a way to delete the current data point from the Freemode envelope.
+
+   \itempar{Sust}{envelope!sustain}
+   Sustain point.
+   Sets the sustain point.
+   The sustain point is shown using the yellow line.
+   If the point is at 0, then sustain is disabled.
+
+   Values: \texttt{0, 1, 2*}
+
+   \begin{enumber}
+      \item{0} means that sustain is disabled, and the envelope immediately
+      starts dying, even if the note is held.
+      \item{1} seems to mean the sustain curve follows its course while the
+      note is held.
+      \item{2} seems to mean that extra sustain kicks in after the note is
+      released.
+   \end{enumber}
+
+   It is difficult to determine the difference between 1 and 2.
+
+   \itempar{Stretch}{envelope!stretch}
+   Envelope Stretch.
+   How the envelope is stretched according the note. On the higher notes the
+   envelopes are shorter than lower notes. At the leftmost value, the
+   stretch is zero. The rightmost sets a stretch of 200\%; this means that the
+   envelope is stretched about four times/octave.
+
+   \itempar{L}{envelope!linear}
+   Envelope Linear.
+   This setting is only available in the amplitude envelope.
+   If enabled, the envelope is linear.
+   If not enabled, the envelope is logarithmic (dB).
+
+   Values: \texttt{Off*, On}
+
+   \itempar{frcR}{envelope!forced release}
+   Forced Release.
+   This means that if this option is turned on, the release will go to the
+   final value, even if the sustain stage is not reached. Usually, this must
+   be set.
+   When the key is released, the position of the envelope jumps directly to
+   the point after the release point. If the release is disabled, the
+   envelope position jumps to the last point on release.
+
+   Values: \texttt{Off*, On}
+
+   \itempar{Close}{envelope!close dialog}
+   Close Dialog.
+
+   Also present in this sub-panel are the usual \textbf{C}opy
+   and \textbf{P}aste buttons that call up a copy-parameters or
+   paste-parameters dialog, as well as a button
+   to bring up the editor window.
+
+\subsubsection{Envelope Settings, Frequency}
+\label{subsubsec:envelope_settings_for_frequency}
+
+   These envelopes controls the frequency (more exactly, the pitch) of the
+   oscillators.
+   Figure~\ref{fig:asr_envelope_depiction} on
+   page~\pageref{fig:asr_envelope_depiction}
+   depicts the stages of these envelopes.
+   The dotted line represents the real pitch of the sound without the envelope.
+
+   The frequency envelopes are divided into 3 stages:
+   attack (see \ref{ref:attack});
+   sustain (see \ref{ref:sustain});
+   and
+   release (see \ref{ref:release}).
+
+   One question to answer is:  
+   can the attack and release go in the opposite directions, or do the knob
+   ranges prohibit this?
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{subpanels/Frequency_Env.png}
+   \caption[Frequency Envelope Sub-Panel]{Frequency Envelope Sub-Panel}
+   \label{fig:frequency_env}
+\end{figure}
+
+   \begin{enumber}
+      \item \textbf{Enable} (present on some versions of this sub-panel).
+      \item \textbf{A.value} or \textbf{A.val}
+      \item \textbf{A.dt}
+      \item \textbf{R.dt}
+      \item \textbf{R.val} (present on some versions of this sub-panel).
+      \item \textbf{Stretch}
+      \item \textbf{frcR}
+      \item \textbf{C}
+      \item \textbf{P}
+      \item \textbf{E}
+   \end{enumber}
+
+   For Frequency Envelopes the interface has the following parameters:
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Enable}{envelope!enable}
+   Enable the panel.  (Present on some versions of this sub-panel).
+
+%  \itempar{A.value}{envelope!attack value}
+
+   \itempar{A.val}{envelope!attack value}
+   Attack value.
+   We need to figure out what this means.
+
+   Values: \texttt{0 to 127, 64*}
+
+   \itempar{A.dt}{envelope!attack time}
+   Attack duration. Attack time.
+
+   Values: \texttt{0 to 127, 40*}
+
+   \itempar{R.dt}{envelope!release time}
+   Release time.
+
+   Values: \texttt{0 to 127, 60*}
+
+   \itempar{R.val}{envelope!release value}
+   Release Value.
+   Actually present only on the Frequency Env sub-panel.
+
+   Values: \texttt{0 to 127, 64*}
+
+   \itempar{Stretch}{envelope!stretch}
+   Envelope Stretch.
+   Envelope Stretch (on lower notes make the envelope longer).
+
+   Values: \texttt{0 to 127, 64*}
+
+   \itempar{frcR}{envelope!forced release}
+   Forced release.
+
+   Values: \texttt{Off, On*}
+
+   If this option is turned on, the release will go to the
+   final value, even if the sustain level is not reached.
+
+   Also present in this sub-panel are the usual \textbf{C}opy
+   and \textbf{P}aste buttons that call up a copy-parameters or
+   paste-parameters dialog, as well as a button
+   to bring up the editor window.
+
+\subsubsection{Envelope Settings for Filter}
+\label{subsubsec:envelope_settings_for_filter}
+
+   This envelope controls the cutoff frequency of the filters.
+   The filter envelopes are divided into 4 stages:
+
+% attack (see \ref{ref:attack});
+% decay (see \ref{ref:decay});
+% sustain (see \ref{ref:sustain});
+% and
+% release (see \ref{ref:release}).
+
+   \begin{enumber}
+      \item Attack.
+         It begins at the Note On.
+         The cutoff frequency starts from a certain value and glides to another
+         value.
+      \item Decay.
+         The cutoff frequency continues to glide to the real cutoff frequency
+         value of the filter (dotted line).
+      \item Sustain.
+         The cutoff frequency stays the same during the sustain period (dotted
+         line).
+      \item Release.
+         This stage begins on Note Off and glides the filter cutoff frequency
+         of the note to a certain value.
+   \end{enumber}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{subpanels/Filter_Env.png}
+   \caption[Filter Envelope Sub-Panel]{Filter Envelope Sub-Panel}
+   \label{fig:filter_env}
+\end{figure}
+
+   \begin{enumber}
+      \item \textbf{A.value}
+      \item \textbf{A.dt}
+      \item \textbf{D.val}
+      \item \textbf{D.dt}
+      \item \textbf{R.dt}
+      \item \textbf{Stretch}
+      \item \textbf{frcR}
+      \item \textbf{L}
+   \end{enumber}
+
+   Filter Envelopes has the following parameters:
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{A.value}{envelope!attack value}
+   Attack Value.  Starting Value.
+   We need to figure out what this means.
+
+   Values: \texttt{0 to 127, 64*}
+
+   \itempar{A.dt}{envelope!attack time}
+   Attack Duration.  Attack Time.
+
+   Values: \texttt{0 to 127, 40*}
+
+   \itempar{D.val}{envelope!decay value}
+   Decay Value.
+
+   Values: \texttt{0 to 127, 64*}
+
+   \itempar{D.dt}{envelope!decay time}
+   Decay Duration.  Decay Time.
+
+   Values: \texttt{0 to 127, 70*}
+
+   \itempar{R.dt}{envelope!release time}
+   Release time.
+
+   Values: \texttt{0 to 127, 60*}
+
+   \itempar{Stretch}{envelope!stretch}
+   Stretch.
+   Envelope Stretch (on lower notes make the envelope longer).
+
+   Values: \texttt{0 to 127, 64*}
+
+   \itempar{frcR}{envelope!forced release}
+   Forced Release.
+
+   Values: \texttt{Off, On*}
+
+   If this option is turned on, the release will go to the
+   final value, even if the sustain level is not reached.
+
+   Also present in this sub-panel are the usual \textbf{C}opy
+   and \textbf{P}aste buttons that call up a copy-parameters or
+   paste-parameters dialog, as well as a button that bring up the editor
+   window.
+
+   Addition picture and GUI items for ADDsynth version?
+
+   Figure: bottom-panel/instrument-edit/ADD/ADDsynth-filter-envelope.jpg
+
+   \itempar{L}{envelope!linearity}
+   If this option is set, the envelope is linear, otherwise, it will be
+   logarithmic.
+
+   Values: \texttt{Off*, On}
+
+   % \item \textbf{C}
+   % \item \textbf{P}
+   % \item \textbf{E}
+
+\subsubsection{Formant Filter Settings}
+\label{subsubsec:formant_filter_settings}
+
+   This window allows one to change most of the parameters of the formant
+   filter. 
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{zyn/formant_filter.png}
+   \caption[Formant Filter Editor]{Formant Filter Editor Dialog}
+   \label{fig:formant_filter_editor}
+\end{figure}
+
+   \begin{enumber}
+      \item \textbf{Category}
+      \item \textbf{Num.Formants}
+      \item \textbf{Fr.Sl.}
+      \item \textbf{Vw.Cl.}
+      \item \textbf{C.f.}
+      \item \textbf{Oct.}
+      \item \textbf{Vowel no}
+      \item \textbf{Formant}
+      \item \textbf{freq}
+      \item \textbf{Q}
+      \item \textbf{amp}
+      \item \textbf{Seq Size}
+      \item \textbf{S.Pos}
+      \item \textbf{Vowel}
+      \item \textbf{Strtch}
+      \item \textbf{Neg Input}
+   \end{enumber}
+
+\paragraph{Formant Parameters}
+\label{paragraph:formant_parameters}
+
+   \itempar{Num.Formants}{formant!number}
+   Number of Formants Used.
+
+   Values:  \texttt{0 to xxx?}
+
+   \itempar{Fr.Sl.}{formant!slowness}
+   Formant Slowness.
+   This parameters prevents too-fast morphing between vowels.
+
+   Values:  \texttt{0 to xxx?}
+
+   \itempar{Vw.Cl.}{formant!clearness}
+   Vowel "Clearness".
+   How much the vowels are kept "clear".
+   That is, how much the "mixed" vowels are avoided.
+
+   Values:  \texttt{0 to xxx?}
+
+   \itempar{C.f.}{formant!cf}
+   Center Frequency.
+   The center frequency of the graph.
+
+   Values:  \texttt{0 to xxx?}
+
+   \itempar{Oct.}{formant!octaves}
+   Number of Octaves.
+
+   The number of octaves in the graph.
+
+   Values:  \texttt{0 to xxx?}
+
+\paragraph{Formant Vowel Parameters}
+\label{paragraph:formant_vowel_parameters}
+
+   \itempar{Vowel no}{formant!vowel number}
+   The number of the current vowel.
+   This number means what?
+
+   Values:  \texttt{0 to xxx?}
+
+   \itempar{Formant}{formant!number}
+   The current formant.
+
+   Values:  \texttt{0 to xxx?}
+
+   \itempar{freq}{formant!frequency}
+   The frequency of the current formant.
+
+   Values:  \texttt{0 to xxx?}
+
+   \itempar{Q}{formant!Q}
+   The Q (resonance depth or bandwidth) of the current formant.
+
+   Values:  \texttt{0 to xxx?}
+
+   \itempar{amp}{formant!amplitude}
+   Amplitude of the current formant.
+
+   Values:  \texttt{0 to xxx?}
+
+\paragraph{Formant Sequence Parameters}
+\label{paragraph:formant_sequence_parameters}
+
+   The sequence represents what vowel is selected to sound according to the
+   input from the filter envelopes and LFO's.
+ 
+   \itempar{Seq Size}{formant!seq size}
+   Sequence Size.
+   The number of vowels in the sequence.
+
+   Values:  \texttt{0 to xxx?}
+
+   \itempar{S.Pos}{formant!seq position}
+   Sequence Position.
+   The current position of the sequence.
+
+   Values:  \texttt{0 to xxx?}
+
+   \itempar{Vowel}{formant!vowel position}
+   The vowel from the current position.
+
+   Values:  \texttt{0 to xxx?}
+
+   \itempar{Strtch}{formant!seq stretch}
+   How the sequence is stretched.
+   This number means what?
+
+   Values:  \texttt{0 to xxx?}
+
+   \itempar{Neg Input}{formant!reversed}
+   Negative Input.
+   If enabled, the sequence is reversed.
+
+   Values:  \texttt{0 to xxx?}
+
+\subsubsection{Controller Settings}
+\label{subsubsec:controller_settings}
+
+TODO.
+
+\subsection{Clipboard Presets}
+\label{subsec:clipboard_presets}
+
+In many of the settings panels, there are buttons
+labelled \textbf{C}, \textbf{P}, and \textbf{E},
+\textbf{E} is the editor window, discussed in 
+section \ref{subsubsec:freemode_envelope_settings}
+\textbf{C} and \textbf{P} are the clipboard/present copy and paste
+dialogs, respectively.
+
+\subsubsection{Clipboard/Preset Copy}
+\label{subsubsec:clipboard_copy}
+\index{subsubsec:clipboard!copy}
+
+   Figure~\ref{fig:copy_to_clipboard} on
+   page~\pageref{fig:copy_to_clipboard} 
+   show an example of the copying dialog for the clipboard.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/copy-to-clipboard-preset.jpg}
+   \caption[Copy to Clipboard]{Copy to Clipboard/Presets}
+   \label{fig:copy_to_clipboard} 
+\end{figure}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Type}{clipboard!copy type}
+   Clipboard type for copying.
+   This field indicates the context (e.g h. "envamplitude") or name of the
+   clipboard to which the data will be copied.
+
+   \itempar{Clipboard list}{clipboard!list}
+   Clipboard list.
+   TODO: determine what this is a list of!
+
+   \itempar{Copy to Preset}{preset!copy}
+   Clipboard to preset.
+   Provides a way to specify the preset to which this data should be
+   copied.
+   TODO:  How do you know the correct name for the preset?
+
+   \itempar{Copy to Clipboard}{clipboard!copy}
+   Preset to Clipboard.
+
+\subsubsection{Clipboard/Preset Paste}
+\label{subsubsec:clipboard_paste}
+\index{subsubsec:clipboard!paste}
+
+   Figure~\ref{fig:paste_to_clipboard} on
+   page~\pageref{fig:paste_to_clipboard} 
+   show an example of the pasting dialog for the clipboard.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/paste-from-clipboard-preset.jpg}
+   \caption[Paste from Clipboard]{Paste from Clipboard/Presets}
+   \label{fig:paste_to_clipboard} 
+\end{figure}
+
+   \begin{enumber}
+      \item \textbf{Add point}
+      \item \textbf{Type}
+      \item \textbf{Clipboard list}
+      \item \textbf{Paste from Preset}
+      \item \textbf{Paste from Clipboard}
+   \end{enumber}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Type}{clipboard!paste type}
+   Clipboard type for pasting.  
+   This field indicates the context (e.g h. "envamplitude") or name of the
+   clipboard to which the data will be copied.
+
+   \itempar{Clipboard list}{clipboard!list}
+   Clipboard list.
+   TODO: determine what this is a list of!
+
+   \itempar{Paste from Preset}{preset!paste}
+   Paste from preset.
+   Prrovides a way to specify the preset to which this data should be
+   copied.
+   TODO:  How do you know the correct name for the preset?
+
+   \itempar{Paste from Clipboard}{clipboard!paste}
+   Clipboard to preset.
+
+%-------------------------------------------------------------------------------
+% vim: ts=3 sw=3 et ft=tex
+%-------------------------------------------------------------------------------

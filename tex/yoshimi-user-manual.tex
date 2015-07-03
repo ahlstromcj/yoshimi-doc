@@ -1,0 +1,223 @@
+%-------------------------------------------------------------------------------
+% yoshimi-user-manual
+%-------------------------------------------------------------------------------
+%
+% \file        yoshimi-user-manual.tex
+% \library     Documents
+% \author      Chris Ahlstrom
+% \date        2015-04-20
+% \update      2015-06-27
+% \version     $Revision$
+% \license     $XPC_GPL_LICENSE$
+%
+%     This document provides LaTeX documentation for yoshimi.
+%
+%-------------------------------------------------------------------------------
+
+\documentclass[
+ 11pt,
+ twoside,
+ a4paper,
+ headinclude,
+ footinclude,
+ final                                 % versus draft
+]{article}
+
+\input{yoshimi-docs-structure}         % specifies document structure and layout
+
+\makeindex
+
+\begin{document}
+
+\title{A Yoshimi User Manual}
+\author{Chris Ahlstrom\\
+   (\texttt{ahlstromcj@gmail.com})}
+\date{\today}
+\maketitle
+% \setcounter{tocdepth}{3}             % sections, subsections, and subsubs
+\tableofcontents
+\listoffigures                         % print the list of figures
+\listoftables                          % print the list of tables
+
+% Change the paragraph style to remove indenting and put a line between each
+% paragraph.  This could be moved up into the preamble, but then would
+% affect the spacing of the TOC and LOF, LOT noted above.
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+
+\section{Introduction}
+\label{sec:introduction}
+
+   This document describes how to use \textsl{Yoshimi} \cite{yoshimi},
+   the software synthesizer derived from the great
+   \textsl{ZynAddSubFx} \cite{zynaddsubfx} software
+   synthesizer.  Because of their similarities, much of this document also
+   applies to \textsl{ZynAddSubFx} and depends upon \textsl{ZynAddSubFX}
+   documentation and diagrams.
+
+   Yoshimi is a MIDI software synthesizer for Linux. It synthesizes in real
+   time, can run polyphonic and/or monophonic in multiple simultaneous
+   patches in one or more MIDI channels, has broad microtonal capability,
+   and much more. It includes extensive addititive, subtractive, and PAD
+   synth capabilities which can be run simultaneously within the same patch.
+   It also has comprehensive effects capabilities.
+
+   Originally based on the 2.4.0 version of ZynAddSubFX (Copyright 2002-2009
+   Nasca Octavian Paul), development of Yoshimi has continued for
+   quite a while now in its own directions. These include major
+   optimizations for audio and MIDI performance, and more recently
+   progressive development of user-level access to all controls. At the same
+   time refinement continues, both visually and within the code.
+
+   What are the advantages of
+   \textsl{Yoshimi} versus \textsl{ZynAddSubFX}?
+   Well, this information may be outdated by now, but 
+   \textsl{Yoshimi} is supposed to have better JACK support
+   than does \textsl{ZynAddSubFX}.
+   \textsl{Yoshimi} also has a cleaner and neater graphical user interface.
+   On the other hand, \textsl{ZynAddSubFX} has a few features that
+   \textsl{Yoshimi} does not, such as being able to easily record
+   the output waveforms.
+
+   The structure of this document is a struggle.  No matter which route is
+   taken, there's no way to avoid jumping all over this document to
+   adequately cover a topic.  Therefore, the section are basically provided
+   in the order their contents appear in the user interface of
+   \textsl{Yoshimi}.  To help the reader jump around this document, multiple
+   links and references are supplied.
+
+   Usage tips
+   \index{tips!in document}
+   for each of the functions provided in
+   \textsl{Yoshimi} are sprinkled throughout this document.
+   Each tip occurs in a section beginning with "Tips:".
+   Each tip is provided with an entry in the Index, under the
+   main topic "tip".
+
+   Run \textsl{Yoshimi}, but run it without using \textsl{JACK}, which
+   complicates the discussion of \textsl{Yoshimi}.  The first
+   thing to do is make sure one has no other sound application running
+   (unless one wants to risk blocking \textsl{Yoshimi} or hearing two sounds
+   simultaneously, depending on one's sound card and ALSA setup).
+
+   Then run \textsl{Yoshimi} so that it uses ALSA for audio and ALSA for
+   MIDI.  Also use the "\&" character so that we get back to the
+   command-line prompt.
+
+\begin{verbatim}
+   $ yoshimi -a -A &
+\end{verbatim}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{Yosh-splash-OTW-1.png}
+   \caption{Yoshimi Splash Screen!}
+   \label{fig:yoshimi_splash_screen}
+\end{figure}
+
+   One sees a brief message, and then the splash screen.
+   We show the splash screen, figure~\ref{fig:yoshimi_splash_screen},
+   here because it goes away too
+   fast when one runs \textsl{Yoshimi}!
+   What fun is that?
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{1.3.5/yoshimi-first-screen.png}
+   \caption{Yoshimi Main Screen}
+   \label{fig:yoshimi_main_screen}
+\end{figure}
+
+%  \includegraphics[scale=1.0]{yoshimi-first-screen.jpg}
+%  This figure a bit out-of-date (it does not show the new "Part of"
+%  feature)
+   
+   Then the \textsl{Yoshimi} main window appears, as shown in
+   \figureref{fig:yoshimi_main_screen}.
+
+   For this manual, we describe the main window as being composed of
+   the following sections:
+
+\begin{enumber}
+   \item \textbf{Menu}.
+   \item \textbf{Top Panel}.
+   \item \textbf{Effects Panel}.
+   \item \textbf{Bottom Panel}.  Includes the VU-meter at the bottom.
+\end{enumber}
+
+There's a lot going on with \textsl{Yoshimi}, and there's no way
+to describe it in linear order.  This manual will describe how to do useful
+things in each of the sections noted above, while leaving some of the
+details to be described in later sections, to which reference can be made
+for these details.  This document will depend heavily on index entries and
+references.
+
+% Important Concepts
+
+\input{yum_concepts}
+
+% Menu
+
+\input{yum_menu}
+
+% Settings Index and Descriptions
+
+\input{yum_settings}
+
+% Top Panel User-Interface items
+
+\input{yum_top_panel}
+
+% Middle Panel Effects User-Interface items
+
+\input{yum_effects}
+
+% Bottom Panel User-Interface items
+
+\input{yum_bottom_panel}
+
+% ADDsynth User-Interface items
+
+\input{yum_addsynth}
+
+% PADsynth User-Interface items
+
+\input{yum_padsynth}
+
+% SUBsynth User-Interface items
+
+\input{yum_subsynth}
+
+% Kit Edit User-Interface items
+
+\input{yum_kitedit}
+
+% Banks
+
+\input{yum_bank_collection}
+
+% NRPNS and effects in more detail
+
+\input{yum_nrpns}
+
+% Man page
+
+\input{yum_manpage}
+
+\section{Summary}
+\label{sec:summary}
+
+In summary, we can say that you will absolutely love \textsl{Yoshimi}.
+
+% References
+
+\input{yum_references}
+
+\printindex
+
+\end{document}
+
+%-------------------------------------------------------------------------------
+% vim: ts=3 sw=3 et ft=tex
+%-------------------------------------------------------------------------------

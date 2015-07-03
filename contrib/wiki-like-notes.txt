@@ -1,0 +1,701 @@
+A Collection of Notes from various places that might be useful in the
+manual.
+
+http://sourceforge.net/p/yoshimi/mailman/yoshimi-devel/
+
+I've just completed some extensions to the NRPN system & insert effects.
+Everything works quite correctly except... the effect name and part number
+entries immediately below the System & Insert tabs. The tabs themselves switch
+correctly, and the effects panel below also updates. To say this is frustrating
+would be an extreme understatement :(
+
+If anyone wants to have a go at this, using the latest master version, send the
+following MIDI CCs to a 'bare' Yoshimi.
+
+99 -   8 ~ insert effects
+98 -   3 ~ number 4 (as displayed)
+6 -  32 ~ set destination
+38 - 126 ~ Master Out
+99 -   8
+98 -   3
+6 -  64 ~ change effect
+38 -   5 ~ Alienwah 1
+99 -   8
+98 -   3
+6 -   0 ~ D/W
+38 -  50 ~ value
+
+After this, sending a note through will prove that it has in fact set up
+properly, and if you then use the gui to select effect number 3 (or 5), then
+go back to 4 everything shows correctly. Grrr!
+
+----------------------
+
+There is an identical ambiguous situation with two config settings. These are
+Bank Root CC and Extended Program Change CC
+
+Taking just the Bank Root...
+
+If you disable it, then (with versions up to 1.3.4) in order to re-enable it
+you have to change the CC value as well, even if you immediately change it
+back again. With the latest version in 'master' you only have to click on
+the 'set' button, not actually change the value.
+
+The reason for this is that we use 128 for the 'off' state, as this is a
+value that can never be received. However, when we re-enable it we can't be
+sure that while disabled no other setting has grabbed CC0 - the default
+value. So, although we reactivate the spinbox and put a zero in it, nothing
+has actually changed until you try to set it, at which time an error Alert
+window will open if the value is in use. This will also identify what is
+using it.
+
+The lazy way around this would be to do away with the enable checkbox and
+allow users to directly set a value of 128 with a note that this represents
+'off'. I'd prefer to avoid that as it looks 'scrappy' but unless someone can
+come up with a better idea we may have to go that way.
+
+----------------------
+
+http://sourceforge.net/p/yoshimi/mailman/yoshimi-devel/?viewmonth=201407
+
+While messing about with Yoshi headless (discovered a minor bug - but later) I
+                   ===============
+got the feeling that the dsp usage showing in qjackctl had dropped.
+
+Now the only thing happening in the GUI when playing is the VU meters so I had
+a look at those and discovered that all the calculations for *all* parts as
+well as the master L & R are done in the synth engine and then passed over to
+the gui via a mutex.
+
+Temporarily commenting out the associated code did indeed give a similar dsp
+usage - although it's hard to tell with actual music!
+
+It would seem to me that it would make more sense to use the mutex to copy
+over the raw data, then do the calculations in the GUI thread.
+
+When I've time, I'll try making a test MIDI file of continuous tones on all
+channels and see what that reveals. If the difference is significant it looks
+like I'll have some work to do!
+
+-- 
+
+> The Mod Oscillator lower down seems even more obscure :(
+
+---------------------------------
+
+http://sourceforge.net/p/yoshimi/mailman/yoshimi-devel/?viewmonth=201409
+
+---------------------------
+
+Smaller buffer sizes will increase the load.
+The overhead should become noteworthy when decreasing under 64 samples or
+so, though the definition of noteworthy here is quite subjective and it has
+been a considerable amount of time since I actually measured it directly.
+
+Changing the buffer size will change the sound, sometimes for the better and
+sometimes for the worse.  Example: LFOs and Envelopes are calculated once
+per frame.  A very quick change there is essentially converted to a square
+stepping wave and in the case with LFOs things can even end up aliasing.
+Similarly filters don't interpolate, so combing can be observed there,
+though this is going to be fixed in zyn (though not perfectly as
+perfect isn't cheap to compute).  One thing that can be
+negatively affected by smaller sizes is note fade in and note fade
+out.  Those are done per frame, which isn't exactly ideal as small
+frames make the transition too abrupt.
+
+If you try moving buffer size down to 1 sample per frame, I can tell you that
+it's going to be way too CPU hungry to use anything.
+
+----------------------------
+
+This might be pedantic, but they are both wrong with large *internal*
+buffer sizes which is separate from what jack specifies.
+The internal buffer size sets the temporal quantization for most events and it
+can be substantially smaller than jack's buffer size.
+I'm relatively sure that both zyn and yoshimi place events into the right
+internal buffer when the internal buffer is smaller than the external buffer,
+though I may be incorrect in the yoshimi case.
+
+-------------------------------
+
+http://sourceforge.net/p/yoshimi/mailman/yoshimi-devel/?viewmonth=201412
+
+On 19. des. 2014 22:00, Will Godfrey wrote:
+> Following on from some discussion in the users list.
+> 
+> Currently Yoshimi maintains a list of bank root dirs which it then scans
+> looking for valid banks. These are then sort in alphabetical order, with
+> duplicate names in root dir order. The entire block is then presented to the
+> GUI and to MIDI.
+> 
+> 
+> The problems
+> 
+> 1
+> Duplicate bank names don't necessarily contain the same instruments.
+> 
+> 2
+> Non-duplicated banks have no identification as to which root dir they are from.
+> 
+> 3
+> If you make any alterations to any bank in any root dir all later entries are
+> invalid as far as MIDI is concerned.
+> 
+> 4
+> You can easily end up with banks inaccessible to MIDI.
+> 
+> 
+> Banks with different content really shouldn't appear to be associated with each
+> other (1). Because of (2) there isn't much point in trying to organise your
+> banks/roots in an identifiable way. Giving banks a number prefix doesn't help
+> (4) at all, and could be quite complicated to manage for (3) if the user
+> changes either the root dirs or wants to move, add or delete banks.
+> 
+> 
+> Solutions?
+> 
+> Simplistic - only ever have one root dir at a time. Yoshimi can change these on
+> the fly.
+
+Possible for simplicity, but preferably not. The complexity of multiple
+root dirs isn't really exposed anyway unless you actively add multiple
+root dirs yourself, so we are not raising the bar for entry.
+
+> Moving swiftly on...
+> 
+> In the first place I'd like to treat MIDI (or any other control source) bank
+> and root changes pretty much separately from GUI ones. With the GUI you can see
+> actual names, whereas for MIDI you are constrained to a numbering system -
+> let's not even *think* about SYSEX!
+
+Since instrument order is based on a prefixed number on the filename,
+but that number is not displayed in the GUI, should we consider
+something similar for banks, to keep the concepts similar?
+
+Not sure how root dirs would fit into that, but maybe those should just
+come in the order they are listed in the config.
+
+> It wouldn't be too difficult to later synchronise the GUI to changed numbers -
+> the other way round might be slightly more interesting :)
+> 
+> I'd also like MIDI to have the concept of a current root dir, rather than a
+> default one and *only* be able to access banks in that root.
+
+YES! That would make it much simpler to select banks specifically from
+"my own set", or from "the official set", instead of the mixed approach
+which is now.
+
+> A first thought that has occured to several of us is to use bank MSB to
+> identify root dirs, but this won't in fact work.
+> 
+> Hardware synths are entirely inconsistent as to whether they recognise MSB or
+> LSB for bank changes. This is why we made it user selectable in Yoshimi. In
+> spite of this, many hardware synths and some software sequencers send both MSB
+> and LSB. The 'unused' byte is always set to zero, so you'd end up selecting
+> root dir zero all the time!
+
+I still urge people to consider using bank MSB for this purpose, at
+least as *an option*. Reason being that this is how MIDI is actually
+supposed to work from the standard's perspective: You use bank MSB/LSB
+messages to switch banks. All my MIDI devices work this way.
+
+But I am fully aware that many MIDI devices do not cooperate in this
+manner. So maybe we should make it the user's choice? He can choose any
+MIDI CC message or bank MSB/LSB. Technically speaking bank MSB and LSB
+are CC messages, so implementation wise there is little difference, but
+maybe the bank messages deserve some extra love in the GUI.
+
+> Having talked about separating the two, I think setting up root dirs should
+> still be done in the GUI, but instead of selecting a root dir as default you
+> would give all the ones you want to recognise an index number. This would then
+> be the MIDI root dir value and would mean you could add more roots at any time,
+> without disrupting the existing references.
+
+Completely agree! :-)
+
+> We can either list un-numbered roots in the same way as we currently do
+> un-numbered instruments, or we can give them a unique number at the time they
+> are added to the list. These index numbers would *not* change the actual root
+> pathname, but would be stored in 'settings' along with the (already stored)
+> associated root path.
+
+Technically they are ordered already in the settings dialog. Is there a
+reason to add an explicit number, or can we just use them in the order
+they are listed in the settings file, and allow the user to rearrange
+them if necessary?
+
+> For actually referencing the root dirs we could either use NRPNs or a user
+> defined CC . My preference would be CCs. Numbers 85-90 and 102-120 are all in
+> the official MIDI guide as undefined, so we're not exactly short of choice!
+
+See my earlier comment about how to select root dirs.
+
+-------------------------
+
+http://sourceforge.net/p/yoshimi/mailman/yoshimi-devel/?viewmonth=201503
+
+While working with Controllers I discovered that 'Reset All Controllers'
+didn't tell the truth. It actually left out a lot, including almost all the
+portamento settings - well they're implemented in the current master now.
+
+-----------------------------------
+
+http://sourceforge.net/p/yoshimi/mailman/yoshimi-user/?viewmonth=201506
+
+In response to suggestions at LAC 2015 we have made the title bars of all
+editing windows display both the part number and the current name of the
+instrument you are working on. In the addsynth oscillator editor you also
+see the number of the oscillator you are editing.
+
+Also, in response to suggestions, horizontal as well as vertical mouse
+dragging can be used to set rotary controls. Additionally, the mouse scroll
+wheel can be used, and if you hold down the 'ctrl' key you can get very
+precise setting.
+
+Another request we had was for the part effects window to have the same
+layout as System and Insertion effects. This has been done and it is now
+almost identical to Insertion effects.
+
+The most noticeable GUI enhancement is colour coded identification of an
+instrument's use of Add Sub and Pad synth engines, no matter where in the
+instrument's kit they may be. This can be enabled/disabled in the mixer
+panel.  It does slow down yoshimi's startup, but due to the banks
+reorganisation (done some time ago) it causes no delay in changing
+banks/instruments once you are up and running. Some saved instruments seem
+to have had their Info section corrupted. Yoshimi can detect this and step
+over it. Also, if you resave the instrument, not only will the PadSynth
+status be restored, but Add and Sub will be included, allowing a faster scan
+next time.
+
+In Yoshimi V1.3.5 a number of features have come together to give much
+greater flexibility (especially for automation) using standard MIDI
+messages. These are:
+
+NRPNs.
+Independent part control.
+16, 32 or 64 parts.
+Vector Control.
+Direct part stereo audio output.
+
+NRPNs can handle individual bytes appearing in either order, and usually the
+same with the data bytes. Increment and decrement is also supported as
+graduated values for both data LSB and MSB. Additionally, ALSA sequencer's
+14bit NRPN blocks are supported.
+
+Independent part control enables you to change instrument, volume, pan, or
+indeed any other available control of just that part, without affecting any
+others that are receiving the same MIDI channel. This can be particularly
+interesting with multiply layered sounds.
+
+With 32 and 64 parts it helps to think of 2/4 rows of 16. When you save a
+parameter block the number of parts is also saved, and will be restored when
+you reload. By default each *column* has the same MIDI channel number, but
+these can be independently switched around, and by setting (say) number 17
+taken right out of normal access.
+
+In tests, *compiling* for 64 parts compared with 16 parts increases
+processor load by a very small amount when Yoshimi is idling, but this
+becomes virtually undetectable once you have 8+ instruments actually
+generating output. In normal use, selecting the different formats makes no
+detectable difference but using the default 16 reduces clutter when you
+don't need the extra.
+
+
+Vector control is based on these columns giving you either 2 (X only) or 4
+(X + Y) instruments in this channel. Currently the vector CCs you set up can
+(in pairs) vary any combination of volume, pan and filter cut-off. More will
+be added. To keep the processor load reasonable it pays to use fairly simple
+instruments, but if you have sufficient processing power it would be
+theoretically possible to set up all 16 channels with quite with independent
+vector behaviour!
+
+Direct part audio is Jack-specific and allows you to apply further
+processing to just the defined parts, which can still output to the main
+L+R if you want to. This setting is saved with parameter blocks. Currently
+it is only set in the mixer panel window, but it will also eventually come
+under MIDI direct part control. Again, to reduce unnecessary clutter, part
+ports are only registered with Jack if they are both enabled, and set for
+direct output. However, once set they will remain in place for the session
+to avoid disrupting other applications that may have seen them.
+
+-- 
+Will J Godfrey
+http://www.musically.me.uk
+
+ve extensive support of NRPNs and up to 64 semi-independent parts!
+
+-----------------------------
+
+http://sourceforge.net/p/yoshimi/mailman/yoshimi-user/?viewmonth=201505
+
+Colour representation of synth engines is done on the mixer panel as well as
+the main part window - I've tried to balance the colours for relative
+brightness so they are clear, but don't interfere with the text. The
+instrument bank window will have to remain as it is for the time being. It
+is *much* harder to work out how to implement the backgrounds. There are
+some part/panel sync corrections needed, but not enough to be a problem.
+
+I've also moved the setting form max parts from the Parameters menu (I was
+never really happy with it there) to a spinner alongside the part
+number, so it now reads: Part {nn} of {max} It still defaults to 16. This
+and the panel are fully in sync.
+
+Also in the Parameters menu 'Clear' will now disable NRPNs and vector
+control.  I discovered that if you leave these in place while loading a
+'conventional' parameter set the results are quite hilarious!
+
+
+---------------------------
+
+http://sourceforge.net/p/yoshimi/mailman/yoshimi-user/?viewmonth=201505
+
+Several people have wondered what the two items at the bottom of the kit
+edit window are for. Well, I asked and got it from the horses mouth (and
+this is now added to our 'doc' directory. I've also re-aranged this
+directory which will now 'install'.
+
+The two items under the kit list are described below.
+
+Mode: 'Off' means no kit is enabled, so you only have the Add, Sub, and Pad
+sounds in the Instrument Edit window.
+
+'Multi' means all the kit items will sound together regardless of their note
+ranges.
+
+'Single' means only the lowest numbered item will sound in a given note
+range.  There will be no overlap.
+
+e.g.
+Item 0 has Min.k set to 0 and Max.k set to 60
+Item 1 has Min.k set to 40 and Max.k set to 127
+
+In single mode, only Item 0 will sound in the note range 0 to 60 and Item 1
+will sound in the range 61 to 127.
+
+In multi mode, only Item 0 will sound in the range 0 to 40, both items will
+sound from 41 to 60, and only Item 1 will sound from 61 to 127.
+
+Drum mode:
+If this is set then microtonal tuning is ignored for this kit, otherwise it
+could make drum sounds very unpredictable!
+
+--------------------------------------
+
+You'll be pleased to know that the current master now has the part effects
+window re-arranged, and more closely matches System and Insert.
+
+Also, *all* rotary controls now correctly respond to the mouse wheel. If you
+hold down the Ctrl key at the same time, you get very fine adjustment.
+=====================================
+
+Being a bit contrary, I've actually removed some tooltips. What is the point
+when a control is marked 'Velocity Offset' of having a pop-up saying
+'Velocity
+offset'?
+
+Finally, if you do a panic "Stop" to kill all sound Yoshi now does that
+quickly, but smoothly - previously, if you had a very high sample rate
+and/or small buffer size, you could get a loud click which (as well as being
+unpleasant) was potentially damaging to some amplifier/speaker
+systems.
+
+----------------------------------------
+
+http://sourceforge.net/p/yoshimi/mailman/yoshimi-user/?viewmonth=201503
+
+The puzzling issue of MIDI volume change being less than the gui range is
+resolved. The default is as it was, but now in 'Controllers' there is
+'Volume Range'. Default is 96 representing 12dB less range than the gui, 127
+is the same as the gui and 64 is -26dB. These setting, like all controllers
+are per part, and saved with parameter sets.
+
+The random fine detune in the instrument edit window is now finer grained.
+It's 20 steps instead of 10 but covers exactly the same range. Has anyone
+made use of this?
+
+When you save voice or parameter XML files, yoshimi now stamps them with the
+current version so from now on it will be possible to tell that they were
+yoshi created files, and with what version. Eventually, This will be shown
+somewhere so you don't have to dig into the files.
+
+As a general guide, if the zyn major and minor values are *not* 1 & 1 it's
+definitely a zyn sourced one.  Otherwise, if the file date is before
+November 2014 it is directly compatible with zyn 2.4.1 and before.
+Otherwise you may have to readjust unison values higher than 6 and part key
+limits higher (poliphony) than 10
+
+If anyone fancies working out translation tables for these I'd be very
+grateful!
+
+
+You can now change between report messages going to stderr or the Reports
+window on the fly. It's in Yoshimi->Settings. Your choice is saved to the
+config file.  An irritation I haven't fixed yet is that if you have several
+instances open, the all operate correctly, and you can set them individually
+either way (can't see why you'd want to) but the greying out on the menu
+item seems to go across them all :(
+
+As a follow on from this, most of the messages themselves have been tidied
+up a bit.
+
+On first time start up, if yoshi can't find a config file, it will look for
+a zyn one. It always used to do this. I don't know when or why it was
+removed.
+
+-------------------------------
+
+http://sourceforge.net/p/yoshimi/mailman/yoshimi-user/?viewmonth=201503
+
+If you load a Zyn instrument file (.xiz) or parameter set (.xmz) via the
+Instrument or Parameter windows (Open) you should get exactly the same
+sounds with exactly the same part structures.
+
+The same is true if you import Instrument banks. They all should work in the
+same way. Here however, the banks will be given an ID number in line with
+our latest development.
+
+Going the other way, Zyn will not recognise some of our extensions. Our
+patches will all work quite happily, but things like audio routing will be
+lost. We also save some scaling data that Zyn doesn't, so that would also
+go. 
+
+--------------------------------------------------------------
+
+http://sourceforge.net/p/yoshimi/mailman/yoshimi-user/?viewmonth=201503
+
+Which synth engines are you using most? AddSynth is especially heavy at
+note-on. Whereas at the other extreme PadSynth is the lightest (and it's
+voice generator is a cut-down version of AddSynth)
+
+You can use a part kit to get multiple PadSynths to more-or-less mimic the
+effect of the 8 AddSynth voices.
+
+----------------------------
+
+Anyhow. My maximum Yoshimi-based patch, has three Yoshimi instances, two
+Parts each, all on the same MIDI channel. Each Part is JACKed separately to
+an input of a jack_mixer, which mixes them all down (this avoids signal
+overload and is badly needed, a long-sought solution). I have turned
+all Yoshimi-internal reverb and chorus off, the reverb in place is
+post-Yoshimi (calfjackhost). The performance problem I'm studying, is CPU
+overload when too many notes are held with the Sustain pedal. The overload
+happens on just one of the three Yoshimis, the one which handles notes from
+51 on up: its two PID numbers in htop go to 41% and xruns happen, in
+extremis there is silence, beeps, temporary halts, and then things resume. 
+
+The odd thing is, even with all of the above, the two Parts in the one
+Yoshimi which runs to overload, are limited to 20 notes polyphonic, as are
+the others. 
+
+-----------------------------------
+
+In master we have another visual improvement. If you adjust either volume or
+panning via MIDI the appropriate control change is now shown in both the
+main window and the mixer panel.
+
+It's fun to have a MIDI file set up so you can watch Yoshimi light up parts,
+change their instrument, adjust their volume and stereo position, at the
+same time seamlessly playing the music :)
+
+-----------------------------------
+
+Do have fun jumping around the new root/bank/instrument structure. Once
+you're familiar with it you can get to stuff *really* fast :)
+
+P.S.  right click on the new icons, closes the previous one - useful if
+you're short of screen space.
+
+----------------------------------
+
+http://sourceforge.net/p/yoshimi/mailman/yoshimi-user/?viewmonth=201502
+
+You can now change bank names if you want to. This will make a real change
+to the name on files in the same way as changing instrument manes does.
+
+Up to now, if you wanted to change the name of and instrument you could do
+it from the main window by right-clicking on the instrument name, of from
+the instrument window by right clicking on the appropriate slot. The latter
+seems quite wrong to me as you already have a row of 'operations' along the
+bottom of the window. What's more, this hidden operation was active
+regardless of which actual operation was selected.
+
+What I have done is to provide a 'Rename' button for this, and changed the
+names of some of the others to be more musician friendly. I've also changed
+some of the highlight colours so they now range from green for 'Select' (the
+most benign operation) to red for 'Delete'.
+
+The last change I've made is to use the right mouse click instead of the
+middle one for closing when selecting or changing windows. I realised that
+with the middle button also being the scroll wheel on many mice you could
+easily git it misbehaving :(
+
+-- 
+Will J Godfrey
+
+-------------------------------
+
+You can freely jump between any combination of root path, bank list or
+instruments. If you middle button click on these controls you will close one
+window as you open the other, left click and you can have all three open if
+you like. They all remain fully in sync.
+
+From the dropdown 'Instruments' menu in the main window you can call all of
+these windows directly - no need to go into settings for root paths.
+
+Bank IDs can be changed simply by moving/swapping them exactly as you would
+with instruments. New banks can now be created in the banks window, which is
+far more logical than the button in the instruments one. Banks can also be
+deleted here, but there is a warning, followed by a second one if there are
+any instrument files in the bank.
+
+The only thing not implemented yet is bank renaming, but that will be
+coming.
+
+In the new 'Banks' window, select 'Swap' then click on the banks you want to
+swap, or the one you want to move (change the ID of) and the new position
+you want to move it to.
+
+---------------------------------------
+
+http://sourceforge.net/p/yoshimi/mailman/yoshimi-user/?viewmonth=201502
+
+In the first place, you no longer have the concept of a default root
+directory, but a current one. This can by changed at any time without
+requiring a re-start, so there is now no longer a need to display the
+(confusing) contents of all roots. Also, roots now have ID numbers
+associated with them, but no changes have been made to the actual
+directories to achieve this. Instead the IDs are stored in the config file.
+The same ID system is used for banks, again without making any file system
+changes. 
+
+At first run (and whenever new root directories are set) unknown roots and
+banks are given these IDs. Once set they will not change no matter how many
+more roots and banks are later added. You can however, manually change root
+directory IDs in 'settings'. Bank IDs can be changed via the config file,
+and in the near future the GUI will be updated to manage this.
+With these IDs, roots and banks can be grouped/ordered by function
+instead of alphabetically.  When using the GUI you will always
+know exactly which root and bank you fetch an instrument from. 
+
+The significance of all this is that your MIDI sequencer can now reliably
+use these ID numbers to select roots, banks and (already available)
+instruments.  That Rosegarden or Muse file you save today will be just as
+valid in the future, unless you make the deliberate choice to change some
+IDs. Indeed, you can now start with an 'empty' Yoshimi, and via MIDI, set
+roots, banks and load instruments into parts (enabling the parts as you
+do so) swapping banks and roots as necessary. While the MIDI file
+runs it can silently pull instruments from any root/bank into any
+non-sounding part without disturbing the playing ones. 
+
+In Yoshimi->Settings->CC you can enable or disable all these MIDI features,
+and can define which CCs you want to use. Bank can be either MSB or LSB
+(as before). Root can be any non-reserved CC but including the one not in
+use for Bank. Also, Extended Program Change now has the same restrictions
+as Root, and these three are all cross-checked against each other. As an
+example you might set Bank to LSB and Root to 0 (MSB), effectively giving
+you extended bank control compatible with all sequencers. 
+
+Also, different instances have their own config files so that you can have
+(say) the main instance with current root(9), bank(23) while instance 4 has
+current root(2), bank(6). You can call up instances by number and thus
+access saved settings for that instance. As each instance has its own MIDI
+and audio ports, they can behave more-or-less independently. 
+
+In doing all of this we have completely changed the way we manage the
+structure internally, resulting in much greater efficiency, at the cost of
+only a slightly slower startup. Swapping roots performs *no* file
+operations.  Swapping banks only fetches the directory list of the newly
+selected bank.  Changing an instrument doesn't have to search for a file,
+only load from its already known location. 
+
+
+Following on from that, we now have a startup splash image that appears
+instantly so you always know Yoshimi has started even if some later error
+causes it to abort. The actual image may change - we have requests out for
+artwork. 
+
+
+So much for the high visibility stuff! 
+
+More work has been done on LV2, including integrating the new root and bank
+controls. 
+
+The main window and the mixer panel are now fully in sync. 
+
+Ambiguities in instrument names have been resolved and Yoshimi will no
+longer save unnamed or default instruments. If you load a Zyn (or older
+Yoshimi) file that has unnamed instruments they will be given the name
+'No Title'. 
+
+You are now prevented (with an explanation) from attempting to change a bank
+entry in a non-writeable area. Previously it would seem you had done so, but
+the changes would not (of course) have been saved to file - this goes back
+very many years! 
+
+-------------------------------------------------
+
+http://sourceforge.net/p/yoshimi/mailman/yoshimi-user/?viewmonth=201501
+
+The first thing you'll notice is that yoshi takes longer to start up if you
+have lots of root directories and banks. However once loaded these are much
+easier to access, which is especially significant for MIDI control. Also
+yoshi is handling data more efficiently so the overall memory footprint is
+about the same.
+
+Roots and banks now have fixed IDs which makes them far more predictable for
+MIDI access. You will see the new bank IDs in the drop-down list. At first
+run, these will be set in the same alphabetical order as before. Currently
+these can only be changed by manually editing the config files in
+~/.config/yoshimi, but GUI control will be added later. Roots are fully
+editable already.
+
+Each yoshi instance has its own directory 'map' and current root/bank value,
+although at first opening they will take on the same settings as the
+main instance. These settings are remembered so when you re-open the
+same instance, you'll get it unique settings. With this in mind, you
+can also now call for a specific instance to be opened.
+
+If you add a new bank in one instance other instances will temporarily be
+out of sync, but not destructively - you simply won't see the new bank - a
+refresh will put this right.
+
+Instruments in banks but without numbers have gone missing again temporarily
+:( I don't know why yet. It will have to be sorted before full release.
+However banks with *only* unnumbered instruments do now show in the
+bank lists.
+
+----------------
+
+I can't be sure who's idea it was, but if you right click on the 'Edit'
+button in the mixer panel, it now actually brings up the instrument edit
+window :) Left click just 'selects' it as before.  Also, MIDI channel
+selection is now in sync between the panel and the main window.
+
+Something that's not entirely obvious with the new root and bank controls is
+that different instances can have a different current root and current bank.
+What's more, when set from the GUI the current bank doesn't have to be in
+the current root :)
+
+However, when you shut yoshi down, the stored values of both these will  be
+set to whatever the default instance has.
+
+----------------------------
+
+You can set a control code of your preference in Settings->CC, but some
+obvious ones are blocked (with a suitable message). The same now applies to
+Bank MSB/LSB and to Extended Program Change.
+
+Default for Bank Root Change is 115, and for Extended program Change it's
+110.
+
+There are some GUI issues I haven't been able to sort out yet: You have to
+use the spinner arrows, not direct number entry.
+
+In Settings->Bank root dirs: The current root dir is not updated (although
+it is in the instrument window).  It is correctly set however, and
+quitting then restarting yoshi puts everything right.
+
+Activation/deactivation of buttons isn't quite right.
+
+However, it does work and I was able to successfully add a bank root control
+change in a couple of Rosegarden files and they behaved perfectly :) 

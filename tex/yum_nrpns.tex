@@ -1,0 +1,456 @@
+%-------------------------------------------------------------------------------
+% yum_nrpns
+%-------------------------------------------------------------------------------
+%
+% \file        yum_nrpns.tex
+% \library     Documents
+% \author      Chris Ahlstrom
+% \date        2015-06-26
+% \update      2015-06-26
+% \version     $Revision$
+% \license     $XPC_GPL_LICENSE$
+%
+%     Provides the concepts NRPNs and vector control.  And effects.
+%
+%-------------------------------------------------------------------------------
+
+\section{Non-Registered Parameter Numbers}
+\label{sec:nrpns}
+
+   This section comes from the source-code documentation file
+   \texttt{Zyn nrpn.txt} or the \textsl{ZynAddSubFx}
+   online manual \cite{zyndoc} and the \textsl{Using\_NRPNS.txt} document that
+   accompanies the \textsl{Yoshimi} source code.
+
+   \textsl{Yoshimi} implements System and Insertion effects control in a
+   manner compatible with \textsl{ZynAddSubFX}. As with all
+   \textsl{Yoshimi}'s NRPNs, the controls can be sent on any MIDI channel.
+
+\subsection{NRPN / Basics}
+\label{subsection:nrpns_midi_nrpn_basics}
+
+   NRPN stands for "Non Registered Parameters Number".
+   NRPNs can control all system and insertion effect parameters.
+   Using NRPNs, \textsl{Yoshimi} can now directly set some part values
+   regardless of what channel that part is connected to.  For example, one
+   may change the reverb time when playing to keyboard, or
+   change the flanger's LFO frequency.
+   One can disable the NRPN receiving by deselecting the "NRPN" checkbox
+   from the main window (near "Master Keyshift" counter).
+   (NEED SECTION REFERENCE).
+   The controls can be sent on any MIDI channel 
+   (the MIDI channels numbers are ignored).
+
+   The parameters are:
+
+   \begin{itemize}
+      \item \textbf{NRPN MSB}
+      (coarse) (99 or 0x63) sets the system/insertion effects
+      (4 for system effects or 8 for insertion effects).
+      We abbreviate this value as \texttt{Nhigh}.
+      \item \textbf{NRPN LSB}
+      (fine) (98 or 0x62) sets the number of the effect (first
+      effect is 0).
+      We abbreviate this value as \texttt{Nlow}.
+      \item \textbf{Data entry MSB}
+      (coarse) (6) sets the parameter number of effect to
+      change (see below).
+      We abbreviate this value as \texttt{Dhigh}.
+      \item \textbf{Data entry LSB}
+      (fine) (26) sets the parameter of the effect.
+      We abbreviate this value as \texttt{Dlow}.
+   \end{itemize}
+
+   If the effect/parameter doesn't exists or is set to none, then the NRPN is
+   ignored.
+
+   One must send NRPN coarse/fine before sending Data entry coarse/fine.  If
+   the effect/parameter doesn't exists or is set to none, then the NRPN is
+   ignored.
+   It's generally advisable to set NRPN MSB before LSB However, once MSB has
+   been set one can set a chain of LSBs if they share the same MSB.
+
+   The data CCs associated with these are 6 for MSB and 38 for LSB. ????????
+
+   Only when an NRPN has been established can the data
+   values be entered (they will
+   be ignored otherwise).
+
+   If a supported control is identified, these data values will be stored
+   locally (if needed) so that other NRPNs can be set.
+
+   Whenever either byte of the NRPN is changed, the data values will be
+   cleared (but stored settings will not be affected).
+
+   If either NRPN byte is set to 127, all data values are ignored again.
+
+   In \textsl{Yoshimi} NRPNs are not themselves channel-sensitive, but the
+   final results will often be sent to whichever is the current channel.
+
+   \textsl{Yoshimi} also supports the curious 14-bit NRPNs, but this shouldn't
+   be noticable to the user. In order to deal with this, and also some
+   variations in the way sequencers present NRPNs generally, if a complete
+   NRPN is set
+   (i.e. \texttt{Nhigh}, \texttt{Nlow}, \texttt{Dhigh}, \texttt{Dlow}),
+   then the data bytes can be in
+   either order, but must follow \texttt{Nhigh} and \texttt{Nlow}.
+
+   After this, for running values, once
+   \texttt{Dhigh} and \texttt{Dlow} have been set if one
+   changes either of these, the other will be assumed.
+   For example, starting with \texttt{Dhigh} = 6 and \texttt{Dlow} = 20:
+
+   Change \texttt{Dlow} to 15 and \textsl{Yoshimi} will regard this as a
+   command \texttt{Dhigh} 6 + \texttt{Dlow} 16 Alternatively change
+   \texttt{Dhigh} to 2 and \textsl{Yoshimi} will regard this as a
+   command \texttt{Dhigh} 2 + \texttt{Dlow} 20.
+   This can be useful but may have unintended consequences!
+   If in doubt change either of the NRPN bytes and both data bytes will be
+   cleared.
+
+   Additionally there is 96 for data increment and 97 for decrement.
+
+   Data increment and decrement operation enables one to directly change the
+   data LSB by between 0 and 63. To change the MSB add 64 to cover the same
+   range. Setting zero might seem pointless, but it gives an alternative way
+   to make an initial setting if one's sequencer doesn't play nice.
+
+   Although data increment and decrement are only active if a valid NRPN has
+   been set, they are otherwise quite independent single CCs.  For example:
+
+   \begin{verbatim}
+      Start Value       Command value   Result
+      ----- -----       --------------  ------
+      LSB     5           inc 20      25
+      MSB     7           inc 68      11
+      LSB     128(off)    inc 1       1
+      MSB     126         dec 74      116
+      MSB     128(off)    dec 65      127
+   \end{verbatim}
+
+   A small example (all values in this example are hex):
+
+   \begin{verbatim}
+       B0 63 08 // Select the insertion effects
+       B0 62 01 // Select the second effect (remember: the first is 00 and not 01)
+       B0 06 00 // Select the effect parameter 00
+       B0 26 7F // Change the parameter of effect to the value 7F (127)
+   \end{verbatim}
+
+   \textbf{WARNING}:
+   Changing of some of the effect parameters produces clicks when sounds
+   passes thru these effects.  We advise one to change only when the sound
+   volume that passes thru the effect to be very low (or silence).  Some
+   parameters produce clicks when are changed very fast.
+
+   Here are the effects parameter number (for Data entry, coarse).
+   The parameters that produces clicks are written in \textcolor{red}{red}
+   and have (AC) after their entry (always clicks).
+   The parameter that produces clicks only when they are changed fast are
+   written in \textcolor{blue}{blue} and have a (FC) after the entry (Fast
+   Clicks).
+   Most parameters have the range from 0 to 127.
+   When parameters have another range, it is written as "(low...high)".
+
+   Here are the basic formats:
+
+   \begin{enumerate}
+      \item Send NRPN: 
+      \begin{itemize}
+         \item MSB = 64 (same as for vectors)
+         \item LSB = 0
+      \end{itemize}
+      \item Send Data MSB (6); all value ranges start from zero, not 1.
+      \begin{itemize}
+         \item 0 : data LSB = part number
+         \item 1 : data LSB = program number
+         \item 2 : data LSB = controller number
+         \item 3 : data LSB = controller value
+         \item 4 : data LSB = part's channel number (15 to 127 disconnects
+            the part from any channel)
+         \item 7 : data LSB = main volume (not yet implemented)
+         \item 35 (0x23) : data LSB = controller LSB value (not yet implemented)
+         \item 39 (0x27) : data LSB = main volume LSB (not yet implemented)
+      \end{itemize}
+   \end{enumerate}
+
+   Other values are currently ignored by \textsl{Yoshimi}.
+
+   NOTE:  THE PARAGRAPHS THAT FOLLOW COULD BE MOVED TO THE EFFECTS SECTION.
+
+\subsection{NRPN / Vector Control}
+\label{subsection:nrpns_midi_nrpn_vector_control}
+
+   Vector control is a way to control more than one part with the
+   controllers.
+   It is a little bit reminiscent of the "vector" control knob on the 
+   Yamaha PSS-790 consumer MIDI synthesizer.
+   Vector control is only possible if one has 32 or 64 parts active.
+
+   In vector mode parts will still play together but the vector controls can
+   change their volume, pan, filter cutoff in pairs, controlled by user
+   defined CCs set up with NRPNs.
+
+   One must set the X axis CC before Y, but if one doesn't set Y at all one
+   can run just a single axis. If yuo only have 32 parts active Y settings
+   are ignored.
+
+   For example:
+   parts 1 and 17 can be set as x1 \& x2 (volume only) while parts 33 and 49
+   can be y1 \& y2 (pan only)
+
+   Independently of this Parts 2 \& 18 could use filter and pan from another
+   CC.
+
+   Setting up vector control is currently done as follows.
+
+   In the required channel send:
+
+   \begin{itemize}
+      \item NRPN MSB (99)  set to 64
+      \item NRPN LSB (98)  1
+      \item Data MSB ( 6) set mode
+      \begin{itemize}
+         \item 0 = X CC
+         \item 1 = Y CC
+         \item 2 = X features
+         \item 3 = Y features
+         \item 4 = x1 instrument (optional)
+         \item 5 = x2 instrument (optional)
+         \item 6 = y1 instrument (optional)
+         \item 7 = y2 instrument (optional)
+      \end{itemize}
+   \end{itemize}
+
+   Setting CC for X enables vector control any value oustide the above list
+   disables it.
+
+   Data LSB (38) value to set features:
+
+   \begin{itemize}
+       \item 1 = Volume
+       \item 2 = Pan
+       \item 4 = Filter Cutoff (Brightness)
+   \end{itemize}
+    
+   An Example:
+
+   From channel 1, send the following CCs
+
+   \begin{verbatim}
+      CC      Value
+      99       64
+      98        1
+       6        0
+      38       14
+       6        1
+      38       15
+       6        2
+      38        1
+       6        3
+      38        2
+   \end{verbatim}
+
+   This sequence will set up CC14 as the X axis incoming controller and CC15
+   as Y, with X set to volume control and Y set to pan control.
+
+   One can either go on with the NRPNs to set the instruments (this will load
+   and enable instruments from the current bank), or enable and load
+   them by hand.  For channel 1 this would be part 1 and 17 for X and part 33
+   and 49 for Y.
+
+\subsection{NRPN / Effects Control}
+\label{subsection:nrpns_midi_nrpn_effects_control}
+
+\paragraph{Reverb}
+
+   \begin{itemize}
+      \item \textcolor{blue}{00 - Volume or Dry/Wet (FC)}
+      \item \textcolor{blue}{01 - Pan (FC)}
+      \item 02 - Reverb Time
+      \item \textcolor{blue}{03 - Initial Delay (FC)}
+      \item 04 - Initial Delay Feedback
+      \item \textcolor{magenta}{05 - reserved}
+      \item \textcolor{magenta}{06 - reserved}
+      \item 07 - Low Pass
+      \item 08 - High Pass
+      \item 09 - High Frequency Damping (64..127) 64=no damping
+      \item \textcolor{red}{10 - Reverb Type (0..1) 0-Random, 1-Freeverb (AC)}
+      \item \textcolor{red}{11 - Room Size (AC)}
+   \end{itemize}
+
+\paragraph{Echo}
+
+   \begin{itemize}
+      \item \textcolor{blue}{00 - Volume or Dry/Wet (FC)}
+      \item \textcolor{blue}{01 - Pan (FC)}
+      \item \textcolor{red}{02 - Delay (AC)}
+      \item \textcolor{red}{03 - Delay between left and right (AC)}
+      \item \textcolor{blue}{04 - Left/Right Crossing (FC)}
+      \item 05 - Feedback
+      \item 06 - High Frequency Damp
+   \end{itemize}
+
+\paragraph{Chorus}
+
+   \begin{itemize}
+      \item \textcolor{blue}{00 - Volume or Dry/Wet (FC)}
+      \item \textcolor{blue}{01 - Pan (FC)}
+      \item 02 - LFO Frequency
+      \item 03 - LFO Randomness
+      \item 04 - LFO Type (0..1)
+      \item 05 - LFO Stereo Difference
+      \item 06 - LFO Depth
+      \item 07 - Delay
+      \item 08 - Feedback
+      \item \textcolor{blue}{09 - Left/Right Crossing (FC)}
+      \item \textcolor{magenta}{10 - reserved}
+      \item \textcolor{red}{11 - Mode (0..1) (0=add, 1=subtract) (AC)}
+   \end{itemize}
+
+\paragraph{Phaser}
+
+   \begin{itemize}
+      \item \textcolor{blue}{00 - Volume or Dry/Wet (FC)}
+      \item \textcolor{blue}{01 - Pan (FC)}
+      \item 02 - LFO Frequency
+      \item 03 - LFO Randomness
+      \item 04 - LFO Type (0..1)
+      \item 05 - LFO Stereo Difference
+      \item 06 - LFO Depth
+      \item 07 - Feedback
+      \item \textcolor{red}{08 - Number of stages (0..11) (AC)}
+      \item \textcolor{blue}{09 - Let/Right Crossing (FC)}
+      \item \textcolor{red}{10 - Mode (0..1) (0=add, 1=subtract) (AC)}
+      \item 11 - Phase
+   \end{itemize}
+
+\paragraph{AlienWah}
+
+   \begin{itemize}
+      \item \textcolor{blue}{00 - Volume or Dry/Wet (FC)}
+      \item \textcolor{blue}{01 - Pan (FC)}
+      \item 02 - LFO Frequency
+      \item 03 - LFO Randomness
+      \item 04 - LFO Type (0..1)
+      \item 05 - LFO Stereo Difference
+      \item 06 - LFO Depth
+      \item 07 - Feedback
+      \item 08 - Delay (0..100)
+      \item \textcolor{blue}{09 - Left/Right Crossing (FC)}
+      \item 10 - Phase
+   \end{itemize}
+
+\paragraph{Distortion}
+
+   \begin{itemize}
+      \item \textcolor{blue}{00 - Volume or Dry/Wet (FC)}
+      \item \textcolor{blue}{01 - Pan (FC)}
+      \item 02 - Left/Right Crossing
+      \item \textcolor{blue}{03 - Drive (FC)}
+      \item \textcolor{blue}{04 - Level (FC)}
+      \item 05 - Type (0..11)
+      \item 06 - Invert the signal (negate) (0..1)
+      \item 07 - Low Pass
+      \item 08 - High Pass
+      \item 09 - Mode (0..1) (0=mono,1=stereo)
+   \end{itemize}
+
+\paragraph{EQ}
+
+   \begin{itemize}
+      \item \textcolor{blue}{00 - Gain (FC)}
+   \end{itemize}
+
+   All other settings of the EQ are shown in a different way.
+   The N represent the band ("B." setting in the UI) and the first band is 0
+   (and not 1), like it is shown in the UI.
+   Change the "N" with the band one likes.
+   If one wants to change a band that doesn't exist, the NRPN will be ignored.
+
+   \begin{itemize}
+      \item \textcolor{red}{10+N*5 - Change the mode of the filter (0..9) (AC)}
+      \item 11+N*5 - Band's filter frequency
+      \item 12+N*5 - Band's filter gain
+      \item 13+N*5 - Band's filter Q (bandwidth or resonance)
+      \item \textcolor{magenta}{14+N*5 - reserved}
+   \end{itemize}
+
+   Example of setting the gain on the second band in the EQ module:
+
+   \begin{itemize}
+      \item The bands start counting from 0, so the second band is
+         1 =\textless N=1.
+      \item The formula is 12+N*5 =\textless 12+1*5=17, so the number of effect
+         parameter (for Data entry coarse) is 17.
+   \end{itemize}
+
+\paragraph{DynFilter}
+
+   \begin{itemize}
+      \item 0 - Volume
+      \item 1 - Pan
+      \item 2 - LFO Frequency
+      \item 3 - LFO Randomness
+      \item 4 - LFO Type
+      \item 5 - LFO Stereo Difference
+      \item 6 - LFO Depth
+      \item 7 - Filter Amplitude
+      \item 8 - Fitler Amplitude Rate Change
+      \item 9 - Invert the signal (negate) (0..1)
+   \end{itemize}
+
+   Click behaviour of DynFilter has not yet been tested.
+
+\paragraph{Yoshimi Extensions}
+
+   If the Data MSB bit 6 is set (64) then Data LSB sets the effect type
+   instead of a parameter number.  This must be set before making a parameter
+   change.
+
+   \begin{itemize}
+      \item 0 - Reverb
+      \item 1 - Echo
+      \item 2 - Chorus
+      \item 3 - Phaser
+      \item 4 - AlienWah
+      \item 5 - Distortion
+      \item 6 - EQ
+      \item 7 - DynFilter
+   \end{itemize}
+
+   For Insert effects, if the Data MSB bit 5 is set (32) then Data LSB sets
+   the destination part number. 127 is off and 126 is the Master Output.
+
+   A complete example:
+
+   \begin{itemize}
+      \item 99 -   8 ~ insert effects
+      \item 98 -   3 ~ number 4 (as displayed)
+      \item 6 -  32 ~ set destination
+      \item 38 - 126 ~ Master Out
+      \item 99 -   8  *
+      \item 98 -   3  *
+      \item 6 -  64 ~ change effect
+      \item 38 -   4 ~ Alienwah
+      \item 99 -   8  *
+      \item 98 -   3  *
+      \item 6 -   0 ~ Dry/Wet
+      \item 38 -  30 ~ value
+   \end{itemize}
+
+   Notes (*): these repeats are not needed as far as \textsl{Yoshimi}
+   is concerned, but some sequencers get unhappy without them.
+
+   Change just a parameter on an exisiting system effect:
+
+   \begin{itemize}
+      \item 99 -   4 ~ system effects
+      \item 98 -   0 ~ the first effect
+      \item 6 -   1 ~ Pan
+      \item 38 -  75 ~ value
+   \end{itemize}
+
+%-------------------------------------------------------------------------------
+% vim: ts=3 sw=3 et ft=tex
+%-------------------------------------------------------------------------------

@@ -1,0 +1,1556 @@
+%-------------------------------------------------------------------------------
+% yum_menu
+%-------------------------------------------------------------------------------
+%
+% \file        yum_menu.tex
+% \library     Documents
+% \author      Chris Ahlstrom
+% \date        2015-05-11
+% \update      2015-07-01
+% \version     $Revision$
+% \license     $XPC_GPL_LICENSE$
+%
+%     Provides the Menu section of yoshimi-user-manual.tex.
+%
+%-------------------------------------------------------------------------------
+
+\section{Menu}
+\label{sec:menu}
+
+   The \textsl{Yoshimi} menu, as seen at the top of
+   \figureref{fig:yoshimi_main_screen},
+   is fairly simple, but it is important to understand the
+   structure of the menu entries.
+
+\subsection{Menu / Yoshimi}
+\label{subsec:menu_yoshimi}
+
+   The \textsl{Yoshimi}
+   menu entry contains the sub-items shown in
+   \figureref{fig:yoshimi_menu_items}.
+   The next few sub-sections discuss the sub-items in the 
+   \textsl{Yoshimi} sub-menu.
+   (Note that, in \textsl{ZynAddSubFX}, this menu is called the
+   \textsl{File} menu.)
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{menu/yoshimi-menu-yoshimi.jpg}
+   \caption{Yoshimi Menu Items}
+   \label{fig:yoshimi_menu_items}
+\end{figure}
+
+\subsubsection{Menu / Yoshimi / About...}
+\label{subsubsec:menu_yoshimi_about}
+
+   There is no "Help" menu in \textsl{Yoshimi}.
+   Therefore, the "About" dialog appears in the "Yoshimi" menu, as shown in
+   \figureref{fig:yoshimi_about_dialog}.
+   These guys need some acknowledgment for their hard work!
+   And they acknowledge the massive groundwork laid by the
+   \textsl{ZynAddSubFX} project.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{menu/Yoshimi/yoshimi-about.jpg}
+   \caption{Yoshimi Menu, About Dialog}
+   \label{fig:yoshimi_about_dialog}
+\end{figure}
+
+\subsubsection{Menu / Yoshimi / New instance}
+\label{subsubsec:menu_yoshimi_new_instance}
+
+   Creates a new instance of \textsl{Yoshimi}.
+   We're not quite sure what this one does, really.
+   Does it create a new run of 
+   \textsl{Yoshimi}
+   with a random \texttt{--name-tag} value?
+   In our basic investigation, it simply finds that the previous
+   \textsl{Yoshimi}
+   instance has grabbed audio access, when JACK is not being used:
+
+\begin{verbatim}
+   Yay! We're up and running :-)
+   failed to open alsa audio device:default: Device or resource busy
+   AlsaClient audio open failed
+   Failed to open MusicClient
+   Yoshimi stages a strategic retreat :-(
+\end{verbatim}
+
+   Now, if JACK is running, then this feature will work.
+   Start a normal (JACK-using) instance of \textsl{Yoshimi}.
+   Then use this menu entry.  \textsl{Yoshimi} will start another instance
+   of itself, with an ID of 1.
+   This instance can be verified by running a JACK session manager such as
+   QJackCtl.
+
+   It is important to note that each instance of \textsl{Yoshimi} has its
+   own configuration file.  Each also has its own MIDI and audio ports.
+   Thus, these instances are independent of each other.
+
+\subsubsection{Menu / Yoshimi / New instance with id...}
+\label{subsubsec:menu_yoshimi_new_instance_with_id}
+
+   Creates a new instance of \textsl{Yoshimi}
+   with an ID that is a number.
+   See \figureref{fig:yoshimi_instance_dialog}.
+   It tries to open a \textsl{Yoshimi} instance based on the configuration
+   found in the file
+   \texttt{~/.config/\-yoshimi/\-yoshimi.configXX}, where
+   \textsl{XX} is the ID one supplied.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-instance-id.jpg}
+   \caption{Yoshimi Menu, Instance Dialog}
+   \label{fig:yoshimi_instance_dialog}
+\end{figure}
+
+   Useful when connecting devices with JACK.
+   Start a normal (JACK-using) instance of \textsl{Yoshimi}.
+   Then use this menu entry, supply a number as an ID.
+   \textsl{Yoshimi} will start another instance
+   of itself, with an ID of whatever number one specified.
+   This instance can be verified by running a JACK session manager such as
+   QJackCtl.
+
+   Again, though, in a non-JACK setup it simply fails.  
+
+\subsubsection{Menu / Yoshimi / Settings...}
+\label{subsubsec:menu_yoshimi_settings}
+
+   The \textsl{Yoshimi Settings} dialog contains five tabs that control the
+   major and overall settings of \textsl{Yoshimi}.
+   
+\paragraph{Menu / Yoshimi / Settings / Main Settings}
+\label{paragraph:menu_yoshimi_settings_main_settings}
+
+   The Main Settings tab controls the main configuration items that
+   follow, which apply to all patches/parts/instruments.
+   The main settings are shown in
+   \figureref{fig:yoshimi_main_settings_dialog} below.
+
+   All these settings only take effect after restarting the synthesizer.
+
+   The settings dialogs are quite different between \textsl{ZynAddSubFX} and
+   \textsl{Yoshimi}.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-main.jpg}
+   \caption{Yoshimi Main Settings Tab}
+   \label{fig:yoshimi_main_settings_dialog}
+\end{figure}
+
+   The following settings exist in the \textsl{Main settings} tab:
+
+   \begin{enumber}
+      \item \textbf{OscilSize}
+      \item \textbf{Virtual Keyboard Layout}
+      \item \textbf{PADsynth interpolation}
+      \item \textbf{XML compression level}
+      \item \textbf{Send reports to}
+      \item \textbf{Session state save file}
+      \item \textbf{Select}
+      \item \textbf{Save and Close}
+      \item \textbf{Close Unsaved}
+   \end{enumber}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{OscilSize}{Main Settings!OscilSize}
+   ADDsynth Oscillator Size (samples).
+   OscilSize. Sets the number of the points of the ADsynth oscillator. The
+   bigger is better, but it takes more CPU time on start of any note, and it
+   may add latency to some processes.
+
+   This element is the ADDsynth Oscillator Size (in samples).
+   The default value for \textsl{Yoshimi} is shown marked with an asterisk,
+   and the default value for \textsl{ZynAddSubFX} is 512.
+   (This asterisk/plus-sign convention is used throughout this manual).
+   See \figureref{fig:yoshimi_oscilsize_values} below for the OscilSize
+   dropdown element.
+
+   Values: \texttt{128, 256, 512+, 1024*, 2048, 4096, 8192, 16384}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{menu/Yoshimi/main-oscilsize.jpg}
+   \caption[OscilSize Values]{Adsynth Oscillator Size (samples)}
+   \label{fig:yoshimi_oscilsize_values}
+\end{figure}
+
+   \itempar{Virtual Keyboard Layout}{Main Settings!Virtual Keyboard Layout}
+   The virtual keyboard is useful, but it is difficult to move the mouse
+   rapidly to the next key on the virtual keyboard.
+   Therefore, \textsl{Yoshimi} supports using the computer keyboard
+   to produce notes.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.5]{top-panel/ascii-virtual-keyboard.png}
+   \caption{QWERTY Virtual Keyboard}
+   \label{fig:qwerty_virtual_keyboard}
+\end{figure}
+
+   See \figureref{fig:qwerty_virtual_keyboard},
+   for the mapping of the computer keyboard to the
+   virtual keyboard.  Note that this is a QWERTY layout.  
+   \textsl{Yoshimi} also supports other keyboard layouts.
+   See \figureref{fig:virtual_kbd_layout},
+   for the virtual keyboard
+   layout settings dropdown.
+
+   Values: \texttt{Dvorak, QWERTY*, AZERTY}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{menu/Yoshimi/main-virtual-kbd-layout.jpg}
+   \caption[Virtual Keyboard Layout]{Virtual Keyboard Layout Values}
+   \label{fig:virtual_kbd_layout} 
+\end{figure}
+
+   \itempar{PADsynth interpolation}{Main Settings!PADsynth Interpolation}
+   See \figureref{fig:padsynth_interpolation} below
+   for the interpolation values.
+
+   Values: \texttt{Linear(fast)*, Cubic(slow)}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{menu/Yoshimi/main-padsynth-interpolation.jpg}
+   \caption[PADSynth Interpolation]{PADSynth Interpolation Values}
+   \label{fig:padsynth_interpolation}
+\end{figure}
+
+   \itempar{XML compression level}{Main Settings!XML compression level}
+   The settings and instruments of
+   \textsl{Yoshimi}
+   are preserved in XML files.
+   The value of 0 indicates that the XML file is uncompressed.
+   In general, 0 is probably the best setting.  For a little "wasted"
+   space, one can view the XML file in a text/programmer's editor.
+   But, if ones system is tight on disk space, higher levels of compression
+   can be specified.
+
+   Values: \texttt{0 to 9, 3*}
+
+   \itempar{Send reports to}{Main Settings!Send Reports Destination}
+   Notices and error messages can be sent to the standard error log of
+   the terminal in which 
+   \textsl{Yoshimi} can be run, or, more usefully, to
+   an output console window.
+   See \figureref{fig:send_reports_to}
+   for a depiction of the selection dropdown.
+
+   Values: \texttt{stderr, Console Window*}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{menu/Yoshimi/main-send-reports-to.jpg}
+   \caption[Send Reports]{Send Reports To}
+   \label{fig:send_reports_to}
+\end{figure}
+
+   \itempar{Session state save file}{Main Settings!Session State}
+   Main Settings Session State Save File.
+   Enter the name of the desired session state file here, including
+   the path to it.
+   Example: \texttt{/home/myself/.config/yoshimi/yoshimi.state}
+
+   \itempar{Select}{Main Settings!Select Saved-State File}
+   Select Saved-State File.
+   See \figureref{fig:session_save_state}
+   for a depiction of this dialog, which lets one pick an existing file as
+   the \textsl{Yoshimi} state file.
+
+   Values: \texttt{~/.config/yoshimi/yoshimi.state}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Yoshimi/main-nominate-session-save-state-file.jpg}
+   \caption[Session Save State]{Session Save State File}
+   \label{fig:session_save_state} 
+\end{figure}
+
+   \itempar{Save and Close}{Main Settings!Save and Close}
+   This selection saves and closes the \textsl{Yoshimi} settings dialog.
+
+   \itempar{Close Unsaved}{Main Settings!Close Unsaved}
+   Close Unsaved, Main Settings.
+
+   This selection closes the \textsl{Yoshimi} settings dialog.
+   However, it may actually leave the changes preserved (a bug).
+   This needs to be checked, we've seen this in other dialogs.
+   \textbf{Bug:}
+   \index{bugs!Main Settings Close Unsaved}
+   And yes, indeed, it saves the changes.
+   Please watch for this effect in all such dialogs; we're indexing such
+   defects under the topic of "bugs".
+
+\paragraph{Menu / Yoshimi / Settings / Preset dirs}
+\label{paragraph:menu_yoshimi_settings_preset_dirs}
+
+   The \textsl{Yoshimi} preset directories are the locations where
+   presets can be found.  When first installed, the system
+   preset directory is
+
+   \begin{verbatim}
+      /usr/share/yoshimi/presets
+   \end{verbatim}
+   
+   The user can provide additional directories for the presets.
+   These directories are useful for containing copies of the system
+   presets that one can modify safely, and for providing custom
+   presets designed by the user.
+
+   The following items are provided by the preset directory settings:
+
+   \begin{enumber}
+      \item \textbf{Preset list}
+      \item \textbf{Add preset directory...}
+      \item \textbf{Remove preset directory...}
+      \item \textbf{Make default}
+      \item \textbf{Save and Close}
+      \item \textbf{Close Unsaved}
+   \end{enumber}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-presets-dirs.jpg}
+   \caption[Preset Dirs Tab]{Yoshimi Preset Dirs Dialog}
+   \label{fig:yoshimi_presets_dirs_tab}
+\end{figure}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Preset list}{Yoshimi Presets!Preset List}
+   Preset List.
+   This interface element contains a list of preset directories.
+   By default, the only directory present is the installed preset directory.
+   For example, \texttt{/usr/share/yoshimi/presets}.
+   Another example would be this project; let YOSHIMI-DOC be the directory
+   where this project is stored.  Then one can add
+   \texttt{YOSHIMI-DOC/config/yoshimi/presets} to this list, using the
+   button described next.
+
+   \itempar{Add preset directory...}{Yoshimi Presets!Add Directory}
+   Add Preset Directory.
+   Use this button and dialog to add a preset directory to the list, for
+   easy access.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Yoshimi/presets-add-a-preset-directory.jpg}
+   \caption[Add Preset Directory]{Add a Preset Directory}
+   \label{fig:presets_add_a_preset_directory}
+\end{figure}
+
+   \itempar{Remove preset directory...}{Yoshimi Presets!Remove Directory}
+   Remove Preset Directory.
+   Select one of the preset directories in the preset list, then press this
+   button to remove the preset directory from the list of preset
+   directories.
+
+   \itempar{Make default presets}{Yoshimi Presets!Make Default}
+   Make Default Presets Directory.
+   Select one of the preset directories in the preset list, then press this
+   button to make the preset directory the default preset directory.
+
+   \itempar{Save and Close presets}{Yoshimi Presets!Save and Close}
+   Save and Close Presets.
+   Press this button to save the changes.
+
+   \itempar{Close Unsaved presets}{Yoshimi Presets!Close Unsaved}
+   Close Unsaved, Presets.
+   
+   \textbf{Bug:}
+   \index{bugs!Main Settings Close Unsaved}
+   This button doesn't seem to work, in that the changes seem to remain
+   in place when the dialog is reopened.
+   Please watch for this effect in all such dialogs; we're indexing such
+   defects under the topic of "bugs".
+
+\paragraph{Menu / Yoshimi / Settings / Jack}
+\label{paragraph:menu_yoshimi_settings_jack}
+
+   JACK is the "Jack Audio Connection Kit", useful increasing audio
+   performance and configurability.
+
+   When using the JACK audio backend, parts can be individually routed
+   and sent to the main L/R outputs. This is controlled from the panel
+   window, and the settings are saved with all the other parameters.
+
+   Direct part outputs carry the Part and Insertion effects, but not the
+   System ones.
+
+   TODO:  Where is the panel window, and where do we describe it?
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-jack.jpg}
+   \caption[JACK Settings]{JACK Settings Dialog}
+   \label{fig:yoshimi_settings_jack}
+\end{figure}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Jack Server}{JACK!server name}
+   Jack Server Name.
+   It is possible to have more than one JACK server running.  This option
+   tells this instance of \textsl{Yoshimi} which server to use.
+
+   Values: \texttt{default*, name} name, as in "jackd --name"
+
+   \itempar{Save and Close}{JACK!Save and Close}
+   Save and Close, JACK Settings.
+
+   \itempar{Close Unsaved Jack}{JACK!Close Unsaved}
+   Close Unsaved, JACK Settings.
+
+   \textbf{Bug:}
+   \index{bugs!Main Settings Close Unsaved}
+   This button allows changes to be saved.
+
+\paragraph{Menu / Yoshimi / Settings / Alsa}
+\label{paragraph:menu_yoshimi_settings_alsa}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-alsa.jpg}
+   \caption[ALSA Settings]{ALSA Settings Dialog}
+   \label{fig:yoshimi_settings_alsa}
+\end{figure}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Alsa Midi Device}{ALSA!MIDI device}
+   ALSA MIDI Device.
+
+   Values: \texttt{default*}
+
+   TODO: What can we change this value to?
+
+   \itempar{Alsa Audio Device}{ALSA!audio device}
+   ALSA Audio Device.
+
+   Values: \texttt{default*}
+
+   TODO: What can we change this value to?
+
+   \itempar{Samplerate}{ALSA!sample rate}
+   Sample Rate.
+   Sets the quality of the sound, higher is better, but it uses more CPU.
+   One can select from a list.
+   
+   \textsl{ZynAddSubFX}: if one wants a sample-rate that
+   is not in the list, select "Custom" and change the value from the right.
+   Default is 44100.
+
+   Values: \texttt{96000, 48000*, 44100}
+
+   \itempar{Period Size}{ALSA!period size}
+   Period Size.
+   Buffer Size.
+   Sets the granularity of the sound. The Default is 256 (1024?)
+   samples. To find out the internal delay in milliseconds, divide the
+   Period Size value by the Sample Rate and multiply the result by 1000
+   (eg.: 256/44100*1000=5.8 ms).
+
+   Values: \texttt{64, 128, 256, 512, 1024*}
+
+   \itempar{Save and Close}{ALSA!Save and Close}
+   Save and Close, ALSA Settings.
+
+   \itempar{Close Unsaved Alsa}{ALSA!Close Unsaved}
+   Close Unsaved, ALSA Settings.
+
+   \textbf{Bug:}
+   \index{bugs!Main Settings Close Unsaved}
+   This button allows changes to be saved.
+
+\paragraph{Menu / Yoshimi / Settings / CCs}
+\label{paragraph:menu_yoshimi_settings_ccs}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   This dialog,
+   shown in \figureref{fig:yoshimi_settings_cc},
+   presents MIDI "continuous controller" (CC) preferences.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-ccs.jpg}
+   \caption[MIDI CC Preferences]{MIDI Continuous Controller (CC) Preferences}
+   \label{fig:yoshimi_settings_cc}
+\end{figure}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   The concepts of banks and roots is very useful.
+   See \sectionref{subsec:concepts_banks_and_roots}.
+
+   \itempar{Enable Bank Root Change}{continuous controllers!enable bank root change}
+   Enable Bank Root Change.
+
+   Values: \texttt{Off*, On}
+
+   \itempar{Bank Root Change}{continuous controllers!bank root change}
+   Bank Root Change.
+   If enabled, a new reddish button, \textbf{Pending}, appears.
+   Once the change has been made in the scroll list, click this button
+   to set the change.
+
+   TODO:
+   It is not clear if this change persists after \textsl{Yoshimi} closes, or
+   if the session or state must be saved.
+   But apparently this change can be made without a restart being required.
+
+   Values: \texttt{0*, to 127}
+
+   \itempar{Bank Change}{continuous controllers!bank change}
+   Bank Change.
+   Defines which continuous controllers one wants to use.
+   Note that CC0 = MSB, and CC32 = LSB.
+
+   Bank changes can be completely disabled - some hardware
+   synths don't play nice!
+
+   Values: \texttt{LSB, MSB*, Off}
+
+   \itempar{Enable Program Change}{continuous controllers!enable program change}
+   Enable Program Change.
+   Enables/disable MIDI program change.
+   Program changes can be completely disabled - some hardware synths don't
+   play nice!
+
+   Values: \texttt{Off*, On}
+
+   \itempar{Enable Part On Program Change}{continuous controllers!enable part change}
+   Enable Part On Program Change.
+   The part is enabled if the MIDI program was changed.
+
+   TODO:  Not quite sure what this means.
+
+   Values: \texttt{Off*, On}
+
+   \itempar{Enable Extended Program Change}{continuous controllers!enable extended change}
+   Enable Extended Program Change.
+
+   Values: \texttt{Off*, On}
+
+   \itempar{Extended Program Change}{continuous controllers!extended change}
+   Extended Program Change.
+   If enabled, a new reddish button, \textbf{Pending}, appears.
+   Once the change has been made in the scroll list, click this button
+   to set the change.
+
+   Values: \texttt{0-127, 110*}
+
+   \itempar{Save and Close}{continuous controllers!Save and Close}
+   Save and Close, Continuous Constrollers Settings.
+
+   \itempar{Close Unsaved CC}{continuous controllers!Close Unsaved}
+   Close Unsaved, Continuous Controllers Settings.
+
+   \textbf{Bug:}
+   \index{bugs!Main Settings Close Unsaved}
+   This button allows changes to be saved.
+
+\subsubsection{Menu / Yoshimi / Exit}
+\label{subsubsec:menu_yoshimi_exit}
+
+   Simply exits from \textsl{Yoshimi}.
+   The user is prompted if unsaved changes exist, as shown in
+   \figureref{fig:yoshimi_change_exit}.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{menu/Yoshimi/yoshimi-menu-exit-parameters-changed.jpg}
+   \caption[Yoshimi Menu, Exit]{Yoshimi Menu, Exit}
+   \label{fig:yoshimi_change_exit}
+\end{figure}
+
+\subsection{Menu / Instrument}
+\label{subsec:menu_instrument}
+
+   The \textsl{Yoshimi} Instrument menu lets one select instruments and work
+   with banks of instruments.
+   \textsl{Yoshimi} stamps instrument XML files with its own major and minor
+   version numbers so it is possible to tell which version created the files,
+   or whether they were created by \textsl{ZynAddSubFX}.
+
+   When opening an instrument bank one can now tell exactly which synth engines
+   are used by each instrument. This is represented by three pale background
+   colours:
+
+   \begin{itemize}
+      \item Red: ADDsynth
+      \item Blue: SUBsynth
+      \item Green: PADsynth
+   \end{itemize}
+
+   If the instruments are kits they scanned to find out if 
+   \textsl{any} member of the kit contains each engine.
+   This scanning is duplicated in the current part, the mixer panel for the
+   currently loaded instruments, and in the Instrument Edit window the same
+   colors highlight the engine names when they are enabled with the check
+   boxes. 
+
+   The following sub-menus are provided, as shown in
+   \figureref{fig:yoshimi_instrument_menu}.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{menu/yoshimi-menu-instrument.jpg}
+   \caption{Yoshimi Menu, Instrument}
+   \label{fig:yoshimi_instrument_menu}
+\end{figure}
+
+   \begin{enumber}
+      \item \textbf{Clear Instrument...}
+      \item \textbf{Open Instrument...}
+      \item \textbf{Save Instrument...}
+      \item \textbf{Show Instruments...}
+      \item \textbf{Show Banks...}
+      \item \textbf{Show Root Paths...}
+   \end{enumber}
+
+\subsubsection{Menu / Instrument / Clear Instrument...}
+\label{subsubsec:menu_instrument_clear}
+
+This menu entry brings up a prompt to clear the parameters of the
+instrument.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Instrument/clear-instrument.jpg}
+   \caption{Clear Instrument Dialog}
+   \label{fig:clear_instrument_dialog}
+\end{figure}
+
+   \textbf{Bug:}
+   \index{bugs!need to clearn instrument?}
+   Sometime it seems that one needs to clear the instrument if one is
+   loading a new instrument to test it out, because some settings seem
+   to remain from the previous instrument.  Don't quote us on that.
+
+\subsubsection{Menu / Instrument / Open Instrument...}
+\label{subsubsec:menu_instrument_open}
+
+This menu entry brings up a prompt to open a new instrument.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Instrument/open-instrument.jpg}
+   \caption{Open Instrument Dialog}
+   \label{fig:open_instrument_dialog}
+\end{figure}
+
+This dialog has a number of user-interface elements to note.
+
+   \begin{enumber}
+      \item \textbf{Show}
+      \item \textbf{Favorites}
+      \item \textbf{Create a new diretory}
+      \item \textbf{Instrument List}
+      \item \textbf{XML Preview}
+      \item \textbf{Preview}
+      \item \textbf{Show hidden files}
+      \item \textbf{Directory Bar}
+      \item \textbf{Filename}
+      \item \textbf{OK}
+      \item \textbf{Cancel}
+   \end{enumber}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Show}{Open Instrument!show}
+   Show types of files.
+   This item shows a file filter for selecting instrument files.
+   The types of filters are as follows (screen shot not available):
+
+   \begin{enumber}
+      \item \textbf{(\{*.xiz\})} (compressed XML files)
+      \item \textbf{All Files (*)}
+      \item \textbf{Custom Filter}
+   \end{enumber}
+
+   \itempar{Favorites}{Open Instrument!favorites}
+   Favorite directories.
+   Provides a list of options and favorite directories in which to find 
+   instrument files.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Instrument/favorites-dropdown.jpg}
+   \caption{Favorites Dropdown}
+   \label{fig:open_instrument_favorites}
+\end{figure}
+
+   \begin{enumber}
+      \item \textbf{Add to Favorites}
+      \item \textbf{Manage Favorites}
+      \item \textbf{File Systems}
+      \item \textbf{(Additional favorite directories)}
+   \end{enumber}
+
+   \textbf{Add to Favorites} \index{Add to Favorites}
+   simply adds the currently selected directory shown in the instrument list
+   to the list of favorites.
+
+   To add Favorites in the file dialog,
+   navigate to the desired directory.  Then click "Favorites", and select
+   "Add to Favorites".
+
+   Once one has a number of favorites set up,
+   there is a "Manage Favorites" that can be used.
+   For example, if one needs to get rid of a directory, one can use the
+   \textbf{Manage Favorites}
+   \index{Manage Favorites}
+   dialog, shown in
+   \figureref{fig:manage_instrument_favorites} below,
+   to do that.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{menu/Instrument/manage-favorites.png}
+   \caption{Favorites Dropdown}
+   \label{fig:manage_instrument_favorites}
+\end{figure}
+
+   \textbf{File Systems} \index{File Systems}
+   Provides a list of all file systems start at root ("\texttt{/}").
+   This list can be pretty confusing, with a lot of entries.
+   But note that one navigates to ("\texttt{//}"), and from there to
+   \texttt{/usr/share/yoshimi/banks} to get easy access to all the
+   instruments that are preinstalled with
+   \textsl{Yoshimi}.  Unfortunately, one can only add instrument
+   files in this manner, and the dropdown would quickly become
+   unmanageable.  So generally, one will want to use only
+   \textbf{Add to Favorites} and \textbf{Manage Favorites}.
+
+   Note that \textsl{banks} are an important concept in
+   \textsl{Yoshimi}, as we will see in
+   \sectionref{subsubsec:menu_instrument_show}.
+
+   \itempar{Create Directory}{Open Instrument!create new directory}
+   Create a New Directory.
+
+   This little symbol options a small "New Directory?" dialog (not shown
+   here, it is very simple and stock) into which one can type a directory
+   name to be added to the current directory of the instrument list.
+
+   \itempar{Instrument List}{Open Instrument!instrument list}
+   Instrument List.
+   Provides a list of the instrument files available in the current
+   directory.  Also shown are sub-directories (if available)
+   that might contain more instruments, and a ("\texttt{../}") entry
+   to navigate to the parent directory.
+
+   \itempar{Preview}{Open Instrument!preview checkbox}
+   Preview.
+   If one thinks the preview feature is not useful, uncheck this check-box.
+   so that one doesn't see the preview window.  As a bonus, one can see more
+   of the instrument file-name.
+
+   \itempar{Preview pane}{Open Instrument!preview pane}
+   Preview Pane.
+   XML Preview.
+   This box can show the beginning of the XML data of an instrument file.
+   \textbf{Bug:}
+   \index{bugs!compressed XML preview}
+   It seems to show the XML only if the XML is not compressed.
+
+   \itempar{Show hidden files}{Open Instrument!show hidden files}
+   Shows file that are hidden.  Not sure how useful this feature is;
+   who would hide a \textsl{Yoshimi} instrument file?
+
+   \itempar{Directory Bar}{Open Instrument!directory bar}
+   Directory Bar.
+   Provides an alternate way to move up through the directory structure.
+
+   \itempar{Filename}{Open Instrument!filename}
+   File Name.
+   Provides the full path to the instrument file.
+
+   \itempar{OK/Cancel}{Open Instrument!ok/cancel}
+   We don't really need to discuss the \textbf{OK} and \textbf{Cancel}
+   buttons, do we?
+
+\subsubsection{Menu / Instrument / Save Instrument...}
+\label{subsubsec:menu_instrument_save}
+
+   This menu entry brings up a prompt to save a new instrument.
+   It has all of the user-interface elements of the "Open Instrument"
+   dialog shown in
+   \figureref{fig:open_instrument_dialog}
+   in \sectionref{subsubsec:menu_instrument_open}.
+
+   However, if nothing has changed, then a "Nothing to Save!" prompt (not
+   pictured) is shown.
+
+\subsubsection{Menu / Instrument / Show Instruments...}
+\label{subsubsec:menu_instrument_show}
+
+   The instruments can be stored in banks. These are loaded/saved
+   automatically by the program, so one doesn't have to worry about saving the
+   banks before the program exits. On program start, the last used bank is
+   loaded. A single bank can store up to 128 instruments. 
+   However, there is space for a number of additional, but unnumbered
+   instruments in the bank.
+
+% TODO:  The name of this dialog file should be show_instruments.png.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.3.5/show_banks.png}
+   \caption[Show Instruments]{Show Instruments, 1.3.5 and Above}
+   \label{fig:show_instruments}
+\end{figure}
+
+   As \figureref{fig:show_instruments}
+   shows, this is a very complex dialog with a lot of options.
+   Note how \textsl{Yoshimi} now shows the color codings for the
+   synth-sections use:  red for ADDsynth, blue for SUBsynth, and
+   green for PADsynth.
+
+   Also note how the numbers at the beginning of the filenames are used as
+   an "instrument" or "program" number.
+
+   Learning how to use this dialog is an important way to make
+   instruments easier to manage, and so this will be a long section.
+
+   An important pair of concepts in \textsl{Yoshimi} are
+   \textsl{banks} and \textsl{roots}.  These concepts are described in
+   \sectionref{subsec:concepts_banks_and_roots}.
+
+   A bank has 3 modes in \textsl{ZynAddSubFX}: 
+
+      \begin{enumber}
+         \item \textbf{READ}.
+            The instrument is loaded from the bank to the current part.
+         \item \textbf{WRITE}.
+            The instrument is written to the bank.
+         \item \textbf{CLEAR}.
+            The instrument from the bank is cleared (removed).
+      \end{enumber}
+
+   Pressing left mouse button on a slot reads/writes/clears the instrument
+   from/to it (according to the current mode).
+   
+   Pressing right mouse button on a slot changes its name
+
+   The setup in \textsl{Yoshimi} is a bit different than in
+   \textsl{ZynAddSubFX}.
+   Observe \figureref{fig:show_ca_bank}.
+   It shows a bank loaded from a directory containing customs
+   banks from one of the authors of this document.
+
+% This figure should be updated for Yoshimi 1.3.5:
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Instrument/show-CA-bank.jpg}
+   \caption[Show CA's Instruments]{Show My Instruments}
+   \label{fig:show_ca_bank}
+\end{figure}
+
+   The interesting feature of this figure is that
+   all of the filenames are unnumbered, and therefore they show up in the
+   extended (rightmost) column of the dialog, prepended with
+   \textsl{ad hoc} numbers.
+
+   Here is a list of the user-interface items in the instruments/banks dialog.
+   Please refer to 
+   \figureref{fig:show_instruments} as well.
+
+   \begin{enumber}
+      \item \textbf{Bank Name}
+      \item \textbf{Refresh banks}
+      \item \textbf{Roots}
+      \item \textbf{Banks}
+      \item \textbf{New Bank}
+      \item \textbf{Instrument and Bank Matrix}
+      \item \textbf{SELECT}
+      \item \textbf{RENAME}
+      \item \textbf{SAVE}
+      \item \textbf{DELETE}
+      \item \textbf{SWAP}
+      \item \textbf{Show synth engines}
+         (was \textbf{Show PADsynth status})
+      \item \textbf{Close}
+   \end{enumber}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Bank Name}{instruments!bank name}
+   Instruments Bank Name.
+   Basically, this is a directory name, with a number prepended.
+   Not quite sure where the number comes from in the base of banks.
+   Here is the dropdown list for "my" setup:
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Instrument/bank-list.jpg}
+   \caption[A Sample Bank List]{A Sample Bank List}
+   \label{fig:bank_list}
+\end{figure}
+
+And here is the directory listing associated with it, in the order produced
+by the UNIX/Linux "ls -1" (list single-column) command (shown in two columns
+to save space):
+
+   \begin{verbatim}
+      Alex_J                        Noises
+      Arpeggios                     Organ
+      Bass                          Pads
+      Bells                         Piano
+      Brass                         Plucked
+      C_Ahlstrom                    RB Zyn Presets
+      chip                          README
+      Choir_and_Voice               Reed_and_Wind
+      Chromatic Percussion          Rhodes
+      Cormi_Collection              Splited
+      Drums                         Strings
+      Drums_DS                      Synth
+      Dual                          SynthPiano
+      Electric Piano                Test
+      Fantasy                       The_Mysterious_Bank
+      Flute                         the_mysterious_banks
+      folderol collection           Vanilla
+      Guitar                        VDX
+      Internet Collection           Will_Godfrey_Collection
+      Laba170bank                   Will_Godfrey_Companion
+      Leads                         Will_J_Godfrey_Collection
+      Louigi_Verona_Workshop        x31eq.com
+      Misc                          XAdriano Petrosillo
+      Misc Keys                     Zen Collection
+      mmxgn Collection
+   \end{verbatim}
+
+   We're not yet sure where the numbers in the dropdown list come from.
+
+   TODO:  Find out!
+
+   \itempar{Refresh banks}{instruments!refresh banks}
+   Instruments Refresh Banks.
+   This item may not be present in the newest \textsl{yoshimi}.
+
+   \itempar{Roots}{instruments!roots}
+   Instruments Roots.
+   "Roots" button.
+   Shows a list of directories that can serve as "root" directories.
+   The "Bank Root Paths" dialog shown in
+   \figureref{fig:show_banks_roots} shows
+   the system root (e.g. \texttt{/usr/share/yoshimi/banks}) and
+   a user's home location for his/her banks and roots.
+
+   \itempar{Banks}{instruments!banks}
+   Instruments Banks.
+   "Banks" button.
+   The dialog brought up by this button
+   (see \figureref{fig:show_banks_directories})
+   is different view of the dialog shown in
+   \figureref{fig:bank_list}.
+   Again, we're not yet sure where the numbers in the list come from.
+   They seem to be autogenerated.
+
+   \itempar{New Bank}{instruments!new bank}
+   Instruments New Bank.
+
+   \itempar{Instrument and Bank Matrix}{instruments!bank matrix}
+   Instruments Bank Matrix.
+   Shows the instruments that are in the currently selected bank
+   (directory).
+
+   \itempar{Instruments}{instruments!instruments}
+   Instruments Button.
+   This seems to be present in the newest version of 
+   \textsl{Yoshimi}.  TODO: clarify.
+
+   \itempar{SELECT}{instruments!SELECT}
+   Instruments SELECT.
+   When this button is selected, then clicking on a bank brings
+   up a very similar dialog that shows the instruments in that bank, laid
+   out with the numbers that are prepended to the filename of each
+   instrument in that bank.
+
+   \itempar{RENAME}{instruments!RENAME}
+   Instruments RENAME.
+   When this button is selected, then clicking on a bank brings
+   up a small dialog to rename the clicked-on bank.
+   \textbf{Bug:}
+   \index{bugs!click on rename bank closes Yoshimi}
+   Unfortunately, in \textsl{Yoshimi}, clicking on the bank closes
+   everything, including \textsl{Yoshimi}, with a
+   \textbf{segmentation fault}!
+
+   \itempar{SAVE}{instruments!SAVE}
+   Instruments SAVE.
+
+   TODO: Does this appear in any of the most recent bank dialogs in
+   1.3.5+ Yoshimi, or is it an older feature?
+
+   \itempar{DELETE}{instruments!DELETE}
+   Instruments DELETE.
+   Selecting this button and clicking an empty bank entry does nothing.
+   Selecting this button and clicking an existing bank entry brings up a
+   small dialog asking one if this bank is really to be deleted.
+
+   \itempar{SWAP}{instruments!SWAP}
+   Instruments SWAP.
+   Selecting this button, then selecting one bank, and then another,
+   swaps the numbering and postion of the selected banks.
+
+   \itempar{Show PADsynth status}{instruments!PADsynth status}
+   Instruments Show PADsynth Status.
+
+   TODO:  Get each dialog flaovr properly distinguished.
+
+   \itempar{Close}{instruments!Close}
+   Instruments Close Window.
+   Closes the window.
+
+   Here is a more conventional view of instruments, supplied with
+   \textsl{Yoshimi}, shown in
+   \figureref{fig:show_pads_bank}.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Instrument/show-pads-bank.jpg}
+   \caption[Show Pads Instruments]{Show Pads Instruments}
+   \label{fig:show_pads_bank}
+\end{figure}
+
+\subsubsection{Menu / Instrument / Show Banks...}
+\label{subsubsec:menu_instrument_show_banks}
+
+   As shown in
+   \figureref{fig:show_banks_directories},
+   the banks dialog uses most of the same
+   user-interface elements as the instruments dialog shown in
+   \figureref{fig:show_ca_bank}.
+
+   TODO:  Make a reference to
+   http://sourceforge.net/p/yoshimi/mailman/message/33200765/
+   and
+   http://sourceforge.net/p/yoshimi/mailman/message/33175271/
+   and
+   http://sourceforge.net/p/yoshimi/mailman/yoshimi-devel/
+   and
+   http://sourceforge.net/p/yoshimi/mailman/yoshimi-user/.
+
+   Also note that the alternate location for the source-code is
+   https://github.com/abrolag/yoshimi now.
+
+% A REPEAT!!!
+% A REPEAT!!!
+% A REPEAT!!!
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Instrument/show-banks-directories.jpg}
+   \caption[Show Banks]{Show Banks}
+   \label{fig:show_banks_directories}
+\end{figure}
+
+   This figure illustrates a setup where the installed banks were combined with
+   banks downloaded from various web sites.
+   The following list shows that the interface elements in the banks dialog
+   are slightly different from the instruments dialog.
+
+   \begin{enumber}
+      \item \textbf{Roots}
+      \item \textbf{Current Bank} (passive display element)
+      \item \textbf{Instruments}
+      \item \textbf{SELECT}
+      \item \textbf{RENAME}
+      \item \textbf{ADD}
+      \item \textbf{DELETE}
+      \item \textbf{SWAP}
+      \item \textbf{Close}
+   \end{enumber}
+
+   \itempar{Roots}{banks!roots}
+   Banks Roots.
+   "Roots" button.
+   Shows a list of directories that can serve as "root" directories.
+
+   \itempar{current bank}{banks!current bank}
+   Current Bank.  Simply indicates the current bank via color-highlighting.
+
+   \itempar{Instruments}{banks!instruments}
+   Banks Instruments.
+   Brings up an banks dialog as shown in
+   TODO.
+
+   \itempar{SELECT}{banks!SELECT}
+   Banks SELECT.
+   When this button is selected, then clicking on a bank brings
+   up a very similar dialog that shows the instruments in that bank, laid
+   out with the numbers that are prepended to the filename of each
+   instrument in that bank.
+   Although we don't show a figure for it, note that some banks provide
+   instruments with numbers in the extended program-change range (above
+   0127) prepended to the file-names.
+
+   \itempar{RENAME}{banks!RENAME}
+   Banks RENAME.
+   When this button is selected, then clicking on a bank brings
+   up a small dialog to rename the clicked-on bank.
+
+   \textbf{Bug:}
+   \index{bugs!click on rename bank closes Yoshimi}
+   Unfortunately, in \textsl{Yoshimi}, clicking on the bank closes
+   everything, including \textsl{Yoshimi}, with a
+   \textbf{segmentation fault}!
+
+   \itempar{ADD}{banks!ADD}
+   Banks ADD.
+   Selecting this button and clicking an empty bank entry brings up a small
+   dialog to create a new empty bank name for that entry.
+   If one clicks on an existing bank entry, then a small dialog comes up
+   stating that the bank number selected is already in use.
+
+   \itempar{DELETE}{banks!DELETE}
+   Banks DELETE.
+   Selecting this button and clicking an empty bank entry does nothing.
+   Selecting this button and clicking an existing bank entry brings up a
+   small dialog asking one if this bank is really to be deleted.
+
+   \itempar{SWAP}{banks!SWAP}
+   Banks SWAP.
+   Selecting this button, then selecting one bank, and then another,
+   swaps the numbering and postion of the selected banks.
+
+   HERE HERE HERE
+   HERE HERE HERE
+   HERE HERE HERE
+
+\subsubsection{Menu / Instrument / Show Root Paths...}
+\label{subsubsec:menu_instrument_show_root_paths}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Instrument/show-banks-roots.jpg}
+   \caption[Show Root Paths]{Show Root Paths}
+   \label{fig:show_banks_roots}
+\end{figure}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Add root directory...}{Root Paths!add directory}
+   Show Root Paths Add Root Directory.
+   To add a bank root path:
+
+   \textsl{Yoshimi} (as installed by Debian Linux) provides a default bank at
+   \texttt{/usr/share/yoshimi/banks}.
+   To add one's own directory, navigate to "Yoshimi / Instrument / Show Root
+   Paths ...".  Then click on "Add root directory...".
+
+   Once selected, one will see that \texttt{/usr/share/yoshimi/banks}
+   is marked with an asterisk.  One can select the new root directory,
+   and make it current by clicking the "Make current" button.
+
+   Then the Banks dialog will show all the banks in that directory, one bank
+   per subdirectory (each subdirectory "is" a bank).  The current bank will
+   be shown, with all of the instruments it contains.  All of the files with
+   filenames starting with 4-digit numbers will be shown in the slot
+   corresponding number.  Those without numbers will start with numbers at
+   129 or above ("extended program change").  One should
+   give them numbers by renaming them outside of \textsl{Yoshimi},
+   then reloading the bank.
+
+   But note that MIDI CC can be set to access voices from 129 to 160.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Instrument/new-directory.jpg}
+   \caption{Add Root Directory}
+   \label{fig:add_root_directory}
+\end{figure}
+
+   \itempar{Remove root directory...}{Root Paths!remove directory}
+   Show Root Paths Remove Root Directory.
+   If a path is selected, then this button is active, and can be used to
+   delete the selected path from the "root paths" list.
+
+   \itempar{Make current}{Root Paths!make current}
+   Show Root Paths Make Current.
+   This button marks the currently-selected path as the "current root" path.
+
+   \itempar{Open current}{Root Paths!open current}
+   Show Root Paths Open Current.
+   This button opens the current root path.
+
+   \itempar{Change ID}{Root Paths!change ID}
+   Show Root Paths Change ID.
+
+   Values: \texttt{0* to 127}
+
+TODO: We need to know more about how this ID can be used.
+   Is it a way to make the path selectable via an extended MIDI control, or
+   some other automation method?
+
+   \itempar{Save and Close}{Root Paths!save and close}
+   Show Root Paths Save and Close.
+
+      Figure: menu/Instrument/nothing-to-save.jpg
+
+   \itempar{Close Unsaved Root Paths}{Root Paths!close unsaved}
+   Show Root Paths Close Unsaved.
+
+   \textbf{Bug:}
+   \index{bugs!root paths closed unsaved}
+   Doesn't seem to work!
+   Make a change, and click this button, then reopen the dialog, 
+   and the change is preserved.
+
+\subsection{Menu / Parameters}
+\label{subsec:menu_parameters}
+
+   \textsl{Yoshimi} stamps its parameter XML files with its own major and
+   minor version numbers so it is possible to tell which version created the
+   files, or whether they were created by \textsl{ZynAddSubFX}.
+
+   \textsl{Yoshimi} has up to 64 parts in blocks of 16. One can
+   decide how many one wants to have available using the Parameters menu.
+   One can have 16, 32 or 64 parts.
+
+   TODO:  Is this really where it goes?
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{menu/yoshimi-menu-parameters.jpg}
+   \caption{Yoshimi Menu, Parameters}
+   \label{fig:yoshimi_menu_parameters}
+\end{figure}
+
+   \begin{enumber}
+      \item \textbf{Recent}
+      \item \textbf{Open}
+      \item \textbf{Save}
+      \item \textbf{Clear}
+   \end{enumber}
+
+\subsubsection{Menu / Parameters / Recent}
+\label{subsubsec:menu_parameters_recent}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{menu/Parameters/recent-parameters.jpg}
+   \caption{Yoshimi Menu, Recent Parameters}
+   \label{fig:yoshimi_menu_recent_parameters}
+\end{figure}
+
+   Selecting one of the items in this list causes it to be loaded.
+   All the settings, including effects and instruments, are loaded.
+
+\subsubsection{Menu / Parameters / Open}
+\label{subsubsec:menu_parameters_open}
+
+   Opens a standard \textsl{Yoshimi} dialog for selecting a
+   \texttt{*.xmz} file.
+   It is similar to
+   \figureref{fig:open_instrument_dialog},
+   as can be seen in the next figure.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Parameters/open-parameters.jpg}
+   \caption{Yoshimi Menu, Open Parameters}
+   \label{fig:yoshimi_menu_open_parameters}
+\end{figure}
+
+\subsubsection{Menu / Parameters / Save}
+\label{subsubsec:menu_parameters_save}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Parameters/save-parameters.jpg}
+   \caption{Yoshimi Menu, Save Parameters}
+   \label{fig:yoshimi_menu_save_parameters}
+\end{figure}
+
+   TODO:  What is the full extent of parameters saved?
+
+   If nothing has changed, then the following dialog is shown.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Parameters/nothing-to-save.jpg}
+   \caption{Yoshimi Menu, Nothing to Save}
+   \label{fig:yoshimi_menu_nothing_to_save_parameters}
+\end{figure}
+
+\subsubsection{Menu / Parameters / Clear}
+\label{subsubsec:menu_parameters_clear}
+
+   Using this button brings up the following dialog.  Once clicked,
+   \textsl{Yoshimi} seems to revert to its default "Simple Sound" setup.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Parameters/clear-parameters.jpg}
+   \caption{Yoshimi Menu, Clear Parameters}
+   \label{fig:yoshimi_menu_clear_parameters}
+\end{figure}
+
+   TODO:  What is the full extent of parameters cleared?
+
+\subsection{Menu / Scales}
+\label{subsec:menu_scales}
+
+   \textsl{Yoshimi} is a microtonal synthesizer, and is capable of a wide
+   range of microtonal scales.
+
+   At present, we're not too experienced with this feature.
+   
+   TODO:  Add a brief summary to yum\_concepts, then expand this section.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{menu/yoshimi-menu-scales.jpg}
+   \caption{Yoshimi Menu, Scales}
+   \label{fig:yoshimi_menu_scales}
+\end{figure}
+
+   \begin{enumber}
+      \item \textbf{Load Scale Settings...}
+      \item \textbf{Save Scale Settings...}
+      \item \textbf{Show Scale Settings...}
+   \end{enumber}
+
+\subsubsection{Menu / Scales / Load}
+\label{subsec:menu_scales_load}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Scales/open-scales.jpg}
+   \caption{Yoshimi Menu, Open Scales}
+   \label{fig:yoshimi_menu_open_scales}
+\end{figure}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Scales/failed-to-load-scl-file-vice-xsz.jpg}
+   \caption{Yoshimi Menu, Failed to Load Scales}
+   \label{fig:yoshimi_menu_failed_to_load_scales}
+\end{figure}
+
+\subsubsection{Menu / Scales / Save}
+\label{subsec:menu_scales_save}
+
+   This dialog opens a stock file-dialog to allow the saving of
+   \texttt{*.xsz} files.
+
+\subsubsection{Menu / Scales / Show}
+\label{subsec:menu_scales_show}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{menu/Scales/scale-settings-microtonal.jpg}
+   \caption{Yoshimi Menu, Scales Settings}
+   \label{fig:yoshimi_menu_scales_settings}
+\end{figure}
+
+\paragraph{Scales Basic Settings}
+\label{paragraph:menu_scales_basic_settings}
+
+   This item controls the micro-tonal capabilities of \textsl{Yoshimi} and
+   some other settings related to tuning. 
+   The last entry represents one octave. All other notes are deduced from
+   these settings.
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Microtonal}{Enable Microtonal}
+   Enable Microtonal Scales.
+   When disabled the synthesizer will use Equal Temperament; 12 notes/octave.
+   Otherwise, one can input any scale one desires.
+
+   Values: \texttt{Off*, On}
+
+   \itempar{"A" Freq.}{"A"}
+   Frequency of the "A" Note.
+   Sets the frequency of the "A" key. The standard is 440.0 Hz.
+
+   Values: \texttt{440*}
+
+   \itempar{"A" Note}{"A" MIDI}
+   MIDI Value of the "A" Note.
+
+   Values: \texttt{0 to 127, 69*}
+
+   \itempar{Invert Keys}{keys}
+
+   Values: \texttt{Off*, On}
+
+   \itempar{Center (for Invert Keys)}{center}
+   Center for Inverted Keys.
+   This is the center where the notes frequencies are turned upside-down.
+   If the center is 60, the note 59 will become 61, 58 will become 62, 61
+   will become 59 and so on.
+
+   Values: \texttt{0 to 127, 60*}
+
+   \itempar{Name}{mapping}
+   Name of the Mapping.
+
+   \itempar{Shift}{key shift}
+   Key Shift.
+   Shift the scale. If the scale is tuned to A, one can easily tune it to
+   another key.
+
+   Values: \texttt{-63 to 64, 0*}
+
+   \itempar{Comment}{comment}
+   Comment for Key Mapping.
+   Provides a comment or a description of the scale.
+
+   \itempar{Tunings}{tuning}
+   Tunings.
+   Here one can input a scale by entering all the tunings for one octave. 
+   One can enter the tunings in two ways: 
+
+   \begin{enumber}
+      \item As the number of cents (1200 cents=1 octave) as a float number
+      like "100.0", "123.234"
+      \item As a proportion like "2/1" which represents one octave, "3/2" a
+      perfect fifth, "5734/6561".  "2/1" is equal to "1200.0" cents.
+   \end{enumber}
+
+   \itempar{Retune}{retune}
+   Retune.
+
+   \itempar{Notes per Octave}{nts./oct.}
+   Notes Per Octave.
+
+   Values: \texttt{12*} (range not yet known)
+
+   \itempar{Import .SCL file}{scale file}
+   Import Scala files.
+   Scala is a powerful application for experimentation with musical tunings
+   (intonation scales, micro-tonal,...etc.). From its home page \cite{scala},
+   one can download more than 2800 scales which one can import directly into
+   \textsl{Yoshimi}.  Note that the zip file \textsl{must} be unzipped with
+   the \texttt{-aa} ("autoconvert") option.
+
+    \begin{verbatim}
+      $ unzip -aa scales.zip
+    \end{verbatim}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Scales/import-scl-file.jpg}
+   \caption{Yoshimi Menu, Scales, Import File}
+   \label{fig:yoshimi_menu_scales_import_file}
+\end{figure}
+
+   \itempar{Import .kbm file}{kbm file}
+
+   TODO: Figure: menu/Scales/import-kbm-file.jpg
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Scales/import-kbm-file.jpg}
+   \caption{Yoshimi Menu, Scales, Import Keyboard Map}
+   \label{fig:yoshimi_menu_scales_import_keyboard_map}
+\end{figure}
+
+   \itempar{Close, Scales Dialog}{close scales}
+
+\paragraph{Keyboard Mapping}
+\label{paragraph:menu_scales_keyboard_mapping}
+
+   One can set the MIDI keyboard mapping to scale-degree mapping.
+   This is used if the scale has more or less than 12 notes/octave.
+
+   \begin{itemize}
+      \item One can enable the mapping by pressing the "ON" check-box.
+      \item The MIDI keys below "First note" and above "Last note" are ignored.
+      \item Middle note represents the note where the formal octave starts.
+      \item Input field - enter the mappings here.
+      \item Numbers represent the order(degree) entered on Tunings Input
+         (first is 0). This must be less than the number of notes/octave. If
+         one doesn't want a key to be mapped, one enters "x" instead of a
+         number.
+   \end{itemize}
+
+   \begin{enumber}
+      \item \textbf{ON}
+      \item \textbf{First Note}
+      \item \textbf{Last Note}
+      \item \textbf{Midle Note}
+      \item \textbf{Map}
+      \item \textbf{Map Size}
+   \end{enumber}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Scales!ON}{scales flag}
+
+   Values: \texttt{Off*, On}
+
+   \itempar{Scales!First Note}{first note}
+   First MIDI Note Number.
+
+   Values: \texttt{0* to 127}
+
+   \itempar{Scales!Last Note}{last note}
+   Last MIDI Note Number.
+
+   Values: \texttt{0 to 127*}
+
+   \itempar{Scales!Middle Note}{middle note}
+   Middle note where scale degree 0 is mapped to.
+   Note the misspelling of 
+   "middle".
+
+   Values: \texttt{0 to 127*}
+
+   \itempar{Scales!Map}{map}
+
+   Values: \texttt{0 to 11}
+
+   \itempar{Scales!Map Size}{map size}
+
+   Values: \texttt{12}
+
+\subsection{Menu / State}
+\label{subsec:menu_state}
+
+   \textsl{Yoshimi} state is saved in files with the extension
+   \texttt{.state}.  These files are also XML files.
+
+TODO: What is the difference between "state" and "parameters"?
+   Which one is all-inclusive?  What items are saved in each?
+
+   \begin{enumber}
+      \item \textbf{Save}
+      \item \textbf{Load}
+   \end{enumber}
+
+   As the following figures show, state files are normally stored in the
+   user's \texttt{.config/yoshimi/yoshimi.state} file.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{menu/State/save-state-file.jpg}
+   \caption{Yoshimi Menu, State Save}
+   \label{fig:yoshimi_menu_state_save}
+\end{figure}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{menu/State/load-state-file.jpg}
+   \caption{Yoshimi Menu, State Load}
+   \label{fig:yoshimi_menu_state_load}
+\end{figure}
+
+%-------------------------------------------------------------------------------
+% vim: ts=3 sw=3 et ft=tex
+%-------------------------------------------------------------------------------

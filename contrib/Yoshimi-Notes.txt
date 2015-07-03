@@ -1,0 +1,35 @@
+http://forum.renoise.com/index.php/topic/34360-yoshimi-banks/
+
+To change the \textsl{yoshimi} MIDI bank or program from within a sequencer:
+
+A MIDI bank change is usually a CC#0 value of 0, followed by a CC#32 value of
+X, where X is the desired bank number from 0 to whatever,
+(However, in some cases may simply be a CC#0 on its own with a value of X).
+Many synths also require that you send a program change after the bank change,
+to select the program within the bank.  So, using directions that seem specific
+to Renoise....
+
+- Add a MIDI Control device to a track.
+- Link the MIDI Control device to the instance of the ZynAddSubFx/Yoshimi
+   instrument.
+- Expand the number of effect columns in the track to at least 5.
+- Map the 1st MIDI Control device parameter to CC#0.
+- Map the 2nd MIDI Control device parameter to CC#32.
+- Map the 3rd MIDI Control device parameter to Prg-Change.
+
+Now program the following commands into your pattern: (Assuming the MIDI
+Control device is #1 in the chain):
+
+   1001 1100 1201 1302 1000
+
+- 1001 = turn the MIDI Control Device on
+- 1100 = set CC#0 to 0
+- 1201 = set CC#32 to 1 (0 = 1st bank, 1 = 2nd bank, 2 = 3rd bank, etc)
+- 1302 = set the program to 2 (0 = 1st program, 1 = 2nd program, 2 = 3rd
+program, etc)
+- 1000 = turn the MIDI Control Device off
+
+In this particular case, it's important to the turn the MIDI Control device off
+again when you don't need it, otherwise it will not correctly transmit the
+bank/program changes the next time you need it.
+

@@ -1,0 +1,127 @@
+%-------------------------------------------------------------------------------
+% yum_manpage
+%-------------------------------------------------------------------------------
+%
+% \file        yum_manpage.tex
+% \library     Documents
+% \author      Chris Ahlstrom
+% \date        2015-06-22
+% \update      2015-06-25
+% \version     $Revision$
+% \license     $XPC_GPL_LICENSE$
+%
+%     Provides the man page section of yoshimi-user-manual.tex.
+%
+%-------------------------------------------------------------------------------
+
+\section{Yoshimi Man Page}
+\label{sec:yoshimi_man_page}
+
+   The \textsl{Yoshimi} man page is actually the output of the
+   \texttt{yoshimi --help} command, which prints out the command-line that
+   are discussed in this section.
+
+Yoshimi 1.3.4, a derivative of ZynAddSubFX - Copyright 2002-2009
+Nasca Octavian Paul and others, Copyright 2009-2011 Alan Calvert
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+  \itempar{-a}{option!alsa midi}
+      \textbf{--alsa-midi[=<device>]}
+      Use ALSA MIDI input.
+      From the command line, as well as autoconnecting the main L \& R
+      outputs to JACK, with ALSA MIDI one can now auto-connect to a known source.
+
+   \begin{verbatim}
+      ./yoshimi -K --alsa-midi="Virtual Keyboard"
+   \end{verbatim}
+
+  \itempar{-A}{option!alsa audio}
+      \textbf{--alsa-audio[=<device>]}
+      Use ALSA audio output.
+
+  \itempar{-b}{option!alsa buffer size}
+      \textbf{--buffersize=<size>}
+      Set ALSA audio buffer size.
+
+  \itempar{-c}{option!show console}
+      \textbf{--show-console}
+      Show console on startup.
+
+  \itempar{-i}{option!no gui}
+      \textbf{--no-gui}
+      Do not show the GUI.
+
+  \itempar{-j}{option!jack midi}
+      \textbf{--jack-midi[=<device>]} 
+      Use JACK MIDI input.
+      From the command line, as well as autoconnecting the main L \& R
+      outputs to JACK, with JACK MIDI one can now auto-connect to a known source.
+
+   \begin{verbatim}
+      ./yoshimi -K --jack-midi="jack-keyboard:midi_out"
+   \end{verbatim}
+
+  \itempar{-J}{option!jack audio}
+      \textbf{--jack-audio[=<server>]}
+      Use JACK audio output.
+
+  \itempar{-k}{option!jack autostart}
+      \textbf{--autostart-jack}
+      Auto-start the JACK server.
+
+  \itempar{-K}{option!jack autoconnect}
+      \textbf{--auto-connect}
+      Auto-connect JACK audio.
+
+  \itempar{-l}{option!load session}
+      \textbf{--load=<file>}
+      Load a \texttt{.xmz} file.
+
+  \itempar{-L}{option!load instrument}
+      \textbf{--load-instrument=<file>}
+      load .xiz file
+
+  \itempar{-N}{option!add tag}
+      \textbf{--name-tag=<tag>}
+      Add tag to client-name.
+
+  \itempar{-o}{option!set oscilsize}
+      \textbf{--oscilsize=<size>}
+      Set OscilSize from command-line.
+
+  \itempar{-R}{option!set alsa rate}
+      \textbf{--samplerate=<rate>}
+      Set ALSA audio sample rate.
+
+  \itempar{-S}{option!load state}
+      \textbf{--state[=<file>]}
+      Load state from file, defaults to
+      \texttt{\$HOME/.config/yoshimi/yoshimi.state}
+
+  \itempar{-?}{option!help}
+      \textbf{--help}
+      Give this help list.
+
+   \itempar{--usage}{option!usage}
+      Give a short usage message.
+
+  \itempar{-V}{option!version}
+      \textbf{--version}
+      Print program version.
+
+   Mandatory or optional arguments to long options are also mandatory or optional
+   for any corresponding short options.
+
+   From the command line, as well as autoconnecting the main L \& R outputs
+   to JACK, with either JACK or ALSA MIDI one can now auto-connect to a
+   known source.
+
+   ALSA can often manage with just the client name, but JACK needs the port
+   as well. These commands are case sensitive, and quite fussy about spaces
+   etc. so it's wise to use quotes for the source name, even if they don't
+   seem to be needed.
+
+%-------------------------------------------------------------------------------
+% vim: ts=3 sw=3 et ft=tex
+%-------------------------------------------------------------------------------

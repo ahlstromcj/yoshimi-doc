@@ -1,0 +1,347 @@
+%-------------------------------------------------------------------------------
+% yum_subsynth
+%-------------------------------------------------------------------------------
+%
+% \file        yum_subsynth.tex
+% \library     Documents
+% \author      Chris Ahlstrom
+% \date        2015-06-07
+% \update      2015-07-01
+% \version     $Revision$
+% \license     $XPC_GPL_LICENSE$
+%
+%     Provides the SUBsynth section of yoshimi-user-manual.tex.
+%
+%-------------------------------------------------------------------------------
+
+\section{SUBsynth}
+\label{sec:subsynth}
+
+   The \textsl{Yoshimi} SUBsynth dialog is a complex dialog for creating a
+   subtractive-synthesis instrument,
+   "SUBsynth" or "SUBnote" is a simple engine which makes sounds through
+   subtraction of harmonics from white noise.  \cite{zyndoc}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.9]{bottom-panel/instrument-edit/SUB/SUBsynth-parameters.jpg}
+   \caption{SUBsynth Edit Dialog}
+   \label{fig:subsynth_edit_dialog}
+\end{figure}
+
+   \begin{enumber}
+      \item \textbf{AMPLITUDE} (section)
+      \item \textbf{BANDWIDTH} (section)
+      \item \textbf{FREQUENCY} (section)
+      \item \textbf{OVERTONES} (section)
+      \item \textbf{FILTER} (section)
+      \item \textbf{Harmonics} (section)
+      \item \textbf{Clear}
+      \item \textbf{C}
+      \item \textbf{P}
+      \item \textbf{Close}
+   \end{enumber}
+
+\subsection{SUBsynth / AMPLITUDE}
+\label{subsec:subsynth_amplitude}
+
+   \begin{enumber}
+      \item \textbf{Volume}
+      \item \textbf{Vel Sens}
+      \item \textbf{Pan}
+      \item \textbf{Rand}
+      \item \textbf{Reset (panning)} (red button)
+      \item \textbf{Amplitude Env} (stock sub-panel)
+   \end{enumber}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Volume}{subsynth!amplitude volume}
+   SUBsynth Volume.
+
+   Values: \texttt{1 to 127, 64*}
+
+   \itempar{Vel Sens}{subsynth!amplitude vel sense}
+   Velocity Sensing function, rightmost/max to disable.
+
+   Values: \texttt{1 to 127, 64*}
+
+   \itempar{Pan}{subsynth!amplitude pan}
+   Global panning, leftmost/zero gives random panning.
+
+   Values: \texttt{1 to 127, 64*}
+
+   \itempar{Rand}{subsynth!amplitude random pan}
+   Indicator for activation of random panning.
+
+   \itempar{Reset (panning)}{subsynth!amplitude reset pan}
+   Reset Panning.
+
+   \itempar{Amplitude Env}{subsynth!amplitude volume}
+   Amplitude Envelope.
+   See section ...... for this stock sub-panel.
+
+\subsection{SUBsynth / BANDWIDTH}
+\label{subsec:subsynth_bandwidth}
+
+   \begin{enumber}
+      \item \textbf{BandWidth}
+      \item \textbf{B.Width Scale}
+      \item \textbf{Bandwidth Env}
+   \end{enumber}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{BandWidth}{subsynth!bandwidth}
+   SUBsynth Bandwidth.
+   Sets the bandwidth of each harmonic.
+
+   Values: \texttt{1 to 127, 40*}
+
+   \itempar{B.Width Scale}{subsynth!bandwidth scale}
+   SUBsynth Bandwidth Scale.
+   Sets how the bandwidth of each harmonic is increased according to the
+   frequency. The default (0) increases the bandwidth linearly according to
+   the frequency.
+
+   Values: \texttt{0 to 127???}
+
+   \itempar{Bandwidth Env}{subsynth!bandwidth envelope}
+   SUBsynth Bandwidth.
+
+   \begin{enumber}
+      \item \textbf{Enabled}
+      \item \textbf{A.val}
+      \item \textbf{A.dt}
+      \item \textbf{R.dt}
+      \item \textbf{R.val}
+      \item \textbf{Stretch}
+      \item \textbf{frcR}
+      \item \textbf{C}
+      \item \textbf{P}
+      \item \textbf{E}
+   \end{enumber}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Enabled}{bandwidth!enable}
+   Enable the panel.
+
+   \itempar{A.val}{bandwidth!attack value}
+   Attack value.
+   We need to figure out what this means.
+
+   Values: \texttt{0 to 127, 64*}
+
+   \itempar{A.dt}{bandwidth!attack time}
+   Attack duration. Attack time.
+
+   Values: \texttt{0 to 127, 40*}
+
+   \itempar{R.dt}{bandwidth!release time}
+   Release time.
+
+   Values: \texttt{0 to 127, 60*}
+
+   \itempar{R.val}{bandwidth!release value}
+   Release Value.
+   Actually present only on the Frequency Env sub-panel.
+
+   Values: \texttt{0 to 127, 64*}
+
+   \itempar{Stretch}{bandwidth!stretch}
+   Bandwidth Stretch. On lower notes make the bandwidth lower.
+
+   Values: \texttt{0 to 127, 64*}
+
+   \itempar{frcR}{bandwidth!forced release}
+   Forced release.
+
+   Values: \texttt{Off, On*}
+
+   If this option is turned on, the release will go to the
+   final value, even if the sustain level is not reached.
+
+   Also present in this sub-panel are the usual \textbf{C}opy
+   and \textbf{P}aste buttons that call up a copy-parameters or
+   paste-parameters dialog, as well as a button
+   to bring up the editor window.
+
+\subsection{SUBsynth / FREQUENCY}
+\label{subsec:subsynth_frequency}
+
+   \begin{enumber}
+      \item \textbf{Detune}
+      \item \textbf{FREQUENCY Slider}
+      \item \textbf{440Hz}
+      \item \textbf{Eq.T}
+      \item \textbf{Octave}
+      \item \textbf{Detune Type}
+      \item \textbf{Coarse Det.}
+      \item \textbf{Frequency Env}
+   \end{enumber}
+
+   Category - Filter category: Analog/Formant/SVF ????
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Detune}{subsynth!freq detune}
+   Frequency Detune.  Fine detune?
+
+   \itempar{FREQUENCY Slider}{subsynth!freq slider}
+   Frequency Slider.
+
+   \itempar{440Hz}{subsynth!freq 440hz}
+   Frequency 440Hz.
+   440Hz.  Fix the base frequency to 440Hz.
+   One can adjust it with detune settings.
+
+   \itempar{Eq.T}{subsynth!freq eq t}
+   Frequency Equalize Time?.
+
+   \itempar{Octave}{subsynth!freq octave}
+   Frequency Octave.
+   Octave Shift.
+
+   \itempar{Detune Type}{subsynth!freq detune type}
+   Frequency Detune Type.
+   Sets the "Detune" and "Coarse Detune" behavior 
+
+   \itempar{Coarse Det.}{subsynth!freq detune coarse}
+   Frequency Coarse Detune, "C.Detune".
+
+   \itempar{Frequency Env}{subsynth!freq env}
+   Frequency Envelope Stock Sub-Panel.
+
+   \begin{enumber}
+      \item \textbf{Enable}
+      \item \textbf{A.value} or \textbf{A.val}
+      \item \textbf{A.dt}
+      \item \textbf{R.dt}
+      \item \textbf{R.val}
+      \item \textbf{Stretch}
+      \item \textbf{frcR}
+      \item \textbf{C}
+      \item \textbf{P}
+      \item \textbf{E}
+   \end{enumber}
+
+   See section ....
+
+\subsection{SUBsynth / OVERTONES}
+\label{subsec:subsynth_overtones}
+
+The harmonics settings controls the harmonic intensities/relative bandwidth.
+Moving the sliders upwards increases the relative bandwidth.  Please note
+that, if one increases the number of harmonics, the CPU usage increases. Right
+click to set the parameters to default values. 
+
+   \begin{enumber}
+      \item \textbf{Overtones Position}
+      \item \textbf{Par1}
+      \item \textbf{Par2}
+      \item \textbf{ForceH}
+   \end{enumber}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Overtones Position}{subsynth!overtone position}
+   Subsynth Overtones Position.
+
+   Values: \texttt{Harmonic, ShiftU, ShiftL, PowerU, PowerL, Sine, Power, Shift}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/SUB/harmonic-type.jpg}
+   \caption{Harmonic Type Dropdown}
+   \label{fig:harmonic_type_dropdown}
+\end{figure}
+
+   \itempar{Par1}{subsynth!overtone par1}
+   Subsynth Overtones Par1.
+
+   Values: \texttt{0 to 127}
+
+   \itempar{Par2}{subsynth!overtone par1}
+   Subsynth Overtones Par2.
+
+   Values: \texttt{0 to 127}
+
+   \itempar{ForceH}{subsynth!overtone forceh}
+   Subsynth Overtones ForceH.
+
+   Values: \texttt{0 to 127}
+
+\subsection{SUBsynth / FILTER}
+\label{subsec:subsynth_filter}
+
+   \begin{enumber}
+      \item \textbf{Enabled}
+      \item \textbf{Filter Params} (stock sub-panel)
+      \item \textbf{Filter Env} (stock sub-panel)
+      \item \textbf{Stereo}
+      \item \textbf{Filter Stages}
+      \item \textbf{Mag. Type}
+      \item \textbf{Start}
+   \end{enumber}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Enabled}{subsynth!filter enable}
+   SUBsynth Filter Enabled.
+
+   \itempar{Filter Params}{subsynth!filter params}
+   Filter Params.  See section xxxxx for this stock sub-panel.
+
+   \itempar{Filter Env}{subsynth!filter env}
+   Filter Params.  See section xxxxx for this stock sub-panel.
+
+   \itempar{Stereo}{subsynth!filter stereo}
+   SUBsynth Stereo.
+   Make the instrument stereo. The CPU usage goes up about 2 times.
+   Is this really a FILTER item?
+
+   \itempar{Filter Stages}{subsynth!filter stages}
+   Filter Stages.  Filter Order.
+   Sets the number of filter stages applied to white noise. This parameter
+   affects the CPU usage. 
+
+   Values: \texttt{0, 1, 2*, 3, 4, 5???}
+
+   \itempar{Mag. Type}{subsynth!filter mag type}
+   Magnitude Type. Type of magnitude settings (Linear/dBs) 
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/SUB/mag-type.jpg}
+   \caption{SUBSynth Magnitude Type Dropdown}
+   \label{fig:subsynth_magnitude_type_dropdown}
+\end{figure}
+
+   Values: \texttt{Linear, -40dB, -60dB, -80dB, -100dB}
+
+   \itempar{Start}{subsynth!filter start type}
+   Start Type.
+   How to start the filters.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/SUB/start-type.jpg}
+   \caption{SUBsynth Start Type}
+   \label{fig:subsynth_start_type}
+\end{figure}
+
+   Values: \texttt{Zero, RND, Max.}
+
+\subsection{SUBsynth / Harmonics}
+\label{subsec:subsynth_harmonics}
+
+This section consists of 64 sliders to control the amplitude of the narrow
+noise band at a given harmonic, and 64 sliders to control the bandwidth of
+each band.
+
+TODO.
+
+%-------------------------------------------------------------------------------
+% vim: ts=3 sw=3 et ft=tex
+%-------------------------------------------------------------------------------

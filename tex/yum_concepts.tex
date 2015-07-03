@@ -1,0 +1,696 @@
+%-------------------------------------------------------------------------------
+% yum_concepts
+%-------------------------------------------------------------------------------
+%
+% \file        yum_concepts.tex
+% \library     Documents
+% \author      Chris Ahlstrom
+% \date        2015-06-15
+% \update      2015-06-27
+% \version     $Revision$
+% \license     $XPC_GPL_LICENSE$
+%
+%     Provides the concepts.
+%
+%-------------------------------------------------------------------------------
+
+\section{Concepts}
+\label{sec:concepts}
+
+   \textsl{Yoshimi} requires the user to understand many concepts.
+   Understanding these concepts makes it easier to configure \textsl{Yoshimi}
+   and drive it from a sequencer application.
+   
+   Significant portions of this section are shamelessly copied (and tweaked)
+   from Paul Nasca's original \textsl{ZynAddSubFX}
+   manual \cite{zynodt} or \cite{zynpdf}.
+   One can discern such sections by the usage of the term
+   \textsl{ZynAddSubFX} instead of \textsl{Yoshimi}.
+   However, even the \textsl{Yoshimi} developers sometimes
+   refer to \textsl{ZynAddSubFX} or \textsl{Zyn}.
+
+   Note that there are some audio/electrical concepts discussed in greater
+   detail in
+   \sectionref{sec:stock_settings_elements}.
+   Maybe they belong in this "concepts" section, but
+   they are directly tied to user-interface items.
+
+\subsection{Concepts / ALSA Versus JACK}
+\label{subsec:concepts_alsa_versus_jack}
+
+   Some discusson from the \textsl{Yoshimi} wiki.  Here for eventual
+   clarification.
+
+   A bit of a question mark was raised over ALSA MIDI support. A lot of
+   people seem to be giving this up and relying on bridges like
+   \textsl{a2jmidi} for legacy software and hardware inputs. JACK MIDI is
+   already synchronous so should be jitter-free whereas ALSA MIDI runs on a
+   'best effort' basis. Added to which JACK is available for OS X and
+   Windows so concentrating on this could make a possible port to other
+   platforms more attractive -- not to me I (Will J. Godfrey) hasten to add!
+
+   \textsl{Seq24} (a nice, if old, sequencer) uses ALSA MIDI. To connect
+   applications that exclusively support JACK MIDI, \textsl{a2jmidid} will
+   do the translation.  (Jack v. 1 has this integrated in recent versions,
+   apparently).
+
+\subsection{Concepts / Sessions}
+\label{subsec:concepts_sessions}
+
+   As with most applications, \textsl{ZynAddSubFX}
+   allows for one to save one's work and reload it.
+   Here are the file extensions used for saving the data:
+
+   \begin{itemize}
+      \item \texttt{.xmz} A Session. Everything.  It's format is either XML
+      or compressed XML, as explained below.  Sometimes one will see the
+      extensions \texttt{.config} or \texttt{.state} used in the
+      \texttt{\$HOME/.config/yoshimi} directory.
+      See \sectionref{paragraph:menu_yoshimi_settings_main_settings}.
+      \item \texttt{.xiz} An Instrument.  Again, these files can have two
+      formats.
+      \item \texttt{.xsz} Scale Settings.
+      \item \texttt{.xpz} Presets.
+   \end{itemize}
+
+   The Unix \texttt{file} command indicates that these files are one of
+   two types:
+
+   \begin{itemize}
+      \item \textsl{exported SGML document, ASCII text}.
+         These files are unindented XML data with an encoding of UTF-8 and
+         a DOCTYPE of "ZynAddSubFX-data".
+      \item \textsl{gzip compressed data, from Unix}.
+         These files can be renamed to end in ".gz", and then run through
+         the \texttt{gunzip} program to yield the XML file (but without an
+         \texttt{.xml} extension).
+   \end{itemize}
+
+   The format probably depends on the "XML compression level" option
+   discussed in
+   \sectionref{paragraph:menu_yoshimi_settings_main_settings}.
+
+   At some point in the future we may add a discussion of the contents of
+   these files.  In general, the contents are structured a lot like the
+   user-interface elements that are used to set them.
+
+\subsubsection{Concepts / Sessions / All}
+\label{subsec:concepts_sessions_all}
+
+   One of the simplest ways to save one's work is to save the entire session.
+   This can be done through the "Yoshimi" menu (the "File" menu in
+   \textsl{ZynAddSubFX}) and will result in the creation of
+   an \texttt{.xmz} file. Once created, this file will hold the settings for
+   all settings within that session, such as microtonal tunings, all
+   patches, system effects, insertion effects, etc.
+
+\subsubsection{Concepts / Sessions / Parts}
+\label{subsec:concepts_sessions_parts}
+
+   In many cases saving everything is not what is desired. Saving a patch
+   later on in an editing session is one such example.
+   In order to save a patch, one can either save it from the Instruments menu
+   in \sectionref{subsubsec:menu_instrument_save},
+   or through the Bank window in
+   \sectionref{subsubsec:menu_instrument_show_banks}.
+
+   With the Instrument menu, one can just save the file to any given location
+   with the \texttt{.xiz} extension.
+
+   With the Banks menu, one can assign a patch to a given slot with a bank.
+   This instrument will remain here for future use until it is deleted. To
+   see the physical location of the \texttt{.xiz} file, one should check the
+   File→Settings→Bank\_Root\_Dirs window to see the paths for banks.
+   "Yoshimi / Settings / Banks / Root Dirs" window to see the paths for
+   banks.
+
+   Note that one needs to have write permissions to add instruments to the
+   bank.
+
+   Banks are more thoroughly described in
+   \sectionref{subsec:concepts_banks_and_roots}.
+
+\subsection{Concepts / Banks and Roots}
+\label{subsec:concepts_banks_and_roots}
+
+   An important concept in \textsl{Yoshimi} is \textsl{banks}.  Instruments
+   can be stored in banks. These are loaded and saved automatically by the
+   program.  On program start, the last used bank is loaded. A single bank
+   can store up to 128 instruments. 
+
+   The file \texttt{Banks.txt} in the source-code bundle makes an important
+   point about a transition to tagging roots (directories) and banks with an
+   ID code:
+
+   \begin{quotation}
+      One no longer has the concept of a default root directory, but a
+      current one. This can by changed at any time without requiring a
+      re-start, so there is now no longer a need to display the (confusing)
+      contents of all roots.  Also, roots now have ID numbers associated
+      with them, but no changes have been made to the actual directores to
+      achieve this. Instead the IDs are stored in the config file. The same
+      ID system is used for banks, again without making any file system
+      changes.
+
+      At first run (and whenever new root directories are set) unknown roots
+      and banks are given these IDs. Once set they will not change no matter
+      how many more roots and banks are later added. One can, however,
+      manually change root directory IDs in 'settings'. Also, there is a
+      Banks window so that these can be set up, moved and renamed in exactly
+      the same way as instruments can.  With these IDs, roots and banks can
+      be grouped/ordered by function instead of alphabetically. When using
+      the GUI one will always know exactly which root and bank one fetches
+      an instrument from.
+
+      The significance of all this is that one's MIDI sequencer can now
+      reliably use these ID numbers to select roots, banks and (already
+      available) instruments. That Rosegarden or Muse file one saves
+      today will be just as valid in the future, unless one makes the
+      deliberate choice to change some IDs. Indeed, one can now start with
+      an 'empty' Yoshimi, and via MIDI, set roots, banks and load
+      instruments into parts (enabling the parts as one does so) swapping
+      banks and roots as necessary. While the MIDI file runs it can silently
+      pull instruments from any root/bank into any non-sounding part without
+      disturbing the playing ones.
+
+      In "Yoshimi / Settings / CC" one can enable or disable all these MIDI
+      features, and can define which CCs one wants to use. Bank can be either
+      MSB or LSB (as before). Root can be any non-reserved CC but including
+      the one not in use for Bank. Also, Extended Program Change now has the
+      same restrictions as Root, and these three are all cross-checked
+      against each other. As an example, one might set Bank to LSB amd Root
+      to 0 (MSB), effectively giving one extended bank control compatible
+      with all sequencers.
+
+      Also, different instances have their own config files so that one can
+      have (say) the main instance with current root(9), bank(23) while
+      instance 4 has current root(2), bank(6). One can call up instances by
+      number and thus access saved settings for that instance. As each
+      instance has its own MIDI and audio ports, they can behave
+      more-or-less independently.
+
+      In doing all of this we have completely changed the way we manage the
+      structure internally, resulting in much greater efficiency, at the
+      cost of only a slightly slower startup. Swapping roots performs
+      \textsl{no}
+      file operations. Swapping banks only fetches the directory list of the
+      newly selected bank. Changing an instrument doesn't have to search for
+      a file, only load from its already known location.
+   \end{quotation}
+
+   There's a lot of material in that quotation.
+   TODO:  We should be able to walk the user through a session and
+   set up a set of instruments that is tractable under MIDI control.
+   Some minor instructions are provided in
+   \sectionref{subsubsec:menu_instrument_show_root_paths}.
+
+   Also note that, as well as bank and program changes there is the ability
+   to set a MIDI CC to access the voices from 129 to 160. All the Bank
+   controls are contained in a tab in the Settings window, and take
+   immediate effect.
+
+   Bank root dirs are identified with IDs that can be changed by the user in
+   the user-interface. This is also made available for selecting over MIDI.
+   MIDI only sees banks in the *current* root dir, but all banks are
+   accessible to the user-interface.
+
+\subsubsection{Concepts / Sessions / Presets}
+\label{subsec:concepts_sessions_presets}
+
+   Have a favorite setting for an envelope, or a difficult-to-reproduce
+   oscillator? Then presets are for you! Presets allow for one to save the
+   settings for any of the components which support copy/paste operations.
+   This is done with preset files (\texttt{.xpz}), which get stored in the
+   folders indicated by File→Settings→Preset\_Root\_Dirs.
+
+\subsection{Concepts / Basic Synthesis}
+\label{subsec:concepts_basics}
+
+   This section describes some of the basic principles of synthesis,
+   and contains suggestions on
+   how to make instruments that sound like they have been made with
+   professional equipment. This applies to \textsl{ZynAddSubFX} or to any
+   synthesizer (even if one wrote it onesself with a few lines of code). All
+   the ideas from \textsl{ZynAddSubFX} are derived from from the principles
+   outlined below.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.65]{zyn/zyn-diagram1.png}
+   \caption{ZynAddSubFX Main Structure}
+   \label{fig:zynaddsubfx_main_structure}
+\end{figure}
+
+   For a given part, the synthesizer first creates a note.  Each notes
+   waveform (for example, in a chord) is summed (mixed).  This complex
+   waveform is then send to the series of Insertion effects (if any) that
+   are defined.  Each part is then sent to a System effect and (depending on
+   the wetness of the mix) directly to a mixer.  Additional Insertion
+   effects (if any) are then applied.  The result is the final output of the
+   synthesizer.
+
+   The synthesizer has three major types of parameters: 
+
+   \begin{enumber}
+      \item \textbf{Master settings/parameters}.
+         Contains all parameters (including effects and instruments).
+      \item \textbf{Instrument parameters}.
+         Contains ADDnote/SUBnote/PADnote parameters for a part.
+      \item \textbf{Scale settings}.
+         Contains the settings of scales (\textsl{ZynAddSubFX}
+         is a micro-tonal synth) and few other parameters related to
+         tunings.
+   \end{enumber}
+
+\subsubsection{Concepts / Basic Synthesis / Panning}
+\label{subsubsec:concepts_basics_panning}
+
+   Pan lets one apply panning, which means that the sound source can move to
+   the right or left. Set it to 0.0 to only hear output on the right side, or
+   to the maximum value to only hear output on the left side.
+
+\subsubsection{Concepts / Basic Synthesis / Wetness}
+\label{subsubsec:concepts_basics_wetness}
+
+   Wetness determines the mix of the results of the effect and its input.
+   This mix is made the effects output. If an effect is wet, it means that
+   nothing of the input signal is bypassing the effect. If it is dry, then
+   the effect has no effect.
+
+\subsubsection{Concepts / Basic Synthesis / Single Note}
+\label{subsubsec:concepts_basics_single_note}
+
+   The idea of this synthesis model is from another synthesizer Paul Nasca
+   wrote years ago, released on the Internet as "Paul's Sound
+   Designer".  The new model is more advanced than that project
+   (adding SUBsynth, more LFO's/Envelopes, etc.), but the idea is
+   the same.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.4]{zyn/zyn-adnote-diagram2.png}
+   \caption{ZynAddSubFX Note Generation}
+   \label{fig:zynaddsubfx_note_generation}
+\end{figure}
+   
+   The figure represents the synthesizer module components. The continuous
+   lines are the signal routing, and the dotted lines are frequency
+   controlling signals (they controls the frequency of something).  The
+   dashed lines controls the bandwidths of bandpass filters. "Env" are the
+   envelopes, "LFO" the Low Frequency Oscillators, "BPF" are band pass
+   filters, "bw" are the bandwidth of the BPF's.  If one uses instrument kits,
+   the "note out" represents the output of the kit item.
+
+\subsubsection{Concepts / Basic Synthesis / Harmonics}
+\label{subsubsec:concepts_basics_harmonics}
+
+   Harmonics are sine waves that are multiple of the base frequency of a
+   note.  \textsl{Yoshimi} and \textsl{ZynAddSUbFX} introduce the concept of
+   increasing the bandwidth of a harmonic so that it is not quite a sine
+   wave.
+
+\paragraph{Harmonic Bandwidth}
+\label{paragraph:concepts_basics_harmonic_bandwidth}
+
+   "Harmonic bandwidth does not refer to sample-rate, it refers to the
+   frequency "spread" of each harmonic. This is the most important principle
+   of making instruments that sound good. Unfortunately there is very little
+   documentation about it.
+    
+   Often it is believed that the pitched sounds (like piano, organ, choir,
+   etc.) for a single note have a frequency, but it's actually
+   harmonics and nothing more. Many people try to synthesize a sound using an
+   exact frequency plus the harmonics, and observe that the result sounds too
+   "artificial".  They might try to modify the harmonic content, add a
+   vibrato, tremolo, but even that doesn't sound "warm" enough. The reason is
+   that the natural sounds don't produce an exact periodic; their sounds are
+   quasi-periodic.  Please notice that not all quasi-periodic sounds are
+   "warm" or pleasant.
+   
+   (Nasca's discussion of periodic vs. quasi-periodic,
+   and the figures he shows, are not included here.)
+   
+   Basically, by slightly increasing the bandwidth of a periodic sound, it
+   is possible to make it quasi-periodic.
+
+   A very important thing about bandwidth and natural sounds is that the
+   bandwidth has to be increased if one increase the frequency of the
+   harmonic.  If the fundamental frequency is 440 Hz and the bandwidth is 10
+   Hz (that means that the frequencies are spread from 435 to 445 Hz), the
+   bandwidth of the second harmonics (880Hz) must be 20 Hz. A simple formula
+   to compute the bandwidth of each harmonic if one knows the bandwidth of the
+   fundamental frequency is \(BWn = n⋅bw1\), where \texttt{n} is the
+   order of the harmonic, \texttt{bw1} is the bandwidth of fundamental
+   frequency and \texttt{BWn} is the bandwidth of the n'th harmonic. If one
+   does not increase the bandwidth according the frequency, the resulting
+   instrument will (usually) sound too 'artificial' or 'ugly'.  There
+   are at least three methods of making good sounds with the above
+   considerations: 
+
+   \begin{enumber}
+      \item \textbf{Detuning}.
+      By adding slightly detuned sounds (in \textsl{ZynAddSubFX}
+      it is called "ADDsynth"). The idea is not new: it has been used
+      for thousands of years in choirs and ensembles. That's why choirs
+      sound so beautiful.
+      \item \textbf{Noise sculpting}.
+      By generating white noise, subtracting all harmonics with band-pass
+      filters and adding the results (in \textsl{ZynAddSubFX}
+      it is called "SUBsynth").
+      \item \textbf{Generation by spectrum}.
+      By "drawing" the above graph that represents the frequency
+      amplitudes on a large array, put random phases and do a single
+      IFFT for the whole sample.
+   \end{enumber}
+
+\paragraph{Harmonic Amplitude}
+\label{paragraph:concepts_basics_harmonic_amplitude}
+
+   An important principle of natural harmonics is to decrease the amplitude
+   of higher harmonics on low-velocity notes.
+
+   All natural notes have this property, because on low-velocity notes there
+   is not enough energy to spread to higher harmonics. On artificial
+   synthesis one can do this by using a low-pass filter that lowers the
+   cutoff frequency on notes with low velocities or, if one uses FM
+   (frequency modulation), by lowering the modulator index. 
+   The spectrum of the sound should be almost the same according to
+   the frequencies and not the harmonics.
+
+   This means that, for example, the higher the pitch is, the smaller the
+   number of harmonics it will contain. This happens in a natural instrument
+   because of the resonance. 
+   In this case there are many instruments that don't obey this, but sound
+   quite good (example: synth organ). 
+   If one records the C-2 note from a piano and one plays it at a very high
+   speed (8 times), the result will not sound like the C-5 key from the
+   piano. The pitch is C-5, but the timbre is very different. This is because
+   the harmonic content is preserved (the n-th harmonic will have the
+   same amplitude in both cases) and not the spectrum (eg. the
+   amplitudes of the harmonics around 1000 Hz are too different from
+   one case to another). 
+
+   In artificial synthesis one can use filters to add resonance or FM
+   synthesis that varies the index according to the frequency.  In
+   \textsl{ZynAddSubFX} one can add the resonance:
+
+   \begin{enumber}
+      \item \textbf{ADDsynth}:
+      Use the Resonance, a high harmonics sound content, and filters or FM.
+      \item \textbf{SUBsynth}:
+      Add some harmonics and use the Global Filter.
+   \end{enumber}
+
+\subsubsection{Concepts / Basic Synthesis / Randomness}
+\label{subsubsec:concepts_basics_randomness}
+
+   The main reason why the digital synthesis sounds too "cold" is because the
+   same recorded sample is played over and over on each key-press.  There is
+   no difference between a note played the first time and second time.
+   Exceptions may be the filtering and some effects, but these are not
+   enough. In natural or analogue instruments this doesn't happen because
+   it is impossible to reproduce exactly the same conditions for each
+   note. To make a warm instrument one must make sure that it sounds
+   slightly different each time. In \textsl{ZynAddSubFX}
+   one can do this:
+
+   \begin{enumber}
+      \item \textbf{ADDsynth}:
+      Set the "Randomness" function from Oscillator Editor
+      to a value different than 0, or change the start phase of the LFO to
+      the leftmost value.
+      \item \textbf{SUBsynth}:
+      All notes already have randomness because the
+      starting sound is white noise.
+      \item \textbf{PADSynth}:
+      The engine starts the sample from random positions
+      on each keystroke.
+   \end{enumber}
+
+   In setting the randomness of the oscillator output, there are 2 types of
+   randomness. The first is \textsl{group randomness}, where the oscillator
+   starts at a random position. The second is \textsl{phase randomness}:
+   from -64 (max) to -1 (min) and each harmonic (the oscillator is phase
+   distorted) is from 1 (min) to 63 (max). 0 is no randomness. One
+   could use this parameter for making warm sounds like analogue
+   synthesizers.
+
+   See the ADDSynth oscillator editor for this kind of
+   control, named "Ph.rnd" or "rnd".
+
+   There is now the possibility to add a 'naturalising' random pitch element
+   to a part. This is found in the part edit window. The settings are not
+   currently saved, but will be once the control values are settled, and
+   there has been enough experience to decide whether it should be a part or
+   voice setting.
+
+\subsubsection{Concepts / Basic Synthesis / Components}
+\label{subsubsec:concepts_basics_components}
+
+   \textsl{Important}:
+   All indexes of MIDI Channels, Parts, Effects starts from 0, so, for
+   example, the first Part is 0.
+
+   \textsl{ZynAddSubFX} components:
+
+   \begin{enumber}
+      \item \textbf{Parts}.
+         They receive the note messages from MIDI
+         Channels. One may assign a part to any channel. A part can store
+         only one instrument.  "Add.S" represents ADDsynth and "Sub.S" is
+         SUBsynth.
+      \item \textbf{Insertion Effect}.
+         This effect applies only to one part; one can have any number of
+         insertion effects for one part, but the number of these cannot be
+         bigger than NUM.INS.EFX.
+      \item \textbf{Part Mixer}.
+         Mixes all parts.
+      \item \textbf{System Effects}.
+         Applied to all parts, one can set how much signal
+         is routed through a system effect.
+      \item \textbf{Master mixer}.
+         Mixes all outputs of Parts Mixers and System Effects.
+   \end{enumber}
+
+\subsubsection{Concepts / Basic Synthesis / Filters}
+\label{subsubsec:concepts_basics_filters}
+
+   \textsl{ZynAddSubFX}
+   offers several different types of filters, which can be used
+   to shape the spectrum of a signal. The primary parameters that affect the
+   characteristics of the filter are the cutoff, resonance, filter stages,
+   and the filter type.
+
+   \textbf{Cutoff}:
+   This value determines which frequency marks the changing point for
+   the filter. In a low pass filter, this value marks the point where higher
+   frequencies are attenuated.
+
+   \textbf{Resonance}:
+   The resonance of a filter determines how much excess energy is
+   present at the cutoff frequency. In \textsl{ZynAddSubFX},
+   this is represented by the Q-factor, which is defined to be the cutoff
+   frequency divided by the bandwidth. In other words higher Q values result
+   in a much more narrow resonant spike.
+
+   \textbf{Stages}:
+   The number of stages in a given filter describes how sharply it is
+   able to make changes in the frequency response.
+   The affect of the order of the filter is roughly synonymous with the
+   number of stages of the filter. For more complex patches it is important
+   to realize that the extra sharpness in the filter does not come for free
+   as it requires many more calculations being performed. This phenomena is
+   the most visible in SUBsynth, where it is easy to need several hundred
+   filter stages to produce a given note.
+
+   The \textbf{Q}:
+   value of a filter affects how concentrated the signal’s energy is at
+   the cutoff frequency.
+   For many classical analog sounds, high Q values were used on sweeping
+   filters. A simple high Q low pass filter modulated by a strong envelope is
+   usually sufficient to get a good sound.
+
+   \textbf{Filter Type}:
+   There are different types of filters. The number of poles define what will
+   happen at a given frequency. Mathematically, the filters are functions
+   which have poles that correspond to that frequency. Usually, two poles
+   mean that the function has more "steepness", and that one can set the
+   exact value of the function at the poles by defining the "resonance
+   value". Filters with two poles are also often referenced as Butterworth
+   filters.
+
+   For the interested reader, functions having \textsl{poles}
+   means that we are given a quotient of polynomials. The denominator has
+   degree 1 or 2, depending on the filter having one or two poles. In the
+   file \texttt{DSP/AnalogFilter.cpp},
+   \texttt{AnalogFilter::computefiltercoefs()} sets the coefficients
+   (depending on the filter type), and
+   \texttt{AnalogFilter::singlefilterout()} shows the whole polynomial (in a
+   formula where no quotient is needed).
+
+   Filters are thoroughly described in
+   \sectionref{subsec:filter_settings}.
+
+\subsubsection{Concepts / Basic Synthesis / Envelopes}
+\label{subsubsec:concepts_basics_envelopes}
+
+   Envelopes are long-period wave forms that are applied to frequency,
+   amplitude, or filters.  Envelopes generate effects such as tremolo and
+   vibrato, as well as effects that occur when a sound-generating physical
+   component changes shape.
+   Envelopes are thoroughly described in
+   \sectionref{subsec:envelope_settings}.
+
+\subsection{Concepts / MIDI}
+\label{subsec:concepts_midi}
+
+   It is useful to discuss some of the details of MIDI in order
+   to understand \textsl{Yoshimi}.  Obviously, we assume
+   some knowledge already, or one wouldn't be running
+   \textsl{Yoshimi}.
+
+\subsubsection{Concepts / MIDI / Messages}
+\label{subsubsec:concepts_midi_messages}
+
+   \textsl{Yoshimi} responds to the following MIDI messages.
+
+   \begin{tabular}{r l}
+      \textbf{0} or \textbf{32} &
+         Bank Change (user selectable, does \textsl{not} force a program
+         change) \\
+      \textbf{1} &
+         Modulation Wheel \\
+      \textbf{7} &
+         Volume \\
+      \textbf{10} &
+         Panning \\
+      \textbf{11} &
+         Expression \\
+      \textbf{64} &
+         Sustain pedal \\
+      \textbf{65} &
+         Portamento On/Off \\
+      \textbf{71} &
+         Filter Q (Sound Timbre) \\
+      \textbf{74} &
+         Filter Cutoff (Brightness) \\
+      \textbf{75} &
+         BandWidth (different from GM spec) \\
+      \textbf{76} &
+         FM amplitude (different from GM spec) \\
+      \textbf{77} &
+         Resonance Center Frequency (different from GM spec) \\
+      \textbf{78} &
+         Resonance Bandwith (different from GM spec) \\
+      \textbf{120} &
+         All Sounds OFF \\
+      \textbf{121} &
+         Reset All Controllers \\
+      \textbf{123} &
+         All Notes OFF \\
+      \textbf{192} &
+         Program Change (voices 1-128) \\
+      \textbf{224} &
+         Pitch Bend \\
+   \end{tabular}
+
+   For the controllers that are not defined in GM:
+
+   \begin{itemize}
+      \item \textbf{Bandwidth} control (75) increases or decreases the bandwidth
+      of instruments. The default value of this parameter is 64. 
+      \item \textbf{Modulation amplitude} (76) decreases the amplitude of
+      modulators on ADDsynth. The default value of this parameter is 127. 
+      \item \textbf{Resonance Center Frequency} control (77) changes the center
+      frequency of the resonance. 
+      \item \textbf{Resonance Bandwidth} control (78) changes the bandwidth of the
+      resonance. 
+   \end{itemize}
+
+   The Program Change (192) also provides user selectable CC for voices
+   128-160.  There is an option to make Program Change enable a part if it's
+   currently disabled.
+
+   User selectable CC for Bank Root Path change.
+   For more details of bank changes see
+   \sectionref{subsec:concepts_banks_and_roots}.
+
+   Instruments inside banks should \textsl{always} have four digits followed
+   by a hyphen. Otherwise the results can be rather unpredicatable.
+
+\subsubsection{Concepts / MIDI / NRPN}
+\label{subsubsec:concepts_midi_nrpn}
+
+   NRPN stands for "Non Registered Parameters Number".
+   NRPNs can control all system and insertion effect parameters.
+   Using NRPNs, \textsl{Yoshimi} can now directly set some part values
+   regardless of what channel that part is connected to.  For example, one
+   may change the reverb time when playing to keyboard, or
+   change the flanger's LFO frequency.
+
+   NRPNs are described in greater detail in section
+   \sectionref{sec:nrpns}.
+
+\paragraph{Concepts / MIDI / NRPN / Vector Control}
+\label{paragraph:concepts_midi_nrpn_vector_control}
+
+   Vector control is a way to control more than one part with the
+   controllers.
+   It is a little bit reminiscent of the "vector" control knob on the 
+   Yamaha PSS-790 consumer MIDI synthesizer.
+   Vector control is only possible if one has 32 or 64 parts active 
+   in \textsl{Yoshimi}.
+
+   In vector mode parts will still play together but the vector controls can
+   change their volume, pan, filter cutoff in pairs, controlled by user
+   defined CCs set up with NRPNs.
+
+   Vector control is described in greater detail in section
+   \sectionref{subsection:nrpns_midi_nrpn_vector_control}.
+
+\paragraph{Concepts / MIDI / NRPN / Effects Control}
+\label{paragraph:concepts_midi_nrpn_effects_control}
+
+   NRPNs are very useful in modifying the parameters of the
+   \textsl{Yoshimi} effects.
+
+   Effects control is described in greater detail in section
+   \sectionref{subsection:nrpns_midi_nrpn_effects_control}.
+
+\subsection{Concepts / LV2 Plugin}
+\label{subsec:concepts_lv2_plugin}
+
+   \textsl{Yoshimi} now runs as an LV2 plugin.
+
+Supported features:
+
+   \begin{enumber}
+      \item Sample-accurate midi timing.
+      \item State save/restore support via LV2\_State\_Interface.
+      \item Working UI support via LV2\_External\_UI\_Widget.
+      \item Programs interface support via LV2\_Programs\_Interface.
+      \item Multi channel audio output. 'outl' and 'outr' have LV2 index 2
+         and 3. All individual ports numbers start at 4.
+   \end{enumber}
+
+   Planned feature: Controls automation support. This will be a part of a
+   common controls interface.
+
+   Download and build the source code found at the
+   \textsl{Yoshimi} site \cite{yoshimi},
+   and one will find a file named
+   \texttt{LV2\_Plugin/yoshimi\_lv2.so}
+
+   The LV2 \textsl{Yoshimi} interface can be run in hosts such as
+   Ardour 3, Carla, and QTractor.
+
+   Apparently, \textsl{ZynAddSubFX} can also be used as an LV2 plugin with
+   the help of the carla-lv2 project, by drag-n-dropping an
+   \texttt{.xiz} or \texttt{.xmz} file into it.
+
+   At some point we hope to document the process of setting up and using
+   the \textsl{Yoshimi} LV2 plugin.
+
+%-------------------------------------------------------------------------------
+% vim: ts=3 sw=3 et ft=tex
+%-------------------------------------------------------------------------------

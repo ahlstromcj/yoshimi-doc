@@ -1,0 +1,1404 @@
+%-------------------------------------------------------------------------------
+% yoshimi-outline
+%-------------------------------------------------------------------------------
+%
+% \file        yoshimi-outline.tex
+% \library     Documents
+% \author      Chris Ahlstrom
+% \date        2015-04-21
+% \update      2015-05-29
+% \version     $Revision$
+% \license     $XPC_GPL_LICENSE$
+%
+%     This document provides LaTeX outline documentation for yoshimi.
+%     This document isn't complete, and will remain that way.  I used it
+%     mostly to keep track of the figures and settings that needed to be
+%     discussed.
+%
+%-------------------------------------------------------------------------------
+
+\documentclass[
+ 11pt,
+ twoside,
+ a4paper,
+ headinclude,
+ footinclude,
+ final                                 % versus draft
+]{article}
+
+\input{yoshimi-docs-structure.tex}     % packages, macros, structure, & layout
+
+\begin{document}
+
+\title{Yoshimi User Interface Structure}
+\author{Chris Ahlstrom\\
+   (\texttt{ahlstromcj@gmail.com})}
+\date{\today}
+\maketitle
+
+%%% \setcounter{tocdepth}{3}               % sections, subsections, and subsubs
+
+% Change the paragraph style to remove indenting and put a line between eacp
+% paragraph.  This could be moved up into the preamble, but then would
+% affect the spacing of the TOC and LOF, LOT noted above.
+
+\setlength{\parindent}{0pt}
+
+%%% \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+
+\section{Introduction}
+
+Run Yoshimi so that it uses ALSA for audio and for MIDI:
+
+\begin{verbatim}
+   $ yoshimi -a -A
+\end{verbatim}
+
+You see a brief message, the splash screen, and then the
+\textsl{Yoshimi} main window. The outline starts with the main window.
+
+\section{Hierarchy}
+
+% \flushleft
+
+All files are in "images" or sub-directories of that directory.
+Simple user-interface items such as 
+\texttt{OK/Cancel}, \texttt{Yes/No}, or prompt strings
+are not shown.
+
+For values, we don't distinguish between integer-only values and values with
+decimal points.  The user will figure out how the values change by trying
+them.  Default values are marked with an asterisk.  They are achieved
+by clearing the global parameters and the instrument parameters, as far as
+we know.
+
+\begin{enumber}
+
+   \item \textbf{Main Window} \\
+      Figure: Yosh-splash-OTW-1.png \\
+      Figure: yoshimi-first-screen.jpg
+   \item \textbf{Menu}
+   \begin{enumber}                     % enumber is our arabic numbering style
+      \item \textbf{Yoshimi} \\
+         Figure: menu/yoshimi-menu-yoshimi.jpg
+      \begin{enumber}
+         \item \textbf{About...} \\
+            Figure: menu/Yoshimi/yoshimi-about.jpg
+         \item \textbf{New instance}
+         \item \textbf{New instance with id...} \\
+            Figure: menu/Yoshimi/yoshimi-instance-id.jpg
+         \item \textbf{Settings...}
+         \begin{enumber}
+            \item \textbf{Main settings} \\
+               Figure: menu/Yoshimi/yoshimi-settings-main.jpg
+            \begin{enumber}
+               \item \textbf{OscilSize} \\
+                  Caption: "Adsynth Oscillator Size (samples)" \\
+                  Values: \texttt{128, 256, 512, 1024*, 2048, 4096 8192, 16384} \\
+                  Figure: menu/Yoshimi/main-oscilsize.jpg
+               \item \textbf{Virtual Keyboard Layout} \\
+                  Values: \texttt{Dvorak, QWERTY*, AZERTY} \\
+                  Figure: menu/Yoshimi/main-virtual-kbd-layout.jpg
+               \item \textbf{PADsynth interpolation} \\
+                  Values: \texttt{Linear(fast)*, Cubic(slow)} \\
+                  Figure: menu/Yoshimi/main-padsynth-interpolation.jpg
+               \item \textbf{XML compression level} \\
+                  Caption: "gzip compression level (0 - uncompressed)" \\
+                  Values: \texttt{0 to 9, 3*}
+               \item \textbf{Send reports to} \\
+                  Values: \texttt{stderr, Console Window*} \\
+                  Figure: menu/Yoshimi/main-send-reports-to.jpg
+               \item \textbf{Session state save file}
+               \item \textbf{Select}
+                  Values: \texttt{~/.config/yoshimi/yoshimi.state} \\
+                  Figure: menu/Yoshimi/main-nominate-session-save-state-file.jpg
+               \item \textbf{Save and Close}
+               \item \textbf{Close Unsaved}
+            \end{enumber}
+            \item \textbf{Presets dirs} \\
+               Figure: menu/Yoshimi/yoshimi-settings-presets-dirs.jpg
+            \begin{enumber}
+               \item \textbf{Preset list}
+               \item \textbf{Add preset directory...} \\
+                  Figure: menu/Yoshimi/presets-add-a-preset-directory.jpg
+               \item \textbf{Remove preset directory...}
+               \item \textbf{Make default}
+               \item \textbf{Save and Close}
+               \item \textbf{Close Unsaved} (doesn't seem to work!)
+            \end{enumber}
+            \item \textbf{Jack} \\
+               Figure: menu/Yoshimi/yoshimi-settings-jack.jpg
+            \begin{enumber}
+               \item \textbf{Jack Server} \\
+               Values: \texttt{default*, name} name, as in "jackd --name"
+               \item \textbf{Save and Close}
+               \item \textbf{Close Unsaved} (does it work?)
+            \end{enumber}
+            \item \textbf{Alsa} \\
+               Figure: menu/Yoshimi/yoshimi-settings-alsa.jpg
+            \begin{enumber}
+               \item \textbf{Alsa Midi Device} \\
+                  Values: \texttt{default*} ???
+               \item \textbf{Alsa Audio Device} \\
+                  Values: \texttt{default*} ???
+               \item \textbf{Samplerate} \\
+                  Values: \texttt{96000, 48000*, 44100}
+               \item \textbf{Period Size} \\
+                  Values: \texttt{64, 128, 256, 512, 1024*}
+               \item \textbf{Save and Close}
+               \item \textbf{Close Unsaved} (does it work?)
+            \end{enumber}
+            \item \textbf{CCs} \\
+               Caption: "MIDI CC preferences" \\
+               Figure: menu/Yoshimi/yoshimi-settings-ccs.jpg
+            \begin{enumber}
+               \item \textbf{Enable Bank Root Change}
+                  Values: \texttt{Off*, On}
+               \item \textbf{Bank Root Change} \\
+                  Values: \texttt{0*, to 127}
+               \item \textbf{Bank Change} \\
+                  Caption: "CC0 = msb, CC32 = lsb" \\
+                  Values: \texttt{LSB, MSB*, Off}
+               \item \textbf{Enable Program Change} \\
+                  Values: \texttt{Off*, On}
+               \item \textbf{Enable Part On Program Change} \\
+                  Values: \texttt{Off*, On}
+               \item \textbf{Enable Extended Program Change} \\
+                  Values: \texttt{Off*, On}
+               \item \textbf{Extended Program Change} \\
+                  Values: \texttt{0-127, 110*}
+               \item \textbf{Save and Close}
+               \item \textbf{Close Unsaved} (doesn't seem to work!)
+            \end{enumber}
+         \end{enumber}
+         \item \textbf{Exit} \\
+            Figure: menu/Yoshimi/yoshimi-menu-exit-parameters-changed.jpg
+      \end{enumber}                    % Yoshimi
+      \item \textbf{Instrument}  \\
+         Figure: menu/yoshimi-menu-instrument.jpg
+      \begin{enumber}
+         \item \textbf{Clear Instrument...} \\
+            Figure: menu/Instrument/clear-instrument.jpg
+         \item \textbf{Open Instrument...} \\
+            Figure: menu/Instrument/open-instrument.jpg \\
+            Figure: menu/Instrument/favorites-dropdown.jpg
+         \item \textbf{Save Instrument...}
+         \item \textbf{Show Instruments...} \\
+            Figure: menu/Instrument/show-banks-directories.jpg
+         \item \textbf{Show Banks...} \\
+            Figure: menu/Instrument/show-CA-bank.jpg \\
+            Figure: menu/Instrument/show-pads-bank.jpg
+         \item \textbf{Show Root Paths...} \\
+            Figure: menu/Instrument/show-banks-roots.jpg \\
+            Figure: menu/Instrument/bank-root-paths.jpg (duplicate!)
+            \begin{enumber}
+               \item \textbf{Add root directory...} \\
+                  Figure: menu/Instrument/new-directory.jpg
+               \item \textbf{Remove root directory...}
+               \item \textbf{Make current}
+               \item \textbf{Open current}
+               \item \textbf{Change ID} \\
+                  Values: \texttt{0* to 127}
+               \item \textbf{Save and Close} \\
+                  Figure: menu/Instrument/nothing-to-save.jpg
+               \item \textbf{Close Unsaved} (doesn't seem to work!)
+            \end{enumber}
+      \end{enumber}
+      \item \textbf{Parameters} \\
+         Figure: menu/yoshimi-menu-parameters.jpg
+      \begin{enumber}
+         \item \textbf{Recent} \\
+            Figure: menu/Parameters/recent-parameters.jpg
+         \item \textbf{Open} \\
+            Figure: menu/Parameters/open-parameters.jpg
+         \item \textbf{Save} \\
+            Figure: menu/Parameters/nothing-to-save.jpg \\
+            Figure: menu/Parameters/save-parameters.jpg
+         \item \textbf{Clear} \\
+            Figure: menu/Parameters/clear-parameters.jpg
+      \end{enumber}
+      \item \textbf{Scales} \\
+         Figure: menu/yoshimi-menu-scales.jpg
+      \begin{enumber}
+         \item \textbf{Load Scale Settings...} \\
+            Figure: menu/Scales/open-scales.jpg \\
+            Figure: menu/Scales/failed-to-load-scl-file-vice-xsz.jpg
+         \item \textbf{Save Scale Settings...} \\
+            Figure: menu/Scales/scale-settings-microtonal.jpg
+         \item \textbf{Show Scale Settings...}
+         \begin{enumber}
+            \item \textbf{Enable Microtonal} \\
+               Values: \texttt{Off*, On}
+            \item \textbf{"A" Freq.} \\
+               Values: \texttt{440*}
+            \item \textbf{"A" Note} \\
+               Values: \texttt{0 to 127, 69*}
+            \item \textbf{Invert Keys} \\
+               Values: \texttt{Off*, On}
+            \item \textbf{Center (for Invert Keys)} \\
+               Caption: "Center where the notes frequencies are turned upside-down" \\
+               Values: \texttt{0 to 127, 60*}
+            \item \textbf{Name}
+            \item \textbf{Shift} \\
+               Values: \texttt{-63 to 64, 0*}
+            \item \textbf{Comment}
+            \item \textbf{Tunings}
+            \item \textbf{Keyboard Mapping}
+            \begin{enumber}
+               \item \textbf{ON} \\
+                  Values: \texttt{Off*, On}
+               \item \textbf{First Note} \\
+                  Caption: "First MIDI note number" \\
+                  Values: \texttt{0* to 127}
+               \item \textbf{Last Note} \\
+                  Caption: "Last MIDI note number" \\
+                  Values: \texttt{0 to 127*}
+               \item \textbf{Midle Note} \\
+                  Caption: "Middle note where scale degree 0 is mapped to" \\
+                  Values: \texttt{0 to 127*}
+               \item \textbf{Map} \\
+                  Values: \texttt{0 to 11}
+               \item \textbf{Map Size} \\
+                  Values: \texttt{12}
+            \end{enumber}
+            \item \textbf{Retune}
+            \item \textbf{nts./oct.} \\
+               Caption: "Notes per octave" \\
+               Values: \texttt{12*} (range not yet known)
+            \item \textbf{Import .SCL file} \\
+               Figure: menu/Scales/import-scl-file.jpg
+            \item \textbf{Import .kbm file} \\
+               Figure: menu/Scales/import-kbm-file.jpg
+            \item \textbf{Close}
+         \end{enumber}
+      \end{enumber}
+      \item \textbf{State} \\
+         Figure: menu/yoshimi-menu-state.jpg
+      \begin{enumber}
+         \item \textbf{Save} \\
+            Figure: menu/State/save-state-file.jpg
+         \item \textbf{Load} \\
+            Figure: menu/State/load-state-file.jpg
+      \end{enumber}
+   \end{enumber}
+   \item \textbf{Top Panel} \\
+      Figure: yoshimi-first-screen.jpg
+   \begin{enumber}
+      \item \textbf{Stop!} \\
+         Caption: "Cease all sound immediately!"
+      \item \textbf{Panel} \\
+         Caption: "Mixer Panel Window" \\
+         Figure: top-panel/yoshimi-panel-2x8.jpg
+      \begin{enumber}
+         \item \textbf{Part Section, 1 to 16}
+         \begin{enumber}
+            \item \textbf{Enable part} \\
+               Values: \texttt{Off*, On}
+            \item \textbf{Part name}
+            \item \textbf{Volume ? Slider}
+            \item \textbf{Meter display}
+            \item \textbf{Volume ? Knob}
+            \item \textbf{Channel} \\
+               Caption: "Receive from MIDI channel" \\
+               Values: \texttt{Ch1*, Ch2, ..., Ch16}
+            \item \textbf{Main} \\
+               Caption: "Set Audio Destination"
+            \item \textbf{Edit} (does not work!) \\
+               Caption: "Left mouse button: Part select
+               Right mouse button: Instrument edit"
+         \end{enumber}
+         \item \textbf{Change to 1 x 16 / Change to 2 x 8}
+         \item \textbf{Refresh}
+         \item \textbf{Close}
+      \end{enumber}
+      \item \textbf{VirKbd} (see "Virtual Keyboard..." for details) \\
+         Figure: top-panel/yoshimi-virtual-keyboard.jpg \\
+         Figure: menu/Instrument/virtual-keyboard-controllers.jpg
+      \item \textbf{Key Shift} \\
+         Values: \texttt{-12 to 12, 0*}
+      \item \textbf{Detune} \\
+         Caption: "Global fine detune" \\
+         Values: \texttt{0 to 127, 64*} (float)
+      \item \textbf{Reset (Detune)}
+      \item \textbf{Volume}
+   \end{enumber}
+   \item \textbf{Effects Panel} \\
+      Figure: yoshimi-first-screen.jpg
+   \begin{enumber}
+      \item \textbf{System Effects} \\
+         Figure: effects-panel/system-effects.jpg
+      \begin{enumber}
+         \item \textbf{Effect Number}
+         \item \textbf{Effect Name} \\
+            Figure: effects-panel/system-effects-selections.jpg
+         \item \textbf{Send to} \\
+            Figure: effects-panel/system-effects-send-to.jpg
+         \item \textbf{C} \\
+            Figure: effects-panel/system-effects-C-clipboard.jpg
+         \item \textbf{P} \\
+            Figure: effects-panel/system-effects-P-clipboard.jpg
+      \end{enumber}
+      \item \textbf{Insertion Effects} (see "Effects Edit") \\
+         Figure: effects-panel/insertion-effects.jpg \\
+         Figure: effects-panel/insertion-effects-to-part.jpg
+      \begin{enumber}
+         \item \textbf{C} \\
+            Figure: effects-panel/system-effects-C-clipboard.jpg identical
+         \item \textbf{P} \\
+            Figure: effects-panel/system-effects-P-clipboard.jpg identical
+      \end{enumber}
+      \item \textbf{Reports} \\
+         Figure: effects-panel/reports.jpg
+   \end{enumber}
+   \item \textbf{Bottom Panel} \\
+      Figure: yoshimi-first-screen.jpg
+   \begin{enumber}
+      \item \textbf{Part} \\
+         Values: \texttt{1 to 16}
+      \item \textbf{Instrument Name}
+      \item \textbf{Edit (Instrument Edit)} \\
+         (more details in a separate section below) \\
+         Figure: bottom-panel/edit-instrument.jpg
+      \begin{enumber}
+         \item \textbf{Type}
+         \item \textbf{Author and Copyright}
+         \item \textbf{Comments}
+         \item \textbf{ADDsynth}
+         \begin{enumber}
+            \item \textbf{Enabled}
+            \item \textbf{Edit}
+         \end{enumber}
+         \item \textbf{SUBsynth}
+         \begin{enumber}
+            \item \textbf{Enabled}
+            \item \textbf{Edit}
+         \end{enumber}
+         \item \textbf{PADsynth}
+         \begin{enumber}
+            \item \textbf{Enabled}
+            \item \textbf{Edit}
+         \end{enumber}
+         \item \textbf{Kit Edit}
+         \item \textbf{Effects}
+         \item \textbf{Rnd. Det.}
+         \item \textbf{Close}
+      \end{enumber}
+      \item \textbf{Midi (channel)} \\
+         Values: \texttt{1 to 16}
+      \item \textbf{Mode} \\
+         Values: \texttt{Poly, Mono, Legato}
+      \item \textbf{Enabled} \\
+         Values: \texttt{Off*, On}
+      \item \textbf{Portamento} \\
+         Caption: "Enable/disable the portamento" \\
+         Values: \texttt{Off*, On}
+      \item \textbf{Velocity Sens} \\
+         Caption: "Velocity Sensing Function" \\
+         Values: \texttt{0 to 127, 64*}
+      \item \textbf{Velocity Offset} \\
+         Caption: "Velocity Offset" \\
+         Values: \texttt{0 to 127, 64*}
+      \item \textbf{Pan} \\
+         Caption: "Velocity Offset" \\
+         Values: \texttt{0 to 127, 64*}
+      \item \textbf{Pan (reset)} \\
+         Caption: "Reset Pan to Middle (64)"
+      \item \textbf{Volume}
+      \item \textbf{Controllers} \\
+         Figure: bottom-panel/controllers-dialog.jpg
+      \begin{enumber}
+         \item \textbf{Exp MWh} \\
+            Caption: "Exponential Modulation Wheel" \\
+            Values: \texttt{Off*, On}
+         \item \textbf{ModWh} \\
+            Caption: "Modulation Wheel Depth" \\
+            Values: \texttt{0 to 127, 80*}
+         \item \textbf{Exp BW} \\
+            Caption: "Exponential Bandwidth Controller" \\
+            Values: \texttt{Off*, On}
+         \item \textbf{BwDepth} \\
+            Caption: "Bandwidth Depth", \\
+            Values: \texttt{0 to 127, 64*}
+         \item \textbf{PanWdth} \\
+            Caption: "Panning Depth" \\
+            Values: \texttt{0 to 64*}
+         \item \textbf{FltQ} \\
+            Caption: "Filter Q Depth" \\
+            Values: \texttt{0 to 127, 64*}
+         \item \textbf{FitCut} \\
+            Caption: "Filter Cutoff Depth" \\
+            Values: \texttt{0 to 127, 64*}
+         \item \textbf{Vol Rng} \\
+            Caption: "Volume Range" \\
+            Values: \texttt{64 to 127, 64*}
+         \item \textbf{PWheelB.Rng} \\
+            Caption: "Pitch Wheel Bend Range (cents)" \\
+            Values: \texttt{-6400 to 6400, 200*}
+         \item \textbf{Expr} \\
+            Caption: "Expression Enable" \\
+            Values: \texttt{Off, On*}
+         \item \textbf{FMamp} \\
+            Caption: "FM Amplitude Enable" \\
+            Values: \texttt{Off, On*}
+         \item \textbf{Vol} \\
+            Caption: "Volume Enable" \\
+            Values: \texttt{Off, On*}
+         \item \textbf{Sustain} \\
+            Caption: "Sustain Pedal Enable" \\
+            Values: \texttt{Off, On*}
+         \item \textbf{Resonance} (section)
+         \begin{enumber}
+            \item \textbf{CFdpth} \\
+               Caption: "Center Frequency Controller Depth" \\
+               Values: \texttt{0 to 127, 64*}
+            \item \textbf{BWdpth} \\
+               Caption: "Bandwidth Controller Depth" \\
+               Values: \texttt{0 to 127, 64*}
+         \end{enumber}
+         \item \textbf{PortaMento} (section)
+         \begin{enumber}
+            \item \textbf{Rcv} \\
+               Caption: "Receive Portamento Controllers" \\
+               Values: \texttt{Off, On*}
+            \item \textbf{Proprt} \\
+               Caption: "Enable Proportional Portamento (over fixed portamento)" \\
+               Values: \texttt{Off*, On}
+            \item \textbf{time} \\
+               Caption: "Portamento time" \\
+               Values: \texttt{0 to 127, 64*}
+            \item \textbf{t.dn/up} \\
+               Caption: "Portamento Time Stretch (up/down)" \\
+               Values: \texttt{0 to 127, 64*}
+            \item \textbf{thresh} \\
+               Caption: "Minimum or maximum difference of notes in order \\
+                  to do the portamento (x 100 cents)" \\
+               Values: \texttt{0 to 127, 3*}
+            \item \textbf{th.type} \\
+               Caption: "Threshold Type (min/max)" \\
+               Values: \texttt{Off, On*}
+            \item \textbf{Prp.Rate} \\
+               Caption: "Distance required to double change from nonproportional \\
+                  portamento time" \\
+               Values: \texttt{0 to 127, 80*}, requires \textbf{Proprt.} =
+               \texttt{On}
+            \item \textbf{Prp.Depth} \\
+               Caption: "The difference from nonproportional portamento" \\
+               Values: \texttt{0 to 127, 90*}, requires \textbf{Proprt.} =
+               \texttt{On}
+         \end{enumber}
+         \item \textbf{Reset all controllers}
+         \item \textbf{Close}
+      \end{enumber}
+      \item \textbf{Minimum Note} \\
+         Caption: "Minimum note the part receives" \\
+         Values: \texttt{0* to 127}
+      \item \textbf{Maximum Note} \\
+         Caption: "Maximum note the part receives" \\
+         Values: \texttt{0 to 127*}
+      \item \textbf{m} \\
+         Caption: "Set minimum note to last note played"
+      \item \textbf{R} \\
+         Caption: "Reset the minimum key to 0 and the maximum key to 127"
+      \item \textbf{M} \\
+         Caption: "Set maximum note to last pressed key"
+      \item \textbf{Key Shift} \\
+         Values: \texttt{-12 to 12, 0*}
+      \item \textbf{Key Limit} \\
+         Caption: "Maximum keys for this part" \\
+         Values: \texttt{0 to 55, 15*}
+      \item \textbf{System Effect Sends 1} \\
+         Values: \texttt{0 to 127*}
+      \item \textbf{SES 2} \\
+         Values: \texttt{0 to 127*}
+      \item \textbf{SES 3} \\
+         Values: \texttt{0 to 127*}
+      \item \textbf{SES 4} \\
+         Values: \texttt{0 to 127*}
+   \end{enumber}
+   \item \textbf{Sound Meter}
+   \begin{enumber}
+      \item \textbf{Meter Bar}
+         Figure: yoshimi-first-screen.jpg
+   \end{enumber}
+
+   % ------- End of Main Window Section ----------------------------
+
+   \item \textbf{Generic File Dialog} \\
+      Figure: menu/Instrument/favorites-dropdown.jpg
+      \begin{enumber}
+         \item \textbf{Show:}
+         \item \textbf{Favorites}
+         \begin{enumber}
+            \item \textbf{Add to Favorites}
+            \item \textbf{Manage Favorites}
+            \item \textbf{File Systems}
+            \item \textbf{/home/user}
+            \item \textbf{/home/user/Home/Audio/yoshimi...}
+         \end{enumber}
+         \item \textbf{Folder button}
+            Caption: "Create a new directory"
+         \item \textbf{Preview} \\
+            Values: \texttt{Off*, On}
+         \item \textbf{Preview pane}
+         \item \textbf{Filename:}
+         \item \textbf{Directory buttons}
+      \end{enumber}
+   \item \textbf{Generic Copy Dialog}
+      TODO
+   \item \textbf{Generic Paste Dialog}
+      TODO
+   \item \textbf{Generic Freeform Envelope Dialog}
+      TODO
+   \item \textbf{Virtual Keyboard...} \\
+      Figure: menu/Instrument/virtual-keyboard.jpg \\
+      Figure: menu/Instrument/virtual-keyboard-controllers.jpg
+      \begin{enumber}
+         \item \textbf{Pwh}
+Caption: "Pitch bend knob"
+         \item \textbf{R} \\
+            Caption: "Reset Pitch Bend"
+         \item \textbf{Midi Channel} \\
+            Values: \texttt{1* to 16}
+         \item \textbf{Velocity} \\
+            Values: \texttt{1 to 127, 100*}
+         \item \textbf{Velocity} \\
+            Caption: "Velocity Randomness" \\
+            Values: \texttt{0* to 127}
+         \item \textbf{Octave} \\
+            Caption: "q2w3e4r5t6y Octave" \\
+            Values: \texttt{1, 2*, 3, 4, 5}
+         \item \textbf{"qwer.." Oct} \\
+            Caption: "zsxdcfvgbh Octave" \\
+            Values: \texttt{1, 2*, 3, 4, 5}
+         \item \textbf{Controller} \\
+            Figure: menu/Instrument/virtual-keyboard-controllers.jpg \\
+            Values: \texttt{01:Mod.Wheel, 07:Volume, 10:Panning,
+               11:Expression, 64:Sustain, 65:Portamento, 71:Filter Q,
+               74:Filter Freq*, 75:Bandwidth, 76:FM Gain,
+               77:Res.c.freq, 78:Res.bw.}
+         \item \textbf{Cval} \\
+            Caption: "Controller value" \\
+            Values: \texttt{1 to 127, 96*}
+         \item \textbf{Close}
+      \end{enumber}
+   \item \textbf{Instrument Edit Details} \\
+      Figure: bottom-panel/edit-instrument.jpg \\
+      Figure: bottom-panel/edit-instrument-drums.jpg \\
+      Figure: bottom-panel/edit-instrument-type.jpg
+   \begin{enumber}
+      \item \textbf{ADDsynth Edit} \\
+         ("ADsynth Global Parameters of the Instrument") \\
+         Figure: bottom-panel/instrument-edit/ADD/ADDsynth-edit.jpg
+      \begin{enumber}
+
+         % This AMPLITUDE section is re-used (e.g in SUBsynth Parameters)
+
+         \item \textbf{AMPLITIUDE} (section)
+         \begin{enumber}
+            \item \textbf{Volume} \\
+               Values: \texttt{1 to 127, 64*}
+            \item \textbf{Vel Sens} \\
+               Caption: "Velocity Sensing function, rightmost/max to disable" \\
+               Values: \texttt{1 to 127, 64*}
+            \item \textbf{Pan} \\
+               Caption: "Global panning, leftmost/zero gives random panning" \\
+               Values: \texttt{1 to 127, 64*}
+            \item \textbf{Rand} \\
+               Caption: "Indicator for activation of random panning"
+            \item \textbf{Reset (panning)} (red button)
+
+            % Stock part: Amplitude Env (without Enable)
+
+            \item \textbf{Amplitude Env}
+            \begin{enumber}
+               \item \textbf{A.dt} \\
+                  Caption: "Attack Time" \\
+                  Values: \texttt{0* to 127}
+               \item \textbf{D.dt} \\
+                  Caption: "Decay Time" \\
+                  Values: \texttt{0 to 127, 44*}
+               \item \textbf{S.val} \\
+                  Caption: "Sustain Value" \\
+                  Values: \texttt{0 to 127*}
+               \item \textbf{R.dt} \\
+                  Caption: "Release Time" \\
+                  Values: \texttt{0 to 127, 25*}
+               \item \textbf{Stretch} \\
+                  Caption: "Envelope Stretch (on lower notes make the envelope longer") \\
+                  Values: \texttt{0 to 127, 64*}
+               \item \textbf{L} \\
+                  Caption: "The envelope is linear" \\
+                  Values: \texttt{Off*, On}
+               \item \textbf{frcR} \\
+                  Caption: "Forced Release"
+                  Values: \texttt{Off*, On}
+               \item \textbf{C} \\
+                  Caption: "Copy to Clipboard/Preset" \\
+                  Figure: bottom-panel/instrument-edit/ADD/copy-to-clipboard-preset.jpg
+                  \begin{enumber}
+                     \item \textbf{Type} ("envamplitude")
+                     \item \textbf{Envelope list ?}
+                     \item \textbf{Copy to Preset}
+                     \item \textbf{Copy to Clipboard}
+                  \end{enumber}
+               \item \textbf{P} \\
+                  Caption: "Paste from Clipboard/Preset" \\
+                  bottom-panel/instrument-edit/ADD/ \\
+                     Figure: paste-from-clipboard-preset.jpg
+                  \begin{enumber}
+                     \item \textbf{Type} ("envamplitude")
+                     \item \textbf{Envelope list ?}
+                     \item \textbf{Paste from Preset}
+                     \item \textbf{Paste from Clipboard}
+                  \end{enumber}
+               \item \textbf{E} \\
+                  Caption: "Amplitude Envelope Window" \\
+                  Figure: bottom-panel/instrument-edit/ADD/amplitude-envelope.jpg
+                  \begin{enumber}
+                     \item \textbf{FreeMode}
+                        Figure: bottom-panel/instrument-edit/ADD/amplitude-envelope.jpg \\
+                        bottom-panel/instrument-edit/ADD/ \\
+                           Figure: disable-free-mode-of-envelope.jpg \\
+                        Values: \texttt{Off*, On}
+                     \begin{enumber}
+                        \item \textbf{Add point}
+                        \item \textbf{Delete point}
+                        \item \textbf{Sust} \\
+                           Caption: "Sustain (0 is disabled)" \\
+                           Values: \texttt{0, 1, 2*}
+                        \item \textbf{Str.} \\
+                           Envelope Stretch (on lower notes make the \\
+                              envelope longer")
+                        \item \textbf{L} \\
+                           Caption: "The envelope is linear" \\
+                           Values: \texttt{Off*, On}
+                        \item \textbf{frcR} \\
+                           Caption: "Forced Release"
+                     \end{enumber}
+                     \item \textbf{C}
+                     \item \textbf{P}
+                  \end{enumber}
+            \end{enumber}
+
+            % Stock part: Amplitude LFO (without Enable)
+
+            \item \textbf{Amplitude LFO}
+            \begin{enumber}
+               \item \textbf{Freq.} \\
+                  Caption: "LFO Frequency" \\
+                  Values: \texttt{0 to 1, 0.63*}
+               \item \textbf{Depth} \\
+                  Caption: "LFO Amount" \\
+                  Values: \texttt{0* to 127}
+               \item \textbf{Start}
+                  Caption: "LFO Startphase (leftmost is random)" \\
+                  Values: \texttt{0 to 127, 64*}
+               \item \textbf{Delay} \\
+                  Caption: "LFO Delay" \\
+                  Values: \texttt{0* to 127}
+               \item \textbf{Str.} \\
+                  Caption: "LFO Stretch" \\
+                  Values: \texttt{0 to 127, 64*}
+               \item \textbf{C.} \\
+                  Caption: "Continuous LFO" \\
+                  Values: \texttt{Off*, On}
+               \item \textbf{A.R.} \\
+                  Caption: "LFO Amplitude Randomness" \\
+                  Values: \texttt{0* to 127}
+               \item \textbf{F.R.} \\
+                  Caption: "LFO Frequency Randomness" \\
+                  Values: \texttt{0* to 127}
+               \item \textbf{Type} \\
+                  Figure: bottom-panel/instrument-edit/ADD/lfo-function-type.jpg \\
+                  Values: \texttt{SINE*, TRI, SQR, R.up, R.dn, E1dn, E2dn}
+               \item \textbf{C}
+               \item \textbf{P}
+            \end{enumber}
+
+            \item \textbf{Stereo} \\
+               Values: \texttt{Off, On*}
+            \item \textbf{Rnd Grp} \\
+               Caption: "How the harmonic amplitude is applied to voices that \\
+                  use the same oscillator." \\
+               Values: \texttt{Off*, On}
+            \item \textbf{P.Str.} \\
+               Caption: "Punch Strength" \\
+               Values: \texttt{0* to 127}
+            \item \textbf{P.t} \\
+               Caption: "Punch Time (duration)" \\
+               Values: \texttt{0 to 127, 64*}
+            \item \textbf{P.Stc.} \\
+               Caption: "Punch Stretch" \\
+               Values: \texttt{0 to 127, 64*}
+            \item \textbf{P.Vel.} \\
+               Caption: "Punch Velocity Sensing" \\
+               Values: \texttt{0 to 127, 72*}
+         \end{enumber}
+
+         \item \textbf{FILTER} (section)
+         \begin{enumber}
+
+            % Stock part: Filter Params (minus enable)
+
+            \item \textbf{Filter Params}
+            \begin{enumber}
+               \item \textbf{Category} \\
+                  Caption: "Filter Category" \\
+                  Values: \texttt{Analog*, Formant, StVarF} \\
+                  Figure: bottom-panel/instrument-edit/ADD/filter-category.jpg
+               \item \textbf{FilterType} \\
+                  Caption: "Filter Type" \\
+                  Values: \texttt{LPF1, HPF1, LPF2*, HPF2, BPF2, NF2, PkF2,
+                     LSh2, HSh2} \\
+                  Figure: bottom-panel/instrument-edit/ADD/filter-filtertype.jpg
+               \item \textbf{C.freq} \\
+                  Caption: "Center frequency of the filter or the base position in
+                     the vowel's sequence" \\
+                  Values: \texttt{0 to 127, 90*}
+               \item \textbf{Q} \\
+                  Caption: "Filter resonance or bandwidth" \\
+                  Values: \texttt{0 to 127, 40*}
+               \item \textbf{V.SnsA.} \\
+                  Caption: "Velocity sensing amount of the filter" \\
+                  Values: \texttt{0 to 127, 64*}
+               \item \textbf{V.Sns.} \\
+                  Caption: "Velocity sensing function of the filter" \\
+                  Values: \texttt{0 to 127, 64*}
+               \item \textbf{freq.tr} \\
+                  Caption: "Filter frequency tracking, left is negative, middle is \\
+                     zero, and right is positive" \\
+                  Values: \texttt{0 to 127, 64*}
+               \item \textbf{gain} \\
+                  Caption: "Filter output gain/damp" \\
+                  Values: \texttt{0 to 127, 64*}
+               \item \textbf{St} \\
+                  Caption: "Filter stages (in order to increase dB/octave value and
+                     the order of the filter)" \\
+                  Values: \texttt{1x*, 2x, 3x, 4x, 5x} \\
+                  Figure: bottom-panel/instrument-edit/ADD/filter-stages.jpg
+               \item \textbf{C} (See elsewhere)\\
+                  Caption: "Copy to Clipboard/Preset"
+               \item \textbf{P} (See elsewhere)\\
+                  Caption: "Paste from Clipboard/Preset"
+            \end{enumber}
+
+            % Stock part: Filter Env (without Enable)
+
+            \item \textbf{Filter Env} \\
+               Figure: bottom-panel/instrument-edit/ADD/ADDsynth-filter-envelope.jpg
+            \begin{enumber}
+               \item \textbf{A.val} \\
+                  Caption: "Starting Value" \\
+                  Values: \texttt{0 to 127, 64*}
+               \item \textbf{A.dt} \\
+                  Caption: "Attack Time" \\
+                  Values: \texttt{0 to 127, 40*}
+               \item \textbf{D.val} \\
+                  Caption: "Decay Value" \\
+                  Values: \texttt{0 to 127, 64*}
+               \item \textbf{D.dt} \\
+                  Caption: "Decay Time" \\
+                  Values: \texttt{0 to 127, 70*}
+               \item \textbf{R.dt} \\
+                  Caption: "Release Time" \\
+                  Values: \texttt{0 to 127, 60*}
+               \item \textbf{R.val} \\
+                  Caption: "Release Value" \\
+                  Values: \texttt{0 to 127, 64*}
+               \item \textbf{Stretch} \\
+                  Caption: "Envelope Stretch (on lower notes make the envelope longer") \\
+                  Values: \texttt{0* to 127}
+               \item \textbf{L} \\
+                  Caption: "The envelope is linear" \\
+                  Values: \texttt{Off*, On}
+               \item \textbf{frcR} \\
+                  Caption: "Forced Release"
+               \item \textbf{C} \\
+                  Caption: "Copy to Clipboard/Preset" \\
+                  Figure: bottom-panel/instrument-edit/ADD/copy-to-clipboard-preset.jpg
+                  \begin{enumber}
+                     \item \textbf{Type} ("envamplitude")
+                     \item \textbf{Envelope list ?}
+                     \item \textbf{Copy to Preset}
+                     \item \textbf{Copy to Clipboard}
+                  \end{enumber}
+               \item \textbf{P} \\
+                  Caption: "Paste from Clipboard/Preset" \\
+                  bottom-panel/instrument-edit/ADD/ \\
+                     Figure: paste-from-clipboard-preset.jpg
+                  \begin{enumber}
+                     \item \textbf{Type} ("envamplitude")
+                     \item \textbf{Envelope list ?}
+                     \item \textbf{Paste from Preset}
+                     \item \textbf{Paste from Clipboard}
+                  \end{enumber}
+               \item \textbf{E} \\
+                  Caption: "Filter Envelope Window" \\
+                  Figure: bottom-panel/instrument-edit/ADD/amplitude-envelope.jpg
+                  \begin{enumber}
+                     \item \textbf{FreeMode} \\
+                        Values: \texttt{Off*, On} \\
+                        Figure: bottom-panel/instrument-edit/ADD/amplitude-envelope.jpg \\
+                        Figure: bottom-panel/instrument-edit/ADD/disable-free-mode-of-envelope.jpg
+                     \begin{enumber}
+                        \item \textbf{Add point}
+                        \item \textbf{Delete point}
+                        \item \textbf{Sust} \\
+                           Caption: "Sustain (0 is disabled)" \\
+                           Values: \texttt{0, 1, 2*}
+                        \item \textbf{Str.} \\
+                           Caption: "Envelope Stretch (on lower notes make the
+                              envelope longer)"
+                        \item \textbf{L} \\
+                           Caption: "The envelope is linear" \\
+                           Values: \texttt{Off*, On}
+                        \item \textbf{frcR} \\
+                           Caption: "Forced Release"
+                     \end{enumber}
+                     \item \textbf{C}
+                     \item \textbf{P}
+                  \end{enumber}
+            \end{enumber}
+
+            % Stock part: Filter LFO (without Enable)
+
+            \item \textbf{Filter LFO}
+            \begin{enumber}
+               \item \textbf{Freq.} \\
+                  Caption: "LFO Frequency" \\
+                  Values: \texttt{0 to 1, 0.64*}
+               \item \textbf{Depth} \\
+                  Caption: "LFO Amount" \\
+                  Values: \texttt{0* to 127}
+               \item \textbf{Start}
+                  Caption: "LFO Startphase (leftmost is random)" \\
+                  Values: \texttt{0 to 127, 64*}
+               \item \textbf{Delay} \\
+                  Caption: "LFO Delay" \\
+                  Values: \texttt{0* to 127}
+               \item \textbf{Str.} \\
+                  Caption: "LFO Stretch" \\
+                  Values: \texttt{0 to 127, 64*}
+               \item \textbf{C.} \\
+                  Caption: "Continuous LFO" \\
+                  Values: \texttt{Off*, On}
+               \item \textbf{A.R.} \\
+                  Caption: "LFO Amplitude Randomness" \\
+                  Values: \texttt{0* to 127}
+               \item \textbf{F.R.} \\
+                  Caption: "LFO Frequency Randomness" \\
+                  Values: \texttt{0* to 127}
+               \item \textbf{Type} \\
+                  Figure: bottom-panel/instrument-edit/ADD/lfo-function-type.jpg \\
+                  Values: \texttt{SINE*, TRI, SQR, R.up, R.dn, E1dn, E2dn}
+               \item \textbf{C} \\
+                  Caption: "Copy to Clipboard/Preset"
+               \item \textbf{P} \\
+                  Caption: "Paste from Clipboard/Preset"
+            \end{enumber}
+         \end{enumber}
+ 
+         % Almost, but not quite, a stock part.
+
+         \item \textbf{FREQUENCY} (section)
+         \begin{enumber}
+            \item \textbf{Detune} \\
+               Values: \texttt{-35.00 to 35.00, 0*} \\
+               Figure: bottom-panel/instrument-edit/ADD/frequency-detune-type.jpg
+            \item \textbf{FREQUENCY slider} \\
+               Caption: "Fine Detune (cents)"
+            \item \textbf{Octave} \\
+               Values: \texttt{-8 to 7, 0*}
+            \item \textbf{RelBW} \\
+               Caption: "Bandwidth - how the relative fine detune of the voice is changed" \\
+               Values: \texttt{0 to 127, 64*}
+
+            % Stock part: Frequency Env (without Enable)
+
+            \item \textbf{Frequency Env} \\
+               Figure: bottom-panel/instrument-edit/ADD/ADDsynth-frequency-envelope.jpg
+
+            \begin{enumber}
+               \item \textbf{A.val} \\
+                  Caption: "Attack Value" \\
+                  Values: \texttt{0 to 127, 64*}
+               \item \textbf{A.dt} \\
+                  Caption: "Attack Time" \\
+                  Values: \texttt{0 to 127, 50*}
+               \item \textbf{R.dt} \\
+                  Caption: "Release Time" \\
+                  Values: \texttt{0 to 127, 60*}
+               \item \textbf{R.val} \\
+                  Caption: "Release Value" \\
+                  Values: \texttt{0 to 127, 64*}
+               \item \textbf{Stretch} \\
+                  Caption: "Envelope Stretch (on lower notes make the envelope longer") \\
+                  Values: \texttt{0* to 127}
+               \item \textbf{frcR} \\
+                  Caption: "Forced Release" \\
+                  Values: \texttt{Off*, On}
+               \item \textbf{C} \\
+                  Caption: "Copy to Clipboard/Preset" \\
+                  Figure: bottom-panel/instrument-edit/ADD/copy-to-clipboard-preset.jpg
+                  \begin{enumber}
+                     \item \textbf{Type} ("envamplitude")
+                     \item \textbf{Envelope list ?}
+                     \item \textbf{Copy to Preset}
+                     \item \textbf{Copy to Clipboard}
+                  \end{enumber}
+               \item \textbf{P} \\
+                  Caption: "Paste from Clipboard/Preset" \\
+                  bottom-panel/instrument-edit/ADD/ \\
+                     Figure: paste-from-clipboard-preset.jpg
+                  \begin{enumber}
+                     \item \textbf{Type} ("envamplitude")
+                     \item \textbf{Envelope list ?}
+                     \item \textbf{Paste from Preset}
+                     \item \textbf{Paste from Clipboard}
+                  \end{enumber}
+               \item \textbf{E} \\
+                  Caption: "Frequency Envelope Window" \\
+                  Figure: bottom-panel/instrument-edit/ADD/amplitude-envelope.jpg
+                  \begin{enumber}
+                     \item \textbf{FreeMode}
+                  Figure: bottom-panel/instrument-edit/ADD/amplitude-envelope.jpg \\
+                        bottom-panel/instrument-edit/ADD/ \\
+                           Figure: disable-free-mode-of-envelope.jpg \\
+                        Values: \texttt{Off*, On}
+                     \begin{enumber}
+                        \item \textbf{Add point}
+                        \item \textbf{Delete point}
+                        \item \textbf{Sust} \\
+                           Caption: "Sustain (0 is disabled)" \\
+                           Values: \texttt{0, 1, 2*}
+                        \item \textbf{Str.} \\
+                           Envelope Stretch (on lower notes make the \\
+                              envelope longer")
+                        \item \textbf{L} \\
+                           Caption: "The envelope is linear" \\
+                           Values: \texttt{Off*, On}
+                        \item \textbf{frcR} \\
+                           Caption: "Forced Release"
+                     \end{enumber}
+                     \item \textbf{C}
+                     \item \textbf{P}
+                  \end{enumber}
+            \end{enumber}
+
+            % Stock part: Frequency LFO (without Enable)
+
+            \item \textbf{Frequency LFO}
+            \begin{enumber}
+               \item \textbf{Freq.} \\
+                  Caption: "LFO Frequency" \\
+                  Values: \texttt{0 to 1, 0.54*}
+               \item \textbf{Depth} \\
+                  Caption: "LFO Amount" \\
+                  Values: \texttt{0* to 127}
+               \item \textbf{Start}
+                  Caption: "LFO start phase (leftmost is random)" \\
+                  Values: \texttt{0 to 127, 64*}
+               \item \textbf{Delay}
+                  Caption: "LFO Delay" \\
+                  Values: \texttt{0* to 127}
+               \item \textbf{Str.}
+                  Caption: "Envelope Stretch (on lower notes makes the
+                     envelope longer)" \\
+                  Values: \texttt{0 to 127, 64*}
+               \item \textbf{C.}
+                  Caption: "COntinuous LFO" \\
+                  Values: \texttt{Off*, On}
+               \item \textbf{A.R.}
+                  Caption: "LFO Amplitude Randomness" \\
+                  Values: \texttt{0* to 127}
+               \item \textbf{F.R.}
+                  Caption: "LFO Frequency Randomness" \\
+                  Values: \texttt{0* to 127}
+               \item \textbf{Type} (use other? picture of dropdown)
+                  Caption: "LFO Function" \\
+                  Values: \texttt{SINE*, TRI, SQR, R.up, R.dn, E1dn, E2dn}
+               \item \textbf{C}
+               \item \textbf{P}
+            \end{enumber}
+
+            \item \textbf{Detune Type} \\
+               Caption: "Frequency Detune Type" \\
+               Values: \texttt{L35cents, L10cents, E100cents, E1200cents} \\
+               Figure: bottom-panel/instrument-edit/ADD/frequency-detune-type.jpg
+            \item \textbf{Coarse det.} \\
+               Caption: "Coarse Detune" \\
+               Values: \texttt{-64 to 63, 0*}
+         \end{enumber}
+
+         \item \textbf{Show Voice Parameters} \\
+            Caption: "ADsynth Voice Parameters" \\
+            Figure: bottom-panel/instrument-edit/ADD/ADDsynth-voice-parameters.jpg \\
+            Figure: bottom-panel/instrument-edit/ADD/modulator-type.jpg
+            \begin{enumber}
+               \item \textbf{Voice Number} \\
+                  Values: \texttt{1* to 8}
+               \item \textbf{On} \\
+                  Values: \texttt{Off, On}
+               \item \textbf{Delay} \\
+                  Caption: "Volume" !?
+                  Values: \texttt{0* to 127}
+               \item \textbf{R.} \\
+                  Caption: "Resonance On/Off" \\
+                  Values: \texttt{Off, On*}
+               \item \textbf{AMPLITUDE} \\
+                  Values: \texttt{Off, On*}
+               \begin{enumber}
+                  \item \textbf{Minus} \\
+                     Caption: "Invert volume control action" \\
+                     Values: \texttt{Off*, On}
+                  \item \textbf{Volume} \\
+                     Caption: "Volume" \\
+                     Values: \texttt{0 to 127, 90?}
+                  \item \textbf{Vel Sens} \\
+                     Caption: "Velocity-sensing function - rightmost/max
+                        disables" \\
+                     Values: \texttt{0 to 127*}
+                  \item \textbf{Pan} \\
+                     Caption: "Voice panning - leftmost/0 gives random
+                        panning" \\
+                     Values: \texttt{0 to 127, 64*}
+                  \item \textbf{Pan randomness indicator} \\
+                     Caption: "Voice random panning On/Off"
+                  \item \textbf{Pen reset} (red button)
+                     Caption: "Center panning" \\
+                  \item \textbf{Amplitude Env, Stock + Enable}
+                  \item \textbf{Amplitude LFO, Stock + Enable}
+               \end{enumber}
+               \item \textbf{FILTER}
+               \begin{enumber}
+                  \item \textbf{Enable} \\
+                     Caption: "Enable Filter" \\
+                     Values: \texttt{Off*, On}
+                  \item \textbf{Bypass Global F.} \\
+                     Caption: "Bypass Global Filter" \\
+                     Values: \texttt{Off*, On}
+                  \item \textbf{Filter Params, Stock}
+                  \item \textbf{Filter Env, Stock + Enable}
+                  \item \textbf{Filter LFO, Stock + Enable}
+               \end{enumber}
+               \item \textbf{MODULATOR}
+               \begin{enumber}
+
+                  \item \textbf{Type:} \\
+                     Figure: bottom-panel/instrument-edit/ADD/modulator-type.jpg \\
+                     \begin{enumber}
+                        \item \textbf{OFF}
+                        \item \textbf{MORPH}
+                        \item \textbf{RING}
+                        \item \textbf{PM}
+                        \item \textbf{FM}
+                        \item \textbf{PITCH}
+                     \end{enumber}
+                  \item \textbf{External Mod.} \\
+                     Values: \texttt{OFF*, Other voices?}
+                  \item \textbf{Mod AMPLITUDE}
+                     \begin{enumber}
+                        \item \textbf{Vol} \\
+                           Caption: "Volume" \\
+                           Values: \texttt{0 to 127, 90*}
+                        \item \textbf{V.Sns}
+                           Caption: "Velocity Sensing Function -
+                              rightmost/max to disable" \\
+                           Values: \texttt{0 to 127, 64*}
+                        \item \textbf{F.Damp}
+                           Caption: "Modulator Damp at higher frequency" \\
+                           Values: \texttt{0 to 127, 90*}
+                        \item \textbf{Amplitude Env, Stock + Enable}
+                     \end{enumber}
+                  \item \textbf{Mod FREQUENCY}
+                     \begin{enumber}
+                        \item \textbf{Detune slider}
+                           Caption: "Fine Detune (cents)" \\
+                           Values: \texttt{-35.00 to 35.00, 0*} \\
+                        \item \textbf{Detune Type}
+                           Caption: "Fine Detune (cents)" \\
+                           Values: \texttt{L35cents, L10cents, E100cents, E1200cents} \\
+                           Figure: bottom-panel/instrument-edit/ADD/frequency-detune-type.jpg
+                        \item \textbf{Octave} \\
+                           Caption: "" \\
+                           Values: \texttt{-8 to 7, 0*}
+                        \item \textbf{Coarse Det.}
+                           Caption: "Coarse Detune" \\
+                           Values: \texttt{-64 to 63, 0*}
+                        \item \textbf{Filter Env, Stock + Enable}
+                     \end{enumber}
+                  \item \textbf{Mod Oscilator}
+                     \begin{enumber}
+                        \item \textbf{Change} \\
+                           Caption: "ADDsynth Oscillator Editor" (see below)\\
+                           Figure: bottom-panel/instrument-edit/ADD/ADDsynth-oscillator-editor.jpg
+                           % We need to add a section for this complex
+                           % dialog box!
+
+                        \item \textbf{Use} \\
+                           Values: \texttt{Internal*, Other oscillators?}
+                        \item \textbf{Phase} \\
+                           Values: \texttt{0 to 360 (0 to 2PI)}
+                        \item \textbf{Waveform graph}
+                     \end{enumber}
+
+               \end{enumber}
+
+               % Similar to the ADDsynth Edit's FREQUENCY section.
+ 
+               \item \textbf{FREQUENCY} (section) \\
+                  Caption: "Frequency section, almost a stock part"
+               \begin{enumber}
+                  \item \textbf{Detune} \\
+                     Values: \texttt{-35.00 to 35.00, 0*} \\
+                     Figure: bottom-panel/instrument-edit/ADD/frequency-detune-type.jpg
+                  \item \textbf{FREQUENCY slider} \\
+                  \item \textbf{440 Hz} \\         % addition to stock
+                     Caption: "" \\
+                     Values: \texttt{Off*, On}
+                  \item \textbf{Eq.T.} \\          % addition to stock
+                     Caption: "" \\
+                     Values: \texttt{0 to 127?}
+                  \item \textbf{Octave} \\
+                     Caption: "" \\
+                     Values: \texttt{-8 to 7, 0*}
+                  % \item \textbf{RelBW}           % not present here
+                  \item \textbf{Detune Type}
+                     Caption: "Fine Detune (cents)" \\
+                     Values: \texttt{L35cents, L10cents, E100cents, E1200cents} \\
+                     Figure: bottom-panel/instrument-edit/ADD/frequency-detune-type.jpg
+                  \item \textbf{Coarse det.} \\
+                     Caption: "Coarse Detune" \\
+                     Values: \texttt{-64 to 63, 0*}
+                  \item \textbf{Frequency Env, Stock + Enable}
+                  \item \textbf{Frequency LFO, Stock + Enable}
+                  \item \textbf{Voice Oscillator}
+                  \begin{enumber}
+                     \item \textbf{Phase} \\
+                        Values: \texttt{0 to 360 (0 to 2PI)}
+                     \item \textbf{Use} \\
+                        Values: \texttt{Internal*, Other oscillators?}
+                     \item \textbf{Waveform graph}
+                     \item \textbf{Change} \\
+                        Caption: "ADDsynth Oscillator Editor" (see below)\\
+                        Figure: bottom-panel/instrument-edit/ADD/ADDsynth-oscillator-editor.jpg
+                     \item \textbf{Sound} \\
+                        Caption: "Oscillator Type (sound/noise)" \\
+                        Figure: bottom-panel/instrument-edit/ADD/voice-oscillator-sound-dropdown.jpg
+                     \item \textbf{Unison} \\
+                        Values: \texttt{Off*, On}
+                        \begin{enumber}
+                           \item \textbf{Size} \\
+                              Caption: "Number of unison sub-voices" \\
+                              Values: \texttt{2* to 50}
+                           \item \textbf{Frequency Spread} \\
+                              Caption: "Frequency spread of the unison (cents)" \\
+                              Values: \texttt{0 to 200, 44.6*}
+                           \item \textbf{Ph.rnd} \\
+                              Caption: "Phase randomness" \\
+                              Values: \texttt{0 to 127*}
+                           \item \textbf{Stereo} \\
+                              Caption: "Stereo Spread" \\
+                              Values: \texttt{0 to 127, 64*}
+                           \item \textbf{Vibrato} \\
+                              Caption: "Vibrato" \\
+                              Values: \texttt{0 to 127, 64*}
+                           \item \textbf{V.speed} \\
+                              Caption: "Vibrato Average Speed" \\
+                              Values: \texttt{0 to 127, 64*}
+                           \item \textbf{Invert} \\
+                              Caption: "Phase Invert" \\
+                              Values: \texttt{None*, Random, 50\%, 33\%, 25\%, 20\%} \\
+                              Figure: bottom-panel/instrument-edit/ADD/voice-oscillator-phase-invert-dropdown.jpg
+                        \end{enumber}
+                        \item \textbf{Current Voice} \\
+                           Caption: "Current Voice" \\
+                           Values: \texttt{1* to 8}
+                        \item \textbf{C} \\
+                           Caption: "Copy D note parameters"
+                        \item \textbf{P} \\
+                           Caption: "Paste D note parameters"
+                     \item \textbf{Close Window}
+                  \end{enumber}
+               \end{enumber}
+
+            \end{enumber}
+
+         \item \textbf{Show Voice List} \\
+            Caption: "ADsynth Voices List (Voices 1 to 8)" \\
+            Figure: bottom-panel/instrument-edit/ADD/ADDsynth-voices-list.jpg
+            \begin{enumber}
+               \item \textbf{Number (1 to 8)} \\
+                  Values: \texttt{Off, On}
+               \item \textbf{Vol} \\
+                  Caption: "Volume" \\
+                  Values: \texttt{0 to 127, 100*}
+               \item \textbf{Pan} \\
+                  Caption: "Voice Panning (0/leftmost is Random)" \\
+                  Values: \texttt{0 to 127, 64*}
+               \item \textbf{R.} \\
+                  Caption: "Resonance On/Off" \\
+                  Values: \texttt{Off, On*}
+               \item \textbf{Detune} \\
+                  Caption: "Fine Detune (cents)" \\
+                  Values: \texttt{-35 to 35, 0*}
+               \item \textbf{Vib. Depth} \\
+                  Caption: "Frequency LFO Amount" \\
+                  Values: \texttt{0 to 127, 40*}
+               \item \textbf{Hide Voice List} \\
+            \end{enumber}
+
+         \item \textbf{Resonance} \\
+            Figure: bottom-panel/instrument-edit/ADD/ADDsynth-resonance.jpg
+            \begin{enumber}
+               \item \textbf{Enable} \\
+                  Values: \texttt{Off*, On}
+               \item \textbf{Max dB (wheel)} \\
+                  Caption: "The Maximum Amplitude (dB)" \\
+                  Values: \texttt{1 to 90, 20*}
+               \item \textbf{C.f. (knob)} \\
+                  Caption: "Center Frequency (kHz)" \\
+                  Values: \texttt{0 to 127, 64*} for \texttt{0.10 to 10.0, 1.0*}
+               \item \textbf{Oct.} \\
+                  Caption: "Number of Octaves" \\
+                  Values: \texttt{0 to 127, 64*} for \texttt{0 to 10, 5*}
+               \item \textbf{P.1st} \\
+                  Caption: "Protect the fundamental Frequency (do not damp
+                     the first harmonic)" \\
+                  Values: \texttt{Off, On}
+
+               % This one is a weird one where mouse movement affects it,
+               % but also affects the next field as well.  Oh, kHz and dB.
+
+               \item \textbf{InterpP} \\
+                  Caption: "Interpolate the peaks"
+               \item \textbf{KHz} \\
+                  Caption: "The current frequency on graph"
+               \item \textbf{dB} \\
+                  Caption: "The current level on graph" \\
+                  Values: \texttt{-90 to +90}
+               \item \textbf{Zero} \\
+                  Caption: "Clear the resonance function"
+               \item \textbf{Smooth} \\
+                  Caption: "Smooth the resonance function"
+               \item \textbf{RND1} \\
+                  Caption: "Randomize the resonance function"
+               \item \textbf{RND2} \\
+                  Caption: "Randomize the resonance function"
+               \item \textbf{RND3} \\
+                  Caption: "Randomize the resonance function"
+               \item \textbf{C}
+               \item \textbf{P}
+               \item \textbf{Close}
+            \end{enumber}
+
+         \item \textbf{C}
+         \item \textbf{P}
+         \item \textbf{Close}
+      \end{enumber}
+
+      \item \textbf{SUBsynth Edit} \\
+         Figure: bottom-panel/instrument-edit/SUB/harmonic-type.jpg \\
+         Figure: bottom-panel/instrument-edit/SUB/mag-type.jpg \\
+         Figure: bottom-panel/instrument-edit/SUB/start-type.jpg \\
+         Figure: bottom-panel/instrument-edit/SUB/SUBsynth-parameters.jpg
+
+         % This AMPLITUDE section is re-used (e.g in SUBsynth Parameters)
+
+         \item \textbf{AMPLITIUDE} (section)
+         \begin{enumber}
+            \item \textbf{Volume} \\
+               Values: \texttt{1 to 127, 64*}
+            \item \textbf{Vel Sens} \\
+               Caption: "Velocity Sensing function, rightmost/max to disable" \\
+               Values: \texttt{1 to 127, 64*}
+            \item \textbf{Pan} \\
+               Caption: "Global panning, leftmost/zero gives random panning" \\
+               Values: \texttt{1 to 127, 64*}
+            \item \textbf{Rand} \\
+               Caption: "Indicator for activation of random panning"
+            \item \textbf{Reset (panning)} (red button)
+
+            % Stock part: Amplitude Env (without Enable)
+
+            \item \textbf{Amplitude Env}
+         \end{enumber}
+         \item \textbf{Harmonics magnitude}
+         \begin{enumber}
+            \item \textbf{xxxxxx}
+         \end{enumber}
+         \item \textbf{BANDWIDTH}
+         \begin{enumber}
+            \item \textbf{xxxxxx}
+         \end{enumber}
+         \item \textbf{Harmonics bandwidth}
+         \begin{enumber}
+            \item \textbf{xxxxxx}
+         \end{enumber}
+         \item \textbf{FREQUENCY}
+         \begin{enumber}
+            \item \textbf{xxxxxx}
+         \end{enumber}
+         \item \textbf{OVERTONES}
+         \begin{enumber}
+            \item \textbf{xxxxxx}
+         \end{enumber}
+         \item \textbf{FILTER}
+         \begin{enumber}
+            \item \textbf{Enabled}
+            \item \textbf{Filter Params}
+            \begin{enumber}
+               \item \textbf{xxxxxx}
+            \end{enumber}
+            \item \textbf{Filter Env}
+            \begin{enumber}
+               \item \textbf{xxxxxx}
+            \end{enumber}
+            \item \textbf{xxxxxx}
+         \end{enumber}
+      \item \textbf{PADsynth Edit} \\
+         Figure: bottom-panel/instrument-edit/PAD/amp-mode.jpg \\
+         Figure: bottom-panel/instrument-edit/PAD/amp-multiplier.jpg \\
+         Figure: bottom-panel/instrument-edit/PAD/bandwidth-scale.jpg \\
+         Figure: bottom-panel/instrument-edit/PAD/base.jpg \\
+         Figure: bottom-panel/instrument-edit/PAD/base-type.jpg \\
+         Figure: bottom-panel/instrument-edit/PAD/export-dialog.jpg \\
+         Figure: bottom-panel/instrument-edit/PAD/full-upper-lower.jpg \\
+         Figure: bottom-panel/instrument-edit/PAD/harmonic-content-adaptive-harmonic-type.jpg \\
+         Figure: bottom-panel/instrument-edit/PAD/harmonic-content-base-function.jpg \\
+         Figure: bottom-panel/instrument-edit/PAD/harmonic-content-editor.jpg \\
+         Figure: bottom-panel/instrument-edit/PAD/harmonic-content-filter.jpg \\
+         Figure: bottom-panel/instrument-edit/PAD/harmonic-content-mag-type.jpg \\
+         Figure: bottom-panel/instrument-edit/PAD/harmonic-content-modulation.jpg \\
+         Figure: bottom-panel/instrument-edit/PAD/harmonic-content-osc-spectrum-adjust.jpg \\
+         Figure: bottom-panel/instrument-edit/PAD/harmonic-content-waveshaping-function.jpg \\
+         Figure: bottom-panel/instrument-edit/PAD/number-of-octaves.jpg \\
+         Figure: bottom-panel/instrument-edit/PAD/overtones-position.jpg \\
+         Figure: bottom-panel/instrument-edit/PAD/PADsynth-parameters-envelopes-LFOs.jpg \\
+         Figure: bottom-panel/instrument-edit/PAD/PADsynth-parameters-harmonic-structure.jpg \\
+         Figure: bottom-panel/instrument-edit/PAD/resonance.jpg \\
+         Figure: bottom-panel/instrument-edit/PAD/sample-size.jpg \\
+         Figure: bottom-panel/instrument-edit/PAD/smp-per-octave.jpg \\
+         Figure: bottom-panel/instrument-edit/PAD/spectrum-mode.jpg
+      \item \textbf{Kit Edit} \\
+         Figure: bottom-panel/instrument-edit/Kit/instrument-kit-edit.jpg
+      \item \textbf{Effects Edit} \\
+         Figure: bottom-panel/instrument-edit/Effects/dynfilter-parameters.jpg \\
+         Figure: bottom-panel/instrument-edit/Effects/effects-edit-alienwah.jpg \\
+         Figure: bottom-panel/instrument-edit/Effects/effects-edit-chorus.jpg \\
+         Figure: bottom-panel/instrument-edit/Effects/effects-edit-distortion.jpg \\
+         Figure: bottom-panel/instrument-edit/Effects/effects-edit-dynfilter.jpg \\
+         Figure: bottom-panel/instrument-edit/Effects/effects-edit-echo.jpg \\
+         Figure: bottom-panel/instrument-edit/Effects/effects-edit-eq.jpg \\
+         Figure: bottom-panel/instrument-edit/Effects/effects-edit-none.jpg \\
+         Figure: bottom-panel/instrument-edit/Effects/effects-edit-phaser.jpg \\
+         Figure: bottom-panel/instrument-edit/Effects/effects-edit-reverb.jpg
+   \end{enumber}                    % Instrument Edit Details
+
+\end{enumber}
+
+\end{document}
+
+%-------------------------------------------------------------------------------
+% vim: ts=3 sw=3 et ft=tex
+%-------------------------------------------------------------------------------
