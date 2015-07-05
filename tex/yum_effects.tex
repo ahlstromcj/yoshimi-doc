@@ -52,16 +52,114 @@
 \subsection{Effects / Panel Types}
 \label{subsec:effects_paneltypes}
 
-   There are three variations of Effect sub-panels:
+   There are three variations of Effects sub-panels:
 
    \begin{itemize}
-      \item System Effects sub-panel.
-      \item Insertion Effects sub-panel.
-      \item Part or Instrument Effects sub-panel.
+      \item \textbf{System Effects} sub-panel.
+      \item \textbf{Insertion Effects} sub-panel.
+      \item \textbf{Part/Instrument Effects} sub-panel.
    \end{itemize}
 
-   The next sub-sections show these variations, using the DynFilter effect
-   as the subject effects panel.
+   Here are the major elements of the main effects panel, which shows the
+   System and Insertion effects tabs.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{effects-panel/system-effects.jpg}
+   \caption{System Effects Dialog}
+   \label{fig:system_effects_dialog}
+\end{figure}
+
+   \begin{enumber}
+      \item \textbf{System Effects Tab}
+      \item \textbf{Effect Number}
+      \item \textbf{Effect Name}
+      \item \textbf{Send to}
+      \item \textbf{C}
+      \item \textbf{P}
+      \item \textbf{Effects Panel}
+      \item \textbf{Insertion Effects Tab}
+      \item \textbf{Reports}
+   \end{enumber}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{System Effects Tab}{effects!system tab}
+   System Effects Tab.
+   The items in this tab are described in the next few paragraphs.
+
+   \itempar{Effect Number}{effects!number}
+   Effect Number.
+   Up to 8 effects can be supported at one time by one part.
+
+   \itempar{Effect Name}{effects!name}
+   Effect Name.
+
+   Values: \texttt{No Effect*, Reverb, Echo, Chorus, Phaser, AlienWah,
+      Distortion, EQ, DynFilter}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{effects-panel/system-effects-selections.jpg}
+   \caption{Effects Names}
+   \label{fig:effects_names}
+\end{figure}
+
+   \itempar{Send to}{effects!send to}
+   Effects Send To.
+
+   TODO:  Document how effects/send-to works.
+   \index{todo!send to}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{effects-panel/system-effects-send-to.jpg}
+   \caption{Effects, Send To}
+   \label{fig:effects_send_to}
+\end{figure}
+
+   \itempar{C}{effects!copy dialog}
+   Copy-to-clipboard Dialog.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{effects-panel/system-effects-C-clipboard.jpg}
+   \caption{Effects / Copy To Clipboard}
+   \label{fig:effects_copy_to_clipboard}
+\end{figure}
+
+   \itempar{P}{effects!paste dialog}
+   Paste-from-clipboard Dialog.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{effects-panel/system-effects-P-clipboard.jpg}
+   \caption{Effects / Paste From Clipboard}
+   \label{fig:effects_paste_from_clipboard}
+\end{figure}
+
+   \itempar{Effects Panel}{effects!panel}
+   Effects Panel.
+   This area is filled by the controls for the selected effect.
+
+   \itempar{Insertion Effects Tab}{effects!insertion tab}
+   Insertion Effects Tab.
+   The items in this tab are described below.
+   in the \ref{subsec:effects_insertion}
+   sub-section.
+
+   \itempar{Reports}{effects!reports}
+   Effects Reports.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{effects-panel/reports.jpg}
+   \caption{Effects / Reports}
+   \label{fig:effects_reports}
+\end{figure}
+
+   The next sub-sections show the variations on the effects panels, using the
+   DynFilter effect as the subject effects panel.
 
 \subsubsection{Effects / Panel Types / System }
 \label{subsubsec:effects_paneltypes_system}
@@ -107,10 +205,43 @@
    \begin{enumber}
       \item \textbf{Effect number}
       \item \textbf{Effect selection}
-      \item \textbf{To} (part-selection-dropdown.png)
+      \item \textbf{To}
       \item \textbf{C}
       \item \textbf{P}
    \end{enumber}
+
+   The insertion effects apply to one part or to master out. One may use more
+   than one insertion effect for one part or master out. If one does so the
+   effects with smaller indexes will be applied first (eg. first insertion
+   effect no.0, than no.1, ...). If the part selected for insertion
+   effect is "-1" then the effect will be disabled; if the part is "-2" the
+   effect will be applied to Master Out. 
+
+% \begin{figure}[H]
+%    \centering 
+%    \includegraphics[scale=1.0]{effects-panel/insertion-effects.jpg}
+%    \caption{Insertion Effects Dialog}
+%    \label{fig:insertion_effects_dialog}
+% \end{figure}
+% 
+% \begin{figure}[H]
+%    \centering 
+%    \includegraphics[scale=1.0]{effects-panel/insertion-effects-to-part.jpg}
+%    \caption{Insertion Effects To Part}
+%    \label{fig:insertion_effects_to_part}
+% \end{figure}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{To}{effects!to}
+   Send the Effect To.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/part-selection-dropdown.png}
+   \caption{Part Selection Dropdown}
+   \label{fig:sample_part_selection_dropdown}
+\end{figure}
 
 \subsubsection{Effects / Panel Types / Instrument }
 \label{subsubsec:effects_paneltypes_instrument}
@@ -167,134 +298,7 @@
 %     \item \textbf{Close}
 %  \end{enumber}
 
-\subsection{Effects / System}
-\label{subsec:effects_system}
-
-   Here are the major elements of the top panel.
-
-\begin{figure}[H]
-   \centering 
-   \includegraphics[scale=1.0]{effects-panel/system-effects.jpg}
-   \caption{System Effects Dialog}
-   \label{fig:system_effects_dialog}
-\end{figure}
-
-   \begin{enumber}
-      \item \textbf{System Effects Tab}
-      \item \textbf{Effect Number}
-      \item \textbf{Effect Name}
-      \item \textbf{Send to}
-      \item \textbf{C}
-      \item \textbf{P}
-      \item \textbf{Effects Panel}
-      \item \textbf{Insertion Effects Tab}
-      \item \textbf{Reports}
-   \end{enumber}
-
-   TODO: What about "Instrument Effects" mentioned in a version of the
-   manual?
-   \index{todo!instrument effects}
-
-   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
-
-   \itempar{System Effects Tab}{effects!system tab}
-   System Effects Tab.
-   The items in this tab are described in the next few paragraphs.
-
-   \itempar{Effect Number}{effects!number}
-   Effect Number.
-   Up to XXX effects can be supported at one time by one part.
-   Or is this the PART NUMBER?
-
-   \itempar{Effect Name}{effects!name}
-   Effect Name.
-
-   Values: \texttt{No Effect*, Reverb, Echo, Chorus, Phaser, AlienWah,
-      Distortion, EQ, DynFilter}
-
-\begin{figure}[H]
-   \centering 
-   \includegraphics[scale=1.0]{effects-panel/system-effects-selections.jpg}
-   \caption{Effects Names}
-   \label{fig:effects_names}
-\end{figure}
-
-   \itempar{Send to}{effects!send to}
-   Effects Send To.
-
-   TODO:  Document how effects/send-to works.
-   \index{todo!send to}
-
-\begin{figure}[H]
-   \centering 
-   \includegraphics[scale=1.0]{effects-panel/system-effects-send-to.jpg}
-   \caption{Effects, Send To}
-   \label{fig:effects_send_to}
-\end{figure}
-
-   \itempar{C}{effects!copy dialog}
-   Copyto-clipboard Dialog.
-
-\begin{figure}[H]
-   \centering 
-   \includegraphics[scale=1.0]{effects-panel/system-effects-C-clipboard.jpg}
-   \caption{Effects / Copy To Clipboard}
-   \label{fig:effects_copy_to_clipboard}
-\end{figure}
-
-   \itempar{P}{effects!paste dialog}
-   Paste-from-clipboard Dialog.
-
-\begin{figure}[H]
-   \centering 
-   \includegraphics[scale=1.0]{effects-panel/system-effects-P-clipboard.jpg}
-   \caption{Effects / Paste From Clipboard}
-   \label{fig:effects_paste_from_clipboard}
-\end{figure}
-
-   \itempar{Effects Panel}{effects!panel}
-   Effects Panel.
-   This area is filled by the controls for the selected effect.
-
-   \itempar{Insertion Effects Tab}{effects!insertion tab}
-   Insertion Effects Tab.
-   The items in this tab are described below.
-   in the \ref{subsec:effects_insertion}
-   sub-section.
-
-   \itempar{Reports}{effects!reports}
-   Effects Reports.
-
-\begin{figure}[H]
-   \centering 
-   \includegraphics[scale=1.0]{effects-panel/reports.jpg}
-   \caption{Effects / Reports}
-   \label{fig:effects_reports}
-\end{figure}
-
-\subsection{Effects / Insertion}
-\label{subsec:effects_insertion}
-
-   The insertion effects apply to one part or to master out. One may use more
-   than one insertion effect for one part or master out. If one does so the
-   effects with smaller indexes will be applied first (eg. first insertion
-   effect no.0, than no.1, ...). If the part selected for insertion
-   effect is "-1" then the effect will be disabled; if the part is "-2" the
-   effect will be applied to Master Out. 
-
-\begin{figure}[H]
-   \centering 
-   \includegraphics[scale=1.0]{effects-panel/insertion-effects.jpg}
-   \caption{Insertion Effects Dialog}
-   \label{fig:insertion_effects_dialog}
-\end{figure}
-
-\begin{figure}[H]
-   \centering 
-   \includegraphics[scale=1.0]{effects-panel/insertion-effects-to-part.jpg}
-   \caption{Insertion Effects To Part}
-   \label{fig:insertion_effects_to_part}
-\end{figure}
+% ----------------------------------------------------------
 
 \subsection{Effects / None}
 \label{subsec:effects_edit_none}
@@ -306,7 +310,10 @@
    \label{fig:effects_edit_none}
 \end{figure}
 
-% ----------------------------------------------------------
+   This dialog form may be obsolete with the latest \textsl{Yoshimi}.
+   It was captured around April of 2015.
+   We have a lot of others in the same style that may need to be recaptured
+   for use in new versions of the figures.
 
 \subsection{Effects / DynFilter}
 \label{subsec:effects_edit_dynfilter}
