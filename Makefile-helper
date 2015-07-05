@@ -1,0 +1,23 @@
+#!/bin/bash
+
+MKERROR="no"
+
+if [ "$1" == "" ] ; then
+   pushd tex
+   make
+   if [ $? != 0 ] ; then
+      MKERROR="yes"
+   fi
+   popd
+   if [ "$MKERROR" == "no" ] ; then
+      cp tex/*.pdf pdf
+   fi
+elif [ "$1" == "clean" ] ; then
+   pushd tex
+   make clean
+   popd
+fi
+
+#******************************************************************************
+# vim: ts=3 sw=3 noet ft=sh
+#------------------------------------------------------------------------------
