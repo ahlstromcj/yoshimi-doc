@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-07
-% \update      2015-07-02
+% \update      2015-07-04
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -65,9 +65,9 @@
       \item \textbf{Close}
    \end{enumber}
 
-This complex dialog is best described section by section.
-Many of the sub-sections are stock sub-panels described elsewhere
-in this document.
+   This complex dialog is best described section by section.
+   Many of the sub-sections are stock sub-panels described elsewhere
+   in this document.
 
 \subsection{ADDsynth / AMPLITUDE}
 \label{subsec:addsynth_amplitude}
@@ -80,12 +80,14 @@ in this document.
       \item \textbf{Reset (panning)} (red button)
       \item \textbf{Amplitude Env}
          The Amplitude Env panel is described in detail in
-         section~\ref{subsubsec:amplitude_envelope_subpanel} on
-         page~\pageref{subsubsec:amplitude_envelope_subpanel}.
+         \sectionref{subsubsec:amplitude_envelope_subpanel}.
+%        section~\ref{subsubsec:amplitude_envelope_subpanel} on
+%        page~\pageref{subsubsec:amplitude_envelope_subpanel}.
       \item \textbf{Amplitude LFO}
          The Amplitude LFO panel is described in detail in
-         section~\ref{subsubsec:lfo_user_interface_panels} on
-         page~\pageref{subsubsec:lfo_user_interface_panels}.
+         \sectionref{subsubsec:lfo_user_interface_panels}.
+%        section~\ref{subsubsec:lfo_user_interface_panels} on
+%        page~\pageref{subsubsec:lfo_user_interface_panels}.
       \item \textbf{Stereo}
       \item \textbf{Rnd Grp}
       \item \textbf{P.Str.}
@@ -94,12 +96,17 @@ in this document.
       \item \textbf{P.Vel.}
    \end{enumber}
 
+   Note the two sub-panels, mentioned above, that are described elsewhere.
+   They will not be mentioned below.
+
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{Volume}{addsynth!volume}
    ADDsynth Volume.
 
    Values: \texttt{1 to 127, 64*}
+
+   Sets the overall/relative volume of the instrument.
 
    \itempar{Vel Sens}{addsynth!vel sens}
    ADDsynth Velocity Sensing function.
@@ -129,12 +136,15 @@ in this document.
 
    \itempar{Rand}{addsynth!random pan}
    ADDsynth Random Panning Indicator.
-   A red filling provides an indicator for the activation of random panning
-   in this control.
+   A red fill-in color provides an indicator for the activation of random
+   panning in this control.
 
    \itempar{Reset (panning)}{addsynth!reset pan}
    ADDsynth Reset Panning (red button).
-   Clicking this button changes the panning value to 64 (centered).
+   Clicking this red button changes the panning value to 64 (centered).
+
+   Next, we skip the \textbf{Amplitude Env} and \textbf{Amplitude LFO}
+   panels, which are described elsewhere, as noted above.
 
    \itempar{Stereo}{addsynth!Stereo}
    ADDsynth Stereo.
@@ -144,16 +154,15 @@ in this document.
    Stereo can be enabled.
    When disabled, all the voices will also have panning disabled.
 
-   TODO:  We don't see this setting in the dialog.  Where has it moved? Is
-   it still useful?
-
    \itempar{Rnd Grp}{addsynth!group}
-   ADDsynth Random Group?
+   ADDsynth Random Group.
 
    Values: \texttt{Off*, On}
 
    How the harmonic amplitude is applied to voices that use the same
    oscillator.
+
+   TODO:  Get a more detailed explanation of what this setting means.
 
    \itempar{P.Str.}{addsynth!punch strength}
    ADDsynth Punch Strength.
@@ -164,7 +173,7 @@ in this document.
    the output at the start of the note, with its length determined by the
    punch time and stretch and the amplitude being determined by the punch
    strength and velocity sensing. The \textbf{relBW}
-   control in the frequency pane is
+   control in the frequency panel is
    effectively a multiplier for detuning all voices within an ADnote.
 
    \itempar{P.t}{addsynth!punch time}
@@ -179,16 +188,23 @@ in this document.
 
    Values: \texttt{0 to 127, 64*}
 
-   Sets the punch effect stretch according to frequency. On lower notes,
-   stretch makes the punch effect last longer. 
+   Sets the punch effect stretch according to frequency. On lower-frequency
+   notes, punch stretch makes the punch effect last longer. 
 
    \itempar{P.Vel.}{addsynth!punch vel sens}
    ADDsynth Punch Velocity Sensing.
 
    Values: \texttt{0 to 127, 72*}
 
+   The higher this value, the higher the effect of velocity on the punch of
+   the note.
+
 \subsection{ADDsynth / FILTER}
 \label{subsec:addsynth_filter}
+
+   The ADDsynth FILTER block consists solely of sub-panels
+   described in detail in the sections noted below.  The
+   sub-panels of the FILTER section are:
 
    \begin{enumber}
       \item \textbf{Filter Params}
@@ -220,16 +236,20 @@ in this document.
       \item \textbf{FREQUENCY slider}
       \item \textbf{Octave}
       \item \textbf{RelBW}
-      \item \textbf{Frequency Env}
+      \item \textbf{Frequency Env}.
+         A stock sub-panel described in
+         \sectionref{subsubsec:envelope_settings_for_frequency}.
       \item \textbf{Frequency LFO}
+         A stock sub-panel described in
+         \sectionref{subsubsec:frequency_lfo_sub_panel}.
       \item \textbf{Detune Type}
       \item \textbf{Coarse det.}
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
-   \itempar{Detune}{addsynth!detune}
-   ADDsynth Detune.
+   \itempar{Detune}{addsynth!detune value}
+   ADDsynth Detune Value.
    This display box shows the value of the detune as selected by the
    frequency slider described below.
 
@@ -243,7 +263,7 @@ in this document.
    Values: \texttt{-35.00 to 35.00, 0*}
 
    \itempar{FREQUENCY slider}{addsynth!freq slider}
-   ADDsynth Fine Detune (cents), a slider.
+   ADDsynth Fine Detune (cents), a slider control.
 
    Values: \texttt{-35.00 to 35.00}
 
@@ -302,12 +322,19 @@ in this document.
 \subsection{ADDsynth / Voice Parameters}
 \label{subsec:addsynth_voice_parameters}
 
+   Each \textsl{Yoshimi} ADDsynth instrument consists of up to 8 voices.
+   This dialog provides a way to define each of the 8 voices in great
+   detail.
+
 \begin{figure}[H]
    \centering 
    \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/ADDsynth-voice-parameters.jpg}
    \caption{ADDsynth Voice Parameters Dialog}
    \label{fig:addsynth_voice_parameters_dialog}
 \end{figure}
+
+   This dialog consists of a few extra settings, plus a number of
+   stock dialog sections.
 
    \begin{enumber}
       \item \textbf{Voice Number}
@@ -323,7 +350,7 @@ in this document.
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{Voice Number}{voice!number}
-   Voice Number.
+   ADDsynth Voice Number.
 
    Values: \texttt{1* to 8}
 
@@ -331,31 +358,34 @@ in this document.
    in this dialog.  Each \textsl{Yoshimi} part/instrument can consist of up
    to eight voices.
 
+   The voice being worked on can be selected using the
+   \textbf{Current Voice} selector.
+
    \itempar{On}{voice!on/off}
-   Voice On/Off.
+   ADDsynth Voice On/Off.
 
    Values: \texttt{Off, On}
 
    Enables this voice in the part/instrument.
 
    \itempar{Delay}{voice!delay}
-   Voice Delay.
+   ADDsynth Voice Delay.
 
    Values: \texttt{0* to 127}
 
-TODO: We still need to determine what the units of the delay are.
+   TODO: We still need to determine what the units of the delay are.
 
    \textbf{Bug:}
-   \index{bugs!ADDsynth voice delay}
+   \index{bugs!ADDsynth voice delay tooltip}
    The tooltip for this setting says "Volume".
 
    \itempar{R.}{voice!resonance}
-   Voice Resonance On/Off.
+   ADDsynth Voice Resonance On/Off.
 
    Values: \texttt{Off, On*}
 
-   It is not clear what effect this has, as there seems to be no way to edit
-   "resonance" in this dialog.
+   TODO: It is not clear what effect this has, as there seems to be no way
+   to edit "resonance" in this dialog.
 
    The rest of the GUI elements
    (AMPLITUDE, FILTER, MODULATOR, FREQUENCY, and Voice Oscillator)
@@ -381,44 +411,51 @@ TODO: We still need to determine what the units of the delay are.
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{Minus}{voice par amp!invert vol control}
-   Invert volume control action.
+   ADDsynth Amplitude Minus.
 
    Values: \texttt{Off*, On}
 
-   Enable negative values for the volume control of the voice.
+   This setting enables the inversion of the volume control action.
+   It enables negative values for the volume control of the voice.
 
    \itempar{Volume}{voice par amp!volume}
-   Volume.
+   ADDsynth Voice Volume.
 
    Values: \texttt{0 to 127, 90?}
 
-   Sets the volume of this voice in the part/instrument.
+   Sets the (relative) volume of this voice in the part/instrument.
 
    \itempar{Vel Sens}{voice par amp!vel sens}
-   Velocity-sensing function - rightmost/max disables.
+   ADDsynth Voice velocity-sensing function; setting to rightmost/max
+   disables this function.
 
    Values: \texttt{0 to 127*}
 
    \itempar{Pan}{voice par amp!pan}
-   Voice panning - leftmost/0 gives random panning.
+   ADDsynth Voice panning; setting to leftmost/0 gives random panning.
 
    Values: \texttt{0 to 127, 64*}
 
    \itempar{Pan randomness indicator}{voice par amp!random pan}
-   Voice random panning On/Off.
+   ADDsynth Voice random panning On/Off.
+   Fills in red to indicate that random panning is in force.
 
    \itempar{Pan reset (red button)}{voice par amp!center pan}
-   Center panning.
+   ADDsynth Center Panning.
+
+   Clicking this small red button resets the panning to center.
 
    \itempar{Amplitude Env, Stock + Enable}{voice par amp!amp env}
-   Amplitude Envelope Sub-panel.
-   See
-   \sectionref{subsubsec:amplitude_envelope_subpanel}.
+   ADDsynth Amplitude Envelope Sub-panel.
+   See \sectionref{subsubsec:amplitude_envelope_subpanel}.
+   Additionally, the \textbf{Enable} checkbox allows the enabling of this
+   component.
 
    \itempar{Amplitude LFO, Stock + Enable}{voice par amp!amp lfo}
-   Amplitude LFO Sub-panel.
-   See
-   \sectionref{subsubsec:lfo_user_interface_panels}.
+   ADDsynth Amplitude LFO Sub-panel.
+   See \sectionref{subsubsec:lfo_user_interface_panels}.
+   Additionally, the \textbf{Enable} checkbox allows the enabling of this
+   component.
 
 \subsubsection{ADDsynth / Voice Parameters / FILTER}
 \label{subsubsec:addsynth_voice_parameters_filter}
@@ -437,12 +474,14 @@ TODO: We still need to determine what the units of the delay are.
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{Enable}{voice par filter!enable}
-   Enable Filter.
+   ADDsynth Voice Enable Filter.
 
    Values: \texttt{Off*, On}
 
+   This value enables the whole FILTER dialog section.
+
    \itempar{Bypass Global F.}{voice par filter!bypass}
-   Bypass Global Filter.
+   ADDsynth Voice Bypass Global Filter.
 
    Values: \texttt{Off*, On}
 
@@ -450,16 +489,13 @@ TODO: We still need to determine what the units of the delay are.
    TODO:  Make sure there is a discussion of the global filter.
 
    \itempar{Filter Params, Stock}{voice par filter!parameters}
-   See
-   \sectionref{subsubsec:filter_parameters_user_interface}.
+   See \sectionref{subsubsec:filter_parameters_user_interface}.
 
    \itempar{Filter Env, Stock + Enable}{voice par filter!env}
-   See
-   \sectionref{subsubsec:envelope_settings_for_filter}.
+   See \sectionref{subsubsec:envelope_settings_for_filter}.
 
    \itempar{Filter LFO, Stock + Enable}{voice par filter!lfo}
-   See
-   \sectionref{subsubsec:filter_lfo_sub_panel}
+   See \sectionref{subsubsec:filter_lfo_sub_panel}.
 
 \subsubsection{ADDsynth / Voice Parameters / MODULATOR}
 \label{subsubsec:addsynth_voice_parameters_modulator}
@@ -475,7 +511,7 @@ TODO: We still need to determine what the units of the delay are.
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{Type:}{modulator!type}
-   Modulator Type.
+   ADDsynth Modulator Type.
 
    Values: \texttt{OFF(, MORPH, RING, PM, FM, PITCH}
 
@@ -490,30 +526,45 @@ TODO: We still need to determine what the units of the delay are.
       \item \textbf{OFF}.
       This setting turns off the modulator.
       \item \textbf{MORPH}
-      The morph modulator works by...
+      The morph modulator works by combining the output of two oscillators
+      into one, with the amplitude envelope translating between one waveform
+      and the other.
       \item \textbf{RING}
       The ring modulator is useful for making bell-like sounds and some weird
       effects.  The ring modulator works by multiplying two waveforms
-      together.  The ins-and-outs of the ring modulator are explained in
-      detail in paragraph~\ref{paragraph:tip_using_the_ring_modulator}.
+      together, producing a signal that is the sum and difference of the
+      frequencies present in the waveforms.  The ins-and-outs of the ring
+      modulator are explained in detail in
+      paragraph~\ref{paragraph:tip_using_the_ring_modulator}.
       \item \textbf{PM}
-      The PM (pulse modulation?) modulator works by...
+      The PM (pulse modulation) modulator works by using a modulator
+      envelope to change the pulse width of a pulse waveform.
+      Generally, set \textbf{F.Damp} to zero, so that the modulation amount
+      doesn't depend on the note number.
       \item \textbf{FM}
-      The (frequency modulation) morph modulator works by...
+      The (frequency modulation) morph modulator works by modulator the
+      frequency.  Examples can be heard in the "Ethereal" and "Steel Wire"
+      instruments.
       \item \textbf{PITCH}
       The pitch modulator works by...
+      we're not sure... is this pitch shifting?
    \end{enumber}
 
    \itempar{External Mod.}{modulator!external}
+   External Oscillator.
    External Modulator.
 
-   Values: \texttt{OFF*, Other voices????}
+   Values: \texttt{OFF*, Other voice numbers?}
 
-   MAKE SURE THIS IS RIGHT!
+   TODO: Make sure this description is right!
 
-   External Oscillator.
-   Use the oscillator of another voice. -1 is for the
-   \textsl{internal} oscillator.
+   \textbf{External Oscillator}.
+   This feature allows one of the voices (of the up to 8 allowed in a single
+   ADDsynth instrument) to be used as a modulator or external oscillator for
+   another voice in the instrument.
+   This option specifies to use the oscillator of another voice, or
+   -1 for the \textsl{internal} oscillator.
+
    The parameters must be lower than the voice index, One cannot use the
    oscillator from a voice with a bigger index (one can't use the oscillator
    of voice 8 for voice 4). This is very useful because, if one uses
@@ -521,17 +572,17 @@ TODO: We still need to determine what the units of the delay are.
    oscillator and select other voices to use this; if one changes a parameter
    of the oscillator, all voices using this oscillator will be affected.
 
-   External Modulator.
+   \textbf{External Modulator}.
    Use another voice as a modulator instead of the modulator of the internal
    voice. One can make a modulation "stack". The modulator of the voice is
    disabled. 
 
-   External. Uses the oscillator  of the modulator of another voice. It
+   External. Uses the oscillator as the modulator of another voice. It
    behaves like "Ext. Oscil" except that it works on the
    \textsl{modulator}. Please
    notice the difference between this parameter and \textbf{Ext. Mod}. 
 
-   SEE BELOW!
+   See below.
 
    \itempar{Mod AMPLITUDE}{modulator!amplitude}
    Modulator Amplitude.
@@ -575,7 +626,11 @@ TODO: We still need to determine what the units of the delay are.
    \end{enumber}
 
    \itempar{Mod Oscillator}{modulator!oscillator}
-   Modulator Oscillator.  (Name mispelled in the application.)
+   Modulator Oscillator.
+
+   \textbf{Bug:}
+   \index{bugs!mod oscillator name mispelled}
+   The word "oscillator" is mispelled in the application.
 
    \begin{enumber}
       \item \textbf{Change}
@@ -592,9 +647,9 @@ TODO: We still need to determine what the units of the delay are.
    \end{enumber}
 
    As far as we can tell, one has the choice between Internal, which in this
-   case means a completely independent modulator oscilator per voice (extra
+   case means a completely independent modulator oscillator per voice (extra
    change button), or External, which refers to the Modulation
-   oscilators one has already defined for the voices with a lower index.
+   oscillators one has already defined for the voices with a lower index.
    This means one can make one modulation oscilator for voice 1, and reuse it
    in voice 2 and 3.  This is the same system as is used for the normal
    oscillators.

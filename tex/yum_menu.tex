@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2015-07-01
+% \update      2015-07-04
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -371,7 +371,7 @@
    This button doesn't seem to work, in that the changes seem to remain
    in place when the dialog is reopened.
    Please watch for this effect in all such dialogs; we're indexing such
-   defects under the topic of "bugs".
+   defects under the topic of "Bug" or "bugs".
 
 \paragraph{Menu / Yoshimi / Settings / Jack}
 \label{paragraph:menu_yoshimi_settings_jack}
@@ -454,7 +454,7 @@
    \itempar{Period Size}{ALSA!period size}
    Period Size.
    Buffer Size.
-   Sets the granularity of the sound. The Default is 256 (1024?)
+   Sets the granularity of the sound. The Default is 256 (TODO: 1024?)
    samples. To find out the internal delay in milliseconds, divide the
    Period Size value by the Sample Rate and multiply the result by 1000
    (eg.: 256/44100*1000=5.8 ms).
@@ -474,10 +474,8 @@
 \paragraph{Menu / Yoshimi / Settings / CCs}
 \label{paragraph:menu_yoshimi_settings_ccs}
 
-   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
-
-   This dialog,
-   shown in \figureref{fig:yoshimi_settings_cc},
+   This dialog, shown in
+   \figureref{fig:yoshimi_settings_cc},
    presents MIDI "continuous controller" (CC) preferences.
 
 \begin{figure}[H]
@@ -621,8 +619,8 @@
 \subsubsection{Menu / Instrument / Clear Instrument...}
 \label{subsubsec:menu_instrument_clear}
 
-This menu entry brings up a prompt to clear the parameters of the
-instrument.
+   This menu entry brings up a prompt to clear the parameters of the
+   instrument.
 
 \begin{figure}[H]
    \centering 
@@ -632,7 +630,7 @@ instrument.
 \end{figure}
 
    \textbf{Bug:}
-   \index{bugs!need to clearn instrument?}
+   \index{bugs!need to clear instrument?}
    Sometime it seems that one needs to clear the instrument if one is
    loading a new instrument to test it out, because some settings seem
    to remain from the previous instrument.  Don't quote us on that.
@@ -640,7 +638,7 @@ instrument.
 \subsubsection{Menu / Instrument / Open Instrument...}
 \label{subsubsec:menu_instrument_open}
 
-This menu entry brings up a prompt to open a new instrument.
+   This menu entry brings up a prompt to open a new instrument.
 
 \begin{figure}[H]
    \centering 
@@ -649,7 +647,7 @@ This menu entry brings up a prompt to open a new instrument.
    \label{fig:open_instrument_dialog}
 \end{figure}
 
-This dialog has a number of user-interface elements to note.
+   This dialog has a number of user-interface elements to note.
 
    \begin{enumber}
       \item \textbf{Show}
@@ -829,31 +827,34 @@ This dialog has a number of user-interface elements to note.
 
    A bank has 3 modes in \textsl{ZynAddSubFX}: 
 
-      \begin{enumber}
-         \item \textbf{READ}.
-            The instrument is loaded from the bank to the current part.
-         \item \textbf{WRITE}.
-            The instrument is written to the bank.
-         \item \textbf{CLEAR}.
-            The instrument from the bank is cleared (removed).
-      \end{enumber}
+   \begin{enumber}
+      \item \textbf{READ}.
+         The instrument is loaded from the bank to the current part.
+      \item \textbf{WRITE}.
+         The instrument is written to the bank.
+      \item \textbf{CLEAR}.
+         The instrument from the bank is cleared (removed).
+   \end{enumber}
 
-   Pressing left mouse button on a slot reads/writes/clears the instrument
-   from/to it (according to the current mode).
+   Pressing the left mouse button on a slot reads/writes/clears the
+   instrument from/to it (according to the current mode).
    
-   Pressing right mouse button on a slot changes its name
+   Pressing the right mouse button on a slot changes its name.
 
    The setup in \textsl{Yoshimi} is a bit different than in
    \textsl{ZynAddSubFX}.
    Observe \figureref{fig:show_ca_bank}.
    It shows a bank loaded from a directory containing customs
    banks from one of the authors of this document.
+   Note that this dialog has been modified in recent versions of
+   \textsl{Yoshimi}.
 
 % This figure should be updated for Yoshimi 1.3.5:
+%  \includegraphics[scale=0.75]{menu/Instrument/show-CA-bank.jpg}
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=0.75]{menu/Instrument/show-CA-bank.jpg}
+   \includegraphics[scale=0.75]{1.3.5/show-CA-banks.jpg}
    \caption[Show CA's Instruments]{Show My Instruments}
    \label{fig:show_ca_bank}
 \end{figure}
@@ -869,10 +870,10 @@ This dialog has a number of user-interface elements to note.
 
    \begin{enumber}
       \item \textbf{Bank Name}
-      \item \textbf{Refresh banks}
+      \item \textbf{Refresh banks} (OBSOLETE)
       \item \textbf{Roots}
       \item \textbf{Banks}
-      \item \textbf{New Bank}
+      \item \textbf{New Bank} (OBSOLETE)
       \item \textbf{Instrument and Bank Matrix}
       \item \textbf{SELECT}
       \item \textbf{RENAME}
@@ -899,9 +900,9 @@ This dialog has a number of user-interface elements to note.
    \label{fig:bank_list}
 \end{figure}
 
-And here is the directory listing associated with it, in the order produced
-by the UNIX/Linux "ls -1" (list single-column) command (shown in two columns
-to save space):
+   And here is the directory listing associated with it, in the order
+   produced by the UNIX/Linux "ls -1" (list single-column) command (shown in
+   two columns to save space):
 
    \begin{verbatim}
       Alex_J                        Noises
@@ -931,13 +932,16 @@ to save space):
       mmxgn Collection
    \end{verbatim}
 
-   We're not yet sure where the numbers in the dropdown list come from.
-
+   We're not yet sure where the numbers in the dropdown list come from; they
+   must be automatically generated.
    TODO:  Find out!
+
+   Selecting one of the items in this dropdown list selects the bank and
+   loads it into the Banks dialog.
 
    \itempar{Refresh banks}{instruments!refresh banks}
    Instruments Refresh Banks.
-   This item may not be present in the newest \textsl{yoshimi}.
+   This item is \textsl{not present} in the newest \textsl{yoshimi}.
 
    \itempar{Roots}{instruments!roots}
    Instruments Roots.
@@ -960,6 +964,8 @@ to save space):
 
    \itempar{New Bank}{instruments!new bank}
    Instruments New Bank.
+   This item is \textsl{not present} in the newest \textsl{yoshimi}.
+   The \textbf{ADD} button can be used instead.
 
    \itempar{Instrument and Bank Matrix}{instruments!bank matrix}
    Instruments Bank Matrix.
@@ -990,9 +996,7 @@ to save space):
 
    \itempar{SAVE}{instruments!SAVE}
    Instruments SAVE.
-
-   TODO: Does this appear in any of the most recent bank dialogs in
-   1.3.5+ Yoshimi, or is it an older feature?
+   Saves the instruments as currently configured.
 
    \itempar{DELETE}{instruments!DELETE}
    Instruments DELETE.
@@ -1008,7 +1012,7 @@ to save space):
    \itempar{Show PADsynth status}{instruments!PADsynth status}
    Instruments Show PADsynth Status.
 
-   TODO:  Get each dialog flaovr properly distinguished.
+   TODO:  Describe/summarize  each dialog flavor properly distinguished.
 
    \itempar{Close}{instruments!Close}
    Instruments Close Window.
@@ -1034,22 +1038,6 @@ to save space):
    user-interface elements as the instruments dialog shown in
    \figureref{fig:show_ca_bank}.
 
-   TODO:  Make a reference to
-   http://sourceforge.net/p/yoshimi/mailman/message/33200765/
-   and
-   http://sourceforge.net/p/yoshimi/mailman/message/33175271/
-   and
-   http://sourceforge.net/p/yoshimi/mailman/yoshimi-devel/
-   and
-   http://sourceforge.net/p/yoshimi/mailman/yoshimi-user/.
-
-   Also note that the alternate location for the source-code is
-   https://github.com/abrolag/yoshimi now.
-
-% A REPEAT!!!
-% A REPEAT!!!
-% A REPEAT!!!
-
 \begin{figure}[H]
    \centering 
    \includegraphics[scale=0.75]{menu/Instrument/show-banks-directories.jpg}
@@ -1073,6 +1061,8 @@ to save space):
       \item \textbf{SWAP}
       \item \textbf{Close}
    \end{enumber}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{Roots}{banks!roots}
    Banks Roots.
@@ -1125,10 +1115,6 @@ to save space):
    Banks SWAP.
    Selecting this button, then selecting one bank, and then another,
    swaps the numbering and postion of the selected banks.
-
-   HERE HERE HERE
-   HERE HERE HERE
-   HERE HERE HERE
 
 \subsubsection{Menu / Instrument / Show Root Paths...}
 \label{subsubsec:menu_instrument_show_root_paths}
@@ -1191,14 +1177,12 @@ to save space):
 
    Values: \texttt{0* to 127}
 
-TODO: We need to know more about how this ID can be used.
+   TODO: We need to know more about how this ID can be used.
    Is it a way to make the path selectable via an extended MIDI control, or
    some other automation method?
 
    \itempar{Save and Close}{Root Paths!save and close}
    Show Root Paths Save and Close.
-
-      Figure: menu/Instrument/nothing-to-save.jpg
 
    \itempar{Close Unsaved Root Paths}{Root Paths!close unsaved}
    Show Root Paths Close Unsaved.
@@ -1239,6 +1223,9 @@ TODO: We need to know more about how this ID can be used.
 \subsubsection{Menu / Parameters / Recent}
 \label{subsubsec:menu_parameters_recent}
 
+   This menu entry provides access to parameter settings files that have
+   been recently used.
+
 \begin{figure}[H]
    \centering 
    \includegraphics[scale=1.0]{menu/Parameters/recent-parameters.jpg}
@@ -1267,6 +1254,9 @@ TODO: We need to know more about how this ID can be used.
 
 \subsubsection{Menu / Parameters / Save}
 \label{subsubsec:menu_parameters_save}
+
+   This menu entry provides a way to save parameter settings in
+   a file.
 
 \begin{figure}[H]
    \centering 
@@ -1362,15 +1352,15 @@ TODO: We need to know more about how this ID can be used.
 
    This item controls the micro-tonal capabilities of \textsl{Yoshimi} and
    some other settings related to tuning. 
-   The last entry represents one octave. All other notes are deduced from
-   these settings.
+   The last entry in the tunings list represents one octave.
+   All other notes are deduced from these settings.
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{Microtonal}{Enable Microtonal}
    Enable Microtonal Scales.
-   When disabled the synthesizer will use Equal Temperament; 12 notes/octave.
-   Otherwise, one can input any scale one desires.
+   When disabled, the synthesizer will use equal-temperament, 12 notes per
+   octave.  Otherwise, one can input any scale one desires.
 
    Values: \texttt{Off*, On}
 
@@ -1381,24 +1371,28 @@ TODO: We need to know more about how this ID can be used.
    Values: \texttt{440*}
 
    \itempar{"A" Note}{"A" MIDI}
-   MIDI Value of the "A" Note.
+   Sets the MIDI Value of the "A" Note.
 
    Values: \texttt{0 to 127, 69*}
 
    \itempar{Invert Keys}{keys}
+   Allows the keys to be inverted, so that higher-valued keys play lower
+   notes.
 
    Values: \texttt{Off*, On}
 
-   \itempar{Center (for Invert Keys)}{center}
+   \itempar{Center}{center}
    Center for Inverted Keys.
-   This is the center where the notes frequencies are turned upside-down.
+   This is the center where the notes frequencies are turned upside-down if
+   \textbf{Invert keys} is enabled.
    If the center is 60, the note 59 will become 61, 58 will become 62, 61
-   will become 59 and so on.
+   will become 59, and so on.
 
    Values: \texttt{0 to 127, 60*}
 
    \itempar{Name}{mapping}
    Name of the Mapping.
+   For example, the default mapping is called "12tET".
 
    \itempar{Shift}{key shift}
    Key Shift.
@@ -1410,6 +1404,7 @@ TODO: We need to know more about how this ID can be used.
    \itempar{Comment}{comment}
    Comment for Key Mapping.
    Provides a comment or a description of the scale.
+   By default, this is "Equal Temperament 12 notes per octave.
 
    \itempar{Tunings}{tuning}
    Tunings.
@@ -1423,10 +1418,14 @@ TODO: We need to know more about how this ID can be used.
       perfect fifth, "5734/6561".  "2/1" is equal to "1200.0" cents.
    \end{enumber}
 
+   The default is a series of values:
+   \texttt{0100.0, 0200.0, ..., 1100.0, 2/1}.
+
    \itempar{Retune}{retune}
    Retune.
+   TODO:  What does this button do?
 
-   \itempar{Notes per Octave}{nts./oct.}
+   \itempar{nts./oct.}{Notes per Octave}
    Notes Per Octave.
 
    Values: \texttt{12*} (range not yet known)
@@ -1450,9 +1449,9 @@ TODO: We need to know more about how this ID can be used.
    \label{fig:yoshimi_menu_scales_import_file}
 \end{figure}
 
-   \itempar{Import .kbm file}{kbm file}
-
-   TODO: Figure: menu/Scales/import-kbm-file.jpg
+   \itempar{Import .scl file}{scl file}
+   This item is a standard file dialog for reading
+   a \texttt{*.scl} file.
 
 \begin{figure}[H]
    \centering 
@@ -1461,24 +1460,21 @@ TODO: We need to know more about how this ID can be used.
    \label{fig:yoshimi_menu_scales_import_keyboard_map}
 \end{figure}
 
+   \itempar{Import .kbm file}{kbm file}
+   This item is a standard file dialog for reading
+   a \texttt{*.kbm} file.
+
    \itempar{Close, Scales Dialog}{close scales}
+
+   The items related to the \textbf{Keyboard Mapping} are discussed
+   separately in the next section.
 
 \paragraph{Keyboard Mapping}
 \label{paragraph:menu_scales_keyboard_mapping}
 
    One can set the MIDI keyboard mapping to scale-degree mapping.
    This is used if the scale has more or less than 12 notes/octave.
-
-   \begin{itemize}
-      \item One can enable the mapping by pressing the "ON" check-box.
-      \item The MIDI keys below "First note" and above "Last note" are ignored.
-      \item Middle note represents the note where the formal octave starts.
-      \item Input field - enter the mappings here.
-      \item Numbers represent the order(degree) entered on Tunings Input
-         (first is 0). This must be less than the number of notes/octave. If
-         one doesn't want a key to be mapped, one enters "x" instead of a
-         number.
-   \end{itemize}
+   One can enable the mapping by pressing the \texfbf{ON} check-box.
 
    \begin{enumber}
       \item \textbf{ON}
@@ -1497,26 +1493,36 @@ TODO: We need to know more about how this ID can be used.
 
    \itempar{Scales!First Note}{first note}
    First MIDI Note Number.
+   Keys below this value are ignored.
 
    Values: \texttt{0* to 127}
 
    \itempar{Scales!Last Note}{last note}
    Last MIDI Note Number.
+   Keys above this value are ignored.
 
    Values: \texttt{0 to 127*}
 
    \itempar{Scales!Middle Note}{middle note}
-   Middle note where scale degree 0 is mapped to.
-   Note the misspelling of 
-   "middle".
+   Middle note where scale-degree 0 is mapped to;
+   the middle note represents the note where the formal octave starts.
+   Note the misspelling of "middle".
 
    Values: \texttt{0 to 127*}
 
    \itempar{Scales!Map}{map}
+   Scales map.  This is the input field where the mappings are entered.
+   The numbers represent the order (degree) entered on
+   \textbf{Tunings Input} field, with the first value being 0.
+   This number must be less than the number of notes per octave (since
+   the values start at 0).
+   If one doesn't want a key to be mapped, one enters an "x" instead of a
+   number.
 
    Values: \texttt{0 to 11}
 
    \itempar{Scales!Map Size}{map size}
+   Provides the size of the scale-map.
 
    Values: \texttt{12}
 
@@ -1526,7 +1532,7 @@ TODO: We need to know more about how this ID can be used.
    \textsl{Yoshimi} state is saved in files with the extension
    \texttt{.state}.  These files are also XML files.
 
-TODO: What is the difference between "state" and "parameters"?
+   TODO: What is the difference between "state" and "parameters"?
    Which one is all-inclusive?  What items are saved in each?
 
    \begin{enumber}
@@ -1544,12 +1550,16 @@ TODO: What is the difference between "state" and "parameters"?
    \label{fig:yoshimi_menu_state_save}
 \end{figure}
 
+   This item is a standard \textsl{Yoshimi} file dialog.
+
 \begin{figure}[H]
    \centering 
    \includegraphics[scale=1.0]{menu/State/load-state-file.jpg}
    \caption{Yoshimi Menu, State Load}
    \label{fig:yoshimi_menu_state_load}
 \end{figure}
+
+   This item is a standard \textsl{Yoshimi} file dialog.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex
