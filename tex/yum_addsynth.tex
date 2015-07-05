@@ -159,6 +159,7 @@
    oscillator.
 
    TODO:  Get a more detailed explanation of what this setting means.
+   \index{todo!Rnd Grp}
 
    \itempar{P.Str.}{addsynth!punch strength}
    ADDsynth Punch Strength.
@@ -371,6 +372,7 @@
    Values: \texttt{0* to 127}
 
    TODO: We still need to determine what the units of the delay are.
+   \index{todo!voice delay units}
 
    \textbf{Bug:}
    \index{bugs!ADDsynth voice delay tooltip}
@@ -380,9 +382,6 @@
    ADDsynth Voice Resonance On/Off.
 
    Values: \texttt{Off, On*}
-
-   TODO: It is not clear what effect this has, as there seems to be no way
-   to edit "resonance" in this dialog.
 
    The rest of the GUI elements
    (AMPLITUDE, FILTER, MODULATOR, FREQUENCY, and Voice Oscillator)
@@ -484,6 +483,7 @@
 
    The voice signal bypasses the global filter.
    TODO:  Make sure there is a discussion of the global filter.
+   \index{todo!global filter}
 
    \itempar{Filter Params, Stock}{voice par filter!parameters}
    See \sectionref{subsubsec:filter_parameters_user_interface}.
@@ -532,7 +532,7 @@
       together, producing a signal that is the sum and difference of the
       frequencies present in the waveforms.  The ins-and-outs of the ring
       modulator are explained in detail in
-      paragraph~\ref{paragraph:tip_using_the_ring_modulator}.
+      paragraph~\ref{paragraph:tips_using_the_ring_modulator}.
       \item \textbf{PM}
       The PM (pulse modulation) modulator works by using a modulator
       envelope to change the pulse width of a pulse waveform.
@@ -552,8 +552,6 @@
    External Modulator.
 
    Values: \texttt{OFF*, Other voice numbers?}
-
-   TODO: Make sure this description is correct!
 
    \textbf{External Oscillator}.
    This feature allows one of the voices (of the up to 8 allowed in a single
@@ -655,9 +653,9 @@
    oscillators.
 
 \paragraph{Tip: Using the Ring Modulator}
-\label{paragraph:tip_using_the_ring_modulator}
-\index{tip!ring modulator}
-\index{tip!internal modulator}
+\label{paragraph:tips_using_the_ring_modulator}
+\index{tips!ring modulator}
+\index{tips!internal modulator}
 
    This section is derived from one of the short text files in the
    \textsl{Yoshimi} source-code bundle (\cite{yoshimi} or \cite{yoshimi2}).
@@ -751,6 +749,7 @@
    One can adjust this with the detune settings.
 
    TODO: What does "base frequency" mean here?
+   \index{todo!base frequency}
 
    \itempar{Eq.T.}{voice parameters!eq type}
    Equal Temperament?
@@ -789,6 +788,7 @@
    Values: \texttt{-64 to 63, 0*}
 
    TODO: Is this setting in units of semitones?
+   \index{todo!coarse detune units}
 
    \itempar{Frequency Env, Stock + Enable}{voice parameters!freq env}
    Frequency Envelope.
@@ -1018,9 +1018,14 @@
 
    \itempar{R.}{voice list!resonance}
    Resonance On/Off.
-   Enable/disable the resonance effect of a voice.
 
    Values: \texttt{Off, On*}
+
+   Enable/disable the resonance effect of a voice.
+   Note that the resonance is configured in by the Resonance dialog brought
+   up by the \textbf{Resonance} button at the bottom of the ADDsynth main
+   dialog.  The resonance dialog has its own Enable button, as well.
+   These seem to be independent settings.
 
    \itempar{Detune Value}{voice list!detune value}
    This read-only text-box shows the current value of detune as selected by
@@ -1130,6 +1135,7 @@
    Do not damp the first harmonic.
 
    TODO:  What does this mean, what affect does it have?
+   \index{todo!first harmonic}
 
    \itempar{InterpP}{resonance!interpolate}
    Interpolate the peaks.
@@ -1166,12 +1172,14 @@
    Smooth the graph.
 
    TODO:  What is the exact nature of this smoothing?
+   \index{todo!resonance smooth}
 
    \itempar{RND1}{resonance!randomize}
    Randomize the resonance function, 1.
    RND1, RND2, RND3 are used to create random resonance functions.
 
    TODO:  Why three buttons?
+   \index{todo!RND123}
 
    \itempar{RND2}{resonance!randomize}
    Randomize the resonance function, 2.

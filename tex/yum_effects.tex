@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-05
-% \update      2015-06-27
+% \update      2015-07-05
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -35,8 +35,9 @@
    the effect has no effect.
 
    The Effects panel is shown in
-   figure~\ref{fig:yoshimi_main_screen} on
-   page~\pageref{fig:yoshimi_main_screen}.
+   \figureref{fig:yoshimi_main_screen}.
+%  figure~\ref{fig:yoshimi_main_screen} on
+%  page~\pageref{fig:yoshimi_main_screen}.
 
    Note that these effects have been incorporated into a separate
    guitar effects project called Rakkarrak \cite{rakarrack}.
@@ -48,10 +49,123 @@
    as "source -\textless destination". eg. "0 -\textless 1" means how much of
    the system effect 0 is sent to system effect 1.
 
-   There is also a "part effects" window.
-   TODO: NEED A PICTURE AND EXPLANATION.
-   The part effects window has the same layout as System and Insertion
-   effects; it is now almost identical to Insertion effects.
+\subsection{Effects / Panel Types}
+\label{subsec:effects_paneltypes}
+
+   There are three variations of Effect sub-panels:
+
+   \begin{itemize}
+      \item System Effects sub-panel.
+      \item Insertion Effects sub-panel.
+      \item Part or Instrument Effects sub-panel.
+   \end{itemize}
+
+   The next sub-sections show these variations, using the DynFilter effect
+   as the subject effects panel.
+
+\subsubsection{Effects / Panel Types / System }
+\label{subsubsec:effects_paneltypes_system}
+
+   The first variation
+   appears when you enable an effect in the
+   \textbf{System Effects}
+   panel of the main \textsl{Yoshimi} dialog.  It contains the standard
+   controls for the given effect, plus the following interface items.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/system-effects-panel.png}
+   \caption{Sample System Effects Dialog}
+   \label{fig:sample_system_effects_dialog}
+\end{figure}
+   
+   \begin{enumber}
+      \item \textbf{Effect number}
+      \item \textbf{Effect selection}
+      \item \textbf{Effect Filter}
+      \item \textbf{C}
+      \item \textbf{P}
+   \end{enumber}
+
+\subsubsection{Effects / Panel Types / Insertion }
+\label{subsubsec:effects_paneltypes_insertion}
+
+   The second variation
+   appears when you enable an effect in the
+   \textbf{Insertion Effects}
+   panel of the main \textsl{Yoshimi} dialog.
+   It contains the standard
+   controls for the given effect, plus the following interface items.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/insertion-effects-panel.png}
+   \caption{Sample Insertions Effects Dialog}
+   \label{fig:sample_insertion_effects_dialog}
+\end{figure}
+
+   \begin{enumber}
+      \item \textbf{Effect number}
+      \item \textbf{Effect selection}
+      \item \textbf{To} (part-selection-dropdown.png)
+      \item \textbf{C}
+      \item \textbf{P}
+   \end{enumber}
+
+\subsubsection{Effects / Panel Types / Instrument }
+\label{subsubsec:effects_paneltypes_instrument}
+
+   There is also a "part" or "instrument" effects window which is accessed
+   by going to the main window, clicking the \textbf{Edit} button in the
+   bottom panel to open the edit dialog, and then clicking the
+   \textbf{Effects} button there.  The part effects window has almost the
+   same layout as System and Insertion effects; it is now almost identical
+   to Insertion effects.
+
+   It contains the standard controls for the given effect, plus the
+   following interface items.
+
+   \begin{enumber}
+      \item \textbf{Effect number}
+      \item \textbf{Effect selection}
+      \item \textbf{To} (part-selection-dropdown.png)
+      \item \textbf{C}
+      \item \textbf{P}
+      \item \textbf{Bypass}
+      \item \textbf{Close}
+   \end{enumber}
+
+   "To" values:
+
+   Values: \texttt{Master Out, Off, Part 1, Part 2, ..., Part 16}
+
+%  instruments-effects-panel.png (or, less nice part-window-effects.png)
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/instruments-effects-panel.png}
+   \caption{Sample Instrument Effects Dialog}
+   \label{fig:sample_instrument_effects_dialog}
+\end{figure}
+
+   Note the extra \textbf{Bypass} check-box, which presumably can be used to
+   bypass this effects box in a given part.
+
+%  FOURTH SUBSECTION?
+%
+%  There is a fourth type I have screen captures for, but I can't get
+%  to them now!  Are these now out-of-date screen captures?
+%  The ????? variation adds the following elements:
+%
+%  \begin{enumber}
+%     \item \textbf{FX No.}
+%     \item \textbf{bypass}
+%     \item \textbf{EffType}
+%     \item \textbf{Send To.}
+%     \item \textbf{C}
+%     \item \textbf{P}
+%     \item \textbf{Close}
+%  \end{enumber}
 
 \subsection{Effects / System}
 \label{subsec:effects_system}
@@ -77,7 +191,9 @@
       \item \textbf{Reports}
    \end{enumber}
 
-   TODO:  What about "Instrument Effects" mentioned in a version of the manual?
+   TODO: What about "Instrument Effects" mentioned in a version of the
+   manual?
+   \index{todo!instrument effects}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
@@ -104,9 +220,10 @@
 \end{figure}
 
    \itempar{Send to}{effects!send to}
-      Effects Send To.
+   Effects Send To.
 
-      TODO.
+   TODO:  Document how effects/send-to works.
+   \index{todo!send to}
 
 \begin{figure}[H]
    \centering 
@@ -240,17 +357,29 @@
 \subsubsection{Effects / DynFilter / User Interface}
 \label{subsubsec:effects_edit_dynfilter_ui}
 
+% This version is too simplistic and old:
+%
+% \begin{figure}[H]
+%    \centering 
+%    \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/dynfilter-parameters.jpg}
+%    \caption{DynFilter Parameters}
+%    \label{fig:effects_edit_dynfilter_parameters}
+% \end{figure}
+
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/dynfilter-parameters.jpg}
+   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-dynfilter.jpg}
    \caption{Effects Edit, DynFilter}
    \label{fig:effects_edit_dynfilter}
 \end{figure}
 
+   This figure shows the Part/Instrument variation of the DynFilter sub-panel.
+   The System/Insertion variation has the following elements.
+
    \begin{enumber}
       \item \textbf{Preset}
       \item \textbf{Filter}
-      \item \textbf{Vol}
+      \item \textbf{Vol} (system/insertion) or \textbf{D/W} (part/instrument)
       \item \textbf{Pan}
       \item \textbf{Freq}
       \item \textbf{Rnd}
@@ -264,39 +393,68 @@
 
    The 4 knobs in the middle (Freq, Rnd, LFO Type, St.df) control the LFO.
 
+   Let's start with the user-interface elements present in the
+   System/Insertion variation of this effect.
+
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{Preset}{dynfilter!preset}
-      DynFilter Preset.
+   DynFilter Preset.
 
-   TODO:  Need a capture of the dropdown
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/dynfilter-presets.png}
+   \caption{DynFilter Presets}
+   \label{fig:effects_dynfilter_presets}
+\end{figure}
 
-   Values: \texttt{WahWah, xxxxx, ... } TODO
+   Values: \texttt{WahWah, AutoWah, Sweep, VocalMorph1, VocalMorph2}
 
-   \itempar{Filter}{dynfilter!lfo filter}
-   DynFilter Filter.  TODO, probably need a screen capture as well.
-   This control is one that helps define the mix of the LFO and the
-   amplitude.  The filter button lets one choose the filter type.
+   \itempar{Filter}{dynfilter!filter}
+   DynFilter Filter.
+
+   This small button brings up Filter Params stock sub-panel item.
+   This stock user-interface item is shown and described in
+   \sectionref{subsubsec:filter_parameters_user_interface}.
 
    \itempar{Vol}{dynfilter!volume}
    DynFilter Volume.
 
+   Values: \textsl{0 to 127}
+
+   If the effect is used as a System effect, then this control appears.
+
+   \itempar{D/W}{dynfilter!dry/wet}
+   DynFilter Dry/Wet Setting.
+
+   Values: \textsl{0 to 127}
+
+   If the effect is used as an Insertion effect, then this control appears.
+
    \itempar{Pan}{dynfilter!pan}
    DynFilter Panning.
+
+   Values: \textsl{0 to 127}
+
    After the input signal has passed through the filter, Pan can apply
    panning.
 
    \itempar{Freq}{dynfilter!lfo freq}
    DynFilter LFO Frequency.
 
+   Values: \textsl{0 to 127}
+
    \itempar{Rnd}{dynfilter!lfo randomness}
    DynFilter LFO Randomness.
+
+   Values: \textsl{0 to 127}
 
    \itempar{LFO Type}{dynfilter!lfo type}
    DynFilter LFO Type.
 
    \itempar{St.df}{dynfilter!lfo stdf}
    DynFilter LFO ??????.  TODO
+   Left/right channel phase shift.
 
    \itempar{LfoD}{dynfilter!lfo depth}
    DynFilter LFO Depth.
@@ -1148,8 +1306,9 @@ This section details the value supported by the Phaser effect.
 
    The user-interface for the Reverb effect depends on whether it is used as a
    System effect or an Insertion effect.
-   In figure~\ref{fig:effects_edit_reverb} on
-   page~\pageref{fig:effects_edit_reverb},
+   Observr \figureref{fig:effects_edit_reverb}, where
+%  In figure~\ref{fig:effects_edit_reverb} on
+%  page~\pageref{fig:effects_edit_reverb},
    the Insertion mode is shown.  In the System mode, only the light-blue
    portion of the user-interface appears.
 

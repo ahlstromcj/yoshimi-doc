@@ -17,11 +17,15 @@
 \section{Bottom Panel}
 \label{sec:bottom_panel}
 
+\subsection{Bottom Panel Controls}
+\label{subsec:bottom_panel_controls}
+
    The \textsl{Yoshimi} bottom panel provides quick access to some major
    features of the application.
    The bottom panel is shown in
-   figure~\ref{fig:yoshimi_main_screen} on
-   page~\pageref{fig:yoshimi_main_screen}.
+   \figureref{fig:yoshimi_main_screen}.
+%  figure~\ref{fig:yoshimi_main_screen} on
+%  page~\pageref{fig:yoshimi_main_screen}.
 
    Here are the major elements of the bottom panel.
 
@@ -58,9 +62,11 @@
 
    \itempar{Part}{bottom panel!part number}
    Part Number.
-   Show and set current part.
 
-   Values: \texttt{1 to 16}
+   Values: \texttt{1 to 16; 1 to 32; 1 to 64 }
+
+   Show and set current part.  The maximum number of values depends on the
+   \textbf{Part of} selection.
 
    \itempar{Part of}{bottom panel!part maximum}
    Maximum Number of Parts.
@@ -71,18 +77,17 @@
    decide how many one wants to have available using this user-interface
    item.
 
-   By default, all the upper parts are mapped to the same MIDI channel
-   numbers as the lowest ones but have independent voice and parameter
+   By default, all the upper parts (numbers greater than 16)
+   are mapped to the same MIDI channel
+   numbers as the lowest ones, but have independent voice and parameter
    settings. They can not normally receive independent note or control
    messages. However, vector control will intelligently work with however
    many one has set, as will all the NRPN direct part controls.
+   See \sectionref{subsection:nrpns_midi_nrpn_vector_control}.
 
    This item is a fairly new feature of \textsl{Yoshimi} (as of version
    1.3.5).
    
-%  The figure that shows the main \textsl{Yoshimi} screen is a
-%  bit out-of-date, and we need to capture a new screen shot.
-
    \itempar{Instrument Name}{bottom panel!instrument name}
    Instrument Name.
    Left-click to open the Bank window.
@@ -95,51 +100,14 @@
    \itempar{Edit}{bottom panel!instrument edit}
    Instrument Edit button.
    This button brings up the instrument-edit dialog shown in
-   figure~\ref{fig:instrument_edit_dialog} on
-   page~\pageref{fig:instrument_edit_dialog}.
-
-\begin{figure}[H]
-   \centering 
-   \includegraphics[scale=1.0]{bottom-panel/edit-instrument.jpg}
-   \caption{Instrument Edit Dialog}
-   \label{fig:instrument_edit_dialog}
-\end{figure}
+   \figureref{fig:instrument_edit_dialog}.
+%  figure~\ref{fig:instrument_edit_dialog} on
+%  page~\pageref{fig:instrument_edit_dialog}.
 
    This dialog provides a very broad overview of the instrument, and
    provides access to far more detailed dialogs to edit the instrument.
-
-   \begin{enumber}
-      \item \textbf{Type}
-      \item \textbf{Author and Copyright}
-      \item \textbf{Comments}
-      \item \textbf{ADDsynth}
-      \begin{enumber}
-         \item \textbf{Enabled}
-         \item \textbf{Edit}
-      \end{enumber}
-      \item \textbf{SUBsynth}
-      \begin{enumber}
-         \item \textbf{Enabled}
-         \item \textbf{Edit}
-      \end{enumber}
-      \item \textbf{PADsynth}
-      \begin{enumber}
-         \item \textbf{Enabled}
-         \item \textbf{Edit}
-      \end{enumber}
-      \item \textbf{Kit Edit}
-      \item \textbf{Effects}
-      \item \textbf{Rnd. Det.}
-      \item \textbf{Close}
-   \end{enumber}
-
-   TODO: explain these items.
-
-   The ADDsynth, SUBsynth, PADsynth, Kit Edit, and Effects
-   dialogs are detailed in separated sections, as they are all
-   very complex dialogs with many sub-dialogs.
-
-   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+   This dialog is explained in detail in
+   \sectionref{subsec:bottom_panel_instrument_edit}.
 
    \itempar{Midi}{bottom panel!MIDI channel}
    MIDI Channel.
@@ -229,7 +197,8 @@
 
    \itempar{System Effect Sends 1, 2, 3, and 4}{bottom panel!system effect sends}
 
-   TODO.
+   TODO:  Describe how these sends work.
+   \index{todo!SES123}
 
    Values: \texttt{0 to 127*}
 
@@ -266,13 +235,13 @@
    the box in the main window.
 
 \paragraph{Tip: Using the VU Meter}
-\label{paragraph:tip_using_the_vu_meter}
-\index{tip!vu meter}
+\label{paragraph:tips_using_the_vu_meter}
+\index{tips!vu meter}
 
    The VU meter topic is very interesting, because one of the problems
    is a tendency to overdrive by way of sustain pedal.  At the last test it
-   showed up in the output before it showed up in VU, the VU work should help
-   a lot in analysis.
+   showed up in the output before it showed up in the VU meter, so
+   the VU meter should help a lot in analysis.
 
    One way to avoid overdrive is to keep polyphony to 20 on each patch (two
    or three patches per \textsl{Yoshimi} instance, with two or three
@@ -488,6 +457,140 @@
 
    Values: \texttt{0 to 127, 90*}, requires \textbf{Proprt.} = \texttt{On}
 
+\subsection{Bottom Panel Instrument Edit}
+\label{subsec:bottom_panel_instrument_edit}
+
+   The main instrument-editing dialog is relatively simple, and provides for
+   editing information that identifies the instrument, and buttons to access
+   the more complex dialogs of the ADDsynth, SUBsynth, PADsynth, Kit Edit,
+   and Effects components.
+
+%  \includegraphics[scale=1.0]{bottom-panel/edit-instrument.jpg}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{1.3.5/edit-instrument.png}
+   \caption{Instrument Edit Dialog}
+   \label{fig:instrument_edit_dialog}
+\end{figure}
+
+   This dialog provides a very broad overview of the instrument, and
+   provides access to far more detailed dialogs to edit the instrument.
+   This dialog is called up by the \textbf{Edit} button on the bottom panel
+   of the main \textsl{Yoshimi} main screen.
+
+   \begin{enumber}
+      \item \textbf{Type}
+      \item \textbf{Author and Copyright}
+      \item \textbf{Comments}
+      \item \textbf{ADDsynth}
+      \begin{enumber}
+         \item \textbf{Enabled}
+         \item \textbf{Edit}
+      \end{enumber}
+      \item \textbf{SUBsynth}
+      \begin{enumber}
+         \item \textbf{Enabled}
+         \item \textbf{Edit}
+      \end{enumber}
+      \item \textbf{PADsynth}
+      \begin{enumber}
+         \item \textbf{Enabled}
+         \item \textbf{Edit}
+      \end{enumber}
+      \item \textbf{Kit Edit}
+      \item \textbf{Effects}
+      \item \textbf{Rnd. Det.}
+      \item \textbf{Close}
+   \end{enumber}
+
+   The ADDsynth, SUBsynth, PADsynth, Kit Edit, and Effects
+   dialogs are detailed in separated sections, as they are all
+   very complex dialogs with many sub-dialogs.
+
+   \itempar{Type}{edit!category}
+   Instrument Type.
+   Instrument Category.
+
+   This dropdown dialog allows one to tag the type of instrument, to
+   indicate what category of instruments it fits into.
+   The following figure shows the types.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{bottom-panel/edit-instrument-type.jpg}
+   \caption{Instrument Type Dropdown}
+   \label{fig:instrument_type_dropdown}
+\end{figure}
+
+   Values: \texttt{Piano, Chromatic Percussion, Organ, Guitar, Bass,
+              Solo Strings, Ensemble, Brass, Reed, Pipe,
+              Synth Lead, Synth Pad, Synth Effects, Ethnic,
+              Percussive, Sound Effects}
+
+   \itempar{Author and Copyright}{edit!author/copyright}
+   This field provides space for identifying the author, copyright, and
+   license for the part.
+
+   \itempar{Comments}{edit!comments}
+   Allows free-form comments and notes to be entered.
+
+   \itempar{ADDsynth}{edit!addsynth}
+
+   \begin{enumber}
+      \item \textbf{Enabled}.
+      Enables this synth type to be used in the part/instrument.
+      When enabled, its marker color, red, is shown.
+      \item \textbf{Edit}.
+      Brings up the editing dialog presented in
+      \figureref{fig:addsynth_edit_dialog}.
+      There one will find a full discussion of that dialog.
+   \end{enumber}
+
+   \itempar{SUBsynth}{edit!subsynth}
+
+   \begin{enumber}
+      \item \textbf{Enabled}.
+      Enables this synth type to be used in the part/instrument.
+      When enabled, its marker color, blue, is shown.
+      \item \textbf{Edit}.
+      Brings up the editing dialog presented in
+      \figureref{fig:subsynth_edit_dialog}.
+      There one will find a full discussion of that dialog.
+   \end{enumber}
+
+   \itempar{PADsynth}{edit!padsynth}
+
+   \begin{enumber}
+      \item \textbf{Enabled}.
+      Enables this synth type to be used in the part/instrument.
+      When enabled, its marker color, green, is shown.
+      \item \textbf{Edit}.
+      Brings up the editing dialog presented in
+      \figureref{fig:padsynth_edit_dialog}.
+      There one will find a full discussion of that dialog.
+   \end{enumber}
+
+   \itempar{Kit Edit}{edit!kit}
+   Brings up the editing dialog presented in
+   \figureref{fig:kit_edit_dialog}.
+   There one will find a full discussion of that dialog.
+
+   \itempar{Effects}{edit!effects}
+   Brings up the editing dialog presented in
+   \figureref{fig:effects_edit_none}
+   There one will find a full discussion of that dialog.
+
+   \itempar{Rnd. Det.}{edit!rnd det}
+   Small Random Detune.
+
+   Values: \texttt{0* to 20}
+
+   This value is an experimental feature.  It would lend some complexity or
+   piquancy to the part/instrument.
+
+   \itempar{Close}{edit!close}
+   Closes the Edit window.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex

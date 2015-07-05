@@ -6,11 +6,12 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-15
-% \update      2015-06-26
+% \update      2015-07-05
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
-%     Provides the Menu section of yoshimi-user-manual.tex.
+%     Provides the Settings section of yoshimi-user-manual.tex, which covers
+%     stock settings user-interface items.
 %
 %-------------------------------------------------------------------------------
 
@@ -32,16 +33,22 @@
    \url{http://sourceforge.net/zynaddsubfx/Doc}
    and has been reorganized in minor ways.
 
-\paragraph{Title Bars}
-\label{paragraph:stock_settings_elements_title_bars}
+\subsection{Settings Features}
+\label{sec:stock_settings_ui_features}
+
+   This section notes some minor interface and synthesizer features that may
+   be seen thoughout \textsl{Yoshimi}.
+
+\subsubsection{Title Bars}
+\label{subsubsec:stock_settings_elements_title_bars}
 
    The title bars of all editing windows display both the part number and the
    current name of the instrument one are working on. In the ADDsynth
-   Oscillator Editor, one also sees the number of the oscillator one is
+   Oscillator Editor, one also sees the voice number of the oscillator one is
    editing.
 
-\paragraph{Color Coding}
-\label{paragraph:stock_settings_elements_color_coding}
+\subsubsection{Color Coding}
+\label{subsubsec:stock_settings_elements_color_coding}
 
    A GUI enhancement for \textsl{Yoshimi 1.3.5} is color-coded
    identification of an instrument's use of Add, Sub, and Pad synth engines,
@@ -56,23 +63,16 @@
    resaves the instrument, not only will the PADsynth status be restored, but
    ADDsynth and SUBsynth will be included, allowing a faster scan next time.
 
-\paragraph{Knobs}
-\label{paragraph:stock_settings_elements_knobs}
+\subsubsection{Knobs}
+\label{subsubsec:stock_settings_elements_knobs}
 
    Visual knobs are used for modifying numerical parameters.
    Horizontal, as well as vertical, mouse movements will adjust the knob.
    Holding down Ctrl provides finer adjustment.
    One can also use the mouse scroll wheel to adjust rotary controls.
 
-\paragraph{Windows}
-\label{paragraph:stock_settings_elements_windows}
-
-   Part editing windows carry the part number and voice name in the title
-   bar. For the ADDsynth oscillator window this also includes the voice
-   number.
-
-\paragraph{Automation}
-\label{paragraph:stock_settings_elements_automation}
+\subsubsection{Automation}
+\label{subsubsec:stock_settings_elements_automation}
 
    In \textsl{Yoshimi 1.3.5}, a number of existing, as well as new features
    have come together to give much greater flexibility (especially for
@@ -96,7 +96,7 @@
    14bit NRPN blocks are supported.
 
    \itempar{ZynAddSubFx controls}{automation!controls}
-   System \& Insertion Effect controls are fully supported, with extensions
+   System and Insertion Effect controls are fully supported, with extensions
    to allow one to set the effect type and (for insertion effects) the
    destination part number.
 
@@ -143,7 +143,7 @@
 \subsection{Filter Settings}
 \label{subsec:filter_settings}
 
-   This section describes filtering at a high-level, in terms of frequency
+   This section describes filtering at a high level, in terms of frequency
    responses and other concepts of filtering.
    The end of this section covers a user interface used in filter settings.
    It is a stock-panel re-used in other user-interface elements.
@@ -264,9 +264,9 @@
    For the interested, functions having poles means that we are given a
    quotient of polynomials. The denominator has degree 1 or 2, depending on the
    filter having one or two poles. In the file \texttt{DSP/AnalogFilter.cpp},
-   \texttt{AnalogFilter::computefiltercoefs()} sets the coefficients (depending
-   on the filter type), and \\
-   \texttt{AnalogFilter::singlefilterout()} shows
+   \texttt{AnalogFilter :: computefiltercoefs()} sets the coefficients
+   (depending on the filter type), and
+   \texttt{AnalogFilter :: singlefilterout()} shows
    the whole polynomial (in a formula where no quotient is needed).
 
 \subsubsection{Filter Parameters User Interface}
@@ -281,11 +281,9 @@
 
    The user interface for filter parameters is a small stock sub-panel that
    is re-used in a number of larger dialog boxes, as shown in the figure
-   above.
-%  figure~\ref{fig:filter_parameters_subpanel} on
-%  page~\pageref{fig:filter_parameters_subpanel}.
+   above.  Let's describe each item of this sub-panel.
 
-   Let's describe each item of this sub-panel.
+%  \figureref{fig:filter_parameters_subpanel}.
 
 \begin{figure}[H]
    \centering 
