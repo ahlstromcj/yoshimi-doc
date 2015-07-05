@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-15
-% \update      2015-06-27
+% \update      2015-07-05
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -35,6 +35,20 @@
    Maybe they belong in this "concepts" section, but
    they are directly tied to user-interface items.
 
+\subsection{Concepts / Terms}
+\label{subsec:concepts_terms}
+
+\subsubsection{Concepts / Terms / cent}
+\label{subsubsec:concepts_terms_cent}
+
+   The \textbf{cent} is a logarithmic unit of measure used for musical
+   intervals.  Twelve-tone equal temperament divides the octave into 12
+   semitones of 100 cents each. Typically, cents are used to measure
+   extremely small finite intervals, or to compare the sizes of comparable
+   intervals in different tuning systems, and in fact the interval of one
+   cent is much too small to
+   be heard between successive notes.
+
 \subsection{Concepts / ALSA Versus JACK}
 \label{subsec:concepts_alsa_versus_jack}
 
@@ -57,8 +71,8 @@
 \subsection{Concepts / Sessions}
 \label{subsec:concepts_sessions}
 
-   As with most applications, \textsl{ZynAddSubFX}
-   allows for one to save one's work and reload it.
+   As with most applications, \textsl{Yoshimi} and \textsl{ZynAddSubFX}
+   allow for one to save one's work and reload it.
    Here are the file extensions used for saving the data:
 
    \begin{itemize}
@@ -138,9 +152,9 @@
    program.  On program start, the last used bank is loaded. A single bank
    can store up to 128 instruments. 
 
-   The file \texttt{Banks.txt} in the source-code bundle makes an important
-   point about a transition to tagging roots (directories) and banks with an
-   ID code:
+   The file \texttt{Banks.txt} in the \textsl{Yoshimi} source-code bundle
+   makes an important point about a transition (in newer versions)
+   to tagging roots (directories) and banks with an ID code:
 
    \begin{quotation}
       One no longer has the concept of a default root directory, but a
