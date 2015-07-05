@@ -1,0 +1,9 @@
+# Additional ignores.  Note that our global .gitignore also ignores
+# stuff we use:  config and Makefile
+
+*.fls
+tex-stamp
+tex/yoshimi-user-manual.pdf
+!config
+!Makefile
+

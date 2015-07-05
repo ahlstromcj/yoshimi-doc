@@ -6,7 +6,7 @@
 # \library    	Documents
 # \author     	Chris Ahlstrom
 # \date       	2015-04-20
-# \update     	2015-07-03
+# \update     	2015-07-05
 # \version    	$Revision$
 # \license    	$XPC_SUITE_GPL_LICENSE$
 #
@@ -39,7 +39,7 @@ tex-stamp:
 
 # Or -C instead?
 
-clean: clean-dvi clean-pdf
+clean: clean-dvi clean-pdf clean-ps
 	latexmk -c
 	rm -f tex-stamp
 
@@ -48,6 +48,9 @@ clean-dvi:
 
 clean-pdf:
 	-rm -f *.pdf
+
+clean-ps:
+	-rm -f *.ps
 
 #******************************************************************************
 # vim: ts=3 sw=3 noet ft=automake

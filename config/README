@@ -1,0 +1,9 @@
+This is a sample user-configuration directory for Yoshimi.
+The user can store configuration, song files, sound files, presents, banks,
+and other Yoshimi-related files anywhere.
+
+But here, we provide a directory that might fit perfectly well in
+your own ~/.config/yoshimi directory.
+
+Oddly, one of the state files is compressed XML, and the other is
+uncompressed XML.
