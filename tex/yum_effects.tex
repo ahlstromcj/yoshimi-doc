@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-05
-% \update      2015-07-05
+% \update      2015-07-10
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -21,7 +21,7 @@
    that can be applied to parts.
    Effects are, generally, blackboxes that transform audio signals in a
    specified way. More exactly, the only input data for an effect in
-   ZynAddSubFX is an array of samples, which is read on line.
+   \textsl{ZynAddSubFX} is an array of samples, which is read on line.
    The output is the transformed array of samples.
 
    As described, effects have no information about anything else. For
@@ -30,24 +30,22 @@
    which is only dependent on the system time.
 
    Wetness determines the mix of the results of the effect and its input.
-   This mix is made the effects output. If an effect is wet, it means that
+   This mix is made at the effects output. If an effect is wet, it means that
    nothing of the input signal is bypassing the effect. If it is dry, then
    the effect has no effect.
 
    The Effects panel is shown in
    \figureref{fig:yoshimi_main_screen}.
-%  figure~\ref{fig:yoshimi_main_screen} on
-%  page~\pageref{fig:yoshimi_main_screen}.
 
    Note that these effects have been incorporated into a separate
-   guitar effects project called Rakkarrak \cite{rakarrack}.
+   guitar-effects project called \textsl{Rakkarrak} \cite{rakarrack}.
 
-   There are 2 types of effects: System effects and Insertion effects. The
+   There are two types of effects: System effects and Insertion effects. The
    System effects apply to all parts and allows to set the amount of effect
-   that applies to each parts. Also it is possible to send the output of the
-   system effect to other system effects. In the user interface this is shown
-   as "source -\textless destination". eg. "0 -\textless 1" means how much of
-   the system effect 0 is sent to system effect 1.
+   that applies to each parts. Also, it is possible to send the output of
+   one system effect to other system effects. In the user interface this is
+   shown as "source -\textless destination". eg. "0 -\textless 1" means how
+   much of the system effect 0 is sent to system effect 1.
 
 \subsection{Effects / Panel Types}
 \label{subsec:effects_paneltypes}
@@ -144,8 +142,8 @@
 
    \itempar{Insertion Effects Tab}{effects!insertion tab}
    Insertion Effects Tab.
-   The items in this tab are described below.
-   in the \ref{subsec:effects_insertion}
+   The items in this tab are described below,
+   in the \ref{subsubsec:effects_paneltypes_insertion}
    sub-section.
 
    \itempar{Reports}{effects!reports}
@@ -483,7 +481,7 @@
    one sets this value, the more slowly will the filter react.
 
    \itempar{A.Inv.}{dynfilter!a.inv}
-   DynFilter A.INV.  One of two knobs let one control the way how the RMS
+   DynFilter A.Inv.  One of two knobs let one control the way how the RMS
    value of the amplitudes is measured.  A.Inv., if set, negates the
    (absolute) RMS value. This will lower the filter frequency instead of
    increasing it. Note that this will not have much effect if the effects
@@ -518,12 +516,12 @@
    No diagram, just a description of AlienWah.
 
    Hint: Keep in mind that Effects that can be controlled by LFO can also be
-   controlled arbitrary: Set the LFO depth to zero and manipulate the phase
+   controlled arbitrarily: Set the LFO depth to zero and manipulate the phase
    knob (e.g. with NRPNs or maybe via OSC in the future).
 
    The way that the filter moves between the two vocals is mainly described
    by an LFO. A bit easified, Paul Nasca has stated the formula (for
-         i2=-1;R<1) as
+   i2 = -1 and R \textless 1) as
 
    \[fb=R*(cos(α)+i*sin(α))\]
 
@@ -546,7 +544,7 @@
    \begin{enumber}
       \item \textbf{Preset}
       \item \textbf{Phase}
-      \item \textbf{D/W}
+      \item \textbf{Vol} or \textbf{D/W}
       \item \textbf{Pan}
       \item \textbf{Freq}
       \item \textbf{Rnd}
@@ -560,65 +558,99 @@
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
-   \itempar{Freq}{alienwah!lfo frequency}
+   \itempar{Preset}{alienwah!preset}
    AlienWah Preset.
-   Part of the LFO definition.
 
-   TODO:  Need a diagram of the dropdown
-
-   Values: \texttt{AlienWah 1, ...???} TODO
+   Values: \texttt{AlienWah 1, AlienWah 2, AlienWah 3, AlienWah 4}
 
    \itempar{Phase}{alienwah!phase}
    The phase of the AlienWah.
    See α in the above formula. This lets one set where the vocal is between
    "Ahhhhh" and "Eeeeee".
 
-   \itempar{D/W}{phaser!dry/wet}
+   \itempar{Vol}{alienwah!volume}
+   AlienWah Volume.
+
+   Values: \texttt{0 to 127}
+
+   The volume control is present is this effect is used as an insertion
+   effect.
+
+   \itempar{D/W}{alienwah!dry/wet}
    AlienWah Dry/Wet.
+
+   Values: \texttt{0 to 127}
+
+   The \textbf{Vol} control is replaced by this control if the effect is
+   used as an Insertion effect.
 
    \itempar{Freq}{alienwah!lfo frequency}
    LFO Frequency.
-   Determines the LFO’s frequency.
+
+   Values: \texttt{0 to 127}
+
+   Determines the LFO’s frequency in relative units.
 
    \itempar{Rnd}{alienwah!lfo randomness}
    LFO Amplitude Randomness.
+
+   Values: \texttt{0 to 127}
+
    Part of the LFO definition.
 
    \itempar{LFO type}{alienwah!lfo shape}
    Set the LFO shape.
-   Part of the LFO definition.
 
-   Values: \texttt{ xxxx } TODO
+   Values: \texttt{SINE, TRI}
+
+   Part of the LFO definition.
+   Note that the LFO in other contexts has ramps and exponential shapes that
+   are not present here.
 
    \itempar{St.df.}{alienwah!phase diff}
-   AlienWah Phase Difference.
+   AlienWah Left/Right Chanell Phase Difference.
+
+   Values: \texttt{0 to 127}
+
    Part of the LFO definition.
-   The phase difference between LFO for left/right channels.
-   St.df lets one determine how much left and right LFO are phase shifted.
-   64.0 means stereo, higher values increase the right LFO relatively to the
-   left one.
+   Sets the phase difference between LFO for left/right channels.
+   \textbf{St.df} lets one determine how much left and right LFO are phase
+   shifted.  64.0 means stereo, higher values increase the right LFO
+   relatively to the left one.
 
    \itempar{Dpth}{alienwah!depth}
-   LFO depth.  Dpth is a multiplier to the LFO. Thus, it determines
-   the LFOs amplitude and its influence.
+   LFO depth.
+
+   Values: \texttt{0 to 127}
+
+   \textbf{Dpth} is a multiplier to the LFO. Thus, it determines
+   the LFO's amplitude and its influence.
 
    \itempar{Delay}{alienwah!delay}
    Amount of delay before the feedback.
+
+   Values: \texttt{1 to 100}
+
    If this value is low, the sound is turned more into a "wah-wah"-effect.
 
    \itempar{Fb.}{alienwah!feedback}
    AlienWah Feedback.
 
+   Values: \texttt{0 to 127}
+
+   \index{todo!alienwah feedback}
+   TODO: What is the effect of the AlienWah feedback setting?
+
    \itempar{L/R}{alienwah!l/r}
-   How the left/right channels are routed to output:
+   Determines how the left/right channels are routed to output:
 
    \begin{itemize}
-      \item Leftmost. Left to left and right to right.
-      \item Middle. Left+right to mono.
-      \item Rightmost. Left to right, and right to left.
+      \item \textsl{Leftmost/0}. Left to left and right to right.
+      \item \textsl{Middle/64}. Left+right to mono.
+      \item \textsl{Rightmost/127}. Left to right, and right to left.
    \end{itemize}
 
-   L/R applies crossover in the end of every stage. This is currently not
+   L/R applies crossover at the end of every stage. This is currently not
    implemented for the Analog Phaser.
 
    \itempar{Subtract}{alienwah!subtract}
@@ -1446,8 +1478,6 @@ This section details the value supported by the Phaser effect.
 
    Values: \texttt{1 to 8?}
 
-      TODO:  Need a figure for the dropdown.
-
    \itempar{bypass}{reverb!fx bypass}
    Reverb FX Bypass.
 
@@ -1463,8 +1493,6 @@ This section details the value supported by the Phaser effect.
 
    Values: \texttt{Next Effect, ... TODO}
 
-      TODO:  Need a figure for the dropdown.
-
    \itempar{C}{reverb!copy}
    Reverb Copy.
 
@@ -1477,8 +1505,11 @@ This section details the value supported by the Phaser effect.
 \subsubsection{Effects / Reverb / NRPN Values}
 \label{subsubsec:effects_edit_reverb_nrpn}
 
-Effects can be controlled via "non-registered parameter numbers", or NRPNs.
-This section details the value supported by the Reverb effect.
+   Effects can be controlled via "non-registered parameter numbers", or NRPNs.
+   This section details the values supported by the Reverb effect.
+
+   TODO:  detail the values supported by the Reverb effect.
+   \index{todo!reverb nrpn values}
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex

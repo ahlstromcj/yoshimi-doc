@@ -1,35 +1,124 @@
 http://forum.renoise.com/index.php/topic/34360-yoshimi-banks/
 
-To change the \textsl{yoshimi} MIDI bank or program from within a sequencer:
+Tochange the \textsl{yoshimi} MIDI bank or program from within a sequencer:
 
-A MIDI bank change is usually a CC#0 value of 0, followed by a CC#32 value of
-X, where X is the desired bank number from 0 to whatever,
-(However, in some cases may simply be a CC#0 on its own with a value of X).
-Many synths also require that you send a program change after the bank change,
-to select the program within the bank.  So, using directions that seem specific
-to Renoise....
+AMIDI bank change is usually a CC#0 value of 0, followed by a CC#32 value of
+X,where X is the desired bank number from 0 to whatever,
+(However,in some cases may simply be a CC#0 on its own with a value of X).
+Manysynths also require that you send a program change after the bank change,
+toselect the program within the bank.  So, using directions that seem specific
+toRenoise....
 
-- Add a MIDI Control device to a track.
-- Link the MIDI Control device to the instance of the ZynAddSubFx/Yoshimi
-   instrument.
-- Expand the number of effect columns in the track to at least 5.
-- Map the 1st MIDI Control device parameter to CC#0.
-- Map the 2nd MIDI Control device parameter to CC#32.
-- Map the 3rd MIDI Control device parameter to Prg-Change.
+-Add a MIDI Control device to a track.
+-Link the MIDI Control device to the instance of the ZynAddSubFx/Yoshimi
+instrument.
+-Expand the number of effect columns in the track to at least 5.
+-Map the 1st MIDI Control device parameter to CC#0.
+-Map the 2nd MIDI Control device parameter to CC#32.
+-Map the 3rd MIDI Control device parameter to Prg-Change.
 
-Now program the following commands into your pattern: (Assuming the MIDI
-Control device is #1 in the chain):
+Nowprogram the following commands into your pattern: (Assuming the MIDI
+Controldevice is #1 in the chain):
 
-   1001 1100 1201 1302 1000
+1001 1100 1201 1302 1000
 
-- 1001 = turn the MIDI Control Device on
-- 1100 = set CC#0 to 0
-- 1201 = set CC#32 to 1 (0 = 1st bank, 1 = 2nd bank, 2 = 3rd bank, etc)
-- 1302 = set the program to 2 (0 = 1st program, 1 = 2nd program, 2 = 3rd
-program, etc)
-- 1000 = turn the MIDI Control Device off
+-1001 = turn the MIDI Control Device on
+-1100 = set CC#0 to 0
+-1201 = set CC#32 to 1 (0 = 1st bank, 1 = 2nd bank, 2 = 3rd bank, etc)
+-1302 = set the program to 2 (0 = 1st program, 1 = 2nd program, 2 = 3rd
+program,etc)
+-1000 = turn the MIDI Control Device off
 
-In this particular case, it's important to the turn the MIDI Control device off
-again when you don't need it, otherwise it will not correctly transmit the
-bank/program changes the next time you need it.
+Inthis particular case, it's important to the turn the MIDI Control device off
+againwhen you don't need it, otherwise it will not correctly transmit the
+bank/programchanges the next time you need it.
+
+------------------------------------------------------
+
+Date:Mon, 06 Jul 2015 14:37:22 -0700                                             
+From:Will J Godfrey <notifications@github.com>                                   
+To:ahlstromcj/yoshimi-doc <yoshimi-doc@noreply.github.com>                       
+Cc:"C. Ahlstrom" <ahlstromcj@gmail.com>                                          
+Subject:Re: [yoshimi-doc] Yoshimi Docs (#1)                                      
+
+Anote on banks. You *really* need to move some of those out to a new root!
+That'sa pretty crowded list. The limit is 128 and you seem to be half way       
+there:)                                                                          
+
+Thenumbers are generated the first time yoshimi sees a new root path or new      
+bankswithin a root path.                                                         
+
+Onceset, these numbers will never change unless you actually move them
+aroundusing the 'swap' button.                                                          
+Thenumber is also the MIDI ID so you can be sure it will always be there
+forbank changes no matter how many more banks you add later.
+
+Yoshimialways lists these in ID order not alphabetical order, so you can
+groupthem sensibly and permanently. However, at first time creation it
+setsthe IDs in alphabetical order and tries to space them evenly
+overthe range to give   you 'wiggle' room.                                                                
+Usingright mouse click often produces modified or alternate results,
+especiallyin roots/banks/instruments. In Yoshi this is defined as
+buttonnumber 2. Some distros/window managers have number 2 as
+themiddle button.        
+
+----------------------------------------------------------
+
+Date:Mon, 6 Jul 2015 16:30:11 +0100                                              
+From:Will Godfrey <willgodfrey@musically.me.uk>                                  
+To:yoshimi-user@lists.sourceforge.net                                            
+Subject:[yoshimi-user] my answer to a recent enquiry. Thought it should be
+here
+
+Presetsare loaded and saved via the copy/paste buffer (the blue C and P
+icons).To be really useful you need to create a new directly path.
+Probablythe best location is in /home/{yourusername}/.config/yoshimi
+
+Afterthis, if you develop (say) a phaser sound you especially like, you can
+copyit to the clipboard, and from there save it to a preset. You can then
+pullit back whenever you want to.
+
+Havingsaid that, I hardly ever use it myself so had to try to remember how
+itworked.
+
+Wesave more of the data than Zyn does. Particularly, if you've loaded a
+instrumentinto a part but then disabled it, when doing a parameter save we
+willstill include it along with the rest. Also we save all possible 64
+partsif they contain an instrument, even if they are not currently used.
+Anypart with the default 'Simple Sound' will have nothing but the ID tag so
+won'ttake up much space.
+
+Thisdiscussion was had a long time ago, and it was generally agreed that
+theincreased size of an entire parameter set was relatively unimportant
+comparedwith losing a sound that you might have temporarily disabled.
+
+-----------------------------------------------------
+
+Date:Wed, 8 Jul 2015 22:15:54 +0100                                              
+From:Will Godfrey <willgodfrey@musically.me.uk>                                  
+To:yoshimi-user@lists.sourceforge.net                                            
+Subject:[yoshimi-user] Need a Youtube vid done                                   
+
+I'vetried making a recording of yoshi in action but so far totally failed
+toget anything like decent vid along with stereo sound.                       
+
+WhatI especially wanted to do was make one of the demo I did on LAC.          
+
+Forthis you need a 'bare' yoshimi with: bank root enabled as 0 (MSB),
+bankchange as LSB, program change enabled, enable part on program
+change.
+
+Theonly other thing you need set up is the root path to the banks we supply
+setto 9. On a self build this should be /usr/local/share/yoshimi/banks
+Distroswill usually store it in  /usr/share/yoshimi/banks                        
+
+Theattached MIDI file will then do all the magic stuff itself, and it looks
+*really*impressive if you have the mixer panel open while it plays. I know
+thisworks in Muse, I'm pretty sure it does in Ardour, not sure about
+Qtractor.
+
+Ifanyone wants the original Rosegarden file this was taken from, let me
+know.Unfortunately Rosegarden can't correctly import MIDI files it has just
+created:(
+
 

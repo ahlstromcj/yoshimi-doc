@@ -96,9 +96,20 @@
 
 \newcounter{ItemCounter}
 
+% Makes a numbered paragraph out of an item, and allows two index entries
+% for it.
+
 \newcommand{\itempar}[2] {
    \stepcounter{ItemCounter}
    \textbf{\arabic{ItemCounter}. #1.}
+   \index{#1}
+   \index{#2}
+}
+
+% Provides for two forms of an option, as might be shown in a man page.
+
+\newcommand{\optionpar}[2] {
+   \textbf{\texttt{#1}} \textbf{\texttt{#2}} \\
    \index{#1}
    \index{#2}
 }

@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-15
-% \update      2015-07-05
+% \update      2015-07-10
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -563,7 +563,8 @@
 
    In \textsl{Yoshimi}, LFO parameters are available for amplitude, filters,
    and frequency.  They all have essentially the same interface elements.
-   Figure~\ref{fig:amplitude_lfo} shows an example of an LFO stock sub-panel.
+   Note that
+   \figureref{fig:amplitude_lfo} shows an example of an LFO stock sub-panel.
 
 These parameters are:
 
@@ -665,10 +666,9 @@ These parameters are:
    paste-parameters dialog.
 
    For reference,
-   figure~\ref{fig:filter_lfo} on
-   page~\pageref{fig:filter_lfo} shows the LFO sub-panel for a filter, and
-   figure~\ref{fig:frequency_lfo} on 
-   page~\pageref{fig:frequency_lfo}
+   \figureref{fig:filter_lfo}
+   shows the LFO sub-panel for a filter, and
+   \figureref{fig:frequency_lfo_subpanel}
    shows the LFO sub-panel for frequency.
 
 \subsubsection{Filter LFO Sub-panel}
@@ -746,7 +746,12 @@ These parameters are:
    \itempar{Type}{lfo!type}
    LFO Type.
 
-      TODO Figure: bottom-panel/instrument-edit/ADD/lfo-function-type.jpg
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/lfo-function-type.jpg}
+   \caption[LFO Function Types]{LFO Function Type Dropdown}
+   \label{fig:frequency_lfo_dropdown}
+\end{figure}
 
    Values: \texttt{SINE*, TRI, SQR, R.up, R.dn, E1dn, E2dn}
 
@@ -763,7 +768,7 @@ These parameters are:
    \centering 
    \includegraphics[scale=1.0]{subpanels/Frequency_LFO.png}
    \caption[Frequency LFO Sub-Panel]{Frequency LFO Sub-Panel}
-   \label{fig:frequency_lfo}
+   \label{fig:frequency_lfo_subpanel}
 \end{figure}
 
 This panel is basically identical to the Filter LFO panel described
@@ -1474,9 +1479,8 @@ dialogs, respectively.
 \label{subsubsec:clipboard_copy}
 \index{subsubsec:clipboard!copy}
 
-   Figure~\ref{fig:copy_to_clipboard} on
-   page~\pageref{fig:copy_to_clipboard} 
-   show an example of the copying dialog for the clipboard.
+   Note that \figureref{fig:copy_to_clipboard}
+   shows an example of the copying dialog for the clipboard.
 
 \begin{figure}[H]
    \centering 

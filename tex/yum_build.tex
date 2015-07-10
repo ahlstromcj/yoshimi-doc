@@ -1,0 +1,184 @@
+%-------------------------------------------------------------------------------
+% yum_build
+%-------------------------------------------------------------------------------
+%
+% \file        yum_build.tex
+% \library     Documents
+% \author      Chris Ahlstrom
+% \date        2015-07-10
+% \update      2015-07-10
+% \version     $Revision$
+% \license     $XPC_GPL_LICENSE$
+%
+%     Provides the man page section of yoshimi-user-manual.tex.
+%
+%-------------------------------------------------------------------------------
+
+\section{Building Yoshimi}
+\label{sec:yoshimi_build}
+
+   This section describes building and debugging \textsl{Yoshimi}.
+   Building \textsl{Yoshimi} requires getting the source code, making sure
+   all of the necessary dependencies are installed, and using CMake to set
+   up the build.
+
+   The source-code is located at its main location (\cite{yoshimi})
+   or its alternate location (\cite{yoshimi2}
+
+   Like \textsl{ZynAddSubFX}, \textsl{Yoshimi} uses CMake as its build
+   system \cite{zyncmake}.  CMake is a preprocessor that can generate
+   project build setups for Visual Studio, UNIX make, and Xcode.
+
+\subsection{Yoshimi Source Code}
+\label{sec:yoshimi_source_code}
+
+   Get the source code version you want from SourceForge
+   (\url{http://sourceforge.net/projects/yoshimi/files/1.3/}).
+   Download the desired tar-ball and unpack it in your work area.
+
+   Since SourceForge has had some issues, the \textsl{Yoshimi} team
+   has wisely hosted the source code at another site as well,
+   \url{https://github.com/abrolag/yoshimi}.  One can grab the whole
+   git repository there using the following command in your work area:
+
+   \begin{verbatim}
+      $ git clone https://github.com/abrolag/yoshimi.git
+   \end{verbatim}
+
+\subsection{Yoshimi Dependencies}
+\label{sec:yoshimi_dependencies}
+
+   To save some wasted time, make sure the \textsl{development versions}
+   of the following packages have been installed using your Linux
+   distribution's package manager:
+
+   \begin{itemize}
+      \item \texttt{pkg-config}
+      \item \texttt{libz}
+      \item \texttt{fftw3f}
+      \item \texttt{mxml}
+      \item \texttt{ALSA} (libasound)
+      \item \texttt{JACK}
+      \item \texttt{Boost}
+      \item \texttt{fontconfig}
+      \item \texttt{libcairo}
+      \item \texttt{FLTK}
+      \item \texttt{lv2}
+   \end{itemize}
+
+\subsection{Build It}
+\label{sec:yoshimi_build_it}
+
+   The following instructions are for an in-source build.  An in-source
+   build is simpler if you just want to build and install \textsl{Yoshimi}.
+
+   We will also show how to set up for an out-source-build, which keeps
+   the build products out of the way.
+
+   The location of \texttt{CMakeList.txt} does not appear to be standard, so
+   these instructions differ in details from the build instructions of
+   \textsl{ZynAddSubFX}.  Basically, the build is based in the project's
+   \texttt{src} directory, instead of its root directory.
+
+   \begin{enumber}
+      \item Enter the source directory where the code was unpacked.
+      \item Generate the project build-files:
+            \begin{verbatim}
+               $ cd src
+               $ cmake .
+            \end{verbatim}
+      \item Build the code and install it (as root):
+            \begin{verbatim}
+               $ make
+               # make install
+            \end{verbatim}
+   \end{enumber}
+
+   Here is how to make an out-of-source debug.  Despite what
+   cmake documentation (and Googling) says, using a command like the
+   following \textsl{does not work}:
+
+   \begin{verbatim}
+      $ cmake -DCMAKE_BUILD_TYPE=Debug ..
+   \end{verbatim}
+
+   \begin{enumber}
+      \item Enter the source directory where the code was unpacked.
+      \item Create a "Debug" or "Release" directory for an
+            out-of-source build:
+            \begin{verbatim}
+               $ cd src
+               $ mkdir Debug
+            \end{verbatim}
+      \item Generate the project build-files in the \texttt{Debug}
+            directory.
+            \begin{verbatim}
+               $ cd Debug
+               $ cmake -DBuildForDebug=on
+               $ make
+            \end{verbatim}
+   \end{enumber}
+
+   The output file, and executable name \textbf{\texttt{yoshimi}}
+   is now ready to run (and be debugged).
+
+   Here is a debugging use case we used in \textsl{Yoshimi 1.3.5.1} and
+   slightly earlier versions.  Here is how to verify the bug:
+
+   \begin{enumber}
+      \item Run the following command:
+         \begin{verbatim}
+            $ yoshimi -a -A
+         \end{verbatim}
+      \item Navigate the following command path:
+            Menu / Instrument / Show Banks
+      \item Select the \textbf{RENAME} button.
+      \item Select the bank (e.g. Arpeggios).
+      \item In the file prompt that comes up, click \textbf{Cancel}.
+      \item Observe a "Segmentation fault".
+   \end{enumber}
+
+   To avoid a lot of debugging, let \textsl{valgrind} find the bug for you.
+   Install \textsl{valgrind}.  Then, in the \texttt{src/Debug} directory,
+   run:
+
+   \begin{verbatim}
+      $ valgrind --log-file=yoshvalgrind.log ./yoshimi -a -A
+   \end{verbatim}
+
+   In the log file, one sees that the last good call was in the
+   \texttt{Bank :: readOnlyBank()} function.  That would be a good place to
+   put a breakpoint.
+
+   However, even without \textsl{valgrind}, this particular bug is easy to
+   find under the \textsl{debugger}.  The steps are simple:
+
+   \begin{verbatim}
+      $ cd src/Debug
+      $ gdb ./yoshimi
+      (gdb) r -a -A
+   \end{verbatim}
+
+   Then repeat the steps above that trigger the bug.
+   One sees
+
+   \begin{verbatim}
+      Program received signal SIGSEGV, Segmentation fault.
+   \end{verbatim}
+
+   Issue the command "backtrace" at the \texttt{(gdb)} prompt.  There will
+   be a list of stack frames starting at 0.  Frame 1 is in \textsl{Yoshimi},
+   so issue the command "frame 1", a see
+
+   \begin{verbatim}
+      if (strlen(tmp) > 2) ...
+   \end{verbatim}
+
+   \texttt{tmp} is a null pointer here; we need to add an initial check for
+   the null pointer there to avoid triggering the crash.
+
+%  \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+%-------------------------------------------------------------------------------
+% vim: ts=3 sw=3 et ft=tex
+%-------------------------------------------------------------------------------
