@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2015-07-05
+% \update      2015-07-11
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -160,11 +160,10 @@
 
    \itempar{OscilSize}{Main Settings!OscilSize}
    ADDsynth Oscillator Size (samples).
-   OscilSize. Sets the number of the points of the ADsynth oscillator. The
-   bigger is better, but it takes more CPU time on start of any note, and it
-   may add latency to some processes.
+   Sets the number of the points of the ADDsynth oscillator. The
+   bigger is better, but it takes more CPU time on the start of any note,
+   and it may add latency to some processes.
 
-   This element is the ADDsynth Oscillator Size (in samples).
    The default value for \textsl{Yoshimi} is shown marked with an asterisk,
    and the default value for \textsl{ZynAddSubFX} is 512.
    (This asterisk/plus-sign convention is used throughout this manual).
@@ -195,7 +194,10 @@
 
    See \figureref{fig:qwerty_virtual_keyboard},
    for the mapping of the computer keyboard to the
-   virtual keyboard.  Note that this is a QWERTY layout.  
+   virtual keyboard.
+   Three octaves (blue, green, and red) are available, with the dark keys of
+   each color representing the "black" keys.
+   Note that this is a QWERTY layout.  
    \textsl{Yoshimi} also supports other keyboard layouts.
    See \figureref{fig:virtual_kbd_layout},
    for the virtual keyboard
@@ -240,8 +242,8 @@
    the terminal in which 
    \textsl{Yoshimi} can be run, or, more usefully, to
    an output console window.
-   See \figureref{fig:send_reports_to}
-   for a depiction of the selection dropdown.
+   See \figureref{fig:send_reports_to}.
+   It provides a depiction of the selection dropdown.
 
    Values: \texttt{stderr, Console Window*}
 
@@ -260,9 +262,9 @@
 
    \itempar{Select}{Main Settings!Select Saved-State File}
    Select Saved-State File.
-   See \figureref{fig:session_save_state}
-   for a depiction of this dialog, which lets one pick an existing file as
-   the \textsl{Yoshimi} state file.
+   See \figureref{fig:session_save_state}.
+   It provides a depiction of this dialog, which lets one pick an existing
+   file as the \textsl{Yoshimi} state file.
 
    Values: \texttt{~/.config/yoshimi/yoshimi.state}
 
@@ -327,7 +329,6 @@
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{Preset list}{Yoshimi Presets!Preset List}
-   Preset List.
    This interface element contains a list of preset directories.
    By default, the only directory present is the installed preset directory.
    For example, \texttt{/usr/share/yoshimi/presets}.
@@ -337,7 +338,6 @@
    button described next.
 
    \itempar{Add preset directory...}{Yoshimi Presets!Add Directory}
-   Add Preset Directory.
    Use this button and dialog to add a preset directory to the list, for
    easy access.
 
@@ -349,7 +349,6 @@
 \end{figure}
 
    \itempar{Remove preset directory...}{Yoshimi Presets!Remove Directory}
-   Remove Preset Directory.
    Select one of the preset directories in the preset list, then press this
    button to remove the preset directory from the list of preset
    directories.
@@ -360,7 +359,6 @@
    button to make the preset directory the default preset directory.
 
    \itempar{Save and Close presets}{Yoshimi Presets!Save and Close}
-   Save and Close Presets.
    Press this button to save the changes.
 
    \itempar{Close Unsaved presets}{Yoshimi Presets!Close Unsaved}
@@ -370,8 +368,6 @@
    \index{bugs!Main Settings Close Unsaved}
    This button doesn't seem to work, in that the changes seem to remain
    in place when the dialog is reopened.
-   Please watch for this effect in all such dialogs; we're indexing such
-   defects under the topic of "Bug" or "bugs".
 
 \paragraph{Menu / Yoshimi / Settings / Jack}
 \label{paragraph:menu_yoshimi_settings_jack}
@@ -380,13 +376,13 @@
    performance and configurability.
 
    When using the JACK audio backend, parts can be individually routed
-   and sent to the main L/R outputs. This is controlled from the panel
-   window, and the settings are saved with all the other parameters.
+   and sent to the main L/R outputs. This is controlled from the
+   panel window,
+   \sectionref{subsec:mixer_panel_window},
+   and the settings are saved with all the other parameters.
 
    Direct part outputs carry the Part and Insertion effects, but not the
    System ones.
-
-   TODO:  Where is the panel window, and where do we describe it?
 
 \begin{figure}[H]
    \centering 
@@ -452,7 +448,6 @@
    Values: \texttt{96000, 48000*, 44100}
 
    \itempar{Period Size}{ALSA!period size}
-   Period Size.
    Buffer Size.
    Sets the granularity of the sound. The Default is 256 (TODO: 1024?)
    samples. To find out the internal delay in milliseconds, divide the
@@ -520,14 +515,13 @@
 
    \itempar{Enable Program Change}{continuous controllers!enable program change}
    Enable Program Change.
-   Enables/disable MIDI program change.
-   Program changes can be completely disabled - some hardware synths don't
+   Enables/disables MIDI program change.
+   Program changes can be completely disabled, but some hardware synths don't
    play nice!
 
    Values: \texttt{Off*, On}
 
    \itempar{Enable Part On Program Change}{continuous controllers!enable part change}
-   Enable Part On Program Change.
    The part is enabled if the MIDI program was changed.
 
    TODO:  Not quite sure what this means.
@@ -535,12 +529,12 @@
    Values: \texttt{Off*, On}
 
    \itempar{Enable Extended Program Change}{continuous controllers!enable extended change}
-   Enable Extended Program Change.
+
+   TODO:  Not quite sure what this means.
 
    Values: \texttt{Off*, On}
 
    \itempar{Extended Program Change}{continuous controllers!extended change}
-   Extended Program Change.
    If enabled, a new reddish button, \textbf{Pending}, appears.
    Once the change has been made in the scroll list, click this button
    to set the change.
@@ -699,12 +693,11 @@
    simply adds the currently selected directory shown in the instrument list
    to the list of favorites.
 
-   To add Favorites in the file dialog,
-   navigate to the desired directory.  Then click "Favorites", and select
-   "Add to Favorites".
+   To add Favorites in the file dialog, navigate to the desired directory.
+   Then click \textbf{Favorites}, and select \textbf{Add to Favorites}.
 
    Once one has a number of favorites set up,
-   there is a "Manage Favorites" that can be used.
+   there is a \textbf{Manage Favorites} that can be used.
    For example, if one needs to get rid of a directory, one can use the
    \textbf{Manage Favorites}
    \index{Manage Favorites}
@@ -720,9 +713,9 @@
 \end{figure}
 
    \textbf{File Systems} \index{File Systems}
-   Provides a list of all file systems start at root ("\texttt{/}").
+   Provides a list of all file systems starting at root ("\texttt{/}").
    This list can be pretty confusing, with a lot of entries.
-   But note that one navigates to ("\texttt{//}"), and from there to
+   But note that one navigates to ("\texttt{/}"), and from there to
    \texttt{/usr/share/yoshimi/banks} to get easy access to all the
    instruments that are preinstalled with
    \textsl{Yoshimi}.  Unfortunately, one can only add instrument
@@ -735,27 +728,23 @@
    \sectionref{subsubsec:menu_instrument_show}.
 
    \itempar{Create Directory}{Open Instrument!create new directory}
-   Create a New Directory.
-
+   Creates a New Directory.
    This little symbol options a small "New Directory?" dialog (not shown
    here, it is very simple and stock) into which one can type a directory
    name to be added to the current directory of the instrument list.
 
    \itempar{Instrument List}{Open Instrument!instrument list}
-   Instrument List.
    Provides a list of the instrument files available in the current
    directory.  Also shown are sub-directories (if available)
    that might contain more instruments, and a ("\texttt{../}") entry
    to navigate to the parent directory.
 
    \itempar{Preview}{Open Instrument!preview checkbox}
-   Preview.
    If one thinks the preview feature is not useful, uncheck this check-box.
    so that one doesn't see the preview window.  As a bonus, one can see more
    of the instrument file-name.
 
    \itempar{Preview pane}{Open Instrument!preview pane}
-   Preview Pane.
    XML Preview.
    This box can show the beginning of the XML data of an instrument file.
    \textbf{Bug:}
@@ -767,7 +756,6 @@
    who would hide a \textsl{Yoshimi} instrument file?
 
    \itempar{Directory Bar}{Open Instrument!directory bar}
-   Directory Bar.
    Provides an alternate way to move up through the directory structure.
 
    \itempar{Filename}{Open Instrument!filename}
@@ -797,7 +785,7 @@
    automatically by the program, so one doesn't have to worry about saving the
    banks before the program exits. On program start, the last used bank is
    loaded. A single bank can store up to 128 instruments. 
-   However, there is space for a number of additional, but unnumbered
+   However, there is space for a number of additional
    instruments in the bank.
 
 % TODO:  The name of this dialog file should be show_instruments.png.
@@ -860,9 +848,9 @@
 \end{figure}
 
    The interesting feature of this figure is that
-   all of the filenames are unnumbered, and therefore they show up in the
+   all of the file-names are not numbered, and therefore they show up in the
    extended (rightmost) column of the dialog, prepended with
-   \textsl{ad hoc} numbers.
+   \textsl{ad hoc} numbers that \textsl{Yoshimi} generates.
 
    Here is a list of the user-interface items in the instruments/banks dialog.
    Please refer to 
@@ -889,8 +877,9 @@
 
    \itempar{Bank Name}{instruments!bank name}
    Instruments Bank Name.
-   Basically, this is a directory name, with a number prepended.
-   Not quite sure where the number comes from in the base of banks.
+   Basically, each bank is a directory name, with a number prepended.
+   The banks are found under a current "root", which is a also a directory
+   name, and is the name of the parent directory of a set of banks.
    Here is the dropdown list for "my" setup:
 
 \begin{figure}[H]
@@ -932,20 +921,35 @@
       mmxgn Collection
    \end{verbatim}
 
-   We're not yet sure where the numbers in the dropdown list come from; they
-   must be automatically generated.
-   TODO:  Find out!
+   The first thing to note is that there are only 128 \textsl{Yoshimi} banks
+   supported in a \textsl{Yoshimi} root.  The list above takes up about half
+   of the available slots, so it might be time to move some of those banks
+   to a new root directory.
+
+   The numbers in the dropdown list are generated by \textsl{Yoshimi} the
+   first time it sees a new root path or a new bank within the root path.
+   Once set, these numbers will never change unless you actually move them
+   around (using the \textbf{SWAP} button).
+
+   The bank number is also the MIDI ID; one can be sure that it will alway
+   be there for bank changes no matter how many banks are added later.
+   \textsl{Yoshimi} always lists the banks in ID order, not alphabetical
+   order, so one can group them sensibly and permanently. However, at
+   first-time creation \textsl{Yoshimi}
+   sets the IDs in alphabetical order and tries to space them evenly
+   over the range to provide wiggle room.                                        
 
    Selecting one of the items in this dropdown list selects the bank and
    loads it into the Banks dialog.
+   Using a right mouse click often produces modified or alternate results,
+   especially in roots/banks/instruments.
 
    \itempar{Refresh banks}{instruments!refresh banks}
    Instruments Refresh Banks.
-   This item is \textsl{not present} in the newest \textsl{yoshimi}.
+   This item is \textsl{not present} in the newest \textsl{Yoshimi}.
 
    \itempar{Roots}{instruments!roots}
-   Instruments Roots.
-   "Roots" button.
+   Instruments Roots Button.
    Shows a list of directories that can serve as "root" directories.
    The "Bank Root Paths" dialog shown in
    \figureref{fig:show_banks_roots} shows
@@ -953,8 +957,7 @@
    a user's home location for his/her banks and roots.
 
    \itempar{Banks}{instruments!banks}
-   Instruments Banks.
-   "Banks" button.
+   Instruments Banks Button.
    The dialog brought up by this button
    (see \figureref{fig:show_banks_directories})
    is different view of the dialog shown in
@@ -975,7 +978,7 @@
    \itempar{Instruments}{instruments!instruments}
    Instruments Button.
    This seems to be present in the newest version of 
-   \textsl{Yoshimi}.  TODO: clarify.
+   \textsl{Yoshimi}, and brings up the instruments in the current bank.
 
    \itempar{SELECT}{instruments!SELECT}
    Instruments SELECT.
@@ -988,11 +991,6 @@
    Instruments RENAME.
    When this button is selected, then clicking on a bank brings
    up a small dialog to rename the clicked-on bank.
-   \textbf{Bug:}
-   \index{bugs!click on rename bank closes Yoshimi}
-   Unfortunately, in \textsl{Yoshimi}, clicking on the bank closes
-   everything, including \textsl{Yoshimi}, with a
-   \textbf{segmentation fault}!
 
    \itempar{SAVE}{instruments!SAVE}
    Instruments SAVE.
@@ -1009,13 +1007,11 @@
    Selecting this button, then selecting one bank, and then another,
    swaps the numbering and postion of the selected banks.
 
-   \itempar{Show PADsynth status}{instruments!PADsynth status}
-   Instruments Show PADsynth Status.
-
-   TODO:  Describe/summarize  each dialog flavor properly distinguished.
+   \itempar{Show synth engines}{instruments!show engines}
+   If enabled, then the usage of each of the \textsl{Yoshimi} synthesis
+   engines is indicated by color coding, as shown in the figure above.
 
    \itempar{Close}{instruments!Close}
-   Instruments Close Window.
    Closes the window.
 
    Here is a more conventional view of instruments, supplied with
@@ -1091,12 +1087,6 @@
    Banks RENAME.
    When this button is selected, then clicking on a bank brings
    up a small dialog to rename the clicked-on bank.
-
-   \textbf{Bug:}
-   \index{bugs!click on rename bank closes Yoshimi}
-   Unfortunately, in \textsl{Yoshimi}, clicking on the bank closes
-   everything, including \textsl{Yoshimi}, with a
-   \textbf{segmentation fault}!
 
    \itempar{ADD}{banks!ADD}
    Banks ADD.
@@ -1200,12 +1190,6 @@
    minor version numbers so it is possible to tell which version created the
    files, or whether they were created by \textsl{ZynAddSubFX}.
 
-   \textsl{Yoshimi} has up to 64 parts in blocks of 16. One can
-   decide how many one wants to have available using the Parameters menu.
-   One can have 16, 32 or 64 parts.
-
-   TODO:  Is this really where it goes?
-
 \begin{figure}[H]
    \centering 
    \includegraphics[scale=1.0]{menu/yoshimi-menu-parameters.jpg}
@@ -1298,12 +1282,10 @@
    range of microtonal scales.
 
    At present, we're not too experienced with this feature.
-   
-   TODO:  Add a brief summary to yum\_concepts, then expand this section.
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{menu/yoshimi-menu-scales.jpg}
+   \includegraphics[scale=0.75]{menu/yoshimi-menu-scales.jpg}
    \caption{Yoshimi Menu, Scales}
    \label{fig:yoshimi_menu_scales}
 \end{figure}

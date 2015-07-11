@@ -41,11 +41,14 @@
    guitar-effects project called \textsl{Rakkarrak} \cite{rakarrack}.
 
    There are two types of effects: System effects and Insertion effects. The
-   System effects apply to all parts and allows to set the amount of effect
-   that applies to each parts. Also, it is possible to send the output of
-   one system effect to other system effects. In the user interface this is
+   System effects apply to all parts and allows one to set the amount of effect
+   that applies to each part. Also, it is possible to send the output of
+   one system effect to another system effect. In the user interface this is
    shown as "source -\textless destination". eg. "0 -\textless 1" means how
    much of the system effect 0 is sent to system effect 1.
+
+   Insertion effects are described in
+   \sectionref{subsubsec:effects_paneltypes_insertion}.
 
 \subsection{Effects / Panel Types}
 \label{subsec:effects_paneltypes}
@@ -53,9 +56,9 @@
    There are three variations of Effects sub-panels:
 
    \begin{itemize}
-      \item \textbf{System Effects} sub-panel.
-      \item \textbf{Insertion Effects} sub-panel.
-      \item \textbf{Part/Instrument Effects} sub-panel.
+      \item \textbf{System Effects}.
+      \item \textbf{Insertion Effects}.
+      \item \textbf{Part/Instrument Effects}.
    \end{itemize}
 
    Here are the major elements of the main effects panel, which shows the
@@ -186,7 +189,7 @@
 \subsubsection{Effects / Panel Types / Insertion }
 \label{subsubsec:effects_paneltypes_insertion}
 
-   The second variation
+   The second effects variation
    appears when you enable an effect in the
    \textbf{Insertion Effects}
    panel of the main \textsl{Yoshimi} dialog.
@@ -430,11 +433,12 @@
    If the effect is used as a System effect, then this control appears.
 
    \itempar{D/W}{dynfilter!dry/wet}
-   DynFilter Dry/Wet Setting.
+   DynFilter Dry/Wet Mix Setting.
 
    Values: \textsl{0 to 127}
 
    If the effect is used as an Insertion effect, then this control appears.
+   "Dry" means the unprocessed signal and "wet" means the processed signal. 
 
    \itempar{Pan}{dynfilter!pan}
    DynFilter Panning.

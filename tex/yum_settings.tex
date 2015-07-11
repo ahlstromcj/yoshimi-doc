@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-15
-% \update      2015-07-10
+% \update      2015-07-11
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -79,12 +79,12 @@
    automation) using standard MIDI messages. These are:
 
    \begin{enumber}
-      \item textbf{NRPNs}
-      \item textbf{ZynAddSubFX controls}
-      \item textbf{Independent part control}
-      \item textbf{16, 32 or 64 parts}
-      \item textbf{Vector Control}
-      \item textbf{Direct part stereo audio output}
+      \item \textbf{NRPNs}
+      \item \textbf{ZynAddSubFX controls}
+      \item \textbf{Independent part control}
+      \item \textbf{16, 32 or 64 parts}
+      \item \textbf{Vector Control}
+      \item \textbf{Direct part stereo audio output}
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
@@ -93,7 +93,7 @@
    NRPNs can handle individual bytes appearing in either order, and usually the
    same with the data bytes. Increment and decrement is also supported as
    graduated values for both data LSB and MSB. Additionally, ALSA sequencer's
-   14bit NRPN blocks are supported.
+   14-bit NRPN blocks are supported.
 
    \itempar{ZynAddSubFx controls}{automation!controls}
    System and Insertion Effect controls are fully supported, with extensions
@@ -147,8 +147,7 @@
    responses and other concepts of filtering.
    The end of this section covers a user interface used in filter settings.
    It is a stock-panel re-used in other user-interface elements.
-   See section~\ref{subsubsec:filter_parameters_user_interface}
-   on page~\pageref{subsubsec:filter_parameters_user_interface}
+   See \sectionref{subsubsec:filter_parameters_user_interface}
    if one is in a hurry.
 
    \textsl{Yoshimi}
@@ -171,8 +170,7 @@
    Filtering changes the character of a signal.
 
    The basic analog filters that \textsl{Yoshimi} and \textsl{ZynAddSubFX}
-   offer are shown in figure~\ref{fig:basic_filter_types} on
-   page~\pageref{fig:basic_filter_types}, with
+   offer are shown in \figureref{fig:basic_filter_types}, with
    the center frequency being marked by the red
    line. The state variable filters should look quite similar.
 
@@ -1001,8 +999,7 @@ over time.  The general envelope generator has four sections:
    is pressed on a control point, it will be shown the duration of the
    stage where the point is.
 
-   Figure~\ref{fig:amplitude_envelope_freemode}
-   on page~\pageref{fig:amplitude_envelope_freemode}
+   \figureref{fig:amplitude_envelope_freemode}
    shows an example of the stock freemode envelope editor, with
    freemode enabled.
 
@@ -1372,29 +1369,32 @@ over time.  The general envelope generator has four sections:
 
    \itempar{Fr.Sl.}{formant!slowness}
    Formant Slowness.
-   This parameters prevents too-fast morphing between vowels.
 
    Values:  \texttt{0 to xxx?}
+
+   This parameters prevents too-fast morphing between vowels.
 
    \itempar{Vw.Cl.}{formant!clearness}
    Vowel "Clearness".
-   How much the vowels are kept "clear".
-   That is, how much the "mixed" vowels are avoided.
 
    Values:  \texttt{0 to xxx?}
+
+   Sets how much the vowels are kept "clear",
+   that is, how much the "mixed" vowels are avoided.
 
    \itempar{C.f.}{formant!cf}
    Center Frequency.
-   The center frequency of the graph.
 
    Values:  \texttt{0 to xxx?}
+
+   The center frequency of the graph.
 
    \itempar{Oct.}{formant!octaves}
    Number of Octaves.
 
-   The number of octaves in the graph.
-
    Values:  \texttt{0 to xxx?}
+
+   The number of octaves in the graph.
 
 \paragraph{Formant Vowel Parameters}
 \label{paragraph:formant_vowel_parameters}

@@ -1,13 +1,13 @@
 http://forum.renoise.com/index.php/topic/34360-yoshimi-banks/
 
-Tochange the \textsl{yoshimi} MIDI bank or program from within a sequencer:
+To change the \textsl{yoshimi} MIDI bank or program from within a sequencer:
 
-AMIDI bank change is usually a CC#0 value of 0, followed by a CC#32 value of
+A MIDI bank change is usually a CC#0 value of 0, followed by a CC#32 value of
 X,where X is the desired bank number from 0 to whatever,
 (However,in some cases may simply be a CC#0 on its own with a value of X).
-Manysynths also require that you send a program change after the bank change,
-toselect the program within the bank.  So, using directions that seem specific
-toRenoise....
+Many synths also require that you send a program change after the bank change,
+to select the program within the bank.  So, using directions that seem specific
+to Renoise....
 
 -Add a MIDI Control device to a track.
 -Link the MIDI Control device to the instance of the ZynAddSubFx/Yoshimi
@@ -17,8 +17,8 @@ instrument.
 -Map the 2nd MIDI Control device parameter to CC#32.
 -Map the 3rd MIDI Control device parameter to Prg-Change.
 
-Nowprogram the following commands into your pattern: (Assuming the MIDI
-Controldevice is #1 in the chain):
+Now program the following commands into your pattern: (Assuming the MIDI
+Control device is #1 in the chain):
 
 1001 1100 1201 1302 1000
 
@@ -29,7 +29,7 @@ Controldevice is #1 in the chain):
 program,etc)
 -1000 = turn the MIDI Control Device off
 
-Inthis particular case, it's important to the turn the MIDI Control device off
+In this particular case, it's important to the turn the MIDI Control device off
 againwhen you don't need it, otherwise it will not correctly transmit the
 bank/programchanges the next time you need it.
 
@@ -41,26 +41,26 @@ To:ahlstromcj/yoshimi-doc <yoshimi-doc@noreply.github.com>
 Cc:"C. Ahlstrom" <ahlstromcj@gmail.com>                                          
 Subject:Re: [yoshimi-doc] Yoshimi Docs (#1)                                      
 
-Anote on banks. You *really* need to move some of those out to a new root!
+A note on banks. You *really* need to move some of those out to a new root!
 That'sa pretty crowded list. The limit is 128 and you seem to be half way       
 there:)                                                                          
 
-Thenumbers are generated the first time yoshimi sees a new root path or new      
-bankswithin a root path.                                                         
+The numbers are generated the first time yoshimi sees a new root path or new      
+banks within a root path.                                                         
 
-Onceset, these numbers will never change unless you actually move them
-aroundusing the 'swap' button.                                                          
-Thenumber is also the MIDI ID so you can be sure it will always be there
-forbank changes no matter how many more banks you add later.
+Once set, these numbers will never change unless you actually move them
+around using the 'swap' button.                                                          
+The number is also the MIDI ID so you can be sure it will always be there
+for bank changes no matter how many more banks you add later.
 
-Yoshimialways lists these in ID order not alphabetical order, so you can
-groupthem sensibly and permanently. However, at first time creation it
-setsthe IDs in alphabetical order and tries to space them evenly
-overthe range to give   you 'wiggle' room.                                                                
-Usingright mouse click often produces modified or alternate results,
-especiallyin roots/banks/instruments. In Yoshi this is defined as
-buttonnumber 2. Some distros/window managers have number 2 as
-themiddle button.        
+Yoshimi always lists these in ID order not alphabetical order, so you can
+group them sensibly and permanently. However, at first time creation it
+sets the IDs in alphabetical order and tries to space them evenly
+over the range to give   you 'wiggle' room.                                                                
+Using right mouse click often produces modified or alternate results,
+especially in roots/banks/instruments. In Yoshi this is defined as
+button number 2. Some distros/window managers have number 2 as
+the middle button.        
 
 ----------------------------------------------------------
 
@@ -70,27 +70,27 @@ To:yoshimi-user@lists.sourceforge.net
 Subject:[yoshimi-user] my answer to a recent enquiry. Thought it should be
 here
 
-Presetsare loaded and saved via the copy/paste buffer (the blue C and P
-icons).To be really useful you need to create a new directly path.
-Probablythe best location is in /home/{yourusername}/.config/yoshimi
+Presets are loaded and saved via the copy/paste buffer (the blue C and P
+icons). To be really useful you need to create a new directly path.
+Probably the best location is in /home/{yourusername}/.config/yoshimi
 
-Afterthis, if you develop (say) a phaser sound you especially like, you can
+After this, if you develop (say) a phaser sound you especially like, you can
 copyit to the clipboard, and from there save it to a preset. You can then
 pullit back whenever you want to.
 
-Havingsaid that, I hardly ever use it myself so had to try to remember how
-itworked.
+Having said that, I hardly ever use it myself so had to try to remember how
+it worked.
 
-Wesave more of the data than Zyn does. Particularly, if you've loaded a
-instrumentinto a part but then disabled it, when doing a parameter save we
-willstill include it along with the rest. Also we save all possible 64
-partsif they contain an instrument, even if they are not currently used.
-Anypart with the default 'Simple Sound' will have nothing but the ID tag so
-won'ttake up much space.
+We save more of the data than Zyn does. Particularly, if you've loaded a
+instrument into a part but then disabled it, when doing a parameter save we
+will still include it along with the rest. Also we save all possible 64
+parts if they contain an instrument, even if they are not currently used.
+Any part with the default 'Simple Sound' will have nothing but the ID tag so
+won't take up much space.
 
-Thisdiscussion was had a long time ago, and it was generally agreed that
-theincreased size of an entire parameter set was relatively unimportant
-comparedwith losing a sound that you might have temporarily disabled.
+This discussion was had a long time ago, and it was generally agreed that
+the increased size of an entire parameter set was relatively unimportant
+compared with losing a sound that you might have temporarily disabled.
 
 -----------------------------------------------------
 

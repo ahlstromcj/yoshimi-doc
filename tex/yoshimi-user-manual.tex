@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-04-20
-% \update      2015-07-10
+% \update      2015-07-11
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -49,6 +49,9 @@
 \section{Introduction}
 \label{sec:introduction}
 
+\subsection{Yoshimi Versus ZynAddSUbFX}
+\label{subsec:introduction_yoshimi_vs_zyn}
+
    This document describes how to use \textsl{Yoshimi} \cite{yoshimi},
    the software synthesizer derived from the great
    \textsl{ZynAddSubFx} \cite{zynaddsubfx} software
@@ -56,12 +59,12 @@
    applies to \textsl{ZynAddSubFx} and depends upon \textsl{ZynAddSubFX}
    documentation and diagrams.
 
-   Yoshimi is a MIDI software synthesizer for Linux. It synthesizes in real
-   time, can run polyphonic and/or monophonic in multiple simultaneous
-   patches in one or more MIDI channels, has broad microtonal capability,
-   and much more. It includes extensive addititive, subtractive, and PAD
-   synth capabilities which can be run simultaneously within the same patch.
-   It also has comprehensive effects capabilities.
+   \textsl{Yoshimi} is a MIDI software synthesizer for Linux. It synthesizes
+   in real time, can run polyphonic or monophonic in multiple
+   simultaneous patches in one or more MIDI channels, has broad microtonal
+   capability, and much more. It includes extensive addititive, subtractive,
+   and PAD synth capabilities which can be run simultaneously within the
+   same patch.  It also has comprehensive effects capabilities.
 
    Originally based on the 2.4.0 version of \textsl{ZynAddSubFX} (Copyright
    2002-2009 Nasca Octavian Paul), development of \textsl{Yoshimi} has
@@ -80,9 +83,12 @@
    \textsl{Yoshimi} does not, such as being able to easily record
    the output waveforms.
 
+\subsection{Document Structure}
+\label{subsec:introduction_document_structure}
+
    The structure of this document is a struggle.  No matter which route is
    taken, there's no way to avoid jumping all over this document to
-   adequately cover a topic.  Therefore, the section are basically provided
+   adequately cover a topic.  Therefore, the sections are basically provided
    in the order their contents appear in the user interface of
    \textsl{Yoshimi}.  To help the reader jump around this document, multiple
    links and references are supplied.
@@ -108,15 +114,18 @@
    are also present, in the same vein.
    This document currently has a lot of them!
 
-   Run \textsl{Yoshimi}, but run it without using \textsl{JACK}, which
+\subsection{Let's Get Started!}
+\label{subsec:introduction_lets_get_started}
+
+   Let us run \textsl{Yoshimi}, but run it without using \textsl{JACK}, which
    complicates the discussion of \textsl{Yoshimi}.  The first
    thing to do is make sure one has no other sound application running
    (unless one wants to risk blocking \textsl{Yoshimi} or hearing two sounds
    simultaneously, depending on one's sound card and ALSA setup).
-
-   Then run \textsl{Yoshimi} so that it uses ALSA for audio and ALSA for
+   Then start \textsl{Yoshimi} so that it uses ALSA for audio and ALSA for
    MIDI.  Also use the "\&" character so that we get back to the
    command-line prompt.
+   See \sectionref{sec:yoshimi_man_page}.
 
 \begin{verbatim}
    $ yoshimi -a -A &
@@ -143,8 +152,8 @@
 \end{figure}
 
 %  \includegraphics[scale=1.0]{yoshimi-first-screen.jpg}
-%  This figure a bit out-of-date (it does not show the new "Part of"
-%  feature)
+%  That figure a bit out-of-date (it does not show the new "Part of"
+%  feature), so we've replaced it with a new screen capture.
    
    Then the \textsl{Yoshimi} main window appears, as shown in
    \figureref{fig:yoshimi_main_screen}.
@@ -163,7 +172,7 @@ There's a lot going on with \textsl{Yoshimi}, and there's no way
 to describe it in linear order.  This manual will describe how to do useful
 things in each of the sections noted above, while leaving some of the
 details to be described in later sections, to which reference can be made
-for these details.  This document will depend heavily on index entries and
+for the details.  This document depends heavily on index entries and
 references.
 
 % Important Concepts
