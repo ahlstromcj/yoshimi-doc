@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-07-10
-% \update      2015-07-10
+% \update      2015-07-12
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -96,11 +96,17 @@
 
    Here is how to make an out-of-source debug.  Despite what
    cmake documentation (and Googling) says, using a command like the
-   following \textsl{does not work}:
+   following \textsl{does not work} unless you have \texttt{ccmake}
+   installed.
 
    \begin{verbatim}
       $ cmake -DCMAKE_BUILD_TYPE=Debug ..
+      $ ccmake
    \end{verbatim}
+   
+   In Debian Linux, install the \texttt{cmake-curses-gui}
+   package to get access to \texttt{ccmake}.  Or use the shorter
+   \texttt{cmake -DBuildForDebug=on ..} command below.
 
    \begin{enumber}
       \item Enter the source directory where the code was unpacked.
@@ -114,7 +120,7 @@
             directory.
             \begin{verbatim}
                $ cd Debug
-               $ cmake -DBuildForDebug=on
+               $ cmake -DBuildForDebug=on ..
                $ make
             \end{verbatim}
    \end{enumber}
