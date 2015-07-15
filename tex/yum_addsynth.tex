@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-07
-% \update      2015-07-14
+% \update      2015-07-15
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -257,12 +257,25 @@
    \label{fig:addsynth_freq_detune_type}
 \end{figure}
 
-   Values: \texttt{Default, L35cents, L10cents, E100cents, E1200cents}
+   Values: \texttt{Default*, L35cents, L10cents, E100cents, E1200cents}
+
+   This value defines the number of cents that define the range of the
+   \textbf{FREQUENCY} slider, that is 35 cents, 10 cents, 100 cents (one
+   semitone), or 1200 cents (1 octave), below and above the main
+   frequency.  The default is 35 cents.  The 1200-cents setting provides a
+   whole octave of detuning in either direction.
+
+   The "L" probably stands for "linear", and the "E" for "exponential", to
+   describe how the detune slider acts.
 
    \itempar{FREQUENCY slider}{addsynth!freq slider}
    ADDsynth Fine Detune (cents), a slider control.
 
-   Values: \texttt{-35.00 to 35.00}
+   Values:
+      \texttt{-35.00 to 35.00},
+      \texttt{-10.00 to 10.00},
+      \texttt{-100.00 to 100.00},
+      \texttt{-1200.00 to 1200.00}
 
    While the detune type dropdown and the octave selection provide a coarse
    selection of detune, the slider allows for a finer selection of detune,
@@ -539,30 +552,45 @@
 
    \begin{enumber}
       \item \textbf{OFF}.
-      This setting turns off the modulator.
+         This setting turns off the modulator.
       \item \textbf{MORPH}
-      The morph modulator works by combining the output of two oscillators
-      into one, with the amplitude envelope translating between one waveform
-      and the other.
+         \index{MORPH}
+         \index{morph modulator}
+         \index{modulator!morph}
+         The morph modulator works by combining the output of two oscillators
+         into one, with the amplitude envelope translating between one waveform
+         and the other.
       \item \textbf{RING}
-      The ring modulator is useful for making bell-like sounds and some weird
-      effects.  The ring modulator works by multiplying two waveforms
-      together, producing a signal that is the sum and difference of the
-      frequencies present in the waveforms.  The ins-and-outs of the ring
-      modulator are explained in detail in
-      paragraph~\ref{paragraph:tips_using_the_ring_modulator}.
+         \index{RING}
+         \index{ring modulator}
+         \index{modulator!ring}
+         The ring modulator is useful for making bell-like sounds and some
+         weird effects.  The ring modulator works by multiplying two
+         waveforms together, producing a signal that is the sum and
+         difference of the frequencies present in the waveforms.  The
+         ins-and-outs of the ring modulator are explained in detail in
+         paragraph~\ref{paragraph:tips_using_the_ring_modulator}.
       \item \textbf{PM}
-      The PM (pulse modulation) modulator works by using a modulator
-      envelope to change the pulse width of a pulse waveform.
-      Generally, set \textbf{F.Damp} to zero, so that the modulation amount
-      doesn't depend on the note number.
+         \index{PM}
+         \index{pulse modulator}
+         \index{modulator!pulse}
+         The PM (pulse modulation) modulator works by using a modulator
+         envelope to change the pulse width of a pulse waveform.
+         Generally, set \textbf{F.Damp} to zero, so that the modulation amount
+         doesn't depend on the note number.
       \item \textbf{FM}
-      The (frequency modulation) morph modulator works by modulator the
-      frequency.  Examples can be heard in the "Ethereal" and "Steel Wire"
-      instruments.
+         \index{FM}
+         \index{frequency modulator}
+         \index{modulator!frequency}
+         The (frequency modulation) morph modulator works by modulator the
+         frequency.  Examples can be heard in the "Ethereal" and "Steel Wire"
+         instruments.
       \item \textbf{PITCH}
-      The pitch modulator works by...
-      we're not sure... is this pitch shifting?
+         \index{PITCH}
+         \index{pitch modulator}
+         \index{modulator!pitch}
+         The pitch modulator works by...
+         we're not sure... TODO: is this pitch shifting?
    \end{enumber}
 
    \itempar{External Mod.}{modulator!external}

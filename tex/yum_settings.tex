@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-15
-% \update      2015-07-11
+% \update      2015-07-15
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -309,8 +309,7 @@
    Determines the category of filter to be used.
    There are three categories of filters
    (as shown in the dropdown element shown in
-   figure~\ref{fig:filter_categories_dropdown} on
-   page~\pageref{fig:filter_categories_dropdown}.)
+   \figureref{fig:filter_categories_dropdown}).
 
 \begin{enumber}                     % enumber is our arabic numbering style
    \item \textbf{Analog} (the default)
@@ -343,8 +342,7 @@
    \itempar{Filter Type}{filter!type}
    Selects the type of filter to be used, such as high-pass, low-pass,
    and band-pass.
-   See the dropdown element in figure~\ref{fig:filter_type_dropdown} on
-   page~\pageref{fig:filter_type_dropdown}.
+   See the dropdown element in \figureref{fig:filter_type_dropdown}.
 
 \begin{figure}[H]
    \centering 
@@ -415,8 +413,7 @@
    order to create a very steep roll-off, such as 48 dB/octave).
    This dropdown
    element is shown in
-   figure~\ref{fig:filter_stage_dropdown} on
-   page~\pageref{fig:filter_stage_dropdown}.
+   \figureref{fig:filter_stage_dropdown}.
    Obviously, the more stages used, the more calculation-intensive the
    filter will be.  This should also increase the latency (lag) of the
    filter.
@@ -466,8 +463,7 @@
    \end{enumber}
 
    The LFOs has some basic parameters (see
-   figure~\ref{fig:basic_parameters_lfo} on
-   page~\pageref{fig:basic_parameters_lfo}.)
+   \figureref{fig:basic_parameters_lfo}.
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
@@ -500,8 +496,7 @@
    Another important additional LFO parameter is the shape or type of the
    LFO. There are many LFO Types that vary according to the function used to
    generate the LFO. \textsl{Yoshimi} supports the LFO shapes shown in
-   figure~\ref{fig:types_of_lfo} on
-   page~\pageref{fig:types_of_lfo}.
+   \figureref{fig:types_of_lfo}.
 
 \begin{figure}[H]
    \centering 
@@ -524,10 +519,9 @@
    Another parameter is the LFO Randomness. It modifies the LFO amplitude or
    the LFO frequency at random. In \textsl{Yoshimi}
    one can choose how much the LFO
-   frequency or LFO amplitude changes by this parameter. In
-   figure~\ref{fig:randomness_in_lfo} on
-   page~\pageref{fig:randomness_in_lfo}
-   are shown some examples of randomness and how it changes the shape of a
+   frequency or LFO amplitude changes by this parameter.
+   Observe \figureref{fig:randomness_in_lfo}.
+   It shows some examples of randomness and how it changes the shape of a
    triangle LFO.
 
 \subsubsection{LFO, More Settings}
@@ -622,9 +616,9 @@ These parameters are:
    Values: \texttt{Off*, On}
 
    \itempar{Str}{LFO!stretch}
-   LFO Stretch. In the image in
-   figure~\ref{fig:amplitude_lfo} on
-   page~\pageref{fig:amplitude_lfo}, the LFO stretch is set to zero,
+   LFO Stretch. See the image in
+   \figureref{fig:amplitude_lfo}.
+   It shows the LFO stretch is set to zero,
    though the tooltip would show it to be 64.
 
    Values: \texttt{0 to 127, 64*}
@@ -648,11 +642,9 @@ These parameters are:
    \itempar{Type}{LFO!function type}
    LFO Type (or Shape, or Function).
    The various shapes of LFO functions are shown in
-   figure~\ref{fig:types_of_lfo} on
-   page~\pageref{fig:types_of_lfo}.
+   \figureref{fig:types_of_lfo}.
    The values that can be selected are shown in
-   figure~\ref{fig:lfo_function_type_dropdown} on
-   page~\pageref{fig:lfo_function_type_dropdown}.
+   \figureref{fig:lfo_function_type_dropdown}.
 
    Values: \texttt{SINE*, TRI, SQR, R.up, R.dn, E1dn, E2dn}
 
@@ -841,10 +833,8 @@ over time.  The general envelope generator has four sections:
    oscillators. The following image depicts the stages of these envelopes.
 
    For frequency envelopes, a simpler form of envelope is used.
-   This envelope, shown in
-   Figure~\ref{fig:asr_envelope_depiction} on
-   page~\pageref{fig:asr_envelope_depiction},
-   is an ASR envelope.
+   This envelope is an ASR envelope, shown in
+   \figureref{fig:asr_envelope_depiction}.
    The dotted line represents the real pitch of the sound without the envelope.
    The frequency envelopes are divided into 3 stages:
 
@@ -943,16 +933,12 @@ over time.  The general envelope generator has four sections:
 
    \itempar{C}
    Copy to Clipboard/Preset.
-   TO BE DESCRIBED ELSEWHERE.
 
    \itempar{P}
    Paste from Clipboard/Preset.
-   TO BE DESCRIBED ELSEWHERE.
 
    \itempar{E}
    Amplitude Envelope Window.
-   TO BE DESCRIBED ELSEWHERE, such as next section (followed by freemode
-   section)
 
 \subsubsection{Envelope Settings}
 \label{subsubsec:envelope_settings}
@@ -1062,7 +1048,7 @@ over time.  The general envelope generator has four sections:
    section is always flat, and its duration corresponds with the duration
    the note is held down.
    When this mode is enabled, the rest of the controls shown in
-   \ref{fig:amplitude_envelope_freemode}
+   \figureref{fig:amplitude_envelope_freemode}
    appear, and are described in the following paragraphs.
 
    \itempar{Add point}{envelope!add point}
@@ -1133,9 +1119,8 @@ over time.  The general envelope generator has four sections:
 
    These envelopes controls the frequency (more exactly, the pitch) of the
    oscillators.
-   Figure~\ref{fig:asr_envelope_depiction} on
-   page~\pageref{fig:asr_envelope_depiction}
-   depicts the stages of these envelopes.
+   Observe \figureref{fig:asr_envelope_depiction}.
+   It depicts the stages of these envelopes.
    The dotted line represents the real pitch of the sound without the envelope.
 
    The frequency envelopes are divided into 3 stages:
@@ -1498,13 +1483,11 @@ dialogs, respectively.
 
    \itempar{Clipboard list}{clipboard!list}
    Clipboard list.
-   TODO: determine what this is a list of!
 
    \itempar{Copy to Preset}{preset!copy}
    Clipboard to preset.
    Provides a way to specify the preset to which this data should be
    copied.
-   TODO:  How do you know the correct name for the preset?
 
    \itempar{Copy to Clipboard}{clipboard!copy}
    Preset to Clipboard.
@@ -1513,9 +1496,8 @@ dialogs, respectively.
 \label{subsubsec:clipboard_paste}
 \index{subsubsec:clipboard!paste}
 
-   Figure~\ref{fig:paste_to_clipboard} on
-   page~\pageref{fig:paste_to_clipboard} 
-   show an example of the pasting dialog for the clipboard.
+   Observe \figureref{fig:paste_to_clipboard}.
+   It shows an example of the pasting dialog for the clipboard.
 
 \begin{figure}[H]
    \centering 
@@ -1541,13 +1523,11 @@ dialogs, respectively.
 
    \itempar{Clipboard list}{clipboard!list}
    Clipboard list.
-   TODO: determine what this is a list of!
 
    \itempar{Paste from Preset}{preset!paste}
    Paste from preset.
-   Prrovides a way to specify the preset to which this data should be
+   Provides a way to specify the preset to which this data should be
    copied.
-   TODO:  How do you know the correct name for the preset?
 
    \itempar{Paste from Clipboard}{clipboard!paste}
    Clipboard to preset.
