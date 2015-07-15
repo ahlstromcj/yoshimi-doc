@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-07
-% \update      2015-07-05
+% \update      2015-07-14
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -313,7 +313,8 @@
 
    \itempar{Show Voice Parameters}{addsynth!voice parameters}
    ADDsynth Show Voice Parameters.
-   This button brings up the following "voice parameters" dialog.
+   This button brings up the "voice parameters" dialog discussed in the next
+   section.
    Again, this dialog is built from some stock sections and stock
    sub-panels, plus additional elements.
 
@@ -324,6 +325,8 @@
    This dialog provides a way to define each of the 8 voices in great
    detail.
 
+   By default, an instrument consists of one voice, voice 1.
+
 \begin{figure}[H]
    \centering 
    \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/ADDsynth-voice-parameters.jpg}
@@ -332,7 +335,22 @@
 \end{figure}
 
    This dialog consists of a few extra settings, plus a number of
-   stock dialog sections.
+   stock dialog sections.  Take some time to compare
+   \figureref{fig:addsynth_edit_dialog},
+   which covers the overall instrument, with 
+   \figureref{fig:addsynth_voice_parameters_dialog},
+   which covers each of the voices.
+   The stock sections in the former cover the whole instrument as one,
+   while the very similar stock sections in the latter cover only the
+   voice they configure.
+   Obviously, the combinations of settings are essentially endless.
+
+   Each voice can be amplitude-controlled, filter-controlled, and
+   frequency-controlled.  Each voice can also be modulated by an
+   internal modulator.
+   Another property of the voice is that one can tell \textsl{Yoshimi}
+   to modulate a given voice with any of the voices that are numbered less
+   than that voice.
 
    \begin{enumber}
       \item \textbf{Voice Number}
@@ -716,7 +734,7 @@
    \begin{enumber}
       \item \textbf{Detune}
       \item \textbf{FREQUENCY slider}
-      \item \textbf{440 Hz}         % addition to stock
+      \item \textbf{440Hz}          % addition to stock
       \item \textbf{Eq.T.}          % addition to stock
       \item \textbf{Octave}
       \item \textbf{Detune Type}
@@ -740,16 +758,20 @@
 
    Note that 35 cents is roughly one-third of a semitone.
 
-   \itempar{440 Hz}{voice parameters!440 hz}
-   440Hz Selection.
+   \itempar{440Hz}{voice parameters!440 hz}
+   440 Hz Selection.
 
    Values: \texttt{Off*, On}
 
-   Fix the voice base frequency to 440Hz.
+   Fixes the voice base frequency to 440 Hz.
    One can adjust this with the detune settings.
+   No matter what key is played on the keyboard, this voice will emit only
+   440 Hz.  This is useful for defining a constant frequency to use as a
+   modulator for the other voices in the part.
 
-   TODO: What does "base frequency" mean here?
-   \index{todo!base frequency}
+   For example, one can define voice 1 to be a tone, then
+   define voice 2 to be 440 Hz.  The two voices will mix, but only voice 1
+   will change frequencies as different keys are played.
 
    \itempar{Eq.T.}{voice parameters!eq type}
    Equal Temperament?

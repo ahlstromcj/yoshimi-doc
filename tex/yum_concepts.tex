@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-15
-% \update      2015-07-11
+% \update      2015-07-14
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -603,45 +603,49 @@
 
    \textsl{Yoshimi} responds to the following MIDI messages.
 
-   \begin{tabular}{r l}
-      \textbf{0} or \textbf{32} &
-         Bank Change (user selectable, does \textsl{not} force a program
-         change) \\
-      \textbf{1} &
-         Modulation Wheel \\
-      \textbf{7} &
-         Volume \\
-      \textbf{10} &
-         Panning \\
-      \textbf{11} &
-         Expression \\
-      \textbf{64} &
-         Sustain pedal \\
-      \textbf{65} &
-         Portamento On/Off \\
-      \textbf{71} &
-         Filter Q (Sound Timbre) \\
-      \textbf{74} &
-         Filter Cutoff (Brightness) \\
-      \textbf{75} &
-         BandWidth (different from GM spec) \\
-      \textbf{76} &
-         FM amplitude (different from GM spec) \\
-      \textbf{77} &
-         Resonance Center Frequency (different from GM spec) \\
-      \textbf{78} &
-         Resonance Bandwith (different from GM spec) \\
-      \textbf{120} &
-         All Sounds OFF \\
-      \textbf{121} &
-         Reset All Controllers \\
-      \textbf{123} &
-         All Notes OFF \\
-      \textbf{192} &
-         Program Change (voices 1-128) \\
-      \textbf{224} &
-         Pitch Bend \\
-   \end{tabular}
+   \begin{table}
+      \caption{ZynAddSubFX/Yoshimi MIDI Messages}
+      \label{table:zynaddsubfx_midi_messages}
+      \begin{tabular}{r l}
+         \textbf{0} or \textbf{32} &
+            Bank Change (user selectable, does \textsl{not} force a program
+            change) \\
+         \textbf{1} &
+            Modulation Wheel \\
+         \textbf{7} &
+            Volume \\
+         \textbf{10} &
+            Panning \\
+         \textbf{11} &
+            Expression \\
+         \textbf{64} &
+            Sustain pedal \\
+         \textbf{65} &
+            Portamento On/Off \\
+         \textbf{71} &
+            Filter Q (Sound Timbre) \\
+         \textbf{74} &
+            Filter Cutoff (Brightness) \\
+         \textbf{75} &
+            BandWidth (different from GM spec) \\
+         \textbf{76} &
+            FM amplitude (different from GM spec) \\
+         \textbf{77} &
+            Resonance Center Frequency (different from GM spec) \\
+         \textbf{78} &
+            Resonance Bandwith (different from GM spec) \\
+         \textbf{120} &
+            All Sounds OFF \\
+         \textbf{121} &
+            Reset All Controllers \\
+         \textbf{123} &
+            All Notes OFF \\
+         \textbf{192} &
+            Program Change (voices 1-128) \\
+         \textbf{224} &
+            Pitch Bend \\
+      \end{tabular}
+   \end{table}
 
    For the controllers that are not defined in GM:
 
