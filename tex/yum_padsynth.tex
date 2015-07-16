@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-07
-% \update      2015-06-27
+% \update      2015-07-15
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -461,7 +461,9 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 \label{subsubsec:padsynth_harmonic_structure_change}
 
    Harmonic Content Editor.  Another complex dialog.
-   Like the ADDsynth Oscillator Editor, it allows one to create an unlimited
+   Like
+   \figureref{fig:addsynth_oscillator_editor},
+   it allows one to create an unlimited
    number of oscillators. 
 
 \begin{figure}[H]
@@ -837,7 +839,10 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    Clears the harmonics settings.
 
    \itempar{Sine}{padsynth!harmonics sine}
-   Harmonics Sine.  Is this a dialog?
+   Harmonics Sine.  
+   The user is prompted to "Convert to sine?"
+   This seems to reset everything to the state where it has not been
+   modified, but that's not certain.
 
    \itempar{C}{padsynth!harmonics copy}
    Harmonics Copy.

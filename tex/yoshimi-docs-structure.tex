@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-04-20
-% \update      2015-07-03
+% \update      2015-07-16
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -50,6 +50,8 @@
   left=2cm,
   right=2cm
 }
+
+\usepackage{longtable}        % For making multi-page tables
 \usepackage{makeidx}          % For making an index
 
 % This package isn't available easily on CentOS:
@@ -136,6 +138,15 @@
 
 \newcommand{\sectionref}[1] {%
    section~\ref{#1}
+   ("\nameref{#1}")
+   on page~\pageref{#1}\ignorespaces
+}
+
+% Make a full reference to a table using its number, its name, and its page
+% number.  Very useful if you have a hard-copy of the document to deal with.
+
+\newcommand{\tableref}[1] {%
+   table~\ref{#1}
    ("\nameref{#1}")
    on page~\pageref{#1}\ignorespaces
 }
