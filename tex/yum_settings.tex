@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-15
-% \update      2015-07-15
+% \update      2015-07-17
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -761,16 +761,16 @@ These parameters are:
    \label{fig:frequency_lfo_subpanel}
 \end{figure}
 
-This panel is basically identical to the Filter LFO panel described
-in the previous section.
+   This panel is basically identical to the Filter LFO panel described
+   in the previous section.
 
 % Move this section upward?
 
 \subsection{Envelope Settings}
 \label{subsec:envelope_settings}
 
-Envelopes control how the amplitude, the frequency, or the filter changes
-over time.  The general envelope generator has four sections:
+   Envelopes control how the amplitude, the frequency, or the filter changes
+   over time.  The general envelope generator has four sections:
 
    \begin{enumber}
       \item \textbf{Attack}.
@@ -1488,6 +1488,21 @@ dialogs, respectively.
    Clipboard to preset.
    Provides a way to specify the preset to which this data should be
    copied.
+
+   To save to a preset, type the desired name of the setting.  This entry
+   will enable this button.  When the button is pressed, the preset will
+   be saved to the default directory,
+   as specified per \paragraphref{paragraph:menu_yoshimi_settings_preset_dirs}.
+   (Be sure to set up a default directory where ordinary users have write
+   permissions!)
+   The file-name of the of the preset will be a hidden file such as
+
+   \begin{verbatim}
+      .ADnoteParameters.xpz
+   \end{verbatim}
+
+   There is no way in \textsl{Yoshimi} to change this name.  One
+   must do it using file system commands.
 
    \itempar{Copy to Clipboard}{clipboard!copy}
    Preset to Clipboard.

@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-04-20
-% \update      2015-07-16
+% \update      2015-07-17
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -138,6 +138,16 @@
 
 \newcommand{\sectionref}[1] {%
    section~\ref{#1}
+   ("\nameref{#1}")
+   on page~\pageref{#1}\ignorespaces
+}
+
+% Make a full reference to a "paragraph"  using its number, its name, and
+% its page number.  Very useful if you have a hard-copy of the document to
+% deal with.
+
+\newcommand{\paragraphref}[1] {%
+   paragraph~\ref{#1}
    ("\nameref{#1}")
    on page~\pageref{#1}\ignorespaces
 }
