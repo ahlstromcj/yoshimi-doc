@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-15
-% \update      2015-07-17
+% \update      2015-07-18
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -1495,14 +1495,25 @@ dialogs, respectively.
    as specified per \paragraphref{paragraph:menu_yoshimi_settings_preset_dirs}.
    (Be sure to set up a default directory where ordinary users have write
    permissions!)
+   \index{preset files!.ADnoteParameters.xpz}
    The file-name of the of the preset will be a hidden file such as
 
    \begin{verbatim}
       .ADnoteParameters.xpz
    \end{verbatim}
 
+   The main part of this name is shown near the top of the preset dialog, as
+   a cue.
    There is no way in \textsl{Yoshimi} to change this name.  One
-   must do it using file system commands.
+   must do it using file system commands.  However, changing the name won't
+   do much good.  Only the name shown above will ever be visible
+   in \textsl{Yoshimi}.
+   (And yet it ships with a large number of non-hidden \texttt{.xpz} files!)
+
+   \index{todo!preset file question}
+   One other question about the preset file, not yet answered, is if all
+   the presets ever copied remain in that file, so that the user doesn't
+   have to keep making copies of the hidden preset file.
 
    \itempar{Copy to Clipboard}{clipboard!copy}
    Preset to Clipboard.

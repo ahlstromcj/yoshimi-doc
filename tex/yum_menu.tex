@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2015-07-17
+% \update      2015-07-18
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -231,16 +231,21 @@
 \end{figure}
 
    \itempar{XML compression level}{Main Settings!XML compression level}
+   Compression level of \textsl{Yoshimi} XML files.
+
+   Values: \texttt{0 to 9, 3*}
+
    The settings and instruments of
    \textsl{Yoshimi}
    are preserved in XML files.
    The value of 0 indicates that the XML file is uncompressed.
-   In general, 0 is probably the best setting.  For a little "wasted"
+   In general, 0 is probably the best setting.
+   Setting this option makes the XML files a bit larger, perhaps larger by a 
+   factor of more than 10, making a 10K file into a 180K file.
+   For a little "wasted"
    space, one can view the XML file in a text/programmer's editor.
    But, if ones system is tight on disk space, higher levels of compression
    can be specified.
-
-   Values: \texttt{0 to 9, 3*}
 
    \itempar{Send reports to}{Main Settings!Send Reports Destination}
    Notices and error messages can be sent to the standard error log of
@@ -439,6 +444,7 @@
 
    Values: \texttt{default*}
 
+   \index{todo!ALSA MIDI device}
    TODO: What can we change this value to?
 
    \itempar{Alsa Audio Device}{ALSA!audio device}
@@ -446,6 +452,7 @@
 
    Values: \texttt{default*}
 
+   \index{todo!ALSA audio device}
    TODO: What can we change this value to?
 
    \itempar{Samplerate}{ALSA!sample rate}
