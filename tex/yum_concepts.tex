@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-15
-% \update      2015-07-14
+% \update      2015-07-18
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -54,6 +54,76 @@
    intervals in different tuning systems.
    The interval of one cent is much too small to be heard between
    successive notes.
+
+\subsubsection{Concepts / Terms / instrument}
+\label{subsubsec:concepts_terms_instrument}
+
+   \index{instrument}
+   In \textsl{Yoshimi}, an \textsl{instrument} is a complex sound that can
+   be constructed using ADDsynth, SUBsynth, PADsynth, and kits.
+   Each instrument is loaded into a \textsl{part}
+   (see section~\ref{subsubsec:concepts_terms_part}).
+
+   In our documentation, we will sometimes use the terms "instrument",
+   "part", "patch", and even "program" interchangeably and loosely.
+
+\subsubsection{Concepts / Terms / part}
+\label{subsubsec:concepts_terms_part}
+
+   \index{part}
+   In \textsl{Yoshimi}, a \textsl{part} is one of 16 slots into which one
+   can load an
+   instrument (see section~\ref{subsubsec:concepts_terms_instrument}).
+   Each part can be enabled
+   or disabled, and assigned to a particular MIDI channel.
+
+\subsubsection{Concepts / Terms / patch}
+\label{subsubsec:concepts_terms_patch}
+
+   \index{patch}
+   In MIDI jargon, a \textsl{patch} is a
+   one of 16 channels in a MIDI device. Many synthesizers
+   can handle several waveforms per patch, mixing different
+   instruments together to create synthetic sounds. Each waveform counts as
+   a MIDI voice. Some sound cards can support two or more waveforms per
+   patch.  \textsl{Yoshimi} has some ability to combine waveforms ("voices")
+   into one instrument (section~\ref{subsubsec:concepts_terms_instrument}),
+   which can then be loaded into a
+   \textsl{Yoshimi} part (section~\ref{subsubsec:concepts_terms_part}).
+
+   Before General MIDI, which standardized patches, MIDI vendors assigned
+   patch numbers to their synthesizer products in an arbitrary manner.
+
+\subsubsection{Concepts / Terms / preset}
+\label{subsubsec:concepts_terms_program}
+
+   \index{preset}
+   In MIDI jargon, a \textsl{preset} is an instrument that can be easily
+   loaded.
+   It is also called a \textsl{program}
+   (\ref{subsubsec:concepts_terms_program}).
+   A program is selection via a "program-change" message.
+
+   In \textsl{Yoshimi}, a \textsl{preset} is any collection of settings that
+   can be saved to the clipboard or to a file, for later loading elsewhere.
+
+\subsubsection{Concepts / Terms / program}
+\label{subsubsec:concepts_terms_program}
+
+   \index{program}
+   In MIDI jargon, a \textsl{program} is the same as a \textsl{preset}
+   (\ref{subsubsec:concepts_terms_preset}).
+
+\subsubsection{Concepts / Terms / voice}
+\label{subsubsec:concepts_terms_voice}
+
+   \index{voice}
+   In MIDI jargon, a \textsl{voice} is the same as
+   a \textsl{preset} or a a \textsl{program}.
+
+   In \textsl{Yoshimi}, a \textsl{voice} is a single configurable waveform
+   that is just one of up to eight waveforms in an ADDsynth setting.
+   Such voices can also be used as modulators for other voices.
 
 \subsection{Concepts / ALSA Versus JACK}
 \label{subsec:concepts_alsa_versus_jack}
@@ -148,6 +218,9 @@
 
 \subsubsection{Concepts / Sessions / Parts}
 \label{subsec:concepts_sessions_parts}
+
+   In \textsl{Yoshimi}, a \textsl{part} is one of 16 slots into which one
+   can load an instrument (a patch or program).
 
    In many cases saving everything is not what is desired. Saving a patch
    later on in an editing session is one such example.
@@ -256,7 +329,8 @@
    \sectionref{subsubsec:menu_instrument_show_root_paths}.
 
    Also note that, as well as bank and program changes, there is the ability
-   to set a MIDI CC to access the voices from 129 to 160. All the Bank
+   to set a MIDI CC to access the voices from 129 to 160 (numbered re 1).
+   All the Bank
    controls are contained in a tab in the main \textbf{Settings}
    window, and take immediate effect.
 

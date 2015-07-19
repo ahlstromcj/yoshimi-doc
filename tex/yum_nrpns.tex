@@ -30,14 +30,13 @@
 \label{subsection:nrpns_midi_nrpn_basics}
 
    NRPN stands for "Non Registered Parameters Number".
-   NRPNs can control all system and insertion effect parameters.
+   NRPNs can control all System and Insertion effect parameters.
    Using NRPNs, \textsl{Yoshimi} can now directly set some part values
    regardless of what channel that part is connected to.  For example, one
    may change the reverb time when playing to keyboard, or
    change the flanger's LFO frequency.
-   One can disable the NRPN receiving by deselecting the "NRPN" checkbox
-   from the main window (near "Master Keyshift" counter).
-   (NEED SECTION REFERENCE).
+%  One can disable the NRPN receiving by deselecting the "NRPN" checkbox
+%  from the main window (near "Master Keyshift" counter).
    The controls can be sent on any MIDI channel 
    (the MIDI channels numbers are ignored).
 
@@ -70,7 +69,7 @@
    It's generally advisable to set NRPN MSB before LSB However, once MSB has
    been set one can set a chain of LSBs if they share the same MSB.
 
-   The data CCs associated with these are 6 for MSB and 38 for LSB. ????????
+   The data CCs associated with these are 6 for MSB and 38 for LSB.
 
    Only when an NRPN has been established can the data
    values be entered (they will

@@ -164,7 +164,10 @@
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{OscilSize}{Main Settings!OscilSize}
-   ADDsynth Oscillator Size (samples).
+   ADDsynth Oscillator Size (in samples).
+
+   Values: \texttt{128, 256, 512+, 1024*, 2048, 4096, 8192, 16384}
+
    Sets the number of the points of the ADDsynth oscillator. The
    bigger is better, but it takes more CPU time on the start of any note,
    and it may add latency to some processes.
@@ -174,8 +177,6 @@
    (This asterisk/plus-sign convention is used throughout this manual).
    See \figureref{fig:yoshimi_oscilsize_values} below for the OscilSize
    dropdown element.
-
-   Values: \texttt{128, 256, 512+, 1024*, 2048, 4096, 8192, 16384}
 
 \begin{figure}[H]
    \centering 
@@ -218,10 +219,11 @@
 \end{figure}
 
    \itempar{PADsynth interpolation}{Main Settings!PADsynth Interpolation}
-   See \figureref{fig:padsynth_interpolation} below
-   for the interpolation values.
 
    Values: \texttt{Linear(fast)*, Cubic(slow)}
+
+   See \figureref{fig:padsynth_interpolation} below
+   for the interpolation values.
 
 \begin{figure}[H]
    \centering 
@@ -248,14 +250,15 @@
    can be specified.
 
    \itempar{Send reports to}{Main Settings!Send Reports Destination}
+
+   Values: \texttt{stderr, Console Window*}
+
    Notices and error messages can be sent to the standard error log of
    the terminal in which 
    \textsl{Yoshimi} can be run, or, more usefully, to
    an output console window.
    See \figureref{fig:send_reports_to}.
    It provides a depiction of the selection dropdown.
-
-   Values: \texttt{stderr, Console Window*}
 
 \begin{figure}[H]
    \centering 
@@ -453,7 +456,7 @@
    Values: \texttt{default*}
 
    \index{todo!ALSA audio device}
-   TODO: What can we change this value to?
+   TODO: What can we change this value to?  "hw:0"
 
    \itempar{Samplerate}{ALSA!sample rate}
    Sample Rate.
@@ -510,46 +513,49 @@
    Values: \texttt{Off*, On}
 
    \itempar{Bank Root Change}{continuous controllers!bank root change}
-   Bank Root Change.
+
+   Values: \texttt{0*, to 127}
+
    If enabled, a new reddish button, \textbf{Pending}, appears.
    Once the change has been made in the scroll list, click this button
    to set the change.
 
-   TODO:
    It is not clear if this change persists after \textsl{Yoshimi} closes, or
    if the session or state must be saved.
    But apparently this change can be made without a restart being required.
 
-   Values: \texttt{0*, to 127}
-
    \itempar{Bank Change}{continuous controllers!bank change}
    Bank Change.
    Defines which continuous controllers one wants to use.
-   Note that CC0 = MSB, and CC32 = LSB.
+   Note that MIDI Controller 0 = CC0 = Bank Select MSB, and MIDI Controller
+   32 = CC32 = Bank Select LSB.
+   When combined, these Bank Select messages provide \[128*128 = 16384\]
+   banks.
+
+   But note that all a Bank Select does is selects the bank for the next
+   Program Change event.  The program doesn't change after changing a bank,
+   until a Program Change is sent.
 
    Bank changes can be completely disabled - some hardware
-   synths don't play nice!
+   synths don't play nice with banks.
 
    Values: \texttt{LSB, MSB*, Off}
 
    \itempar{Enable Program Change}{continuous controllers!enable program change}
-   Enable Program Change.
+
+   Values: \texttt{Off*, On}
+
    Enables/disables MIDI program change.
    Program changes can be completely disabled, but some hardware synths don't
    play nice!
 
-   Values: \texttt{Off*, On}
-
    \itempar{Enable Part On Program Change}{continuous controllers!enable part change}
-   The part is enabled if the MIDI program was changed.
-
-   TODO:  Not quite sure what this means.
 
    Values: \texttt{Off*, On}
+
+   The part is enabled if the MIDI program was changed on this part.
 
    \itempar{Enable Extended Program Change}{continuous controllers!enable extended change}
-
-   TODO:  Not quite sure what this means.
 
    Values: \texttt{Off*, On}
 
@@ -598,9 +604,9 @@
    colours:
 
    \begin{itemize}
-      \item Red: ADDsynth
-      \item Blue: SUBsynth
-      \item Green: PADsynth
+      \item \textcolor{red}{Red}: ADDsynth
+      \item \textcolor{blue}{Blue}: SUBsynth
+      \item \textcolor{green}{Green}: PADsynth
    \end{itemize}
 
    If the instruments are kits they scanned to find out if 
@@ -1085,12 +1091,15 @@
    Shows a list of directories that can serve as "root" directories.
 
    \itempar{current bank}{banks!current bank}
+   \index{current!bank}
    Current Bank.  Simply indicates the current bank via color-highlighting.
+   Note that one can left-click on a bank in this dialog to make it the
+   current bank.  This setting is saved across \textsl{Yoshimi} restarts.
 
    \itempar{Instruments}{banks!instruments}
    Banks Instruments.
-   Brings up an banks dialog as shown in
-   TODO.
+   \index{current!bank}
+   Brings up a banks dialog that shows the instruments in the current bank.
 
    \itempar{SELECT}{banks!SELECT}
    Banks SELECT.
@@ -1175,6 +1184,7 @@
 
    \itempar{Make current}{Root Paths!make current}
    Show Root Paths Make Current.
+   \index{current!root}
    This button marks the currently-selected path as the "current root" path.
 
    \itempar{Open current}{Root Paths!open current}
@@ -1186,7 +1196,7 @@
 
    Values: \texttt{0* to 127}
 
-   TODO: We need to know more about how this ID can be used.
+   We need to know more about how this ID can be used.
    Is it a way to make the path selectable via an extended MIDI control, or
    some other automation method?
 
