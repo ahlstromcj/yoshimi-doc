@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-22
-% \update      2015-09-05
+% \update      2015-09-06
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -21,8 +21,10 @@
    \texttt{yoshimi --help} command, which prints out the command-line that
    are discussed in this section.
 
-Yoshimi 1.3.4, a derivative of ZynAddSubFX - Copyright 2002-2009
-Nasca Octavian Paul and others, Copyright 2009-2011 Alan Calvert
+Yoshimi 1.3.6, a derivative of ZynAddSubFX - Copyright 2002-2009
+Nasca Octavian Paul and others, Copyright 2009-2011 Alan Calvert,
+Copyright 20012-2013 Jeremy Jongepier and others,
+Copyright 20014-2015 Will Godfrey and others.
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
@@ -35,17 +37,32 @@ Nasca Octavian Paul and others, Copyright 2009-2011 Alan Calvert
       ./yoshimi -K --alsa-midi="Virtual Keyboard"
    \end{verbatim}
 
+      ALSA can often manage with just the client name.  This command is case
+      sensitive, and quite fussy about spaces, etc., so it's wise to use
+      quotes for the source name, even if they don't seem to be needed.
+
   \optionpar{-A}{--alsa-audio[=device]}
       Use ALSA audio output.
 
   \optionpar{-b}{--buffersize=size}
-      Set ALSA audio buffer size.
+      Set ALSA internal audio buffer size.
 
   \optionpar{-c}{--show-console}
-      Show console on startup.
+      Show the console on startup.
+
+  \optionpar{-D}{--define-root}
+      Define the path to a new bank root.
+      \textsl{Yoshimi} will then immediately scan this path for new banks,
+      but won't make the root (or any of its banks) current. The final
+      directory doesn't in fact have to be 'banks' but traditionally
+      \textsl{Yoshimi} has always done this.
+      Also, when running from the command line there is now access to many of
+      the system, root, bank, etc. settings.
+      See \sectionref{subsec:command_line_commands}.
 
   \optionpar{-i}{--no-gui}
-      Do not show the GUI.
+      Do not show the GUI.  See \sectionref{sec:command_line} for more
+      information about this mode of operation.
 
   \optionpar{-j}{--jack-midi[=device]} 
       Use JACK MIDI input.
@@ -55,9 +72,15 @@ Nasca Octavian Paul and others, Copyright 2009-2011 Alan Calvert
    \begin{verbatim}
       ./yoshimi -K --jack-midi="jack-keyboard:midi_out"
    \end{verbatim}
+   
+   JACK needs the port as well as the name.
+   This command is case sensitive, and quite fussy about spaces, etc.,
+   so it's wise to use quotes for the source name, even if they don't seem to
+   be needed.
 
   \optionpar{-J}{--jack-audio[=server]}
       Use JACK audio output.
+      Connect to the given JACK server if given.
 
   \optionpar{-k}{--autostart-jack}
       Auto-start the JACK server.
@@ -75,14 +98,20 @@ Nasca Octavian Paul and others, Copyright 2009-2011 Alan Calvert
       Add tag to client-name.
 
   \optionpar{-o}{--oscilsize=size}
-      Set OscilSize from command-line.
+      Set ADDSynth oscillator size (OscilSize).
 
   \optionpar{-R}{--samplerate=rate}
       Set ALSA audio sample rate.
 
   \optionpar{-S}{--state[=file]}
-      Load state from file, where the file defaults to
+      Load saved state from file, where the file defaults to
       \texttt{\$HOME/.config/yoshimi/yoshimi.state}
+
+  \optionpar{-u}{--jack-session-file[=file]}
+      Load the named JACK session file.
+
+  \optionpar{-U}{--jack-session-uuid[=uuid]}
+      Load the named JACK session by UUID.
 
   \optionpar{-?}{--help}
       Give this help list.
@@ -93,8 +122,8 @@ Nasca Octavian Paul and others, Copyright 2009-2011 Alan Calvert
   \optionpar{-V}{--version}
       Print program version.
 
-   Mandatory or optional arguments to long options are also mandatory or optional
-   for any corresponding short options.
+   Mandatory or optional arguments to long options are also mandatory or
+   optional for any corresponding short options.
 
    From the command line, as well as autoconnecting the main L \& R outputs
    to JACK, with either JACK or ALSA MIDI one can now auto-connect to a

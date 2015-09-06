@@ -450,12 +450,19 @@
 \paragraph{Menu / Yoshimi / Settings / Alsa}
 \label{paragraph:menu_yoshimi_settings_alsa}
 
+   A significant improvement is to the handling of ALSA audio, which is still
+   very important for some people. Up till now \textsl{Yoshimi} has insisted
+   on a 2-channel 16-bit format. Tests have shown that virtually all
+   motherboard sound chipsets will handle this, but many external ones don't.
+
    From \textsl{Yoshimi} 1.3.6 onwards, when using ALSA audio,
    \textsl{Yoshimi} first tries to connect 2 channels at 32 bit depth.  If
    that connection does not succeed, then \textsl{Yoshimi} negotiates
    whatever the soundcard will support.  For example, a card might support
    only 24 bits, and 6 channels.  So \textsl{Yoshimi} will fall back to
    24 bit, and, due to its own limits, will use only channels 1 and 2.
+
+   With external sound modules in mind, endian swaps are also implemented.
 
 \begin{figure}[H]
    \centering 
@@ -988,19 +995,22 @@
    an "instrument" or "program" number.  These numbers can be used in MIDI
    Program Change commands.
    
-   All of the files with
-   filenames starting with 4-digit numbers will be shown in the slot
-   corresponding number.  Those without numbers will start with numbers at
-   129 or above ("extended program change").  One should
-   give them numbers by renaming them outside of \textsl{Yoshimi},
-   then reloading the bank.
+   All of the files with filenames starting with 4-digit numbers will be
+   shown in the slot corresponding number.  Those without numbers will start
+   with numbers at 129 or above ("extended program change").  One should give
+   them numbers by renaming them outside of \textsl{Yoshimi}, then reloading
+   the bank.
 
    \index{extended program}
    Note that MIDI CC
    (see \sectionref{paragraph:menu_yoshimi_settings_ccs})
    can be set to access voices from 129 to 160.
+   All the Bank controls in the \textbf{MIDI} settings tab take immediate
+   effect when set.
+   Bank and program changes can be completely disabled in the settings tab;
+   some hardware synths don't play nice with it.
 
-   Learning how to use this dialog is an important way to make
+   Learning how to use the Instruments dialog is an important way to make
    instruments easier to manage, and so this will be a long discussion.
 
 %  An important pair of concepts in \textsl{Yoshimi} are
@@ -1033,8 +1043,6 @@
    \textsl{Yoshimi}.
 
    Here is a list of the user-interface items in the instruments/banks dialog.
-   Please refer to 
-   \figureref{fig:show_instruments} as well.
 
    \begin{enumber}
       \item \textbf{Bank Names}

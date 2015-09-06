@@ -162,36 +162,36 @@ Say you have a poem and I have a tune.
 Exchange them and we can both have a poem, a tune, and a song.
 
 
-Date: Sat, 5 Sep 2015 21:09:00 +0100                                              
-From: Will Godfrey <willgodfrey@musically.me.uk>                                  
-To: Chris Ahlstrom <ahlstromcj@gmail.com>                                         
-Subject: Re: Yoshimi notes                                                        
-X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)                   
+Date: Sat, 5 Sep 2015 21:09:00 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: Yoshimi notes
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
 
 On Sat, 5 Sep 2015 15:07:36 -0400
 Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
 
-> Oh, I do have a clone of GitHub yoshimi, let me know if that is                 
-> the latest or best source for the next pending version.                         
->                                                                                 
-> Chris                                                                           
->                                                                                 
-                                                                                  
-Hi Chris,                                                                         
-                                                                                  
-The latest 'master' version on github carries the version number 1.3.6 rc2.       
-However, there is new branch called 'command' which has all the latest            
-command-line additions and this will *probably* be merged into 1.3.6 unless       
-something really bad is lurking in there. I've reverted to C style string         
-handling for this. I find it much easier to get *exactly* what I want :(          
-                                                                                  
-New files in doc:                                                                 
-Command_line.txt                                                                  
-Dynamic_System_Settings.txt                                                       
-Yoshimi_1/3/6-features.txt                                                        
+> Oh, I do have a clone of GitHub yoshimi, let me know if that is
+> the latest or best source for the next pending version.
+>
+> Chris
+>
 
-                                                                                  
-Significantly updated files:                                                      
+Hi Chris,
+
+The latest 'master' version on github carries the version number 1.3.6 rc2.
+However, there is new branch called 'command' which has all the latest
+command-line additions and this will *probably* be merged into 1.3.6 unless
+something really bad is lurking in there. I've reverted to C style string
+handling for this. I find it much easier to get *exactly* what I want :(
+
+New files in doc:
+x Command_line.txt
+x Dynamic_System_Settings.txt
+x Yoshimi_1/3/6-features.txt
+
+Significantly updated files:
+
 Direct_Part_Control
 NewFeatures.txt
 Vector_Control.txt
@@ -199,94 +199,89 @@ Vector_Control.txt
 Minor updates:
 Using_NRPNs.txt
 
-
 For what it's worth I've been using this synth since Zyn 2.2.1 and am *still*
 finding out new things about it!
-
 
 I've had a quick look at the cookbook and you're doing very well there. But
 don't forget that Yoshi really picks up her skirts and runs when creating
 sounds that have no real-world analog at all!
 
-
 Good news on Sequencer24. I'll try to find time to give it a run.
 
-ate: Sun, 6 Sep 2015 15:38:16 +0100                                              
-From: Will Godfrey <willgodfrey@musically.me.uk>                                  
-To: Chris Ahlstrom <ahlstromcj@gmail.com>                                         
-Subject: Re: Yoshimi notes                                                        
-X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)                   
-                                                                                  
-On Sun, 6 Sep 2015 10:10:50 -0400                                                 
-Chris Ahlstrom <ahlstromcj@gmail.com> wrote:                                      
-                                                                                  
-> Man, this will take awhile!  I'm revamping the discussion of the Instruments    
-> menu to make it more concise and much better organized.                         
-                                                                                  
-You have my sympathy :)                                                           
-                                                                                  
-However once you get to grips with the UI it's actually pretty consistent.        
-                                                                                  
-> Anyway, I think there's a bug in the Show Instruments... dialog.                
-> When I right-click on an instrument, the dialog disappears!                     
-                                                                                  
-That's not a bug. It's intended. It's part of the anti-clutter feature of those   
-windows. In the same way, if you right click on banks or roots it closes one      
-window as it opens the other.       
+ate: Sun, 6 Sep 2015 15:38:16 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: Yoshimi notes
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
 
-Open the panel window and it's just above the Edit button of each part. You       
-have Main, Part or both.                                                          
-                                                                                  
-P.S.                                                                              
-Right click on the edit button and you actually open the instrument edit          
-window, otherwise it just selects it as the current part.                         
-                                                                                  
-Also any click in the part label opens the current instrument window.             
+On Sun, 6 Sep 2015 10:10:50 -0400
+Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
+
+> Man, this will take awhile!  I'm revamping the discussion of the Instruments
+> menu to make it more concise and much better organized.
+
+You have my sympathy :)
+
+However once you get to grips with the UI it's actually pretty consistent.
+
+> Anyway, I think there's a bug in the Show Instruments... dialog.
+> When I right-click on an instrument, the dialog disappears!
+
+That's not a bug. It's intended. It's part of the anti-clutter feature of those
+windows. In the same way, if you right click on banks or roots it closes one
+window as it opens the other.
+
+Open the panel window and it's just above the Edit button of each part. You
+have Main, Part or both.
+
+P.S.
+Right click on the edit button and you actually open the instrument edit
+window, otherwise it just selects it as the current part.
+
+Also any click in the part label opens the current instrument window.
  
 
-Date: Sun, 6 Sep 2015 17:07:05 +0100                                              
-From: Will Godfrey <willgodfrey@musically.me.uk>                                  
-To: Chris Ahlstrom <ahlstromcj@gmail.com>                                         
-Subject: Re: Yoshimi notes                                                        
-X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)                   
-                                                                                  
-On Sun, 6 Sep 2015 11:35:47 -0400                                                 
-Chris Ahlstrom <ahlstromcj@gmail.com> wrote:                                      
-                                                                                  
-> Hmmm, the Main dropdown is greyed out.  How do you get it ungreyed?             
-                                                                                  
-Use jack audio, not alsa audio :)                                                 
-                                                                                  
-> The left/right dichtomy of the Edit button in the part panel is a bit           
-> too tricky.   You might consider reversing the right vs left clicking,          
-> widen the button, and label it "Edit/Pick".  Just a thought.  Whatever          
-> it is, I will so document it.                                                   
-                                                                                  
-To a degree we try not to change things in an unexpected way. Old Yoshi, and      
-Zyn don't give you the option at all. We also try to keep a pleasing visual       
-balance so couldn't increase the width by much. Also, we already use a very       
-small font for that button. To get two words in you'd need a magnifier :(         
-                                                                                  
-> When I left or right-click on the part label, I get the dialog for the          
-> current bank either way.                                                        
-                                                                                  
-Ummmm :)                                                                          
-                                                                           
-We did think about making a right click open the name editor instead (like it     
-does in the top level) but I think that got a bit complicated and it was          
-abandoned.                                                                        
-                                                                                  
-Just remembered something.                                                        
-When using rotary controls. Left mouse button move gives coarse control, right    
-button gives fine control. The scroll wheel gives better control than moving      
-the mouse, and if you hold down the ctrl key at the same time the control is      
-*extremely* fine.                                                                 
-                                                                                  
-For vertical sliders only, if you hold down the right mouse button then move it   
-slightly the peg will go to it's default position. the same will happen if you    
-click on the track with the right button - bet you never knew that :)             
-          
+Date: Sun, 6 Sep 2015 17:07:05 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: Yoshimi notes
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
 
+On Sun, 6 Sep 2015 11:35:47 -0400
+Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
+
+> Hmmm, the Main dropdown is greyed out.  How do you get it ungreyed?
+
+Use jack audio, not alsa audio :)
+
+> The left/right dichtomy of the Edit button in the part panel is a bit
+> too tricky.   You might consider reversing the right vs left clicking,
+> widen the button, and label it "Edit/Pick".  Just a thought.  Whatever
+> it is, I will so document it.
+
+To a degree we try not to change things in an unexpected way. Old Yoshi, and
+Zyn don't give you the option at all. We also try to keep a pleasing visual
+balance so couldn't increase the width by much. Also, we already use a very
+small font for that button. To get two words in you'd need a magnifier :(
+
+> When I left or right-click on the part label, I get the dialog for the
+> current bank either way.
+
+Ummmm :)
+
+We did think about making a right click open the name editor instead (like it
+does in the top level) but I think that got a bit complicated and it was
+abandoned.
+
+Just remembered something.
+When using rotary controls. Left mouse button move gives coarse control, right
+button gives fine control. The scroll wheel gives better control than moving
+the mouse, and if you hold down the ctrl key at the same time the control is
+*extremely* fine.
+
+For vertical sliders only, if you hold down the right mouse button then move it
+slightly the peg will go to it's default position. the same will happen if you
+click on the track with the right button - bet you never knew that :)
 
 ===========================================================================
  git pull on 2015-09-05

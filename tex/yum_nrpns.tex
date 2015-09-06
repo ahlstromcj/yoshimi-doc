@@ -66,14 +66,14 @@
    One must send NRPN coarse/fine before sending Data entry coarse/fine.  If
    the effect/parameter doesn't exists or is set to none, then the NRPN is
    ignored.
+
    It's generally advisable to set NRPN MSB before LSB However, once MSB has
    been set one can set a chain of LSBs if they share the same MSB.
 
    The data CCs associated with these are 6 for MSB and 38 for LSB.
 
-   Only when an NRPN has been established can the data
-   values be entered (they will
-   be ignored otherwise).
+   Only when an NRPN has been established can the data values be entered
+   (they will be ignored otherwise).
 
    If a supported control is identified, these data values will be stored
    locally (if needed) so that other NRPNs can be set.
@@ -87,12 +87,15 @@
    final results will often be sent to whichever is the current channel.
 
    \textsl{Yoshimi} also supports the curious 14-bit NRPNs, but this shouldn't
-   be noticable to the user. In order to deal with this, and also some
+   be noticeable to the user. In order to deal with this, and also some
    variations in the way sequencers present NRPNs generally, if a complete
    NRPN is set
    (i.e. \texttt{Nhigh}, \texttt{Nlow}, \texttt{Dhigh}, \texttt{Dlow}),
    then the data bytes can be in
    either order, but must follow \texttt{Nhigh} and \texttt{Nlow}.
+
+   (In these notes, where practical we also list the 14 bit values in square
+   brackets.)
 
    After this, for running values, once
    \texttt{Dhigh} and \texttt{Dlow} have been set if one
@@ -111,7 +114,7 @@
 
    Data increment and decrement operation enables one to directly change the
    data LSB by between 0 and 63. To change the MSB add 64 to cover the same
-   range. Setting zero might seem pointless, but it gives an alternative way
+   range. Setting 0 might seem pointless, but it gives an alternative way
    to make an initial setting if one's sequencer doesn't play nice.
 
    Although data increment and decrement are only active if a valid NRPN has
@@ -139,8 +142,8 @@
    \textbf{WARNING}:
    Changing of some of the effect parameters produces clicks when sounds
    passes thru these effects.  We advise one to change only when the sound
-   volume that passes thru the effect to be very low (or silence).  Some
-   parameters produce clicks when are changed very fast.
+   volume that passes through the effect is very low (or silence).  Some
+   parameters produce clicks when they are changed rapidly.
 
    Here are the effects parameter number (for Data entry, coarse).
    The parameters that produces clicks are written in \textcolor{red}{red}
@@ -167,9 +170,15 @@
          \item 3 : data LSB = controller value
          \item 4 : data LSB = part's channel number (15 to 127 disconnects
             the part from any channel)
+         \item 5 : data LSB = part's audio destination, one of
+                    1 = main L\&R;
+                    2 = direct L\&R;
+                    3 = both;
+                    all other values are ignored
          \item 7 : data LSB = main volume (not yet implemented)
          \item 35 (0x23) : data LSB = controller LSB value (not yet implemented)
          \item 39 (0x27) : data LSB = main volume LSB (not yet implemented)
+         \item Other values are currently ignored.
       \end{itemize}
    \end{enumerate}
 
@@ -181,22 +190,30 @@
 \label{subsection:nrpns_midi_nrpn_vector_control}
 
    Vector control is a way to control more than one part with the
-   controllers.
-   It is a little bit reminiscent of the "vector" control knob on the 
-   Yamaha PSS-790 consumer MIDI synthesizer.
-   Vector control is only possible if one has 32 or 64 parts active.
+   controllers.  It is a little bit reminiscent of the "vector" control knob
+   on the Yamaha PSS-790 consumer MIDI synthesizer.  Vector control is only
+   possible if one has 32 or 64 parts active.
+
+   Vector control has been extended so that there are four independent
+   'features' that each axis can control, One is fixed as \textsl{volume} (if
+   enabled) but the other three can be any valid CC, and can also be
+   reversed. The vector 'sweep' CCs are split out very early in the MIDI
+   chain, and the new CCs created are fed back in before any other
+   processing. The result of this is that once we eventually get MIDI-learn
+   implemented, the control possibilities will expand dramatically.
+   \textsl{(Will notes: "sorry about the extreme delay :(")}
 
    In vector mode parts will still play together but the vector controls can
-   change their volume, pan, filter cutoff in pairs, controlled by user
-   defined CCs set up with NRPNs.
+   change their volume, pan, filter cutoff in pairs, controlled by
+   user-defined CCs set up with NRPNs.
 
-   One must set the X axis CC before Y, but if one doesn't set Y at all one
-   can run just a single axis. If yuo only have 32 parts active Y settings
-   are ignored.
+   One must set the X axis CC before the Y axis, but if one doesn't set the
+   Y axis at all, one can run just a single axis.
+   If one has only 32 parts active, Y settings are ignored.
 
    For example:
    parts 1 and 17 can be set as x1 \& x2 (volume only) while parts 33 and 49
-   can be y1 \& y2 (pan only)
+   can be y1 \& y2 (pan only).
 
    Independently of this Parts 2 \& 18 could use filter and pan from another
    CC.
@@ -206,9 +223,9 @@
    In the required channel send:
 
    \begin{itemize}
-      \item NRPN MSB (99)  set to 64
-      \item NRPN LSB (98)  1
-      \item Data MSB ( 6) set mode
+      \item NRPN MSB (99) set to 64
+      \item NRPN LSB (98) set to 1 [8192]
+      \item Data MSB (6) set mode:
       \begin{itemize}
          \item 0 = X CC
          \item 1 = Y CC
@@ -221,7 +238,7 @@
       \end{itemize}
    \end{itemize}
 
-   Setting CC for X enables vector control any value oustide the above list
+   Setting CC for X enables vector control; any value outside the above list
    disables it.
 
    Data LSB (38) value to set features:
@@ -230,11 +247,40 @@
        \item 1 = Volume
        \item 2 = Pan
        \item 4 = Filter Cutoff (Brightness)
+       \item 8 = default is Mod Wheel
+       \item 0x12 = 18 = Reversed Pan
+       \item 0x24 = 36 = Reversed Filter Cutoff
+       \item 0x48 = 72 = Reversed Mod Wheel
    \end{itemize}
-    
-   An Example:
 
-   From channel 1, send the following CCs
+   The feature numbers are chosen so they can be combined. So, 5 would be
+   Volume + Brightness and 19 would be Volume + Reversed Pan.
+
+   Setting the sweep CC for the X axis enables vector control. It also sets,
+   but doesn't enable the default X axis features.  Setting the sweep CC for
+   the Y axis sets, but doesn't enable the default Y axis features.  If you
+   don't enable any features not a lot will happen.
+
+   Optional settings (MSB value):
+
+   \begin{itemize}
+      \item 4 = x1 instrument
+      \item 5 = x2 instrument
+      \item 6 = y1 instrument
+      \item 7 = y2 instrument
+      \item 8 = set CC for X feature 2
+      \item 9 = set CC for X feature 4
+      \item 10 = set CC for X feature 8
+      \item 11 = set CC for Y feature 2
+      \item 12 = set CC for Y feature 4
+      \item 13 = set CC for Y feature 8
+   \end{itemize}
+              
+Any data MSB value outside the above list disables vector control.
+
+Sweep CCs and feature CCs are sanity checked.
+    
+   An Example: From channel 1, send the following CCs
 
    \begin{verbatim}
       CC      Value
@@ -242,21 +288,30 @@
       98        1
        6        0
       38       14
+      98        1 *
        6        1
       38       15
+      98        1 *
        6        2
       38        1
+      98        1 *
        6        3
       38        2
    \end{verbatim}
 
-   This sequence will set up CC14 as the X axis incoming controller and CC15
-   as Y, with X set to volume control and Y set to pan control.
+   This sequence will set up CC 14 as the X axis incoming controller,
+   and CC 15 as the Y axis incoming controller, with X set to volume control
+   and Y set to pan control.
 
    One can either go on with the NRPNs to set the instruments (this will load
    and enable instruments from the current bank), or enable and load
    them by hand.  For channel 1 this would be part 1 and 17 for X and part 33
    and 49 for Y.
+
+   The (*) CCs ensure that the data bytes are reset each time. This is not
+   really necessary for the earlier commands, but should be done if one sets
+   the instruments with NRPNs as well, otherwise one will try to set them
+   twice.
 
 \subsection{NRPN / Effects Control}
 \label{subsection:nrpns_midi_nrpn_effects_control}
@@ -449,6 +504,77 @@
       \item 6 -   1 ~ Pan
       \item 38 -  75 ~ value
    \end{itemize}
+
+\subsection{NRPN / Dynamic System Settings}
+\label{subsection:nrpns_dynamic_system_settings}
+
+   Almost all dynamic setup (i.e. that doesn't require a restart) can now be
+   done via NRPNs, so a MIDI file can manage \textsl{Yoshimi} starting from a
+   pretty random state, and set up important features like Bank and Program
+   change behavior and the number of available parts.
+
+   In parallel with this setup, there is a command to list all of these
+   settings. One can also list the available bank roots, the banks in any
+   root, and instruments in any bank, along with their numeric IDs. These IDs
+   can then be used with normal MIDI CCs to get exactly the instrument you
+   want at any time.
+
+   This arrangment looks positively steam-punk, but is actually very easy to
+   use, requiring only a command line interface and any utility that can send
+   MIDI CCs. NRPNs aren't special. They are simply a specific pattern of CCs.
+   \textsl{Yoshimi}'s implementation is very forgiving, doesn't mind if you
+   stop halfway through (will just get on with other things while it waits),
+   and will report exactly what it is doing.  So ...
+
+   ... If \textsl{Yoshimi} has been started from the command line (but not
+   necessarily in the no-GUI mode), all of the system settings that don't
+   require a restart can now be viewed by sending the appropriate NRPN. Most
+   of them can also be changed in this way.
+
+   To access this functionality, set NRPN MSB (CC 99) to 64 and NRPN LSB (CC
+   98) to 2 (8130).
+
+   After that send the following DATA values. Commands with LSB x don't
+   actually use DATA LSB, but one still needs to send it (unless it has
+   already been set by a previous command in this control group).
+
+   \begin{table}[H]
+      \centering
+      \caption{Dynamic System Commands}
+      \label{table:dynamic_system_commands}
+      \begin{tabular}{r l l}
+
+\textbf{DATA MSB} & \textbf{DATA LSB} & \textbf{Setting} \\
+
+  2 & LSB key       & Set master key shift, 52\textless=key\textless=76 (-12 to + 12) \\
+  7 & LSB volume    & Set master Volume 'volume' \\
+100 & LSB \textgreater 63 & Send reports to Reports window, otherwise to stderr. \\
+109 & LSB x [13843] & List the following: \\
+    & &             Reports destination \\
+    & &             Current Root path \\
+    & &             Current Bank \\
+    & &             CC to control Root path change \\
+    & &             CC to control Bank change \\
+    & &             Accept Program change (enabled/disabled) \\
+    & &             Activate part when program changed (enabled/disabled) \\
+    & &             CC to control Extended Program change (instruments 128-159) \\
+    & &             Number of available parts \\
+110 & LSB x [13970]      & List all root paths \\
+111 & LSB path [14224]   & List all banks in Root ID 'path';
+                           path=127 for current root) \\
+112 & LSB bank [14351]   & List all instruments, current root, bank 'bank' \\
+    & &                       (bank = 127 for current bank in current root) \\
+113 & LSB root      & Set CC to control Root path change (root\textgreater 119 disables) \\
+114 & LSB bank      & Set CC to control Bank change (bank\textgreater 119 disables) \\
+115 & LSB \textgreater 63      & Enable Program change otherwise disable \\
+116 & LSB \textgreater 63      & Enable activation of part when program changed \\
+117 & LSB extprog   & Set CC control Extended program change
+                        (extprog\textgreater 119 disables) \\
+118 & LSB parts     & Set number of available parts (parts = 16, 32 or 64) \\
+119 & LSB x  [15113]  &  Save all dynamic settings \\
+
+      \end{tabular}
+   \end{table}
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex
