@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-15
-% \update      2015-07-18
+% \update      2015-09-06
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -63,13 +63,35 @@
    resaves the instrument, not only will the PADsynth status be restored, but
    ADDsynth and SUBsynth will be included, allowing a faster scan next time.
 
-\subsubsection{Knobs}
+\subsubsection{Rotaty Knobs}
 \label{subsubsec:stock_settings_elements_knobs}
 
-   Visual knobs are used for modifying numerical parameters.
+   \index{knobs}
+   Visual rotary knobs are used for modifying numerical parameters in the
+   user-interface.
    Horizontal, as well as vertical, mouse movements will adjust the knob.
-   Holding down Ctrl provides finer adjustment.
-   One can also use the mouse scroll wheel to adjust rotary controls.
+   \index{knobs!coarse control}
+   When rotated using the left mouse button, the rotary knobs give a coarse
+   control of the numerical settings of the knob.
+   \index{knobs!fine control}
+   When rotated using the right mouse button, the rotary knobs give a finer
+   control of the numerical settings of the knob.
+   \index{knobs!scroll wheel}
+   One can also use the mouse scroll wheel to adjust rotary controls, which
+   gives better control that using the mouse pointer.
+   \index{knobs!scroll wheel fine}
+   If the Ctrl key is held at the same time as the wheel is scrolled, the
+   control is \textsl{extremely} fine.
+
+\subsubsection{Sliders}
+\label{subsubsec:stock_settings_elements_sliders}
+
+   \index{sliders}
+   For vertical sliders only, if one holds down the right mouse button then
+   move it slightly, the peg will go to it's default position. the same
+   will happen if you click on the track with the right button.
+
+   \textsl{(Doesn't seem to hold in the Parts panel, though).}
 
 \subsubsection{Automation}
 \label{subsubsec:stock_settings_elements_automation}

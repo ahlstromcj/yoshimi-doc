@@ -85,75 +85,73 @@ y It's probably best to more clearly separate the concept of parts V channels
   these days. There are only 16 MIDI channels, there are up to 64 parts each of
   which can be on any channel or disabled :)
 
-Part audio destination (jack) is saved with the parameter sets, so is the number
-of available parts. Zyn will still load these but ignores any settings it
-doesn't recognise. If you re-save in Zyn, the settings will be lost.
+x Part audio destination (jack) is saved with the parameter sets, so is the number
+  of available parts. Zyn will still load these but ignores any settings it
+  doesn't recognise. If you re-save in Zyn, the settings will be lost.
 
-Zyn, and older versions of Yoshi it's possibly to end up with un-named
-instruments. Since V 1.3.4 Yoshi will trap such an occurrence and name it 'No
-Title'. Yoshi won't let you save the unedited default sound!
+x Zyn, and older versions of Yoshi it's possibly to end up with un-named
+  instruments. Since V 1.3.4 Yoshi will trap such an occurrence and name it 'No
+  Title'. Yoshi won't let you save the unedited default sound!
 
-In parameter sets Yoshi will save named but disabled patches. Zyn doesn't. Be
-aware of that!
+x In parameter sets Yoshi will save named but disabled patches. Zyn doesn't. Be
+  aware of that!
 
-It is advisable to copy all the default Banks to userspace so you can them
-re-arrange edit and add to them easily. Just keep the default for emergency
-recovery.
+x It is advisable to copy all the default Banks to userspace so you can them
+  re-arrange edit and add to them easily. Just keep the default for emergency
+  recovery.
 
-Un-numbered instruments in a bank will be given a 'temporary ID starting from
-number 160 and working down. If those numbers already exist then they will be
-skipped over. This can get very confusing! However, if you simply load it
-and re-save it to the same slot it will gain that ID and be properly fixed.
-You can the move-swap it with others.
+x Un-numbered instruments in a bank will be given a 'temporary ID starting from
+  number 160 and working down. If those numbers already exist then they will be
+  skipped over. This can get very confusing! However, if you simply load it
+  and re-save it to the same slot it will gain that ID and be properly fixed.
+  You can the move-swap it with others.
 
-All Root, bank instrument IDs are used by MIDI controls, and as of V 1.3.6 will
-also be accessible to the command line.
+x All Root, bank instrument IDs are used by MIDI controls, and as of V 1.3.6 will
+  also be accessible to the command line.
 
-We no longer say anything about Yoshi being better at alsa/jack implementation.
-It's no longer true. Performance-wise the two are neck-an-neck these days,
-although there is one special case where yoshi dramatically out performs Zyn.
-I've only recently discovered this and don't want to say anything more until
-I've discussed it with Mark.
-
-
-Subsynth sliders.
-The top row sets the *relative* amplitude. This is an important distinction as
-the overall level is normalised, so all actual levels will be dependent on
-whichever is the highest.
-
-The bottom row sets the bandwidth of each harmonic. If you have just the
-fundamental and drop the bandwith to minimum you get very nearly a sinewave.
-Set it to maximum and it is very obviously filtered noise!
+x We no longer say anything about Yoshi being better at alsa/jack
+  implementation.  It's no longer true. Performance-wise the two are
+  neck-an-neck these days, although there is one special case where yoshi
+  dramatically out performs Zyn.  I've only recently discovered this and
+  don't want to say anything more until I've discussed it with Mark.
 
 
-The part effects layout was changed at the request of people at LAC2015. it now
-more closely matches the appearance of system and insertion effects.
+x Subsynth sliders.
+  The top row sets the *relative* amplitude. This is an important distinction as
+  the overall level is normalised, so all actual levels will be dependent on
+  whichever is the highest.
 
-As of V 1.3.6 the splash screen stays up a bit longer, and gives more
-information if it has a problem.
+x The bottom row sets the bandwidth of each harmonic. If you have just the
+  fundamental and drop the bandwith to minimum you get very nearly a sinewave.
+  Set it to maximum and it is very obviously filtered noise!
+
+x The part effects layout was changed at the request of people at LAC2015. it now
+  more closely matches the appearance of system and insertion effects.
+
+n As of V 1.3.6 the splash screen stays up a bit longer, and gives more
+  information if it has a problem.
 
 New instance with alsa audio - yes we know! haven't worked out a sensible fix
 yet :(
 
-state V parameters
-State saves *everything* parameters saves everything that is relevant to that
-collection of sounds... That's the theory. I must recheck this sometime :)
+x state V parameters
+  State saves *everything* parameters saves everything that is relevant to that
+  collection of sounds... That's the theory. I must recheck this sometime :)
 
-Saving settings or not.
-If you change settings and close without saving that means they remain in
-place only for the current session. If you've changed anything, when you close
-Yoshi you will be given a second chance to save them. If you say 'no' the next
-time you start, the old settings will be restored. I did think of creating an
-'undo' feature but it gets pretty crazy very quickly.
+x Saving settings or not.
+  If you change settings and close without saving that means they remain in
+  place only for the current session. If you've changed anything, when you close
+  Yoshi you will be given a second chance to save them. If you say 'no' the next
+  time you start, the old settings will be restored. I did think of creating an
+  'undo' feature but it gets pretty crazy very quickly.
 
-The new coloured engine backgrounds aren't just pretty. They give real
-information about expected processor load, and time to be ready when loaded.
+x The new coloured engine backgrounds aren't just pretty. They give real
+  information about expected processor load, and time to be ready when loaded.
+  Processor low to high, Pad, Sub, Add.
+  Time low to high, Sub, Add, Pad.
 
-Processor low to high, Pad, Sub, Add.
-Time low to high, Sub, Add, Pad.
-
-Default master volume is 90, part is 96 add (overall) sub, pad is 90, addvoice
-is 100, effects are all over the place - don't ask me why!
+x Default master volume is 90, part is 96 add (overall) sub, pad is 90, addvoice
+  is 100, effects are all over the place - don't ask me why!
 
 Phew!
 
@@ -212,6 +210,82 @@ sounds that have no real-world analog at all!
 
 
 Good news on Sequencer24. I'll try to find time to give it a run.
+
+ate: Sun, 6 Sep 2015 15:38:16 +0100                                              
+From: Will Godfrey <willgodfrey@musically.me.uk>                                  
+To: Chris Ahlstrom <ahlstromcj@gmail.com>                                         
+Subject: Re: Yoshimi notes                                                        
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)                   
+                                                                                  
+On Sun, 6 Sep 2015 10:10:50 -0400                                                 
+Chris Ahlstrom <ahlstromcj@gmail.com> wrote:                                      
+                                                                                  
+> Man, this will take awhile!  I'm revamping the discussion of the Instruments    
+> menu to make it more concise and much better organized.                         
+                                                                                  
+You have my sympathy :)                                                           
+                                                                                  
+However once you get to grips with the UI it's actually pretty consistent.        
+                                                                                  
+> Anyway, I think there's a bug in the Show Instruments... dialog.                
+> When I right-click on an instrument, the dialog disappears!                     
+                                                                                  
+That's not a bug. It's intended. It's part of the anti-clutter feature of those   
+windows. In the same way, if you right click on banks or roots it closes one      
+window as it opens the other.       
+
+Open the panel window and it's just above the Edit button of each part. You       
+have Main, Part or both.                                                          
+                                                                                  
+P.S.                                                                              
+Right click on the edit button and you actually open the instrument edit          
+window, otherwise it just selects it as the current part.                         
+                                                                                  
+Also any click in the part label opens the current instrument window.             
+ 
+
+Date: Sun, 6 Sep 2015 17:07:05 +0100                                              
+From: Will Godfrey <willgodfrey@musically.me.uk>                                  
+To: Chris Ahlstrom <ahlstromcj@gmail.com>                                         
+Subject: Re: Yoshimi notes                                                        
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)                   
+                                                                                  
+On Sun, 6 Sep 2015 11:35:47 -0400                                                 
+Chris Ahlstrom <ahlstromcj@gmail.com> wrote:                                      
+                                                                                  
+> Hmmm, the Main dropdown is greyed out.  How do you get it ungreyed?             
+                                                                                  
+Use jack audio, not alsa audio :)                                                 
+                                                                                  
+> The left/right dichtomy of the Edit button in the part panel is a bit           
+> too tricky.   You might consider reversing the right vs left clicking,          
+> widen the button, and label it "Edit/Pick".  Just a thought.  Whatever          
+> it is, I will so document it.                                                   
+                                                                                  
+To a degree we try not to change things in an unexpected way. Old Yoshi, and      
+Zyn don't give you the option at all. We also try to keep a pleasing visual       
+balance so couldn't increase the width by much. Also, we already use a very       
+small font for that button. To get two words in you'd need a magnifier :(         
+                                                                                  
+> When I left or right-click on the part label, I get the dialog for the          
+> current bank either way.                                                        
+                                                                                  
+Ummmm :)                                                                          
+                                                                           
+We did think about making a right click open the name editor instead (like it     
+does in the top level) but I think that got a bit complicated and it was          
+abandoned.                                                                        
+                                                                                  
+Just remembered something.                                                        
+When using rotary controls. Left mouse button move gives coarse control, right    
+button gives fine control. The scroll wheel gives better control than moving      
+the mouse, and if you hold down the ctrl key at the same time the control is      
+*extremely* fine.                                                                 
+                                                                                  
+For vertical sliders only, if you hold down the right mouse button then move it   
+slightly the peg will go to it's default position. the same will happen if you    
+click on the track with the right button - bet you never knew that :)             
+          
 
 
 ===========================================================================

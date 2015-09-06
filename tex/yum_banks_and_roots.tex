@@ -1,0 +1,167 @@
+%-------------------------------------------------------------------------------
+% yum_banks_and_roots
+%-------------------------------------------------------------------------------
+%
+% \file        yum_banks_and_roots.tex
+% \library     Documents
+% \author      Chris Ahlstrom
+% \date        2015-09-06
+% \update      2015-09-06
+% \version     $Revision$
+% \license     $XPC_GPL_LICENSE$
+%
+%     Provides the concepts.
+%
+%-------------------------------------------------------------------------------
+
+\section{Banks and Roots}
+\label{sec:banks_and_roots}
+
+   In recent versions of \textsl{Yoshimi}, the concepts of banks and roots
+   have undergone a fair amount of change, including new features to make
+   them easier to manage and easier to automate.  There are a lot of details
+   to understand, too many to include along with the descriptions of the
+   user-interface elements that control them.
+   Therefore, this new section is devoted to banks and roots.
+   It is an elaboration of material originally presented in
+   \sectionref{subsec:concepts_banks_and_roots}.
+
+   At one time, one could in theory have 1000 roots, 1000 banks and 1000
+   presets.  However, now roots and banks were trimmed to what can be
+   addressed from MIDI. One can supposedly still have 1000 presets, though.
+   Anyway, 128x128x160 = 2621440 instruments should be enough for anyone.
+
+   All root, bank, and instrument IDs are used by MIDI controls, and as of 
+   version 1.3.6 will also be accessible to the command line.
+
+   The file \texttt{Banks.txt} in the \textsl{Yoshimi} source-code bundle
+   makes an important point about a transition (in newer versions)
+   to tagging roots (directories) and banks with an ID code:
+
+   \begin{quotation}
+      One no longer has the concept of a default root directory, but a
+      current one. This can by changed at any time without requiring a
+      re-start, so there is now no longer a need to display the (confusing)
+      contents of all roots.  Also, roots now have ID numbers associated
+      with them, but no changes have been made to the actual directores to
+      achieve this. Instead the IDs are stored in the config file. The same
+      ID system is used for banks, again without making any file system
+      changes.
+
+      At first run (and whenever new root directories are set) unknown roots
+      and banks are given these IDs. Once set they will not change no matter
+      how many more roots and banks are later added. One can, however,
+      manually change root directory IDs in 'settings'. Also, there is a
+      Banks window so that these can be set up, moved and renamed in exactly
+      the same way as instruments can.  With these IDs, roots and banks can
+      be grouped/ordered by function instead of alphabetically. When using
+      the GUI one will always know exactly which root and bank one fetches
+      an instrument from.
+
+      The significance of all this is that one's MIDI sequencer can now
+      reliably use these ID numbers to select roots, banks and (already
+      available) instruments. That Rosegarden or Muse file one saves
+      today will be just as valid in the future, unless one makes the
+      deliberate choice to change some IDs. Indeed, one can now start with
+      an 'empty' Yoshimi, and via MIDI, set roots, banks and load
+      instruments into parts (enabling the parts as one does so) swapping
+      banks and roots as necessary. While the MIDI file runs it can silently
+      pull instruments from any root/bank into any non-sounding part without
+      disturbing the playing ones.
+
+      In "Yoshimi / Settings / MIDI" one can enable or disable all these MIDI
+      features, and can define which CCs one wants to use. Bank can be either
+      MSB or LSB (as before). Root can be any non-reserved CC but including
+      the one not in use for Bank. Also, Extended Program Change now has the
+      same restrictions as Root, and these three are all cross-checked
+      against each other. As an example, one might set Bank to LSB and Root
+      to 0 (MSB), effectively giving one extended bank control compatible
+      with all sequencers.
+
+      Also, different instances have their own config files so that one can
+      have (say) the main instance with current root(9), bank(23) while
+      instance 4 has current root(2), bank(6). One can call up instances by
+      number and thus access saved settings for that instance. As each
+      instance has its own MIDI and audio ports, they can behave
+      more-or-less independently.
+
+      In doing all of this we have completely changed the way we manage the
+      structure internally, resulting in much greater efficiency, at the
+      cost of only a slightly slower startup. Swapping roots performs
+      \textsl{no}
+      file operations. Swapping banks only fetches the directory list of the
+      newly selected bank. Changing an instrument doesn't have to search for
+      a file, only load from its already known location.
+   \end{quotation}
+
+   A "CC" is a MIDI "continuous controller".
+   A MIDI bank change is usually a CC\#0 value of 0, followed by a CC\#32
+   value of X, where X is the desired bank number from 0 to whatever.
+   (However, in some cases it may simply be a CC\#0 on its own with a value
+    of X).  Many synths also require that you send a program change after
+   the bank change, to select the program within the bank. 
+
+\subsection{Roots}
+\label{subsec:banks_and_roots_roots}
+
+   In \textsl{Yoshimi}, a \textsl{root} is a location in which banks can be
+   stored.  It is basically a directory, though it ultimately is assigned a
+   number by \textsl{Yoshimi}, presumably to be able to access it in an
+   automated way.  By choosing a root and making it the current root, one
+   can hone in on a smaller collection of banks.
+
+   One cannot reach root paths through the \textbf{Yoshimi / Settings} menu
+   any more; it was causing a nightmare of syncing with the other entry
+   routes. One can reach it from the Banks window
+   (see \sectionref{subsubsec:menu_instrument_show_banks})
+   or the Instruments window
+   (see\sectionref{subsubsec:menu_instrument_show}),
+   and both of the latter also have multiple entry routes.
+
+\subsection{Banks}
+\label{subsec:banks_and_roots_banks}
+   
+   Another important concept in \textsl{Yoshimi} is \textsl{banks}.  Instruments
+   can be stored in banks. These are loaded and saved automatically by the
+   program.  On program start, the last used bank is loaded. A single bank
+   can store up to 128 instruments normally, and 160 using extended programs.
+
+%  TODO:  We should be able to walk the user through a session and
+%  set up a set of instruments that is tractable under MIDI control.
+%  \index{todo!banks/roots}
+
+   Some minor instructions are provided in
+   \sectionref{subsubsec:menu_instrument_show_root_paths}.
+
+   Also note that, as well as bank and program changes, there is the ability
+   to set a MIDI CC to access the voices from 129 to 160 (numbered re 1).
+   All the Bank
+   controls are contained in a tab in the main \textbf{Settings}
+   window, and take immediate effect.
+
+   Bank root directories are identified with ID numbers that can be changed
+   by the user in the user-interface. This feature is also made available for
+   selection over MIDI.  MIDI only sees banks in the \textsl{current} root
+   directory, but all banks are accessible to the user-interface.
+
+\subsubsection{Bank Directories}
+\label{subsubsec:banks_and_roots_bank_directories}
+
+   Banks are arranged in directories, with each directory containing a number
+   of instrument files.
+
+   Each instrument's file-name should begin with a 4-digit number
+   (left-padded with 0's to make it 4 digits long).  This number can serve
+   as a MIDI patch number for automated selection of the instrument via a
+   MIDI program-change message.
+
+   Unnumbered instruments in a bank will be given a temporary ID starting
+   from number 160 and working down. If those numbers already exist then
+   they will be skipped over. This can get very confusing. However, if one
+   simply loads it and re-saves it to the same instrument slot, it will gain
+   that ID and be properly fixed.  One can then move-swap it with others.
+
+
+%-------------------------------------------------------------------------------
+% vim: ts=3 sw=3 et ft=tex
+%-------------------------------------------------------------------------------

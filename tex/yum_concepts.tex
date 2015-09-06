@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-15
-% \update      2015-09-05
+% \update      2015-09-06
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -33,7 +33,7 @@
    Note that there are some audio/electrical concepts discussed in greater
    detail in
    \sectionref{sec:stock_settings_elements}.
-   Maybe they belong in this "concepts" section, but
+   Perhaps they belong in this "concepts" section, but
    they are directly tied to user-interface items.
 
 \subsection{Concepts / Terms}
@@ -148,6 +148,26 @@
    do the translation.  (Jack v. 1 has this integrated in recent versions,
    apparently).
 
+\subsection{Concepts / Banks and Roots}
+\label{subsec:concepts_banks_and_roots}
+
+   In \textsl{Yoshimi}, a \textsl{root} is a location in which banks can be
+   stored.  It is basically a directory, though it ultimately is assigned a
+   number by \textsl{Yoshimi}, presumably to be able to access it in an
+   automated way.  By choosing a root, one can hone in on a smaller
+   collection of banks.
+   
+   Another important concept in \textsl{Yoshimi} is \textsl{banks}.
+   Instruments can be stored in banks. These are loaded and saved
+   automatically by the program.  On program start, the last used bank is
+   loaded.
+   \index{extended program}
+   A single bank can store up to 128 instruments normally, and 160
+   using extended programs.
+
+   These concepts are discussed in great detail
+   in \sectionref{sec:banks_and_roots}.
+
 \subsection{Concepts / Sessions}
 \label{subsec:concepts_sessions}
 
@@ -157,35 +177,37 @@
 
    \begin{itemize}
       \item \texttt{.xmz}
-      A Session. Everything.  It's format is either XML
-      or compressed XML, as explained below.
-      See \sectionref{paragraph:menu_yoshimi_settings_main_settings}.
+         A Session. Everything.  It's format is either XML
+         or compressed XML, as explained below.
+         The \textbf{Parameters / Save} menu entry saves files with this
+         extension.
+         See \sectionref{paragraph:menu_yoshimi_settings_main_settings}.
       \item \texttt{.config}
-      Sometimes one will see the extension \texttt{.config} used in the
-      \texttt{\$HOME/.config/yoshimi} directory.
-      These files contain information to translate between bank directory
-      names and bank ID values.
+         Sometimes one will see the extension \texttt{.config} used in the
+         \texttt{\$HOME/.config/yoshimi} directory.
+         These files contain information to translate between bank directory
+         names and bank ID values.
       \item \texttt{.state}
-      Sometimes one will see the extension \texttt{.state} used in the
-      \texttt{\$HOME/.config/yoshimi} directory.
-      These files contain a lot more information, that needed to duplicate a
-      \textsl{Yoshimi} session that was saved.  Might be the same
-      as an \texttt{.xmz} file.
+         Sometimes one will see the extension \texttt{.state} used in the
+         \texttt{\$HOME/.config/yoshimi} directory.
+         These files contain a lot more information, that needed to
+         duplicate a \textsl{Yoshimi} session that was saved.  Seems to be a
+         superset of an \texttt{.xmz} file, saving everything.
       \item \texttt{.xiz}
-      An Instrument.  These files can have two formats, compressed and
-      uncompressed.
+         An Instrument.  These files can have two formats, compressed and
+         uncompressed.
       \item \texttt{.xsz}
-      Scale Settings.
-      These files stored microtonal settings that \textsl{Yoshimi}
-      can use to produce non-standard musical scales.
+         Scale Settings.
+         These files stored microtonal settings that \textsl{Yoshimi}
+         can use to produce non-standard musical scales.
       \item \texttt{.xpz}
-      Presets.
-      A preset is canned version of a \textsl{Yoshimi} sub-setting.
-      Presets can be copied and pasted using the
-      \textbf{C} and \textbf{P} user-interface dialogs associated with many
-      of the \textsl{Yoshimi} dialog windows.
-      They make it easy to save portions of the current settings for later
-      use.  For example, resonance settings can be saved.
+         Presets.
+         A preset is canned version of a \textsl{Yoshimi} sub-setting.
+         Presets can be copied and pasted using the
+         \textbf{C} and \textbf{P} user-interface dialogs associated with many
+         of the \textsl{Yoshimi} dialog windows.
+         They make it easy to save portions of the current settings for later
+         use.  For example, resonance settings can be saved.
    \end{itemize}
 
    The Unix \texttt{file} command indicates that these files are one of
@@ -204,6 +226,15 @@
    The format probably depends on the "XML compression level" option
    discussed in
    \sectionref{paragraph:menu_yoshimi_settings_main_settings}.
+
+   \index{saving settings}
+   Saving settings or not:
+   If one changes settings and closes without saving, that means the settings
+   remain in place only for the current session. If one has changed anything,
+   when one closes \textsl{Yoshimi}, one will be given a second chance to
+   save them. If one responds 'No',  the next time \textsl{Yoshimi} starts,
+   the old settings will be restored.  An 'undo' feature would get pretty
+   crazy very quickly.
 
    At some point in the future we may add a discussion of the contents of
    these files.  In general, the contents are structured a lot like the
@@ -248,113 +279,6 @@
    Note that one needs to have write permissions to add instruments to the
    bank.  Banks are more thoroughly described in
    \sectionref{subsec:concepts_banks_and_roots}.
-
-\subsection{Concepts / Banks and Roots}
-\label{subsec:concepts_banks_and_roots}
-
-   In \textsl{Yoshimi}, a \textsl{root} is a location in which banks can be
-   stored.  It is basically a directory, though it ultimately is assigned a
-   number by \textsl{Yoshimi}, presumably to be able to access it in an
-   automated way.  By choosing a root, one can hone in on a smaller
-   collection of banks.
-   
-   Another important concept in \textsl{Yoshimi} is \textsl{banks}.  Instruments
-   can be stored in banks. These are loaded and saved automatically by the
-   program.  On program start, the last used bank is loaded. A single bank
-   can store up to 128 instruments normally, and 160 using extended programs.
-
-   At one time, one could in theory have 1000 roots, 1000 banks and 1000
-   presets.  However, now roots and banks were trimmed to what can be
-   addressed from MIDI. One can supposedly still have 1000 presets, though.
-   Anyway, 128x128x160 = 2621440 instruments should be enough for anyone.
-
-   The file \texttt{Banks.txt} in the \textsl{Yoshimi} source-code bundle
-   makes an important point about a transition (in newer versions)
-   to tagging roots (directories) and banks with an ID code:
-
-   \begin{quotation}
-      One no longer has the concept of a default root directory, but a
-      current one. This can by changed at any time without requiring a
-      re-start, so there is now no longer a need to display the (confusing)
-      contents of all roots.  Also, roots now have ID numbers associated
-      with them, but no changes have been made to the actual directores to
-      achieve this. Instead the IDs are stored in the config file. The same
-      ID system is used for banks, again without making any file system
-      changes.
-
-      At first run (and whenever new root directories are set) unknown roots
-      and banks are given these IDs. Once set they will not change no matter
-      how many more roots and banks are later added. One can, however,
-      manually change root directory IDs in 'settings'. Also, there is a
-      Banks window so that these can be set up, moved and renamed in exactly
-      the same way as instruments can.  With these IDs, roots and banks can
-      be grouped/ordered by function instead of alphabetically. When using
-      the GUI one will always know exactly which root and bank one fetches
-      an instrument from.
-
-      The significance of all this is that one's MIDI sequencer can now
-      reliably use these ID numbers to select roots, banks and (already
-      available) instruments. That Rosegarden or Muse file one saves
-      today will be just as valid in the future, unless one makes the
-      deliberate choice to change some IDs. Indeed, one can now start with
-      an 'empty' Yoshimi, and via MIDI, set roots, banks and load
-      instruments into parts (enabling the parts as one does so) swapping
-      banks and roots as necessary. While the MIDI file runs it can silently
-      pull instruments from any root/bank into any non-sounding part without
-      disturbing the playing ones.
-
-TODO 1.3.6:
-   Change CC to MIDI:
-
-      In "Yoshimi / Settings / CC" one can enable or disable all these MIDI
-      features, and can define which CCs one wants to use. Bank can be either
-      MSB or LSB (as before). Root can be any non-reserved CC but including
-      the one not in use for Bank. Also, Extended Program Change now has the
-      same restrictions as Root, and these three are all cross-checked
-      against each other. As an example, one might set Bank to LSB and Root
-      to 0 (MSB), effectively giving one extended bank control compatible
-      with all sequencers.
-
-      Also, different instances have their own config files so that one can
-      have (say) the main instance with current root(9), bank(23) while
-      instance 4 has current root(2), bank(6). One can call up instances by
-      number and thus access saved settings for that instance. As each
-      instance has its own MIDI and audio ports, they can behave
-      more-or-less independently.
-
-      In doing all of this we have completely changed the way we manage the
-      structure internally, resulting in much greater efficiency, at the
-      cost of only a slightly slower startup. Swapping roots performs
-      \textsl{no}
-      file operations. Swapping banks only fetches the directory list of the
-      newly selected bank. Changing an instrument doesn't have to search for
-      a file, only load from its already known location.
-   \end{quotation}
-
-   "CC" is a "continuous controller".
-   A MIDI bank change is usually a CC\#0 value of 0, followed by a CC\#32
-   value of X, where X is the desired bank number from 0 to whatever.
-   (However, in some cases it may simply be a CC\#0 on its own with a value
-    of X).  Many synths also require that you send a program change after
-   the bank change, to select the program within the bank. 
-
-%  TODO:  We should be able to walk the user through a session and
-%  set up a set of instruments that is tractable under MIDI control.
-%  \index{todo!banks/roots}
-
-   Some minor instructions are provided in
-   \sectionref{subsubsec:menu_instrument_show_root_paths}.
-
-   Also note that, as well as bank and program changes, there is the ability
-   to set a MIDI CC to access the voices from 129 to 160 (numbered re 1).
-   All the Bank
-   controls are contained in a tab in the main \textbf{Settings}
-   window, and take immediate effect.
-
-   Bank root directories are identified with IDs that can be changed by the
-   user in the user-interface. This feature is also made available for
-   selection over MIDI.  MIDI only sees banks in the \textsl{current} root
-   directory, but all banks are accessible to the user-interface.
 
 \subsubsection{Concepts / Sessions / Presets}
 \label{subsec:concepts_sessions_presets}

@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-07
-% \update      2015-07-01
+% \update      2015-09-06
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -193,11 +193,11 @@
 
    \itempar{440Hz}{subsynth!freq 440hz}
    Frequency 440Hz.
-   440Hz.  Fix the base frequency to 440Hz.
+   Fixes the base frequency to 440Hz.
    One can adjust it with detune settings.
 
    \itempar{Eq.T}{subsynth!freq eq t}
-   Frequency Equalize Time?.
+   Frequency Equalize Time.
 
    \itempar{Octave}{subsynth!freq octave}
    Frequency Octave.
@@ -340,7 +340,15 @@ This section consists of 64 sliders to control the amplitude of the narrow
 noise band at a given harmonic, and 64 sliders to control the bandwidth of
 each band.
 
-TODO.
+The top row of SUBsynth sliders sets the \textsl{relative} amplitude.  This
+used of the word "relative" is an important distinction, as the overall level
+of the output is normalised; all actual levels will be dependent on whichever
+is the highest.
+
+The bottom row sets the bandwidth of each harmonic. If one has just the
+fundamental, and drops the bandwith to the minimum, one gets very nearly a
+sinewave.  Set it to maximum and it is very obviously filtered noise.
+
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex

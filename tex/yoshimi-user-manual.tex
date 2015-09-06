@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-04-20
-% \update      2015-09-05
+% \update      2015-09-06
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -47,22 +47,22 @@
 \section{Introduction}
 \label{sec:introduction}
 
-\subsection{Yoshimi Versus ZynAddSUbFX}
+\subsection{Yoshimi Versus ZynAddSubFX}
 \label{subsec:introduction_yoshimi_vs_zyn}
 
    This document describes how to use \textsl{Yoshimi} \cite{yoshimi},
    the software synthesizer derived from the great
    \textsl{ZynAddSubFx} \cite{zynaddsubfx} software
    synthesizer.  Because of their common origin, much of this document also
-   applies to \textsl{ZynAddSubFx} and depends upon \textsl{ZynAddSubFX}
+   applies to \textsl{ZynAddSubFx} and depends upon some \textsl{ZynAddSubFX}
    documentation and diagrams.
 
    \textsl{Yoshimi} is an algorithmic MIDI software synthesizer for Linux.
    It synthesizes in real time, can run polyphonic or monophonic, with multiple
    simultaneous patches in one or more MIDI channels, has broad microtonal
    capability, and much more. It includes extensive addititive, subtractive,
-   and PAD synth capabilities which can be run simultaneously within the
-   same patch.  It also has comprehensive audio effects modules.
+   and pad synth capabilities which can be run simultaneously within the
+   same patch.  It also has eight audio effects modules.
 
    Originally based on the 2.4.0 version of \textsl{ZynAddSubFX} (Copyright
    2002-2009 Nasca Octavian Paul), development of \textsl{Yoshimi} has
@@ -78,7 +78,8 @@
    Both projects are now in active development, and both are
    progressing along their respective roadmaps.
 
-   \textsl{Yoshimi} has a cleaner graphical user interface.
+   \textsl{Yoshimi} currently has a cleaner graphical user interface, while
+   \textsl{ZynAddSubFX} has a major user-interface upgrade planned.
    On the other hand, \textsl{ZynAddSubFX} has a few features that
    \textsl{Yoshimi} does not, such as being able to easily record
    the output waveforms.  There may be internal differences of importance to
@@ -121,14 +122,14 @@
    are also present, in the same vein.
    This document currently has a lot of them!
 
-\subsection{Yoshimie Mailing List}
+\subsection{Yoshimi Mailing List}
 \label{subsec:introduction_mailing_list}
 
-   The \textsl{Yoshimi} project used to have an email list at SourceForge,
-   but the unreliability of the site has prompted a move to a new
-   mailing list.  See reference \cite{yoshiminews}.
-   The team have managed to port across all the old yoshimi-user archives to
-   this new site.  See reference \cite{yoshiminewsarchive}.
+   The \textsl{Yoshimi} project used to have an email listserv at
+   SourceForge, but the unreliability of the site has prompted a move to a
+   new mailing list.  See reference \cite{yoshiminews}.  The team have
+   managed to port across all the old yoshimi-user archives to this new
+   site.  See reference \cite{yoshiminewsarchive}.
 
    Subscribe to the \textsl{Yoshimi} mailing list with an e-mail to:
    \url{yoshimi-request@freelists.org} or by visiting 
@@ -201,6 +202,10 @@ references.
 % Important Concepts
 
 \input{yum_concepts}
+
+% Banks and Roots
+
+\input{yum_banks_and_roots}
 
 % Menu
 
