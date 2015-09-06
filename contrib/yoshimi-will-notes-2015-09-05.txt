@@ -1,0 +1,247 @@
+te: Sun, 23 Aug 2015 18:16:32 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Yoshimi updates.
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Hi Chris,
+
+I've created more work for you :)
+
+In the master version there are significant extensions to the NRPNs that Yoshimi
+handles. Some of these may seem pointless... unless you are unable to use a GUI
+for some reason. It's likely I'll make another release (1.3.6) very soon.
+
+There's information in the doc folder, but do shout if you have any questions.
+
+Also we now have a email list separate from sourceforge, but have managed to
+port across all the old yoshimi-user archives.
+
+You can subscribe with an e-mail to: yoshimi-request@freelists.org
+or by visiting: http://www.freelists.org/list/yoshimi
+
+To post to the list, email to: yoshimi@freelists.org
+
+Our archive is at: https://www.freelists.org/archive/yoshimi
+
+
+Date: Sat, 5 Sep 2015 19:15:23 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Yoshimi notes
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Hi Chris,
+
+I've just had another look through the epic! work you're doing on the manual.
+Here are some clarifications (not in any special order).
+
+x There has been a lot of re-organisation of Yoshimi->settings. The CC tab is now
+  named MIDI.
+
+x Curiously named period size, is now where it should be in main settings and
+  called internal buffer (which is what it really is).
+
+x Oscillator size is now called AddSynth Oscillator size, to make it clear what
+  it really is.
+
+NOTE The command line help menu has also been updated.
+
+x Using XML compression can save file access time which may be beneficial if
+  your machine is borderline on latency.
+
+
+In the Alsa menu
+
+x The purpose of Alsa Midi Device is the same as the command line
+  --alsa-midi="{name}" and is so that Yoshi can auto connect to a MIDI source
+  such as a keyboard. The one I have here identifies itself as Hua Xing.
+
+x Similarly Alsa Audio lets you connect to a sound card by name. In my case,
+  with a Komplete Audio KA 6 the command is hw:K6. This is particularly
+  useful for USB modules, as you can never be sure where they will appear
+  numerically.
+
+x From V 1.3.6 onwards (and current master) what using alsa audio Yoshi first
+  tries to connect 2 channels at 32 bit depth, but negotiates with whatever
+  the soundcard will support. In my case that. 24bit 6 channel (but Yoshi
+  only' uses 1&2)
+
+x At one time you could in theory have 1000 roots, 1000 banks and 1000 presets.
+  This is ludicrous! Roots and banks were trimmed to what can be addressed
+  from MIDI, but you can still have 1000 presets, not that I've ever tried to
+  prove it!  To paraphrase, 2,621,440 instruments is enough for anyone!
+  (128x128x160).
+
+x Refreshes have been removed because they are no longer needed. The code self
+  syncs better.
+
+x You can't reach root paths through the Yoshimi->settings window any more - it
+  was causing a nightmare of syncing with the other entry routes. You can
+  reach it from the Instrument tab, or the Banks window or the Instruments
+  window, both of the latter also have multiple entry routes!
+
+y It's probably best to more clearly separate the concept of parts V channels
+  these days. There are only 16 MIDI channels, there are up to 64 parts each of
+  which can be on any channel or disabled :)
+
+Part audio destination (jack) is saved with the parameter sets, so is the number
+of available parts. Zyn will still load these but ignores any settings it
+doesn't recognise. If you re-save in Zyn, the settings will be lost.
+
+Zyn, and older versions of Yoshi it's possibly to end up with un-named
+instruments. Since V 1.3.4 Yoshi will trap such an occurrence and name it 'No
+Title'. Yoshi won't let you save the unedited default sound!
+
+In parameter sets Yoshi will save named but disabled patches. Zyn doesn't. Be
+aware of that!
+
+It is advisable to copy all the default Banks to userspace so you can them
+re-arrange edit and add to them easily. Just keep the default for emergency
+recovery.
+
+Un-numbered instruments in a bank will be given a 'temporary ID starting from
+number 160 and working down. If those numbers already exist then they will be
+skipped over. This can get very confusing! However, if you simply load it
+and re-save it to the same slot it will gain that ID and be properly fixed.
+You can the move-swap it with others.
+
+All Root, bank instrument IDs are used by MIDI controls, and as of V 1.3.6 will
+also be accessible to the command line.
+
+We no longer say anything about Yoshi being better at alsa/jack implementation.
+It's no longer true. Performance-wise the two are neck-an-neck these days,
+although there is one special case where yoshi dramatically out performs Zyn.
+I've only recently discovered this and don't want to say anything more until
+I've discussed it with Mark.
+
+
+Subsynth sliders.
+The top row sets the *relative* amplitude. This is an important distinction as
+the overall level is normalised, so all actual levels will be dependent on
+whichever is the highest.
+
+The bottom row sets the bandwidth of each harmonic. If you have just the
+fundamental and drop the bandwith to minimum you get very nearly a sinewave.
+Set it to maximum and it is very obviously filtered noise!
+
+
+The part effects layout was changed at the request of people at LAC2015. it now
+more closely matches the appearance of system and insertion effects.
+
+As of V 1.3.6 the splash screen stays up a bit longer, and gives more
+information if it has a problem.
+
+New instance with alsa audio - yes we know! haven't worked out a sensible fix
+yet :(
+
+state V parameters
+State saves *everything* parameters saves everything that is relevant to that
+collection of sounds... That's the theory. I must recheck this sometime :)
+
+Saving settings or not.
+If you change settings and close without saving that means they remain in
+place only for the current session. If you've changed anything, when you close
+Yoshi you will be given a second chance to save them. If you say 'no' the next
+time you start, the old settings will be restored. I did think of creating an
+'undo' feature but it gets pretty crazy very quickly.
+
+The new coloured engine backgrounds aren't just pretty. They give real
+information about expected processor load, and time to be ready when loaded.
+
+Processor low to high, Pad, Sub, Add.
+Time low to high, Sub, Add, Pad.
+
+Default master volume is 90, part is 96 add (overall) sub, pad is 90, addvoice
+is 100, effects are all over the place - don't ask me why!
+
+Phew!
+
+--
+Will J Godfrey
+http://www.musically.me.uk
+Say you have a poem and I have a tune.
+Exchange them and we can both have a poem, a tune, and a song.
+
+
+Date: Sat, 5 Sep 2015 21:09:00 +0100                                              
+From: Will Godfrey <willgodfrey@musically.me.uk>                                  
+To: Chris Ahlstrom <ahlstromcj@gmail.com>                                         
+Subject: Re: Yoshimi notes                                                        
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)                   
+
+On Sat, 5 Sep 2015 15:07:36 -0400
+Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
+
+> Oh, I do have a clone of GitHub yoshimi, let me know if that is                 
+> the latest or best source for the next pending version.                         
+>                                                                                 
+> Chris                                                                           
+>                                                                                 
+                                                                                  
+Hi Chris,                                                                         
+                                                                                  
+The latest 'master' version on github carries the version number 1.3.6 rc2.       
+However, there is new branch called 'command' which has all the latest            
+command-line additions and this will *probably* be merged into 1.3.6 unless       
+something really bad is lurking in there. I've reverted to C style string         
+handling for this. I find it much easier to get *exactly* what I want :(          
+                                                                                  
+New files in doc:                                                                 
+Command_line.txt                                                                  
+Dynamic_System_Settings.txt                                                       
+Yoshimi_1/3/6-features.txt                                                        
+
+                                                                                  
+Significantly updated files:                                                      
+Direct_Part_Control
+NewFeatures.txt
+Vector_Control.txt
+
+Minor updates:
+Using_NRPNs.txt
+
+
+For what it's worth I've been using this synth since Zyn 2.2.1 and am *still*
+finding out new things about it!
+
+
+I've had a quick look at the cookbook and you're doing very well there. But
+don't forget that Yoshi really picks up her skirts and runs when creating
+sounds that have no real-world analog at all!
+
+
+Good news on Sequencer24. I'll try to find time to give it a run.
+
+
+===========================================================================
+ git pull on 2015-09-05
+===========================================================================
+
+ Changelog                                            |  15 ++++++++++++---
+ Tests/README.txt                                     |   9 +++++----
+ doc/1stReadMe.txt                                    |   2 +-
+ doc/ALSA_Setup.txt                                   |   6 +++---
+ doc/Banks.txt                                        |   2 +-
+ ...stem Settings.txt => Dynamic_System_Settings.txt} |  12 ++++++------
+ doc/{ => Histories}/V_1.3.5-features.txt             |   0
+ doc/{ => Histories}/Zyn_ChangeLog                    |   0
+ doc/{ => Histories}/Zyn_HISTORY.txt                  |   0
+ doc/NewFeatures.txt                                  |   6 +++---
+ doc/ToDo_Maybe.txt                                   |   4 ++++
+ doc/Using_NRPNs.txt                                  |   2 +-
+ doc/Yoshi-Zyn_Sound_Differences.txt                  |   2 +-
+ doc/Yoshimi_1.3.6-features.txt                       |  21 +++++++++++++++++++++
+ doc/Yoshimi_License_History.txt                      |   6 ++++++
+ doc/Yoshimi_Policies.txt                             |   2 +-
+ examples/Out_There.mid                               | Bin 0 -> 9621 bytes
+ examples/Out_There.txt                               |   4 ++++
+ examples/Out_There.xmz                               | Bin 0 -> 128011 bytes
+ src/CMakeLists.txt                                   |   4 ++--
+ src/Misc/Part.cpp                                    |  10 ++++------
+ src/Misc/WavFile.cpp                                 |   7 +++----
+ src/Misc/WavFile.h                                   |   8 ++++----
+ src/UI/PartUI.fl                                     |   4 ++--
+ src/main.cpp                                         |   2 +-
+
+

@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2015-07-18
+% \update      2015-09-05
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -124,6 +124,12 @@
 \subsubsection{Menu / Yoshimi / Settings...}
 \label{subsubsec:menu_yoshimi_settings}
 
+TODO 1.3.6:
+   One can't reach root paths through the Yoshimi->settings window any more -
+   it was causing a nightmare of syncing with the other entry routes. One can
+   reach it from the Instrument tab, or the Banks window or the Instruments
+   window, both of the latter also have multiple entry routes!
+
    The \textsl{Yoshimi Settings} dialog contains five tabs that control the
    major and overall settings of \textsl{Yoshimi}.
    
@@ -131,18 +137,20 @@
 \label{paragraph:menu_yoshimi_settings_main_settings}
 
    The Main Settings tab controls the main configuration items that
-   follow, which apply to all patches/parts/instruments.
+   follow, which apply to all patches/instruments.
    The main settings are shown in
-   \figureref{fig:yoshimi_main_settings_dialog} below.
+   \figureref{fig:yoshimi_main_settings_dialog}.
 
    All these settings only take effect after restarting the synthesizer.
-
    The settings dialogs are quite different between \textsl{ZynAddSubFX} and
-   \textsl{Yoshimi}.
+   \textsl{Yoshimi}.  There are some differences even between
+   \textsl{Yoshimi} versions earlier than 1.3.5, and the current version
+   (currently 1.3.6).
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-main.jpg}
+%  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-main.jpg}
+   \includegraphics[scale=0.75]{1.3.6/yoshimi-settings-main.png}
    \caption{Yoshimi Main Settings Tab}
    \label{fig:yoshimi_main_settings_dialog}
 \end{figure}
@@ -150,9 +158,10 @@
    The following settings exist in the \textsl{Main settings} tab:
 
    \begin{enumber}
-      \item \textbf{OscilSize}
-      \item \textbf{Virtual Keyboard Layout}
+      \item \textbf{AddSynth Oscillator Size} (was "OscilSize")
+      \item \textbf{Internal Buffer Size} (new)
       \item \textbf{PADsynth interpolation}
+      \item \textbf{Virtual Keyboard Layout}
       \item \textbf{XML compression level}
       \item \textbf{Send reports to}
       \item \textbf{Session state save file}
@@ -163,8 +172,9 @@
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
-   \itempar{OscilSize}{Main Settings!OscilSize}
-   ADDsynth Oscillator Size (in samples).
+   \itempar{AddSynth Oscillator Size}{Main Settings!oscillator size}
+   ADDsynth Oscillator Size (in samples).  This item used to be called
+   "OscilSize".
 
    Values: \texttt{128, 256, 512+, 1024*, 2048, 4096, 8192, 16384}
 
@@ -176,14 +186,25 @@
    and the default value for \textsl{ZynAddSubFX} is 512.
    (This asterisk/plus-sign convention is used throughout this manual).
    See \figureref{fig:yoshimi_oscilsize_values} below for the OscilSize
-   dropdown element.
+   drop-down element.
 
 \begin{figure}[H]
    \centering 
    \includegraphics[scale=1.0]{menu/Yoshimi/main-oscilsize.jpg}
-   \caption[OscilSize Values]{Adsynth Oscillator Size (samples)}
+   \caption[OscilSize Values]{AddSynth Oscillator Size (samples)}
    \label{fig:yoshimi_oscilsize_values}
 \end{figure}
+
+   \itempar{Internal Buffer Size}{Main Settings!buffer size}
+   This is a new item for version 1.3.6.  It is actually the old
+   \textbf{Period Size} field from the \textbf{Alsa} tab.
+   It sets the granularity of the sound generation.
+   The default value is 1024 samples.
+   To find out the internal delay in milliseconds, divide the
+   buffer-size value by the sample-rate, then multiply the result by 1000:
+   For example, \(256 / 44100 * 1000 = 5.8 ms\).
+
+   Values: \texttt{64, 128, 256, 512, 1024*}
 
    \itempar{Virtual Keyboard Layout}{Main Settings!Virtual Keyboard Layout}
    The virtual keyboard is useful, but it is difficult to move the mouse
@@ -207,7 +228,7 @@
    \textsl{Yoshimi} also supports other keyboard layouts.
    See \figureref{fig:virtual_kbd_layout},
    for the virtual keyboard
-   layout settings dropdown.
+   layout settings drop-down.
 
    Values: \texttt{Dvorak, QWERTY*, AZERTY}
 
@@ -244,9 +265,11 @@
    In general, 0 is probably the best setting.
    Setting this option makes the XML files a bit larger, perhaps larger by a 
    factor of more than 10, making a 10K file into a 180K file.
+   Using XML compression can also save file access time which may be
+   beneficial if one's computer is borderline on latency.
    For a little "wasted"
-   space, one can view the XML file in a text/programmer's editor.
-   But, if ones system is tight on disk space, higher levels of compression
+   space and time, one can view the XML file in a text/programmer's editor.
+   But, if one's system is tight on disk space, higher levels of compression
    can be specified.
 
    \itempar{Send reports to}{Main Settings!Send Reports Destination}
@@ -258,7 +281,7 @@
    \textsl{Yoshimi} can be run, or, more usefully, to
    an output console window.
    See \figureref{fig:send_reports_to}.
-   It provides a depiction of the selection dropdown.
+   It provides a depiction of the selection drop-down.
 
 \begin{figure}[H]
    \centering 
@@ -395,7 +418,7 @@
    JACK is the "Jack Audio Connection Kit", useful increasing audio
    performance and configurability.
 
-   When using the JACK audio backend, parts can be individually routed
+   When using the JACK audio backend, instruments can be individually routed
    and sent to the main L/R outputs. This is controlled from the
    panel window,
    \sectionref{subsec:mixer_panel_window},
@@ -433,9 +456,17 @@
 \paragraph{Menu / Yoshimi / Settings / Alsa}
 \label{paragraph:menu_yoshimi_settings_alsa}
 
+   From \textsl{Yoshimi} 1.3.6 onwards, when using ALSA audio,
+   \textsl{Yoshimi} first tries to connect 2 channels at 32 bit depth.  If
+   that connection does not succeed, then \textsl{Yoshimi} negotiates
+   whatever the soundcard will support.  For example, a card might support
+   only 24 bits, and 6 channels.  So \textsl{Yoshimi} will fall back to
+   24 bit, and, due to its own limits, will use only channels 1 and 2.
+
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-alsa.jpg}
+%  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-alsa.jpg}
+   \includegraphics[scale=0.75]{1.3.6/yoshimi-settings-alsa.png}
    \caption[ALSA Settings]{ALSA Settings Dialog}
    \label{fig:yoshimi_settings_alsa}
 \end{figure}
@@ -444,19 +475,27 @@
 
    \itempar{Alsa Midi Device}{ALSA!MIDI device}
    ALSA MIDI Device.
+   The purpose of this setting is the same as the command line option
+   \texttt{--alsa-midi="name"}.
+   It is used so that \textsl{Yoshimi} can auto connect to a MIDI source
+   such as a keyboard.  For example, the one that Will has identifies itself
+   as name = "Hua Xing".
+   A port name, such as "128:0" (for one of the ports provided by
+   \textsl{TiMidity}) should work as well.
 
    Values: \texttt{default*}
-
-   \index{todo!ALSA MIDI device}
-   TODO: What can we change this value to?
 
    \itempar{Alsa Audio Device}{ALSA!audio device}
    ALSA Audio Device.
+   This specifies the sound card to which \textsl{Yoshimi} can connect.
+   Normally, this will be an ALSA hardware specification such as
+   "hw:0".
+   ALSA audio also lets one connect to a sound card by name. For example,
+   with a Komplete Audio KA 6 sound card, the device specification is
+   "hw:K6". This feature is particularly useful for USB modules, as one can
+   never be sure where they appear numerically.
 
    Values: \texttt{default*}
-
-   \index{todo!ALSA audio device}
-   TODO: What can we change this value to?  "hw:0"
 
    \itempar{Samplerate}{ALSA!sample rate}
    Sample Rate.
@@ -469,12 +508,16 @@
 
    Values: \texttt{96000, 48000*, 44100}
 
-   \itempar{Period Size}{ALSA!period size}
-   Buffer Size.
-   Sets the granularity of the sound. The Default is 256 (TODO: 1024?)
-   samples. To find out the internal delay in milliseconds, divide the
-   Period Size value by the Sample Rate and multiply the result by 1000
-   (eg.: 256/44100*1000=5.8 ms).
+   Note that, in version 1.3.6, the \textbf{Period Size} field has been
+   removed from the \textbf{Alsa} tab, and is replaced by the 
+   \textbf{Internal Buffer Size} field in the \textbf{Main Settings} tab.
+
+%  \itempar{Period Size}{ALSA!period size}
+%  Buffer Size.
+%  Sets the granularity of the sound. The Default is 256 (TODO: 1024?)
+%  samples. To find out the internal delay in milliseconds, divide the
+%  Period Size value by the Sample Rate and multiply the result by 1000
+%  (eg.: 256/44100*1000=5.8 ms).
 
    Values: \texttt{64, 128, 256, 512, 1024*}
 
@@ -488,17 +531,24 @@
    \index{bugs!Main Settings Close Unsaved}
    This button allows changes to be saved.
 
-\paragraph{Menu / Yoshimi / Settings / CCs}
+\paragraph{Menu / Yoshimi / Settings / MIDI}
 \label{paragraph:menu_yoshimi_settings_ccs}
 
-   This dialog, shown in
+   The CC settings tab has been renamed the "MIDI" tab.
+   This tab, shown in
    \figureref{fig:yoshimi_settings_cc},
-   presents MIDI "continuous controller" (CC) preferences.
+   presents MIDI bank-root, bank, program change, and extended program
+   change settings, plus some new values.
+
+   A new feature with 1.3.6 is that changes to the items in this
+   tab cause a red \textbf{Pending} button to appear.  Pressing this
+   button saves that particular change.
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-ccs.jpg}
-   \caption[MIDI CC Preferences]{MIDI Continuous Controller (CC) Preferences}
+%  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-ccs.jpg}
+   \includegraphics[scale=0.75]{1.3.6/yoshimi-settings-midi.png}
+   \caption[MIDI Preferences]{MIDI Preferences}
    \label{fig:yoshimi_settings_cc}
 \end{figure}
 
@@ -506,27 +556,33 @@
 
    The concepts of banks and roots is very useful.
    See \sectionref{subsec:concepts_banks_and_roots}.
+   The settings in this tab affect the usage of banks and root changes
+   controlled by MIDI messages, thereby making \textsl{Yoshimi} able to
+   implement MIDI automation.
 
-   \itempar{Enable Bank Root Change}{continuous controllers!enable bank root change}
+   \itempar{Enable Bank Root Change}{MIDI preferences!enable bank root change}
    Enable Bank Root Change.
 
    Values: \texttt{Off*, On}
 
-   \itempar{Bank Root Change}{continuous controllers!bank root change}
+   \itempar{Bank Root Change}{MIDI preferences!bank root change}
 
    Values: \texttt{0*, to 127}
 
    If enabled, a new reddish button, \textbf{Pending}, appears.
    Once the change has been made in the scroll list, click this button
    to set the change.
+   \textbf{Warning:}
+   The \textbf{Save and Close} button will not result in the removal of the
+   \textbf{Pending} button.  This result seems counter-intuitive.
 
    It is not clear if this change persists after \textsl{Yoshimi} closes, or
    if the session or state must be saved.
    But apparently this change can be made without a restart being required.
 
-   \itempar{Bank Change}{continuous controllers!bank change}
+   \itempar{Bank Change}{MIDI preferences!bank change}
    Bank Change.
-   Defines which continuous controllers one wants to use.
+   Defines which MIDI preferences one wants to use.
    Note that MIDI Controller 0 = CC0 = Bank Select MSB, and MIDI Controller
    32 = CC32 = Bank Select LSB.
    When combined, these Bank Select messages provide \[128*128 = 16384\]
@@ -541,7 +597,7 @@
 
    Values: \texttt{LSB, MSB*, Off}
 
-   \itempar{Enable Program Change}{continuous controllers!enable program change}
+   \itempar{Enable Program Change}{MIDI preferences!enable program change}
 
    Values: \texttt{Off*, On}
 
@@ -549,27 +605,39 @@
    Program changes can be completely disabled, but some hardware synths don't
    play nice!
 
-   \itempar{Enable Part On Program Change}{continuous controllers!enable part change}
+   \itempar{Enable Part On Program Change}{MIDI preferences!enable part change}
 
    Values: \texttt{Off*, On}
 
    The part is enabled if the MIDI program was changed on this part.
 
-   \itempar{Enable Extended Program Change}{continuous controllers!enable extended change}
+   \itempar{Enable Extended Program Change}{MIDI preferences!enable extended change}
 
    Values: \texttt{Off*, On}
 
-   \itempar{Extended Program Change}{continuous controllers!extended change}
+   \itempar{Extended Program Change}{MIDI preferences!extended change}
    If enabled, a new reddish button, \textbf{Pending}, appears.
    Once the change has been made in the scroll list, click this button
    to set the change.
 
    Values: \texttt{0-127, 110*}
 
-   \itempar{Save and Close}{continuous controllers!Save and Close}
+   \itempar{Set immediate - Control}{MIDI preferences!set immediate control}
+   TODO.
+   Sets the control number for ...
+
+   Values: \texttt{0-127, 0*}
+
+   \itempar{Set immediate - Value}{MIDI preferences!set immediate value}
+   TODO.
+   Sets the value number of the given control for ...
+
+   Values: \texttt{0-127, 0*}
+
+   \itempar{Save and Close}{MIDI preferences!Save and Close}
    Save and Close, Continuous Constrollers Settings.
 
-   \itempar{Close Unsaved CC}{continuous controllers!Close Unsaved}
+   \itempar{Close Unsaved CC}{MIDI preferences!Close Unsaved}
    Close Unsaved, Continuous Controllers Settings.
 
    \textbf{Bug:}
@@ -703,7 +771,7 @@
 \begin{figure}[H]
    \centering 
    \includegraphics[scale=0.75]{menu/Instrument/favorites-dropdown.jpg}
-   \caption{Favorites Dropdown}
+   \caption{Favorites Drop-down}
    \label{fig:open_instrument_favorites}
 \end{figure}
 
@@ -733,7 +801,7 @@
 \begin{figure}[H]
    \centering 
    \includegraphics[scale=1.0]{menu/Instrument/manage-favorites.png}
-   \caption{Favorites Dropdown}
+   \caption{Favorites Drop-down}
    \label{fig:manage_instrument_favorites}
 \end{figure}
 
@@ -744,7 +812,7 @@
    \texttt{/usr/share/yoshimi/banks} to get easy access to all the
    instruments that are preinstalled with
    \textsl{Yoshimi}.  Unfortunately, one can only add instrument
-   files in this manner, and the dropdown would quickly become
+   files in this manner, and the drop-down would quickly become
    unmanageable.  So generally, one will want to use only
    \textbf{Add to Favorites} and \textbf{Manage Favorites}.
 
@@ -905,7 +973,7 @@
    Basically, each bank is a directory name, with a number prepended.
    The banks are found under a current "root", which is a also a directory
    name, and is the name of the parent directory of a set of banks.
-   Here is the dropdown list for "my" setup:
+   Here is the drop-down list for "my" setup:
 
 \begin{figure}[H]
    \centering 
@@ -951,7 +1019,7 @@
    of the available slots, so it might be time to move some of those banks
    to a new root directory.
 
-   The numbers in the dropdown list are generated by \textsl{Yoshimi} the
+   The numbers in the drop-down list are generated by \textsl{Yoshimi} the
    first time it sees a new root path or a new bank within the root path.
    Once set, these numbers will never change unless you actually move them
    around (using the \textbf{SWAP} button).
@@ -964,13 +1032,13 @@
    sets the IDs in alphabetical order and tries to space them evenly
    over the range to provide wiggle room.                                        
 
-   Selecting one of the items in this dropdown list selects the bank and
+   Selecting one of the items in this drop-down list selects the bank and
    loads it into the Banks dialog.
    Using a right mouse click often produces modified or alternate results,
    especially in roots/banks/instruments.
 
-   \itempar{Refresh banks}{instruments!refresh banks}
-   Instruments Refresh Banks.
+   \itempar{Refresh banks}{obsolete!refresh banks}
+   Instruments Refresh Banks.  OBSOLETE.
    This item is \textsl{not present} in the newest \textsl{Yoshimi}.
 
    \itempar{Roots}{instruments!roots}
@@ -990,8 +1058,8 @@
    Again, we're not yet sure where the numbers in the list come from.
    They seem to be autogenerated.
 
-   \itempar{New Bank}{instruments!new bank}
-   Instruments New Bank.
+   \itempar{New Bank}{obsolete!new bank}
+   Instruments New Bank. OBSOLETE.
    This item is \textsl{not present} in the newest \textsl{yoshimi}.
    The \textbf{ADD} button can be used instead.
 

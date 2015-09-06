@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-04-20
-% \update      2015-07-14
+% \update      2015-09-05
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -29,9 +29,8 @@
 
 \begin{document}
 
-\title{A Yoshimi User Manual}
-\author{Chris Ahlstrom\\
-   (\texttt{ahlstromcj@gmail.com})}
+\title{A Yoshimi 1.3.6 User Manual}
+\author{Chris Ahlstrom \texttt{ahlstromcj@gmail.com} with Will J. Godfrey}
 \date{\today}
 \maketitle
 \tableofcontents
@@ -54,16 +53,16 @@
    This document describes how to use \textsl{Yoshimi} \cite{yoshimi},
    the software synthesizer derived from the great
    \textsl{ZynAddSubFx} \cite{zynaddsubfx} software
-   synthesizer.  Because of their similarities, much of this document also
+   synthesizer.  Because of their common origin, much of this document also
    applies to \textsl{ZynAddSubFx} and depends upon \textsl{ZynAddSubFX}
    documentation and diagrams.
 
-   \textsl{Yoshimi} is a MIDI software synthesizer for Linux. It synthesizes
-   in real time, can run polyphonic or monophonic in multiple
+   \textsl{Yoshimi} is an algorithmic MIDI software synthesizer for Linux.
+   It synthesizes in real time, can run polyphonic or monophonic, with multiple
    simultaneous patches in one or more MIDI channels, has broad microtonal
    capability, and much more. It includes extensive addititive, subtractive,
    and PAD synth capabilities which can be run simultaneously within the
-   same patch.  It also has comprehensive effects capabilities.
+   same patch.  It also has comprehensive audio effects modules.
 
    Originally based on the 2.4.0 version of \textsl{ZynAddSubFX} (Copyright
    2002-2009 Nasca Octavian Paul), development of \textsl{Yoshimi} has
@@ -74,13 +73,18 @@
 
    What are the advantages of
    \textsl{Yoshimi} versus \textsl{ZynAddSubFX}?
-   Well, this information may be outdated by now, but 
-   \textsl{Yoshimi} is supposed to have better JACK support
-   than does \textsl{ZynAddSubFX}.
-   \textsl{Yoshimi} also has a cleaner and neater graphical user interface.
+   At one time \textsl{Yoshimi} had better JACK support
+   than \textsl{ZynAddSubFX}, but that is no longer true.
+   Both projects are now in active development, and both are
+   progressing along their respective roadmaps.
+
+   \textsl{Yoshimi} has a cleaner graphical user interface.
    On the other hand, \textsl{ZynAddSubFX} has a few features that
    \textsl{Yoshimi} does not, such as being able to easily record
-   the output waveforms.
+   the output waveforms.  There may be internal differences of importance to
+   a developer.  So, really, it is not clear that there is really a big
+   advantage to one over the other... use them both and make your own
+   decision!
 
 \subsection{Document Structure}
 \label{subsec:introduction_document_structure}
@@ -92,28 +96,48 @@
    \textsl{Yoshimi}.  To help the reader jump around this document, multiple
    links and references are supplied.
 
-   Usage tips
    \index{tips!in document}
+   Usage tips
    for each of the functions provided in
    \textsl{Yoshimi} are sprinkled throughout this document.
    Each tip occurs in a section beginning with "Tip:".
    Each tip is provided with an entry in the Index, under the
    main topic "tips".
 
-   Bug notes
    \index{bugs!in document}
+   Bug notes
    for some of the oddities found in \textsl{Yoshimi} are
    sprinkled throughout this document.
    Each bug occurs in a sentence beginning with "Bug:".
    Each bug is provided with an entry in the Index, under the
    main topic "bugs".
 
-   TODO items
+   \index{new!in document}
+   New features
+   since the last version are flagged with "New:"
+
    \index{todo!in document}
+   TODO items
    are also present, in the same vein.
    This document currently has a lot of them!
 
-\subsection{Let's Get Started!}
+\subsection{Yoshimie Mailing List}
+\label{subsec:introduction_mailing_list}
+
+   The \textsl{Yoshimi} project used to have an email list at SourceForge,
+   but the unreliability of the site has prompted a move to a new
+   mailing list.  See reference \cite{yoshiminews}.
+   The team have managed to port across all the old yoshimi-user archives to
+   this new site.  See reference \cite{yoshiminewsarchive}.
+
+   Subscribe to the \textsl{Yoshimi} mailing list with an e-mail to:
+   \url{yoshimi-request@freelists.org} or by visiting 
+   \url{http://www.freelists.org/list/yoshimi}.
+
+   To post to the list, send an email to: \url{yoshimi@freelists.org}.
+   The news archive is at: \url{https://www.freelists.org/archive/yoshimi}.
+
+\subsection{Let's Get Started with Yoshimi!}
 \label{subsec:introduction_lets_get_started}
 
    Let us run \textsl{Yoshimi}, but run it without using \textsl{JACK}, which

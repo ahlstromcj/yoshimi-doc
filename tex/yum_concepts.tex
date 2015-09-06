@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-15
-% \update      2015-09-04
+% \update      2015-09-05
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -65,17 +65,21 @@
    (see section~\ref{subsubsec:concepts_terms_part}).
 
    In our documentation, we will sometimes use the terms "instrument",
-   "part", "patch", and even "program" interchangeably and loosely.
+   "patch", and even "program" interchangeably and loosely.
+   However, "part" now has a different meaning, as seen in the next term.
 
 \subsubsection{Concepts / Terms / part}
 \label{subsubsec:concepts_terms_part}
 
    \index{part}
-   In \textsl{Yoshimi}, a \textsl{part} is one of 16 slots into which one
-   can load an
-   instrument (see section~\ref{subsubsec:concepts_terms_instrument}).
-   Each part can be enabled
-   or disabled, and assigned to a particular MIDI channel.
+   In \textsl{Yoshimi}, a \textsl{part} is one of 64 slots into which one
+   can load an instrument (see
+   section~\ref{subsubsec:concepts_terms_instrument}).  Each part can be
+   enabled or disabled, and assigned to a particular MIDI channel, one of 16
+   channels.
+
+   Note that the previous \textsl{Yoshimi} limit on parts was 16.
+   Since around version 1.3.5, this limit has been raised.
 
 \subsubsection{Concepts / Terms / patch}
 \label{subsubsec:concepts_terms_patch}
@@ -95,7 +99,7 @@
    patch numbers to their synthesizer products in an arbitrary manner.
 
 \subsubsection{Concepts / Terms / preset}
-\label{subsubsec:concepts_terms_program}
+\label{subsubsec:concepts_terms_preset}
 
    \index{preset}
    In MIDI jargon, a \textsl{preset} is an instrument that can be easily
@@ -242,17 +246,27 @@
    banks.
 
    Note that one needs to have write permissions to add instruments to the
-   bank.
-   Banks are more thoroughly described in
+   bank.  Banks are more thoroughly described in
    \sectionref{subsec:concepts_banks_and_roots}.
 
 \subsection{Concepts / Banks and Roots}
 \label{subsec:concepts_banks_and_roots}
 
-   An important concept in \textsl{Yoshimi} is \textsl{banks}.  Instruments
+   In \textsl{Yoshimi}, a \textsl{root} is a location in which banks can be
+   stored.  It is basically a directory, though it ultimately is assigned a
+   number by \textsl{Yoshimi}, presumably to be able to access it in an
+   automated way.  By choosing a root, one can hone in on a smaller
+   collection of banks.
+   
+   Another important concept in \textsl{Yoshimi} is \textsl{banks}.  Instruments
    can be stored in banks. These are loaded and saved automatically by the
    program.  On program start, the last used bank is loaded. A single bank
-   can store up to 128 instruments. 
+   can store up to 128 instruments normally, and 160 using extended programs.
+
+   At one time, one could in theory have 1000 roots, 1000 banks and 1000
+   presets.  However, now roots and banks were trimmed to what can be
+   addressed from MIDI. One can supposedly still have 1000 presets, though.
+   Anyway, 128x128x160 = 2621440 instruments should be enough for anyone.
 
    The file \texttt{Banks.txt} in the \textsl{Yoshimi} source-code bundle
    makes an important point about a transition (in newer versions)
@@ -288,6 +302,9 @@
       banks and roots as necessary. While the MIDI file runs it can silently
       pull instruments from any root/bank into any non-sounding part without
       disturbing the playing ones.
+
+TODO 1.3.6:
+   Change CC to MIDI:
 
       In "Yoshimi / Settings / CC" one can enable or disable all these MIDI
       features, and can define which CCs one wants to use. Bank can be either
@@ -366,7 +383,7 @@
    \label{fig:zynaddsubfx_main_structure}
 \end{figure}
 
-   For a given part, the synthesizer first creates a note.  Each notes
+   For a given part, the synthesizer first creates a note.  Each note's
    waveform (for example, in a chord) is summed (mixed).  This complex
    waveform is then send to the series of Insertion effects (if any) that
    are defined.  Each part is then sent to a System effect and (depending on
@@ -562,7 +579,7 @@
    control, named \textbf{Ph.rnd} or \textbf{rnd}.
 
    There is now the possibility to add a 'naturalising' random pitch element
-   to a part. This is found in the part edit window. The settings are not
+   to a part. This is found in the part-edit window. The settings are not
    currently saved, but will be once the control values are settled, and
    there has been enough experience to decide whether it should be a part or
    voice setting.
@@ -581,7 +598,8 @@
          They receive the note messages from MIDI
          Channels. One may assign a part to any channel. A part can store
          only one instrument.  "Add.S" represents ADDsynth and "Sub.S" is
-         SUBsynth.
+         SUBsynth.  In recent versions of \textsl{Yoshimi}, the number of
+         parts available has been increased from 16 to 64.
       \item \textbf{Insertion Effect}.
          This effect applies only to one part; one can have any number of
          insertion effects for one part, but the number of these cannot be
@@ -736,8 +754,8 @@
    \end{itemize}
 
    The Program Change (192) also provides user selectable CC for voices
-   128-160.  There is an option to make Program Change enable a part if it's
-   currently disabled.
+   128-160.  There is now an option to make Program Change enable a part if
+   it's currently disabled.
 
    User selectable CC for Bank Root Path change.
    For more details of bank changes see
@@ -767,7 +785,7 @@
    controllers.
    Vector control is only possible if one has 32 or 64 parts active 
    in \textsl{Yoshimi}.
-   In vector mode parts will still play together but the vector controls can
+   In vector mode, parts will still play together but the vector controls can
    change their volume, pan, filter cutoff in pairs, controlled by user
    defined CCs set up with NRPNs.
 
