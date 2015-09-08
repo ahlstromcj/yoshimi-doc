@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2015-09-06
+% \update      2015-09-07
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -126,6 +126,28 @@
 
    The \textsl{Yoshimi Settings} dialog contains five tabs that control the
    major and overall settings of \textsl{Yoshimi}.
+
+   Please note that the \textbf{Save and Close} and \textbf{Close Unsaved}
+   buttons apply to the whole \textbf{Settings} window.  Further more, the
+   saving does not refer to preserving the changes that might have been made
+   in any of the tabs for the current \textsl{Yoshimi} session.  Any changes
+   made in \textbf{Settings} always remain in place for the current
+   \textsl{Yoshimi} session.  (So be careful!)  However, they are saved to
+   the state file only if \textbf{Save and Close} is clicked.
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Save and Close}{Settings!Save and Close}
+   This selection saves the settings made in \textbf{all} of the tabs,
+   and closes the \textsl{Yoshimi} settings dialog.
+
+   \itempar{Close Unsaved}{Settings!Close Unsaved}
+   Close Unsaved, Main Settings.
+
+   This selection closes the \textsl{Yoshimi} settings dialog.
+   However, note that any changes made in the tabs
+   \textsl{are preserved}.  They are preserved for the current
+   \textsl{Yoshimi} session, but are not saved to the filesystem.
    
 \paragraph{Menu / Yoshimi / Settings / Main Settings}
 \label{paragraph:menu_yoshimi_settings_main_settings}
@@ -305,21 +327,6 @@
    \label{fig:session_save_state} 
 \end{figure}
 
-   \itempar{Save and Close}{Main Settings!Save and Close}
-   This selection saves and closes the \textsl{Yoshimi} settings dialog.
-
-   \itempar{Close Unsaved}{Main Settings!Close Unsaved}
-   Close Unsaved, Main Settings.
-
-   This selection closes the \textsl{Yoshimi} settings dialog.
-   However, it may actually leave the changes preserved (a bug).
-   This needs to be checked, we've seen this in other dialogs.
-   \textbf{Bug:}
-   \index{bugs!Main Settings Close Unsaved}
-   And yes, indeed, it saves the changes.
-   Please watch for this effect in all such dialogs; we're indexing such
-   defects under the topic of "bugs".
-
 \paragraph{Menu / Yoshimi / Settings / Preset dirs}
 \label{paragraph:menu_yoshimi_settings_preset_dirs}
 
@@ -347,7 +354,7 @@
       \item \textbf{Close Unsaved}
    \end{enumber}
 
-   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+%  \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
 \begin{figure}[H]
    \centering 
@@ -382,29 +389,20 @@
 \end{figure}
 
    Navigate to the desired directory, select it, and press the \textbf{Ok}
-   button.  The press the \textbf{Save and Close} button.
-   IMPORTANT:  Then restart \textbf{Yoshimi}.
+   button.  (There is no need to press the \textbf{Save and Close} button;
+   the directory is added as soon as \textsl{OK} is clicked.
+   IMPORTANT:  Restart \textbf{Yoshimi} to used the preset directory.
 
    \itempar{Remove preset directory...}{Yoshimi Presets!Remove Directory}
    Select one of the preset directories in the preset list, then press this
    button to remove the preset directory from the list of preset
-   directories.
+   directories.  It is removed immediately, no need to confirm the deletion,
+   click an OK button, or click a Save button.
 
    \itempar{Make default presets}{Yoshimi Presets!Make Default}
    Make Default Presets Directory.
    Select one of the preset directories in the preset list, then press this
    button to make the preset directory the default preset directory.
-
-   \itempar{Save and Close presets}{Yoshimi Presets!Save and Close}
-   Press this button to save the changes.
-
-   \itempar{Close Unsaved presets}{Yoshimi Presets!Close Unsaved}
-   Close Unsaved, Presets.
-   
-   \textbf{Bug:}
-   \index{bugs!Main Settings Close Unsaved}
-   This button doesn't seem to work, in that the changes seem to remain
-   in place when the dialog is reopened.
 
 \paragraph{Menu / Yoshimi / Settings / Jack}
 \label{paragraph:menu_yoshimi_settings_jack}
@@ -436,16 +434,6 @@
    tells this instance of \textsl{Yoshimi} which server to use.
 
    Values: \texttt{default*, name} name, as in "jackd --name"
-
-   \itempar{Save and Close}{JACK!Save and Close}
-   Save and Close, JACK Settings.
-
-   \itempar{Close Unsaved Jack}{JACK!Close Unsaved}
-   Close Unsaved, JACK Settings.
-
-   \textbf{Bug:}
-   \index{bugs!Main Settings Close Unsaved}
-   This button allows changes to be saved.
 
 \paragraph{Menu / Yoshimi / Settings / Alsa}
 \label{paragraph:menu_yoshimi_settings_alsa}
@@ -521,16 +509,6 @@
 %  (eg.: 256/44100*1000=5.8 ms).
 
    Values: \texttt{64, 128, 256, 512, 1024*}
-
-   \itempar{Save and Close}{ALSA!Save and Close}
-   Save and Close, ALSA Settings.
-
-   \itempar{Close Unsaved Alsa}{ALSA!Close Unsaved}
-   Close Unsaved, ALSA Settings.
-
-   \textbf{Bug:}
-   \index{bugs!Main Settings Close Unsaved}
-   This button allows changes to be saved.
 
 \paragraph{Menu / Yoshimi / Settings / MIDI}
 \label{paragraph:menu_yoshimi_settings_ccs}
@@ -634,16 +612,6 @@
    Sets the value number of the given control for ...
 
    Values: \texttt{0-127, 0*}
-
-   \itempar{Save and Close}{MIDI preferences!Save and Close}
-   Save and Close, Continuous Constrollers Settings.
-
-   \itempar{Close Unsaved CC}{MIDI preferences!Close Unsaved}
-   Close Unsaved, Continuous Controllers Settings.
-
-   \textbf{Bug:}
-   \index{bugs!Main Settings Close Unsaved}
-   This button allows changes to be saved.
 
 \subsubsection{Menu / Yoshimi / Exit}
 \label{subsubsec:menu_yoshimi_exit}
@@ -1378,18 +1346,6 @@
    Is it a way to make the path selectable via an extended MIDI control, or
    some other automation method?
    }
-
-   \itempar{Save and Close}{Root Paths!save and close}
-   Show Root Paths Save and Close.
-
-   \itempar{Close Unsaved Root Paths}{Root Paths!close unsaved}
-   Show Root Paths Close Unsaved.
-
-   \textbf{Bug:}
-   \index{bugs!root paths closed unsaved}
-   Doesn't seem to work!
-   Make a change, and click this button, then reopen the dialog, 
-   and the change is preserved.
 
 \subsection{Menu / Parameters}
 \label{subsec:menu_parameters}

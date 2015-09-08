@@ -1,0 +1,35 @@
+Hooking Sequencer24/seq24 to Yoshimi in ALSA
+Chris Ahlstrom
+2015-09-06 to 2015-09-07
+
+Provided here is a basic sanity check for hooking up Sequencer24
+and Yoshimi.
+
+1. Set [manual-alsa-ports] to 0 in ~/.config/sequencer/sequencer24rc
+
+2. $ yoshimi -a -A &
+
+3. $ sequencer24 &
+
+   File / Options / MIDI Clock / [5] 129:0 (input) = Off
+
+   ("[5]" is the MIDI port for Yoshimi, and might have a different
+   number on your system.)
+
+   File / Open / open a MIDI file
+
+   Right-click on an existing sequence:
+
+      Select [5] as the MIDI Output Bus (5 is system-setup-specific).
+      Select 1 as the MIDI Channel on that Bus.
+      Arm the sequence (to dump to MIDI buss); it will have a black
+         background in the Patterns Panel.
+
+Yoshimi:
+
+   Make sure part has an instrument loaded and is set to the same MIDI
+   channel.
+
+Start playing the sequence in Sequencer24 and verify that Yoshimi
+reproduces the pattern audibly.
+
