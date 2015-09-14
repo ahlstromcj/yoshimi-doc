@@ -313,4 +313,118 @@ click on the track with the right button - bet you never knew that :)
  src/UI/PartUI.fl                                     |   4 ++--
  src/main.cpp                                         |   2 +-
 
+Date: Mon, 7 Sep 2015 23:34:34 +0100                                              
+From: Will Godfrey <willgodfrey@musically.me.uk>                                  
+To: Chris Ahlstrom <ahlstromcj@gmail.com>                                         
+Subject: Re: Yoshimi notes                                                        
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)                   
+                                                                                  
+Hi Chris,                                                                         
+                                                                                  
+A little clarification,                                                           
+                                                                                  
+In the settings window, 'Save Settings' refers to the entire window, not just     
+individual tabs. The close buttons are actually outside the frame of the tabs.    
+                                                                                  
+Also 'Close without saving' doesn't mean revert to previous settings, it means    
+use the changes but don't immediately store them to the filesystem.               
+                                                                                  
+Oh, and there are a few more bits in the 'command' branch :)                      
+
+
+
+Date: Thu, 10 Sep 2015 14:25:08 +0100                                             
+From: Will Godfrey <willgodfrey@musically.me.uk>                                  
+To: Chris Ahlstrom <ahlstromcj@gmail.com>                                         
+Subject: Re: Yoshimi notes                                                        
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)                   
+                                                                                  
+On Thu, 10 Sep 2015 05:54:34 -0400                                                
+Chris Ahlstrom <ahlstromcj@gmail.com> wrote:                                      
+                                                                                  
+> Frames?  Or samples?  I assume a "frame" is a small time-window of              
+> audio samples.  Will document for food :-)                                      
+                                                                                  
+A frame is a single sample of however many channels you are handling, so if you   
+are using jack, a mono signal will have frames of 1 float, 2 for stereo etc.      
+                                                                                  
+ALSA is more complex as it handles pretty much the sound card's format,           
+commonly ints, 24 bit ints (low byte ignored), and short ints. Less commonly      
+it may be floats or the weird 24 L ints. I'm still not sure if these are packed   
+or low aligned (top byte ignored). I've assumed they are low aligned, but I       
+don't know anyone who has such a card in order to prove it. As a matter of        
+interest the only ALSA format yoshi doesn't support is float - again, no way      
+to test it.                                                                       
+                                                  
+
+Date: Sun, 13 Sep 2015 20:36:01 +0100                                             
+From: Will Godfrey <willgodfrey@musically.me.uk>                                  
+To: Chris Ahlstrom <ahlstromcj@gmail.com>                                         
+Subject: Re: Yoshimi notes                                                        
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)                   
+                                                                                  
+Hi Chris,                                                                         
+                                                                                  
+The new command line entry system has proved stable enough to move to 'master'.   
+                                                                                  
+Meanwhile we are working in a different implementation in 'command' that          
+eventually should be much better and more easily extended. At the moment there    
+isn't much there!                                                                 
+
+
+Date: Sun, 13 Sep 2015 16:14:53 +0100                                             
+From: Will Godfrey <willgodfrey@musically.me.uk>                                  
+To: yoshimi@freelists.org                                                         
+Subject: [yoshimi] Yoshimi Headless                                               
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)                   
+                                                                                  
+Following an enquiry I just tested Yoshi in 'recovery' mode logged in as root     
+with no X server. Using /usr/local/share/bin/yoshim -A -i worked perfectly and    
+auto-connected my keyboard so I could prove everything was tickety-boo.           
+                                                                                  
+You still need the X libraries to compile Yoshi, but I don't know if it is        
+practical to provide a compile time option to build a purely headless version.    
+
+
+Date: Sun, 13 Sep 2015 20:29:01 +0100                                             
+From: Will Godfrey <willgodfrey@musically.me.uk>                                  
+To: yoshimi@freelists.org                                                         
+Subject: [yoshimi] Re: Version 1.3.6 - Command Line                               
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)                   
+                                                                                  
+The stable version of the new command line entry is now in 'master' while we      
+develop a different implementation and more complete version in 'command'.        
+
+
+Date: Mon, 14 Sep 2015 18:42:56 +0100                                             
+From: Will Godfrey <willgodfrey@musically.me.uk>                                  
+To: yoshimi@freelists.org                                                         
+Subject: [yoshimi] Re: Two Questions                                              
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)                   
+             
+On Mon, 7 Sep 2015 23:25:10 +0100
+Will Godfrey <willgodfrey@musically.me.uk> wrote:
+                                              
+> On Mon, 7 Sep 2015 18:35:20 +0100                                               
+> "Tom" <dmarc-noreply@freelists.org> (Redacted sender                            
+> "madtom1999@googlemail.com" for DMARC) wrote:                                   
+>                                                                                 
+> > Instrument Bank?                                                              
+>                                                                                 
+> Unfortunately that's already taken! It's the directory that the instruments     
+> are stored in.                                                                  
+>                                                                                 
+OK, unless anyone comes up with a serious objection or alternative, for V1.3.6    
+in the gui, and in all notes 'Parameter' will become 'Patch Set' (exactly the     
+same number of characters), so obviously 'Parameters' changes to 'Patch Sets'.    
+                                                                                  
+There will be no changes in the code, nor in any XML files.                       
+                                                                                  
+                                                                                  
+This is only a small detail, but these things add up. If you see any other        
+wording that's obscure, I'm quite happy to look at it.                            
+ 
+
+
+
 
