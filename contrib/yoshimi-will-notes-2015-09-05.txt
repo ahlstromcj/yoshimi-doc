@@ -37,121 +37,121 @@ I've just had another look through the epic! work you're doing on the manual.
 Here are some clarifications (not in any special order).
 
 x There has been a lot of re-organisation of Yoshimi->settings. The CC tab is now
-  named MIDI.
+named MIDI.
 
 x Curiously named period size, is now where it should be in main settings and
-  called internal buffer (which is what it really is).
+called internal buffer (which is what it really is).
 
 x Oscillator size is now called AddSynth Oscillator size, to make it clear what
-  it really is.
+it really is.
 
 NOTE The command line help menu has also been updated.
 
 x Using XML compression can save file access time which may be beneficial if
-  your machine is borderline on latency.
+your machine is borderline on latency.
 
 
 In the Alsa menu
 
 x The purpose of Alsa Midi Device is the same as the command line
-  --alsa-midi="{name}" and is so that Yoshi can auto connect to a MIDI source
-  such as a keyboard. The one I have here identifies itself as Hua Xing.
+--alsa-midi="{name}" and is so that Yoshi can auto connect to a MIDI source
+such as a keyboard. The one I have here identifies itself as Hua Xing.
 
 x Similarly Alsa Audio lets you connect to a sound card by name. In my case,
-  with a Komplete Audio KA 6 the command is hw:K6. This is particularly
-  useful for USB modules, as you can never be sure where they will appear
-  numerically.
+with a Komplete Audio KA 6 the command is hw:K6. This is particularly
+useful for USB modules, as you can never be sure where they will appear
+numerically.
 
 x From V 1.3.6 onwards (and current master) what using alsa audio Yoshi first
-  tries to connect 2 channels at 32 bit depth, but negotiates with whatever
-  the soundcard will support. In my case that. 24bit 6 channel (but Yoshi
-  only' uses 1&2)
+tries to connect 2 channels at 32 bit depth, but negotiates with whatever
+the soundcard will support. In my case that. 24bit 6 channel (but Yoshi
+only' uses 1&2)
 
 x At one time you could in theory have 1000 roots, 1000 banks and 1000 presets.
-  This is ludicrous! Roots and banks were trimmed to what can be addressed
-  from MIDI, but you can still have 1000 presets, not that I've ever tried to
-  prove it!  To paraphrase, 2,621,440 instruments is enough for anyone!
-  (128x128x160).
+This is ludicrous! Roots and banks were trimmed to what can be addressed
+from MIDI, but you can still have 1000 presets, not that I've ever tried to
+prove it!To paraphrase, 2,621,440 instruments is enough for anyone!
+(128x128x160).
 
 x Refreshes have been removed because they are no longer needed. The code self
-  syncs better.
+syncs better.
 
 x You can't reach root paths through the Yoshimi->settings window any more - it
-  was causing a nightmare of syncing with the other entry routes. You can
-  reach it from the Instrument tab, or the Banks window or the Instruments
-  window, both of the latter also have multiple entry routes!
+was causing a nightmare of syncing with the other entry routes. You can
+reach it from the Instrument tab, or the Banks window or the Instruments
+window, both of the latter also have multiple entry routes!
 
 y It's probably best to more clearly separate the concept of parts V channels
-  these days. There are only 16 MIDI channels, there are up to 64 parts each of
-  which can be on any channel or disabled :)
+these days. There are only 16 MIDI channels, there are up to 64 parts each of
+which can be on any channel or disabled :)
 
 x Part audio destination (jack) is saved with the parameter sets, so is the number
-  of available parts. Zyn will still load these but ignores any settings it
-  doesn't recognise. If you re-save in Zyn, the settings will be lost.
+of available parts. Zyn will still load these but ignores any settings it
+doesn't recognise. If you re-save in Zyn, the settings will be lost.
 
 x Zyn, and older versions of Yoshi it's possibly to end up with un-named
-  instruments. Since V 1.3.4 Yoshi will trap such an occurrence and name it 'No
-  Title'. Yoshi won't let you save the unedited default sound!
+instruments. Since V 1.3.4 Yoshi will trap such an occurrence and name it 'No
+Title'. Yoshi won't let you save the unedited default sound!
 
 x In parameter sets Yoshi will save named but disabled patches. Zyn doesn't. Be
-  aware of that!
+aware of that!
 
 x It is advisable to copy all the default Banks to userspace so you can them
-  re-arrange edit and add to them easily. Just keep the default for emergency
-  recovery.
+re-arrange edit and add to them easily. Just keep the default for emergency
+recovery.
 
 x Un-numbered instruments in a bank will be given a 'temporary ID starting from
-  number 160 and working down. If those numbers already exist then they will be
-  skipped over. This can get very confusing! However, if you simply load it
-  and re-save it to the same slot it will gain that ID and be properly fixed.
-  You can the move-swap it with others.
+number 160 and working down. If those numbers already exist then they will be
+skipped over. This can get very confusing! However, if you simply load it
+and re-save it to the same slot it will gain that ID and be properly fixed.
+You can the move-swap it with others.
 
 x All Root, bank instrument IDs are used by MIDI controls, and as of V 1.3.6 will
-  also be accessible to the command line.
+also be accessible to the command line.
 
 x We no longer say anything about Yoshi being better at alsa/jack
-  implementation.  It's no longer true. Performance-wise the two are
-  neck-an-neck these days, although there is one special case where yoshi
-  dramatically out performs Zyn.  I've only recently discovered this and
-  don't want to say anything more until I've discussed it with Mark.
+implementation.It's no longer true. Performance-wise the two are
+neck-an-neck these days, although there is one special case where yoshi
+dramatically out performs Zyn.I've only recently discovered this and
+don't want to say anything more until I've discussed it with Mark.
 
 
 x Subsynth sliders.
-  The top row sets the *relative* amplitude. This is an important distinction as
-  the overall level is normalised, so all actual levels will be dependent on
-  whichever is the highest.
+The top row sets the *relative* amplitude. This is an important distinction as
+the overall level is normalised, so all actual levels will be dependent on
+whichever is the highest.
 
 x The bottom row sets the bandwidth of each harmonic. If you have just the
-  fundamental and drop the bandwith to minimum you get very nearly a sinewave.
-  Set it to maximum and it is very obviously filtered noise!
+fundamental and drop the bandwith to minimum you get very nearly a sinewave.
+Set it to maximum and it is very obviously filtered noise!
 
 x The part effects layout was changed at the request of people at LAC2015. it now
-  more closely matches the appearance of system and insertion effects.
+more closely matches the appearance of system and insertion effects.
 
 n As of V 1.3.6 the splash screen stays up a bit longer, and gives more
-  information if it has a problem.
+information if it has a problem.
 
 New instance with alsa audio - yes we know! haven't worked out a sensible fix
 yet :(
 
 x state V parameters
-  State saves *everything* parameters saves everything that is relevant to that
-  collection of sounds... That's the theory. I must recheck this sometime :)
+State saves *everything* parameters saves everything that is relevant to that
+collection of sounds... That's the theory. I must recheck this sometime :)
 
 x Saving settings or not.
-  If you change settings and close without saving that means they remain in
-  place only for the current session. If you've changed anything, when you close
-  Yoshi you will be given a second chance to save them. If you say 'no' the next
-  time you start, the old settings will be restored. I did think of creating an
-  'undo' feature but it gets pretty crazy very quickly.
+If you change settings and close without saving that means they remain in
+place only for the current session. If you've changed anything, when you close
+Yoshi you will be given a second chance to save them. If you say 'no' the next
+time you start, the old settings will be restored. I did think of creating an
+'undo' feature but it gets pretty crazy very quickly.
 
 x The new coloured engine backgrounds aren't just pretty. They give real
-  information about expected processor load, and time to be ready when loaded.
-  Processor low to high, Pad, Sub, Add.
-  Time low to high, Sub, Add, Pad.
+information about expected processor load, and time to be ready when loaded.
+Processor low to high, Pad, Sub, Add.
+Time low to high, Sub, Add, Pad.
 
 x Default master volume is 90, part is 96 add (overall) sub, pad is 90, addvoice
-  is 100, effects are all over the place - don't ask me why!
+is 100, effects are all over the place - don't ask me why!
 
 Phew!
 
@@ -217,7 +217,7 @@ X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
 On Sun, 6 Sep 2015 10:10:50 -0400
 Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
 
-> Man, this will take awhile!  I'm revamping the discussion of the Instruments
+> Man, this will take awhile!I'm revamping the discussion of the Instruments
 > menu to make it more concise and much better organized.
 
 You have my sympathy :)
@@ -250,13 +250,13 @@ X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
 On Sun, 6 Sep 2015 11:35:47 -0400
 Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
 
-> Hmmm, the Main dropdown is greyed out.  How do you get it ungreyed?
+> Hmmm, the Main dropdown is greyed out.How do you get it ungreyed?
 
 Use jack audio, not alsa audio :)
 
 > The left/right dichtomy of the Edit button in the part panel is a bit
-> too tricky.   You might consider reversing the right vs left clicking,
-> widen the button, and label it "Edit/Pick".  Just a thought.  Whatever
+> too tricky.You might consider reversing the right vs left clicking,
+> widen the button, and label it "Edit/Pick".Just a thought.Whatever
 > it is, I will so document it.
 
 To a degree we try not to change things in an unexpected way. Old Yoshi, and
@@ -287,143 +287,362 @@ click on the track with the right button - bet you never knew that :)
  git pull on 2015-09-05
 ===========================================================================
 
- Changelog                                            |  15 ++++++++++++---
- Tests/README.txt                                     |   9 +++++----
- doc/1stReadMe.txt                                    |   2 +-
- doc/ALSA_Setup.txt                                   |   6 +++---
- doc/Banks.txt                                        |   2 +-
- ...stem Settings.txt => Dynamic_System_Settings.txt} |  12 ++++++------
- doc/{ => Histories}/V_1.3.5-features.txt             |   0
- doc/{ => Histories}/Zyn_ChangeLog                    |   0
- doc/{ => Histories}/Zyn_HISTORY.txt                  |   0
- doc/NewFeatures.txt                                  |   6 +++---
- doc/ToDo_Maybe.txt                                   |   4 ++++
- doc/Using_NRPNs.txt                                  |   2 +-
- doc/Yoshi-Zyn_Sound_Differences.txt                  |   2 +-
- doc/Yoshimi_1.3.6-features.txt                       |  21 +++++++++++++++++++++
- doc/Yoshimi_License_History.txt                      |   6 ++++++
- doc/Yoshimi_Policies.txt                             |   2 +-
- examples/Out_There.mid                               | Bin 0 -> 9621 bytes
- examples/Out_There.txt                               |   4 ++++
- examples/Out_There.xmz                               | Bin 0 -> 128011 bytes
- src/CMakeLists.txt                                   |   4 ++--
- src/Misc/Part.cpp                                    |  10 ++++------
- src/Misc/WavFile.cpp                                 |   7 +++----
- src/Misc/WavFile.h                                   |   8 ++++----
- src/UI/PartUI.fl                                     |   4 ++--
- src/main.cpp                                         |   2 +-
+ Changelog|15 ++++++++++++---
+ Tests/README.txt|9 +++++----
+ doc/1stReadMe.txt|2 +-
+ doc/ALSA_Setup.txt|6 +++---
+ doc/Banks.txt|2 +-
+ ...stem Settings.txt => Dynamic_System_Settings.txt} |12 ++++++------
+ doc/{ => Histories}/V_1.3.5-features.txt|0
+ doc/{ => Histories}/Zyn_ChangeLog|0
+ doc/{ => Histories}/Zyn_HISTORY.txt|0
+ doc/NewFeatures.txt|6 +++---
+ doc/ToDo_Maybe.txt|4 ++++
+ doc/Using_NRPNs.txt|2 +-
+ doc/Yoshi-Zyn_Sound_Differences.txt|2 +-
+ doc/Yoshimi_1.3.6-features.txt|21 +++++++++++++++++++++
+ doc/Yoshimi_License_History.txt|6 ++++++
+ doc/Yoshimi_Policies.txt|2 +-
+ examples/Out_There.mid| Bin 0 -> 9621 bytes
+ examples/Out_There.txt|4 ++++
+ examples/Out_There.xmz| Bin 0 -> 128011 bytes
+ src/CMakeLists.txt|4 ++--
+ src/Misc/Part.cpp|10 ++++------
+ src/Misc/WavFile.cpp|7 +++----
+ src/Misc/WavFile.h|8 ++++----
+ src/UI/PartUI.fl|4 ++--
+ src/main.cpp|2 +-
 
-Date: Mon, 7 Sep 2015 23:34:34 +0100                                              
-From: Will Godfrey <willgodfrey@musically.me.uk>                                  
-To: Chris Ahlstrom <ahlstromcj@gmail.com>                                         
-Subject: Re: Yoshimi notes                                                        
-X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)                   
-                                                                                  
-Hi Chris,                                                                         
-                                                                                  
-A little clarification,                                                           
-                                                                                  
-In the settings window, 'Save Settings' refers to the entire window, not just     
-individual tabs. The close buttons are actually outside the frame of the tabs.    
-                                                                                  
-Also 'Close without saving' doesn't mean revert to previous settings, it means    
-use the changes but don't immediately store them to the filesystem.               
-                                                                                  
-Oh, and there are a few more bits in the 'command' branch :)                      
+Date: Mon, 7 Sep 2015 23:34:34 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: Yoshimi notes
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
 
+Hi Chris,
 
+A little clarification,
 
-Date: Thu, 10 Sep 2015 14:25:08 +0100                                             
-From: Will Godfrey <willgodfrey@musically.me.uk>                                  
-To: Chris Ahlstrom <ahlstromcj@gmail.com>                                         
-Subject: Re: Yoshimi notes                                                        
-X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)                   
-                                                                                  
-On Thu, 10 Sep 2015 05:54:34 -0400                                                
-Chris Ahlstrom <ahlstromcj@gmail.com> wrote:                                      
-                                                                                  
-> Frames?  Or samples?  I assume a "frame" is a small time-window of              
-> audio samples.  Will document for food :-)                                      
-                                                                                  
-A frame is a single sample of however many channels you are handling, so if you   
-are using jack, a mono signal will have frames of 1 float, 2 for stereo etc.      
-                                                                                  
-ALSA is more complex as it handles pretty much the sound card's format,           
-commonly ints, 24 bit ints (low byte ignored), and short ints. Less commonly      
-it may be floats or the weird 24 L ints. I'm still not sure if these are packed   
-or low aligned (top byte ignored). I've assumed they are low aligned, but I       
-don't know anyone who has such a card in order to prove it. As a matter of        
-interest the only ALSA format yoshi doesn't support is float - again, no way      
-to test it.                                                                       
-                                                  
+In the settings window, 'Save Settings' refers to the entire window, not just
+individual tabs. The close buttons are actually outside the frame of the tabs.
 
-Date: Sun, 13 Sep 2015 20:36:01 +0100                                             
-From: Will Godfrey <willgodfrey@musically.me.uk>                                  
-To: Chris Ahlstrom <ahlstromcj@gmail.com>                                         
-Subject: Re: Yoshimi notes                                                        
-X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)                   
-                                                                                  
-Hi Chris,                                                                         
-                                                                                  
-The new command line entry system has proved stable enough to move to 'master'.   
-                                                                                  
-Meanwhile we are working in a different implementation in 'command' that          
-eventually should be much better and more easily extended. At the moment there    
-isn't much there!                                                                 
+Also 'Close without saving' doesn't mean revert to previous settings, it means
+use the changes but don't immediately store them to the filesystem.
+
+Oh, and there are a few more bits in the 'command' branch :)
 
 
-Date: Sun, 13 Sep 2015 16:14:53 +0100                                             
-From: Will Godfrey <willgodfrey@musically.me.uk>                                  
-To: yoshimi@freelists.org                                                         
-Subject: [yoshimi] Yoshimi Headless                                               
-X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)                   
-                                                                                  
-Following an enquiry I just tested Yoshi in 'recovery' mode logged in as root     
-with no X server. Using /usr/local/share/bin/yoshim -A -i worked perfectly and    
-auto-connected my keyboard so I could prove everything was tickety-boo.           
-                                                                                  
-You still need the X libraries to compile Yoshi, but I don't know if it is        
-practical to provide a compile time option to build a purely headless version.    
+
+Date: Thu, 10 Sep 2015 14:25:08 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: Yoshimi notes
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Thu, 10 Sep 2015 05:54:34 -0400
+Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
+
+> Frames?Or samples?I assume a "frame" is a small time-window of              
+> audio samples.Will document for food :-)
+
+A frame is a single sample of however many channels you are handling, so if you
+are using jack, a mono signal will have frames of 1 float, 2 for stereo etc.
+
+ALSA is more complex as it handles pretty much the sound card's format,
+commonly ints, 24 bit ints (low byte ignored), and short ints. Less commonly
+it may be floats or the weird 24 L ints. I'm still not sure if these are packed
+or low aligned (top byte ignored). I've assumed they are low aligned, but I
+don't know anyone who has such a card in order to prove it. As a matter of
+interest the only ALSA format yoshi doesn't support is float - again, no way
+to test it.
 
 
-Date: Sun, 13 Sep 2015 20:29:01 +0100                                             
-From: Will Godfrey <willgodfrey@musically.me.uk>                                  
-To: yoshimi@freelists.org                                                         
-Subject: [yoshimi] Re: Version 1.3.6 - Command Line                               
-X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)                   
-                                                                                  
-The stable version of the new command line entry is now in 'master' while we      
-develop a different implementation and more complete version in 'command'.        
+Date: Sun, 13 Sep 2015 20:36:01 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: Yoshimi notes
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Hi Chris,
+
+The new command line entry system has proved stable enough to move to 'master'.
+
+Meanwhile we are working in a different implementation in 'command' that
+eventually should be much better and more easily extended. At the moment there
+isn't much there!
 
 
-Date: Mon, 14 Sep 2015 18:42:56 +0100                                             
-From: Will Godfrey <willgodfrey@musically.me.uk>                                  
-To: yoshimi@freelists.org                                                         
-Subject: [yoshimi] Re: Two Questions                                              
-X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)                   
-             
+Date: Sun, 13 Sep 2015 16:14:53 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Yoshimi Headless
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Following an enquiry I just tested Yoshi in 'recovery' mode logged in as root
+with no X server. Using /usr/local/share/bin/yoshim -A -i worked perfectly and
+auto-connected my keyboard so I could prove everything was tickety-boo.
+
+You still need the X libraries to compile Yoshi, but I don't know if it is
+practical to provide a compile time option to build a purely headless version.
+
+
+Date: Sun, 13 Sep 2015 20:29:01 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Version 1.3.6 - Command Line
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+The stable version of the new command line entry is now in 'master' while we
+develop a different implementation and more complete version in 'command'.
+
+
+Date: Mon, 14 Sep 2015 18:42:56 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Two Questions
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
 On Mon, 7 Sep 2015 23:25:10 +0100
 Will Godfrey <willgodfrey@musically.me.uk> wrote:
-                                              
-> On Mon, 7 Sep 2015 18:35:20 +0100                                               
-> "Tom" <dmarc-noreply@freelists.org> (Redacted sender                            
-> "madtom1999@googlemail.com" for DMARC) wrote:                                   
->                                                                                 
-> > Instrument Bank?                                                              
->                                                                                 
-> Unfortunately that's already taken! It's the directory that the instruments     
-> are stored in.                                                                  
->                                                                                 
-OK, unless anyone comes up with a serious objection or alternative, for V1.3.6    
-in the gui, and in all notes 'Parameter' will become 'Patch Set' (exactly the     
-same number of characters), so obviously 'Parameters' changes to 'Patch Sets'.    
-                                                                                  
-There will be no changes in the code, nor in any XML files.                       
-                                                                                  
-                                                                                  
-This is only a small detail, but these things add up. If you see any other        
-wording that's obscure, I'm quite happy to look at it.                            
+
+> On Mon, 7 Sep 2015 18:35:20 +0100
+> "Tom" <dmarc-noreply@freelists.org> (Redacted sender
+> "madtom1999@googlemail.com" for DMARC) wrote:
+>
+> > Instrument Bank?
+>
+> Unfortunately that's already taken! It's the directory that the instruments
+> are stored in.
+>
+OK, unless anyone comes up with a serious objection or alternative, for V1.3.6
+in the gui, and in all notes 'Parameter' will become 'Patch Set' (exactly the
+same number of characters), so obviously 'Parameters' changes to 'Patch Sets'.
+
+There will be no changes in the code, nor in any XML files.
+
+This is only a small detail, but these things add up. If you see any other
+wording that's obscure, I'm quite happy to look at it.
+
+
+Date: Tue, 15 Sep 2015 22:37:12 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: Yoshimi notes - ALSA
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Something that's not obvious is the way that ALSA audio is controlled and who
+takes command.
+
+If you set a specific destination then Yoshimi says what it wants. It's often a
+negotiation on bit depth and channel count, but Yoshimi nearly always gets
+to decide the buffer size (it will be set to internal buffer size). However if
+the destination is 'default' then ALSA decides on the sound card, bit depth,
+number of channels and the buffer size - Yoshimi will set it's internal
+buffer size to match. On my machines this always seems to be 1024.
+
+
+
+
+Date: Tue, 15 Sep 2015 18:36:56 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Two Questions
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Mon, 14 Sep 2015 14:43:26 -0400
+Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
+
+> Man! More screen shots! :-D
+> On Sep 14, 2015 1:43 PM, "Will Godfrey" <willgodfrey@musically.me.uk> wrote:
+
+All the ones in the 'Miscellany' directory are window grabs using the GIMP.
+This directory doesn't get installed (and I expect that packagers would ignore
+it) so if anyone wants to try their skills I won't complain :D
+
+
+
+Date: Thu, 17 Sep 2015 20:36:07 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Hmmm.
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Over the last few days I've been doing some extensive testing of the current
+master, including LV2 - something I don't normally use. My test file was one
+that performed full bank and program setup from a midi source file as well as
+volume and pan settings. However, I made an unfortunate discovery.
+
+If Yoshimi's internal buffer is *smaller* than the jack buffer it sounds quite
+horrible. If it's the same or greater there's no problem. The reason I didn't
+find this before is that it only affects Yoshimi LV2. Also it doesn't apply to
+any of the released versions.
+
+The cause of the problem is that the LV2 code doesn't have the same looping
+structure that was added to the standalone routine to deal with exactly this
+situation (re-entering the audio 'construction' function until the jack buffer
+is filled). I'm hoping Andrew can deal with this fairly soon as I don't
+understand the LV2 code very well.
+
+There are valid reasons for wanting different sizes for these buffers. The
+internal buffer size as well as affecting latency and CPU load also alters the
+sound in quite subtle ways. It particularly affects the behaviour of filters.
+One day we may be able to stop this happening, but in the mean time we have to
+live with it. For my purposes I find a buffer size of 128 or 256 is best.
+
+So there we are. We have a problem. You can get round it, but I'm reluctant to
+make the next release until it's fixed :(
+
+
+Moving on from that, I was testing using the latest versions of Ardour, Muse
+and Qtractor as LV2 hosts. I also tried Carla but couldn't get anywhere with it
+at all - if someone is familiar with it I'd be interested in what results
+they get. 
+
+
+Slightly to my surprise the one that performed the best in every respect was
+Qtractor. Muse got everything correct, but was prone to Xruns on program
+changes. Ardour was very problematical. There were no Xruns but it seemed to
+have odd timing issues. Also, on two occasions it managed to shorten the decay
+times of two of the instruments. I don't understand how it managed that.
+
+My reference was the original midi file played into a stand-alone Yoshimi via
+aplaymidi. This also behaves identically to the file being sequenced by
+Rosegarden.
+
+
+
+Date: Sat, 26 Sep 2015 20:53:21 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Next release.
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+V 1.3.6 really is coming in the next few days.
+
+We have one known outstanding issue, but it's not a show-stopper and there is a
+lot of good things there - including quite extensive command line access.
+
+Please have a look at the current master version (rc5). There is a combination
+of internal buffer size and jack buffer size that can give LFO and envelope
+timing errors but only (it seems) for the latest version of one LV2 host.
+
+If anyone feels like looking at this, let me know and I'll give further details.
+
+
  
+
+Date: Mon, 28 Sep 2015 00:34:23 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Next release.
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Sun, 27 Sep 2015 18:54:50 -0400
+Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
+
+> I've been working hard debugging my sequencer64 project, but can take a
+> breather on it and beef up the documentation for Yoshimi if you can
+> give me a short-cut to what's changed, and whatever text documentation
+> you've generated.
+>
+> At some point I really really need to exercise Yoshimi a lot and learn a lot
+> ore about how to use it!
+>
+> Chris
+
+To all practical purposes the current master *is* V 1.3.6 (even identifies as
+such). This evening I'll put the tarball on sourceforge, and write up the notes.
+
+For a sneak preview, in 'doc' look at 'Command_Line.txt' and
+'Yoshimi_1.3.6-features.txt'.
+
+The information on ALSA has been updated in 'ALSA_Setup.txt' and
+'Dynamic_System_Settings.txt' gives some information on the extended NRPNs.
+
+P.S.
+Yoshimi is a continuous learning process. I'm *still* finding out things I
+didn't know about it!
+
+P.P.S
+Changelog gives you a blow-by-blow account of the nitty-gritty.
+
+
+
+
+
+Date: Mon, 28 Sep 2015 18:20:41 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Yoshimi V1.3.6 - At last!
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+All known issues have been fixed, but I'm not going to be so stupid as to say
+there are no others :)
+
+Anyway, please do download and have a play with this - especially the new
+command line options. It needs a good shake-down to find out what works best.
+
+The obligatory blurb...
+
+One of the main features of this release is improved accessibility. The
+effectiveness (and indeed usefulness) of this will help shape future
+complimentary interfaces. Also, a number of first-time defaults have been
+changed to make this easier.
+
+It has always been possible to run Yoshimi headless, but now real control is
+available. In the first place, when starting from the command line, an argument
+can be included for a new root path to be defined to point to a set of banks
+fetched from elsewhere. This will be given the next free ID.
+
+Once running, almost all dynamic setup (i.e. doesn't require a restart) can now
+be done within the terminal window. There is also extensive control of roots,
+banks, parts and instruments including the ability to list and set all of
+these. You can now do things like:
+
+Path add /home/music/yoshimi/banks
+Set part 4 program 130
+
+Additional controls that are frequently taken forgranted in the GUI but
+otherwise get forgotten are master key shift and master volume.
+
+Finally, we have the most important parts of vector control exposed to the
+command line.
+
+For all of this there is extensive error checking and feedback.
+
+In parallel with this there are more NRPNs so that you can perform some of
+these via automation. That arrangment looks positively steam-punk, but is
+actually very easy to use, requiring only a utility that can send MIDI CCs.
+NRPNs aren't special. They are simply a specific pattern of CCs. Yoshimi's
+implementation is very forgiving, doesn't mind if you stop halfway through
+(will just get on with other things while it waits) and will report exactly
+what it is doing.
+
+Another significant improvement is to the handling of ALSA audio, which is
+still very important for some people. Up till now we've been insisting on 2
+channel 16 bit format. Tests have shown that virtually all motherboard sound
+chipsets will handle this, but many external ones don't. So now we initially
+request 32 bit 2 channel and work towards a compromise :) With external sound
+modules in mind, endian swaps are also implemented. 
+Vector control has been extended so that there are four independent 'features'
+that each axis can control, One is fixed as volume (if enabled) but the others
+can be any valid CC and can also be reversed. The vector 'sweep' CCs are split
+out very early in the MIDI chain and the new CCs created are fed back in before
+any other processing. The result of this is that once we eventually get
+MIDI-learn implimented the control posibilities will expand dramatically -
+sorry about the extreme delay :(
+
+When using the GUI, there are additional style improvements and tweaks. Also,
+Yoshimi is a bit more informative when there are insurmountable problems,
+especially at start-up.
+
+In the 'examples' directory there is now a complete song set, 'OutThere.mid'
+and 'OutThere.xmz'. Together these produce a fairly complex 12 part tune that
+makes Yoshimi work quite hard.
+
+Finally, as well as document updates and the usual crop of bug-blatting, a
+couple of obscure regressions have been fixed.
+
 
 
 
