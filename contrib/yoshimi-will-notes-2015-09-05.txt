@@ -342,7 +342,7 @@ X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
 On Thu, 10 Sep 2015 05:54:34 -0400
 Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
 
-> Frames?Or samples?I assume a "frame" is a small time-window of              
+> Frames?Or samples?I assume a "frame" is a small time-window of
 > audio samples.Will document for food :-)
 
 A frame is a single sample of however many channels you are handling, so if you
@@ -642,6 +642,31 @@ makes Yoshimi work quite hard.
 
 Finally, as well as document updates and the usual crop of bug-blatting, a
 couple of obscure regressions have been fixed.
+
+ate: Fri, 2 Oct 2015 09:29:42 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Presets
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Having had some time to actually look at these (after the bugfix) I realise
+the entire concept is in fact very powerful.
+
+Absolutely everything that has blue C P buttons can be stored in the presets
+directory. That includes entire Addsynth engines! Also, when you look at the
+copy/paste buffer, you only see items that are relevant to the group that the C
+P buttons are in.
+
+As you want to be able to save as well as load these presets, it makes sense to
+copy all the default ones to a location such as .config/yoshimi/presets. That
+makes them fully accessible, but tucked away out of sight. Possibly I could set
+up yoshimi to create this directory at first time start up.
+
+The directory structure is the same as the *old* bank roots so I'm thinking of
+changing that. There is the same problem that if you have several preset
+directories with the same named preset you'll see all of them together, with no
+idea where they came from. If I change that so you only see and manage items in
+a *current* directory I think that will be more manageable.
 
 
 
