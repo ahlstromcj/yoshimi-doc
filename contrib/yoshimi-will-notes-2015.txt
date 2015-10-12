@@ -208,7 +208,7 @@ sounds that have no real-world analog at all!
 
 Good news on Sequencer24. I'll try to find time to give it a run.
 
-ate: Sun, 6 Sep 2015 15:38:16 +0100
+Date: Sun, 6 Sep 2015 15:38:16 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Re: Yoshimi notes
@@ -239,7 +239,7 @@ Right click on the edit button and you actually open the instrument edit
 window, otherwise it just selects it as the current part.
 
 Also any click in the part label opens the current instrument window.
- 
+
 
 Date: Sun, 6 Sep 2015 17:07:05 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
@@ -496,7 +496,7 @@ make the next release until it's fixed :(
 Moving on from that, I was testing using the latest versions of Ardour, Muse
 and Qtractor as LV2 hosts. I also tried Carla but couldn't get anywhere with it
 at all - if someone is familiar with it I'd be interested in what results
-they get. 
+they get.
 
 
 Slightly to my surprise the one that performed the best in every respect was
@@ -529,7 +529,7 @@ timing errors but only (it seems) for the latest version of one LV2 host.
 If anyone feels like looking at this, let me know and I'll give further details.
 
 
- 
+
 
 Date: Mon, 28 Sep 2015 00:34:23 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
@@ -623,7 +623,7 @@ still very important for some people. Up till now we've been insisting on 2
 channel 16 bit format. Tests have shown that virtually all motherboard sound
 chipsets will handle this, but many external ones don't. So now we initially
 request 32 bit 2 channel and work towards a compromise :) With external sound
-modules in mind, endian swaps are also implemented. 
+modules in mind, endian swaps are also implemented.
 Vector control has been extended so that there are four independent 'features'
 that each axis can control, One is fixed as volume (if enabled) but the others
 can be any valid CC and can also be reversed. The vector 'sweep' CCs are split
@@ -643,7 +643,7 @@ makes Yoshimi work quite hard.
 Finally, as well as document updates and the usual crop of bug-blatting, a
 couple of obscure regressions have been fixed.
 
-ate: Fri, 2 Oct 2015 09:29:42 +0100
+Date: Fri, 2 Oct 2015 09:29:42 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Presets
@@ -669,6 +669,245 @@ idea where they came from. If I change that so you only see and manage items in
 a *current* directory I think that will be more manageable.
 
 
+Date: Thu, 1 Oct 2015 23:08:44 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Yoshimi V1.3.6 - At last! (O reely?)
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Mon, 28 Sep 2015 18:20:41 +0100
+Will Godfrey <willgodfrey@musically.me.uk> wrote:
+
+> All known issues have been fixed, but I'm not going to be so stupid as to say
+> there are no others :)
+
+Hahahahaha {wheeze}
+
+Murphy was listening :(
+
+All I can say is there can't be many users wanting to save and load presets!
+
+Using them immediately was fine but attempting to save them missed off the
+name, leaving just the type and suffix, so you'd keep overwriting the same one.
+This goes back a very long way.
+
+More recently, a 'clean' start would fail to locate some default banks and
+presets locations.
+
+Both of these are corrected in 'master' but in view of the low profile (and the
+fact I've only just made a release) I won't bother to make a bugfix release
+unless someone gets *really* unhappy.
+
+There is one detail to sort out eventually. When you paste an effect it doesn't
+update the effect name in the selection tab. A workround is the step the effect
+number up then down.
+
+
+
+
+
+
+
+Date: Sat, 3 Oct 2015 09:31:33 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: gui-less yosh
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+If you can fake a command line environment, then almost all the 'running'
+commands are available, but none of the instrument editing ones are... yet!
+
+So you can decide what midi/audio setup you want, list and set roots and banks,
+load instruments into any part, change a part's channel, set main volume and key
+shift, and set up vector control.
+
+This is from V 1.3.6, and the current master has more development. I don't
+think we'll be changing any of the existing commands (although this is still
+very much in development) but more will definitely be added.
+
+All previous MIDI messages are of course recognised.
+
+Please let us know how you get on. The more info get back on how this is
+performing the better we can fine-tune it.
+
+
+Date: Sat, 3 Oct 2015 18:12:43 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] yet another question
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+While trying to develop the command line interface we have the situation of
+commands with multiple arguments. Currently the longest is a vector command:
+
+set vector [n1] x <n2> control <n3>
+
+n3 is the CC to be used for feature number n2 on X vector channel n1. The 'x'
+is a sort of hidden parameter as the code uses an offset dependent on whether
+it is x or y. Also n1 can be omitted in which case it will use the last defined
+channel number. Using alternate words and numbers gives a great deal of
+flexibility like this.
+
+
+However, I've had one person say it should be in this style:
+
+set vector x command <n1> <n2> <n3>
+
+Note that n1 now has to be compulsory. The argument in favour of this is that
+you can then create shortcuts in the form:
+
+svxc <n1> <n2> <n3>
+
+However, we already allow users to type no more than four characters, so with
+the assumed n1 the shortest form is:
+
+set vect x n2 cont n3
+
+and we could probably fiddle some form of shorcut in the form:
+
+svx <n2> c <n3>
+
+
+Whatever way we go there is in fact quite a lot of work to this (most of it
+error checking) so before going much further I'd like some opinions.
+
+
+FROM THE COMMAND LINE:
+
+Commands
+  setup                  - show dynamic settings
+  save                   - save dynamic settings
+  paths                  - display bank root paths
+  path add [s]           - add bank root path
+  path remove [n]        - remove bank root path ID
+  list root (n)          - list banks in root ID or current
+  list bank (n)          - list instruments in bank ID or current
+  list vector [n]        - list settings for vector CHANNEL
+  set root [n]           - set root path to ID
+  set bank [n]           - set bank to ID
+  set part [n1]          - set part ID operations
+    program [n2]         - loads instrument ID
+    channel [n2]         - sets MIDI channel (> 15 disables)
+    destination [n2]     - (1 main, 2 part, 3 both)
+  set rootcc [n]         - set CC for root path changes (> 119 disables)
+  set bankcc [n]         - set CC for bank changes (0, 32, other disables)
+  set program [n]        - set MIDI program change (0 off, other on)
+  set activate [n]       - set part activate (0 off, other on)
+  set extend [n]         - set CC for extended program change (> 119 disables)
+  set available [n]      - set available parts (16, 32, 64)
+  set volume [n]         - set master volume
+  set shift [n]          - set master key shift semitones (64 no shift)
+  set alsa midi [s]      - * set name of source
+  set alsa audio [s]     - * set name of hardware device
+  set jack server [s]    - * set server name
+  set vector [n1]        - set vector CHANNEL operations
+    x cc [n2]            - CC n2 is used for n1 X axis sweep
+    y cc [n2]            - CC n2 is used for n1 Y axis sweep
+    x features [n2]      - sets n1 X features
+    y features [n2]      - sets n1 Y features
+    x program [l/r] [n2] - X program change ID for n1 L or R part
+    y program [l/r] [n2] - Y program change ID for n1 L or R part
+  stop                   - all sound off
+  exit                   - tidy up and close Yoshimi
+'*' entries need a save and Yoshimi restart to activate
+
+
+LV2 NOTES:
+
+
+ate: Fri, 9 Oct 2015 02:50:47 +0200
+From: Alexander 'z33ky' Hirsch <1zeeky@gmail.com>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Instrument reset when deactivating LV2 plugin
+User-Agent: Mutt/1.5.24 (2015-08-30)
+
+When working with the LV2 plugin in Ardour my instruments were frequently reset to
+a boring sine wave.
+After some debugging I found out that Ardour likes to call deactivate() when
+stopping playback, which in Yoshimi also resets all instruments
+(YoshimiLV2Plugin::Close: synth->defaults()).
+
+I'm wondering if it is correct to reset the synths when deactivating a plugin,
+regardless of whether it is appropriate to deactivate() all plugins when stopping 
+playback - I really don't know a thing about LV2.
+
+
+
+ate: Fri, 9 Oct 2015 08:04:18 +0400
+From: Andrew Deryabin <andrew@danvd.me>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Instrument reset when deactivating LV2 plugin
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+        Thunderbird/38.3.0
+
+Hi Alexander,
+
+I think that it's not right to reset synth to defaults in that case.
+From lv2 api documentation:
+
+Deactivation is not similar to pausing since the plugin instance will be
+reinitialised byactivate()
+<http://lv2plug.in/doc/html/group__lv2core.html#ad34d59efaed8faaf8a05a4c375f62415>
+.
+However,deactivate()
+<http://lv2plug.in/doc/html/group__lv2core.html#a1a1019ea8a92e3e1239c2ddde58360d0>
+itself
+MUST NOT fully reset plugin state. For example, the host may deactivate a
+plugin, then store its state (using some extension to do so).
+
+So, It's my mistake. I'll fix it today in git master branch. This is not a
+problem, of course :)
+
+
+
+Date: Fri, 9 Oct 2015 08:16:40 +0400
+From: Andrew Deryabin <andrew@danvd.me>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Instrument reset when deactivating LV2 plugin
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+        Thunderbird/38.3.0
+
+The problem is fixed (I hope :) ). Now on deactivate plugin will only call
+'Mute()', but not 'defaults()'.
+Changes are in git master now, but, if you are building yoshimi from source,
+open 'YofhimiLV2Plugin.h' and replace line 87 with
+
+void Close(void) {synth->Mute();}
+
+and then recompile.
+ 
+
+
+Date: Fri, 9 Oct 2015 08:03:02 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Instrument reset when deactivating LV2 plugin
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Fri, 9 Oct 2015 08:16:40 +0400
+Andrew Deryabin <andrew@danvd.me> wrote:
+
+> The problem is fixed (I hope :) ). Now on deactivate plugin will only
+> call 'Mute()', but not 'defaults()'.
+> Changes are in git master now, but, if you are building yoshimi from
+> source, open 'YofhimiLV2Plugin.h' and replace line 87 with
+>
+> void Close(void) {synth->Mute();}
+>
+> and then recompile.
+>
+
+I had also read the LV2 spec. and it says that you should only deactivate at
+the end of the *last* run, so I would have said it was an Ardour problem.
+However, I guess it is slightly ambiguous as to what is meant be 'last'.
+
+In view of the fact there are various times when *some* sequencers decide to
+send resets, I'm wondering if we should make things like this switchable - like
+we do for bank changes etc.
+
+Incidentally, this reminded me I'd stumbled on a work round a long time ago (and
+forgot about it) by loading up instruments at the start of a session then
+immediately saving the project.
 
 
 
