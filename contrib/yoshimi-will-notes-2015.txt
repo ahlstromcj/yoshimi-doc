@@ -828,7 +828,7 @@ stopping playback, which in Yoshimi also resets all instruments
 (YoshimiLV2Plugin::Close: synth->defaults()).
 
 I'm wondering if it is correct to reset the synths when deactivating a plugin,
-regardless of whether it is appropriate to deactivate() all plugins when stopping 
+regardless of whether it is appropriate to deactivate() all plugins when stopping
 playback - I really don't know a thing about LV2.
 
 
@@ -875,7 +875,7 @@ open 'YofhimiLV2Plugin.h' and replace line 87 with
 void Close(void) {synth->Mute();}
 
 and then recompile.
- 
+
 
 
 Date: Fri, 9 Oct 2015 08:03:02 +0100
@@ -910,4 +910,105 @@ forgot about it) by loading up instruments at the start of a session then
 immediately saving the project.
 
 
+
+ate: Mon, 12 Oct 2015 17:11:02 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Yoshimi V1.3.6 - At last! (O reely?)
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Sun, 11 Oct 2015 20:03:15 -0400
+Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
+
+> Ooops, I see what is happening with Yoshimi 1.3.6.
+>
+> If I run it with the background command "&", it acts "badly".
+>
+> If I leave off the "&", then I get the command-prompt and
+> the gui is immediately active.
+>
+> My bad.
+>
+> Anyway, I accidentally got a list of the commands in command-line mode.
+> How do I get that list *intentionally*?
+>
+> Chris
+
+Any unrecognised command will trigger this, including just hitting return. It
+is very much a moving target. The current master is quite a bit more developed
+and does list '?' and 'exit' as proper closures. It is also being used as a
+test bed, so although it should remain stable, expect name and organisation
+changes.
+
+It also behaves slightly differently if there is a rouge '&' on the end. In
+taken away the environment it was spawned from.
+
+Eventually, the structure will be quite different (although that won't be
+visible to users). Tokenisation in an interesting idea for language support,
+but so far none of Yoshimi has this so it as a bit moot.
+
+
+
+Date: Fri, 16 Oct 2015 16:03:57 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Vector control
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Currently these settings are not stored anywhere. What do people think of the
+idea of including them in patch sets?
+
+The downside is that there would be no immediate way to differentiate these
+from normal patch sets and if you wanted just the set and not the vector
+control we'd have to think up a way of cancelling it. Setting number of parts
+back to 16 would be one way although it would leave the sweep CCs active...
+sort of!
+
+Another possibility would be to create a new vectors file, although that would
+create some duplication as it would need to set the number of parts as well as
+ensuring the wanted instruments are loaded.
+
+
+
+
+
+Date: Fri, 23 Oct 2015 20:09:18 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Latest developments.
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Hi Chris,
+
+Just thought I'd let you know that command line access is now coming on very
+well. The code is somewhat cleaner, and unix style paging and history is
+implemented. The latest addition is the ability to list the parts that
+currently have instruments loaded. It was almost worryingly easy and the
+command is just:
+
+"List current"
+
+The first line you see is the number of available parts (16, 32, 64), then each
+following line is in the form:
+
+Part number, Audio destination, Instrument name.
+
+For audio destination you have:
+
+'M' = Main L&R
+'P' = Part L&R
+'B' = Both
+'-' = part is disabled or higher than the number available.
+
+This way you can tell if your most valuable instrument patch is installed even
+if it is not currently usable.
+
+To avoid unnecessary list length, the default "Simple Sound" is not shown
+unless it is enabled.
+
+
+Incidentally, I've fiddled with command names and order a bit so that all of
+them can be abbreviated to the first three letters.
+
+The 'docs' folder has been updated too.
 
