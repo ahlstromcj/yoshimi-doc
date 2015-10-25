@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-15
-% \update      2015-10-24
+% \update      2015-10-25
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -54,6 +54,15 @@
    intervals in different tuning systems.
    The interval of one cent is much too small to be heard between
    successive notes.
+
+\subsubsection{Concepts / Terms / frame}
+\label{subsubsec:concepts_terms_frame}
+
+   The \textbf{frame}
+   \index{frame}
+   is a single sample of however many channels an application is handling.
+   If one is using JACK, a mono signal will have frames of 1 float, 2 floats
+   for stereo, etc.
 
 \subsubsection{Concepts / Terms / instrument}
 \label{subsubsec:concepts_terms_instrument}
@@ -147,6 +156,27 @@
    applications that exclusively support JACK MIDI, \textsl{a2jmidid} will
    do the translation.  (Jack v. 1 has this integrated in recent versions,
    apparently).
+
+   A frame is a single sample of however many channels one is handling, so if
+   one is using JACK, a mono signal will have frames of 1 float, 2 for stereo,
+   etc.
+
+   ALSA is more complex as it handles the sound card's format, commonly integers
+   (16 bit), 24 bit integers (low byte ignored), and short integers. Less
+   commonly it may be floats or the weird 24 L ints. We're still not sure if
+   these are packed or low-aligned (top byte ignored). We've assumed they are
+   low aligned, but we don't know anyone who has such a card, in order to prove
+   it.  As a matter of interest the only ALSA format \textsl{Yoshimi} doesn't
+   support is float.
+
+   Something that's not obvious is the way that ALSA audio is controlled and who
+   takes command.  If one sets a specific destination, then \textsl{Yoshimi}
+   says what it wants. It's often a negotiation on bit depth and channel count,
+   but \textsl{Yoshimi} nearly always gets to decide the buffer size (it will be
+   set to the internal buffer size).  However, if the destination is 'default'
+   then ALSA decides on the sound card, bit depth, number of channels and the
+   buffer size, and \textsl{Yoshimi} will set it's internal buffer size to
+   match.  On most machines this always seems to be 1024.
 
 \subsection{Concepts / Banks and Roots}
 \label{subsec:concepts_banks_and_roots}
@@ -713,34 +743,7 @@
 
    \textsl{Yoshimi} now runs as an LV2 plugin.
 
-Supported features:
-
-   \begin{enumber}
-      \item Sample-accurate midi timing.
-      \item State save/restore support via LV2\_State\_Interface.
-      \item Working UI support via LV2\_External\_UI\_Widget.
-      \item Programs interface support via LV2\_Programs\_Interface.
-      \item Multi channel audio output. 'outl' and 'outr' have LV2 index 2
-         and 3. All individual ports numbers start at 4.
-   \end{enumber}
-
-   Planned feature: Controls automation support. This will be a part of a
-   common controls interface.
-
-   Download and build the source code found at the
-   \textsl{Yoshimi} site \cite{yoshimi},
-   and one will find a file named
-   \texttt{LV2\_Plugin/yoshimi\_lv2.so}
-
-   The LV2 \textsl{Yoshimi} interface can be run in hosts such as
-   Ardour 3, Carla, and QTractor.
-
-   Apparently, \textsl{ZynAddSubFX} can also be used as an LV2 plugin with
-   the help of the carla-lv2 project, by drag-and-dropping an
-   \texttt{.xiz} or \texttt{.xmz} file into it.
-
-   At some point we hope to document the process of setting up and using
-   the \textsl{Yoshimi} LV2 plugin.
+   TODO: Describe LV2 at a high-level.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex

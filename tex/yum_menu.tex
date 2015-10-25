@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2015-09-07
+% \update      2015-10-25
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -493,6 +493,15 @@
       Client  14 : "Midi Through" [Kernel]
       Client 128 : "TiMidity" [User]
    \end{verbatim}
+
+   It is not obvious how ALSA audio is controlled and who takes command.  If one
+   sets a specific audio destination, then \textsl{Yoshimi} makes a request.
+   It's often a negotiation on bit depth and channel count, but \textsl{Yoshimi}
+   nearly always gets to decide the buffer size, which is the internal buffer
+   size.  However, if the destination is 'default' then ALSA decides on the
+   sound card, bit depth, number of channels and the buffer size, and
+   \textsl{Yoshimi} will set it's internal buffer size to match.  On most
+   machines this seems to be 1024.
 
 \begin{figure}[H]
    \centering 

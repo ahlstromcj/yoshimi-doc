@@ -1,0 +1,89 @@
+%-------------------------------------------------------------------------------
+% yum_LV2
+%-------------------------------------------------------------------------------
+%
+% \file        yum_LV2.tex
+% \library     Documents
+% \author      Chris Ahlstrom
+% \date        2015-10-25
+% \update      2015-10-25
+% \version     $Revision$
+% \license     $XPC_GPL_LICENSE$
+%
+%     Provides a description and discusson of Yoshimi LV2 support.
+%
+%-------------------------------------------------------------------------------
+
+\section{LV2 Plug-in Support}
+\label{sec:lv2_plugin}
+
+   \textsl{Yoshimi} now runs as an LV2 plugin.
+
+Supported features:
+
+   \begin{enumber}
+      \item Sample-accurate midi timing.
+      \item State save/restore support via LV2\_State\_Interface.
+      \item Working UI support via LV2\_External\_UI\_Widget.
+      \item Programs interface support via LV2\_Programs\_Interface.
+      \item Multi channel audio output. 'outl' and 'outr' have LV2 index 2
+         and 3. All individual ports numbers start at 4.
+   \end{enumber}
+
+   Planned feature: Controls automation support. This will be a part of a
+   common controls interface.
+
+   Download and build the source code found at the
+   \textsl{Yoshimi} site \cite{yoshimi},
+   and one will find a file named
+   \texttt{LV2\_Plugin/yoshimi\_lv2.so}
+
+   The LV2 \textsl{Yoshimi} interface can be run in hosts such as
+   Ardour 3, Carla, and QTractor.
+
+   Apparently, \textsl{ZynAddSubFX} can also be used as an LV2 plugin with
+   the help of the carla-lv2 project, by drag-and-dropping an
+   \texttt{.xiz} or \texttt{.xmz} file into it.
+
+   At some point we hope to document the process of setting up and using
+   the \textsl{Yoshimi} LV2 plugin.
+
+\subsection{LV2 Plug-in Issues}
+\label{subsec:lv2_plugin_issues}
+
+   Based on extensive testing of the current \textsl{Yoshimi} master, including
+   LV2, using a test file that performed full bank and program setup from a MIDI
+   source file as well as volume and pan settings, we made an unfortunate
+   discovery.
+
+   If \textsl{Yoshimi}'s internal buffer is \textsl{smaller} than the JACK
+   buffer, it sounds quite horrible. If it's the same or greater, there's no
+   problem.  This issue only affects Yoshimi LV2, and it doesn't apply to any of
+   the released versions.
+
+   The cause of the problem is that the LV2 code doesn't have the same looping
+   structure that was added to the standalone routine to deal with exactly this
+   situation (re-entering the audio 'construction' function until the JACK buffer
+   is filled). This issue should be dealt with soon.
+
+   There are valid reasons for wanting different sizes for these buffers. The
+   internal buffer size affects latency and CPU load, and also alters the
+   sound in subtle ways. It particularly affects the behaviour of filters.
+   One day we may be able to stop this happening, but in the mean time we have to
+   live with it. For my purposes we find a buffer size of 128 or 256 is best.
+
+   Testing using the latest versions of Ardour, Muse,
+   and Qtractor as LV2 hosts,
+   showed that the one that performed the best in every respect was
+   Qtractor. Muse got everything correct, but was prone to Xruns on program
+   changes. Ardour was very problematical. There were no Xruns but it seemed to
+   have odd timing issues. Also, on two occasions it managed to shorten the decay
+   times of two of the instruments. How?
+
+   The reference was the original MIDI file played into a stand-alone Yoshimi
+   via aplaymidi. This also behaves identically to the file being sequenced by
+   Rosegarden.
+
+%-------------------------------------------------------------------------------
+% vim: ts=3 sw=3 et ft=tex
+%-------------------------------------------------------------------------------

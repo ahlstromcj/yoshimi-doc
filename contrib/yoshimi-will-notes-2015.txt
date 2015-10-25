@@ -815,7 +815,7 @@ Commands
 LV2 NOTES:
 
 
-ate: Fri, 9 Oct 2015 02:50:47 +0200
+Date: Fri, 9 Oct 2015 02:50:47 +0200
 From: Alexander 'z33ky' Hirsch <1zeeky@gmail.com>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Instrument reset when deactivating LV2 plugin
@@ -833,7 +833,7 @@ playback - I really don't know a thing about LV2.
 
 
 
-ate: Fri, 9 Oct 2015 08:04:18 +0400
+Date: Fri, 9 Oct 2015 08:04:18 +0400
 From: Andrew Deryabin <andrew@danvd.me>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Instrument reset when deactivating LV2 plugin
