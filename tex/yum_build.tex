@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-07-10
-% \update      2015-09-06
+% \update      2015-10-24
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -23,14 +23,14 @@
    up the build.
 
    The source-code is located at its main location (\cite{yoshimi})
-   or its alternate location (\cite{yoshimi2}
+   or its alternate location (\cite{yoshimi2}).
 
    Like \textsl{ZynAddSubFX}, \textsl{Yoshimi} uses CMake as its build
    system \cite{zyncmake}.  CMake is a preprocessor that can generate
    project build setups for Visual Studio, UNIX make, and Xcode.
 
 \subsection{Yoshimi Source Code}
-\label{sec:yoshimi_source_code}
+\label{subsec:yoshimi_source_code}
 
    Get the source code version you want from SourceForge
    (\url{http://sourceforge.net/projects/yoshimi/files/1.3/}).
@@ -46,7 +46,7 @@
    \end{verbatim}
 
 \subsection{Yoshimi Dependencies}
-\label{sec:yoshimi_dependencies}
+\label{subsec:yoshimi_dependencies}
 
    To save some wasted time, make sure the \textsl{development versions}
    of the following packages have been installed using your Linux
@@ -67,7 +67,7 @@
    \end{itemize}
 
 \subsection{Build It}
-\label{sec:yoshimi_build_it}
+\label{subsec:yoshimi_build_it}
 
    The following instructions are for an in-source build.  An in-source
    build is simpler if you just want to build and install \textsl{Yoshimi}.
@@ -186,7 +186,44 @@
 
    Not worry now, though, the bug has been officially fixed.
 
-%  \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+\subsection{Yoshimi Code Policies}
+\label{subsec:yoshimi_code_policies}
+
+   Yes, we actually have \textsl{Yoshimi} code policies.
+   Look how many there are! :)
+
+   If the version string contains a 4th number this will always be just a
+   bugfix, and will never have features added or changed from the main version.
+   For example:
+
+   \begin{itemize}
+      \item yoshimi-1.3.5   Main version.
+      \item yoshimi-1.3.5.1 First bugfix.
+      \item yoshimi-1.3.5.2 Second bugfix. (Surely not!)
+   \end{itemize}
+
+   We won't accept fixes for spelling errors in the \textsl{code}.
+   For a start, from bitter experience it is fatally easy to change two
+   variables to the same name! Also, there's no point, after all they are only
+   a mnemonic for memory addresses etc. 'volume' and 'LFO' could just as well
+   be 'turnyfing' and 'derfingwotwiggles'.
+
+   To avoid possible confusion, from now on 'master' will display the last
+   released version number (without bugfix digits) with an 'M' suffix - unless
+   it is a release candidate in which case the suffix will be rc[n].
+   For example:
+
+   \begin{itemize}
+      \item Last release was yoshimi-1.3.5.2
+      \item Master is shown as yoshimi-1.3.5 M
+   \end{itemize}
+
+   XML files created with this release will have: 
+   major version 3 and minor version 5.
+
+   If using Fluid to edit GUI files, please close all windows and collapse all
+   menus \textsl{before} the last save.  I know it's tedious, but it avoids
+   storms of spurious 'changes' that make genuine ones harder to see.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex

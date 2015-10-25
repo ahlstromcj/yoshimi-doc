@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-09-06
-% \update      2015-09-07
+% \update      2015-10-24
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -14,7 +14,7 @@
 %
 %-------------------------------------------------------------------------------
 
-\section{The Yoshimi Command Line Interface}
+\section{The Yoshimi Command Line Interface 1.3.6M}
 \label{sec:command_line}
 
    \textsl{Yoshimi} provides a "no GUI" or "command-line" mode of operation
@@ -37,45 +37,64 @@
    and \textsl{master volume}.
 
    The command-line mode provides extensive error checking and feedback.
+   Note the change in nomenclature from "Parameters" to "Patch Set", which is
+   visible in the main screen, and also reflected in the command line.
 
-\subsection{Commands}
-\label{subsec:command_line_commands}
+\subsection{Command Table}
+\label{subsec:command_line_command_table}
 
    When running from the command line, these commands
    (see \tableref{table:yoshimi_text_commands})
    can be entered after the 'up and running' message.
    The commands are not case-sensitive.
 
+   The brief descriptions in the following table can be obtained
+   using the "help" command in the \textsl{Yoshimi} command-line mode.
+   More detailed descriptions are given in the section following the table.
+
    \begin{table}[H]
       \centering
       \caption{Yoshimi Text Commands}
       \label{table:yoshimi_text_commands}
       \begin{tabular}{l l}
-         \texttt{setup} &
-            Displays the current dynamic system settings. \\
 
-         \texttt{save} &
-            Saves the current dynamic system settings. \\
+         \texttt{load patchset [s]} &
+            Load a complete patch set from the named file. \\
 
-         \texttt{paths show} &
-            Displays all the currently defined bank root paths and their IDs. \\
+         \texttt{save patchset [s]} &
+            Save the patch set to the named file. \\
 
-         & Example:  \texttt{path add /home/music/yoshimi/banks} \\
+         \texttt{save setup} &
+            Save the current dynamic system settings. \\
+
+         \texttt{paths} &
+            Display all defined bank root paths and their IDs. \\
 
          \texttt{path add [s]} &
-            Defines a new bank root path and returns its ID. \\
+            Define a new bank root path and returns its ID. \\
 
          \texttt{path remove [n]} &
-            Removes the path-entry ID \textsl{n} from the bank roots. 
-            It does not delete anything. \\
+            Remove the path-entry ID \textsl{n} from bank roots. \\
 
-         \texttt{list root [n]} &
-            Lists all the banks and their IDs in root path \textsl{n} (or the
-            current root). \\
+         \texttt{list banks [n]} &
+            List instruments and IDs in bank \textsl{n} or
+            current bank/root. \\
 
-         \texttt{list bank [n]} &
-            Lists all the instruments and their IDs in bank \textsl{n} (or the
-            current bank) of the current root. \\
+         \texttt{list instruments [n]} &
+            List all instruments and IDs in bank \textsl{n}
+            or current bank/root. \\
+
+         \texttt{list current} &
+            List number of parts available, and more. \\
+
+         \texttt{list setup} &
+            Displays the current dynamic system settings. \\
+
+         \texttt{list vector [n]} &
+            Lists the settings for vector on channel \textsl{n}. \\
+
+         \texttt{set reports [n]} &
+            Set report destination (1=GUI, anything else sets stderr). \\
 
          \texttt{set root [n]} &
             Set current root path to ID \textsl{n}. \\
@@ -86,73 +105,229 @@
          \texttt{set part [n1] program [n2]} &
             Load instrument \textsl{n2} into part \textsl{n1}. \\
 
-         & Example: \texttt{set part 4 program 130} \\
-
          \texttt{set part [n1] channel [n2]} &
-            Set the MIDI channel \textsl{n2} for part \textsl{n1}.
-            If the channel number is greater than 15, no further MIDI
-            messages will be accepted by that part. \\
+            Set the MIDI channel \textsl{n2} for part \textsl{n1}. \\
 
          \texttt{set part [n1] destination [n2]} &
-            Set the audio destination of part \textsl{n1}
-            to main (\textsl{1}), part (\textsl{2}), both (\textsl{3}).
-            Also enable the part if not already enabled. \\
+            Set audio destination of part \textsl{n1}
+            to main (\textsl{1}), part (\textsl{2}), both (\textsl{3}). \\
 
-         \texttt{set rootcc [n]} &
+         \texttt{set ccroot [n]} &
             Set the MIDI CC for root path changes (128 disables). \\
 
-         \texttt{set bankcc [n]} &
-            Set the MIDI CC for bank changes (anything other than 0 or 32
-            disables it). \\
+         \texttt{set ccbank [n]} &
+            Set the MIDI CC for bank changes (non-0 or non-32 disables). \\
 
          \texttt{set program [n]} &
             Set MIDI program change (0 disables, anything else enables). \\
 
          \texttt{set activate [n]} &
-            Set part-activate on program change (\textsl{n} = 0 disables
-            part activation, anything else enables it). This features
-            applies to command line program change as well. \\
+            Set part-activate on program change (\textsl{n}=0 disables
+            1 enables). \\
 
          \texttt{set extend [n]} &
-            Set the CC value for extended program change (anything greater
-            than 119 disables it). \\
+            Set CC value for extended prog. change (above 119 disables). \\
 
          \texttt{set available [n]} &
             Set the number of available parts (16, 32, 64). \\
-
-         \texttt{set reports [n]} &
-            Set the reports destination (1 gui console, anything else yields
-            stderr). \\
 
          \texttt{set volume [n]} &
             Set the master volume. \\
 
          \texttt{set shift [n]} &
-            Set the master key shift for following notes in semitones (+-
-            octave, 64 for no shift). \\
+            Set master key shift for notes, semitones (+- octave,
+            64=no shift). \\
+
+         \texttt{set alsa midi [s]} &
+            * Sets the name of the MIDI device ALSA looks for. \\
+
+         \texttt{set alsa audio [s]} &
+            * Sets the name of the audio hardware device ALSA looks for. \\
+
+         \texttt{set jack server [s]} &
+            * Sets the name of the JACK server Yoshimi tries to connect to. \\
+
+         \texttt{set vector [n1] x/y cc [n2]} &
+            CC \textsl{n2} is for ch. \textsl{n1} X/Y axis sweep.
+            For X, enables vector. \\
+
+         \texttt{set vector [n1] x/y features [n2]} &
+            Sets channel \textsl{n1} X or Y features to \textsl{n2}. \\
+
+         \texttt{set vector [n1] x/y program [l/r] [n2]} &
+            Loads program \textsl{n2} to ch. \textsl{n1} X or Y
+            \textsl{left} or \textsl{right} part. \\
+
+         \texttt{set vector [n1] x/y control [n2] [n3]} &
+            Sets \texttt{n3} CC to use for X or Y feature \texttt{n2}
+            (2, 4, 8). \\
+
+         \texttt{set vector [n] [off]} &
+            Disables vector control for channel \textsl{n}. \\
 
          \texttt{stop} &
             Cease all sound immediately! \\
 
-%        \texttt{set path (n)} &
-%           Set current root path to ID 'n'. \\
-%
-%        \texttt{set bank (n)} &
-%           Set current bank to ID 'n'. \\
-%
-%        \texttt{set part (n1) program (n2)} &
-%           Load instrument 'n2' into part 'n1'. \\
+         \texttt{mode [s]} &
+            Change to different menus: addsynth, subsynth, or padsynth. \\
+
+         \texttt{?} or \texttt{help} &
+            List commands for current mode. \\
+
+         \texttt{exit} &
+            Tidy up and close Yoshimi down. \\
 
       \end{tabular}
    \end{table}
 
    Commands are not case sensitive and an invalid one will print a reminder.
-   usually, one only needs the first 4 letters of the names provided that is
-   unabiguous. i.e. 'rootcc' has to be in full so it isn't confused with
-   'root'.
+   usually, one only needs the first 3 letters of the names, provided that is
+   unambiguous.
+
+   Commands with '*' in the description need the setup to be saved, and Yoshimi
+   restarted to be activated. 
 
    More commands will be added, and the organisation of the commands
    may change slightly.
+
+\subsection{Command Descriptions}
+\label{subsec:command_line_command_descriptions}
+
+   This section describes the command-line commands in more detail.
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{load patchset [s]}{cmd!load patchset}
+      Loads a complete patch set from the named file.
+
+   \itempar{save patchset [s]}{cmd!save patchset}
+      Saves the patch set to the named file.
+
+   \itempar{save setup}{cmd!save setup}
+      Saves the current dynamic system settings.
+
+   \itempar{paths}{cmd!paths}
+      Displays all the currently defined bank root paths and their IDs.
+
+   \itempar{path add [s]}{cmd!path add}
+      Defines a new bank root path and returns its ID.
+      Example: \texttt{path add /home/music/yoshimi/banks}
+
+   \itempar{path remove [n]}{cmd!path remove}
+      Removes the path-entry ID \textsl{n} from the bank roots. 
+      It does not delete anything.
+
+   \itempar{list banks [n]}{cmd!list banks}
+      Lists all the instruments and their IDs in bank \textsl{n} (or the
+      current bank) of the current root.
+
+   \itempar{list instruments [n]}{cmd!list instruments}
+      Lists all the instruments and their IDs in bank \textsl{n}
+      (or the current bank) of the current root.
+
+   \itempar{list current}{cmd!list current}
+      Lists the number of parts available and parts with instruments
+      currently installed along with any enabled with the default sound.
+      Also shows their audio destination:
+      \textsl{M} = main L/R, \textsl{P} = part, \textsl{B} = both,
+      \textsl{-} = disabled or unavailable.
+
+   \itempar{list setup}{cmd!list setup}
+      Displays the current dynamic system settings.
+
+   \itempar{list vector [n]}{cmd!list vector}
+      Lists the settings for vector on channel \textsl{n}.
+
+   \itempar{set reports [n]}{cmd!set reports}
+      Set report destination (1 = GUI, anything else sets stderr).
+
+   \itempar{set root [n]}{cmd!set root}
+      Set current root path to ID \textsl{n}.
+
+   \itempar{set bank [n]}{cmd!set bank}
+      Set current bank to ID \textsl{n}.
+
+   \itempar{set part [n1] program [n2]}{cmd!set part program}
+      Load instrument \textsl{n2} into part \textsl{n1}.
+      Example: \texttt{set part 4 program 130}
+
+   \itempar{set part [n1] channel [n2]}{cmd!set part channel}
+      Set the MIDI channel \textsl{n2} for part \textsl{n1}.
+      If the channel number is greater than 15, no further MIDI
+      messages will be accepted by that part.
+
+   \itempar{set part [n1] destination [n2]}{cmd!set part destination}
+      Set the audio destination of part \textsl{n1}
+      to main (\textsl{1}), part (\textsl{2}), both (\textsl{3}).
+      Also enables the part if not already enabled.
+
+   \itempar{set ccroot [n]}{cmd!set ccroot}
+      Set the MIDI CC for root path changes (128 disables).
+
+   \itempar{set ccbank [n]}{cmd!set ccbank}
+      Set the MIDI CC for bank changes (anything other than 0 or 32
+      disables it).
+
+   \itempar{set program [n]}{cmd!set program}
+      Set MIDI program change (0 disables, anything else enables).
+
+   \itempar{set activate [n]}{cmd!set activate}
+      Set part-activate on program change (\textsl{n} = 0 disables
+      part activation, anything else enables it). This features
+      applies to command line program change as well.
+
+   \itempar{set extend [n]}{cmd!set extend}
+      Set the CC value for extended program change (anything greater
+      than 119 disables it).
+
+   \itempar{set available [n]}{cmd!set available}
+      Set the number of available parts (16, 32, 64).
+
+   \itempar{set volume [n]}{cmd!set volume}
+      Set the master volume.
+
+   \itempar{set shift [n]}{cmd!set shift}
+      Set the master key shift for following notes in semitones (+-
+      octave, 64 for no shift).
+
+   \itempar{set alsa midi [s]}{cmd!set alsa midi}
+      * Sets the name of the MIDI device ALSA looks for.
+
+   \itempar{set alsa audio [s]}{cmd!set alsa audio}
+      * Sets the name of the audio hardware device ALSA looks for.
+
+   \itempar{set jack server [s]}{cmd!set jack server}
+      * Sets the name of the JACK server Yoshimi tries to connect to.
+
+   \itempar{set vector [n1] x/y cc [n2]}{cmd!set vector cc}
+      CC \textsl{n2} is used for channel \textsl{n1} X or Y axis sweep.
+      For X, this also enables vector control for the channel.
+
+   \itempar{set vector [n1] x/y features [n2]}{cmd!set vector features}
+      Sets channel \textsl{n1} X or Y features to \textsl{n2}.
+
+   \itempar{set vector [n1] x/y program [l/r] [n2]}{cmd!set vector program}
+      Loads program \textsl{n2} to channel \textsl{n1} X or Y
+      \textsl{left} or \textsl{right} part.
+
+   \itempar{set vector [n1] x/y control [n2] [n3]}{cmd!set vector control}
+      Sets \texttt{n3} CC to use for X or Y feature \texttt{n2}
+      (2, 4, 8).
+
+   \itempar{set vector [n] [off]}{cmd!set vector}
+      Disables vector control for channel \textsl{n}.
+
+   \itempar{stop}{cmd!stop}
+      Cease all sound immediately!
+
+   \itempar{mode [s]}{cmd!mode}
+      Change to different menus: addsynth, subsynth, or padsynth.
+
+   \itempar{? or help}{cmd!help}
+      List commands for current mode.
+
+   \itempar{exit}{cmd!exit}
+         Tidy up and close Yoshimi down.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex

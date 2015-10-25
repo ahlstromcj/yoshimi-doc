@@ -452,6 +452,48 @@
 
    With external sound modules in mind, endian swaps are also implemented.
 
+   To be able to reliably use ALSA audio you need to set a card name, not just
+   "Default".  In a terminal window enter the following command:
+
+   \begin{verbatim}
+      $ cat /proc/asound/card*/id
+   \end{verbatim}
+
+   The result of this command should be something like:
+
+   \begin{verbatim}
+      PCH
+      K6
+   \end{verbatim}
+
+   Go to the ALSA settings tab illustrated below, and in 
+   \textsl{Alsa Audio Device} enter, for example, "hw:PCH".
+   This ensures you will always connect to this card at startup regardless of
+   the order this and other ones.  Another benefit of using this hardware name
+   is that ALSA will now use \textsl{Yoshimi}'s internal
+   buffer size, otherwise ALSA will force \textsl{Yoshimi} to accept its
+   default size.
+
+   One can also set the sample rate, but bear in mind that not all cards can use
+   all of these.  The sample rates 44100 and 48000 are almost always available.
+   If you set a Midi Device as well (such as a keyboard) Yoshimi will try to
+   find and connect to this device at startup.
+
+   To find the MIDI devices available, try:
+
+   \begin{verbatim}
+      $ grep Client /proc/asound/seq/clients
+   \end{verbatim}
+
+   The result of this command should be something like:
+
+   \begin{verbatim}
+      Client info
+      Client   0 : "System" [Kernel]
+      Client  14 : "Midi Through" [Kernel]
+      Client 128 : "TiMidity" [User]
+   \end{verbatim}
+
 \begin{figure}[H]
    \centering 
 %  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-alsa.jpg}
