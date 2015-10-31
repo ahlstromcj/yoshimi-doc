@@ -1012,3 +1012,143 @@ them can be abbreviated to the first three letters.
 
 The 'docs' folder has been updated too.
 
+============================================================================
+============================================================================
+
+
+Date: Thu, 29 Oct 2015 00:53:51 +0100
+From: Victor <victor@svictor.net>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Scale/keymap settings lost in state file
+User-agent: mu4e 0.9.15; emacs 24.5.1
+
+
+Le 28 Oct 2015, Will Godfrey <willgodfrey@musically.me.uk> a écrit :
+
+> Pmapping[i] = xml->getpar("degree", Pmapping[i],-1,127);
+
+Thanks Will! This indeed solves the x-s being replaced by 0-s.
+Now when I reopen Yoshimi I can _see_ the keyboard mapping I had when saving
+the session file. However, it doesn’t _sound_ right yet: I need to press the
+Retune button for that.
+
+You can test this with the settings I mentioned: an octave on the keyboard
+should sound like an octave in sound (but upon restart it doesn’t, until you
+press Retune).
+
+> That was quite an interesting bug, and it goes back a very long way.
+
+Indeed, through your posts I can see that moving Yoshimi forward is also an
+exciting archeological endeavour. That must be nice! By the way, when
+compiling today I glimpsed this line passing by
+Reverb.cpp:403:2: warning: #warning sa schimb size-ul
+That’s mixed Romanian-English for "I have to change the size". An ancient
+flint from a distant era, I suppose.
+
+
+
+
+Date: Thu, 29 Oct 2015 17:03:46 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Scale/keymap settings lost in state file
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Thu, 29 Oct 2015 00:53:51 +0100
+Victor <victor@svictor.net> wrote:
+
+>
+> Le 28 Oct 2015, Will Godfrey <willgodfrey@musically.me.uk> a écrit
+> :
+>
+> > Pmapping[i] = xml->getpar("degree", Pmapping[i],-1,127);
+>
+> Thanks Will! This indeed solves the x-s being replaced by 0-s.
+> . . . . .
+
+
+Well that was very interesting. Archaeological indeed! Going back to Zyn 2.4.0
+there never was the ability to save microtonal settings :o
+and you could only load tunings and mappings separately. You can still do that
+if you have the individual files but it was Cal who introduced the combined
+load/save capability in 0.058. Complete state saving arrived in 0.060
+
+Auto retune is now in 'master' for both scale or state loading. Tunings and
+mappings I've left as they were.
+
+Comparatively recently 'Patch Sets->Clear' was expanded to include scales. It
+also more fully resets 'Controllers'. In fact I don't think there is anything
+it *doesn't* reset now. I'm wondering if this is now in the wrong place,
+although I can't think of a better one.
+
+Hmmm. How about the word Reset, on the top line with a yes/no warning that it
+will clear ALL dynamic parameters.
+
+Ha! Just found something it doesn't reset... the last peak VU values :)
+
+
+Finally, that 'sa schimb' line was one that Cal put in replacing Paul's
+original (English) hidden comment. There are examples of Cal's impish humour
+dotted all through the code :D
+
+
+
+
+
+
+Date: Thu, 29 Oct 2015 23:49:50 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Scale/keymap settings lost in state file
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+. . . . 
+
+
+Yes the 'Clear' command has been there a long time, but I was just thinking it
+should be moved out of the patch sets menu and directly onto the top bar,
+renamed as 'Reset'.
+
+
+
+
+Date: Fri, 30 Oct 2015 11:18:45 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Top Line reorganisation
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Following on from the Scale/Keymap thread, I've given this a bit more thought
+and would like to consider the following changes:
+
+In the Instrument tab, change the order to:
+Show Instruments
+Open Instrument
+Save Instrument
+Show Banks
+Show Root Paths
+
+Also remove 'Virtual Keyboard' - It has its own far more obvious button.
+
+In Patch sets remove 'Clear'
+
+In the bar below, move the three existing buttons and add a new 'Reset' one laid
+out:
+
+Stop    Panel
+Reset   virKbd
+
+This layout would also enable the buttons to be wider so maybe less compressed
+wording! Also I think the new reset button should be red like the stop one is.
+
+Should we go further and have a new top line tab called e.g. 'Show'
+with Instruments, Banks & Roots there instead of in the 'Instrument' tab?
+
+Any thoughts/alternatives?
+
+I think this would be easier and more obvious to new users but would it be
+too disruptive to existing ones?
+
+
+
+
