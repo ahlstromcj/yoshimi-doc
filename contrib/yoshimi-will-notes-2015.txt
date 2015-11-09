@@ -1016,6 +1016,115 @@ The 'docs' folder has been updated too.
 ============================================================================
 
 
+Date: Tue, 27 Oct 2015 23:18:22 +0100
+From: victor@svictor.net
+To: yoshimi@freelists.org
+Subject: [yoshimi] Scale/keymap settings lost in state file
+User-Agent: Roundcube Webmail/1.1.1
+
+
+
+Hi,
+
+First a big thank you for working on Yoshimi! And also to everybody
+writing on this mailing list. I've been following it for roughly two
+years, and I really like the "ambiance" in which the software is
+developped.
+
+I seldom wrote here myself. I only restarted using yoshimi in the last
+couple of weeks. It's very smooth, lots of improvements (I appreciate
+amongst other things all the work on bank/program change)… But I'm
+afraid I have to report what is likely a bug. A small one though for
+sure.
+
+In the scale settings, you can set various intervals ("Tunings") to a
+range of keys ("Keyboard mapping"). IMHO the whole logic of these scale
+settings is a bit arcane. But
+http://zynaddsubfx.sourceforge.net/doc_2.html#w2 [1] explains it pretty
+well.
+
+So I have this Hijaz mode, with 10 notes/octave, and I want to play it
+on my keyboard (which has 12 notes/oct). In the Tunings section I have:
+
+14/13
+9/8
+32/27
+49/39
+4/3
+3/2
+21/13
+16/9
+49/26
+2/1
+
+And in the keyboard mapping section, I set:
+
+0
+1
+2
+3
+4
+5
+x
+6
+7
+x
+8
+9
+
+The two x are to skip the corresponding keys. They don't play at all,
+which allows the octaves to wrap logically on the keyboard (as if there
+were just 10 keys per octave). I also set "Middle note" to 64, to start           the scale on E keys. Therefore its big/small intervals alternate
+coherently with my tone/semitone fingering habits.
+
+The problem is that the two x are replaced by two 0 in the state file.
+So when I reopen yoshimi and reload the state file, I get
+
+0
+1
+2
+3
+4
+5
+0
+6
+7
+0
+8
+9
+
+And this of course does not work. Every 0 key in an octave has the same
+tuning. And the octave interval is no longer obtained on keys e' with
+e'' but on e' with f#''.In the state file, the x-s are correctly stored
+in a specific way : their value is -1<KEYMAP id="9">
+<par name="degree" value="-1" />
+</KEYMAP>
+
+So it seems that the problem is how yoshimi handles these -1 degrees
+when it reads the state file. It replaces them with 0 when they should
+be x.
+I'm afraid this was a bit of a lengthy explanation for a simple problem.
+I'm not sure how many other people use (or at least understand) the
+scale settings, that's why I thought I'd give in some detail…
+
+On a side note, the ability to play non-tempered scales is what drove me
+in the first place to Zyn and later to Yoshimi. It's quite unique in the
+free software world. At some point, the way these settings work could be
+made more intuitive maybe.
+
+Thanks for your attention!
+
+Cheers,
+
+Victor
+
+Links:
+------
+[1] http://zynaddsubfx.sourceforge.net/doc_2.html#w2
+
+
+
+
 Date: Thu, 29 Oct 2015 00:53:51 +0100
 From: Victor <victor@svictor.net>
 To: yoshimi@freelists.org
@@ -1148,6 +1257,283 @@ Any thoughts/alternatives?
 
 I think this would be easier and more obvious to new users but would it be
 too disruptive to existing ones?
+
+
+
+
+https://github.com/yoshimi/yoshimi/wiki
+ 
+
+
+
+Date: Sat, 31 Oct 2015 09:02:10 -0500
+From: Jonathan Brickman <jeb@ponderworthy.com>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Scale/keymap settings lost in state file
+
+Chris, indeed, Yoshimi is a marvelous community :-)
+
+It is also true that until recently I found the Non suite ranging from
+difficult to impossible to build, depending on the year; I used to try it
+once every six to twelve months or so because the feature set is so
+extraordinary.  But recently I do believe Mr. Liles has been getting things
+amazingly right.  For quite a number of years a crucial element of my
+B.N.R. (the Box of No Return, discussed here <http://lsn.ponderworthy.com>)
+has been less than completely stable, the mixing capability; I have tried
+every one out there many times, and jack_mixer was the closest, but
+jack_mixer still often became confused, perhaps because the B.N.R. keeps a
+LOT of active connections at all times.  Then I tried non-mixer yet one
+more time, and voila!
+
+And just this week I rebuilt the B.N.R. again, for the first time using
+Sparky Linux (very Debianistical) as a base, and the Non suite built
+shockingly fast and easily.  It's just a bit confusing because one has to
+build NTK first, but it's all documented on Mr. Liles' web site.
+
+I have not tried the Non Session Manager for quite a while, because I ended
+up building my own very tight automatic system in Python scripts.  (The Box
+always runs headless in production.)  But if NSM is working well for many,
+perhaps it might be a good thing to encourage :-)
+
+J.E.B.
+
+
+
+Date: Sat, 31 Oct 2015 17:31:19 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: AddSynth oscillator size?
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Sat, 31 Oct 2015 11:26:25 -0500
+Jonathan Brickman <jeb@ponderworthy.com> wrote:
+
+> Just happened to notice this.  I'm using 1024 on the Box.  Anyone know what
+> happens with increases and decreases?
+>
+The larger the oscillator size the greater the CPU load but the better the
+quality (supposedly). Zyn changed the default to 512 a long time ago, and
+I'm think we should do the same. I can't detect any difference, and only an
+infinitesimal one when going down to 256. Why waste CPU cycles.
+
+Existing users won't see any change as it will stay at whatever your config file
+says.
+
+
+
+
+Date: Sat, 31 Oct 2015 18:00:16 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Vector control
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Fri, 16 Oct 2015 11:58:49 -0400
+Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
+
+> I would tend to put the vector stuff, or other major upgrades, into a
+> separate file in ~/.config/yoshimi/xxxxxx.rc, to distinguish old and new
+> and preserve a separation of concerns.  Could have one configuration file
+> that "includes" other configuration files.
+>
+> Chris
+
+My latest idea on this is to keep it quite separate and as a user savable file
+exactly like individual instruments or patch sets but with .xvz as the
+extension.
+
+The file would include whether it was a 2 or 4 'row' controller the sweep CCs,
+the features that had been set and whether any had been over-ridden from the
+default ones. Finally it would include the actual instruments that had been
+originally used.
+
+I think it should then be able to be loaded into whatever is the the currently
+selected channel.
+
+Pros
+Very easy to set up.
+Doesn't care about later bank/instrument layout changes
+
+Cons
+Will fail if you have already set the CCs for some other purpose.
+
+
+
+
+
+Date: Mon, 2 Nov 2015 20:27:27 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] LV2 install - revisited.
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+We may have a solution to this oddity (installing to obscure locations). What
+would be very helpful would be for people *not* using vanilla debian to try it
+out.
+
+If you look at src/CMakeLists at or near line 527 you should see:
+
+set(LV2_INSTALL_DIR ${CMAKE_INSTALL_LIBDIR}/lv2 CACHE PATH "Specifies where the
+LV2 libraries should be installed")
+
+What I'd like you to do is comment it out so you can restore it if you need
+to (put a # in front of it) then enter this one below it:
+
+set(LV2_INSTALL_DIR lib/lv2 CACHE PATH "Specifies where the
+LV2 libraries should be installed")
+
+Remember to clear out the cmake cache before trying (unlike me) with:
+
+make distclean
+
+then do the usual ccmake .
+make
+{root}
+make install
+
+You should get yoshimi.lv2 in /usr/local/lib/lv2/
+If it was already there before, you should move it.
+
+Please let us know what results you get and which distro.
+
+
+
+
+Date: Tue, 3 Nov 2015 22:31:44 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Another small step
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Up to now, the INFORMATION section of all of our XML files has had Add, Sub &
+Pad synth status, but this is only actually relevant to instruments.
+
+I have now put into place hooks so that the other XML types no longer carry
+this and can have their own info blocks.
+
+Related to this I will soon be adding a setting to allow you to log the entire
+header when you load files.
+
+
+
+
+
+
+Date: Thu, 5 Nov 2015 23:49:06 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Part Kits
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Doing a bit more investigation on this, I can see these are more interesting
+than I realised.
+
+The first thing to keep in mind is that the three 'base' engines are in fact
+kit item 0 - regardless of whether kit mode is enabled or not. Even though they
+are represented differently at their top level, internally they are identical
+to all the other 15.
+
+Also, the part as a whole has min and max notes, but if kit mode is enabled each
+kit item has it's own min and max *within* the overall part range.
+
+Another subtle change is that in kit mode you no longer apply all three part
+effects to any of the kit items, but only one, selectable from the kit window.
+This includes the three 'base' engines.
+
+If you want more effects on a part kit you need to use the insertion effects.
+
+
+
+
+
+Date: Fri, 6 Nov 2015 14:39:20 +0000
+From: Nico We <seonserey@hotmail.com>
+To: "yoshimi@freelists.org" <yoshimi@freelists.org>
+Subject: [yoshimi] Yoshimi plugin in Ardour 4
+
+Hi there,
+
+I am a Yoshimi user (great soft by the way!) trying to get Yoshimi to work inside 
+Ardour as a plugin.
+I use the Ubuntu Studio distribution and I have no trouble working with Yoshimi
+alone but I can not seem to find it in the list of plugins for Ardour. It does not
+appear in my /usr/lib/lv2/ either.
+
+Based on some research and this
+(https://www.freelists.org/post/yoshimi/LV2-install-revisited), I had the idea of 
+downloading the sources and build it but it didn't work (I have to say that this
+is far beyond my skills and I am very confused with the cmake instructions).
+
+Can somebody here give me some advice?
+Thanks,
+Nicolas
+
+
+
+
+
+Date: Fri, 6 Nov 2015 23:45:35 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Top Line reorganisation
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+I've done a bit more reorganisation on this.
+
+'View' is now the second item on the menu and includes the Scale settings
+window.
+
+All the others have the menu items re-ordered to
+Load
+Save
+Recent (or) Clear
+
+Scales now has a clear option, and I'll see about a 'recent' item for State
+
+In the process of this I've discovered defaults surrounding state load & save
+aren't right - it keeps going back to the first time default location :(
+I'll try to get this sorted soon.
+
+
+Finally, in settings there is now the option to log version numbers when
+loading XML files. I was actually quite surprised to see some of them.
+
+
+
+
+
+Date: Sun, 8 Nov 2015 22:10:06 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] and there's more
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Reset all controllers missed out a couple, and didn't update the window. Both
+sorted now.
+
+If running with ALSA audio, you can no longer attempt to start other instances.
+This wasn't a valid option anyway, as it is jack audio specific, and the
+attempt would cause yoshi to quit.
+
+Adding or removing root paths via the command line now updates the gui (if it's
+running).
+
+And finally, you can enter commands as single letters (separated by spaces) if
+they are completely unambiguous.
+
+So:
+
+s p p 107 - sets part {default/last used} program to 107
+
+sa s - saves the dynamic settings
+
+l b - lists the banks in the current root
+
+I'll probably remove he feature in 'settings' that lets you face MIDI CCs. It
+was only experimental. There are already better ways of getting control, and
+these will be added to.
+
+
 
 
 
