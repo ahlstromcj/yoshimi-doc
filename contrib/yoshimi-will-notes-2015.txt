@@ -1536,5 +1536,82 @@ these will be added to.
 
 
 
+ate: Tue, 10 Nov 2015 20:17:38 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Yoshimi & Rosegarden - fun times.
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Yoshimi can have up to 64 parts. By default these are wraped around the normal
+MIDI channels, so 1, 17, 33 & 49 all respond to channel 1 messages. This was
+originally implemented for Vector Control, working with up to four sounds on a
+channel (similar to the Yamaha SY hardware series).
+
+However, these have other less obvious uses. One of these is getting far more
+than 16 completely independent tracks addressed by just the 16 channels. Most
+tunes run with instruments having a relatively narrow pitch range, and this is
+what we can make use of.
+
+As an example, in Yoshimi's main window select 64 parts, then on part 1 set
+(say) Steel Bass and maximum note as 52 (E).
+
+Next select part 17 and enable it (easiest to use the mixer panel for this) set
+Tunnel Piano, the *minimum* note as 53 and maximum as 71 (B).
+
+Finally, enable part 33, set Rushes and set it's minimum note as 72, but key
+shift down an octave.
+
+With a 61 note keyboard that gives you quite a useful working range, on just
+one channel.
+
+However, the idea really comes into its own with a sequencer like Rosegarden
+where you can record multiple parts over the full MIDI range and track them to
+the same channel. Also, in Rosegarden the parts can be separately named, and
+identified as Bass and Treble in the notation editor. This makes it very
+convenient for those wanting a more formal musical layout.
+
+So, with very little effort you can now have 48 tracks playing at once!
+
+Ummm, you do need a decent processor though :)
+
+Yes, I know you could run more instances of Yoshimi on different MIDI ports, but
+where's the fun in that?
+
+
+> With a 61 note keyboard that gives you quite a useful working range, on
+> just one channel.
+
+Thanks for pointing this! I wasn’t aware of the warping feature. This setup
+sounds very interesting for the kind of music I try to play these days
+(Middle-Eastern dabkkeh, in Omar Souleyman’s style). It involves frequent
+changes of instruments, each instrument playing on a very narrow range… Right
+on, I’ll try it asap!
+
+
+
+
+ate: Tue, 10 Nov 2015 23:09:29 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: and there's more
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+We are definitely in the time for 'small things' at the moment.
+
+A few irritations scratched in the current 'master'
+
+Directly setting part channel numbers from 0 to 15 as 16 to 31 respectively,
+will now allow a note off while blocking all other MIDI messages to that part.
+setting them higher than 31 will stop all messages so you can use this for
+creating set & forget drones.
+
+Preset directory additions or removals no longer need a restart.
+
+Part key shift extended to +- 24 semitones - 4 octaves should be enough for
+anybody :)
+
+Default state file location is now fixed - users could always change it as they
+wished with the file browser. Also, the setting was saved but never read!
+
 
 
