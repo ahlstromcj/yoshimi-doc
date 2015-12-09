@@ -1535,6 +1535,51 @@ these will be added to.
 
 
 
+Date: Mon, 9 Nov 2015 20:51:15 +0000
+From: Nico We <seonserey@hotmail.com>
+To: "yoshimi@freelists.org" <yoshimi@freelists.org>
+Subject: [yoshimi] Re: Yoshimi plugin in Ardour 4
+
+
+> That's correct. It was just abbreviated. However, as it caused confusion I'll
+> change it in future.
+
+OK.
+
+> You might have slightly different versions of the other packages.
+> Try searching for libncurses then find a possibly different numbered one with
+> the .dev on the end.
+> Also do the same for readline and zlib
+
+I am confused: I installed all the packages from your list. All the packages
+listed here are installed.
+
+    automake
+    build-essential
+    cmake-curses(-gui)
+    dssi-dev
+    fluid
+    libboost-dev
+    libcairo2-dev
+    libfftw3-dev
+    libfltk1.3-dev
+    libglu1-mesa-dev
+    libjack-jackd2-dev
+    libjpeg-dev
+    libmxml-dev
+    libncurses5-dev
+    libreadline-dev
+    libxft-dev
+    libxinerama-dev
+    libxml2-dev
+    pkg-config
+    xutils-dev
+    zlib1g.devDo you suggest I find more packages that have similar names ?
+    Also I zlib1g-dev was installed instead of zlib1g.dev, does it affect
+    the process ?
+
+
+
 
 Date: Tue, 10 Nov 2015 20:17:38 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
@@ -1612,7 +1657,6 @@ anybody :)
 
 Default state file location is now fixed - users could always change it as they
 wished with the file browser. Also, the setting was saved but never read!
-
 
 
 
@@ -2292,7 +2336,167 @@ commit called simply 'peg' so you can easily get back to where we were.
 For anyone that's interested all the code changes are in MusicIO/jackEngine.cpp
 There is a lot of commented out code there now, but I won't tidy it up till
 we're sure it's good.
+=======
+Date: Wed, 11 Nov 2015 09:40:35 +0100
+From: Lorenzo Sutton <lorenzofsutton@gmail.com>
+To: yoshimi@freelists.org, rosegarden-user@lists.sourceforge.net
+Subject: [yoshimi] Re: Yoshimi & Rosegarden - fun times.
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101
+        Thunderbird/38.3.0
 
 
+
+On 10/11/2015 21:17, Will Godfrey wrote:
+> Yoshimi can have up to 64 parts. By default these are wraped around the normal
+> MIDI channels, so 1, 17, 33 & 49 all respond to channel 1 messages. This was
+> originally implemented for Vector Control, working with up to four sounds on a
+> channel (similar to the Yamaha SY hardware series).
+>
+> However, these have other less obvious uses. One of these is getting far more
+> than 16 completely independent tracks addressed by just the 16 channels. Most
+> tunes run with instruments having a relatively narrow pitch range, and this is
+> what we can make use of.
+
+This looks also like a *very* cool and useful feature for quick 'layering'.
+With layaring I mean assigning more than one voice to the same (musical) part
+to e.g. obtain really fat tones (something I'm lately experimenting with) and
+having just one track for the part in rosegarden.
+
+Lorenzo.
+
+
+
+
+Date: Thu, 12 Nov 2015 02:26:23 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: and there's more... and more
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+I'm really burning the midnight oil today!
+
+The good news is that Yoshimi now remembers where you left the most important
+things on the desktop, and if you left them out, will show them to you next
+time you run :)
+
+
+Date: Fri, 13 Nov 2015 09:55:38 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] As you were
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On the basis of eating your own dog food, I've been using the latest master of
+Yoshimi for my own compositions, and have come to the conclusion that a separate
+'view' tab is a mistake -especially in the cases of instruments and scales.
+Also, now 'Presets' path changes no longer require a restart I'd like to pull
+that out of the 'settings' menu.
+
+So, my revised idea is:
+
+Instruments
+Show Stored
+Load External
+Save External
+Clear
+
+
+Patch Sets
+Show Banks {slightly odd - but where else?}
+Load
+Save
+Recent
+
+
+Paths {new tab}
+Show Bank Roots
+Show Presets
+
+
+Scales
+Show Settings
+Load
+Save
+Clear
+
+
+State
+Load
+Save
+Recent {possible}
+
+
+Of all of these, I think 'Patch Sets' will be the most heavily used, and
+without the 'view' tab it will come nicely in the centre of the top menu bar.
+
+Unless there are howls of protest, I'll probably change this over the weekend,
+at the same time as extending Yoshimi's window memory.
+
+
+
+
+
+Date: Mon, 16 Nov 2015 18:51:25 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Hold the front page :)
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Yoshimi 1.3.7 is here.
+
+This just a minor release focussing on usability details.
+
+Yoshimi now remembers most window positions on a per instance basis, and will
+re-open them at the same locations. Also, if you shut down with these windows
+open, they will be opened again on the next run.
+
+The 'engine' windows are a bit different as they may not actually exist so
+can't be auto opened. Also, you need to use the 'close' button to fix their
+re-open position - they don't seem to like being asked their co-ordinates when
+they are being forcibly closed :(
+
+Almost all window titles carry the instance number as well as details such as
+part number/name, engine, and whether it is kit mode. For addsynth oscillator,
+the voice number is included. Bank and Instrument windows, as before, show the
+MIDI ID numbers along with the complete file paths.
+
+The top menu bar has been reorganised for better grouping. Mixing unrelated
+operations on a single menu is never a winner.
+
+A complete clear-down now has it's own button, 'Reset'. This is as close as
+possible to a restart, but works independently for each instance. Re-aranging
+this group of buttons into two rows means they can be longer - "Virtual Keybd"
+is a bit more obvious than "vrKbd".
+
+The 'Controllers' window now (at last) correctly updates when you hit its reset
+button.
+
+Other window layouts have had a bit of polish.
+
+There is now an option so you can see the version details of all XML files in
+the 'Console' window as they are loaded.
+
+Command line access is now more than just a proof of concept. It has a
+half-decent parser, paging and history. All these are developing alongside
+considerably more controls.
+
+
+Breaking news!
+
+This release has an experimental Breath Control feature - CC2.
+
+I'm not generally publicising this yet as it needs to be tried out by musicians
+with real breath controllers.
+
+It combines volume with brightness, so the louder the sound is, the harsher it
+is too.
+
+In the 'Controllers' window you can play with the 'FiltCut' and 'Vol Rng' knobs
+to change it's performance to some degree. My rough-and-ready tests suggest
+that you'll probably only want to change 'FiltCut' and leave 'Vol Rng' where it
+is. Do  keep in mind these controls are per-part so won't affect anything on      other channels.
+
+If anyone has a breath controller, please give it a try and let me know if it
+works for you.
 
 
