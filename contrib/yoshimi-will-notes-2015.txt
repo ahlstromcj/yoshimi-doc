@@ -1536,7 +1536,7 @@ these will be added to.
 
 
 
-ate: Tue, 10 Nov 2015 20:17:38 +0000
+Date: Tue, 10 Nov 2015 20:17:38 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Yoshimi & Rosegarden - fun times.
@@ -1612,6 +1612,687 @@ anybody :)
 
 Default state file location is now fixed - users could always change it as they
 wished with the file browser. Also, the setting was saved but never read!
+
+
+
+
+Date: Fri, 20 Nov 2015 23:02:32 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Mea Culpa :(
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+I'm afraid I have to put my hand up to having created a rather obscure bug.
+This was back about half way between the 1.3.4 and 1.3.5 releases, but it
+wasn't until much later someone reported the first symptom.
+
+He found that if he had a lot of continuous pan or volume changes sent over
+MIDI, the gui seemed to be locked out for that time. I had a quick look but
+couldn't see anything wrong with the code, so put it aside - just looking again
+from time to time.
+
+Much more recently, I discovered that if you had any part windows open and sent
+the above commands, they would be mysteriously closed. Again a quick look
+revealed nothing.
+
+The final straw was when running a recent version of Rosegarden, Yoshi would
+crash every time just one specific file was loaded. This was unusual in that
+at the time of loading *all* 16 parts would have a program change at the same
+time!
+
+It didn't take long to work out that it wasn't actually loading programs that
+was causing the crash but the gui updates. At this point I remembered someone
+telling me about using git bisect to pin down exactly when a bug occurs. I
+can't praise this enough. What might have been many hours of work shrank to
+about 15 minutes. Just one commit was responsible for all three problems.
+
+I had been struggling with the problems of gui updates for program changes, the
+new colour backgrounds and change of number of available parts. I eventually
+hit on the idea of re-creating the part, which magically seemed to solve all
+the problems. I should have recognised that there is no such thing as magic!
+
+So what did this *actually* do? It closed down and deleted the entire part then
+rebuilt it with newly fetched data from the synth engine.  It was this rebuild
+that was responsible for the disappearing part windows - obvious really. Also,
+that is a lot of processing to do in a hurry, so much so that the fast MIDI pan
+changes could barely keep up. Once the nest of program changes was also put in
+the mix, well it couldn't keep up at all.
+
+So, having pulled the errant code out, I set about getting the gui to respond
+correctly. Hopefully it is OK now in the current master. Certainly, none of the
+original problems show here after running for several hours with lots of patch
+loading, reloading and general messing with the windows - as well as running
+*that* file in Rosegarden.
+
+I shall now go and stand in the corner facing the wall :(
+
+
+
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Updates
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+A couple of additions in the current master.
+
+If you are in kit mode, the engine window title bars now display the kit number
+and name (if any). This way you know *exactly* what kit item of what part you 
+are working on. I will eventually extend this to the Resonance window and the
+AddSynth Voice windows.
+
+In Yoshimi->Settings->MIDI there is a new checkbox that will allow you to see
+all MIDI CCs as they arrive (before Yoshimi does any filtering). This is not
+stored and is always 'off' at startup - so you don't forget about it. The only
+time you're likely to need it is if you have a hardware controller of some sort
+connected that doesn't seem to be working.
+
+One slight oddity is that 'pitch bend' shows here as CC 1000. Although it is a
+quite different control mechanism, it is routed through the CC code for
+convenience.
+
+
+Another small detail the Presets window doesn't chop off the first letter of the
+preset name any more :)
+
+
+
+Date: Sun, 22 Nov 2015 18:27:12 +0000
+From: Adam Huffman <bloch@verdurin.com>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Change in LV2 location
+User-Agent: Mutt/1.5.24 (2015-08-30)
+
+Hi Will,
+
+Just to let you know that I needed to revert to the old setting for the
+LV2 library location in CMakeLists.txt for Fedora.
+
+Without that change, the LV2 library was installed in the wrong location
+for x86_64 builds.
+
+The patch I included is here:
+
+http://pkgs.fedoraproject.org/cgit/yoshimi.git/diff/yoshimi-libdir.patch
+
+Cheers,
+Adam
+
+
+
+
+Date: Sun, 22 Nov 2015 20:01:49 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Change in LV2 location
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Sun, 22 Nov 2015 18:27:12 +0000
+Adam Huffman <bloch@verdurin.com> wrote:
+
+>
+
+Thanks Adam.
+
+I swear I'm going to end up having nightmares about this :(
+... or maybe I'll just swear!
+
+However...
+Today I just got a patch from Timo Gurr which appears to resolve the same (or
+related) issues. It's on sourceforge:
+http://sourceforge.net/p/yoshimi/patches/8/
+
+So now I don't know whether to apply his, yours or both!
+
+The frustrating thing is that just about everything seems to work correctly for
+me on a range of debian systems.
+
+
+
+
+Date: Sun, 22 Nov 2015 21:51:13 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Change in LV2 location
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+
+>
+> My patch is specifically about the LV2 library location. If it causes
+> other people problems, then I'm happy to keep it just for the Fedora
+> RPMs, having at least done my duty and mentioned it upstream...
+>
+> Cheers,
+> Adam
+
+Aha! The thot plickens :)
+
+He had actually applied his patch on top of yours, because he was working
+against V1.3.5.2 - although that two releases ago. However that means both
+combined works for him, and they work for me on Intel & AMD 64 bit machines, and
+an elderly 32 bit AMD.
+
+If that combination also works for you I think it means we've covered most of
+the bases.
+
+
+Although not yet released I've just put a bugfix version 1.3.7.1 up on both
+github and sourceforge that includes these. Can you give it a try and let me
+know what you find?
+
+There are also a couple of quite obscure bug fixes in there.
+
+te: Tue, 24 Nov 2015 23:43:16 +0100
+From: Lorenzo Sutton <lorenzofsutton@gmail.com>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Independent jack outputs for parts?
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+        Thunderbird/38.3.0
+
+I'm pretty sure from visual memory I've seen this in qjackctl connections...
+or was I dreaming? If not how can I achieve this?
+
+Googling pointed to patches mentioned on mailing lists.. so as this is 1.3.7.1
+which I compiled, is there anything to set at compile time to get this?
+Currently yoshimi has the following jack outputs:
+
+yoshimi:left
+yoshimi:right
+yoshimi:track_1_r
+yoshimi:track_1_l
+
+I noticed in src/MusicIO/JackEngine.cpp (around line 288) a loop which seems
+to register the parts is commented out but maybe I'm looking in the wrong
+place..
+
+This is really usefult when recording e.g. into Ardour and wanting to preserve
+the single parts for further mixing etc.
+
+Lorenzo.
+
+
+Date: Tue, 24 Nov 2015 23:06:57 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Independent jack outputs for parts?
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Tue, 24 Nov 2015 23:43:16 +0100
+Lorenzo Sutton <lorenzofsutton@gmail.com> wrote:
+
+> I'm pretty sure from visual memory I've seen this in qjackctl
+> connections... or was I dreaming? If not how can I achieve this?
+>
+> Googling pointed to patches mentioned on mailing lists.. so as this is
+> 1.3.7.1 which I compiled, is there anything to set at compile time to
+> get this?
+> Currently yoshimi has the following jack outputs:
+>
+> yoshimi:left
+> yoshimi:right
+> yoshimi:track_1_r
+> yoshimi:track_1_l
+>
+> I noticed in src/MusicIO/JackEngine.cpp (around line 288) a loop which
+> seems to register the parts is commented out but maybe I'm looking in
+> the wrong place..
+>
+> This is really usefult when recording e.g. into Ardour and wanting to
+> preserve the single parts for further mixing etc.
+>
+> Lorenzo.
+
+We used to register all parts by default, but that got a bit silly once we had
+64 of them, so we changed to an 'on demand' model.
+
+If you open the mixer panel window you'll see a field just above the Edit
+button. This determines the audio destination on a part-by-part basis,
+defaulting to just the main LR pair. The direct part outputs are only exposed on
+parts that are active, and have the destination set to either 'part' or 'both'.
+
+Once activated they will remain in place even if the part is later disabled or
+routed to main only. This is so that other programs won't see links suddenly
+disappear - although they will become silent.
+
+This setting is preserved in Yoshimi's patch sets and will be reinstated when
+next loaded.
+
+I've just realised this doesn't seem to be mention in the notes in the doc
+directory - it will be on the next commit!
+
+
+
+Date: Sat, 28 Nov 2015 17:34:00 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Independent jack outputs for parts?
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Fri, 27 Nov 2015 12:58:18 +0100
+Lorenzo Sutton <lorenzofsutton@gmail.com> wrote:
+
+> I see and thanks for the detailed explanation... I wonder if it would
+> make sense to have an option to enable setting all active parts to
+> 'both' without having to do this individually.
+>
+> (well one could probably hack the xml file and set the <par
+> name='destination' ... for all parts but I was thinking of something a
+> bit more user friendly :)
+>
+> Lorenzo.
+
+it just occurred to me that you can actually do this already without the need
+for any changes at all :)
+
+Load up Yoshimi, set it for 64 parts, then go through them all, enabling them,
+setting the audio destination to 'Both', then *disable* all of them except part
+1.
+
+Close down to 16 parts and save this as a patch set named (say) newdefaults.
+
+Yoshimi stores *all* part data in patch sets, even if the part is disabled.
+
+i:Exit  -:PrevPg  <Space>:NextPg v:View Attachm.  d:Del  r:Reply  j:Next ?:He
+
+Close down Yoshimi.
+
+Every time you want this configurations start with the -l argument so:
+
+yoshimi -l {path} newdefaults.xmz
+
+
+After this, every time you enable a part its direct output pair will be
+registered and immediately available. However, I don't recommend leaving unused
+parts enabled, as there is a processing overhead even if they are producing no
+sound.
+
+Date: Fri, 27 Nov 2015 15:51:45 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Independent jack outputs for parts?
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Fri, 27 Nov 2015 12:58:18 +0100
+Lorenzo Sutton <lorenzofsutton@gmail.com> wrote:
+
+> I see and thanks for the detailed explanation... I wonder if it would
+> make sense to have an option to enable setting all active parts to
+> 'both' without having to do this individually.
+>
+> (well one could probably hack the xml file and set the <par
+> name='destination' ... for all parts but I was thinking of something a
+> bit more user friendly :)
+>
+> Lorenzo.
+
+Well, I guess it would be possible to set a preference for the default state,
+but I don't want to spend time on that just now unless there is a lot of demand
+for it. However, if anyone else wants to offer a patch for it - something in
+the 'Settings' window ...
+
+
+
+
+
+
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] The bug that never was
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+[-- Attachment #1 --]
+[-- Type: text/plain, Encoding: 7bit, Size: 2.5K --]
+
+And two that really are :(
+
+While trying to track down two extremely rare and obscure bugs I got bogged
+down for a while in what seemed to be a string corruption one.
+
+In the arpeggios bank set, numbers 9, 10 & 11 seem to be corrupted if you load 
+them via a MIDI program change, whereas going via the instrument bank appears to
+be quite correct. Well actually that's not true. It is the bank load that is
+wrong and this goes right back to Zyn 2.2.1
+
+Each instrument has a filename, but also has an *internal* name. Normally these
+two are the same, and are guaranteed to be so if you save an instrument to a
+bank. However, there is nothing to stop anyone saving an instrument file
+externally with a different filename or at some later date just changing the
+filename. Neither of these will change the internal name.
+
+So what to do?
+What I've come up with is for banks to continue to show the filename, but when
+loaded the part will show the internal name. This makes all load operations
+consistent.
+
+Also, to make save operations consistent as well, if saving externally you'll
+first be offered the internal name (although this will be lost if you use fltk's
+built in 'Favourites' option to change directories.
+
+This is in the current 'master'.
+
+Well, that's the good news.
+
+There are two very obscure bugs I'm trying to chase down both triggered by one
+specific malformed Rosegarden file, which causes it to send a storm of 48 of
+each Root, Bank, Program changes mixed up with 192 other CCs!
+
+The first is caused by the program change thread getting its knickers in a
+twist. You can stop this by changing line 514 of /src/MusicIO/MusicIO.cpp:
+
+        if (in_place)
+to
+        if (true)
+
+The downside is that you then go back to program changes being in-line with all
+other MIDI and potentially creating a timing bottleneck.
+
+The second problem is even more obscure. You will only see it if Bank Root
+change is enabled *and* either the Banks or Instruments window is open. The
+dodgy file will then cause Yoshi's gui to freeze and you can only clear it
+with a kill -9
+Obviously something is not getting updated, but I don't know what.
+
+Both of these only seem to be triggered by this specific file, I've never seen
+this behaviour at any other time. Also, there have been a lot of changes in
+Rosegarden itself, so older version may not do this.
+
+I've attached the problem file for anyone who wants to have a look at this.
+
+
+
+
+Date: Wed, 2 Dec 2015 23:07:56 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Random Detune
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+A setting for this has been in the part edit window for quite a long time. There
+are 20 steps of approximately half a cent. This is applied as a pitch variation
+to the note-on event, so is per note and also per part (but the whole part not
+just one engine).
+
+It was intended to simulate to effect of fretless instruments, or fretted ones
+that are weight or bend sensitive, where tiny variations in normal playing
+would result in such pitch 'inaccuracies'. It also works quite well on flute
+and whistle sounds. I've used it a few times myself and values of 2-3 seem best.
+
+I'm wondering what use (if any) others have made of it, or even if anyone has
+recognised what it does!
+
+Currently this setting isn't saved. It's still classed as an experimental
+feature. Also, if we keep it and want to save it, should it be an individual
+instrument parameter or applied for that part in a complete patch set?
+
+ate: Thu, 3 Dec 2015 14:23:38 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Random Detune
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Thu, 3 Dec 2015 05:58:58 -0500
+Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
+
+> Dang, had to read my own document to find that setting. It applies
+> "globally" to that part if you go by its position in the GUI.
+> Does it also apply to kit edit?
+
+Yes. In the code it is applied at the point the incoming MIDI value is
+converted to actual pitch.
+
+> Anyway, the way it stands it should be parallel with the ADDsynth, PADsynth
+> etc. blocks in the XML.  Other than that its opaque to me :-).
+
+Difficult. It's placed where it is because it applies to all three engines and
+kits. I would have liked it to be a knob or slider, but being experimental I
+went for minimalism. Hmmm. Maybe change the label to 'Humanise'?
+
+> The tooltip probably ought to be changed to recommend low values.
+
+I'm actually thinking of reducing the range to 5 cents (10 on the scale).
+
+> Man, Will, I've been waiting for Yoshimi to settle down for awhile
+> (and the same for my projects) so that I can catch up on screenshots
+> and documentation.  Kinda like the new look.
+
+
+FWIW I try very hard to minimise layout changes whilst at the same time
+improving clarity and access. Unexpected changes annoy people, and changes to
+that top menu bar caused even me problems at first. I'm so used to the top item
+of 'Patch Sets' being 'Recent' that I'm inclined to hit the wrong one :(
+
+I hope we're just about there now. Apart from the above there are only three
+other *possible* changes in mind.
+
+The first is in the same window, and would be a duplication of the audio
+destination drop-down that's in the mixer panel. I'm again thinking of placing
+it in that lower strip but between Rnd. Det. and Close. This makes sense as it
+is also something that applies to the entire part.
+
+The second would be in Settings->Jack and would be a drop-down to change the
+*default* audio destination.
+
+Finally, also in Jack, for some time I've been thinking of providing the same
+Midi Device setting that's in the ALSA tab, but it's a very low priority.
+Nobody has actually asked for it.
+
+> However, the Debian package seems a bit flaky, and I haven't had
+> time to see how it is structured.
+>
+> Chris
+
+Debian is still stuck in V 1.2.4 (unless you go for sid). Both myself and the
+maintainer are a bit annoyed about that. 1.3.4 (I think) should have gone in
+jessie but there was a ridiculously long freeze period for that one.
+
+As mentioned elsewhere there's a bug we've only just clobbered in 'master' but
+it is extremely obscure and only gets trigged by a few files in one sequencer.
+So far, nobody has actually reported it. I found it myself while trying to make
+some gui refresh improvements. 
+
+
+
+Date: Sat, 5 Dec 2015 23:12:59 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Random Detune
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Sat, 5 Dec 2015 16:32:05 +0000
+Gilles <blondingilles@hotmail.com> wrote:
+
+> Will, I think this is a great feature and as for your comment  "Hmmm. Maybe
+change the label to 'Humanise'?"
+> I think this is also the term used in other programs like Hydrogen and Ardour.
+> Gilles
+
+OK, that settles it :)
+
+The latest 'master' has a slider now. Also, previously there was an error in
+the math (never my best subject) giving a much higher detune than I thought. It
+is now reasonably accurate and covers the range 0 to 50 cents.
+
+I still can't make up my mind whether it should be stored in patch sets or in
+the individual instrument file :(
+
+I'm slightly leaning towards it being in patch sets. Partly because it doesn't
+mess with existing stored instruments but can work with them, and partly because
+it seems to me it's part of an overall performance.
+
+Ho Hum
+
+
+
+Date: Tue, 8 Dec 2015 19:35:37 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Random Detune
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Our newly renamed 'Humanise' is now stored in patch sets and seems to fairly
+accurately cover the range from 0 to 50 cents - for some value of 'accurate'
+when talking about a randomness setting :).
+
+
+Date: Fri, 4 Dec 2015 15:51:36 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Banks & Roots
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+A bit of clarification on how changes to these operate.
+
+If you change a bank root path, either through the gui or via MIDI, it will
+always reset the current bank to the lowest numbered one it can find. This is
+because there may not be a bank in the new root with the same ID, and even if
+there is, there is no guarantee that it will have the same name or contents.
+
+Also if an attempt is made to reload the same root, nothing will actually
+happen. The same is true of banks. Both of these are kept fully up-to-date so
+there would be no point.
+
+However, reloading the same *instrument* will be performed every time, as you
+may have changed what is currently loaded without saving it. This provides an
+effective 'restore' operation.
+
+By default MIDI control of bank root is CC0 and bank is CC32, these are the
+standard bank controllers in the MIDI spec. However, not all synth makers
+and sequencer programmers adhere to that, so in Yoshimi->Settings->MIDI you can
+change them (or even disable them completely). The bank CC can be either 32 or
+0, and bank root can be any value not reserved by anything else.
+
+
+Date: Sun, 6 Dec 2015 15:53:28 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Change in LV2 location
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Sat, 5 Dec 2015 23:33:18 +0000
+Adam Huffman <bloch@verdurin.com> wrote:
+> Hi Will,
+>
+> I'm afraid Fedora RPM builds are broken again with this release:
+>
+> https://kojipkgs.fedoraproject.org//work/tasks/3125/12033125/build.log
+>
+> As you can see at the end, banks are being installed without the proper
+> prefix now i.e. for some reason '/usr/share' is being omitted.
+>
+> Cheers,
+> Adam
+
+Hi Adam. Sorry to hear you this is *still* giving you headaches :(
+I never can follow exactly how multi-arch is supposed to work, and from that
+log it seems quite a lot of stuff is being put in the wrong place.
+
+Try using CMakeListsAlt.txt instead, although I think you may need to swap lines
+516 and 517. I can't remember which one worked for you previously.
+
+Until (and unless) this can be finally sorted out I'll maintain both copies
+from now on.
+
+
+
+
+
+ate: Mon, 07 Dec 2015 20:02:06 +0100
+From: Nicola Pandini <nicola.pandini@gmail.com>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Change in LV2 location
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101
+        Icedove/31.8.0
+
+[-- Attachment #1 --]
+[-- Type: text/plain, Encoding: 7bit, Size: 1.7K --]
+
+Hi Will,
+just to report my compilation of 1.3.7.1 on my Debian Jessie.
+I did the steps I've always followed with all previous versions:
+- cd /src/
+- (I edit CMakeList.txt to set default alsa MIDI and compilation flags for
+core2)
+- cmake .
+- make
+- sudo make install
+
+The "sudo make install" command correctly install the LV2 plugin, but all the
+data files are being installed in the root filesystem, ie: the banks files are
+installed in /yoshimi/banks/ (I attach the "sudo make install" output).
+
+It seems that there's a problem with the cmake variable
+CMAKE_INSTALL_DATAROOTDIR, because if I edit CMakeCache.txt, replacing the
+line
+CMAKE_INSTALL_DATADIR:PATH=
+with
+CMAKE_INSTALL_DATADIR:PATH=/usr/local
+
+the data files are installed in the correct locations.
+
+    Cheers
+
+    Nicola
+
+
+
+
+Date: Mon, 7 Dec 2015 20:14:19 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Change in LV2 location
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+
+Thanks for letting me know. This is the same issue that Adam had. It seems that
+the people at exherbo are using an environment variable that is not set by other
+distros. It also seems that when I thought I'd completely cleared all Yoshimi
+cmake details from my own system in order to test this I'd left some detail
+behind. I seem to remember having this problem before and never could work out
+exactly where cmake was hiding stuff :(
+
+For the time being, I would suggest everyone move CMakeLists.txt somewhere else
+and rename CMakeListsAlt.txt to CMakeLists.txt. You probably then need to
+comment out lines 517 instead of 516.
+
+Meanwhile I'll notify the exherbo people and see what they come up with.
+
+I'll probably revert 'master' to this in the next commit as well.
+
+
+
+
+
+
+Date: Sun, 6 Dec 2015 22:07:32 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Full Circle
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+When Yoshimi was quite young, jack MIDI stability was very poor compared with
+alsa. This is because jack is far more fussy about timing issues, and we were
+directly sending data from the MIDI thread to the GUI one. Also some CCs could
+be problematical - and program changes were liable to cause storms of Xruns
+(there was no bank change at that time). Cal got round this by creating a new
+jack MIDI thread and ring buffer. However, alsa rather got left behind.
+
+After the recent improvements in response to the crash caused by badly formed
+CC storms, I realised we now had completely detached gui updates from both
+MIDI threads, and also the (potentially) stalling root, bank & program changes.
+I wondered if the original ring buffer was now redundant. It seems it is!
+
+The current 'master' has this removed. I've already tested it going via
+a2jmidid and with both Ardour-4.4 and Muse-3. I'll try to see it it will break
+on some of the other kit I've got, but it would be very helpful if others also
+tried it out - especially on non-debian distros. It only affects jack MIDI so
+if you are using alsa you won't see any difference anyway.
+
+Finally, just in case it all collapses, I've set a tag on the previous
+commit called simply 'peg' so you can easily get back to where we were.
+
+For anyone that's interested all the code changes are in MusicIO/jackEngine.cpp
+There is a lot of commented out code there now, but I won't tidy it up till
+we're sure it's good.
+
 
 
 
