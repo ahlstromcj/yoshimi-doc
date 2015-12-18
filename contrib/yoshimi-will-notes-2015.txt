@@ -2336,7 +2336,9 @@ commit called simply 'peg' so you can easily get back to where we were.
 For anyone that's interested all the code changes are in MusicIO/jackEngine.cpp
 There is a lot of commented out code there now, but I won't tidy it up till
 we're sure it's good.
+
 =======
+
 Date: Wed, 11 Nov 2015 09:40:35 +0100
 From: Lorenzo Sutton <lorenzofsutton@gmail.com>
 To: yoshimi@freelists.org, rosegarden-user@lists.sourceforge.net
@@ -2498,5 +2500,203 @@ is. Do  keep in mind these controls are per-part so won't affect anything on    
 
 If anyone has a breath controller, please give it a try and let me know if it
 works for you.
+
+
+
+
+
+Date: Sun, 13 Dec 2015 21:24:06 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Command Line - again :)
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+With things settling down again the current 'master' has some more work on this.
+
+It now has the beginnings of level sensing and reporting.
+
+If you do "set part 5 "(say)
+
+Your prompt will now show "yoshimi part 5>"
+
+and if you enter either ".." or "/" you'll go back to plain "yoshimi>", but will
+still be on part 5. There is only one level at the moment, later the two
+different forms will be significant.
+
+If you want to go back to the part level without changing the part number you
+can do "set part ?". I'll improve this later.
+
+Also once on part level "set 8" will immediately change to part number 8 and
+"set prog 107" sets the program for that part. The same is true for all the
+other part level controls.
+
+Further to that, while in part level you can still do most of the base level
+commands.
+
+Most of the commands can be reduced to single letter abbreviations so getting
+round is pretty fast:
+
+"s p 10 p 107"
+
+will set part 10 to program 107 and leave you at the part level, and after
+this:
+
+"s c 3" will change its midi receive channel to 3.
+
+I think the next bit I want to tackle is effects. This will show on the prompt
+as one of:
+
+effects system
+effects insert
+effects part n
+
+and you will then be able to change these.
+
+
+
+
+
+Date: Mon, 14 Dec 2015 15:58:49 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Command Line - again :)
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Sun, 13 Dec 2015 15:39:05 -0600
+Jonathan Brickman <jeb@ponderworthy.com> wrote:
+
+> Wow, Will.  Those are amazing developments.
+>
+> Tell me: can this be used to, say, take a single whole Yoshimi instance and
+> apply an effect such as distortion, to the whole?
+>
+> J.E.B.
+
+Eventually, yes. It will have all the controls that are available to the gui.
+However, it's not a short road :p
+
+
+
+Date: Thu, 17 Dec 2015 21:59:52 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Command Line - again :)
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Mon, 14 Dec 2015 15:58:49 +0000
+Will Godfrey <willgodfrey@musically.me.uk> wrote:
+
+> On Sun, 13 Dec 2015 15:39:05 -0600
+> Jonathan Brickman <jeb@ponderworthy.com> wrote:
+>
+> > Wow, Will.  Those are amazing developments.
+> >
+> > Tell me: can this be used to, say, take a single whole Yoshimi instance and
+> > apply an effect such as distortion, to the whole?
+> >
+> > J.E.B.
+>
+> Eventually, yes. It will have all the controls that are available to the gui.
+> However, it's not a short road :p
+>
+
+Something that's not obvious is that if you want to get an effect to cover all
+parts together, you use *insertion* effects, not system ones, and you set the
+'to' to "Master Out". System is probably a misnomer. Group would be better, but
+people are so used to this now I don't think it would be a good idea to change
+it.
+
+Anyway, command-line progress :)
+
+You can now enable and disable each part and change their volume, pan &
+keyshift. Also the major effects controls are there. That is, the effect number,
+the type (Reverb, Echo etc.) and for insertion and part, the 'send'.
+
+Part is a bit odd, because it actually sends to one of the four system effects.
+A part's own effects will always sound regardless.
+
+Trying to make all this as simple as possible for the user makes it pretty
+complicated to program! Some entries can be a mixture of names and numbers.
+e.g. insertion send is off, master, 0-{max available parts}. it also has a
+dais-chain capability between effects that I haven't done anything with yet.
+I've never actually used it.
+
+Also you can already do some quite long daisy-chains:
+
+set part 3 effect 1 type chorus
+that now puts you at the part effects level and:
+set send 2 64
+will then set effect 2 lever half way up.
+
+Oh, and list effects is pretty obvious.
+
+Most control names can be heavily abbreviated - frequently down to one letter.
+
+Many of the controls also update the gui if it's running. Effects don't, as I
+haven't worked out a safe way to do that yet :(
+
+
+
+Date: Mon, 14 Dec 2015 19:02:45 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Some rather good news.
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+The experimental 'breath control' (CC2) feature is now permanent. I've had an
+email from a user with an EWI Wind controller who is absolutely delighted with
+it.
+
+
+I've also had a very positive email from a teacher who employs Yoshimi in his
+sound synthesis and DAW courses.
+
+
+I've had reports from both fedora and debian users that cmake now seems to be
+playing nice, so fingers crossed on that one.
+
+I had (yet another) enquiry about getting MIDI into Yoshimi which finally
+goaded me into looking into this in a bit more detail. Well, it seems Cal is
+still helping us. He left 'hooks' in that I've now used in 'Settings' so that
+you can change the preferred connections for both MIDI and audio. These need a
+restart but will then be remembered.
+
+I discovered this has an interesting knock-on. Provided your main instance has
+jack audio, you can have a second instance configured for quite different MIDI
+(and audio if you have more than one sound card). This messes with the Yoshimi
+menu a bit if your second instance uses alsa audio, but it works :)
+
+What works very nicely is that you can have two (or more) instances on jack
+audio, all set for different MIDI devices and a mixture of jack and alsa MIDI.
+
+I guess a fix that's overdue is to still be able to start Yoshimi cleanly if
+there is no accessible audio.
+
+Ubuntu's next long-term release doesn't have a code freeze till mid February,
+which gives us time to put a real shine on Yoshimi beforehand :)
+
+
+
+Date: Thu, 17 Dec 2015 21:36:51 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: CC2 and Aftertouch in Yoshimi
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Thu, 17 Dec 2015 21:15:14 +0000
+Gilles <blondingilles@hotmail.com> wrote:
+
+> I have to admit I was very excited when CC2 was introduced in Yoshimi and have
+been experimenting with my EWI USB ever since. I found out that the EWI sends
+after-touch MIDI events to control vibrato or other controls and I was wondering
+if Yoshimi was capable of handling them?
+>
+> Gilles
+
+We don't support aftertouch yet. The problem is, what do you get it to actually
+change? Vibrato? Tremolo? Pitch bend. I suspect everyone would give a different
+answer :(
+
+
 
 
