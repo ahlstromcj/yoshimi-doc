@@ -2700,3 +2700,84 @@ answer :(
 
 
 
+Date: Fri, 18 Dec 2015 23:14:11 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Command Line - again and again
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Just to let you know the help menu and lists are updated, and you can now set 
+*all* effects, sends and their levels. You can also select their presets :)
+
+There is much more control possible in effects, but I'll leave that for now and
+move on to other controls. I'm trying to implement the most used ones first. Not 
+only does that make Yoshimi more usable, but gives me the chance to develop a
+better understanding of how it all goes together.
+
+I'm trying to make the most used commands have the shortest abbreviations -
+especially the top level ones. So currently we have "? (help)", "s (set)", "l
+(list)" along with "sa (save)", "lo (load)", "st (stop)", "ex (exit)".
+
+Exit could have been single letter, but I force two so it's less likely someone
+will accidentally type it. I'm also toying with the idea of adding "r (read)"
+to work in parallel with set for returning a specific value.
+
+One other thing. It occurs to me that it might be an idea to use capitals to
+help identify the minimum abbreviations. It won't make any difference to the
+parser as all commands are tested case insensitive. However, I don't know if
+that would actually be any benefit to blind musicians. I shall ask around.
+
+Onwards and upwards:)
+
+
+
+
+
+Date: Sat, 19 Dec 2015 15:17:11 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: CC2 and Aftertouch in Yoshimi
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Fri, 18 Dec 2015 16:04:28 +0000
+Gilles <blondingilles@hotmail.com> wrote:
+
+> From what I understand Channel Aftertouch is usually best suited to triggering
+LFO functions, greater pressure increasing the depth of the LFO signal, resulting 
+in a more pronounced vibrato, tremolo or other LFO-triggered effect. How is the
+LFO presently controlled in Yoshimi? By a knob controlled with the mouse? Unless
+there is more than one LFO available then maybe if Aftertouch is detected it could
+be routed there automatically.
+
+We don't have whole part LFOs, only ones on the individual engines (and not at
+all on subSynth). It's a bit strange really, because we *do* have both pitch
+bend and volume MIDI controlled on a channel/part basis.
+
+In fact you could probably emulate LFOs with an automation program feeding into
+these two controls.
+
+I don't know what would be involved in building this into Yoshimi, (or where
+we'd put the control panel), but if someone would like to look at this I'd
+certainly be interested.
+
+
+
+
+Date: Sun, 20 Dec 2015 04:32:49 +0000
+From: Gilles <blondingilles@hotmail.com>
+To: "yoshimi@freelists.org" <yoshimi@freelists.org>
+Subject: [yoshimi] Re: CC2 and Aftertouch in Yoshimi
+
+Will would it be possible to route aftertouch to the vibratto knob of the Adsynth
+voice parameter to see what kind of result it would give? Or would that be to
+complicated to do just for test purposes.
+Gilles
+
+
+
+
+
+
+
+
+
