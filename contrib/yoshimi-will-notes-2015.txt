@@ -2776,6 +2776,89 @@ Gilles
 
 
 
+Date: Tue, 22 Dec 2015 19:21:59 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Command Line - a couple of examples
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+There is an error on the help menu. I've put 'prefix' when the command is
+actually 'preset'. I've no idea why a wrote that :(
+
+Every valid command should give you a reply message. 'null' ones should too
+actually, but I've probably missed a few.
+
+I had intended to attach the effect name to the prompt. For effect presets I
+intend to add it's number in brackets, as it doesn't change level. Because the
+naming of them is so irregular this is one case where I think numbers are
+better. Normally I work on the basis that people can remember names more easily
+than numbers.
+
+I really need to sit down and write some proper documentations too.
+
+A brief example:
+
+set part eff type rev
+set pre 2
+
+This assumes part 0 and effect 0 and sets the type as reverb
+The second line selects preset number 2 (in whatever effect type you have) in
+this case cathedral reverb.
+
+This will leave you in the parts -> effects level, so '..' to go back to part
+and make any further part changes such as volume, pan, key shift, etc.
+
+If you had done:
+
+set part 5 eff 2 type reverb
+
+Then it would have made those selections along the way. Also '/' and '..' can
+be prefixed to any other command but only at the beginning of a new line. After
+the above little lot you could have done:
+
+..s v 90
+
+(set the volume)
+and then:
+
+/s p 2 en
+
+(enable part 2)
+
+Part effects are 'direct' so are immediately effective and there are three of
+them.
+
+System effects are applied to the final sound and receive from individual part
+'side chains'. There are four of them, so every part has a side chain 'send'
+volume for each system effect.
+System effects can also be sent to any one of the following ones - 0 can
+go to 1 or 2 or 3; and 2 can go to 3 only.
+
+Insert effects are independent and each can be applied to one of any part or the  final sound. There are eight of them.
+
+At part level: "s 4" changes to part four. If you'd been on vector level it
+would have changed to vector *channel* 4
+
+Talking of which, a vector example (assumes you are in the default bank root
+path):
+
+set b 110   ... sets the bank
+s av 64     ... number of parts available
+s ve cc 93  ... cc to use for channel 0 X axis
+s y         ... switch to Y axis
+s cc 94     ... cc to use for Y axis
+s x fe 1    ... switches to X axis and set features (just volume)
+s y fe 2    ... switches to Y again and set features (pan)
+s pr l 107  ... program (instrument) for Y axis 'left/up'
+s pr r 109  ... program (instrument) for Y axis 'right/down'
+s x pr l 20 ... change to X axis and program for 'left'
+s pr r 23   ... program for 'right'
+l ve        ... list currently defined vectors
+
+I worked this one out to test a number of internal switches. It found a couple
+of bugs - now corrected. It actually sounds rather nice if you use whatever
+controllers you have available for X & Y CCs, preferably on a joystick.
+
 
 
 
