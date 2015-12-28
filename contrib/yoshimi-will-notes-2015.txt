@@ -2044,6 +2044,30 @@ I've attached the problem file for anyone who wants to have a look at this.
 
 
 
+Date: Sun, 20 Dec 2015 19:52:59 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] A happy accident
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+I just realised that the new audio & MIDI 'preference' saving in 'Settings'
+also applies to command line options. This gives you a means of recovery if
+Yoshimi won't start because (say) you set it for a sound card you no longer
+have.
+
+Run from the command line as follows:
+
+If you are running with ALSA type in 'yoshimi -a=default -A=default'
+
+Or with jack running type in 'yoshimi -j=default -J=default'
+
+That will get you up and running and will remember the preferences next time. Or
+you can then go into 'Settings' and change them to what you really want.
+
+
+
+
+
 Date: Wed, 2 Dec 2015 23:07:56 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -2776,6 +2800,37 @@ Gilles
 
 
 
+Date: Sun, 20 Dec 2015 20:02:44 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: CC2 and Aftertouch in Yoshimi
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Sun, 20 Dec 2015 04:32:49 +0000
+Gilles <blondingilles@hotmail.com> wrote:
+
+> Will would it be possible to route aftertouch to the vibratto knob of the
+Adsynth voice parameter to see what kind of result it would give? Or would that be
+to complicated to do just for test purposes.
+> Gilles
+
+
+Well, that was 'interesting' :?
+
+Aftertouch is not a CC but a control type in it's own right. Also there are two 
+forms, channel and key. So, in the same way as pitch bend is translated to
+CC 1000, key aftertouch is reported as CC 900 and channel aftertouch as CC
+901.
+
+Hooks are now in place (in MusicIO.cpp) but I haven't gone any further yet.
+This needs quite a bit of thought, and I don't want to get too distracted from
+command line stuff.
+
+As usual, if anyone else wants to progress with this please do so :)
+
+
+
+
 Date: Tue, 22 Dec 2015 19:21:59 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -2858,6 +2913,295 @@ l ve        ... list currently defined vectors
 I worked this one out to test a number of internal switches. It found a couple
 of bugs - now corrected. It actually sounds rather nice if you use whatever
 controllers you have available for X & Y CCs, preferably on a joystick.
+
+
+
+
+
+ate: Sat, 26 Dec 2015 22:20:17 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Holiday
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Well I'm more-or-less back.
+
+There's a small update in master, but the Changlog has the wrong date - still
+not entirely with it :)
+
+We also have the de-pop feature ported from zyn in Add and Pad synths. There is
+an extra control in the amplitude parameters block called simply D.Pop. Its
+default setting sounds pretty much as it did without it, but you can wind it
+down to no start ramp at all or up for a much smoother note start. This isn't
+relevant for Subsynth because of the quite different engine.
+
+Currently I'm working on getting the effects gui to stay in sync when changing
+via the command line. Most C/L users will never see it it, but it needs to be
+correct.
+
+
+
+
+
+Date: Fri, 25 Dec 2015 12:58:51 +0000
+From: Gilles <blondingilles@hotmail.com>
+To: "yoshimi@freelists.org" <yoshimi@freelists.org>
+Subject: [yoshimi] Re: I would like to contribute to Yoshimi development
+
+Hi Csaba, I believe you might find what you're looking for at this address
+https://github.com/licnep/yoshimi
+I can't wait for MIDI learn to be fully implemented so the more developers are
+involved the merrier.
+Gilles
+
+
+
+
+
+
+Date: Sat, 26 Dec 2015 22:44:27 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: I would like to contribute to Yoshimi development
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Thu, 24 Dec 2015 17:48:51 +0100
+Csaba Erdei <csaba.erdei@algaebt.hu> wrote:
+
+> Dear All,
+>
+> I am an IT professional and hobby musician and I am interested in
+> Yoshimi development. I would be happy to contribute to the MIDI learn
+> feature and improving copy/paste presets. Do you know that someone
+> started working on them already? Do you have any concept, idea or
+> requirement about these?
+>
+> Thanks and Regards,
+>
+> Csaba Erdei
+
+Hi... again :)
+
+From a usability point of view I much prefer the appearance of the first
+midi learn attempt - I've placed it in a separate branch: 1.0-midi-learn
+
+However it is well out of date, and also had some bad implementation issues.
+
+As well as clear indication of what has been set, it gives you the opportunity
+to change the min/max values, and even make min > max, thus reversing the         ffect of the control.
+
+It also allows you the have one CC attached to several actual controls.
+
+Instead of MusicIO, the pickup point should be in SynthEngine.cpp ->
+SynthEngine::SetController(
+
+This is for several reasons. The first is that it then can't interfere with
+root/bank/program changes. Also, at this point pitch wheel, Channel and key
+pressure have all been converted to accessible CCs.
+
+Finally, it will be able to pick up vector controls and re-route them to other
+effects - this will (eventually) massively expand the vector control features!
+
+
+
+Copy and paste is far more sophisticated than a lot of people realise, although
+I agree that the interface is not very friendly. I don't think people realise
+that when pasting, you only get shown the the presets that are relevant to that
+part of the synth. I rather think that 'presets' is the wrong word here, as
+people are likely to confuse it with the effects presets.
+
+The way it works is to store a 'copy' as an XML stub, which can either be pasted
+elsewhere or stored to file with an appropriate header. When you pick one from
+file it simply reverses the process.
+
+
+
+
+
+Date: Sun, 27 Dec 2015 11:23:24 +0100
+From: Csaba Erdei <csaba.erdei@algaebt.hu>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Midi Learn feature
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+        Thunderbird/38.4.0
+
+Hi All,
+
+I am splitting my topic to two, one is MIDI learn, other will be the
+Copy/Paste to make discussions more comfortable.
+
+Thanks for your comments, it is good to talk about it. My original plan was to
+port this feature from Zyn 2.5.1/2.5.2 but I will review branch 1.0-midi-learn
+and add those usability improvements bellow. Good idea. As well as using
+SynthEngine.cpp as entry point.
+I also plan to maintain some compatibility with Zyn at least to be able to
+load MIDI learn configurations saved by Zyn to Yoshimi and back.
+
+I reviewed https://github.com/licnep/yoshimi some time ago and if everyone
+agree let us consider it outdated and take 1.0-midi-learn as a starting point.
+
+Regards,
+
+Csaba Erdei
+
+
+
+
+
+Date: Sun, 27 Dec 2015 11:47:00 +0100
+From: Csaba Erdei <csaba.erdei@algaebt.hu>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Copy/Paste bug fixing, improvements
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+        Thunderbird/38.4.0
+
+Hi All,
+
+As I see copy to clipboard and paste from clipboard works, however saving and
+loading presets do not.
+
+What I did:
+
+1. Edit->ADDsynth Edit->Show Voice Parameters->Current voice 1->C->Copy to
+Preset then named my preset int the text entry field as abcd
+
+2. Current voice 2->P but I do not see my preset abcd in the list. However a
+file appeared in presets dir called abcd.ADnoteParametersn.xpz
+
+I have a preset called ResetGlobal.ADnoteParameters.xpz for AddSynth Global,
+and it appears in the list, but it is not applicable here.
+
+Copy to Clipboard and Paste from Clipboard does not work for modulation
+settings. Maybe it should have different C/P buttons?
+
+It seems to me a bug and some usability problem.
+
+Do you use or test regularly this functionality? Did you see bugs like this
+somewhere else?
+
+I plan to add system clipboard integration as a ccmake option which is off by
+default. It is might my personal working style only that I like to see the
+world trough ssh and vi editor but this minor optional code does not make much
+confusion.
+
+Regards,
+
+Csaba Erdei
+
+
+
+
+
+ate: Sun, 27 Dec 2015 22:42:42 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Copy/Paste bug fixing, improvements
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Sun, 27 Dec 2015 11:47:00 +0100
+Csaba Erdei <csaba.erdei@algaebt.hu> wrote:
+
+> Hi All,
+
+
+
+
+Just rechecked this (I'd done some work to clear bugs a few months ago)
+copy/paste to clipboard seems to work OK here. Sub & Pad seem OK sending to
+file. Add global also seems fine. It seemed to include the modulation effects.
+
+It's a bit strange about the voice one. The fault is not in the saving, but the
+loading which is supposed to recognise that extra 'n' as meaning just a single
+voice.
+
+
+
+
+
+
+Date: Sun, 27 Dec 2015 22:17:11 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Mouse wheel scroll for sliders
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Sun, 27 Dec 2015 11:50:21 +0100
+Csaba Erdei <csaba.erdei@algaebt.hu> wrote:
+
+> Hi All,
+>
+> What do you think about implementing mouse wheel scrolling for sliders
+> same way as for dials? Standard controls should be touched for the MIDI
+> learn feature and it would be easy to add this feature too.
+>
+> Regards,
+>
+> Csaba Erdei
+>
+> Yoshimi source code is available from either:
+http://sourceforge.net/projects/yoshimi
+> Or: https://github.com/Yoshimi/yoshimi
+> Our list archive is at: https://www.freelists.org/archive/yoshimi
+> To post, email to yoshimi@freelists.org
+
+Yes. It's something that I think was discussed some time ago. It would be good
+if, like the rotary knobs, holding down Ctrl at the same time gives very fine
+control.
+Yoshimi source code is available from either:
+http://sourceforge.net/projects/yoshimi
+Or: https://github.com/Yoshimi/yoshimi
+Our list archive is at: https://www.freelists.org/archive/yoshimi
+To post, email to yoshimi@freelists.org
+
+
+
+
+
+
+Date: Sun, 27 Dec 2015 16:46:52 +0000
+From: contraband aardv <contrabandaardv@outlook.com>
+To: "yoshimi@freelists.org" <yoshimi@freelists.org>
+Subject: [yoshimi] LV2 plugins?
+
+Hi, I am unsure of which plugin to use in Qtractor. "yoshimi" and "yoshimi-multi" 
+both show up, and they seem to behave the same way. I am worried about using up
+excess cpu, because for every new midi track it seems that a new yoshimi instance 
+is opened. Does this consume more cpu? Is there a way to connect different midi
+tracks to the same instance of Yoshimi( with different channels, the way you would
+do it with the standalone version)? Besides using the standalone Jack version,
+because I like to be able to save the whole project in Qtractor.
+
+To clarify this shouldn't be a DAW/sequencer specific question, I would like to
+know how to do the same thing in Ardour, for instance.
+
+Thank you for your time,
+
+Contraband
+
+Date: Sun, 27 Dec 2015 20:49:38 +0400
+From: Andrew Deryabin <andrew@danvd.me>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: LV2 plugins?
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+        Thunderbird/38.5.0
+
+Hi,
+
+-multi version exposes one stereo output for each channel, so in default setup
+you will get 2x16 stereo audio outputs.
+ordinal version mixes all channels into one stereo output.
+
+
+Date: Sun, 27 Dec 2015 22:14:23 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: LV2 plugins?
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+I can't remember the details but last time I setup Qtractor from scratch I
+discovered that you don't set a yoshimi per track, but one 'overall' instance,
+and then set your tracks to the various part numbers. In pretty much the same
+way as standalone.
 
 
 
