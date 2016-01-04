@@ -3206,6 +3206,7 @@ way as standalone.
 
 
 
+
 Date: Mon, 28 Dec 2015 23:02:46 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -3248,6 +3249,35 @@ reader at the same time.
 
 Ho Hum. I really wanted a break from software :(
 
+
+
+
+Date: Mon, 28 Dec 2015 16:39:51 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Copy/Paste bug fixing, improvements
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Sun, 27 Dec 2015 22:42:42 +0000
+Will Godfrey <willgodfrey@musically.me.uk> wrote:
+
+> > I plan to add system clipboard integration as a ccmake option which is
+> > off by default. It is might my personal working style only that I like
+> > to see the world trough ssh and vi editor but this minor optional code
+> > does not make much confusion.
+
+Actually, I can imagine this would be helpful to blind musicians as well.
+
+Rather than a compile time option, can it be made runtime, with a switch in
+'Settings'?
+
+We've slowly been moving all of these across, because compile time options cause
+headaches for the distros and confusion for users when people talk about
+features they can't see.
+
+For example, although we still have the jack/alsa options, they will be
+going soon. These are the latest to be made runtime accessible, albeit with a
+restart needed - changes on the fly would be a nice improvement :) 
 
 
 
@@ -3372,4 +3402,661 @@ Correct me if I missed something :)
 
 
 
+Date: Wed, 30 Dec 2015 13:44:24 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Eating your own dog food...
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
 
+[-- Attachment #1 --]
+[-- Type: text/plain, Encoding: 7bit, Size: 2.6K --]
+
+On Mon, 28 Dec 2015 18:19:00 -0500
+Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
+
+> Sounds like you built yourself a good test song!
+> :-)
+
+Humpf!
+
+Sometimes I think Yoshimi is playing games with me.
+
+Today I did run after run with just 1 (inaudible) Xrun. However, I'm getting
+more convinced that this is a memory allocation problem, as I was later able to
+produce a lot of them. The sequence of events was as follows.
+
+I started Qjackctl, then Yoshimi, then Rosegarden.
+I loaded the problem file into Rosegarden and ran it repeatedly - no Xruns.
+
+With Rosegarden still in place I ran aplaymidi with a midi version of the same
+file. In the third run I got my one measly Xrun.
+
+I made a cup of tea - probably highly significant (ask Arthur Dent) :)
+
+
+I then closed Rosegarden and hit the reset button on Yoshimi.
+Next time I ran aplaymidi there were lots of Xruns, the worst of which occurred
+when loading patches with a PadSynth component.
+Immediately running aplaymidi again produced just 1 Xrun, and the run after than
+none at all.
+
+So, here is what I'm guessing.
+
+On the first run the memory map is well ordered. Rosegarden is sitting 'above'
+Yoshimi (which will have a full set of default parts). As each part gains a new
+patch, memory will be allocated above Rosegarden, as the existing part space
+will be too small. Later overwrites of parts will again move up if the new one
+is too big for the current space.
+
+Removing Rosegarden then clearing down Yoshimi probably returns parts to the
+original space, but now there is a highly fragmented area sitting above it where
+Rosegarden was, so when larger blocks are called for, the system has to scramble
+to garbage collect.
+
+PadSynth patches require a sizeable block of continuous memory, which would
+explain their greater susceptibility.
+
+I could of course be quite wrong :)
+
+If anyone wants to play with this themselves I've attached the midi file. There
+are only a few requirements.
+
+In MIDI settings Root Change must be 0, and Bank Change LSB. Program change must
+be enabled, as must Enable Part On program Change.
+
+Root Path ID 9 should point to the default set that comes with Yoshimi, and to
+get the drum track it needs to be from the latest master. 'Moor Drums' was
+never generally available before.
+
+Oh, talking of dogfood, there have been quite a few docs updates Chris :D
+Most significantly, Command_Line.txt now actually tries to explain how to use
+this instead of just giving a list of (now changed) commands!
+
+
+
+
+Date: Thu, 31 Dec 2015 17:56:22 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Eating your own dog food...
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Thu, 31 Dec 2015 10:09:37 +0000
+"Tom" <dmarc-noreply@freelists.org> (Redacted sender "madtom1999" for DMARC)
+wrote:
+
+> Just a thought but can you tell what causes the xruns - is there any
+> data there that tells you what midi data caused it. Is there a debug
+> version.setting for jack that will allow you to find out then you may
+> have a little clue as to where in yosh its going funny.
+> Tom - master of teaching grandma to suck eggs.
+
+Hi Tom,
+
+The sun was out all day today, therefore so was I :)
+
+Yes I know with reasonable precision :(
+It's MIDI derived program changes that occur while several parts are sounding.
+It's mostly instruments that have a padSynth engine.
+It's also most likely to occur on the parts that have switched instruments
+several times.
+
+Everything points towards memory management. PadSynth patches have to set up
+then fill 8 samples of whatever sample size is set. However, I've made a tiny
+improvement by making the Program Change thread lower priority. I use ALSA MIDI
+and it used to be at the same level.
+
+Jack reports 'not finished' sometimes with 'running' sometimes 'triggered'. This
+is followed by a number of 'process error' messages.
+
+I'm afraid that I'm really not clued up with debug info. Harry used to help me
+out a lot here, but he seems to be too busy doing other things these days.
+
+
+
+
+
+Date: Thu, 31 Dec 2015 00:51:04 +0400
+From: Andrew Deryabin <andrew@danvd.me>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Big MusicClient rewrite :)
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+        Thunderbird/38.5.0
+
+Hi Will, All,
+
+Just pushed new commit 131ace1.
+
+Don't panic about 8 removed files. If you will ever need them, you can
+checkout any previous commit and they will appear again.
+
+Here is a step-by-step explanation of new changes:
+
+I removed 8 files: AlsaJackClient.cpp/h, JackClient.cpp/h,
+JackAlsaClient.cpp/h, AlsaJackClient.cpp/h.
+Now all combo driver functionality is handled by one class: MusicClient.
+
+Interface became more universal. How it works:
+
+Here is the function newMusicClient in MusicClient class. Before my changes
+this function created default audio/midi driver pair and if this had no
+success, yoshimi simply failed to start.
+
+Now the behavior is different.
+There are 3 drivers for audio: jack_audio, alsa_audio, null_audio
+and 3 drivers for midi: jack_midi, alsa_midi, null_midi.
+When creating new music client, default driver pair is tested first. If it
+fails, then new algorithm tries to open combos in following order:
+
+jack_audio/jack_midi (if is was not the first)
+jack_audio/alsa_midi
+alsa_audio/alsa_midi
+jack_audio/no_midi
+alsa_audio/no_midi
+no_audio/no_midi
+
+Now yoshimi will never fail it's startup because of new driver 'no_audio'
+which is a simple thread, that calls masterAudio at constant intervals
+emulating virtual audio device.
+
+Now, if default audio/midi pair fails, no questions are asked and fallback
+pairs are probed automatically. Don't know if there is a probability that user
+will tap 'No' to question about switching to alternate pair.
+
+--
+Regards,
+Andrew
+
+
+Date: Wed, 30 Dec 2015 21:40:12 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Big MusicClient rewrite :)
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Thu, 31 Dec 2015 00:51:04 +0400
+Andrew Deryabin <andrew@danvd.me> wrote:
+
+> Hi Will, All, ......
+
+
+
+That was remarkably quick work.
+
+I've just checked it out. The changes work well but there is a problem.
+
+When using Jack audio the pitch is shifted about a semitone high, and the
+startup message says samplerate is 44.1K although I have jack set to 48K.
+If I set jack to 44.1K then it's OK. 
+
+
+[It gets fixed]
+
+
+
+ate: Wed, 30 Dec 2015 21:57:29 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Big MusicClient rewrite :)
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Works fine now. I just tested it on all rates that jack supports from 22000 up
+to 192000
+
+Very pleased with this :) :)
+
+
+
+Date: Wed, 30 Dec 2015 22:29:57 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Big MusicClient rewrite :)
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Picked up the LV2 adjustment and updated changelog :)
+Pushed to github as well.
+
+
+
+Date: Wed, 30 Dec 2015 22:41:36 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Yoshimi device detection
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+... so you see Chris, even Andrew is making work for you :D
+
+Actually, this is something I've wanted sorted out for a very long time.
+
+
+
+
+
+Date: Thu, 31 Dec 2015 20:31:55 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Last commit for 2015 :)
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+You can now legitimately have different instances with different backends, no
+matter what the main instance is.
+
+If you have three soundcards you could have the first instance of yoshimi
+reserving soundcard 2 while soundcard 1 is dedicated to jack with instances 2
+and 4 using it, while instance 3 uses your 3rd card.
+
+At the same time instances 1 and 2 could be getting midi via jack while 3 and 4
+fetch from alsa.
+
+If you are working under LV2 then the jack and alsa setup tabs will be
+deactivated.
+
+
+
+
+Date: Fri, 1 Jan 2016 18:03:43 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Priorities!
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Today I had the bright idea of running htop - something I should have done some
+time ago.
+
+There's jackd right at the top, and directly beneath it three yoshimi threads.
+One that just seems to be sitting doing nothing, one with just occasional small
+bursts of activity that are obviously the program changes, and another with
+considerable fairly steady CPU demand - the main audio thread.
+
+Well, so what? It took a few minutes to realise that the program thread
+was *above* the audio one! Changing the priority decrease value for the program
+thread to 7 completely got rid of the Xruns, and it now also runs Xrun free
+with a buffer size of 64... and while running this email reader :)
+
+With hindsight, it's jack that determines the priority of the audio thread so
+maybe we need to find a way of discovering this, and keeping everything else
+below it.
+
+I've still no idea what the more-or-less dormant thread is doing {shrug}
+
+
+
+But... there's more!
+
+I've know for some time there is a flag used to mute audio while an instrument
+is being loaded and set up, and always thought this was for just that part, but
+in fact the entire audio output is muted, which seems quite wrong. I don't know
+why I've never noticed this but it must potentially create silent gaps.
+
+Obviously you don't want the audio thread trying to access a part that's in an
+undefined state but I thought maybe there was another mechanism we could use.
+Well there *is* a flag that is per part, but not within the part structure, and
+it's what partonoff() uses. This is the sequence I tried.
+
+Take copy of part status
+Turn part off
+Perform program change
+if 'enable part on program change' is set
+  enable part
+else
+  restore part to saved state
+
+My reasoning is that if this flag is set outside the audio mutex, then as the
+parts are scanned this one will be passed over. Once the mutex has been set,
+the flag can't change so the ringbuffer just waits until the mutex clears. A
+worst case jitter of one period on a program change really isn't going to
+matter at all!
+
+This seems to work quite correctly. I'll give it some more trials before
+pushing it out though, and if anyone can see a logic issue hidden in there let
+me know!
+
+So there you go. Hopefully a promising start to 2016 :)
+
+
+
+
+
+Date: Sat, 2 Jan 2016 08:31:58 +0000 (UTC)
+From: John Fox <dmarc-noreply@freelists.org>
+To: "yoshimi@freelists.org" <yoshimi@freelists.org>
+Subject: [yoshimi] Hardware Recomendations For Portable System
+
+Gday Everyone...
+My name is John. I'm looking to build a portable synth, which will be yoshimi
+running off a 12v battery.. I've had a little bit of sucesss with an Atom D525 @
+1.80GHz with 2G RAM through the on board intel sound card on a fan-less low power 
+machine. However I'm sure the much more room for improvement... Do you guys have
+any suggestion for suitable hardware / interface configurations for a project like
+this? I was thinking of using a 37 Key controller from Sythesizers.com too. I'd be
+interested to hear your ideas, especially on what kind of specs yoshimi really
+likes.
+
+
+
+Date: Sat, 2 Jan 2016 11:30:54 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Hardware Recomendations For Portable System
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Sat, 2 Jan 2016 08:31:58 +0000 (UTC)
+"John Fox" <dmarc-noreply@freelists.org> (Redacted sender "sirjohndfox" for
+DMARC) wrote:
+
+Hi John,
+
+Just over a year ago I got a very compact fanless computer from Scan
+Computers. This was intended as an 'office' machine where small size and
+quietness were the priorities. It has a dual core Intel i5 processor. However, I
+found that if I disable the internal sound and connect a KA6 I get *very* good
+performance, sometimes exceeding that of my dedicated DAW!
+'ve heard of people doing the same with i5 based laptops. Many laptops use a
+19V external power supply, but if you hunt around you can get DC-DC converters
+that take 9-18 in and push out exactly 18V. This is ideal for a battery supply
+and fine for the laptop.
+
+However be wary of hyperthreaded machines, they tend to be bad news as
+they share a floating point unit between cores. Yoshimi uses almost entirely
+floating point calculations so a quad core hyperthreaded processor can
+actually perform worse than a standard dual core one.
+
+I also recommend using a very lightweight window manager such as xfce.
+
+When using any USB devices, from a terminal window type 'lsusb' to see what
+devices are on what Bus then experiment with swapping what you have plugged in
+so that your sound stuff has the minimum contention (ideally none). A MIDI
+keyboard/controller is less critical, but if you have the ports
+available it's worth the effort.
+
+
+
+
+ate: Sat, 2 Jan 2016 11:35:25 -0600
+From: Jonathan Brickman <jeb@ponderworthy.com>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Hardware Recomendations For Portable System
+
+John, that is a remarkable question you have there.  Obviously you mean
+"portable" to a much larger extent than my box is!  I'll suggest that
+Yoshimi likes a very wide variety of hardware, depending entirely on what
+you're doing with it.  My synth runs three Yoshimis with two tones each,
+plus an additional, and several other components also including a few Calf
+chains for postprocessing; I could probably go twelve-volt-portable if I
+bought a Tesla and drove it everywhere :-)
+
+But you're clearly building something closer to a backpackable rig.  Very
+interesting project.  A few thoughts.
+
+On-board sound is very likely to save you power, as I imagine you have
+already thought.  If your Atom is giving you enough computational power, I
+will think that one of the higher-end Raspberry Pi compatibles is likely to
+do you better, if you can find one with enough computational, because a
+great many of them are being explicitly made for home-theatre devices,
+which means audio quality.  I do not know how your Atom compares with any
+of the very different ARM chips, but someone must have done a comparison?
+ARM is very stingy indeed with power.
+
+It is true that the last time I tried audio on my RPI2 it was challenging
+enough that I went on to other things :-)  But lots of people are reporting
+great success and high quality, and a better device explicitly made for
+home theatre will have specific instructions on the supplier / developer
+web site, which instructions I never found for my hardware combo.
+
+You can also reduce power usage a whole lot by using SSD or USB stick as
+storage.  If you do this, set up the machine to depend as much as possible
+on storage running BTRFS with all of the SSD special settings in fstab, to
+avoid wearing out the SSD or USB very quickly, and be careful with backups
+too.  If you use an RPI2 or something like, you can keep the OS in default
+fashion on the bundled microSSD, and then put everything which changes a
+lot (working data, logs) on the BTRFS device.  My own current RPI2 joy is
+discussed here
+<http://notes.ponderworthy.com/a-raspberry-pi-2-makes-a-great-roll-your-own-dropbo
+x-server>,
+though it is not an audio project.
+
+MIDI may possibly give different problems.  I still sometimes see better 
+reliability of MIDI-DIN than MIDI-USB.  Obviously MIDI-USB will save you
+power, because there is no signal converter between your synth and the
+keyboard, so I would try that first and if it's good you're in; otherwise I
+can heartily recommend the Yamaha UX-16
+<http://usa.yamaha.com/products/music-production/accessories/usb-midi/ux16/>,
+I have never had a failure of one of these, and I have three, one of them
+more than ten years old.  But the larger issue that keeps me on my toes in
+this, is USB ports and cables wearing out.  USB-A was never designed for
+unplug/replug very often.  But my box is a big mid-tower, and so it is easy
+for me to replace ports, and so I do.  If I were you, I would choose your 
+next box for replaceability of USB ports, which in small-portable means (a)
+pin-header USBs on its little motherboard and (b) some generic form of 
+panel USB ports.
+
+I do not know if there is an equivalent of the ATX standard for
+very-small-form-factor specifying a front port panel and a set of
+manufacturers which will supply USB front panel ports, but I would look for
+this next.  An ARM minimicroATX standard with good manufacturer support may
+well exist at this point -- the home-theatre market is huge, though
+possibly mostly outside of the U.S. if my web research results are
+indicative -- but it also may not, and if it doesn't, I would find a
+home-theatre-oriented smallest-ATX Atom motherboard, and a case convenient
+for you (a handle is nice), and use ATX.  That way you will avoid a lot of
+pain and expense!  And do keep spare USB cables, USB ports, et cetera, in
+your travel bag.  When USB goes out it sometimes gives warning -- sometimes
+a reseat will make things work the first five or six times -- but sometimes
+it gives no warning at all, and you will find yourself frantically checking
+every cable over and over again trying to figure out what is going on :-) 
+
+
+One thing I would very much like to do, is to use microUSB on the synth
+side, as microUSB was designed for phones and has the highest rated
+durability of any port except the historic quarter-inch mono phone jack.
+But I have yet to find a PCI or PCI-E microUSB adapter card, and I have
+done a lot of looking and asking.  I have more hope with USB-C, but some
+USB-C ports are being rated considerably less than microUSB...although some
+are rated the same.  So this is a probable future for me, whenever my
+current ports wear out :-)
+
+J.E.B.
+
+
+
+
+Date: Sat, 2 Jan 2016 21:10:39 +0000
+From: Gilles <blondingilles@hotmail.com>
+To: "yoshimi@freelists.org" <yoshimi@freelists.org>
+Subject: [yoshimi] Re: Hardware Recomendations For Portable System
+
+Hi everybody, I have been running Yoshimi on an ARM device without any issues for
+over a year now. It's an Odroid quad core that uses 5vdc and is running on a
+Ubuntu Studio 13.10 ARM version called Smooth Groove. I will often be running
+Yoshimi, Qsynth, Hydrogen, Seq24, Jack and Ardour3 all together with a Behringer
+UMX610 keyboard and two control surfaces without a glitch. And now that Will has
+graciously implemented the CC2 Breath control feature in Yoshimi I'm looking into
+running it monitor-less off a 5vdc battery pack on my belt with a USB wireless
+keyboard for Command mode and a bluetooth dongle to send the sound to an
+amplifying system so I can play my EWI USB on stage without being attached to a
+cable.
+
+
+
+
+ate: Sun, 3 Jan 2016 00:08:18 +0000
+From: Gilles <blondingilles@hotmail.com>
+To: "yoshimi@freelists.org" <yoshimi@freelists.org>
+Subject: [yoshimi] Re: Hardware Recomendations For Portable System
+
+The EWI USB as it's name suggests uses a USB port instead of MIDI and is handled
+by Jack very nicely. As for bluetooth I haven't decided what to do yet. Go for a
+transmitter/receiver kit hooked up to a regular amplifier and speakers which I
+already own or use a dongle and get a set of professional bluetooth self powered
+speakers. Not sure but I'll be shopping soon now.
+
+
+
+
+Date: Sat, 2 Jan 2016 23:46:31 +0000
+From: Gilles <blondingilles@hotmail.com>
+To: "yoshimi@freelists.org" <yoshimi@freelists.org>
+Subject: [yoshimi] Re: Hardware Recomendations For Portable System
+
+It's the Odroid U3
+
+
+* 1.7GHz Quad-Core processor and 2GByte RAM
+
+* 10/100Mbps Ethernet with RJ-45 LAN Jack
+* 3 x High speed USB2.0 Host ports
+* Audio codec with headphone jack on board
+* GPIO/UART/I2C ports
+* XUbuntu 13.10 or Android 4.x  Operating System
+* Size : 83 x 48 mm, Weight : 48g including heat sink
+Ordered the case along with it and no cooling fan is needed
+
+
+It's been discontinued but replaced with the U4 model going for $75.00. I'll be
+testing with the Orange Pi next week. At $15.00 a crack if it's as good as the
+Odroid it's a steal. Technology moves up and prices go down. What a wonderful
+world.
+
+
+
+
+Date: Sat, 2 Jan 2016 17:29:07 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Yoshimi 1.3.8
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Wait for it! Not quite yet :)
+
+I'm intending to release this about the middle of the month (I may have
+mentioned this before) to catch the next ubuntu long term release.
+
+If anyone is seeing problems please double-check against the current master,
+and if they persist let us know!
+
+I'm not expecting to do anything dramatic between now and then, but will
+probably continue to pootle about with the command line.
+
+Pootle - an arcane term known only to those steeped in the art of [REDACTED]
+
+
+
+
+
+
+
+Date: Sun, 3 Jan 2016 11:37:27 +0100
+From: Frank Neumann <beachnase@web.de>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Slightly irritating startup behaviour with "&"
+X-Mailer: Sylpheed 3.4.1 (GTK+ 2.24.23; x86_64-pc-linux-gnu)
+Organization: Disorganized, kind of.
+
+
+Hi all,
+
+with the recent advent of the command line interface, I found something that's
+"just slightly" confusing for me and might be for others too:
+
+I am used to start my programs (including yoshimi) on the command line instead
+of double-clicking, just so I can see any suspicious console output.
+Also, I am used to detaching it from the shell via "yoshimi &" to have the
+shell available for additional commands.
+
+However, this collides with the command line interface of Yoshimi:
+
+franky@silence:~> yoshimi &
+[1] 6990
+franky@silence:~> Yoshimi is starting
+
+Yay! We're up and running :-)
+/home/franky/.yoshimi_history: No such file or directory
+
+
+[1]+  Stopped                 yoshimi
+
+Ok, so what happens is that I get to see the splash screen, but the
+GUI doesn't come up. If I use "fg" to "foreground" the detached shell job,
+it continues fine.
+
+The "&" is likely conflicting with the command line interface which wants to
+read from stdin - which is getting suspended here.
+
+A suggestion: Add a new parameter "-cmd" or such, and only when it's given,
+activate the interactive command line.
+
+Greetings (oh, and a late happy new year too ;-),
+Frank
+
+Response:
+
+It's already here, but is shorter: '-c' :).
+Just checked - with command line disabled yoshimi starts in background w/o
+problems.
+
+
+
+Date: Sun, 3 Jan 2016 11:13:41 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Slightly irritating startup behaviour with "&"
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+
+
+I wonder if this should be the other way round. At the moment you use the -c
+option of you *don't* want to send commands to a running Yoshimi, although I've
+no strong feelings on the matter myself.
+
+As a point of interest, having Settings->Send Reports set to 'Console' will give
+you reporting of all non-fatal errors in the 'Reports' window, and with the
+latest improvements, fatal ones are far less likely.
+
+
+
+
+Date: Sun, 3 Jan 2016 12:27:05 +0100
+From: Frank Neumann <beachnase@web.de>
+To: yoshimi@freelists.org
+Cc: Will Godfrey <willgodfrey@musically.me.uk>
+Subject: [yoshimi] Re: Slightly irritating startup behaviour with "&"
+X-Mailer: Sylpheed 3.4.1 (GTK+ 2.24.23; x86_64-pc-linux-gnu)
+Organization: Disorganized, kind of.
+
+
+Hi again,
+
+hm..one more finding:
+
+> > It's already here, but is shorter: '-c' :).
+> > Just checked - with command line disabled yoshimi starts in background
+> > w/o problems.
+
+Ok, that works, but at least in my case (starting Yoshimi with "yoshimi -c &"),
+quitting Yoshimi via the close widget in the main window's top right (or left,
+depending on WM) corner is delayed until I press "fg" once more in my
+controlling shell/xterm.
+
+	[It's a bug]
+
+I guess this means that command line interface and GUI are living in the same
+thread, and one can suspend the other. Having the CLI in a separate thread might
+fix it, but perhaps the easy solution would really be to simply make "console
+disabled" the default mode - someone working exclusively with the console (like
+a blind musician) would also use the console to quit it (btw - there is no "quit" 
+command in the console at this point?), and someone using it mostly
+interactively would perhaps not care about command line a lot.
+
+   [The command line is in a separate thread when active and then you have
+     an 'exit'  command as well as gui closure. That setup seems to work
+      completely correctly.]
+
+
+
+
+
+
+
+
+
+ 
