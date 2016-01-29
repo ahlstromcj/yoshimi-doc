@@ -4055,6 +4055,532 @@ interactively would perhaps not care about command line a lot.
 
 
 
+Date: Thu, 7 Jan 2016 13:52:42 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org, Frank Neumann <beachnase@web.de>
+Subject: [yoshimi] Yoshimi command line with '&'
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Hi Frank,
+
+Hopefully this is now resolved in the current master. It works correctly for me
+although the exit isn't quite as neat as I would have liked. You don't
+immediately see the original prompt and there's an extra message on the next
+line whether it is a newline or a complete command.
+
+Please give it a try and let me know:
+
+        yoshimi -c &
+
+
+
+Date: Thu, 7 Jan 2016 14:04:15 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] The Swan - Yoshimi 1.3.8
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Up to now we've never used codenames but I think this is appropriate.
+
+We're still on target for a release this month although there is an issue with
+changing between alsa & jack that I want resolved first.
+
+The command line has been re-ordered a bit and 'help' is now context sensitive.
+
+Program Change behaviour has been improved and is more robust.
+
+A rare bug-ette in SubSynth has been squashed.
+
+appdata and desktop files have been updated which should help those using gnome
+or other environments that use these files (I don't).
+
+P.S.
+Watch a swan on a lake :)
+
+
+
+
+
+Date: Sat, 9 Jan 2016 17:40:26 -0500
+From: Rob Couto <dbtx11@gmail.com>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: The Swan - Yoshimi 1.3.8
+
+Hi, sorry to report it's all working fine for me, too...
+
+On 1/9/16, Jonathan Brickman <jeb@ponderworthy.com> wrote:
+> Is there a log I can send up that will help?
+
+Yes, could you start from zero again, and instead of ccmake <dir>, run
+cmake <dir> to just set up with all defaults, and then post the
+console output and attach CMakeFiles/CMakeOutput.log? btw if you run
+
+ldd `which cmake`
+
+it will show you the list of run time dependencies, and any one of
+those libraries being recently updated to a dodgy build could result
+in this. If you run
+gdb --ex run --args `which cmake` <dir>
+then when it crashes it should at least show the filename that brought
+in the function where it died though TBH it might not even be the
+culprit.
+
+
+
+
+ate: Sun, 10 Jan 2016 12:53:29 -0500
+From: Rob Couto <dbtx11@gmail.com>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: The Swan - Yoshimi 1.3.8
+
+On 1/10/16, Will Godfrey <willgodfrey@musically.me.uk> wrote:
+> So, backpedaling a bit. Did you say the same version of cmake you compiled
+> yourself worked correctly?
+
+You mean 3.4.1? To be precise, that's compiled and installed by
+portage more or less automatically and yes, it still works. There are
+also patches that come in and wouldn't be in Debian, and you can find
+them in
+
+https://github.com/funtoo/ports-2012/tree/funtoo.org/dev-util/cmake/files
+
+and the ones that this version actually uses will be listed in PATCHES here:
+
+https://github.com/funtoo/ports-2012/blob/funtoo.org/dev-util/cmake/cmake-3.4.1.eb
+uild
+
+Can't say whether any of that matters-- hadn't quite gotten to
+comparing that ebuild with Debian's own info and patches. A while ago
+I started "apt-get source --compile cmake cmake-curses-gui cmake-data"
+but the virtual disk is too small and filled up too soon. That was
+just to see if rebuilding in Debian's own way with an updated
+environment would help, and to get the files it uses.
+
+It's easy to type "emerge cmake" and check back in a while ;)
+
+For Debian-based distros (especially if this is limited to it and
+them), I'd say people should just downgrade cmake like I did, until
+either of those bugs gets fixed & closed. For Sparky I duplicated the
+lines in /etc/apt/sources.list changing testing to stable (but they
+would probably want to place the new lines in
+/etc/apt/sources.list.d/something.list). It can reach old and new but
+it will always try to run the newest and so pull everything from
+testing anyway-- except where they specify with 'apt-get install
+cmake=3.0.2-1 cmake-data=3.0.2-1 cmake-curses-gui=3.0.2-1'. Then
+they'd want to 'apt-mark hold' that version. Later on when 3.4.x
+works, they would unhold, maybe move that something.list file, update,
+and upgrade.
+
+Although I recently finished customizing a Raspbian image, Debian and
+derivatives aren't my thing. So if anything there is wrong, now you
+know why. I know I'll need to be testing on more of them soon, so it's
+just as well to start playing with one now.
+
+So, I'm back to trying out apt-get source --compile again. HTH
+
+
+
+
+Date: Thu, 14 Jan 2016 21:04:10 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] The Swan has been released
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+lets hope it really flies :)
+
+Just had a though. Do any of you get into social media, Twitter etc? If so,
+fancy giving us a bit of a plug?
+
+
+Just to remind you of all that's been happening:
+
+Yoshimi 1.3.8 highlights
+
+We have our first code name: The Swan
+
+MIDI program changes have always been pretty clean from the time Cal first
+introduced them, but now GUI changes are just as clean. While it is generally
+best to change a program when the part is silent, even if a part is sounding
+there is usually barely a click. There is no interference at all with any other
+sounding parts.
+
+Sometimes MIDI CCs don't seem to give the results you expect. Well, there is
+now a setting that will report all incoming CCs so you can discover what
+Yoshimi actually sees (which may not be what you were expecting).
+
+At the request of one of our users, we have now implemented CC2, Breath Control.
+
+The 'Humanise' feature has had more interest so it's been upgraded. It's now a
+slider and it's setting can be saved in patch sets. It provides a tiny per-note
+random detune to an *entire* part (all engines in all kits), but only to that
+part.
+
+Audio & Midi preferences have been improved. If you set (say) ALSA MIDI and
+JACK audio, either from the GUI or the command line, the setting can be saved
+and will be reinstated on the next run. These settings are per-instance so if
+you have multiple sound cards you can make full use of them.
+
+Barring major system failures, there are now no circumstances where Yoshimi
+will fail to start.
+
+There is greater control of your working environment. You can have just the
+GUI, just a CLI or both, and these settings can be saved. If you try to disable
+both you will get a polite warning and will be left with just the CLI.
+
+The CLI can now access almost all top level controls as well as the 'main page'
+part ones and can select any effect and effect preset, but can't yet deal with
+the individual effects controls. It can be used to set up Vector Control much
+more quickly and easily than using NRPNs.
+
+It is also context sensitive, which along with careful choice of command names
+and abreviations allows very fast access with minimal typing.
+
+
+Yoshimi's parser is case insensitive to commands (but not filenames etc.) and
+accepts the shortest unambiguous abbreviation. However it is quite pedantic,
+and expects spelling to be correct regardless of length. Apart from the 'back'
+commands, it is word-based so spaces are significant.
+
+Some examples:
+
+s p 4 pr 6 (set part 4 program 6)
+This sets part 4 to the instrument with ID 6 from the current bank. It also
+then leaves you at part context level and pointed to part 4. Additionally, it
+will activate that part if it was off (and the config setting is checked). In
+most cases the words 'program' and 'instrument' are interchangable.
+
+s ef 1 ty rev
+This moves you up to part effects context level and sets that part's effect
+number 1 to effect type 'reverb'.
+
+s pre 2
+Sets preset number 2 (we use numbers there as most preset names repeat the
+effect type).
+
+..s 6 v 80
+Drops you back to part level, switches you to part 6 and sets its volume to 80
+(but doesn't actually enable it).
+
+/s ve cc 93
+Goes back to the top level and sets vector control for channel 0, X axis to
+respond to CC 93 leaving you in the vector context.
+
+Whenever intermediate values are omitted default or last used will be assumed,
+and all counting starts from zero.
+
+The CLI prompt always shows what level you are on, and the help lists are also
+partly context sensitive so you don't get a lot of irrelevent clutter.
+
+There is more, and a lot more to come!
+
+
+While doing all this work, we've also ensured that Yoshimi instrument patches
+are still fully compatible with Zyn ones, and have now ported across the new 
+refinements with thanks.
+
+
+Finally a (slightly updated) car analogy:
+
+A sample player is a drive along a straight, wide, almost new highway with only
+2 other cars in sight, on a lightly overcast summer's day in a Ford Fiesta at
+around 40 MPH.
+
+Yoshimi is a white-knuckle trip over a Swiss mountain pass in a blizzard, at
+night, facing donkeys, trucks and bandits, while driving an open-frame kit car
+doing 90 +
+
+In recent times we've been able to dispose of the donkeys, and the bandits are
+on the run :)
+
+
+
+
+
+
+Date: Fri, 22 Jan 2016 09:17:52 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: The Swan has been released
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Thu, 21 Jan 2016 14:46:14 +0000
+Adam Huffman <bloch@verdurin.com> wrote:
+
+> On Fri, Jan 15, 2016 at 10:42:11PM +0000, Will Godfrey wrote:
+> > On Thu, 14 Jan 2016 21:04:10 +0000
+> > Will Godfrey <willgodfrey@musically.me.uk> wrote:
+> >
+> > > lets hope it really flies :)
+> >
+> > Well it tried!
+> >
+> > 26 hours and there's a bugfix version already :(
+> >
+> > sprintf in the command line code without a format string {sigh}
+> >
+> > I must work out how to set up my system so it reports these.
+> >
+>
+> I've submitted an update to 1.3.8.1 for Fedora 23. It's available for
+> testing here:
+>
+> https://bodhi.fedoraproject.org/updates/FEDORA-2016-c3eab4387c
+
+Thanks Adam, much appreciated.
+
+For those using debian testing there is V 1.3.8.2 to get round the cmake
+segfault problem. You only need to upgrade to this if you have this issue. It
+seems to be specific to the December 2015 build of cmake 3.4.1
+
+
+
+
+Date: Sun, 17 Jan 2016 22:00:43 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] More to be going on with
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Well with The Swan having a slightly shaky start but swimming serenely now,
+there is new development on-going.
+
+Csaba has supplied a couple of patches, which are now in master.
+
+The first fixes a bug in presets that was only recently discovered (although I
+suspect it's been there a long time). You could save an AddSynth voice preset,
+but then couldn't re-load it as the code didn't recognise the extra 'n'.
+
+Also, not a bug, but the store presets no longer show their extension. This
+makes the names easier to recognise, but you do have to keep an eye on the
+heading. It doesn't currently exactly shout at you.
+
+Csaba is looking through the whole of the presets code, and has already
+identified other inconsistencies.
+
+
+On the CLI I've hit a bit of a speed bump. While working through effects I
+realised I was duplicating code that's in the GUI - code that really should not
+be in either, but in the effects themselves!
+
+At the moment I'm thinking that each effect should have its text name, the
+names of all its presets, the number of presets, and the number of controls it
+has. The effects manager would then point any queries to the *current* preset,
+and provide a call for *any* external interface to interrogate.
+
+Done right, if the effects manager also supplies the number of effects this
+would also allow new effects to be painlessly added at a later date.
+
+I haven't worked out how to implement any of this yet, so all thoughts are
+welcome!
+
+
+Yoshimi's config file has grown enormously, but has done so in the manner of a
+bramble patch :(
+
+There are settings that should be common to all instances mixed with ones that
+logically should be per-instance, with a huge dollop of roots and banks for
+good measure. I've already moved the roots and banks to the end of the file
+(I wonder if anyone noticed). However I'm thinking the whole thing should be
+split up as below:
+
+1) yoshimi.config - a much reduced common settings - interfaces, sample rate.
+2) yoshimi.instance(n) - current root/bank, MIDI settings, preferred engines.
+3) yoshimi.history - recent patch sets, and why not recent instruments & scales.
+4) yoshimi.banks - the biggie.
+
+1 - a single file every instance can read but only the first one can write.
+
+2 - totally independent files.
+
+3 - a single file every instance can read and write (would need to sort out GUI
+sync)
+
+4 - this really should be similar to 3, but presents real sync issues.
+Currently each instance takes its own copy of the actual files as it starts up.
+However, they can all save, delete and/or rename the *actual* files without
+talking to the other instances, so you can move a file in one instance then try
+(and fail) to access it from another.
+
+This doesn't have to be sorted out tomorrow - yesterday will do :p - but if
+anyone has a point on view on this, or would like to take it on, lets hear.
+
+
+
+
+
+Date: Thu, 21 Jan 2016 14:33:32 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Splitting up config
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+I've taken the first step for this in the current master.
+
+At startup *after* all the configuration is complete there is now a call to a
+new function SynthEngine::installBanks.cpp
+
+On a per instance basis, the first thing this does is look for a
+yoshimi(-n).banks file, if it can't, find that it then hunts for a
+yoshimi(-n).config file and if that fails it does a rescan for banks. In this
+way it should be completely backward compatible with any previous config files.
+
+The banks file is then saved every time there is a normal exit, so your last
+used root and bank IDs will always match what that instance thinks is there.
+The problem with changed actual files will have to be addressed another time :p
+
+Conversely, the main config file *doesn't* get saved when you start a new
+(unkown) instance, but the config changed flag is set, so you have control
+over whether any settings are saved.
+
+So now, if anything goes wrong with the config files they won't corrupt your
+carefully organised bank files, and vice-versa.
+
+Before splitting the config file up further I need to develop some more XML
+routines, otherwise I'll be duplicating a lot of initialising and file
+search code. Also, at some point I'm going to have to take a look at the XML
+wrapper files, as we are now getting a lot of redundant data saved.
+
+Currently, no compression is used on any of these files, but I think
+eventually, they should follow the main config setting.
+ 
+
+
+
+
+Date: Tue, 26 Jan 2016 19:10:18 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Splitting up config
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Recent patch sets are now no longer stored in the main .config file, but in a
+new .history one. This will later be extended to include other useful recent
+sets.
+
+I haven't provided any facility to copy across old settings. There are only a
+maximum of 25, and it's not worth the effort of the extra code. You'll soon
+refill it anyway :)
+
+The file is loaded at startup and saved at a normal close. There didn't seem to
+be any point making it resave when new items appear. At worst, you'd only lose
+those few list entries should Yoshimi fail for some reason.
+
+
+
+
+
+Date: Thu, 28 Jan 2016 16:29:19 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Bash, zenity, yoshimi state file selection upon startup
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+On Wed, 27 Jan 2016 22:23:26 +0100
+Lorenzo Sutton <lorenzofsutton@gmail.com> wrote:
+
+> Hi all,
+>
+> I'm working on a project where I am (will) be creating quite a few state
+> files which eventually I need to quickly load upon yoshimi startup.
+> I came up with this small script which also uses zenity [1]. It's
+> actually quite a time-saver compared to starting yoshimi and then
+> selecting load etc...
+>
+> Maybe it can be useful/of interest for other users on the list so why
+> not share :-)
+>
+> http://paste.fedoraproject.org/315484/raw/
+>
+> Lorenzo.
+>
+
+
+
+>
+> I will be adding 'recent saved states' to the history file in the same style
+> as 'recent patch sets'. Maybe that would be useful in connection with the above 
+> for generating a menu list.
+>
+
+That's definitely a neat feature and might fill the use case for quite a few
+cases... My script is just a hack really, and is used in conjuction with other
+script(s) to automate a bunch of launching... I am guilty of really never
+looking at session management which could also helo when dealing with multiple
+applications :)
+
+Lorenzo.
+
+
+
+
+
+
+Automated launching is not easy to do reliably.  I have a lot that gets
+launched automatically; I am using mostly Python:
+
+http://lsn.ponderworthy.com/doku.php/concurrent_patch_management
+
+J.E.B.
+
+
+
+
+
+Date: Thu, 28 Jan 2016 14:03:31 -0600
+From: Jonathan Brickman <jeb@ponderworthy.com>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Sample Rates
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:38.0) Gecko/20100101
+        Thunderbird/38.5.1
+
+
+>> Sorry, 96k is as high as I go at the moment :-)
+> Thanks for replying Jonathan. I rather suspect there are few, if any people
+> who have such a top-end card. Actually, I hardly ever use even 96k.
+I am not convinced that most people need 96k.  However, I find that for gentle
+whisper overtones and elimination of a screech problem in the higher registers
+in my Maximum Strings
+(http://lsn.ponderworthy.com/doku.php/towards_maximum_strings) patch, I really
+do have to have it.  So I have to run the whole rig at 96k, and thus I am
+deeply grateful for your testing of Yoshimi thusly too!
+
+
+
+
+
+
+Date: Fri, 29 Jan 2016 09:02:57 +0400
+From: Andrew Deryabin <andrew@danvd.me>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Sample Rates
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+        Thunderbird/38.5.1
+
+Hi All,
+
+I tested yoshimi with 24/192 setup and everything seems to work fine. Here are
+the startup messages:
+
+[andrew@andrew-desktop ~]$ /opt/yoshimi/bin/yoshimi -J -a -K -c
+Yoshimi is starting
+Using jack_audio for audio and alsa_midi for midi
+Yoshimi 1.3.8 M
+Clientname: yoshimi
+Config: Audio: jack -> 'default'
+Midi: alsa -> 'default'
+Oscilsize: 512
+Samplerate: 192000
+Period size: 1024
+
+Yay! We're up and running :-)
+Registered jack port 0
+
+
+
+
+
+
 
 
 
