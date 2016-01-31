@@ -1,0 +1,1453 @@
+NRPN:
+
+   In the master version there are significant extensions to the NRPNs that
+   Yoshimi handles.  There's information in the doc folder.
+
+ALSA Menu:
+
+   y It's probably best to more clearly separate the concept of parts V channels
+   these days. There are only 16 MIDI channels, there are up to 64 parts each of
+   which can be on any channel or disabled
+
+Significantly updated files:
+
+   ALSA_Setup.txt
+   Command_Line.txt
+   Direct_Part_Control
+   Dynamic_System_Settings.txt
+   NewFeatures.txt
+   Using_NRPNs.txt
+   Vector_Control.txt
+   Yoshimi_1.3.6-features.txt
+
+I've had a quick look at the cookbook and you're doing very well there. But
+don't forget that Yoshi really picks up her skirts and runs when creating
+sounds that have no real-world analog at all!
+
+Show Instruments:
+
+> Anyway, I think there's a bug in the Show Instruments... dialog.
+> When I right-click on an instrument, the dialog disappears!
+
+   It's part of the anti-clutter feature of those windows. In the same way,
+   if you right click on banks or roots it closes one window as it opens the
+   other.
+
+   Open the panel window and it's just above the Edit button of each part.
+   You have Main, Part or both.
+
+   Right click on the edit button and you actually open the instrument edit
+   window, otherwise it just selects it as the current part.
+
+   Also any click in the part label opens the current instrument window.
+
+JACK vs ALSA:
+
+> Hmmm, the Main dropdown is greyed out.How do you get it ungreyed?
+
+   Use JACK audio, not alsa audio :)
+
+Rotary controls:
+
+   When using rotary controls. Left mouse button move gives coarse control,
+   right button gives fine control. The scroll wheel gives better control
+   than moving the mouse, and if you hold down the ctrl key at the same time
+   the control is *extremely* fine.
+
+Vertical sliders:
+
+   For vertical sliders only, if you hold down the right mouse button then
+   move it slightly the peg will go to it's default position. the same will
+   happen if you click on the track with the right button - bet you never
+   knew that :)
+
+Settings:
+
+   In the settings window, 'Save Settings' refers to the entire window, not
+   just individual tabs. The close buttons are actually outside the frame of
+   the tabs.
+
+   'Close without saving' doesn't mean revert to previous settings, it
+   means use the changes but don't immediately store them to the filesystem.
+
+Frame, JACK vs ALSA:
+
+   A frame is a single sample of however many channels you are handling, so if you
+   are using JACK, a mono signal will have frames of 1 float, 2 for stereo etc.
+
+   ALSA is more complex as it handles pretty much the sound card's format,
+   commonly ints, 24 bit ints (low byte ignored), and short ints. Less commonly
+   it may be floats or the weird 24 L ints. I'm still not sure if these are packed
+   or low aligned (top byte ignored). It's assumed they are low-aligned, but I
+   don't know anyone who has such a card in order to prove it. As a matter of
+   interest the only ALSA format yoshi doesn't support is float - again, no way
+   to test it.
+
+Recovery mode:
+
+   Following an enquiry I just tested Yoshi in 'recovery' mode logged in as
+   root with no X server. Using /usr/local/share/bin/yoshim -A -i worked
+   perfectly and auto-connected my keyboard so I could prove everything was
+   tickety-boo.  You still need the X libraries to compile Yoshi, but I
+   don't know if it is practical to provide a compile time option to build a
+   purely headless version.
+
+OK, unless anyone comes up with a serious objection or alternative, for V1.3.6
+in the gui, and in all notes 'Parameter' will become 'Patch Set' (exactly the
+same number of characters), so obviously 'Parameters' changes to 'Patch Sets'.
+
+
+ALSA:
+
+   Something that's not obvious is the way that ALSA audio is controlled and
+   who takes command.  If you set a specific destination then Yoshimi says
+   what it wants. It's often a negotiation on bit depth and channel count,
+   but Yoshimi nearly always gets to decide the buffer size (it will be set
+   to internal buffer size). However if the destination is 'default'
+   then ALSA decides on the sound card, bit depth, number of channels and
+   the buffer size - Yoshimi will set it's internal buffer size to match. On
+   my machines this always seems to be 1024.
+
+
+Screen shots:
+
+   All the ones in the 'Miscellany' directory are window grabs using the
+   GIMP.  This directory doesn't get installed (and I expect that packagers
+   would ignore it) so if anyone wants to try their skills I won't
+   complain :D
+
+LV2:
+
+   If Yoshimi's internal buffer is *smaller* than the JACK buffer it sounds
+   quite horrible. If it's the same or greater there's no problem. The
+   reason I didn't find this before is that it only affects Yoshimi LV2.
+   Also it doesn't apply to any of the released versions.  The cause of the
+   problem is that the LV2 code doesn't have the same looping structure that
+   was added to the standalone routine to deal with exactly this situation
+   (re-entering the audio 'construction' function until the JACK buffer is
+    filled). I'm hoping Andrew can deal with this fairly soon as I don't
+   understand the LV2 code very well.  There are valid reasons for wanting
+   different sizes for these buffers. The internal buffer size as well as
+   affecting latency and CPU load also alters the sound in quite subtle
+   ways. It particularly affects the behaviour of filters.  One day we may
+   be able to stop this happening, but in the mean time we have to live with
+   it. For my purposes I find a buffer size of 128 or 256 is best.
+
+Sequencers:
+
+   Moving on from that, I was testing using the latest versions of Ardour,
+   Muse and Qtractor as LV2 hosts. I also tried Carla but couldn't get
+   anywhere with it at all - if someone is familiar with it I'd be
+   interested in what results they get.  Slightly to my surprise the one
+   that performed the best in every respect was Qtractor. Muse got
+   everything correct, but was prone to Xruns on program changes. Ardour was
+   very problematical. There were no Xruns but it seemed to have odd timing
+   issues. Also, on two occasions it managed to shorten the decay times of
+   two of the instruments. I don't understand how it managed that.  My
+   reference was the original MIDI file played into a stand-alone Yoshimi
+   via aplayMIDI. This also behaves identically to the file being sequenced
+   by Rosegarden.
+
+Accessibility:
+
+   One of the main features of this release is improved accessibility. The
+   effectiveness (and indeed usefulness) of this will help shape future
+   complimentary interfaces. Also, a number of first-time defaults have been
+   changed to make this easier.
+
+   It has always been possible to run Yoshimi headless, but now real control is
+   available. In the first place, when starting from the command line, an argument
+   can be included for a new root path to be defined to point to a set of banks
+   fetched from elsewhere. This will be given the next free ID.
+
+   Once running, almost all dynamic setup (i.e. doesn't require a restart) can now
+   be done within the terminal window. There is also extensive control of roots,
+   banks, parts and instruments including the ability to list and set all of
+   these. You can now do things like:
+
+   Path add /home/music/yoshimi/banks
+   Set part 4 program 130
+
+   Additional controls that are frequently taken forgranted in the GUI but
+   otherwise get forgotten are master key shift and master volume.
+
+   Finally, we have the most important parts of vector control exposed to the
+   command line.
+
+   For all of this there is extensive error checking and feedback.
+
+NRPN:
+
+   In parallel with this there are more NRPNs so that you can perform some of
+   these via automation. That arrangment looks positively steam-punk, but is
+   actually very easy to use, requiring only a utility that can send MIDI CCs.
+   NRPNs aren't special. They are simply a specific pattern of CCs. Yoshimi's
+   implementation is very forgiving, doesn't mind if you stop halfway through
+   (will just get on with other things while it waits) and will report exactly
+   what it is doing.
+
+ALSA:
+
+   Another significant improvement is to the handling of ALSA audio, which is
+   still very important for some people. Up till now we've been insisting on 2
+   channel 16 bit format. Tests have shown that virtually all motherboard sound
+   chipsets will handle this, but many external ones don't. So now we initially
+   request 32 bit 2 channel and work towards a compromise :) With external
+   sound modules in mind, endian swaps are also implemented.
+
+Vector Control:
+
+   Vector control has been extended so that there are four independent
+   'features' that each axis can control, One is fixed as volume (if enabled)
+   but the others can be any valid CC and can also be reversed. The vector
+   'sweep' CCs are split out very early in the MIDI chain and the new CCs
+   created are fed back in before any other processing. The result of this is
+   that once we eventually get MIDI-learn implimented the control posibilities
+   will expand dramatically - sorry about the extreme delay :(
+
+Sample song set:
+
+   In the 'examples' directory there is now a complete song set, 'OutThere.mid'
+   and 'OutThere.xmz'. Together these produce a fairly complex 12 part tune
+   that makes Yoshimi work quite hard.
+
+Presets:
+
+   Having had some time to actually look at these (after the bugfix) I realise
+   the entire concept is in fact very powerful.
+
+   Absolutely everything that has blue C P buttons can be stored in the presets
+   directory. That includes entire Addsynth engines! Also, when you look at the
+   copy/paste buffer, you only see items that are relevant to the group that
+   the C P buttons are in.
+
+   As you want to be able to save as well as load these presets, it makes sense
+   to copy all the default ones to a location such as .config/yoshimi/presets.
+   That makes them fully accessible, but tucked away out of sight. Possibly I
+   could set up yoshimi to create this directory at first time start up.
+
+   The directory structure is the same as the *old* bank roots so I'm thinking
+   of changing that. There is the same problem that if you have several preset
+   directories with the same named preset you'll see all of them together, with
+   no idea where they came from. If I change that so you only see and manage
+   items in a *current* directory I think that will be more manageable.
+
+   All I can say is there can't be many users wanting to save and load presets!
+
+   Using them immediately was fine but attempting to save them missed off the
+   name, leaving just the type and suffix, so you'd keep overwriting the same
+   one.  This goes back a very long way.
+
+   More recently, a 'clean' start would fail to locate some default banks and
+   presets locations.
+
+   Both of these are corrected in 'master' but in view of the low profile (and
+   the fact I've only just made a release) I won't bother to make a bugfix
+   release unless someone gets *really* unhappy.
+
+   There is one detail to sort out eventually. When you paste an effect it
+   doesn't update the effect name in the selection tab. A workround is the step
+   the effect number up then down.
+
+Command Line:
+
+   In a command line environment, then almost all the 'running' commands are
+   available, but none of the instrument editing ones are... yet!  So you can
+   decide what MIDI/audio setup you want, list and set roots and banks, load
+   instruments into any part, change a part's channel, set main volume and key
+   shift, and set up vector control.
+
+   While trying to develop the command line interface we have the situation of
+   commands with multiple arguments. Currently the longest is a vector command:
+
+set vector [n1] x <n2> control <n3>
+
+   n3 is the CC to be used for feature number n2 on X vector channel n1. The
+   'x' is a sort of hidden parameter as the code uses an offset dependent on
+   whether it is x or y. Also n1 can be omitted in which case it will use the
+   last defined channel number. Using alternate words and numbers gives a great
+   deal of flexibility like this.
+
+FROM THE COMMAND LINE:
+
+Commands
+  setup                  - show dynamic settings
+  save                   - save dynamic settings
+  paths                  - display bank root paths
+  path add [s]           - add bank root path
+  path remove [n]        - remove bank root path ID
+  list root (n)          - list banks in root ID or current
+  list bank (n)          - list instruments in bank ID or current
+  list vector [n]        - list settings for vector CHANNEL
+  set root [n]           - set root path to ID
+  set bank [n]           - set bank to ID
+  set part [n1]          - set part ID operations
+    program [n2]         - loads instrument ID
+    channel [n2]         - sets MIDI channel (> 15 disables)
+    destination [n2]     - (1 main, 2 part, 3 both)
+  set rootcc [n]         - set CC for root path changes (> 119 disables)
+  set bankcc [n]         - set CC for bank changes (0, 32, other disables)
+  set program [n]        - set MIDI program change (0 off, other on)
+  set activate [n]       - set part activate (0 off, other on)
+  set extend [n]         - set CC for extended program change (> 119 disables)
+  set available [n]      - set available parts (16, 32, 64)
+  set volume [n]         - set master volume
+  set shift [n]          - set master key shift semitones (64 no shift)
+  set alsa MIDI [s]      - * set name of source
+  set alsa audio [s]     - * set name of hardware device
+  set JACK server [s]    - * set server name
+  set vector [n1]        - set vector CHANNEL operations
+    x cc [n2]            - CC n2 is used for n1 X axis sweep
+    y cc [n2]            - CC n2 is used for n1 Y axis sweep
+    x features [n2]      - sets n1 X features
+    y features [n2]      - sets n1 Y features
+    x program [l/r] [n2] - X program change ID for n1 L or R part
+    y program [l/r] [n2] - Y program change ID for n1 L or R part
+  stop                   - all sound off
+  exit                   - tidy up and close Yoshimi
+'*' entries need a save and Yoshimi restart to activate
+
+LV2:
+
+   When working with the LV2 plugin in Ardour my instruments were frequently
+   reset to a boring sine wave.  After some debugging I found out that Ardour
+   likes to call deactivate() when stopping playback, which in Yoshimi also
+   resets all instruments (YoshimiLV2Plugin::Close: synth->defaults()).
+
+   I'm wondering if it is correct to reset the synths when deactivating a
+   plugin, regardless of whether it is appropriate to deactivate() all plugins
+   when stopping playback - I really don't know a thing about LV2.
+
+   I think that it's not right to reset synth to defaults in that case.
+
+   From lv2 api documentation:
+
+   Deactivation is not similar to pausing since the plugin instance will be
+   reinitialised by activate().  However,deactivate() itself MUST NOT fully
+   reset plugin state. For example, the host may deactivate a plugin, then
+   store its state (using some extension to do so).
+   So, on deactivate plugin will only call 'Mute()', but not 'defaults()'.
+
+   I had also read the LV2 spec. and it says that you should only deactivate at
+   the end of the *last* run, so I would have said it was an Ardour problem.
+   However, I guess it is slightly ambiguous as to what is meant be 'last'.
+
+   Incidentally, this reminded me I'd stumbled on a work round a long time ago
+   (and forgot about it) by loading up instruments at the start of a session
+   then immediately saving the project.
+
+The ampersand from command line:
+
+   Any unrecognised command will trigger this, including just hitting return.
+   It is very much a moving target. The current master is quite a bit more
+   developed and does list '?' and 'exit' as proper closures. It is also being
+   used as a test bed, so although it should remain stable, expect name and
+   organisation changes.  It also behaves slightly differently if there is a
+   rouge '&' on the end. In taken away the environment it was spawned from.
+
+   Eventually, the structure will be quite different (although that won't be
+   visible to users). Tokenisation in an interesting idea for language support,
+   but so far none of Yoshimi has this so it as a bit moot.
+
+Vector control:
+
+   Currently these settings are not stored anywhere. What do people think of
+   the idea of including them in patch sets?  The downside is that there would
+   be no immediate way to differentiate these from normal patch sets and if you
+   wanted just the set and not the vector control we'd have to think up a way
+   of cancelling it. Setting number of parts back to 16 would be one way
+   although it would leave the sweep CCs active...  sort of!  Another
+   possibility would be to create a new vectors file, although that would
+   create some duplication as it would need to set the number of parts as well
+   as ensuring the wanted instruments are loaded.
+
+Command line:
+
+   UNIX-style paging and history is implemented. The latest addition is the
+   ability to list the parts that currently have instruments loaded. The
+   command is just:
+
+   "List current"
+
+   The first line you see is the number of available parts (16, 32, 64), then
+   each following line is in the form:
+
+      Part number, Audio destination, Instrument name.
+
+   For audio destination you have:
+
+      'M' = Main L&R
+      'P' = Part L&R
+      'B' = Both
+      '-' = part is disabled or higher than the number available.
+
+   This way one can tell if your most valuable instrument patch is installed
+   even if it is not currently usable.  To avoid unnecessary list length, the
+   default "Simple Sound" is not shown unless it is enabled.  Fiddled with
+   command names and order a bit so that all of them can be abbreviated to the
+   first three letters.
+
+============================================================================
+============================================================================
+
+
+Scales:
+
+   Bug. Scale/keymap settings lost in state file.
+
+   In the scale settings, you can set various intervals ("Tunings") to a range
+   of keys ("Keyboard mapping"). IMHO the whole logic of these scale settings
+   is a bit arcane. But http://zynaddsubfx.sourceforge.net/doc_2.html#w2 [1]
+   explains it pretty well.
+
+   So I have this Hijaz mode, with 10 notes/octave, and I want to play it
+   on my keyboard (which has 12 notes/oct). In the Tunings section I have:
+
+   14/13
+   9/8
+   32/27
+   49/39
+   4/3
+   3/2
+   21/13
+   16/9
+   49/26
+   2/1
+
+   And in the keyboard mapping section, I set:
+
+   0
+   1
+   2
+   3
+   4
+   5
+   x
+   6
+   7
+   x
+   8
+   9
+
+   The two x are to skip the corresponding keys. They don't play at all, which
+   allows the octaves to wrap logically on the keyboard (as if there were just
+   10 keys per octave). I also set "Middle note" to 64, to start the
+   scale on E keys. Therefore its big/small intervals alternate coherently with
+   my tone/semitone fingering habits.  The problem is that the two x are
+   replaced by two 0 in the state file.  So when I reopen yoshimi and reload
+   the state file, I get
+
+   0
+   1
+   2
+   3
+   4
+   5
+   0
+   6
+   7
+   0
+   8
+   9
+
+   And this of course does not work. Every 0 key in an octave has the same
+   tuning. And the octave interval is no longer obtained on keys e' with
+   e'' but on e' with f#''.In the state file, the x-s are correctly stored
+   in a specific way : their value is -1<KEYMAP id="9">
+   <par name="degree" value="-1" />
+   </KEYMAP>
+
+   So it seems that the problem is how yoshimi handles these -1 degrees when it
+   reads the state file. It replaces them with 0 when they should be x.  I'm
+   afraid this was a bit of a lengthy explanation for a simple problem.  I'm
+   not sure how many other people use (or at least understand) the scale
+   settings, that's why I thought I'd give in some detail…
+
+   On a side note, the ability to play non-tempered scales is what drove me
+   in the first place to Zyn and later to Yoshimi. It's quite unique in the
+   free software world. At some point, the way these settings work could be
+   made more intuitive maybe.
+
+   Links: [1] http://zynaddsubfx.sourceforge.net/doc_2.html#w2
+
+   Thanks Will! This indeed solves the x-s being replaced by 0-s.  Now when I
+   reopen Yoshimi I can _see_ the keyboard mapping I had when saving the
+   session file. However, it doesn’t _sound_ right yet: I need to press the
+   Retune button for that.
+
+   You can test this with the settings I mentioned: an octave on the keyboard
+   should sound like an octave in sound (but upon restart it doesn’t, until you
+   press Retune).
+
+   Archaeological indeed! Going back to Zyn 2.4.0 there never was the ability
+   to save microtonal settings and you could only load tunings and mappings
+   separately. You can still do that if you have the individual files but it
+   was Cal who introduced the combined load/save capability in 0.058. Complete
+   state saving arrived in 0.060 Auto retune is now in 'master' for both scale
+   or state loading. Tunings and mappings I've left as they were.
+   Comparatively recently 'Patch Sets->Clear' was expanded to include scales.
+   It also more fully resets 'Controllers'. In fact I don't think there is
+   anything it *doesn't* reset now. I'm wondering if this is now in the wrong
+   place, although I can't think of a better one.
+
+   Yes the 'Clear' command has been there a long time, but I was just thinking
+   it should be moved out of the patch sets menu and directly onto the top bar,
+   renamed as 'Reset'.
+
+
+Non Session Manager:
+
+   Then I tried non-mixer yet one more time, and voila!  And just this week I
+   rebuilt the B.N.R. again, for the first time using Sparky Linux (very
+   Debianistical) as a base, and the Non suite built shockingly fast and
+   easily.  It's just a bit confusing because one has to build NTK first, but
+   it's all documented on Mr. Liles' web site.  I have not tried the Non
+   Session Manager for quite a while, because I ended up building my own very
+   tight automatic system in Python scripts.  (The Box always runs headless in
+   production.)  But if NSM is working well for many, perhaps it might be a
+   good thing to encourage :-)
+
+AddSynth oscillator size:
+
+   The larger the oscillator size the greater the CPU load but the better the
+   quality (supposedly). Zyn changed the default to 512 a long time ago, and
+   I'm think we should do the same. I can't detect any difference, and only an
+   infinitesimal one when going down to 256. Why waste CPU cycles.  Existing
+   users won't see any change as it will stay at whatever your config file
+   says.
+
+
+LV2:
+
+   We may have a solution to this oddity (installing to obscure locations).
+
+   You should get yoshimi.lv2 in /usr/local/lib/lv2/ If it was already there
+   before, you should move it.
+
+
+Part Kits:
+
+   The first thing to keep in mind is that the three 'base' engines are in fact
+   kit item 0 - regardless of whether kit mode is enabled or not. Even though
+   they are represented differently at their top level, internally they are
+   identical to all the other 15.  Also, the part as a whole has min and max
+   notes, but if kit mode is enabled each kit item has it's own min and max
+   *within* the overall part range.  Another subtle change is that in kit mode
+   you no longer apply all three part effects to any of the kit items, but only
+   one, selectable from the kit window.  This includes the three 'base'
+   engines.  If you want more effects on a part kit you need to use the
+   insertion effects.
+
+
+LV2:
+
+   Trying to get Yoshimi to work inside Ardour as a plugin.  I use the Ubuntu
+   Studio distribution and I have no trouble working with Yoshimi alone but I
+   can not seem to find it in the list of plugins for Ardour. It does not
+   appear in my /usr/lib/lv2/ either.
+
+Top Line of Menu:
+
+   More reorganisation on this.  'View' is now the second item on the menu and
+   includes the Scale settings window.  All the others have the menu items
+   re-ordered to Load Save Recent (or) Clear Scales now has a clear option, and
+   I'll see about a 'recent' item for State Finally, in Settings there is now
+   the option to log version numbers when loading XML files. I was actually
+   quite surprised to see some of them.
+
+
+Controllers:
+
+   Reset all controllers missed out a couple, and didn't update the window.
+
+ALSA:
+
+   If running with ALSA audio, you can no longer attempt to start other
+   instances.  This wasn't a valid option anyway, as it is JACK audio specific,
+   and the attempt would cause yoshi to quit.
+
+Root paths:
+
+   Adding or removing root paths via the command line updates the gui (if it's
+running).
+
+Commands:
+
+   You can enter commands as single letters (separated by spaces) if
+   they are completely unambiguous.
+
+   s p p 107 - sets part {default/last used} program to 107
+   sa s - saves the dynamic settings
+   l b - lists the banks in the current root
+
+Build dependencies:
+
+    automake
+    build-essential
+    cmake-curses(-gui)
+    dssi-dev
+    fluid
+    libboost-dev
+    libcairo2-dev
+    libfftw3-dev
+    libfltk1.3-dev
+    libglu1-mesa-dev
+    libJACK-JACKd2-dev
+    libjpeg-dev
+    libmxml-dev
+    libncurses5-dev
+    libreadline-dev
+    libxft-dev
+    libxinerama-dev
+    libxml2-dev
+    pkg-config
+    xutils-dev
+    zlib1g.dev
+
+Vector Control:
+
+Parts:
+
+   Yoshimi can have up to 64 parts. By default these are wrapped around the
+   normal MIDI channels, so 1, 17, 33 & 49 all respond to channel 1 messages.
+   This was originally implemented for Vector Control, working with up to four
+   sounds on a channel (similar to the Yamaha SY hardware series).
+
+   However, these have other less obvious uses. One of these is getting far
+   more than 16 completely independent tracks addressed by just the 16
+   channels. Most tunes run with instruments having a relatively narrow pitch
+   range, and this is what we can make use of.
+
+   As an example, in Yoshimi's main window select 64 parts, then on part 1 set
+   (say) Steel Bass and maximum note as 52 (E).
+
+   Next select part 17 and enable it (easiest to use the mixer panel for this)
+   set Tunnel Piano, the *minimum* note as 53 and maximum as 71 (B).
+
+   Finally, enable part 33, set Rushes and set it's minimum note as 72, but key
+   shift down an octave.
+
+   With a 61 note keyboard that gives you quite a useful working range, on just
+   one channel.
+
+   However, the idea really comes into its own with a sequencer like Rosegarden
+   where you can record multiple parts over the full MIDI range and track them
+   to the same channel. Also, in Rosegarden the parts can be separately named,
+   and identified as Bass and Treble in the notation editor. This makes it very
+   convenient for those wanting a more formal musical layout.
+
+   So, with very little effort you can now have 48 tracks playing at once!  You
+   do need a decent processor.  Yes, I know you could run more instances of
+   Yoshimi on different MIDI ports, but where's the fun in that?
+
+Parts:
+
+   Directly setting part channel numbers from 0 to 15 as 16 to 31 respectively,
+   will now allow a note off while blocking all other MIDI messages to that
+   part.  Setting them higher than 31 will stop all messages so you can use
+   this for creating set-and-forget drones.
+
+   Preset directory additions or removals no longer need a restart.
+
+   Part key shift extended to +- 24 semitones - 4 octaves should be enough for
+   anybody.
+
+   Default state file location is now fixed - users could always change it as
+   they wished with the file browser.
+
+
+Kit Mode:
+
+   If you are in kit mode, the engine window title bars now display the kit
+   number and name (if any). This way you know *exactly* what kit item of what
+   part you are working on. I will eventually extend this to the Resonance
+   window and the AddSynth Voice windows.
+
+Controllers:
+
+   In Yoshimi->Settings->MIDI there is a new checkbox that will allow you to
+   see all MIDI CCs as they arrive (before Yoshimi does any filtering). This is
+   not stored and is always 'off' at startup - so you don't forget about it.
+   The only time you're likely to need it is if you have a hardware controller
+   of some sort connected that doesn't seem to be working.
+
+   One slight oddity is that 'pitch bend' shows here as CC 1000. Although it is
+   a quite different control mechanism, it is routed through the CC code for
+   convenience.
+
+JACK:
+
+   Currently yoshimi has the following JACK outputs:
+
+      yoshimi:left
+      yoshimi:right
+      yoshimi:track_1_r
+      yoshimi:track_1_l
+
+   This is really useful when recording e.g. into Ardour and wanting to
+   preserve the single parts for further mixing etc.
+
+Parts:
+
+   We used to register all parts by default, but that got a bit silly once we
+   had 64 of them, so we changed to an 'on demand' model.
+
+   If you open the Mixer panel window you'll see a field just above the Edit
+   button. This determines the audio destination on a part-by-part basis,
+   defaulting to just the main LR pair. The direct part outputs are only
+   exposed on parts that are active, and have the destination set to either
+   'part' or 'both'.  Once activated they will remain in place even if the part
+   is later disabled or routed to main only. This is so that other programs
+   won't see links suddenly disappear - although they will become silent.  This
+   setting is preserved in Yoshimi's patch sets and will be reinstated when
+   next loaded.
+
+   Load up Yoshimi, set it for 64 parts, then go through them all, enabling
+   them, setting the audio destination to 'Both', then *disable* all of them
+   except part 1.
+
+   Close down to 16 parts and save this as a patch set named (say) newdefaults.
+   Yoshimi stores *all* part data in patch sets, even if the part is disabled.
+
+   Close down Yoshimi.
+
+   Every time you want this configurations start with the -l argument so:
+
+   yoshimi -l {path} newdefaults.xmz
+
+   After this, every time you enable a part its direct output pair will be
+   registered and immediately available. However, I don't recommend leaving
+   unused parts enabled, as there is a processing overhead even if they are
+   producing no sound.
+
+Instruments:
+
+   Each instrument has a filename, but also has an *internal* name. Normally
+   these two are the same, and are guaranteed to be so if you save an
+   instrument to a bank. However, there is nothing to stop anyone saving an
+   instrument file externally with a different filename or at some later date
+   just changing the filename. Neither of these will change the internal name.
+   So what to do?  What I've come up with is for banks to continue to show the
+   filename, but when loaded the part will show the internal name. This makes
+   all load operations consistent.  Also, to make save operations consistent as
+   well, if saving externally you'll first be offered the internal name
+   (although this will be lost if you use fltk's built in 'Favourites' option
+   to change directories.
+
+Command Line:
+
+   The new audio & MIDI 'preference' saving in 'Settings' also applies to
+   command line options. This gives you a means of recovery if Yoshimi won't
+   start because (say) you set it for a sound card you no longer have.  Run
+   from the command line as follows:
+
+   If you are running with ALSA type in 'yoshimi -a=default -A=default'
+
+   Or with JACK running type in 'yoshimi -j=default -J=default'
+
+   That will get you up and running and will remember the preferences next
+   time. Or you can then go into 'Settings' and change them to what you really
+   want.
+
+Random Detune:
+
+   A setting for this has been in the part edit window for quite a long time.
+   There are 20 steps of approximately half a cent. This is applied as a pitch
+   variation to the note-on event, so is per note and also per part (but the
+   whole part not just one engine).  It was intended to simulate to effect of
+   fretless instruments, or fretted ones that are weight or bend sensitive,
+   where tiny variations in normal playing would result in such pitch
+   'inaccuracies'. It also works quite well on flute and whistle sounds. I've
+   used it a few times myself and values of 2-3 seem best.
+
+   Currently this setting isn't saved. It's still classed as an experimental
+   feature. Also, if we keep it and want to save it, should it be an individual
+   instrument parameter or applied for that part in a complete patch set?
+
+   Does it also apply to kit edit?  Yes. In the code it is applied at the point
+   the incoming MIDI value is converted to actual pitch.  kits. I would have
+   liked it to be a knob or slider, but being experimental I Maybe change the
+   label to 'Humanise'?
+
+   The latest 'master' has a slider now. Also, previously there was an error in
+   the math (never my best subject) giving a much higher detune than I thought.
+   It is now reasonably accurate and covers the range 0 to 50 cents.
+
+   Our newly renamed 'Humanise' is now stored in patch sets and seems to fairly
+   accurately cover the range from 0 to 50 cents - for some value of 'accurate'
+   when talking about a randomness setting :).
+
+Banks & Roots:
+
+   A bit of clarification on how changes to these operate.
+
+   If you change a bank root path, either through the gui or via MIDI, it will
+   always reset the current bank to the lowest numbered one it can find. This
+   is because there may not be a bank in the new root with the same ID, and
+   even if there is, there is no guarantee that it will have the same name or
+   contents.
+
+   Also if an attempt is made to reload the same root, nothing will actually
+   happen. The same is true of banks. Both of these are kept fully up-to-date
+   so there would be no point.
+
+   However, reloading the same *instrument* will be performed every time, as
+   you may have changed what is currently loaded without saving it. This
+   provides an effective 'restore' operation.
+
+   By default MIDI control of bank root is CC0 and bank is CC32, these are the
+   standard bank controllers in the MIDI spec. However, not all synth makers
+   and sequencer programmers adhere to that, so in Yoshimi->Settings->MIDI you
+   can change them (or even disable them completely). The bank CC can be either
+   32 or 0, and bank root can be any value not reserved by anything else.
+
+
+JACK and ALSA:
+
+   (Will) When Yoshimi was quite young, JACK MIDI stability was very poor
+   compared with ALSA. This is because JACK is far more fussy about timing
+   issues, and we were directly sending data from the MIDI thread to the GUI
+   one. Also some CCs could be problematical - and program changes were liable
+   to cause storms of Xruns (there was no bank change at that time). Cal got
+   round this by creating a new JACK MIDI thread and ring buffer. However, ALSA
+   rather got left behind.  After the recent improvements in response to the
+   crash caused by badly formed CC storms, I realised we now had completely
+   detached GUI updates from both MIDI threads, and also the (potentially)
+   stalling root, bank & program changes.  I wondered if the original ring
+   buffer was now redundant. It seems it is!
+
+Parts:
+
+   This looks also like a *very* cool and useful feature for quick 'layering'.
+   With layering I mean assigning more than one voice to the same (musical)
+   part to e.g. obtain really fat tones (something I'm lately experimenting
+   with) and having just one track for the part in rosegarden.
+
+GUI:
+
+   The good news is that Yoshimi now remembers where you left the most
+   important things on the desktop, and if you left them out, will show them to
+   you next time you run :)
+
+   Yoshimi now remembers most window positions on a per instance basis, and
+   will re-open them at the same locations. Also, if you shut down with these
+   windows open, they will be opened again on the next run.
+
+   The 'engine' windows are a bit different as they may not actually exist so
+   can't be auto opened. Also, you need to use the 'close' button to fix their
+   re-open position - they don't seem to like being asked their co-ordinates
+   when they are being forcibly closed :(
+
+   Almost all window titles carry the instance number as well as details such
+   as part number/name, engine, and whether it is kit mode. For addsynth
+   oscillator, the voice number is included. Bank and Instrument windows, as
+   before, show the MIDI ID numbers along with the complete file paths.
+
+   The top menu bar has been reorganised for better grouping. Mixing unrelated
+   operations on a single menu is never a winner.
+
+   A complete clear-down now has it's own button, 'Reset'. This is as close as
+   possible to a restart, but works independently for each instance.
+   Re-aranging this group of buttons into two rows means they can be longer -
+   "Virtual Keybd" is a bit more obvious than "vrKbd".
+
+   The 'Controllers' window now (at last) correctly updates when you hit its
+   reset button.
+
+Versioning:
+
+   There is now an option so you can see the version details of all XML files
+   in the 'Console' window as they are loaded.
+
+Breath Controller:
+
+   This release has an experimental Breath Control feature - CC2.  I'm not
+   generally publicising this yet as it needs to be tried out by musicians with
+   real breath controllers.  It combines volume with brightness, so the louder
+   the sound is, the harsher it is too.
+
+   In the 'Controllers' window you can play with the 'FiltCut' and 'Vol Rng'
+   knobs to change it's performance to some degree. My rough-and-ready tests
+   suggest that you'll probably only want to change 'FiltCut' and leave 'Vol
+   Rng' where it is. Do  keep in mind these controls are per-part so won't
+   affect anything on      other channels.
+
+   If anyone has a breath controller, please give it a try and let me know if
+   it works for you.
+
+Level sensing, reporting.
+
+   If you do "set part 5 "(say)
+
+   Your prompt will now show "yoshimi part 5>"
+
+   if you enter either ".." or "/" you'll go back to plain "yoshimi>", but will
+   still be on part 5. There is only one level at the moment, later the two
+   different forms will be significant.
+
+   If you want to go back to the part level without changing the part number
+   you can do "set part ?".
+
+   Also once on part level "set 8" will immediately change to part number 8 and
+   "set prog 107" sets the program for that part. The same is true for all the
+   other part level controls.
+
+   Further to that, while in part level you can still do most of the base level
+   commands.
+
+   Most of the commands can be reduced to single letter abbreviations so
+   getting round is pretty fast:
+
+   "s p 10 p 107"
+
+   will set part 10 to program 107 and leave you at the part level, and after
+   this:
+
+   "s c 3" will change its MIDI receive channel to 3.
+
+Effects:
+
+   Something that's not obvious is that if you want to get an effect to cover
+   all parts together, you use *insertion* effects, not system ones, and you
+   set the 'to' to "Master Out". System is probably a misnomer. Group would be
+   better, but people are so used to this now I don't think it would be a good
+   idea to change it.
+
+Command Line:
+
+   You can now enable and disable each part and change their volume, pan &
+   keyshift. Also the major effects controls are there. That is, the effect
+   number, the type (Reverb, Echo etc.) and for insertion and part, the 'send'.
+   Part is a bit odd, because it actually sends to one of the four system
+   effects.  A part's own effects will always sound regardless.
+
+   Trying to make all this as simple as possible for the user makes it pretty
+   complicated to program! Some entries can be a mixture of names and numbers.
+   e.g. insertion send is off, master, 0-{max available parts}. it also has a
+   dais-chain capability between effects that I haven't done anything with yet.
+   I've never actually used it.
+
+   Also you can already do some quite long daisy-chains:
+
+   set part 3 effect 1 type chorus that now puts you at the part effects level
+   and: set send 2 64 will then set effect 2 lever half way up.
+
+   Oh, and list effects is pretty obvious.
+
+   Most control names can be heavily abbreviated - frequently down to one
+   letter.
+
+   Many of the controls also update the gui if it's running. Effects don't, as
+   I haven't worked out a safe way to do that yet :(
+
+
+Breath controller:
+
+   The experimental 'breath control' (CC2) feature is now permanent. I've had
+   an email from a user with an EWI Wind controller who is absolutely delighted
+   with it.
+
+Kudoes:
+
+   I've also had a very positive email from a teacher who employs Yoshimi in his
+sound synthesis and DAW courses.
+I've had reports from both fedora and debian users that cmake now seems to be
+playing nice, so fingers crossed on that one.
+
+MIDI:
+
+   I had (yet another) enquiry about getting MIDI into Yoshimi which finally
+   goaded me into looking into this in a bit more detail. Well, it seems Cal is
+   still helping us. He left 'hooks' in that I've now used in 'Settings' so
+   that you can change the preferred connections for both MIDI and audio. These
+   need a restart but will then be remembered.
+
+   I discovered this has an interesting knock-on. Provided your main instance
+   has JACK audio, you can have a second instance configured for quite
+   different MIDI (and audio if you have more than one sound card). This messes
+   with the Yoshimi menu a bit if your second instance uses alsa audio, but it
+   works :) What works very nicely is that you can have two (or more) instances
+   on JACK audio, all set for different MIDI devices and a mixture of JACK and
+   alsa MIDI.  I guess a fix that's overdue is to still be able to start
+   Yoshimi cleanly if there is no accessible audio.
+
+CC2 and Aftertouch:
+
+   We don't support aftertouch yet. The problem is, what do you get it to
+   actually change? Vibrato? Tremolo? Pitch bend. I suspect everyone would give
+   a different answer :(
+
+Command Line:
+
+   Just to let you know the help menu and lists are updated, and you can now
+   set *all* effects, sends and their levels. You can also select their presets
+   :) There is much more control possible in effects, but I'll leave that for
+   now and move on to other controls. I'm trying to implement the most used
+   ones first. Not only does that make Yoshimi more usable, but gives me the
+   chance to develop a better understanding of how it all goes together.
+
+   I'm trying to make the most used commands have the shortest abbreviations -
+   especially the top level ones. So currently we have "? (help)", "s (set)",
+   "l (list)" along with "sa (save)", "lo (load)", "st (stop)", "ex (exit)".
+
+   Exit could have been single letter, but I force two so it's less likely
+   someone will accidentally type it. I'm also toying with the idea of adding
+   "r (read)" to work in parallel with set for returning a specific value.
+
+   One other thing. It occurs to me that it might be an idea to use capitals to
+   help identify the minimum abbreviations. It won't make any difference to the
+   parser as all commands are tested case insensitive. However, I don't know if
+   that would actually be any benefit to blind musicians. I shall ask around.
+
+Aftertouch:
+
+   Q: From what I understand Channel Aftertouch is usually best suited to
+   triggering LFO functions, greater pressure increasing the depth of the LFO
+   signal, resulting in a more pronounced vibrato, tremolo or other
+   LFO-triggered effect. How is the LFO presently controlled in Yoshimi? By a
+   knob controlled with the mouse? Unless there is more than one LFO available
+   then maybe if Aftertouch is detected it could be routed there automatically.
+
+   A: We don't have whole part LFOs, only ones on the individual engines (and
+   not at all on subSynth). Strange, because we *do* have
+   both pitch bend and volume MIDI controlled on a channel/part basis.
+   In fact you could probably emulate LFOs with an automation program feeding
+   into these two controls.
+
+   Q: Will would it be possible to route aftertouch to the vibratto knob of the
+   Adsynth voice parameter to see what kind of result it would give? Or would
+   that be to complicated to do just for test purposes.
+
+   A: Aftertouch is not a CC but a control type in it's own right. Also there
+   are two forms, Channel and Key. So, in the same way as pitch bend is
+   translated to CC 1000, Key Aftertouch is reported as CC 900 and Channel
+   Aftertouch as CC 901.
+
+Command Line:
+
+   Every valid command should give you a reply message. 'null' ones should too
+   actually.
+
+   I had intended to attach the effect name to the prompt. For effect presets I
+   intend to add it's number in brackets, as it doesn't change level. Because
+   the naming of them is so irregular this is one case where I think numbers
+   are better. Normally I work on the basis that people can remember names more
+   easily than numbers.
+
+   A brief example:
+
+   set part eff type rev
+   set pre 2
+
+   This assumes part 0 and effect 0 and sets the type as reverb. The second line
+   selects preset number 2 (in whatever effect type you have) in this case
+   cathedral reverb.  This will leave you in the parts -> effects level, so
+   '..' to go back to part and make any further part changes such as volume,
+   pan, key shift, etc.
+
+   If you had done:
+
+   set part 5 eff 2 type reverb
+
+   Then it would have made those selections along the way. Also '/' and '..'
+   can be prefixed to any other command but only at the beginning of a new
+   line. After the above little lot you could have done:
+
+   ..s v 90    (set the volume) and then:
+   /s p 2 en   (enable part 2)
+
+   Part effects are 'direct' so are immediately effective and there are three
+   of them.
+
+   System effects are applied to the final sound and receive from individual
+   part 'side chains'. There are four of them, so every part has a side chain
+   'send' volume for each system effect.  System effects can also be sent to
+   any one of the following ones - 0 can go to 1 or 2 or 3; and 2 can go to 3
+   only.
+
+   Insert effects are independent and each can be applied to one of any part or
+   the  final sound. There are eight of them.
+
+   At part level: "s 4" changes to part four. If you'd been on vector level it
+   would have changed to vector *channel* 4
+
+   Talking of which, a vector example (assumes you are in the default bank root
+   path):
+
+   set b 110   ... sets the bank
+   s av 64     ... number of parts available
+   s ve cc 93  ... cc to use for channel 0 X axis
+   s y         ... switch to Y axis
+   s cc 94     ... cc to use for Y axis
+   s x fe 1    ... switches to X axis and set features (just volume)
+   s y fe 2    ... switches to Y again and set features (pan)
+   s pr l 107  ... program (instrument) for Y axis 'left/up'
+   s pr r 109  ... program (instrument) for Y axis 'right/down'
+   s x pr l 20 ... change to X axis and program for 'left'
+   s pr r 23   ... program for 'right'
+   l ve        ... list currently defined vectors
+
+   I worked this one out to test a number of internal switches.
+   It actually sounds rather nice if you use whatever controllers you have
+   available for X & Y CCs, preferably on a joystick.
+
+De-Pop (new setting variable):
+
+   We also have the de-pop feature ported from zyn in Add and Pad synths. There
+   is an extra control in the amplitude parameters block called simply D.Pop.
+   Its default setting sounds pretty much as it did without it, but you can
+   wind it down to no start ramp at all or up for a much smoother note start.
+   This isn't relevant for Subsynth because of the quite different engine.
+
+MIDI Learn:
+
+   Hi Csaba, I believe you might find what you're looking for at this address
+   https://github.com/licnep/yoshimi I can't wait for MIDI learn to be fully
+   implemented so the more developers are involved the merrier. -- Gilles
+
+   As well as clear indication of what has been set, it gives you the
+   opportunity to change the min/max values, and even make min > max, thus
+   reversing the effect of the control.
+   It also allows you the have one CC attached to several actual controls.
+
+   It then can't interfere with root/bank/program changes. Also, at this point
+   pitch wheel, Channel and key pressure have all been converted to accessible
+   CCs.  Finally, it will be able to pick up vector controls and re-route them
+   to other effects - this will (eventually) massively expand the vector
+   control features!
+
+Copy/Paste:
+
+   Copy and paste is far more sophisticated than a lot of people realise,
+   although I agree that the interface is not very friendly. I don't think
+   people realise that when pasting, you only get shown the the presets that
+   are relevant to that part of the synth. I rather think that 'presets' is the
+   wrong word here, as people are likely to confuse it with the effects
+   presets.  The way it works is to store a 'copy' as an XML stub, which can
+   either be pasted elsewhere or stored to file with an appropriate header.
+   When you pick one from file it simply reverses the process.
+
+LV2:
+
+   Q:  I am unsure of which plugin to use in Qtractor. "yoshimi" and
+   "yoshimi-multi" both show up, and they seem to behave the same way. I am
+   worried about using up excess cpu, because for every new MIDI track it seems
+   that a new yoshimi instance is opened. Does this consume more cpu? Is there
+   a way to connect different MIDI tracks to the same instance of Yoshimi( with
+   different channels, the way you would do it with the standalone version)?
+   Besides using the standalone Jack version, because I like to be able to save
+   the whole project in Qtractor.  To clarify this shouldn't be a DAW/sequencer
+   specific question, I would like to know how to do the same thing in Ardour,
+   for instance.
+
+   -multi version exposes one stereo output for each channel, so in default
+   setup you will get 2x16 stereo audio outputs.  ordinal version mixes all
+   channels into one stereo output.
+
+   A: I can't remember the details but last time I setup Qtractor from scratch
+   I discovered that you don't set a yoshimi per track, but one 'overall'
+   instance, and then set your tracks to the various part numbers. In pretty
+   much the same way as standalone.
+
+XRUNs:
+
+   A first run seems to work OK, but it when you go back and re-run the
+   problems occur. This makes me wonder if it's a memory allocation issue. On
+   first run no parts have anything more than the basic 'Simple Sound'. Also,
+   if I run other programs between runs of this file, I seem to get more Xruns
+   - some quite bad.
+
+   If I switch JACK's buffer to 256, things are much better, and with Yoshimi
+   at 256 as well the problem disappears completely, and I can even run this
+   mail reader at the same time.
+
+XML headers:
+
+   Now that version numbers in these are viewable I guess it was inevitable
+   that someone would ask the significance!  These numbers are those of the
+   synth that was used to create it. This gives an indication of what features
+   are likely to be used and you may lose these if you load a file with *later*
+   version numbers than the program you are actually running.  The upshot is
+   that any file with a Yoshi version can be regarded as including features
+   similar to Zyn 2.4.3.  The current master, and the next release will be
+   tagged with Zyn 2.5 (the Yoshi version is automatically updated) and has all
+   the features up to Zyn 2.5.2.
+
+Yoshimi Alsa/Jack:
+
+   There was no feedback from me for a long time, though I still stay tuned with
+   latest changes in yoshimi :).  I try to summarize the list of changes:
+
+   1. If both MIDI and audio are connected at start with saved settings,
+      everything is ok.
+   2. If MIDI fails to connect (it only can be for saved JACK binding, I think),
+      there can be 2 variants:
+      a) If yoshimi was started with no gui, then try silently to connect to
+         another backend and warn about it. If this also fails, simply print
+         another warning and continue with no MIDI input.
+      b) If yoshimi was started in normal mode, then show question dialog if
+         user wants to connect to another MIDI engine. Regardless of answer
+         just continue to work.
+   3. For failed audio the fallback algorithm should do the same sequence.
+   4. When starting in lv2 mode, just hide JACK/alsa menu.
+
+MusicClient rewrite:
+
+   Interface became more universal. How it works:
+
+   Here is the function newMusicClient in MusicClient class. Before my changes
+   this function created default audio/MIDI driver pair and if this had no
+   success, yoshimi simply failed to start.
+
+   Now the behavior is different.
+   There are 3 drivers for audio: JACK_audio, alsa_audio, null_audio
+   and 3 drivers for MIDI: JACK_MIDI, alsa_MIDI, null_MIDI.
+   When creating new music client, default driver pair is tested first. If it
+   fails, then new algorithm tries to open combos in following order:
+
+   JACK_audio/JACK_MIDI (if is was not the first)
+   JACK_audio/alsa_MIDI
+   alsa_audio/alsa_MIDI
+   JACK_audio/no_MIDI
+   alsa_audio/no_MIDI
+   no_audio/no_MIDI
+
+   Now yoshimi will never fail it's startup because of new driver 'no_audio'
+   which is a simple thread, that calls masterAudio at constant intervals
+   emulating virtual audio device.
+
+   Now, if default audio/MIDI pair fails, no questions are asked and fallback
+   pairs are probed automatically. Don't know if there is a probability that user
+   will tap 'No' to question about switching to alternate pair.
+
+Sound card:
+
+   You can now legitimately have different instances with different backends,
+   no matter what the main instance is.  If you have three soundcards you could
+   have the first instance of yoshimi reserving soundcard 2 while soundcard 1
+   is dedicated to JACK with instances 2 and 4 using it, while instance 3 uses
+   your 3rd card.  At the same time instances 1 and 2 could be getting MIDI via
+   JACK while 3 and 4 fetch from alsa.  If you are working under LV2 then the
+   JACK and alsa setup tabs will be deactivated.
+
+Command line:
+
+   I wonder if this should be the other way round. At the moment you use the -c
+   option of you *don't* want to send commands to a running Yoshimi, although
+   I've no strong feelings on the matter myself.
+
+   As a point of interest, having Settings->Send Reports set to 'Console' will
+   give you reporting of all non-fatal errors in the 'Reports' window, and with
+   the latest improvements, fatal ones are far less likely.
+
+   Hopefully this is now resolved in the current master. It works correctly for
+   me although the exit isn't quite as neat as I would have liked. You don't
+   immediately see the original prompt and there's an extra message on the next
+   line whether it is a newline or a complete command.  Try it:
+
+        yoshimi -c &
+
+The Swan: Yoshimi 1.3.8 highlights
+
+   MIDI program changes have always been pretty clean from the time Cal first
+   introduced them, but now GUI changes are just as clean. While it is
+   generally best to change a program when the part is silent, even if a part
+   is sounding there is usually barely a click. There is no interference at all
+   with any other sounding parts.
+
+   Sometimes MIDI CCs don't seem to give the results you expect. Well, there is
+   now a setting that will report all incoming CCs so you can discover what
+   Yoshimi actually sees (which may not be what you were expecting).
+
+   At the request of one of our users, we have now implemented CC2, Breath
+   Control.
+
+   The 'Humanise' feature has had more interest so it's been upgraded. It's now
+   a slider and it's setting can be saved in patch sets. It provides a tiny
+   per-note random detune to an *entire* part (all engines in all kits), but
+   only to that part.
+
+   Audio & Midi preferences have been improved. If you set (say) ALSA MIDI and
+   JACK audio, either from the GUI or the command line, the setting can be
+   saved and will be reinstated on the next run. These settings are
+   per-instance so if you have multiple sound cards you can make full use of
+   them.
+
+   Barring major system failures, there are now no circumstances where Yoshimi
+   will fail to start.
+
+   There is greater control of your working environment. You can have just the
+   GUI, just a CLI or both, and these settings can be saved. If you try to
+   disable both you will get a polite warning and will be left with just the
+   CLI.
+
+Command Line:
+
+   The CLI can now access almost all top level controls as well as the 'main
+   page' part ones and can select any effect and effect preset, but can't yet
+   deal with the individual effects controls. It can be used to set up Vector
+   Control much more quickly and easily than using NRPNs.
+
+   It is also context sensitive, which along with careful choice of command
+   names and abreviations allows very fast access with minimal typing.
+
+   Yoshimi's parser is case insensitive to commands (but not filenames etc.)
+   and accepts the shortest unambiguous abbreviation. However it is quite
+   pedantic, and expects spelling to be correct regardless of length. Apart
+   from the 'back' commands, it is word-based so spaces are significant.
+
+   Some examples:
+
+   s p 4 pr 6 (set part 4 program 6)
+
+   This sets part 4 to the instrument with ID 6 from the current bank. It also
+   then leaves you at part context level and pointed to part 4. Additionally,
+   it will activate that part if it was off (and the config setting is
+   checked). In most cases the words 'program' and 'instrument' are
+   interchangable.
+
+   s ef 1 ty rev
+
+   This moves you up to part effects context level and sets that part's effect
+   number 1 to effect type 'reverb'.
+
+   s pre 2
+
+   Sets preset number 2 (we use numbers there as most preset names repeat the
+   effect type).
+
+   ..s 6 v 80
+
+   Drops you back to part level, switches you to part 6 and sets its volume to
+   80 (but doesn't actually enable it).
+
+   /s ve cc 93
+
+   Goes back to the top level and sets vector control for channel 0, X axis to
+   respond to CC 93 leaving you in the vector context.
+
+   Whenever intermediate values are omitted default or last used will be assumed,
+   and all counting starts from zero.
+
+   The CLI prompt always shows what level you are on, and the help lists are also
+   partly context sensitive so you don't get a lot of irrelevent clutter.
+
+Zyn compatibility:
+
+   While doing all this work, we've also ensured that Yoshimi instrument
+   patches are still fully compatible with Zyn ones, and have now ported across
+   the new refinements with thanks.
+
+cmake bug:
+
+   For those using debian testing there is V 1.3.8.2 to get round the cmake
+   segfault problem. You only need to upgrade to this if you have this issue.
+   It seems to be specific to the December 2015 build of cmake 3.4.1
+
+Presets:
+
+   Csaba has supplied a couple of patches, which are now in master.
+
+   The first fixes a bug in presets that was only recently discovered (although
+   I suspect it's been there a long time). You could save an AddSynth voice
+   preset, but then couldn't re-load it as the code didn't recognise the extra
+   'n'.
+
+   Also, not a bug, but the store presets no longer show their extension. This
+   makes the names easier to recognise, but you do have to keep an eye on the
+   heading. It doesn't currently exactly shout at you.
+
+Configuration file:
+
+   Yoshimi's config file has grown enormously, but has done so in the manner of a
+   bramble patch.
+
+   There are settings that should be common to all instances mixed with ones
+   that logically should be per-instance, with a huge dollop of roots and banks
+   for good measure. I've already moved the roots and banks to the end of the
+   file (I wonder if anyone noticed). However I'm thinking the whole thing
+   should be split up as below:
+
+   1) yoshimi.config - a much reduced common settings - interfaces, sample rate.
+   2) yoshimi.instance(n) - current root/bank, MIDI settings, preferred engines.
+   3) yoshimi.history - recent patch sets, and why not recent instruments &
+      scales.
+   4) yoshimi.banks - the biggie.
+
+   1 - a single file every instance can read but only the first one can write.
+   2 - totally independent files.
+   3 - a single file every instance can read and write (would need to sort out GUI
+       sync)
+   4 - this really should be similar to 3, but presents real sync issues.
+      Currently each instance takes its own copy of the actual files as it
+      starts up.  However, they can all save, delete and/or rename the *actual*
+      files without talking to the other instances, so you can move a file in
+      one instance then try (and fail) to access it from another.
+
+Banks and configuration:
+
+   On a per instance basis, the first thing this does is look for a
+   yoshimi(-n).banks file, if it can't, find that it then hunts for a
+   yoshimi(-n).config file and if that fails it does a rescan for banks. In
+   this way it should be completely backward compatible with any previous
+   config files.
+
+   The banks file is then saved every time there is a normal exit, so your last
+   used root and bank IDs will always match what that instance thinks is there.
+   The problem with changed actual files will have to be addressed another time
+
+   Conversely, the main config file *doesn't* get saved when you start a new
+   (unkown) instance, but the config changed flag is set, so you have control
+   over whether any settings are saved.
+
+   So now, if anything goes wrong with the config files they won't corrupt your
+   carefully organised bank files, and vice-versa.
+
+   Before splitting the config file up further I need to develop some more XML
+   routines, otherwise I'll be duplicating a lot of initialising and file
+   search code. Also, at some point I'm going to have to take a look at the XML
+   wrapper files, as we are now getting a lot of redundant data saved.
+
+   Currently, no compression is used on any of these files, but I think
+   eventually, they should follow the main config setting.
+ 
+   Recent patch sets are now no longer stored in the main .config file, but in
+   a new .history one. This will later be extended to include other useful
+   recent sets.
+
+   The file is loaded at startup and saved at a normal close. There didn't seem
+   to be any point making it resave when new items appear. At worst, you'd only
+   lose those few list entries should Yoshimi fail for some reason.
+
+Ad hoc session management:
+
+   Automated launching is not easy to do reliably.  I have a lot that gets
+   launched automatically; I am using mostly Python:
+   http://lsn.ponderworthy.com/doku.php/concurrent_patch_management
+
+96kHz sampling rate:
+
+   I am not convinced that most people need 96k.  However, I find that for
+   gentle whisper overtones and elimination of a screech problem in the higher
+   registers in my Maximum Strings
+   (http://lsn.ponderworthy.com/doku.php/towards_maximum_strings) patch, I
+   really do have to have it.  So I have to run the whole rig at 96k, and thus
+   I am deeply grateful for your testing of Yoshimi thusly too!
+
+   I tested yoshimi with 24/192 setup and everything seems to work fine. Here
+   are the startup messages:
+
+   [andrew@andrew-desktop ~]$ /opt/yoshimi/bin/yoshimi -J -a -K -c
+   Yoshimi is starting
+   Using JACK_audio for audio and alsa_MIDI for MIDI
+   Yoshimi 1.3.8 M
+   Clientname: yoshimi
+   Config: Audio: JACK -> 'default'
+   Midi: alsa -> 'default'
+   Oscilsize: 512
+   Samplerate: 192000
+   Period size: 1024
+
+   Yay! We're up and running :-)
+   Registered JACK port 0
+
