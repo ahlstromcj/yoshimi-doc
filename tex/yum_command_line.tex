@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-09-06
-% \update      2015-10-25
+% \update      2016-02-23
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -14,8 +14,10 @@
 %
 %-------------------------------------------------------------------------------
 
-\section{The Yoshimi Command Line Interface 1.3.6M}
+\section{The Yoshimi Command Line Interface}
 \label{sec:command_line}
+
+   Applies to version:  1.3.8.2.
 
    \textsl{Yoshimi} provides a "no GUI" or "command-line" mode of operation
    where some aspects of the application can be controlled via textual commands.
@@ -25,7 +27,8 @@
    \textsl{Yoshimi} on the command-line, the "command-line" mode of operation is
    available at the same time as the GUI.
 
-   One of the main features of the 1.3.6 release is improved non-GUI
+   One of the main features of recent \textsl{Yoshimi} releases
+   is improved non-GUI
    accessibility.  In a command line environment, almost all the 'running'
    commands are available, but none of the instrument editing ones are... yet!
    One can decide what MIDI/audio setup is wanted, list and set roots and banks,
@@ -41,12 +44,7 @@
    Once running, almost all dynamic setup (i.e. doesn't require a restart) can now
    be done within the terminal window. There is also extensive control of roots,
    banks, parts and instruments including the ability to list and set all of
-   these. One can now do things like:
-
-   \begin{verbatim}
-      yoshimi> path add /home/music/yoshimi/banks
-      yoshimi> set part 4 program 130
-   \end{verbatim}
+   these.
 
    Additional controls that are frequently taken for granted in the GUI, but
    otherwise get forgotten, are \textsl{master key shift} and \textsl{master
@@ -56,25 +54,111 @@
    The command-line mode provides extensive error checking and feedback.
    Note the change in nomenclature from "Parameters" to "Patch Set", which is
    visible in the main screen, and also reflected in the command line.
+   The prompt will always show what level
+   (TODO:  Define "level" in the "concepts" section).
+   one is on, along with relevant information.
+   One will also get a confirmation message, but, for clarity,
+   those are not included in the examples below.
+   Here is an example session:
 
-   Here is an example startup session, using ALSA for audio and MIDI support:
+   Starting from the \texttt{yoshimi} prompt:
 
    \begin{verbatim}
-      Yoshimi is starting
-      March little endian = 1
-      Format = Signed Little Endian 32 Bit 2 Channel
-      Didn't find alsa MIDI source 'default'
-      Yoshimi 1.3.6 M
-      Clientname: yoshimi
-      Config: Audio: alsa -> 'default'
-      Midi: alsa -> 'default'
-      Oscilsize: 1024
-      Samplerate: 48000
-      Period size: 1024
-
-      Yay! We're up and running :-)
-      yoshimi> 
+      yoshimi> s p 2 pr 107
+      yoshimi part 2 >
    \end{verbatim}
+
+   This command \textbf{s}ets \textbf{p}art number 2 to \textbf{pr}ogram
+   number 107 from the \textsl{current} instrument bank.
+   \textsl{Yoshimi} is now on part 2 as the current part (indicated by the
+   prompt), and all subsequent commands relate to this "level".
+   At this level, one can change the current part simply with:
+
+   \begin{verbatim}
+      yoshimi part 2 > s 4
+      yoshimi part 4 >
+   \end{verbatim}
+
+   \textsl{Yoshimi} is now on part number 4. Now set an effect:
+
+   \begin{verbatim}
+      yoshimi part 4 > s ef ty re
+      yoshimi part 4 FX 0 rever >
+   \end{verbatim}
+
+   This command \textbf{s}ets the part's \textbf{ef}fect 0 (implicit) to
+   \textbf{ty}pe \textbf{re}verb.
+
+   Note that many settings parameters are optional, and if you omit them,
+   either a default or last-used value will be assumed. Also, names are
+   truncated to 5 characters so the prompt line doesn't get unmanageably long.
+
+   From here you can set a preset for this effect:
+
+   \begin{verbatim}
+      yoshimi part 4 FX 0 rever > s pre 3
+   \end{verbatim}
+
+   Currently, the \textbf{pre}sets are not shown in the prompt, but one
+   will get a confirmation message.
+
+   Settings that follow in a direct command "path"
+   can be made all at once, and one will be left at the appropriate level.
+   Thus, summarizing some of the above commands:
+
+   \begin{verbatim}
+      s p 4 ef 2 ty re
+      yoshimi part 4 FX 2 rever >
+   \end{verbatim}
+
+   One cannot combine \texttt{type} and \texttt{preset} as they
+   are both at the same level.  To go back one level, use the
+   ".." command:
+
+   \begin{verbatim}
+      yoshimi part 4 FX 2 rever > ..
+      yoshimi part 4 >
+   \end{verbatim}
+
+   To go back to the top command level, use the "/" command:
+
+   \begin{verbatim}
+      yoshimi part 4 > /
+      yoshimi >
+   \end{verbatim}
+
+   These two special level-movement commands can also be put on the front of
+   any other command.  Starting where we were before:
+
+   \begin{verbatim}
+      yoshimi part 4 FX 2 rever > .. s vol 70
+      yoshimi part 4 >
+   \end{verbatim}
+
+   Part 4 volume is now at 70, and \textsl{Yoshimi} is once again at the
+   "part level", not the "part FX level".  Also note that the space after
+   the ".." is optional.
+
+   The help menus and lists are also partially context sensitive. This
+   feature should help avoid clutter and confusion.
+
+   As well as an immediate history, \textsl{Yoshimi} maintains a command
+   history file, so provided one makes a normal command-line exit, the last
+   commands will be available on the next run of \textsl{Yoshimi}..
+
+   Originally this section described the currently implemented commands,
+   but as the command set is very much a moving target, it is simpler to just
+   ask you to run Yoshimi and type the "?" command.
+
+   TODO: Report that the help is extremely minimal!!!!
+
+   Commands with "*" in the description need the setup to be saved,
+   and \textsl{Yoshimi} restarted to be activated. 
+
+   More will be added, and the organisation of them may be changed slightly.
+   If any configuratiion settings are changed, either at the command-line
+   or in the graphical user-interface, one will be given a warning when
+   exiting, with the option to continue running so one can save the changes.
 
 \subsection{Command Table}
 \label{subsec:command_line_command_table}
@@ -85,9 +169,28 @@
    The commands are not case-sensitive.
    The commands can be abbreviated to the first three letters of each command.
 
+   When running from the command line, once the 'up and running' message has
+   been seen much of Yoshimi can be controlled here.
+
+   There are a group of commands that are always available. These are
+
+   \begin{itemize}
+      \item \texttt{?} (Help)
+      \item \texttt{List}
+      \item \texttt{RESet}
+      \item \texttt{EXit}
+   \end{itemize}
+
+   Apart from these, the command line works on a system of context levels, and
+   normally only the commands relevant to that "level" will be available.
+
    The brief descriptions in the following table can be obtained
    using the "help" command in the \textsl{Yoshimi} command-line mode.
    More detailed descriptions are given in the section following the table.
+
+   (HELP is currently BROKEN).
+
+   (The SET OF COMMANDS has radically changed).
 
    \begin{table}[H]
       \centering
@@ -176,13 +279,13 @@
             64=no shift). \\
 
          \texttt{set alsa midi [s]} &
-            * Sets the name of the MIDI device ALSA looks for. \\
+            Sets the name of the MIDI device ALSA looks for. \\
 
          \texttt{set alsa audio [s]} &
-            * Sets the name of the audio hardware device ALSA looks for. \\
+            Sets the name of the audio hardware device ALSA looks for. \\
 
          \texttt{set jack server [s]} &
-            * Sets the name of the JACK server Yoshimi tries to connect to. \\
+            Sets the name of the JACK server Yoshimi tries to connect to. \\
 
          \texttt{set vector [n1] x/y cc [n2]} &
             CC \textsl{n2} is for ch. \textsl{n1} X/Y axis sweep.
@@ -217,9 +320,20 @@
       \end{tabular}
    \end{table}
 
-   Commands are not case sensitive and an invalid one will print a reminder.
-   usually, one only needs the first 3 letters of the names, provided that is
-   unambiguous.
+
+   Commands are not case sensitive, and an invalid one will print a reminder.
+   Often you only need the first letter of a command - as long as it is
+   unambiguous. The above examples show their minimum abbreviations in capitals.
+   However, Yoshimi is quite pedantic, and if you type the command in full it
+   must be exactly correct!
+
+   All number ranges start from zero. This is different from the GUI where most
+   (but not all) start from one. So CL part 0 is GUI part 1, but CL bank 0 is
+   GUI bank 0.
+
+
+
+
 
    Commands with '*' in the description need the setup to be saved, and Yoshimi
    restarted to be activated. 

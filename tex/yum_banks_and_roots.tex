@@ -39,66 +39,86 @@
    to tagging roots (directories) and banks with an ID code:
 
    \begin{quotation}
-      One no longer has the concept of a default root directory, but a
-      current one. This can by changed at any time without requiring a
-      re-start, so there is now no longer a need to display the (confusing)
-      contents of all roots.  Also, roots now have ID numbers associated
-      with them, but no changes have been made to the actual directores to
-      achieve this. Instead the IDs are stored in the config file. The same
-      ID system is used for banks, again without making any file system
-      changes.
+      One no longer has the concept of a default root directory, but a current
+      one. This can by changed at any time without requiring a restart, so
+      there is no longer a need to display the (confusing) contents of all
+      roots. Also, roots now have ID numbers associated with them, but no
+      changes have been made to the actual directores to achieve this. Instead
+      the IDs are stored in the config file. The same ID system is used for
+      banks, again without making any file system changes.
 
       At first run (and whenever new root directories are set) unknown roots
       and banks are given these IDs. Once set they will not change no matter
-      how many more roots and banks are later added. One can, however,
-      manually change root directory IDs in 'settings'. Also, there is a
-      Banks window so that these can be set up, moved and renamed in exactly
-      the same way as instruments can.  With these IDs, roots and banks can
-      be grouped/ordered by function instead of alphabetically. When using
-      the GUI one will always know exactly which root and bank one fetches
-      an instrument from.
+      how many more roots and banks are later added. One can however, manually
+      change root directory IDs in the 'Bank Root Paths window' accessible from
+      the 'Paths' item in the main window. Also, there is a new Banks window so
+      that these can be set up, moved and renamed in exactly the same way as
+      instruments can.  With these IDs, roots and banks can be grouped/ordered
+      by function instead of alphabetically. When using the GUI, one will
+      always know exactly which root and bank one fetches an instrument from.
+
+      One can quickly step between roots, banks and instruments with the so
+      marked buttons in each of these, and if one right-clicks on them one will
+      close one window as one opens the other.
 
       The significance of all this is that one's MIDI sequencer can now
       reliably use these ID numbers to select roots, banks and (already
-      available) instruments. That Rosegarden or Muse file one saves
-      today will be just as valid in the future, unless one makes the
-      deliberate choice to change some IDs. Indeed, one can now start with
-      an 'empty' Yoshimi, and via MIDI, set roots, banks and load
-      instruments into parts (enabling the parts as one does so) swapping
-      banks and roots as necessary. While the MIDI file runs it can silently
-      pull instruments from any root/bank into any non-sounding part without
-      disturbing the playing ones.
+      available) instruments. That Rosegarden or Muse file one saves today will
+      be just as valid in the future, unless one makes the deliberate choice to
+      change some IDs. Indeed, one can now start with an 'empty' Yoshimi, and
+      via MIDI, set roots, banks and load instruments into parts (enabling the
+      parts as one does so) swapping banks and roots as necessary. While the
+      MIDI file runs it can silently pull instruments from any root/bank into
+      any non-sounding part without disturbing the playing ones.
 
-      In "Yoshimi / Settings / MIDI" one can enable or disable all these MIDI
-      features, and can define which CCs one wants to use. Bank can be either
-      MSB or LSB (as before). Root can be any non-reserved CC but including
-      the one not in use for Bank. Also, Extended Program Change now has the
-      same restrictions as Root, and these three are all cross-checked
-      against each other. As an example, one might set Bank to LSB and Root
-      to 0 (MSB), effectively giving one extended bank control compatible
-      with all sequencers.
+      In Yoshimi->Settings->MIDI one can enable or disable all these features,
+      and can define which CCs one wants to use. Bank can be either MSB or LSB
+      (as before). Root can be any non-reserved CC but including the one not in
+      use for Bank. Also, Extended Program Change now has the same restrictions
+      as Root, and these three are all cross-checked against each other. As an
+      example, one might set Bank to LSB amd Root to 0 (MSB), effectively
+      giving one extended bank control compatible with all sequencers.
 
       Also, different instances have their own config files so that one can
       have (say) the main instance with current root(9), bank(23) while
       instance 4 has current root(2), bank(6). One can call up instances by
-      number and thus access saved settings for that instance. As each
-      instance has its own MIDI and audio ports, they can behave
-      more-or-less independently.
+      number and thus access saved settings for that instance. As each instance
+      has its own MIDI and audio ports, they can behave more-or-less
+      independently.
 
       In doing all of this we have completely changed the way we manage the
-      structure internally, resulting in much greater efficiency, at the
-      cost of only a slightly slower startup. Swapping roots performs
-      \textsl{no}
-      file operations. Swapping banks only fetches the directory list of the
-      newly selected bank. Changing an instrument doesn't have to search for
-      a file, only load from its already known location.
+      structure internally, resulting in much greater efficiency, at the cost
+      of only a slightly slower startup. Swapping roots performs *no* file
+      operations. Swapping banks only fetches the directory list of the newly
+      selected bank. Changing an instrument doesn't have to search for a file,
+      only load from its already known location.
+
+      If one changes a bank root path, either through the gui or via MIDI, it
+      will always reset the current bank to the lowest numbered one it can
+      find. This is because there may not be a bank in the new root with the
+      same ID, and even if there is, there is no guarantee that it will have
+      the same name or contents.
+
+      Also if an attempt is made to reload the same root, nothing will actually
+      happen. The same is true of banks. Both of these are kept fully
+      up-to-date so there would be no point.
+
+      However, reloading the same *instrument* will be performed every time, as
+      one may have changed what is currently loaded without saving it. This
+      provides an effective 'restore' operation.
+
+      Finally, it is generally advisable to make root and bank changes on
+      channel 1 so that one can more easily keep track of them. However they
+      are not channel sensitive as they don't directly affect the sound, so one
+      can set them in any convenient channel then perform individual program
+      changes on the desired channels.
    \end{quotation}
 
    A "CC" is a MIDI "continuous controller".
    A MIDI bank change is usually a CC\#0 value of 0, followed by a CC\#32
    value of X, where X is the desired bank number from 0 to whatever.
    (However, in some cases it may simply be a CC\#0 on its own with a value
-    of X).  Many synths also require that you send a program change after
+    of X).  Many synths also require that one send a program change after
    the bank change, to select the program within the bank. 
 
 \subsection{Roots}
