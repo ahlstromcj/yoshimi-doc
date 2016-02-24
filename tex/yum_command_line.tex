@@ -55,7 +55,6 @@
    Note the change in nomenclature from "Parameters" to "Patch Set", which is
    visible in the main screen, and also reflected in the command line.
    The prompt will always show what level
-   (TODO:  Define "level" in the "concepts" section).
    one is on, along with relevant information.
    One will also get a confirmation message, but, for clarity,
    those are not included in the examples below.
@@ -160,6 +159,65 @@
    or in the graphical user-interface, one will be given a warning when
    exiting, with the option to continue running so one can save the changes.
 
+\subsection{Command Level}
+\label{subsec:command_line_command_level}
+
+   A command level is simply a position in the hierarchy of commands that cover
+   some aspect of \textsl{Yoshimi} functionality.
+
+   The levels that currently exist are:
+
+   \begin{itemize}
+      \item \textbf{Top Level}
+      \item \textbf{System Effects}
+      \item \textbf{Insertion Effects}
+      \item \textbf{Part}
+      \item \textbf{Part Effects}
+      \item \textbf{Vector}
+   \end{itemize}
+
+Ones that we're pretty sure will be added are:
+
+   \begin{itemize}
+      \item \textbf{Scales (microtonal)}
+      \item \textbf{Controllers}
+      \item \textbf{Addsynth}
+      \item \textbf{Addsynth Voice}
+      \item \textbf{Subsynth}
+      \item \textbf{Padsynth Harmonics}
+      \item \textbf{Padsynth Envelopes}
+   \end{itemize}
+
+   Any level that has a direct numerical content will be changeable simply with
+   "set (n)" once you are at that level.  The level will, of course, be
+   indicated by the text in the \textsl{Yoshimi} prompt.
+
+   For example, one can have 0 to 15 vector channels, so from the
+   \textsl{Top} level, the following command
+   will return the default  (0 or the last-used number):
+
+   (Unclear)
+
+   \begin{verbatim}
+      set vector
+      s ve
+   \end{verbatim}
+
+   Given this level (the \textsl{Vector} level), the following commands...
+
+   \begin{verbatim}
+      set 5 
+      s 5
+   \end{verbatim}
+
+   ...will then switch to vector channel 5.
+   However, at the start, one could have gone straight there with:
+
+   \begin{verbatim}
+      set vector 5
+      s ve 5
+   \end{verbatim}
+
 \subsection{Command Table}
 \label{subsec:command_line_command_table}
 
@@ -190,7 +248,13 @@
 
    (HELP is currently BROKEN).
 
-   (The SET OF COMMANDS has radically changed).
+   (Yoshimi 1.3.9: The SET OF COMMANDS has radically changed).
+
+   The \texttt{paths} command no longer exists. Instead we have \texttt{add} \&
+   \texttt{remove}, so instead of \texttt{path add} it's \texttt{add root}. Also
+   you can now add and remove banks using the same structure. \texttt{paths
+   show} has now been moved into lists as \texttt{list roots}.  These changes
+   make roots/banks/instruments more consistent.
 
    \begin{table}[H]
       \centering
@@ -207,14 +271,15 @@
          \texttt{save setup} &
             Save the current dynamic system settings. \\
 
-         \texttt{paths} &
-            Display all defined bank root paths and their IDs. \\
-
-         \texttt{path add [s]} &
-            Define a new bank root path and returns its ID. \\
-
-         \texttt{path remove [n]} &
-            Remove the path-entry ID \textsl{n} from bank roots. \\
+% Obsolete:
+%        \texttt{paths} &
+%           Display all defined bank root paths and their IDs. \\
+%
+%        \texttt{path add [s]} &
+%           Define a new bank root path and returns its ID. \\
+%
+%        \texttt{path remove [n]} &
+%           Remove the path-entry ID \textsl{n} from bank roots. \\
 
          \texttt{list banks [n]} &
             List instruments and IDs in bank \textsl{n} or

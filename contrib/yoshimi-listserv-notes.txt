@@ -4548,6 +4548,27 @@ deeply grateful for your testing of Yoshimi thusly too!
 
 
 
+Date: Fri, 29 Jan 2016 17:31:52 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Scales & State
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+I dimly remember someone saying they used quite a lot of different scale
+settings. Well whoever you are I have good news for you :)
+
+In the current master, up to 25 recently used scales are now stored in the new
+history file, and can be quickly reinstalled with a mini browser in exactly the
+same was as patch sets.
+
+Recent states are also implemented but with a caveat. Some system settings will
+be ignored as they can't be changed in a running yoshimi. Some day I'd like to
+be able to change that.
+
+
+
+
+
 
 
 Date: Fri, 29 Jan 2016 09:02:57 +0400
@@ -4577,6 +4598,246 @@ Yay! We're up and running :-)
 Registered jack port 0
 
 
+
+Date: Sun, 31 Jan 2016 16:49:43 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] config reorganisation - almost complete
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+At the bottom of this email is the current *much* reduced .config file
+
+The first thing you'll notice is that the doctype is no longer ZynAddSubFX.
+This is because it is not now compatible in any meaningful sense of the word.
+However, this is not an issue. The config is always going to be specific to one
+machine and working modus so I can't see anyone wanting to copy it across even
+to another yoshimi environment.
+
+The other files that now have a Yoshimi doctype are the new history and banks
+files as these have no equivalent in Zyn. Also, state should always have been
+Yoshim as Zyn doesn't have that facility.
+
+The ones that still *do* have ZynAddSubFX doctype are instruments, patch sets,
+presets & scales. All these are directly compatibile, with the proviso that
+things like audio destination are not available in Zyn.
+
+The final stage of splitting up .config will be the system wide settings and
+instance ones. My thinking is that the split should take place just after the
+preset directories. However there are three settings I'm not quite sure about.
+
+The first is the ALSA sample rate. If you have different cards directly
+controlled by different instances would you *really* want them running at
+different rates. I don't think it's likely myself, but can anyone think of a
+reasonable use-case?
+
+Next is sound buffer size. Once again, can anyone see a need for it to be
+per-instance? I can't.
+
+Finally, we have the AddSynth oscillator size. Is there a use-case for it it be
+per-instance?
+
+
+Once everything is settled I'll go about fixing the system wide stuff (not too
+sure of the details yet). .config will be readable by all instances, but
+writeable only by the main instance. The relevant controls will be greyed out in
+the other instances.
+
+The history will be a single buffer and file, readable and writeable by all
+instances. This is actually quite interesting as there can never be a conflict.
+It is impossible to have two browser lists open at the same time (try it!) and 
+the lists are always rebuilt from memory every time they are opened. Similarly,
+the histories are added too every time a new recognised file is loaded or
+saved and you can't physically do two at the same time - even if you could it
+would simply mean that one very briefly waited for the other, which is not an
+issue as they are not in the RT thread.
+
+The entire config set should then be.
+.config
+.instance[n]
+.history
+.banks (this is currently per instance - much more thought needed here)
+
+.windows is specific to the gui so doesn't figure in this scheme at all.
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Yoshimi-data>
+<Yoshimi-data Yoshimi-author="Alan Ernest Calvert" Yoshimi-major="1"
+Yoshimi-minor="3">
+<INFORMATION>
+<string name="XMLtype">Config</string>
+</INFORMATION>
+<BASE_PARAMETERS>
+<par name="max_midi_parts" value="16" />
+
+<par name="max_kit_items_per_instrument" value="16" />
+<par name="max_system_effects" value="4" />
+<par name="max_insertion_effects" value="8" />
+<par name="max_instrument_effects" value="3" />
+<par name="max_addsynth_voices" value="8" />
+</BASE_PARAMETERS>
+<CONFIGURATION>
+<par name="gzip_compression" value="3" />
+<par name="enable_gui" value="1" />
+<par name="enable_CLI" value="1" />
+<par name="single_row_panel" value="1" />
+<par name="reports_destination" value="0" />
+<par name="hide_system_errors" value="0" />
+<par name="report_XMLheaders" value="0" />
+<par name="virtual_keyboard_layout" value="1" />
+<par name="sample_rate" value="48000" /> 
+<par name="sound_buffer_size" value="128" />
+<par name="oscil_size" value="512" />
+<PRESETSROOT id="0">
+<string name="presets_root">/home/will/.config/yoshimi/presets</string>
+</PRESETSROOT>
+<PRESETSROOT id="1">
+<string name="presets_root">/usr/local/share/yoshimi/presets</string>
+</PRESETSROOT>
+<par name="interpolation" value="0" />
+<par name="audio_engine" value="1" />
+<par name="midi_engine" value="2" />
+<string name="linux_alsa_audio_dev">hw:PCH</string>
+<string name="linux_alsa_midi_dev">Hua Xing</string>
+<string name="linux_jack_server">default</string>
+<string name="linux_jack_midi_dev"></string>
+<par name="midi_bank_root" value="0" />
+<par name="midi_bank_C" value="32" />
+<par name="midi_upper_voice_C" value="128" />
+<par name="ignore_program_change" value="0" />
+
+<par name="enable_part_on_voice_load" value="1" />
+<par name="check_pad_synth" value="1" />
+</CONFIGURATION>
+</Yoshimi-data>
+
+
+
+
+
+Date: Fri, 12 Feb 2016 20:23:42 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Hmmm.
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+
+Our 'state' file consists of the entire setup from basic config settings to
+currently loaded instrument sets. However, on investigating some session
+managers it looks like they don't want (or can't use) most of the config stuff
+because they are expecting to be able to change state in *running* instances.
+
+I never use session management so I'm a bit unclear on this. If and when I get
+around to splitting the 'instance' data from the main config, then a lot of
+this can be resolved buy only saving the 'true' config stuff locally, and to
+'our' state save.
+
+However, the 'instance' data will include things like alsa/jack settings so I
+don't know what we should do about that. Currently we can't change these live
+(although it would be nice if we could), but would anyone want to do so from a
+session manager?
+
+Is anyone using any of these? If so, what would you like to be able to set
+session-wise, and what would you consider as fixed?
+
+
+
+
+
+Date: Mon, 22 Feb 2016 19:55:20 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Yoshimi 1.3.9 rc1 - more details
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.29; x86_64-pc-linux-gnu)
+
+Now we seem to be in the clear (hopefully) there is a small adjustment I made
+to the CLI recently.
+
+The 'paths' command no longer exists. Instead we have 'add' & 'remove', so
+instead of 'path add' it's 'add root'. Also you can now add and remove banks
+using the same structure. 'paths show' has now been moved into lists as 'list
+roots'.
+
+These changes make roots/banks/instruments more consistent.
+
+However, at the moment it requires a full path to be used, and doesn't offer to
+create it. There are a few other places in the code where this happens, so what
+I'm considering is a new function in MiscFuncs that will build up the directory
+structure as required. Also, I'll probably arrange it so that if you don't put
+a leading '/' on the search string it will assume '/home/{user}/'.
+
+Something I'm less sure about is whether we should make 'banks' compulsory for
+the last part of a root path. It has been optional up to now, although everyone
+seems to accept it as the norm. If it is compulsory it actually simplifies some
+of the code and makes it more regular.
+
+In any case, I won't do this before the new release - too tempting for Murphy to
+throw in a bug or two!
+
+--
+
+HELP!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+Date: Tue, 23 Feb 2016 20:26:10 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Yoshimi 1.3.9 rc1 - more details
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.29; x86_64-pc-linux-gnu)
+
+I'll try to add to the information in 'doc' through this week - while also
+checking for bugs - with the intention of a release on Sunday or Monday. The
+latest changes I made to the CLI, were the result of an ill thought out
+decision at the start. Hopefully I won't need to change anything else, but just
+add to what is there.
+
+The levels that currently exist are:
+
+top level
+system effects
+insertion effects
+part
+part effects
+vector
+
+Ones that I'm pretty sure will be added are:
+
+scales (microtonal)
+controllers
+addsynth
+addsynth voice
+subsynth
+padsynth harmonics
+padsynth envelopes
+
+?????
+In the GUI, harmonics are the default window for padsynth, but for the CLI I'll
+probably reverse that. Once the sound has been set up. you are more likely to
+want to play with the envelopes, and throughout the CLI I'm trying to make the
+most used controls have the highest priority (and shortest abbreviations).
+?????
+
+
+Any level that has a direct numerical content will be changeable simply with
+"set {n}" once you are at that level.
+
+eg. you can have 0-15 vector channels, so from top level:
+
+"set vector" -or- "s ve"
+will return the default 0 (or last used one)
+
+"set 5" -or- "s 5"
+will then switch to vector channel 5.
+However, at the start you could have gone straight there with:
+
+"set vector 5" -or- "s ve 5"
+
+Does that clarify things more?
+
+
+With the built-in help system I'm trying to provide enough information as a
+reminder, while not stuffing the terminal with acres of text.
 
 
 
