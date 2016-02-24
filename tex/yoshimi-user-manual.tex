@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-04-20
-% \update      2016-01-30
+% \update      2016-02-24
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -29,7 +29,7 @@
 
 \begin{document}
 
-\title{A Yoshimi 1.3.8 User Manual}
+\title{A Yoshimi 1.3.9 User Manual}
 \author{Chris Ahlstrom \texttt{ahlstromcj@gmail.com} with Will J. Godfrey}
 \date{\today}
 \maketitle
@@ -96,6 +96,127 @@
    a developer.  So, really, it is not clear that there is really a big
    advantage to one over the other... use them both and make your own
    decision!
+
+\subsection{New Features}
+\label{subsec:introduction_new_features}
+
+   Yoshimi can now run as an LV2 plugin.  Supported features:
+
+   \begin{enumber}
+      \item Sample-accurate midi timing.
+      \item State save/restore support via LV2\_State\_Interface.
+      \item Working UI support via LV2\_External\_UI\_Widget.
+      \item Programs interface support via LV2\_Programs\_Interface.
+      \item Multi channel audio output.
+         'outl' and 'outr' have lv2 index 2 and 3.
+         All individual ports numbers start at 4.
+   \end{enumber}
+
+   Planned feature:
+   Controls automation support.
+   This will be a part of a common controls interface.
+
+   Sensitivity to MIDI volume change (CC7) is now variable in 'Controllers' in
+   the same way as pan width, etc. The Numeric range is 64 to 127, the default
+   at 96 gives the same sensitivity as before at -12dB relative to the GUI
+   controls.  127 gives 0dB and 64 gives -26dB.
+
+   \textsl{Yoshimi} now stamps instrument and patch set XML files with its own
+   major and minor version numbers so it is possible to tell which version
+   created the files, or whether they were created by \textsl{ZynAddSubFX}.
+
+   It is now possible to direct messages to either stderr or the report window
+   on the fly. If one chooses 'stderr', the \textbf{Reports} button is greyed
+   out.
+
+   Some NRPNs are now supported.
+   NRPNs have been extended so that via MIDI one can read most of the dynamic
+   system settings (to the Log file). These can now also be set.
+   See the new NRPN sections, and, in the source-code bundle:
+   Using\_NRPNs.txt; Direct\_Part\_Control.txt; Vector\_Control.txt; and
+   Yoshi\_Zyn\_NRPNs.txt
+
+   One can now use the mouse scroll wheel to adjust rotary controls. Holding
+   down 'ctrl' gives to finer adjustment.  Also, horizontal as well as vertical
+   mouse movement will adjust the knob.
+
+   Part-editing windows carry the part number and voice name in the title bar.
+   For the AddSynth oscillator window this also includes the voice number.
+
+   Yoshimi now has up to 64 parts in blocks of 16. One can now decide how many
+   one wants to have available using the spinbox alongside the channel number.
+   One can have 16, 32 or 64.
+   By default, all the upper parts are mapped to the same MIDI channel numbers
+   as the lowest ones but have independent voice and patch set values. They can
+   not normally receive independent note or control messages. However, vector
+   control will intelligently work with however many are set, as will all
+   the NRPN direct part controls.
+
+   When opening an instrument bank one can now tell exactly which synth engines
+   are used by each instrument. This is represented by three pale background
+   colours: Red -> AddSynth; Blue -> SubSynth; and Green -> PadSynth.
+
+   If the instruments are kits they scanned to find out if any member of the
+   kit contains each engine.
+   This feature is duplicated in the current part, the mixer panel for the
+   currently loaded instruments, and in the Instrument Edit window the same
+   colours highlight the engine names when they are enabled with the check
+   boxes. 
+
+   Bank root directories are better identified, with IDs that can be changed by
+   the user in the GUI. This is also made available for selecting over MIDI.
+
+   MIDI only sees banks in the \textsl{current}
+   \textbf{root} directory, but all banks are accessible to the GUI.
+   More details are provided in \texttt{Banks.txt}.
+
+   It is now possible to set up a new bank root path when starting from the
+   command line. This takes the form:
+
+   \begin{verbatim}
+      $ yoshimi -D /home/(username)/(directory)/(subdirectory)/bank
+   \end{verbatim}
+
+   \textsl{Yoshimi} will then immediately scan this path for new banks, but
+   won't make the root (or any of its banks) current. The final directory
+   doesn't in fact have to be 'banks' but traditionally we have always done
+   this.
+
+   Also, when running from the command line there is now access to many of the
+   system and Root, Bank etc. settings.
+
+   \textsl{Yoshimi} now remembers where major windows were last placed (per
+   instance), and if any were left open at shutdown, they will be reopened at
+   the same location on the next run.
+
+   We have an implimentation of CC2 - breath control. This combines volume with
+   filter cutoff.
+
+   To help when things don't seem to go right, one can now show 'raw' incoming
+   CCs. This is enabled from the 'MIDI' tab in 'Settings'. These are the values
+   before \textsl{Yoshimi} does any processing.
+
+   The earlier experimantal per part random detune features has now been
+   formalised with a slider covering the range from 0 to +/- 50 cents, which is
+   half-way between adjacent notes on the even tempered scale. This setting is
+   now saved in patch sets so will be restored when one reloads the same set.
+
+   Thanks to the Zyn developers, we now have pink as well as white noise
+   available on Addsynth voices. Pink noise sounds 'softer'.
+
+   The preferred JACK/ALSA MIDI and audio connections are no longer fixed at
+   compile time. There are now checkboxes on 'Settings' to change them.
+
+   With the latest 'depop' port from Zyn, we are now fully compatibly with all
+   instrument files.
+
+   \textsl{Yoshimi} will now always start even if the audio/MIDI backend called
+   for doesn't exist. In this situation it will try all combinations in the
+   order JACK, ALSA, and null. This enables one to then change the settings and
+   try again.
+
+   One can also set 'preferred' startup ALSA/JACK/MIDI and audio devices.
+   These selections will be remembered on the next run.
 
 \subsection{Document Structure}
 \label{subsec:introduction_document_structure}
