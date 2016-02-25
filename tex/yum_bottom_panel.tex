@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-06
-% \update      2015-10-24
+% \update      2016-02-25
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -73,9 +73,39 @@
 
    Values: \texttt{16*, 32, 64}
 
-   \textsl{Yoshimi} now has up to 64 parts in blocks of 16. One can now
-   decide how many one wants to have available using this user-interface
-   item.
+   \textsl{Yoshimi} now has up to 64 parts in blocks of 16. One can now decide
+   how many one wants to have available using this user-interface item.  By
+   default these are wraped around the normal MIDI channels, so that parts 1,
+   17, 33, and 49 all respond to channel 1 messages. This was originally
+   implemented for Vector Control, working with up to four sounds on a channel
+   (similar to the Yamaha SY hardware series).
+
+   However, these additional parts have other less obvious uses. One of these
+   is getting far more than 16 completely independent tracks addressed by just
+   the 16 channels. Most tunes run with instruments having a relatively narrow
+   pitch range, and this is what we can make use of.
+
+   As an example, in \textsl{Yoshimi}'s main window select 64 parts, then on
+   part 1 set (say) Steel Bass and maximum note as 52 (E).  Next select part 17
+   and enable it (easiest to use the mixer panel for this) set Tunnel Piano,
+   the *minimum* note as 53 and maximum as 71 (B).  Finally, enable part 33,
+   set Rushes, and set it's minimum note as 72, but key shift down an octave.
+   With a 61 note keyboard that gives one quite a useful working range, on just
+   one channel.
+
+   However, the idea really comes into its own with a sequencer like Rosegarden
+   where one can record multiple parts over the full MIDI range and track them
+   to the same channel. Also, in Rosegarden the parts can be separately named,
+   and identified as Bass and Treble in the notation editor. This makes it very
+   convenient for those wanting a more formal musical layout.
+
+   So, with very little effort, one can now have 48 tracks playing at once!
+   Ummm, one does need a decent processor though :)
+
+   Yes, one could run more instances of Yoshimi on different MIDI ports, but
+where's the fun in that?
+
+
 
    By default, all the upper parts (numbers greater than 16)
    are mapped to the same MIDI channel
@@ -92,7 +122,7 @@
    Instrument Name.
    Left-click to open the Bank window.
    Right-click to change the name of the current instrument.
-   If you change the name of the instrument, be sure to select
+   If one changes the name of the instrument, be sure to select
    \textbf{Menu / Instrument / Save Instrument} to preserve that change.
 
    The name now has color-coding to indicate the instrument's use of
@@ -216,13 +246,13 @@
    At the bottom of the main window there is a pair of horizontal grids
    representing a bargraph type display. The upper one is for the left hand
    channel and the lower one for the right hand one. The grid divisions each
-   represent 1dB, and the brighter divisions are therefore 5dB. The thicker
-   bright divisions therefore being 10dB. The overall scale range is -48dB to
-   0dB.
+   represent 1 dB, and the brighter divisions are therefore 5 dB. The thicker
+   bright divisions therefore being 10 dB. The overall scale range is -48 dB to
+   0 dB.
 
    As the output level rises pale blue strips will light up in these grids.
    These fast responding bars are the peak levels and should never be allowed
-   to go above 0dB, otherwise the output is likely to be clipped and distorted.
+   to go above 0 dB, otherwise the output is likely to be clipped and distorted.
    There is also a pair of boxes on the end of these grids which will show the
    highest peak level seen. If clipping has happened the box background will
    change from black to red.
@@ -238,6 +268,8 @@
    10dB. The peak leve isn't shown numerically, but if one exceeds 0dB a thick
    red line will appear at the top of the bargraph. This is also cleared from
    the box in the main window.
+
+   (More information to come).
 
 \paragraph{Tip: Using the VU Meter}
 \label{paragraph:tips_using_the_vu_meter}

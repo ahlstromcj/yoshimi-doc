@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-10-24
-% \update      2015-10-24
+% \update      2016-02-25
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -64,10 +64,10 @@
       \item NRPN LSB (98) set to 1 [8192]
       \item Data MSB (6) set mode:
       \begin{itemize}
-         \item 0 = X CC
-         \item 1 = Y CC
-         \item 2 = X features
-         \item 3 = Y features
+         \item 0 = X sweepjCC
+         \item 1 = Y sweepjCC
+         \item 2 = enable X features
+         \item 3 = enable Y features
          \item 4 = x1 instrument (optional)
          \item 5 = x2 instrument (optional)
          \item 6 = y1 instrument (optional)
@@ -98,6 +98,9 @@
    the Y axis sets, but doesn't enable the default Y axis features.  If you
    don't enable any features, not a lot will happen.
 
+   The feature numbers are chosen so they can be combined. So, 5 would be
+   Volume + Brightness and 19 would be Volume + Reversed Pan.
+
    Optional settings.  The first part, the number, is the MSB value.
    The second part is the LSB, the parameter value to set.  Note that the
    instrument IDs are for instruments in the current bank.
@@ -115,9 +118,9 @@
       \item 13 = set CC for Y feature 8
    \end{itemize}
               
-Any data MSB value outside the above list disables vector control.
-
-Sweep CCs and feature CCs are sanity checked.
+   The IDs are for instruments in the current bank.
+   Any data MSB value outside the above list disables vector control.
+   Sweep CCs and feature CCs are sanity checked.
     
    An Example: From channel 1, send the following CCs
 

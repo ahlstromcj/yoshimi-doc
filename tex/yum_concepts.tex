@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-15
-% \update      2016-02-23
+% \update      2016-02-25
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -751,17 +751,24 @@
             Bank Change (user selectable, does \textsl{not} force a program
             change) \\
          \textbf{1} & Modulation Wheel \\
+         \textbf{2} & Breath Control \\
+         \textbf{6} & Data MSB \\
          \textbf{7} & Volume \\
          \textbf{10} & Panning \\
          \textbf{11} & Expression \\
+         \textbf{38} & Data LSB \\
          \textbf{64} & Sustain pedal \\
-         \textbf{65} & Portamento On/Off \\
+         \textbf{65} & Portamento \\
          \textbf{71} & Filter Q (Sound Timbre) \\
          \textbf{74} & Filter Cutoff (Brightness) \\
          \textbf{75} & BandWidth (different from GM spec) \\
          \textbf{76} & FM amplitude (different from GM spec) \\
          \textbf{77} & Resonance Center Frequency (different from GM spec) \\
          \textbf{78} & Resonance Bandwith (different from GM spec) \\
+         \textbf{96} & Data Increment \\
+         \textbf{97} & Data Decrement \\
+         \textbf{98} & NRPN LSB \\
+         \textbf{99} & NRPN MSB \\
          \textbf{120} & All Sounds OFF \\
          \textbf{121} & Reset All Controllers \\
          \textbf{123} & All Notes OFF \\
@@ -786,6 +793,17 @@
    The Program Change (192) also provides user selectable CC for voices
    128-160.  There is now an option to make Program Change enable a part if
    it's currently disabled.
+
+   Key pressure (aftertouch) is internally translated as CC 900.
+
+   Channel Pressure is internally translated as CC 901.
+
+   Pitch Bend is internally translated as CC 1000.
+
+   The modulation wheel only affects AddSynth and PadSynth, and then only the
+   frequency LFO depth. Just to make it more confusing, it changes the level
+   from 0 up to it's current (GUI) setting only. Therefore, if the LFO depth is
+   set to zero, the Mod Wheel will have no effect.
 
    User selectable CC for Bank Root Path change.
    For more details of bank changes see
