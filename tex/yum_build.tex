@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-07-10
-% \update      2015-10-24
+% \update      2016-02-25
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -65,6 +65,40 @@
       \item \texttt{FLTK}
       \item \texttt{lv2}
    \end{itemize}
+
+   These package names are from \textsl{Debian Jessie}:
+
+   \begin{itemize}
+      \item \texttt{automake}
+      \item \texttt{build-essential}
+      \item \texttt{cmake-curses-gui}
+      \item \texttt{dssi-dev}
+      \item \texttt{fluid}
+      \item \texttt{libboost-dev}
+      \item \texttt{libcairo2-dev}
+      \item \texttt{libfftw3-dev}
+      \item \texttt{libfltk1.3-dev}
+      \item \texttt{libglu1-mesa-dev}
+      \item \texttt{libjack-jackd2-dev}
+      \item \texttt{libjpeg-dev}
+      \item \texttt{libmxml-dev}
+      \item \texttt{libncurses5-dev} (new dependency)
+      \item \texttt{libreadline-dev} (new dependency)
+      \item \texttt{libxft-dev}
+      \item \texttt{libxinerama-dev}
+      \item \texttt{libxml2-dev}
+      \item \texttt{xutils-dev}
+      \item \texttt{zlib1g.dev}
+   \end{itemize}
+
+	LV2 plugin adds one more dependency:
+
+		\texttt{lv2-dev} with minimum version >= 1.0.0.
+
+   Other distros may have slightly different names or version numbers, and may
+   even have these installed by default. If in doubt, try looking for just the
+   main part of the name, but with the \texttt{-dev} extension where
+   appropriate.
 
 \subsection{Build It}
 \label{subsec:yoshimi_build_it}

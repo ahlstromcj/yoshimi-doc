@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-15
-% \update      2016-02-25
+% \update      2016-02-26
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -239,6 +239,11 @@
          sample rate -- file.
          It is a single file that every instance can read,
          but only the first one can write.
+         \texttt{.config} hasn't yet been separated from
+         \texttt{.instance(n)} and all files are still per
+         instance, as the \textsl{Yoshimi} team  haven't had time to work out
+         exactly how to manage common files
+         and memory locations for those that should be shared.
       \item \texttt{.state}
          Sometimes one will see the extension \texttt{.state} used in the
          \texttt{\$HOME/.config/yoshimi} directory.

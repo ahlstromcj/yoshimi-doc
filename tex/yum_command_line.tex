@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-09-06
-% \update      2016-02-23
+% \update      2016-02-26
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -70,7 +70,7 @@
    This command \textbf{s}ets \textbf{p}art number 2 to \textbf{pr}ogram
    number 107 from the \textsl{current} instrument bank.
    \textsl{Yoshimi} is now on part 2 as the current part (indicated by the
-   prompt), and all subsequent commands relate to this "level".
+   prompt), and all subsequent commands will relate to this "level".
    At this level, one can change the current part simply with:
 
    \begin{verbatim}
@@ -101,7 +101,7 @@
    Currently, the \textbf{pre}sets are not shown in the prompt, but one
    will get a confirmation message.
 
-   Settings that follow in a direct command "path"
+   Settings that follow in a direct command "path" through several levels
    can be made all at once, and one will be left at the appropriate level.
    Thus, summarizing some of the above commands:
 
@@ -237,8 +237,9 @@ Ones that we're pretty sure will be added are:
       \item \texttt{EXit}
    \end{itemize}
 
-   Apart from these, the command line works on a system of context levels, and
-   normally only the commands relevant to that "level" will be available.
+   Apart from these basic commands, the command line works on a system of
+   context levels, and normally only the commands relevant to that "level" will
+   be available.
 
    The brief descriptions in the following table can be obtained
    using the "help" command in the \textsl{Yoshimi} command-line mode.
@@ -385,8 +386,8 @@ Ones that we're pretty sure will be added are:
 
 
    Commands are not case sensitive, and an invalid one will print a reminder.
-   Often you only need the first letter of a command - as long as it is
-   unambiguous. The above examples show their minimum abbreviations in capitals.
+   Often one needs only the first letter of a command, as long as it is
+   unambiguous. The examples above show their minimum abbreviations in capitals.
    However, Yoshimi is quite pedantic, and if you type the command in full it
    must be exactly correct!
 
