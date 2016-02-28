@@ -1,0 +1,208 @@
+%-------------------------------------------------------------------------------
+% yum_menu_patch_sets
+%-------------------------------------------------------------------------------
+%
+% \file        yum_menu_patch_sets.tex
+% \library     Documents
+% \author      Chris Ahlstrom
+% \date        2016-02-27
+% \update      2016-02-27
+% \version     $Revision$
+% \license     $XPC_GPL_LICENSE$
+%
+%     Provides the Menu / Instruments section of yoshimi-user-manual.tex,
+%     for the 1.3.8 and above versions of Yoshimi.  That menu entry has changed
+%     a lot.
+%
+%-------------------------------------------------------------------------------
+
+\subsection{Menu / Patch Sets}
+\label{subsubsec:menu_patch_sets}
+
+   This new menu entry is part of the very nice reorganization and
+   simplification of the handling of roots and banks in the new
+   \textsl{Yoshimi}.  The \textbf{Patch Sets} menu replaces the old
+   \textbf{Parameters} menu.  Do you like the new name?
+
+   \textsl{Yoshimi} stamps its parameter XML files with its own major and
+   minor version numbers so it is possible to tell which version created the
+   files, or whether they were created by \textsl{ZynAddSubFX}.
+
+   One question remains:  are all the settings, including effects and
+   instruments, included in a patch set?
+
+   The main dialog is somewhat similar in layout and function to the
+   dialog shown in
+   \figureref{fig:instruments_show_stored}
+   for managing instruments in a selected bank.
+
+\subsubsection{Menu / Patch Sets / Show Patch Banks...}
+\label{subsubsec:menu_patch_sets_show_patch_banks}
+
+\begin{figure}[H]
+   \centering 
+%  \includegraphics[scale=0.75]{menu/Instrument/show-banks-roots.jpg}
+   \includegraphics[scale=0.75]{1.3.9/patch_sets_show_patch_banks.png}
+   \caption[Show Patch Banks]{Show Patch Banks}
+   \label{fig:show_patch_banks}
+\end{figure}
+
+   Here is a list of the user-interface items in the patch-banks dialog:
+
+   \begin{enumber}
+      \item \textbf{Roots}
+      \item \textbf{current bank}
+      \item \textbf{Instruments}
+      \item \textbf{Bank Matrix}
+      \item \textbf{SELECT}
+      \item \textbf{RENAME}
+      \item \textbf{SAVE}
+      \item \textbf{DELETE}
+      \item \textbf{SWAP}
+      \item \textbf{Close}
+   \end{enumber}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Roots}{Roots!root directories}
+   Show Patch Banks, Root Directories.
+   To add a bank root path, delete a bank root path, or manage bank root path,
+   press this button.  The result is somewhat similar to a file dialog,
+   and is described in detail in 
+   \sectionref{subsubsec:menu_patch_sets_patch_bank_roots} in
+   this sub-chapter.
+
+   \itempar{current bank}{banks!current bank}
+   This item is highlighted in pink, and the bank that is actually the current
+   bank is also highlighted in pink.  There is no action associated with this
+   user-interface element; it merely indicates the currently-selected bank.
+
+   \itempar{Instrument}{banks!instrument}
+   This button brings up an instruments window similar
+   to the one shown in
+   \figureref{fig:instruments_show_stored} which shows
+   the instruments collected in the currently-selected bank.
+   Clicking on a bank in the dialog also brings up the instruments window.
+
+   \itempar{Bank Matrix}{banks!matrix}
+   This view shows all of the banks available in the current root.
+   Left-clicking on a bank in the dialog brings up the Instruments window for
+   that bank.
+   Right-clicking on a bank in the dialog brings up the Instruments window for
+   that bank, but also closes the banks window, to reduce clutter.
+
+   The rest of the buttons \textbf{SELECT}, \textbf{RENAME}, \textbf{SAVE},
+   \textbf{DELETE}, and \textbf{SWAP} behave similarly to the same buttons in
+   the Instruments window, as
+   described in the
+   \sectionref{subsubsec:menu_instrument_show} discussion.
+
+\subsubsection{Menu / Patch Sets / Load External...}
+\label{subsubsec:menu_patch_sets_load}
+
+   This menu entry simply brings up a file dialog, allowing the user to
+   navigate to an arbitrary directory, and then to a solitary instrument file
+   (\texttt{*.xmz}), and load it into the current set of parts.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Parameters/open-parameters.jpg}
+   \caption{Load Patch Set}
+   \label{fig:yoshimi_menu_open_parameters}
+\end{figure}
+
+   These "xmz" files are normally found in a \texttt{presets} directory, but this
+   operation allows access to banks that are not located in a particular root.
+
+   When an "xmz" file is loaded, all of the instruments it contains are
+   loaded sequentially into the Parts.  Thus, a number of instruments are loaded
+   at once.  So, a patch set is a list of instruments that are related by
+   being necessary for a given tune, rather than by being located in a
+   particular bank.
+
+   In parameter sets, \textsl{Yoshimi} will save named-but-disabled patches.
+   Currently, \textsl{ZynAddSubFX} does not, so be aware when transferring
+   data between the two synthesizers.
+
+\subsubsection{Menu / Patch Sets / Save External...}
+\label{subsubsec:menu_patch_sets_save}
+
+   This menu entry simply brings up a file dialog, allowing the user to
+   navigate to an arbitrary directory, and then save the current Part
+   to a solitary instrument file (\texttt{*.xiz}).
+
+   In parameter sets, \textsl{Yoshimi} will save named-but-disabled patches.
+   Currently, \textsl{ZynAddSubFX} does not, so be aware when transferring
+   data between the two synthesizers.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Parameters/save-parameters.jpg}
+   \caption{Save Patch Set}
+   \label{fig:yoshimi_menu_save_parameters}
+\end{figure}
+
+   What is the full extent of parameters saved?
+
+   If nothing has changed, then the following dialog is shown.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Parameters/nothing-to-save.jpg}
+   \caption{Patch Set, Nothing to Save}
+   \label{fig:yoshimi_menu_nothing_to_save_parameters}
+\end{figure}
+
+\subsubsection{Menu / Patch Sets / Recent Sets}
+\label{subsubsec:menu_patch_sets_recent_sets}
+
+   This menu entry brings up a dialog box with a list of the recent patch sets
+   that have been loaded.  This item makes it easy to move around one's
+   frequently-used banks.
+
+\subsubsection{Menu / Patch Sets / Patch Bank Roots}
+\label{subsubsec:menu_patch_sets_patch_bank_roots}
+
+   \textsl{Yoshimi} (as installed by Debian Linux) provides a default bank at
+   \texttt{/usr/share/yoshimi/banks}.
+   To add one's own directory, click on the \textbf{Roots} button.
+   Then click on "Add root directory...".
+
+   Once selected, one will see that \texttt{/usr/share/yoshimi/banks}
+   is marked with an asterisk.  One can select the new root directory,
+   and make it current by clicking the "Make current" button.
+   Then the Banks dialog will show all the banks in that directory, one bank
+   per subdirectory (each subdirectory "is" a bank).
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Instrument/new-directory.jpg}
+   \caption{Add Root Directory}
+   \label{fig:add_root_directory}
+\end{figure}
+
+   \itempar{Remove root directory...}{Root Paths!remove directory}
+   Bank Root Paths, Remove Root Directory.
+   If a path is selected, then this button is active, and can be used to
+   delete the selected path from the "root paths" list.
+
+   \itempar{Make current}{Root Paths!make current}
+   Bank Root Paths, Make Current.
+   \index{current!root}
+   This button marks the currently-selected path as the "current root" path.
+
+   \itempar{Open current}{Root Paths!open current}
+   Bank Root Paths, Open Current.
+   This button opens the current root path.
+
+   \itempar{Change ID}{Root Paths!change ID}
+   Bank Root Paths, Change ID.
+   We need to know more about how this ID can be used.
+   Is it a way to make the path selectable via an extended MIDI control, or
+   some other automation method?
+
+   Values: \texttt{0* to 127}
+
+%-------------------------------------------------------------------------------
+% vim: ts=3 sw=3 et ft=tex
+%-------------------------------------------------------------------------------

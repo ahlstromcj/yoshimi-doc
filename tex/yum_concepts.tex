@@ -42,7 +42,7 @@
    This section doesn't provide comprehensive coverage of terms.  It
    covers mainly terms that puzzled the author at first.
 
-\subsubsection{Concepts / Terms / cent}
+\subsubsection{Concepts / Terms / Cent}
 \label{subsubsec:concepts_terms_cent}
 
    The \textbf{cent}
@@ -55,7 +55,7 @@
    The interval of one cent is much too small to be heard between
    successive notes.
 
-\subsubsection{Concepts / Terms / frame}
+\subsubsection{Concepts / Terms / Frame}
 \label{subsubsec:concepts_terms_frame}
 
    The \textbf{frame}
@@ -64,7 +64,7 @@
    If one is using JACK, a mono signal will have frames of 1 float, 2 floats
    for stereo, etc.
 
-\subsubsection{Concepts / Terms / instrument}
+\subsubsection{Concepts / Terms / Instrument}
 \label{subsubsec:concepts_terms_instrument}
 
    \index{instrument}
@@ -77,7 +77,7 @@
    "patch", and even "program" interchangeably and loosely.
    However, "part" now has a different meaning, as seen in the next term.
 
-\subsubsection{Concepts / Terms / part}
+\subsubsection{Concepts / Terms / Part}
 \label{subsubsec:concepts_terms_part}
 
    \index{part}
@@ -86,11 +86,33 @@
    section~\ref{subsubsec:concepts_terms_instrument}).  Each part can be
    enabled or disabled, and assigned to a particular MIDI channel, one of 16
    channels.
-
    Note that the previous \textsl{Yoshimi} limit on parts was 16.
-   Since around version 1.3.5, this limit has been raised.
+   Since around version 1.3.5, this limit has been raised to 64.
 
-\subsubsection{Concepts / Terms / patch}
+   In many cases saving everything is not what is desired. Saving a patch
+   later on in an editing session is one such example.
+   In order to save a patch, one can either save it from the
+   \textbf{Instruments} menu,
+%  in \sectionref{subsubsec:menu_instrument_save},
+   or through the \textbf{Bank} window.
+%  in \sectionref{subsubsec:menu_instrument_show_banks}.
+
+   With the \textbf{Instrument} menu, one can just save the file to any
+   given location with the \texttt{.xiz} extension.
+
+   With the \textbf{Banks} menu, one can assign a patch to a given slot with
+   a bank.  This instrument will remain in that slot for future use until it is
+   deleted. To see the physical location of the \texttt{.xiz} file, one
+   should check the
+   "Yoshimi / Settings / Banks / Root Dirs"
+   (\textsl{File→Settings→Bank\_Root\_Dirs}) window to see the paths for
+   banks.
+
+   Note that one needs to have write permissions to add instruments to the
+   bank.  Banks are more thoroughly described in
+   \sectionref{subsec:concepts_banks_and_roots}.
+
+\subsubsection{Concepts / Terms / Patch}
 \label{subsubsec:concepts_terms_patch}
 
    \index{patch}
@@ -107,27 +129,41 @@
    Before General MIDI, which standardized patches, MIDI vendors assigned
    patch numbers to their synthesizer products in an arbitrary manner.
 
-\subsubsection{Concepts / Terms / preset}
+\subsubsection{Concepts / Terms / Patch Set}
+\label{subsubsec:concepts_terms_patch_set}
+
+   \index{patch set}
+   A patch set is basically a group of instruments related simply by the user
+   wanting to have them all loaded at once into \textsl{Yoshimi}.
+   A patch set is stored in a \texttt{.xmz} file.
+
+   A patch set is akin to a preset, in that it stores a combination of
+   items, that took awhile to set up, for easy retrieval later.
+
+\subsubsection{Concepts / Terms / Presets}
 \label{subsubsec:concepts_terms_preset}
 
    \index{preset}
+   Have a favorite setting for an envelope, or a difficult-to-reproduce
+   oscillator? Then presets are for you! Presets allow for one to save the
+   settings for any of the components which support copy/paste operations.
+   This is done with preset files (\texttt{.xpz}), which get stored in the
+   folders indicated by \textsl{Paths / Preset Dirs...}.
+
    In MIDI jargon, a \textsl{preset} is an instrument that can be easily
-   loaded.
-   It is also called a \textsl{program}
-   (\ref{subsubsec:concepts_terms_program}).
-   A program is selection via a "program-change" message.
+   loaded.  It is also called a \textsl{program} or a \textsl{patch}.  A
+   program is selected via a "program-change" message.  In \textsl{Yoshimi}, a
+   \textsl{preset} is any collection of settings that can be saved to the
+   clipboard or to a file, for later loading elsewhere.
 
-   In \textsl{Yoshimi}, a \textsl{preset} is any collection of settings that
-   can be saved to the clipboard or to a file, for later loading elsewhere.
-
-\subsubsection{Concepts / Terms / program}
+\subsubsection{Concepts / Terms / Program}
 \label{subsubsec:concepts_terms_program}
 
    \index{program}
    In MIDI jargon, a \textsl{program} is the same as a \textsl{preset}
    (\ref{subsubsec:concepts_terms_preset}).
 
-\subsubsection{Concepts / Terms / voice}
+\subsubsection{Concepts / Terms / Voice}
 \label{subsubsec:concepts_terms_voice}
 
    \index{voice}
@@ -197,6 +233,8 @@
    \index{extended program}
    A single bank can store up to 128 instruments normally, and 160
    using extended programs.
+   A bank isn't a file... it is a directory, managed by \textsl{Yoshimi},
+   which contains instrument (\texttt{.xiz}) files.
 
    These concepts are discussed in great detail
    in \sectionref{sec:banks_and_roots}.
@@ -265,7 +303,7 @@
          Presets.
          A preset is canned version of a \textsl{Yoshimi} sub-setting.
          Presets can be copied and pasted using the
-         \textbf{C} and \textbf{P} user-interface dialogs associated with many
+         \textbf{C} and \textbf{P} user-interface buttons associated with many
          of the \textsl{Yoshimi} dialog windows.
          They make it easy to save portions of the current settings for later
          use.  For example, resonance settings can be saved.
@@ -287,6 +325,8 @@
          from another.
       \item \texttt{.windows}
          A new feature of the \textsl{Yoshimi} configuration.
+         It saves the current layout of windows for reinstantiation at the next
+         startup of \textsl{Yoshimi}.
    \end{itemize}
 
    The \texttt{.config} file will be readable by all instances of
@@ -306,9 +346,9 @@
    conflict.  It is impossible to have two browser lists open at the same time
    (try it!) and the lists are always rebuilt from memory every time they are
    opened. Similarly, the histories are added too every time a new recognised
-   file is loaded or saved and one can't physically do two at the same time -
+   file is loaded or saved and one can't physically do two at the same time --
    even if one could it would simply mean that one very briefly waited for the
-   other, which is not an issue as they are not in the RT thread.
+   other, which is not an issue as they are not in the realtime thread.
 
    The entire config set should then be:
 
@@ -322,7 +362,7 @@
    The \texttt{.windows} file is specific to the GUI, so doesn't figure in this
    scheme at all.
 
-   The Unix \texttt{file} command indicates that these files are one of
+   The Unix \texttt{file} command indicates that the XML files are one of
    two types:
 
    \begin{itemize}
@@ -335,8 +375,7 @@
          \texttt{.xml} extension).
    \end{itemize}
 
-   The format probably depends on the "XML compression level" option
-   discussed in
+   The format depends on the "XML compression level" option discussed in
    \sectionref{paragraph:menu_yoshimi_settings_main_settings}.
 
    \index{saving settings}
@@ -365,44 +404,6 @@
    an \texttt{.xmz} file. Once created, this file will hold the settings for
    all settings within that session, such as microtonal tunings, all
    patches, system effects, insertion effects, etc.
-
-\subsubsection{Concepts / Sessions / Parts}
-\label{subsec:concepts_sessions_parts}
-
-   In \textsl{Yoshimi}, a \textsl{part} is one of 16 slots into which one
-   can load an instrument (a patch or program).
-
-   In many cases saving everything is not what is desired. Saving a patch
-   later on in an editing session is one such example.
-   In order to save a patch, one can either save it from the
-   \textbf{Instruments} menu
-   in \sectionref{subsubsec:menu_instrument_save},
-   or through the \textbf{Bank} window in
-   \sectionref{subsubsec:menu_instrument_show_banks}.
-
-   With the \textbf{Instrument} menu, one can just save the file to any
-   given location with the \texttt{.xiz} extension.
-
-   With the \textbf{Banks} menu, one can assign a patch to a given slot with
-   a bank.  This instrument will remain in that slot for future use until it is
-   deleted. To see the physical location of the \texttt{.xiz} file, one
-   should check the
-   "Yoshimi / Settings / Banks / Root Dirs"
-   (\textsl{File→Settings→Bank\_Root\_Dirs}) window to see the paths for
-   banks.
-
-   Note that one needs to have write permissions to add instruments to the
-   bank.  Banks are more thoroughly described in
-   \sectionref{subsec:concepts_banks_and_roots}.
-
-\subsubsection{Concepts / Sessions / Presets}
-\label{subsec:concepts_sessions_presets}
-
-   Have a favorite setting for an envelope, or a difficult-to-reproduce
-   oscillator? Then presets are for you! Presets allow for one to save the
-   settings for any of the components which support copy/paste operations.
-   This is done with preset files (\texttt{.xpz}), which get stored in the
-   folders indicated by \textsl{File→Settings→Preset\_Root\_Dirs}.
 
 \subsubsection{Concepts / Sessions / Management}
 \label{subsec:concepts_sessions_management}
@@ -520,8 +521,8 @@
    exact frequency plus the harmonics, and observe that the result sounds too
    "artificial".  They might try to modify the harmonic content, add a
    vibrato, tremolo, but even that doesn't sound "warm" enough. The reason is
-   that the natural sounds don't produce an exact periodic; their sounds are
-   quasi-periodic.  Please notice that not all quasi-periodic sounds are
+   that the natural sounds don't produce an exact period; their sounds are
+   quasi-periodic.  Please note that not all quasi-periodic sounds are
    "warm" or pleasant.
    (Nasca's discussion of periodic vs. quasi-periodic,
    and the figures he shows, are not included here.)
@@ -644,7 +645,8 @@
 
    \textsl{Important}:
    All indexes of MIDI Channels, Parts, Effects starts from 0, so, for
-   example, the first Part is 0.
+   example, the first Part is 0.  However, in other discussions of MIDI,
+   part numbers, programs, or channels are often described as starting from 1.
 
    \textsl{Yoshimi} components:
 
@@ -748,7 +750,8 @@
 \subsubsection{Concepts / MIDI / Messages}
 \label{subsubsec:concepts_midi_messages}
 
-   \textsl{Yoshimi} responds to the following MIDI messages.
+   \textsl{Yoshimi} responds to the following MIDI messages
+   (\ref{table:zynaddsubfx_midi_messages}).
 
    \begin{table}
       \centering

@@ -47,12 +47,13 @@
 \section{Introduction}
 \label{sec:introduction}
 
-   Still working on catching up to all the new features in 1.3.8.
+   Still working on catching up to all the new features in \textsl{Yoshimi}
+   through version 1.3.9.
    There are a \textbf{lot} of them.
 
    This document was inspired by finding a fairly thorough wiki version of a
    \textsl{ZynAddSubFX} manual (see reference \cite{zynwiki}).  That wiki,
-   and the Open Document Format version of it, provided a lot of screen
+   and the Open Document Format version of it, showed a lot of screen
    shots and a detailed survey of the settings and parameters of
    \textsl{ZynAddSubFX}.  It inspired me to be even more thorough in
    describing \textsl{Yoshimi}.
@@ -78,8 +79,9 @@
    2002-2009 Nasca Octavian Paul), development of \textsl{Yoshimi} has
    continued for quite a while now in its own directions. These include
    major optimizations for audio and MIDI performance, and more recently
-   progressive development of user-level access to all controls. At the same
-   time refinement continues, both visually and within the code.
+   progressive development of user-level and command-line access to all
+   controls. At the same time refinement continues, both visually and within
+   the code.
 
    What are the advantages of
    \textsl{Yoshimi} versus \textsl{ZynAddSubFX}?
@@ -116,8 +118,8 @@
    Controls automation support.
    This will be a part of a common controls interface.
 
-   Sensitivity to MIDI volume change (CC7) is now variable in 'Controllers' in
-   the same way as pan width, etc. The Numeric range is 64 to 127, the default
+   Sensitivity to MIDI volume change (CC \#7) is now variable in 'Controllers' in
+   the same way as pan width, etc. The numeric range is 64 to 127; the default
    at 96 gives the same sensitivity as before at -12dB relative to the GUI
    controls.  127 gives 0dB and 64 gives -26dB.
 
@@ -130,43 +132,39 @@
    out.
 
    Some NRPNs are now supported.
-   NRPNs have been extended so that via MIDI one can read most of the dynamic
-   system settings (to the Log file). These can now also be set.
    See the new NRPN sections.
 
    One can now use the mouse scroll wheel to adjust rotary controls. Holding
-   down 'ctrl' gives to finer adjustment.  Also, horizontal as well as vertical
-   mouse movement will adjust the knob.
+   down the Ctrl key gives access to finer adjustment.  Also, horizontal as
+   well as vertical mouse movement will adjust the knob.
 
    Part-editing windows carry the part number and voice name in the title bar.
    For the AddSynth oscillator window this also includes the voice number.
 
-   Yoshimi now has up to 64 parts in blocks of 16. One can now decide how many
-   one wants to have available using the spinbox alongside the channel number.
-   One can have 16, 32 or 64.
-   By default, all the upper parts are mapped to the same MIDI channel numbers
-   as the lowest ones but have independent voice and patch set values. They can
-   not normally receive independent note or control messages. However, vector
-   control will intelligently work with however many are set, as will all
-   the NRPN direct part controls.
+   \textsl{Yoshimi} now can provide  up to 64 parts, in blocks of 16. One can
+   now decide how many one wants to have available using the spin-box alongside
+   the channel number.  One can have 16, 32 or 64 parts.  By default, all the
+   upper parts are mapped to the same MIDI channel numbers as the lowest ones,
+   but have independent voice and patch set values. They can not normally
+   receive independent note or control messages. However, vector control will
+   intelligently work with however many are set, as will all the NRPN direct
+   part controls.
 
-   When opening an instrument bank one can now tell exactly which synth engines
+   When opening an instrument bank, one can now tell exactly which synth engines
    are used by each instrument. This is represented by three pale background
-   colours: Red -> AddSynth; Blue -> SubSynth; and Green -> PadSynth.
+   colours: Red = AddSynth; Blue = SubSynth; and Green = PadSynth.
 
    If the instruments are kits they scanned to find out if any member of the
-   kit contains each engine.
+   kit contains each engine, so that the colors above can be applied.
    This feature is duplicated in the current part, the mixer panel for the
-   currently loaded instruments, and in the Instrument Edit window the same
-   colours highlight the engine names when they are enabled with the check
-   boxes. 
+   currently loaded instruments, and in the Instrument Edit window.
+   The same colors highlight the engine names when they are enabled with the
+   check boxes. 
 
    Bank root directories are better identified, with IDs that can be changed by
    the user in the GUI. This is also made available for selecting over MIDI.
-
    MIDI only sees banks in the \textsl{current}
    \textbf{root} directory, but all banks are accessible to the GUI.
-   See the new Banks sections.
 
    It is now possible to set up a new bank root path when starting from the
    command line. This takes the form:
@@ -181,7 +179,8 @@
    this.
 
    Also, when running from the command line there is now access to many of the
-   system and Root, Bank etc. settings.
+   system and root, bank, etc. settings.
+   See the new Banks sections.
 
    \textsl{Yoshimi} now remembers where major windows were last placed (per
    instance), and if any were left open at shutdown, they will be reopened at
@@ -191,20 +190,15 @@
    CCs. This is enabled from the 'MIDI' tab in 'Settings'. These are the values
    before \textsl{Yoshimi} does any processing.
 
-   The earlier experimantal per part random detune features has now been
-   formalised with a slider covering the range from 0 to +/- 50 cents, which is
-   half-way between adjacent notes on the even tempered scale. This setting is
-   now saved in patch sets so will be restored when one reloads the same set.
-
-   Thanks to the \textsl{ZynAddSubFX} developers, \textsl{Yoshimi}
-   now has pink as well as white noise
-   available on Addsynth voices. Pink noise sounds 'softer'.
+   Thanks to the \textsl{ZynAddSubFX} developers, \textsl{Yoshimi} now has pink
+   as well as white noise available on Addsynth voices. Pink noise sounds
+   'softer'.
 
    The preferred JACK/ALSA MIDI and audio connections are no longer fixed at
    compile time. There are now checkboxes on 'Settings' to change them.
 
-   With the latest 'depop' port from Zyn, we are now fully compatibly with all
-   instrument files.
+   With the latest 'depop' port from \textsl{ZynAddSubFX}, \textsl{Yoshimi}
+   is now fully compatibly with all instrument files.
 
    \textsl{Yoshimi} will now always start even if the audio/MIDI backend called
    for doesn't exist. In this situation it will try all combinations in the
@@ -221,8 +215,8 @@
    with any other sounding parts.
 
    Sometimes MIDI CCs don't seem to give the results one expects. There is
-   now a setting that will report all incoming CCs so that one can discover what
-   \textsl{Yoshimi} actually sees (which may not be what was expected).
+   now a setting that will report all incoming CCs so that one can discover
+   what \textsl{Yoshimi} actually sees (which may not be what was expected).
 
    At the request of one user, \textsl{Yoshimi} now has an
    implementation of CC2, Breath Control.
@@ -258,10 +252,10 @@
    It is also context sensitive, which along with careful choice of command
    names and abreviations allows very fast access with minimal typing.
 
-   Yoshimi's parser is case insensitive to commands (but not filenames etc.)
-   and accepts the shortest unambiguous abbreviation. However it is quite
-   pedantic, and expects spelling to be correct regardless of length. Apart
-   from the 'back' commands, it is word-based so spaces are significant.
+   \textsl{Yoshimi}'s parser is case-insensitive for commands (but not for
+   filenames), and accepts the shortest unambiguous abbreviation. However it is
+   quite pedantic, and expects spelling to be correct regardless of length.
+   Apart from the 'back' commands, it is word-based so spaces are significant.
 
    Some examples:
 
@@ -434,12 +428,10 @@
    (unless one wants to risk blocking \textsl{Yoshimi} or hearing two sounds
    simultaneously, depending on one's sound card and ALSA setup).
    Then start \textsl{Yoshimi} so that it uses ALSA for audio and ALSA for
-   MIDI.  Also use the "\&" character so that we get back to the
-   command-line prompt.
-   See \sectionref{sec:yoshimi_man_page}.
+   MIDI.  See \sectionref{sec:yoshimi_man_page}.
 
 \begin{verbatim}
-   $ yoshimi -a -A &
+   $ yoshimi -a -A
 \end{verbatim}
 
 \begin{figure}[H]
@@ -453,6 +445,8 @@
    We show the splash screen, figure~\ref{fig:yoshimi_splash_screen},
    here because it goes away too fast when one runs \textsl{Yoshimi}!
    What fun is that?
+
+   Also shown is the main screen, and it persists, of course.
 
 \begin{figure}[H]
    \centering 
@@ -468,8 +462,6 @@
    
    Then the \textsl{Yoshimi} main window appears, as shown in
    \figureref{fig:yoshimi_main_screen}.
-
-   TODO:  Discuss the new UI elements.
 
    For this manual, we describe the main window as being composed of
    the following sections:

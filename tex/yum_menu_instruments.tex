@@ -1,0 +1,392 @@
+%-------------------------------------------------------------------------------
+% yum_menu_instruments
+%-------------------------------------------------------------------------------
+%
+% \file        yum_menu_instruments.tex
+% \library     Documents
+% \author      Chris Ahlstrom
+% \date        2016-02-27
+% \update      2016-02-27
+% \version     $Revision$
+% \license     $XPC_GPL_LICENSE$
+%
+%     Provides the Menu / Instruments section of yoshimi-user-manual.tex,
+%     for the 1.3.8 and above versions of Yoshimi.  That menu entry has changed
+%     a lot.
+%
+%-------------------------------------------------------------------------------
+
+\subsection{Menu / Instruments}
+\label{subsec:menu_instrument}
+
+   The \textsl{Yoshimi} Instruments menu lets one select instruments and work
+   with banks of instruments.
+   \textsl{Yoshimi} stamps instrument XML files with its own major and minor
+   version numbers so it is possible to tell which version created the files,
+   or whether they were created by \textsl{ZynAddSubFX}.
+
+   When opening an instrument bank one can now tell exactly which synth engines
+   are used by each instrument. This is represented by three pale background
+   colours:
+
+   \begin{itemize}
+      \item \textcolor{red}{Red}: ADDsynth
+      \item \textcolor{blue}{Blue}: SUBsynth
+      \item \textcolor{green}{Green}: PADsynth
+   \end{itemize}
+
+   These new colored engine backgrounds aren't just pretty. They give real
+   information about expected processor load, and time taken to be ready when
+   loaded:
+
+   \begin{itemize}
+      \item \textsl{Processor Load, low to high}: PAD, SUB, then ADD.
+      \item \textsl{Time to initialize, low to high}: SUB, ADD, PAD.
+   \end{itemize}
+
+   If the instruments are kits they scanned to find out if 
+   \textsl{any} member of the kit contains each engine.
+   This scanning is duplicated in the current part, the mixer panel for the
+   currently loaded instruments, and in the Instrument Edit window the same
+   colors highlight the engine names when they are enabled with the check
+   boxes. 
+
+   The following sub-menus are provided, as shown in
+   \figureref{fig:yoshimi_instrument_menu}.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{1.3.8/yoshimi-menu-instrument.jpg}
+   \caption{Yoshimi Menu, Instrument}
+   \label{fig:yoshimi_instrument_menu}
+\end{figure}
+
+   This new version of the \textbf{Instrument} menu is somewhat different than
+   the old version.  It is actually simpler and easier to use, while still
+   offering all of the power of the setting up of instruments in
+   \textsl{Yoshimi}.
+
+   \begin{enumber}
+      \item \textbf{Show Stored...}
+      \item \textbf{Load External...}
+      \item \textbf{Save External...}
+      \item \textbf{Clear}
+   \end{enumber}
+
+%  \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+\subsubsection{Menu / Instrument / Show Stored...}
+\label{subsubsec:menu_instrument_show}
+
+   Instruments are stored in banks. The banks (and current bank setting)
+   are loaded/saved
+   automatically by the program, so one doesn't have to worry about saving the
+   banks before the program exits. On program start, the last used bank is
+   loaded. A single bank can store up to 128 instruments. 
+   However, there is space for a number of additional
+   instruments in the bank, the extended-program section, to allow up to 160
+   instruments in a bank.
+
+   When the \textbf{Show Stored...} button is selected, a dialog comes
+   up that shows all of the instruments present in the currently-selected
+   bank.
+   
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.3.9/instruments_show_stored.png}
+   \caption[Show Stored Instruments]{Instruments Stored in Current Banks}
+   \label{fig:instruments_show_stored}
+\end{figure}
+
+   As \figureref{fig:instruments_show_stored}
+   shows, this is a very complex dialog with a lot of options.
+   The figure shows a default setup, with the first bank of instruments,
+   \textbf{5. Arpeggios}, listed.
+   If one drops this list down (shown later), one also observes that the banks
+   are numbered in increments of 5, to make it easier for a user to insert his
+   or her own bank(s) of instruments.
+
+   Note how \textsl{Yoshimi} now shows the color codings for the
+   synth-sections used in each instrument:
+   red for ADDsynth, blue for SUBsynth, and
+   green for PADsynth.
+
+   Also note how the numbers at the beginning of the filenames are used as
+   an "instrument" or "program" number.  These numbers can be used in MIDI
+   Program Change commands.
+   
+   All of the instrument files (such as \texttt{0001-Arpeggio1.xiz})
+   with filenames starting with 4-digit numbers will be
+   shown in the corresponding slot number.  Those instrument files
+   without numbers (or larger numbers?) will start
+   with numbers at 129 or above ("Extended Program Change").  One should give
+   them numbers by renaming them outside of \textsl{Yoshimi}, then reloading
+   the bank.
+
+   \index{extended program}
+   Note that MIDI CC
+   (see \sectionref{paragraph:menu_yoshimi_settings_ccs})
+   can be set to access voices from 129 to 160.
+   All the Bank controls in the \textbf{MIDI} settings tab take immediate
+   effect when set.
+   Bank and program changes can be completely disabled in the settings tab;
+   some hardware synths don't play nice with it.
+
+   Learning how to use the Instruments dialog is an important way to make
+   instruments easier to manage, and so this will be a long discussion.
+
+%  An important pair of concepts in \textsl{Yoshimi} are
+%  \textsl{banks} and \textsl{roots}.  These concepts are described in
+%  \sectionref{subsec:concepts_banks_and_roots}.
+
+   Here is a list of the user-interface items in the instruments/banks dialog:
+
+   \begin{enumber}
+      \item \textbf{Bank Names}
+      \item \textbf{Roots}
+      \item \textbf{Banks}
+      \item \textbf{Instrument and Bank Matrix}
+      \item \textbf{SELECT}
+      \item \textbf{RENAME}
+      \item \textbf{SAVE}
+      \item \textbf{DELETE}
+      \item \textbf{SWAP}
+      \item \textbf{Show synth engines}
+         (was \textbf{Show PADsynth status})
+      \item \textbf{Close}
+   \end{enumber}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Bank Names}{instruments!bank names}
+   Instruments Bank Name.
+   This items is a drop-down list of the available instrument banks in the
+   currently-selected \textbf{root} directory.
+
+   Basically, each bank is a directory name, with a number prepended.
+   The banks are found under the current root, which is a also a directory
+   name, and is the name of the parent directory of a set of banks.
+   Here is the Bank Names drop-down list for the default setup, which has the
+   default banks provided by the basic \textsl{Yoshimi} installation.
+
+\begin{figure}[H]
+   \centering 
+%  \includegraphics[scale=0.75]{menu/Instrument/bank-list.jpg}
+   \includegraphics[scale=0.75]{1.3.9/instruments_bank_list.png}
+   \caption[A Sample Bank List]{A Sample Bank List}
+   \label{fig:bank_list}
+\end{figure}
+
+   And here is the directory listing associated with it, in the order
+   produced by the UNIX/Linux "ls -1" (list single-column) command (shown in
+   two columns to save space):
+
+   \begin{verbatim}
+      Arpeggios          Pads
+      Bass               Plucked
+      Brass              Reed_and_Wind
+      chip               Rhodes
+      Choir_and_Voice    Splited
+      Drums              Strings
+      Dual               Synth
+      Fantasy            SynthPiano
+      Guitar             The_Mysterious_Bank
+      Misc               Will_Godfrey_Collection
+      Noises             Will_Godfrey_Companion
+      Organ              
+   \end{verbatim}
+
+   The directories (banks) shown above come from the default \textbf{root}
+   when \textsl{Yoshimi} and its data files are installed:
+   \texttt{/usr/share/yoshimi/banks}.
+   If one installed \textsl{Yoshimi} by building the source code, then
+   this directory will be
+   \texttt{/usr/local/share/yoshimi/banks}.
+
+   The first thing to note is that there are only 128 \textsl{Yoshimi} banks
+   supported in a \textsl{Yoshimi} root.  The list above takes up about half
+   of the available slots, so it might be time to move some of those banks
+   to a new root directory.
+
+   The numbers in the drop-down list are generated by \textsl{Yoshimi} the
+   first time it sees a new root path or a new bank within the root path.
+   Once set, these numbers will never change unless one actually moves them
+   around (using the \textbf{SWAP} button).
+
+   The bank number is also the MIDI ID for the bank;
+   one can be sure that it will always
+   be there for bank changes, no matter how many banks are added later.
+   \textsl{Yoshimi} always lists the banks in ID order, not alphabetical
+   order, so one can group them sensibly and permanently.
+   However, at first-time creation \textsl{Yoshimi} sets the IDs in
+   alphabetical order and tries to space them evenly over the range to
+   provide some wiggle room.                                        
+
+   Selecting one of the items in this drop-down list selects the bank and
+   loads it into the Banks dialog.
+
+   \index{anti-auto-clutter}
+   Right- or left-clicking on a bank in the drop-down list
+   causes the instrument list of the previous bank to be replaced by the
+   instrument list of the newly-selected bank.
+
+   \itempar{Roots}{instruments!roots}
+   Instruments Roots Button.
+   Shows a list of directories that can serve as "root" directories.
+   The "Bank Root Paths" dialog discussed in
+   \sectionref{subsubsec:menu_patch_sets_patch_bank_roots} in
+   \figureref{fig:show_patch_banks} shows
+   the system root (e.g. \texttt{/usr/share/yoshimi/banks}) and
+   a user's home location for his/her banks and roots.
+
+   \itempar{Banks}{instruments!banks}
+   Banks Button.
+   This item brings up a Banks dialog showing all of the banks present in the
+   current root.
+   It is an alternative to using the \textbf{Bank Names} drop-down list to
+   select a bank.  It is also a way to reorganize and renumber the
+   banks without using the Linux console or a file-explorer application to do
+   so.
+
+   \itempar{Instrument and Bank Matrix}{instruments!bank matrix}
+   Instruments Bank Matrix.
+   Shows the instruments that are in the currently selected bank
+   (directory).
+
+   The next few items are selector buttons that determine what happens when one
+   clicks on an instrument name.
+
+   \itempar{SELECT}{instruments!SELECT}
+   Instruments SELECT.
+   When this button is selected, then clicking on an instrument selects that
+   instrument as the instrument for the current Part active in the main
+   window.  In the main window of \textsl{Yoshimi}, that instrument name will
+   appear in the currently-selected \textbf{Part}.  If \textsl{Yoshimi} is
+   writing to a console window then each part, when clicked, will be shown:
+
+   \begin{verbatim}
+		yoshimi> Loaded 64 "Hyper Organ1" to Part 0
+		Loaded 65 "Hyper Arpeggio" to Part 0
+		Loaded 10 "Arpeggio11" to Part 0
+		Loaded 41 "Soft Arpeggio4" to Part 0
+		Loaded 67 "Glass Arpeggio1" to Part 0
+   \end{verbatim}
+
+   (Remember that "Part 0" in the console is actually "Part 1" in the main
+   window.)
+
+   \itempar{RENAME}{instruments!RENAME}
+   Instruments RENAME.
+   When this button is selected, then clicking on a bank brings
+   up a small dialog to rename the clicked-on bank.
+   However, one will see the following warning message if trying to rename a
+   file that is in a directory not modifiable by normal users:
+
+   \begin{verbatim}
+      ! Could not rename instrument 39 to Soft Arpeggio5 [Close]
+   \end{verbatim}
+
+   Note that, as soon as this operation is done, the auto-selector (green
+   check-box) moves back to the \textbf{SELECT} button.
+
+   \itempar{SAVE}{instruments!SAVE}
+   Instruments SAVE.
+   When this button is selected, then clicking on a bank saves
+   the instruments as currently configured.
+   A prompt like the following will appear:
+
+   \begin{verbatim}
+      ? Overwrite the slot no. 43 ?  [No/Yes]
+   \end{verbatim}
+
+   However, if one answers yes, and the instrument is in a non-modifiable
+   directory, then one will see the following error message:
+
+   \begin{verbatim}
+      ! Could not save to this location [Close]
+   \end{verbatim}
+
+   \itempar{DELETE}{instruments!DELETE}
+   Instruments DELETE.
+   Selecting this button and clicking an empty bank entry does nothing.
+   Selecting this button and clicking an existing bank entry brings up a
+   small dialog asking one if this bank is really to be deleted.
+
+   \begin{verbatim}
+      ? Clear the slot no. 68?  [No/Yes]
+   \end{verbatim}
+
+   However, if one answers yes, and the instrument is in a non-modifiable
+   directory, then one will see the following error message:
+
+   \begin{verbatim}
+      ! Could not clear this location  [Close]
+   \end{verbatim}
+
+   \itempar{SWAP}{instruments!SWAP}
+   Instruments SWAP.
+   Selecting this button, then selecting one instrument, and then another,
+   swaps the numbering and postion of the selected instruments.
+   However, one might also experience the following warning message:
+
+   \begin{verbatim}
+      ! Could not swap these locations  [Close]
+   \end{verbatim}
+
+   Note that all of the above error messages are also shown in the console, if
+   it is where \textsl{Yoshimi} is running.  For example:
+
+   \begin{verbatim}
+      40 Failed to remove /usr/local/share/yoshimi/banks/Arpeggios/0041-Soft
+      Arpeggio3.xiz Permission denied
+   \end{verbatim}
+
+   \itempar{Show synth engines}{instruments!show engines}
+   If enabled, then the usage of each of the \textsl{Yoshimi} synthesis
+   engines is indicated by color coding, as shown in the figure above.
+
+   \itempar{Close}{instruments!Close}
+   Closes the window.
+
+%  Here is a more conventional view of instruments, supplied with
+%  \textsl{Yoshimi}, shown in
+%  \figureref{fig:show_pads_bank}.
+% 
+% \begin{figure}[H]
+%    \centering 
+% %  \includegraphics[scale=0.75]{menu/Instrument/show-pads-bank.jpg}
+%    \includegraphics[scale=0.75]{1.3.6/show_pads_bank.png}
+%    \caption[Show Pads Instruments]{Show Pads Instruments}
+%    \label{fig:show_pads_bank}
+% \end{figure}
+% 
+%    Note that many of these Pads instruments also use the Add and Sub
+%    components as well.
+
+\subsubsection{Menu / Instrument / Load External...}
+\label{subsubsec:menu_instrument_load}
+
+   This menu entry simply brings up a file dialog, allowing the user to
+   navigate to an arbitrary directory, and then to a solitary instrument file
+   (\texttt{*.xiz}), and load it into the current Part.
+
+   These "xiz" files are normally found in a \texttt{banks} directory, but this
+   operation allows access to instruments that are not located in a bank.
+
+\subsubsection{Menu / Instrument / Save External...}
+\label{subsubsec:menu_instrument_save}
+
+   This menu entry simply brings up a file dialog, allowing the user to
+   navigate to an arbitrary directory, and then save the current Part
+   to a solitary instrument file (\texttt{*.xiz}).
+
+\subsubsection{Menu / Instrument / Clear}
+\label{subsubsec:menu_instrument_clear}
+
+   This menu entry simply clears the instrument that is loaded into the current
+   Part.  This converts the instrument to a 
+   \textsl{Simple Sound} patch.
+
+%-------------------------------------------------------------------------------
+% vim: ts=3 sw=3 et ft=tex
+%-------------------------------------------------------------------------------
