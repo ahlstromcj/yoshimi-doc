@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-15
-% \update      2015-09-06
+% \update      2016-02-28
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -43,9 +43,10 @@
 \label{subsubsec:stock_settings_elements_title_bars}
 
    The title bars of all editing windows display both the part number and the
-   current name of the instrument one are working on. In the ADDsynth
+   current name of the instrument one are working on.  In the ADDsynth
    Oscillator Editor, one also sees the voice number of the oscillator one is
-   editing.
+   editing.  Some title bars now also include the kit entry number if that part
+   has a kit enabled; this feature needs more work to get all of them.
 
 \subsubsection{Color Coding}
 \label{subsubsec:stock_settings_elements_color_coding}
@@ -87,9 +88,9 @@
 \label{subsubsec:stock_settings_elements_sliders}
 
    \index{sliders}
-   For vertical sliders only, if one holds down the right mouse button then
-   move it slightly, the peg will go to it's default position. the same
-   will happen if you click on the track with the right button.
+   For vertical sliders only, if one holds down the right mouse button, then
+   moves it slightly, the peg will go to it's default position. The same
+   thing will happen if you click on the track with the right button.
 
    \textsl{(Doesn't seem to hold in the Parts panel, though).}
 
@@ -186,7 +187,7 @@
    responses and other concepts of filtering.
    The end of this section covers a user interface used in filter settings.
    It is a stock-panel re-used in other user-interface elements.
-   See \sectionref{subsubsec:filter_parameters_user_interface}
+   See \sectionref{subsubsec:filter_parameters_user_interface},
    if one is in a hurry.
 
    \textsl{Yoshimi}
@@ -287,7 +288,7 @@
    This is roughly synonymous with the number of stages of the filter. For
    more complex patches, it is important to realize that the extra sharpness
    in the filter does not come for free, as it requires many more
-   calculations being performed. This phenomena is the most visible in
+   calculations to be performed. This phenomena is the most visible in
    SUBsynth, where it is easy to need several \textsl{hundred} filter stages
    to produce a given note.
 

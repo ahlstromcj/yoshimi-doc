@@ -67,24 +67,9 @@
 \label{subsubsec:menu_yoshimi_new_instance}
 
    Creates a new instance of \textsl{Yoshimi}.
-   We're not quite sure what this one does, really.
-   Does it create a new run of 
-   \textsl{Yoshimi}
-   with a random \texttt{--name-tag} value?
-   In our basic investigation, it simply finds that the previous
-   \textsl{Yoshimi}
-   instance has grabbed audio access, when JACK is not being used:
 
-\begin{verbatim}
-   Yay! We're up and running :-)
-   failed to open alsa audio device:default: Device or resource busy
-   AlsaClient audio open failed
-   Failed to open MusicClient
-   Yoshimi stages a strategic retreat :-(
-\end{verbatim}
-
-   Now, if JACK is running, then this feature will work.
-   Start a normal (JACK-using) instance of \textsl{Yoshimi}.
+   If JACK is running,
+   start a normal (JACK-using) instance of \textsl{Yoshimi}.
    Then use this menu entry.  \textsl{Yoshimi} will start another instance
    of itself, with an ID of 1.
    This instance can be verified by running a JACK session manager such as
@@ -92,7 +77,20 @@
 
    It is important to note that each instance of \textsl{Yoshimi} has its
    own configuration file.  Each also has its own MIDI and audio ports.
-   Thus, these instances are independent of each other.
+   Thus, these instances are partly independent of each other.
+
+   Opening a new instance creates a copy that has it's own dynamic memory for
+   running storage. In the future, some data (such as recent history) will be
+   shared between instances. This will be done only where instances actually
+   need to be in sync.
+
+   Each instance has it's own file-store in \textsl{Yoshimi}'s configuration
+   directory. The means that if one opens a numbered instance, one will get
+   back all the settings that were previously used for that instance.
+
+   Instances no longer fight for access to JACK/ALSA audio; they will simply
+   try to find another route to a soundcard. Failing to find one,
+   they will revert to null audio, but will nonetheless start cleanly.
 
 \subsubsection{Menu / Yoshimi / New instance with id...}
 \label{subsubsec:menu_yoshimi_new_instance_with_id}
@@ -165,7 +163,12 @@
    The main settings are shown in
    \figureref{fig:yoshimi_main_settings_dialog}.
 
-   All these settings only take effect after restarting the synthesizer.
+   Some settings only take effect after restarting the synthesizer.
+   In Main settings, only items marked with an asterisk ('*')
+   need a restart. 
+   (This in now only the first two. Some of the other ones had
+   prevously been wrongly marked.)
+
    The settings dialogs are quite different between \textsl{ZynAddSubFX} and
    \textsl{Yoshimi}.  There are some differences even between
    \textsl{Yoshimi} versions earlier than 1.3.5, and the current version
@@ -202,7 +205,7 @@
    ADDsynth Oscillator Size (in samples).  This item used to be called
    "OscilSize".
 
-   Values: \texttt{128, 256, 512+, 1024*, 2048, 4096, 8192, 16384}
+   Values: \texttt{128, 256, 512*, 1024, 2048, 4096, 8192, 16384}
 
    Sets the number of the points of the ADDsynth oscillator. The
    bigger is better, but it takes more CPU time on the start of any note,
@@ -231,7 +234,10 @@
    buffer-size value by the sample-rate, then multiply the result by 1000:
    For example, \(256 / 44100 * 1000 = 5.8 ms\).
 
-   Values: \texttt{64, 128, 256, 512, 1024*}
+   Values: \texttt{64, 128, 256*, 512, 1024}
+
+   The default internal buffer size has been reduced from 1024 to 256.
+   One gets better latency that way.
 
    \itempar{Virtual Keyboard Layout}{Main Settings!Virtual Keyboard Layout}
    The virtual keyboard is useful, but it is difficult to move the mouse
@@ -289,15 +295,20 @@
    \textsl{Yoshimi}
    are preserved in XML files.
    The value of 0 indicates that the XML file is uncompressed.
-   In general, 0 is probably the best setting.
+
+   In general, 0 is probably the best setting for debugging only.
    Setting this option makes the XML files a bit larger, perhaps larger by a 
    factor of more than 10, making a 10K file into a 180K file.
-   Using XML compression can also save file access time which may be
-   beneficial if one's computer is borderline on latency.
    For a little "wasted"
    space and time, one can view the XML file in a text/programmer's editor.
    But, if one's system is tight on disk space, higher levels of compression
    can be specified.
+
+   Using XML compression can also save file access time which may be
+   beneficial if one's computer is borderline on latency.
+   This setting should stay at 3 if one is going to save large patchsets that
+   will later be loaded while running. Uncompressing is \textsl{much}
+   faster than file loading.
 
    \itempar{Send reports to}{Main Settings!Send Reports Destination}
 
@@ -318,17 +329,22 @@
 \end{figure}
 
    \itempar{Hide Non Fatal Errors}{Main Settings!Hide Non-Fatal Errors}
-
-      TODO.
+   Especially when running from the command line (with reports going there
+   too), under some circumstances one can get a swamp of low-level error
+   messages (such as XRUNs) that is so large that one cannot work out what is
+   going on. This feature disables these error messages; it is a work in
+   progress to catch the bulk of them, while still reporting top-level messages
+   and ones that cause a forced exit (... surely not!)
 
    \itempar{Log XML headers}{Main Settings!Log XML headers}
-
-      TODO.
+   This itme sends the information to the console window (or stderr) so that
+   one can then see what \textsl{ynAddSubFX}/\textsl{Yoshimi}
+   version created the file.
 
 \paragraph{Menu / Yoshimi / Settings / Jack}
 \label{paragraph:menu_yoshimi_settings_jack}
 
-   JACK is the "Jack Audio Connection Kit", useful increasing audio
+   JACK is the "Jack Audio Connection Kit", very useful for increasing audio
    performance and configurability.
 
    When using the JACK audio backend, instruments can be individually routed
@@ -373,7 +389,11 @@
 
    \itempar{Set as preferred MIDI}{JACK!Set as preferred MIDI}
    Set as preferred MIDI for JACK.
-   The exact meaning of this option is TO BE DETERMINED.
+   This setting determines which MIDI connections a particular instance will
+   first attempt. The switches are mutually exclusive across JACK and ALSA,
+   so if you check ALSA for MIDI, it automatically unchecks JACK for MIDI.
+   As well as from the GUI, this setting can be set (for instance 0) from the
+   command line, both at start-up and once running.
 
    \itempar{Jack Server}{JACK!server name}
    Jack Server Name.
@@ -387,7 +407,12 @@
 
    \itempar{Set as preferred audio}{JACK!Set as preferred audio}
    Set as preferred audio for JACK.
-   The exact meaning of this option is TO BE DETERMINED.
+   This setting determines which audio connections a particular instance will
+   first attempt. The switches are mutually exclusive across JACK and ALSA,
+   so if you check ALSA for audio, it automatically unchecks JACK for audio.
+
+   As well as from the GUI, this setting can be set (for instance 0) from the
+   command line, both at start-up and once running.
 
    Note that any of these setting changes require a restart of \textsl{Yoshimi}
    to take effect.
@@ -484,7 +509,11 @@
 
    \itempar{Set as preferred MIDI}{ALSA!Set as preferred MIDI}
    Set as preferred MIDI for ALSA.
-   The exact meaning of this option is TO BE DETERMINED.
+   This setting determines which MIDI connections a particular instance will
+   first attempt. The switches are mutually exclusive across JACK and ALSA,
+   so if you check ALSA for MIDI, it automatically unchecks JACK for MIDI.
+   As well as from the GUI, this setting can be set (for instance 0) from the
+   command line, both at start-up and once running.
 
    \itempar{Alsa Audio Device}{ALSA!audio device}
    ALSA Audio Device.
@@ -500,7 +529,11 @@
 
    \itempar{Set as preferred audio}{ALSA!Set as preferred audio}
    Set as preferred audio for ALSA.
-   The exact meaning of this option is TO BE DETERMINED.
+   This setting determines which audio connections a particular instance will
+   first attempt. The switches are mutually exclusive across JACK and ALSA,
+   so if you check ALSA for audio, it automatically unchecks JACK for audio.
+   As well as from the GUI, this setting can be set (for instance 0) from the
+   command line, both at start-up and once running.
 
    \itempar{Samplerate}{ALSA!sample rate}
    Sample Rate.
@@ -590,11 +623,10 @@
    \textbf{Warning:}
    The \textbf{Save and Close} button will not result in the removal of the
    \textbf{Pending} button.
-   This result seems counter-intuitive.
-
-   It is not clear if "pending" changes persist after \textsl{Yoshimi} closes,
-   or if the session or state must be saved.
-   But apparently this change can be made without a restart being required.
+   This result seems counter-intuitive, but the pending button is not removed
+   here because, at that point, it still hasn't actually been either set or
+   abandoned. It remains available for when the user actually makes up his/her
+   mind.
 
    \itempar{Bank Change}{MIDI preferences!bank change}
    Bank Change.
@@ -654,8 +686,9 @@
 %  Values: \texttt{0-127, 0*}
 
    \itempar{Log incoming CCs}{MIDI preferences!Log incoming CCs}
-
-   Functionality TO BE DETERMINED.
+   This setting is is about the only setting that is never saved. It is there
+   solely as an aid for when \textsl{Yoshimi} appears to ignore MIDI commands,
+   as it tells you exaclty what \textsl{Yoshimi} thinks it received.
 
 \subsubsection{Menu / Yoshimi / Exit}
 \label{subsubsec:menu_yoshimi_exit}
@@ -663,6 +696,10 @@
    Simply exits from \textsl{Yoshimi}.
    The user is prompted if unsaved changes exist, as shown in
    \figureref{fig:yoshimi_change_exit}.
+
+   One can sometimes get a false parameters-changed warning if one
+   scrolls through one of the menu type entries without actually changing it.
+   Better safe than sorry!
 
 \begin{figure}[H]
    \centering 
@@ -1019,8 +1056,12 @@
    \textsl{Yoshimi} state is saved in files with the extension
    \texttt{.state}.  These files are also XML files.
 
-   TODO: What is the difference between "state" and "parameters"?
-   Which one is all-inclusive?  What items are saved in each?
+   \textsl{Yoshimi} "state" will include the system settings, as well as all
+   patches. Some of these settings (such as Oscillator Size) can only be
+   realised on a reload if loading via the command line at startup. However,
+   the ones that can't be dynamically changed will be set, and if the
+   configuration is then saved, will be set on the next load -- this is not
+   ideal. We are working on it, but don't expect improvements soon!
 
    \begin{enumber}
       \item \textbf{Load}
@@ -1059,10 +1100,8 @@
 
    \itempar{Recent States}{State!Recent}
    This item brings up a list of states to select.
-
-   \textbf{Bug:}
-   \index{bugs!States, recent states dialog}
-   HOWEVER, at this time, the Recent States dialog does not come up, at all.
+   The Recent States dialog will not come up if there are no states that have
+   yet been managed.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex

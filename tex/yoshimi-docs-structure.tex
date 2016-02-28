@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-04-20
-% \update      2015-09-02
+% \update      2016-02-28
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -53,6 +53,19 @@
 
 \usepackage{longtable}        % For making multi-page tables
 \usepackage{makeidx}          % For making an index
+
+% Try to reduce the space before or after verbatim sections.
+% Doesn't affect the spacing after the verbatim, so not bothering with it.
+%
+% \usepackage{etoolbox}
+% \makeatletter
+% \preto{\@verbatim}{\topsep=10pt \partopsep=0pt \parskip=0pt}
+% \makeatother
+
+% Let's try to reduce the size of quotations.
+
+\usepackage{relsize,etoolbox}          % http://ctan.org/pkg/{relsize,etoolbox}
+\AtBeginEnvironment{quotation}{\smaller}   % Step font down one size relatively
 
 % This package isn't available easily on CentOS:
 %
