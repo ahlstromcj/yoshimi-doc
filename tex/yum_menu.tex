@@ -325,121 +325,6 @@
 
       TODO.
 
-% MOVED!!!! PLEASE FIGURE OUT WHERE THIS GOES NOW
-% MOVED!!!! PLEASE FIGURE OUT WHERE THIS GOES NOW
-% MOVED!!!! PLEASE FIGURE OUT WHERE THIS GOES NOW
-
-\iffalse
-
-   \itempar{Session state save file}{Main Settings!Session State}
-   Main Settings Session State Save File.
-   Enter the name of the desired session state file here, including
-   the path to it.
-   Example: \texttt{/home/myself/.config/yoshimi/yoshimi.state}
-
-   \itempar{Select}{Main Settings!Select Saved-State File}
-   Select Saved-State File.
-   See \figureref{fig:session_save_state}.
-   It provides a depiction of this dialog, which lets one pick an existing
-   file as the \textsl{Yoshimi} state file.
-
-   Values: \texttt{~/.config/yoshimi/yoshimi.state}
-
-\begin{figure}[H]
-   \centering 
-   \includegraphics[scale=0.75]{menu/Yoshimi/main-nominate-session-save-state-file.jpg}
-   \caption[Session Save State]{Session Save State File}
-   \label{fig:session_save_state} 
-\end{figure}
-
-\fi         % iffalse
-
-% MOVED!!!! PLEASE FIGURE OUT WHERE THIS GOES NOW
-
-\iffalse
-
-\paragraph{Menu / Yoshimi / Settings / Preset dirs}
-\label{paragraph:menu_yoshimi_settings_preset_dirs}
-
-   THIS SECTION NEEDS TO BE MOVED TO
-   "Menu / Paths / Preset dirs".  Probably no longer needs a restart, either.
-
-   The \textsl{Yoshimi} preset directories are the locations where
-   presets can be found.  When first installed, the system
-   preset directory is
-
-   \begin{verbatim}
-      /usr/share/yoshimi/presets
-   \end{verbatim}
-   
-   The user can provide additional directories for the presets.
-   These directories are useful for containing copies of the system
-   presets that one can modify safely, and for providing custom
-   presets designed by the user.
-
-   The following items are provided by the preset directory settings:
-
-   \begin{enumber}
-      \item \textbf{Preset list}
-      \item \textbf{Add preset directory...}
-      \item \textbf{Remove preset directory...}
-      \item \textbf{Make default}
-      \item \textbf{Save and Close}
-      \item \textbf{Close Unsaved}
-   \end{enumber}
-
-%  \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
-
-\begin{figure}[H]
-   \centering 
-   \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-presets-dirs.jpg}
-   \caption[Preset Dirs Tab]{Yoshimi Preset Dirs Dialog}
-   \label{fig:yoshimi_presets_dirs_tab}
-\end{figure}
-
-   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
-
-   \itempar{Preset list}{Yoshimi Presets!Preset List}
-   This interface element contains a list of preset directories.
-   By default, the only directory present is the installed preset directory.
-   For example, \texttt{/usr/share/yoshimi/presets}.
-   Another example would be this project; let YOSHIMI-DOC be the directory
-   where this project is stored.  Then one can add
-   \texttt{YOSHIMI-DOC/config/yoshimi/presets} to this list, using the
-   button described next.
-
-   \itempar{Add preset directory...}{Yoshimi Presets!Add Directory}
-   Use this button and dialog to add a preset directory to the list, for
-   easy access.
-
-   Press the \textbf{Add preset directory...} button, revealing the
-   following dialog.
-
-\begin{figure}[H]
-   \centering 
-   \includegraphics[scale=0.75]{menu/Yoshimi/presets-add-a-preset-directory.jpg}
-   \caption[Add Preset Directory]{Add a Preset Directory}
-   \label{fig:presets_add_a_preset_directory}
-\end{figure}
-
-   Navigate to the desired directory, select it, and press the \textbf{Ok}
-   button.  (There is no need to press the \textbf{Save and Close} button;
-   the directory is added as soon as \textsl{OK} is clicked.
-   IMPORTANT:  Restart \textbf{Yoshimi} to used the preset directory.
-
-   \itempar{Remove preset directory...}{Yoshimi Presets!Remove Directory}
-   Select one of the preset directories in the preset list, then press this
-   button to remove the preset directory from the list of preset
-   directories.  It is removed immediately, no need to confirm the deletion,
-   click an OK button, or click a Save button.
-
-   \itempar{Make default presets}{Yoshimi Presets!Make Default}
-   Make Default Presets Directory.
-   Select one of the preset directories in the preset list, then press this
-   button to make the preset directory the default preset directory.
-
-\fi         % iffalse
-
 \paragraph{Menu / Yoshimi / Settings / Jack}
 \label{paragraph:menu_yoshimi_settings_jack}
 
@@ -802,7 +687,94 @@
 \subsection{Menu / Paths}
 \label{subsec:menu_paths}
 
-   TODO.  Start here!
+   This menu entry provides a more direct way to set up the Bank Root and
+   the Presets directories.  It contains the following items:
+
+   \begin{enumber}
+      \item \textbf{Bank Root Dirs...}
+      \item \textbf{Preset Dirs...}
+   \end{enumber}
+
+   \paragraph{Bank Root Dirs...}
+   The Paths Bank Root Dirs dialog is described in
+   \sectionref{subsubsec:menu_patch_sets_patch_bank_roots},
+   which shows
+   \figureref{fig:bank_root_paths}, and describes this dialog in full.
+
+   \paragraph{Preset Dirs...}
+   The \textsl{Yoshimi} preset directories are the locations where
+   presets can be found.  When first installed, the system
+   preset directory is one of the following, depending on whether
+   \textsl{Yoshimi} was installed via a package manager or via source code:
+
+   \begin{verbatim}
+      /usr/share/yoshimi/presets
+      /usr/local/share/yoshimi/presets
+   \end{verbatim}
+   
+   The user can provide additional directories for the presets.
+   These directories are useful for containing copies of the system
+   presets that one can modify safely, and for providing custom
+   presets designed by the user.
+
+   The following items are provided by the preset directory settings:
+
+   \begin{enumber}
+      \item \textbf{Preset list}
+      \item \textbf{Add preset directory...}
+      \item \textbf{Remove preset directory...}
+      \item \textbf{Make default}
+      \item \textbf{Save and Close}
+      \item \textbf{Close Unsaved}
+   \end{enumber}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-presets-dirs.jpg}
+   \caption[Preset Dirs Tab]{Yoshimi Preset Dirs Dialog}
+   \label{fig:yoshimi_presets_dirs_tab}
+\end{figure}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Preset list}{Yoshimi Presets!Preset List}
+   This interface element contains a list of preset directories.
+   By default, the only directory present is the installed preset directory.
+   For example, \texttt{/usr/share/yoshimi/presets}.
+   Another example would be this project; let YOSHIMI-DOC be the directory
+   where this project is stored.  Then one can add
+   \texttt{YOSHIMI-DOC/config/yoshimi/presets} to this list, using the
+   button described next.
+
+   \itempar{Add preset directory...}{Yoshimi Presets!Add Directory}
+   Use this button and dialog to add a preset directory to the list, for
+   easy access.
+
+   Press the \textbf{Add preset directory...} button, revealing the
+   following dialog.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Yoshimi/presets-add-a-preset-directory.jpg}
+   \caption[Add Preset Directory]{Add a Preset Directory}
+   \label{fig:presets_add_a_preset_directory}
+\end{figure}
+
+   Navigate to the desired directory, select it, and press the \textbf{Ok}
+   button.  (There is no need to press the \textbf{Save and Close} button;
+   the directory is added as soon as \textsl{OK} is clicked.
+   IMPORTANT:  Restart \textbf{Yoshimi} to used the preset directory.
+
+   \itempar{Remove preset directory...}{Yoshimi Presets!Remove Directory}
+   Select one of the preset directories in the preset list, then press this
+   button to remove the preset directory from the list of preset
+   directories.  It is removed immediately, no need to confirm the deletion,
+   click an OK button, or click a Save button.
+
+   \itempar{Make default presets}{Yoshimi Presets!Make Default}
+   Make Default Presets Directory.
+   Select one of the preset directories in the preset list, then press this
+   button to make the preset directory the default preset directory.
 
 \subsection{Menu / Scales}
 \label{subsec:menu_scales}
@@ -853,7 +825,7 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{menu/Scales/scale-settings-microtonal.jpg}
+   \includegraphics[scale=0.75]{menu/Scales/scale-settings-microtonal.jpg}
    \caption{Yoshimi Menu, Scales Settings}
    \label{fig:yoshimi_menu_scales_settings}
 \end{figure}
@@ -1059,23 +1031,38 @@
    As the following figures show, state files are normally stored in the
    user's \texttt{.config/yoshimi/yoshimi.state} file.
 
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{State Load}{State!Load}
+   Provides a way to load a previously-saved \textsl{Yoshimi} state file.
+
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{menu/State/save-state-file.jpg}
+   \includegraphics[scale=0.75]{menu/State/load-state-file.jpg}
+   \caption{Yoshimi Menu, State Load}
+   \label{fig:yoshimi_menu_state_load}
+\end{figure}
+
+   This item is a standard \textsl{Yoshimi} file dialog.
+
+   \itempar{State Save}{State!Save}
+   Provides a way to save a new or modified \textsl{Yoshimi} state file.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/State/save-state-file.jpg}
    \caption{Yoshimi Menu, State Save}
    \label{fig:yoshimi_menu_state_save}
 \end{figure}
 
    This item is a standard \textsl{Yoshimi} file dialog.
 
-\begin{figure}[H]
-   \centering 
-   \includegraphics[scale=1.0]{menu/State/load-state-file.jpg}
-   \caption{Yoshimi Menu, State Load}
-   \label{fig:yoshimi_menu_state_load}
-\end{figure}
+   \itempar{Recent States}{State!Recent}
+   This item brings up a list of states to select.
 
-   This item is a standard \textsl{Yoshimi} file dialog.
+   \textbf{Bug:}
+   \index{bugs!States, recent states dialog}
+   HOWEVER, at this time, the Recent States dialog does not come up, at all.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex
