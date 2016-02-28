@@ -78,14 +78,12 @@
 \subsubsection{Menu / Instrument / Show Stored...}
 \label{subsubsec:menu_instrument_show}
 
-   Instruments are stored in banks. The banks (and current bank setting)
-   are loaded/saved
-   automatically by the program, so one doesn't have to worry about saving the
-   banks before the program exits. On program start, the last used bank is
-   loaded. A single bank can store up to 128 instruments. 
-   However, there is space for a number of additional
-   instruments in the bank, the extended-program section, to allow up to 160
-   instruments in a bank.
+   Instruments are stored in banks. The banks (and current bank setting) are
+   loaded/saved automatically by the program, so one doesn't have to worry
+   about saving the banks before the program exits. On program start, the last
+   used bank is loaded. A single bank can store up to 128 instruments.
+   However, there is space for a number of additional instruments in the bank,
+   the extended-program section, to allow up to 160 instruments in a bank.
 
    When the \textbf{Show Stored...} button is selected, a dialog comes
    up that shows all of the instruments present in the currently-selected
@@ -98,7 +96,7 @@
    \label{fig:instruments_show_stored}
 \end{figure}
 
-   As \figureref{fig:instruments_show_stored}
+   As \figureref{fig:instruments_show_stored},
    shows, this is a very complex dialog with a lot of options.
    The figure shows a default setup, with the first bank of instruments,
    \textbf{5. Arpeggios}, listed.
@@ -106,10 +104,19 @@
    are numbered in increments of 5, to make it easier for a user to insert his
    or her own bank(s) of instruments.
 
+   The default set of banks are spaced 5 apart only because thats the
+   best-fit for the current number of banks.  If we add more banks in future
+   versions of \textsl{Yoshimi}, then a \textsl{clean} install is likely to have
+   different spacing, but for an existing setup, the new entries will just be
+   slotted in where they will fit.
+
+   Also, if one deletes banks or instruments by some external means, the next
+   time \textsl{Yoshimi} starts, it will notice their absence and quietly
+   remove their entries.
+
    Note how \textsl{Yoshimi} now shows the color codings for the
    synth-sections used in each instrument:
-   red for ADDsynth, blue for SUBsynth, and
-   green for PADsynth.
+   red for ADDsynth, blue for SUBsynth, and green for PADsynth.
 
    Also note how the numbers at the beginning of the filenames are used as
    an "instrument" or "program" number.  These numbers can be used in MIDI
@@ -119,9 +126,12 @@
    with filenames starting with 4-digit numbers will be
    shown in the corresponding slot number.  Those instrument files
    without numbers (or larger numbers?) will start
-   with numbers at 129 or above ("Extended Program Change").  One should give
-   them numbers by renaming them outside of \textsl{Yoshimi}, then reloading
-   the bank.
+   with numbers at 129 or above ("Extended Program Change").
+   One could give them numbers by renaming them outside of \textsl{Yoshimi},
+   then reloading the bank.
+   One can also fix unnumbered ones simply by loading them, then resaving them
+   to the same slot. It's then probably best to swap them into the main set,
+   if there is space.
 
    \index{extended program}
    Note that MIDI CC
@@ -236,7 +246,7 @@
    Shows a list of directories that can serve as "root" directories.
    The "Bank Root Paths" dialog discussed in
    \sectionref{subsubsec:menu_patch_sets_patch_bank_roots} in
-   \figureref{fig:show_patch_banks} shows
+   \figureref{fig:show_patch_banks}, shows
    the system root (e.g. \texttt{/usr/share/yoshimi/banks}) and
    a user's home location for his/her banks and roots.
 
@@ -524,6 +534,9 @@
    This dialog is very similar to the \textbf{Load External} dialog.
    Note the large question mark in the XML preview, indicating a compressed XML
    file.
+
+   Instrument saves save only what is essential to the instrument, and not the
+   part it may be sitting in.
 
 \subsubsection{Menu / Instrument / Clear}
 \label{subsubsec:menu_instrument_clear}

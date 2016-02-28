@@ -75,7 +75,8 @@
    and the Open Document Format version of it, showed a lot of screen
    shots and a detailed survey of the settings and parameters of
    \textsl{ZynAddSubFX}.  It inspired me to be even more thorough in
-   describing \textsl{Yoshimi}.
+   describing \textsl{Yoshimi}, and then Will got involved to provide even more
+   details.
 
 \subsection{Yoshimi Versus ZynAddSubFX}
 \label{subsec:introduction_yoshimi_vs_zyn}
@@ -89,17 +90,17 @@
 
    \textsl{Yoshimi} is an algorithmic MIDI software synthesizer for Linux.
    It synthesizes in real time, can run polyphonic or monophonic, with multiple
-   simultaneous patches in one or more MIDI channels, has broad microtonal
-   capability, and much more. It includes extensive addititive, subtractive,
+   simultaneous patches on one or more MIDI channels, and has broad microtonal
+   capability. It includes extensive addititive, subtractive,
    and pad synth capabilities which can be run simultaneously within the
    same patch.  It also has eight audio effects modules.
 
    Originally based on the 2.4.0 version of \textsl{ZynAddSubFX} (Copyright
    2002-2009 Nasca Octavian Paul), development of \textsl{Yoshimi} has
-   continued for quite a while now in its own directions. These include
+   continued for quite a while now in its own direction. These include
    major optimizations for audio and MIDI performance, and more recently
    progressive development of user-level and command-line access to all
-   controls. At the same time refinement continues, both visually and within
+   controls. At the same time, refinement continues, both visually and within
    the code.
 
    What are the advantages of
@@ -114,26 +115,30 @@
    On the other hand, \textsl{ZynAddSubFX} has a few features that
    \textsl{Yoshimi} does not, such as being able to easily record
    the output waveforms.  There may be internal differences of importance to
-   a developer.  So, really, it is not clear that there is really a big
-   advantage to one over the other... use them both and make your own
-   decision!  Or just continue using both of them!
+   a developer, as well as features that aren't so easy to discover.  So,
+   really, it is not clear that there is really a big advantage to one over the
+   other... use them both and make your own decision!  Or just continue using
+   both of them!
 
 \subsection{New Features}
 \label{subsec:introduction_new_features}
 
-   Yoshimi can now run as an LV2 plugin.  Supported features:
+   This section provides an \textsl{ad hoc}, catch-as-catch-can survey of the
+   new features of \textsl{Yoshimi}, in no particular order.
+
+   \textsl{Yoshimi} can now run as an LV2 plugin.  Supported features:
 
    \begin{enumber}
-      \item Sample-accurate midi timing.
-      \item State save/restore support via LV2\_State\_Interface.
-      \item Working UI support via LV2\_External\_UI\_Widget.
-      \item Programs interface support via LV2\_Programs\_Interface.
-      \item Multi channel audio output.
+      \item Sample-accurate MIDI timing.
+      \item State save/restore support via \textsl{LV2\_State\_Interface}.
+      \item Working UI support via \textsl{LV2\_External\_UI\_Widget}.
+      \item Programs interface support via \textsl{LV2\_Programs\_Interface}.
+      \item Multi-channel audio output.
          'outl' and 'outr' have lv2 index 2 and 3.
          All individual ports numbers start at 4.
    \end{enumber}
 
-   Planned feature:
+   A planned feature:
    Controls automation support.
    This will be a part of a common controls interface.
 
@@ -146,9 +151,10 @@
    major and minor version numbers so it is possible to tell which version
    created the files, or whether they were created by \textsl{ZynAddSubFX}.
 
-   It is now possible to direct messages to either stderr or the report window
-   on the fly. If one chooses 'stderr', the \textbf{Reports} button is greyed
-   out.
+   It is now possible to direct messages to either \texttt{stderr}
+   (the error output of a terminal console) or the report window
+   on the fly. If one chooses \texttt{stderr}, the \textbf{Reports} button is
+   greyed out.
 
    Some NRPNs are now supported.
    See the new NRPN sections.
@@ -194,11 +200,11 @@
 
    \textsl{Yoshimi} will then immediately scan this path for new banks, but
    won't make the root (or any of its banks) current. The final directory
-   doesn't in fact have to be 'banks' but traditionally we have always done
+   doesn't in fact have to be 'banks', but, traditionally, we have always done
    this.
 
    Also, when running from the command line there is now access to many of the
-   system and root, bank, etc. settings.
+   system and root, bank, and other settings.
    See the new Banks sections.
 
    \textsl{Yoshimi} now remembers where major windows were last placed (per
@@ -266,10 +272,9 @@
    The CLI can now access almost all top level controls as well as the 'main
    page' part ones and can select any effect and effect preset, but can't yet
    deal with the individual effects controls. It can be used to set up Vector
-   Control much more quickly and easily than using NRPNs.
-
-   It is also context sensitive, which along with careful choice of command
-   names and abreviations allows very fast access with minimal typing.
+   Control much more quickly and easily than using NRPNs.  The CLI is also
+   context sensitive, which, along with careful choice of command names and
+   abreviations, allows very fast access with minimal typing.
 
    \textsl{Yoshimi}'s parser is case-insensitive for commands (but not for
    filenames), and accepts the shortest unambiguous abbreviation. However it is
@@ -278,41 +283,26 @@
 
    Some examples:
 
-   \begin{verbatim}
-      s p 4 pr 6 (set part 4 program 6)
-   \end{verbatim}
-
+   "\texttt{s p 4 pr 6}" (set part 4 program 6):
    This command sets part 4 to the instrument with ID 6 from the current bank.
    It also then leaves one at the part context level and pointed to part 4.
    Additionally, it will activate that part if it was off (and the
    configuration setting is checked). In most cases the words 'program' and
    'instrument' are interchangable.
 
-   \begin{verbatim}
-      s ef 1 ty rev
-   \end{verbatim}
-
+   "\texttt{s ef 1 ty rev}":
    This command moves one up to part effects context level and sets that part's
    effect number 1 to effect type 'reverb'.
 
-   \begin{verbatim}
-      s pre 2
-   \end{verbatim}
-
+   "\texttt{s pre 2}":
    This command sets preset number 2 (we use numbers here as most preset names
    repeat the effect type).
 
-   \begin{verbatim}
-      ..s 6 v 80
-   \end{verbatim}
-
+   "\texttt{s 6 v 80}":
    This command drops one back up to part level, switches one to part 6, and
    sets its volume to 80 (but doesn't actually enable it).
 
-   \begin{verbatim}
-      /s ve cc 93
-   \end{verbatim}
-
+   "\texttt{/s ve cc 93}":
    This command drops back up to the top level, and sets vector control for
    channel 0, X axis to respond to CC 93 leaving one in the vector context.
 

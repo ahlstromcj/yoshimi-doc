@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-07
-% \update      2015-07-18
+% \update      2016-02-28
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -342,7 +342,8 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/ADDsynth-voice-parameters.jpg}
+%  \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/ADDsynth-voice-parameters.jpg}
+   \includegraphics[scale=0.75]{1.3.9/ADDsynth-voice-parameters.png}
    \caption{ADDsynth Voice Parameters Dialog}
    \label{fig:addsynth_voice_parameters_dialog}
 \end{figure}
@@ -546,7 +547,7 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/modulator-type.jpg}
+   \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/modulator-type.jpg}
    \caption{Voice Modulator Type}
    \label{fig:voice_modulator_type}
 \end{figure}
@@ -856,6 +857,9 @@
 \subsubsection{ADDsynth / Voice Parameters / Voice Oscillator}
 \label{subsubsec:addsynth_voice_parameters_oscillator}
 
+   The ADDsynth Voice Oscillator panel is tucked in the lower left side of the
+   ADDSynth Voice Parameters editor.
+
    \begin{enumber}
       \item \textbf{Phase}
       \item \textbf{Use}
@@ -896,6 +900,52 @@
    Voice Oscillator Change.
    
    This button brings up the ADDsynth Oscillator Editor dialog.
+   This dialog is described elsewhere.
+
+   \itempar{Sound}{voice oscillator!sound}
+   Oscillator Type (sound/noise).
+   Sound/Noise choice.
+   Select the mode of the oscillator (sound versus white noise).
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{1.3.9/voice-oscillator-sound-dropdown.png}
+   \caption{Voice Oscillator Choices}
+   \label{fig:voice_oscillator_choices}
+\end{figure}
+
+   Values: \texttt{Sound*, Noise (white), Noise (pink)}
+
+   If white \textbf{Noise} is selected, then the waveform graph simply announces
+   "White Noise".  Also, the \textbf{Unison} control is
+   disabled.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.3.9/white_noise_banner.png}
+   \caption{White Noise in ADDSynth Voice}
+   \label{fig:voice_oscillator_white_noise}
+\end{figure}
+
+   If white \textbf{Noise} is selected, then the waveform graph simply announces
+   "Pink Noise".  Also, the \textbf{Unison} control is
+   disabled.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.3.9/pink_noise_banner.png}
+   \caption{Pink Noise in ADDSynth Voice}
+   \label{fig:voice_oscillator_pink_noise}
+\end{figure}
+
+   \itempar{Unison}{voice oscillator!Unison}
+   Unison is useful in creating the chorus like sound of many simultaneous
+   oscillators.
+
+   Values: \texttt{Off*, On}
+
+   Enabling this item causes the following Unison-related items to become
+   enabled.
 
 \begin{figure}[H]
    \centering 
@@ -908,33 +958,6 @@
    \figureref{fig:padsynth_harmonic_content_editor}.
    Obviously, it is a topic unto itself!
    Let us continue with rest of the minor controls.
-
-   \itempar{Sound}{voice oscillator!sound}
-   Oscillator Type (sound/noise).
-   Sound/Noise choice.
-   Select the mode of the oscillator (sound versus white noise).
-
-\begin{figure}[H]
-   \centering 
-   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/voice-oscillator-sound-dropdown.jpg}
-   \caption{Voice Oscillator Choices}
-   \label{fig:voice_oscillator_choices}
-\end{figure}
-
-   Values: \texttt{Sound*, NOISE}
-
-   If \textbf{NOISE} is selected, then the waveform graph simply announces
-   "White Noise" (not shown here).  Also, the \textbf{Unison} control is
-   disabled.
-
-   \itempar{Unison}{voice oscillator!Unison}
-   Unison is useful in creating the chorus like sound of many simultaneous
-   oscillators.
-
-   Values: \texttt{Off*, On}
-
-   Enabling this item causes the following Unison-related items to become
-   enabled.
 
       \begin{enumber}
          \item \textbf{Size}
@@ -1018,7 +1041,7 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/ADDsynth-voices-list.jpg}
+   \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/ADDsynth-voices-list.jpg}
    \caption{ADDsynth Voices List}
    \label{fig:addsynth_voices_list}
 \end{figure}
