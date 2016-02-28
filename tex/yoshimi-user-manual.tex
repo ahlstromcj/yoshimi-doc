@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-04-20
-% \update      2016-02-27
+% \update      2016-02-28
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -18,19 +18,38 @@
  11pt,
  twoside,
  a4paper,
- headinclude,
- footinclude,
  final                                 % versus draft
 ]{article}
 
 \input{yoshimi-docs-structure}         % specifies document structure and layout
+
+% Replacing normal header/footer with a fancier version.  These two symbols of
+% document class were showing up as "unused" in the log file.
+%
+% headinclude,
+% footinclude,
+%
+% So we add the fancyhdr package, clear the default layout, and set it up for
+% our wider pages.
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyheadoffset{0.005\textwidth}
+\lhead{Yoshimi Software Synthesizer}
+\chead{}
+\rhead{User Manual}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
 
 \makeindex
 
 \begin{document}
 
 \title{A Yoshimi 1.3.9 User Manual}
-\author{Chris Ahlstrom \texttt{ahlstromcj@gmail.com} with Will J. Godfrey}
+\author{Chris Ahlstrom \texttt{(ahlstromcj@gmail.com)} with Will J. Godfrey}
 \date{\today}
 \maketitle
 \tableofcontents
@@ -485,6 +504,8 @@
    'examples' directory there is a complete song set, 'OutThere.mid' and
    'OutThere.xmz'. Together these produce a fairly complex 12 part tune that
    makes \textsl{Yoshimi} work quite hard.
+
+\rhead{\rightmark}         % shows section number and section name
 
 % Important Concepts
 
