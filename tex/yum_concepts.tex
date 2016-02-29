@@ -246,8 +246,10 @@
    rescan for banks. In this way it should be completely backward compatible
    with any previous config files.
 
-   The banks file is then saved every time there is a normal exit, so the
-   last-used root and bank IDs will always match what that instance thinks is
+   The \texttt{.banks} file is \textsl{saved} every time roots, banks, or
+   instruments are changed, and again on a normal exit to catch the current
+   root and bank (which don't otherwise trigger a save).  This allows the
+   last-used root and bank IDs to always match what that instance thinks is
    there.
 
 \subsection{Concepts / Sessions}
@@ -266,25 +268,23 @@
          See \sectionref{paragraph:menu_yoshimi_settings_main_settings}.
       \item \texttt{.config}
          Sometimes one will see the extension \texttt{.config} used in the
-         \texttt{\$HOME/.config/yoshimi} directory.
-         These files contain information to translate between bank directory
-         names and bank ID values.
-         In recent versions of \textsl{Yoshimi}, this file is much reduced in
-         size, and its "doctype" is no longer "ZynAddSubFX".
-         The config is always going to be specific to one
-         machine and working modes, so no one will want to copy it across even
-         to another \textsl{Yoshimi} environment.
-         Recent patch sets are now no longer stored in the main \texttt{.config}
-         file, but in a new \texttt{.history} file.
-         This file is now a much reduced common settings -- interfaces,
-         sample rate -- file.
-         It is a single file that every instance can read,
-         but only the first one can write.
-         \texttt{.config} hasn't yet been separated from
-         \texttt{.instance(n)} and all files are still per
-         instance, as the \textsl{Yoshimi} team  haven't had time to work out
-         exactly how to manage common files
-         and memory locations for those that should be shared.
+         \texttt{\$HOME/.config/yoshimi} directory.  These files contain
+         information to translate between bank directory names and bank ID
+         values.  In recent versions of \textsl{Yoshimi}, this file is much
+         reduced in size, and its "doctype" is no longer "ZynAddSubFX".  The
+         config is always going to be specific to one machine and working
+         modes, so no one will want to copy it across even to another
+         \textsl{Yoshimi} environment.  Recent patch sets are now no longer
+         stored in the main \texttt{.config} file, but in a new
+         \texttt{.history} file.  This file is now a much reduced common
+         settings -- interfaces, sample rate -- file.  It is a single file that
+         every instance can read, but only the first one can write.
+         \texttt{.config} hasn't yet been separated from \texttt{.instance(n)}
+         and all files are still per instance, as the \textsl{Yoshimi} team
+         haven't had time to work out exactly how to manage common files and
+         memory locations for those that should be shared.  The
+         \texttt{.config} file is saved only when the user explicitly calls for
+         it to be saved.
       \item \texttt{.state}
          Sometimes one will see the extension \texttt{.state} used in the
          \texttt{\$HOME/.config/yoshimi} directory.
@@ -316,6 +316,8 @@
          Recent patch sets are now stored in the \texttt{.history} file.
          And why not recent instruments and scales?
          This is a single file that every instance can read and write.
+         The \texttt{.history} file is save only upon a normal exit, as it is
+         comparatively unimportant.
       \item \texttt{.banks}
          A new feature of the \textsl{Yoshimi} configuration.
          Currently each \textsl{Yoshimi} instance takes its own copy of the

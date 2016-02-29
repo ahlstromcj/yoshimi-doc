@@ -4844,6 +4844,110 @@ reminder, while not stuffing the terminal with acres of text.
 
 
 
+Date: Sun, 28 Feb 2016 23:04:11 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: Yoshimi doc
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.29; x86_64-pc-linux-gnu)
+
+On Sun, 28 Feb 2016 16:08:05 -0500
+Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
+
+> Okay, I added your updates to the cja branch, plus fixed a
+> number of other things.  Merged into master.
+>
+> I remember you had got a pink noise patch from Zyn, so I added
+> new material for that.  Any other GUI/engine changes?
+
+Can't think of any at them moment - but it's getting late :)
+
+> My next big question for you is how the command line section is.
+> Does my description match the current commands?
+>
+> Thanks!
+>
+> Chris
+
+Looking through yoshimi-user-manual.tex
+
+line 301
+"\texttt{s 6 v 80}":
+should be
+"\texttt{..s 6 v 80}":
+
+
+In yum_command_line.tex
+line 85
+"yoshimi part 4 FX 0 rever >"
+should now be
+"yoshimi part 4 FX 0 rever-0 >
+
+Note miscellany below!
+
+Line 197
+what is unclear?
+
+Lines 222 - 248
+appears to be duplication?
+
+Line 270
+
+===========================
+should also have:
+"load instrument"
+"save instrument"
+===========================
+
+note grouping is now
+load
+load
+save
+save
+save
+
+Line 291
+"list current" is now "list parts" - makes more sense!
+
+===========================
+line 300
+"set reports" now has 4 options:
+gui/stderr - determines the destination
+show/hide - determines whether to hide non-fatal errors.
+===========================
+
+
+I'm actually unclear on how these files work. There seems to be groups of
+duplication which might be some form of version history. Is that so?
+
+
+
+A bit of extra clarification on config files.
+
+The 'banks' file is saved every time roots, banks or instruments are changed,
+and again on a normal exit to catch current root and bank (which don't
+otherwise trigger a save).
+
+The 'history' file is only saved on a normal exit, as it is comparatively
+unimportant.
+
+The 'config' file is only saved when you specifically call for it to be saved.
+
+
+Miscellaneous clarfication :)
+
+At the CLI prompt, when effects are being managed, the preset number is also
+shown on the prompt so you'll typically see something like:
+
+yoshimi part 2 FX 1 Rever-7 >
+
+"list effects all" will list every effect and all its presets along with the
+preset number.
+
+Yoshim is now verified as being able to use 192000 Hz sample rate in both ALSA
+and Jack - if you have a suitable soundcard! Woo :)
+
+
+Will now has to go to bed :(
 
 
  
