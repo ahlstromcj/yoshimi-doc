@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-15
-% \update      2016-02-29
+% \update      2016-03-01
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -43,26 +43,26 @@
 \label{subsubsec:stock_settings_elements_title_bars}
 
    The title bars of all editing windows display both the part number and the
-   current name of the instrument one are working on.  In the ADDsynth
-   Oscillator Editor, one also sees the voice number of the oscillator one is
-   editing.  Some title bars now also include the kit entry number if that part
-   has a kit enabled; this feature needs more work to get all of them.
+   current name of the instrument one are working on.  In the
+   \textbf{ADDsynth Oscillator Editor}, one also sees the
+   voice number of the oscillator one is editing.  Some title bars now also
+   include the kit entry number if that part has a kit enabled; this feature
+   needs more work to get all of them.
 
 \subsubsection{Color Coding}
 \label{subsubsec:stock_settings_elements_color_coding}
 
-   A GUI enhancement for \textsl{Yoshimi 1.3.5} is color-coded
-   identification of an instrument's use of Add, Sub, and Pad synth engines,
-   no matter where in the instrument's kit they may be. This can be
-   enabled/disabled in the mixer panel. It does slow down
-   \textsl{Yoshimi}'s startup,
-   but due to the banks reorganisation (done some time ago) it causes no
-   delay in changing banks/instruments once \textsl{Yoshimi} is
-   up and running.  Some
-   saved instruments seem to have had their Info section corrupted. Yoshimi
-   can detect this and step over it to find the true status. Also, if one
-   resaves the instrument, not only will the PADsynth status be restored, but
-   ADDsynth and SUBsynth will be included, allowing a faster scan next time.
+   A GUI enhancement for \textsl{Yoshimi 1.3.5} is color-coded identification
+   of an instrument's use of ADD-, SUB-, and PAD-synth engines, no matter where
+   in the instrument's kit they may be. This can be enabled/disabled in the
+   mixer panel. It does slow down \textsl{Yoshimi}'s startup, but due to the
+   banks reorganisation (done some time ago) it causes no delay in changing
+   banks/instruments once \textsl{Yoshimi} is up and running.  Some saved
+   instruments seem to have had their "Info" section corrupted.
+   \textsl{Yoshimi} can detect this issue, and step over it to find the true
+   status. Also, if one resaves the instrument, not only will the PADsynth
+   status be restored, but ADDsynth and SUBsynth will be included, allowing a
+   faster scan next time.
 
 \subsubsection{Rotary Knobs}
 \label{subsubsec:stock_settings_elements_knobs}
@@ -100,10 +100,11 @@
    The \textsl{ZynAddSubFX}/\textsl{Yoshimi} concept of presets is very
    powerful.
 
-   Absolutely every user-interface section that has blue C P buttons can be
+   Absolutely every user-interface section that has blue \textbf{C}
+   and \textbf{P} buttons can be
    stored in the \texttt{presets} directory. That includes entire Addsynth
    engines! When one looks at the copy/paste buffer, one sees only items that
-   are relevant to the group that the C P buttons are in.
+   are relevant to the group that the C/P buttons are in.
 
    As one wants to save, as well as load, these presets, it makes sense to copy
    all the default ones to a location such as
@@ -417,8 +418,6 @@
    Velocity sensing amount for filter cutoff.
    Velocity sensing amount of the filter.
 
-   TODO.
-
    Values: \texttt{0 to 127, 64*}
 
    \itempar{V.Sns}{velocity sensing function}
@@ -457,9 +456,6 @@
    Obviously, the more stages used, the more calculation-intensive the
    filter will be.  This should also increase the latency (lag) of the
    filter.
-
-   % \item \textbf{C} (See elsewhere)\\
-   % \item \textbf{P} (See elsewhere)\\
 
 \begin{figure}[H]
    \centering 
@@ -619,7 +615,7 @@ These parameters are:
    \itempar{Freq}{LFO!frequency}
    LFO Frequency.
    This parameter varies from 0 to 1.
-   TODO: We still need to figure out what that scale means, however.
+   We still need to figure out what that scale means, however.
 
    Values: \texttt{0 to 1, 0.63*}
 
@@ -665,12 +661,11 @@ These parameters are:
 
    \itempar{Type}{LFO!type}
    LFO Function.
-
-   Values: \texttt{SINE*, TRI, SQR, R.up, R.dn, E1dn, E2dn}
-
    Also present in this sub-panel are the usual \textbf{C}opy
    and \textbf{P}aste buttons that call up a copy-parameters or
    paste-parameters dialog.
+
+   Values: \texttt{SINE*, TRI, SQR, R.up, R.dn, E1dn, E2dn}
 
 \begin{figure}[H]
    \centering 
@@ -685,15 +680,11 @@ These parameters are:
    \figureref{fig:types_of_lfo}.
    The values that can be selected are shown in
    \figureref{fig:lfo_function_type_dropdown}.
-
-   Values: \texttt{SINE*, TRI, SQR, R.up, R.dn, E1dn, E2dn}
-
-   % \item \textbf{C}
-   % \item \textbf{P}
-
    Also present in this sub-panel are the usual \textbf{C}opy
    and \textbf{P}aste buttons that call up a copy-parameters or
    paste-parameters dialog.
+
+   Values: \texttt{SINE*, TRI, SQR, R.up, R.dn, E1dn, E2dn}
 
    For reference,
    \figureref{fig:filter_lfo}
@@ -844,11 +835,10 @@ These parameters are:
          until it is off (the volume is 0).
    \end{enumber}
 
+   Together, these values are called "ADSR".  
    The ADSR envelope generally controls the amplitude of the sound.
    In \textsl{Yoshimi},
-   amplitude envelopes can be linear or logarithmic.
-
-   Together, these values are called "ADSR".  
+   amplitude envelopes can be \textsl{linear} or \textsl{logarithmic}.
 
 \begin{figure}[H]
    \centering 
@@ -857,9 +847,8 @@ These parameters are:
    \label{fig:adsr_envelope_depiction}
 \end{figure}
 
-   Figure~\ref{fig:adsr_envelope_depiction} on
-   page~\pageref{fig:adsr_envelope_depiction}
-   shows a depiction of an ADSR envelope.
+   See \figureref{fig:adsr_envelope_depiction},
+   it shows a depiction of an ADSR envelope.
    The ADSR is mostly applied to amplitude envelopes.
 
 \begin{figure}[H]
@@ -879,12 +868,12 @@ These parameters are:
    The frequency envelopes are divided into 3 stages:
 
    \begin{enumber}
-      \item Attack. 
+      \item \textbf{Attack}. 
       It begins at the Note On. The frequency starts from a certain value and
       glides to the real frequency of the note.
-      \item Sustain.
+      \item \textbf{Sustain}.
       The frequency stays the same during the sustain period.
-      \item Release.
+      \item \textbf{Release}.
       This stage begins on Note Off and glides the frequency of the note to a
       certain value.
    \end{enumber}
@@ -916,7 +905,7 @@ These parameters are:
 
    \itempar{A.dt}{envelope!attack time}
    Attack duration, attack time.
-   TODO: determine the units of time at play for ADSR durations.
+   We need to determine the units of time at play for ADSR durations.
 
    Values: \texttt{0* to 127}
 
@@ -945,7 +934,7 @@ These parameters are:
    Envelope Stretch means that, on lower notes, the envelope will be longer.
    On the higher notes the envelopes are shorter than lower notes. In the
    leftmost value, the stretch is zero. The rightmost use a stretch of 200\%;
-   this means that the envelope is stretched about 4 times peroctave.
+   this means that the envelope is stretched about 4 times per octave.
 
    Values: \texttt{0 to 127, 64*}
 
@@ -961,15 +950,13 @@ These parameters are:
    This means that if this option is turned on, the release will go to the
    final value, even if the sustain stage is not reached. Usually, this must
    be set.
-
-   Values: \texttt{Off, On*}
-
    If this option is turned on, the release will go to the
    final value, even if the sustain level is not reached.
-
    Also present in this sub-panel are the usual \textbf{C}opy
    and \textbf{P}aste buttons that call up a copy-parameters or
    paste-parameters dialog.
+
+   Values: \texttt{Off, On*}
 
    \itempar{C}
    Copy to Clipboard/Preset.
@@ -978,12 +965,13 @@ These parameters are:
    Paste from Clipboard/Preset.
 
    \itempar{E}
-   Amplitude Envelope Window.
+   Amplitude Envelope Editing Window.
+   Described in the next section.
 
 \subsubsection{Envelope Settings}
 \label{subsubsec:envelope_settings}
 
-   Amplitude Envelope Window.
+   This section describes the \textbf{Amplitude Envelope Editing} window.
 
 \begin{figure}[H]
    \centering 
@@ -1000,6 +988,8 @@ These parameters are:
       \item \textbf{Close}
    \end{enumber}
 
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
    \itempar{FreeMode}{envelope!freemode enable}
    Freemode Enable.
 
@@ -1008,14 +998,12 @@ These parameters are:
 \subsubsection{Freemode Envelope Settings}
 \label{subsubsec:freemode_envelope_settings}
 
-   The envelopes are parts that control a parameter (frequencies) of a sound. 
-
-   For all envelopes, there is a mode that allows the user to set an arbitrary
-   number of stages and control points. This mode is called Freemode.
-   The only stage that always remains defined is the Sustain, where the
-   envelopes freezes until a Note Off event.
-   The Freemode envelope editor has a separate window to set the parameters and
-   controls.
+   The envelope panels are parts that control a parameter (such as the
+   frequencies) of a sound.  For all envelopes, there is a mode that allows the
+   user to set an arbitrary number of stages and control points. This mode is
+   called \textsl{Freemode}.  The only stage that always remains defined is the
+   Sustain, where the envelopes freezes until a Note Off event.  The Freemode
+   envelope editor has a separate window to set the parameters and controls.
 
    The main concept of the freemode editor window is the
    \textsl{control point}.
@@ -1081,15 +1069,14 @@ These parameters are:
    \itempar{FreeMode}{envelope!freemode}
    FreeMode.  Provides a mode where completely arbitrary envelopes may be
    drawn.
-
-   Values: \texttt{Off*, On}
-
    Actually, the envelopes aren't completely arbitrary, as the sustain
    section is always flat, and its duration corresponds with the duration
    the note is held down.
    When this mode is enabled, the rest of the controls shown in
    \figureref{fig:amplitude_envelope_freemode}
    appear, and are described in the following paragraphs.
+
+   Values: \texttt{Off*, On}
 
    \itempar{Add point}{envelope!add point}
    Add point.
@@ -1106,8 +1093,7 @@ These parameters are:
    Sets the sustain point.
    The sustain point is shown using the yellow line.
    If the point is at 0, then sustain is disabled.
-
-   Values: \texttt{0, 1, 2*}
+   It is difficult to determine the difference between 1 and 2.
 
    \begin{enumber}
       \item{0} means that sustain is disabled, and the envelope immediately
@@ -1118,7 +1104,7 @@ These parameters are:
       released.
    \end{enumber}
 
-   It is difficult to determine the difference between 1 and 2.
+   Values: \texttt{0, 1, 2*}
 
    \itempar{Stretch}{envelope!stretch}
    Envelope Stretch.
@@ -1232,9 +1218,6 @@ These parameters are:
 
    \itempar{frcR}{envelope!forced release}
    Forced release.
-
-   Values: \texttt{Off, On*}
-
    If this option is turned on, the release will go to the
    final value, even if the sustain level is not reached.
 
@@ -1243,30 +1226,26 @@ These parameters are:
    paste-parameters dialog, as well as a button
    to bring up the editor window.
 
+   Values: \texttt{Off, On*}
+
 \subsubsection{Envelope Settings for Filter}
 \label{subsubsec:envelope_settings_for_filter}
 
    This envelope controls the cutoff frequency of the filters.
    The filter envelopes are divided into 4 stages:
 
-% attack (see \ref{ref:attack});
-% decay (see \ref{ref:decay});
-% sustain (see \ref{ref:sustain});
-% and
-% release (see \ref{ref:release}).
-
    \begin{enumber}
-      \item Attack.
+      \item \textbf{Attack}.
          It begins at the Note On.
          The cutoff frequency starts from a certain value and glides to another
          value.
-      \item Decay.
+      \item \textbf{Decay}.
          The cutoff frequency continues to glide to the real cutoff frequency
          value of the filter (dotted line).
-      \item Sustain.
+      \item \textbf{Sustain}.
          The cutoff frequency stays the same during the sustain period (dotted
          line).
-      \item Release.
+      \item \textbf{Release}.
          This stage begins on Note Off and glides the filter cutoff frequency
          of the note to a certain value.
    \end{enumber}
@@ -1327,9 +1306,6 @@ These parameters are:
 
    \itempar{frcR}{envelope!forced release}
    Forced Release.
-
-   Values: \texttt{Off, On*}
-
    If this option is turned on, the release will go to the
    final value, even if the sustain level is not reached.
 
@@ -1338,9 +1314,10 @@ These parameters are:
    paste-parameters dialog, as well as a button that bring up the editor
    window.
 
-   Addition picture and GUI items for ADDsynth version?
+%  Additional picture and GUI items for ADDsynth version?
+%  Figure: bottom-panel/instrument-edit/ADD/ADDsynth-filter-envelope.jpg
 
-   Figure: bottom-panel/instrument-edit/ADD/ADDsynth-filter-envelope.jpg
+   Values: \texttt{Off, On*}
 
    \itempar{L}{envelope!linearity}
    If this option is set, the envelope is linear, otherwise, it will be
@@ -1348,15 +1325,13 @@ These parameters are:
 
    Values: \texttt{Off*, On}
 
-   % \item \textbf{C}
-   % \item \textbf{P}
-   % \item \textbf{E}
-
 \subsubsection{Formant Filter Settings}
 \label{subsubsec:formant_filter_settings}
 
    This window allows one to change most of the parameters of the formant
-   filter. 
+   filter.   It is reached by enabling a \textbf{FILTER} panel,
+   changing the \textbf{Category} value to \textsl{Formant}, and then clicking
+   the \textbf{Edit} button that sits below the category drop-down list.
 
 \begin{figure}[H]
    \centering 
@@ -1367,19 +1342,18 @@ These parameters are:
 \end{figure}
 
    \begin{enumber}
-      \item \textbf{Category}
-      \item \textbf{Num.Formants}
+      \item \textbf{Formants}
       \item \textbf{Fr.Sl.}
       \item \textbf{Vw.Cl.}
       \item \textbf{C.f.}
       \item \textbf{Oct.}
-      \item \textbf{Vowel no}
+      \item \textbf{Vowel no.}
       \item \textbf{Formant}
       \item \textbf{freq}
       \item \textbf{Q}
       \item \textbf{amp}
-      \item \textbf{Seq Size}
-      \item \textbf{S.Pos}
+      \item \textbf{Seq.Size}
+      \item \textbf{S.Pos.}
       \item \textbf{Vowel}
       \item \textbf{Strtch}
       \item \textbf{Neg Input}
@@ -1388,118 +1362,129 @@ These parameters are:
 \paragraph{Formant Parameters}
 \label{paragraph:formant_parameters}
 
-   \itempar{Num.Formants}{formant!number}
+   \itempar{Formants}{formants!number of}
    Number of Formants Used.
 
-   Values:  \texttt{0 to xxx?}
+   Values:  \texttt{1 to 12, 3*}
 
-   \itempar{Fr.Sl.}{formant!slowness}
+   \itempar{Fr.Sl.}{formants!slowness}
    Formant Slowness.
-
-   Values:  \texttt{0 to xxx?}
-
    This parameters prevents too-fast morphing between vowels.
 
-   \itempar{Vw.Cl.}{formant!clearness}
+   Values:  \texttt{0 to 127, 64*}
+
+   \itempar{Vw.Cl.}{formants!vowel clearness}
    Vowel "Clearness".
-
-   Values:  \texttt{0 to xxx?}
-
    Sets how much the vowels are kept "clear",
-   that is, how much the "mixed" vowels are avoided.
+   that is, how much "mixed" vowels are avoided.
 
-   \itempar{C.f.}{formant!cf}
+   Values:  \texttt{0 to 127, 64*}
+
+   \itempar{C.f.}{formants!cf}
    Center Frequency.
+   This slider control changes the center frequency of the graph, in relative
+   units.  Not quite sure how to describe this one, so play with the slider and
+   see (and hear) for yourself.
 
-   Values:  \texttt{0 to xxx?}
+   Values:  \texttt{0.09 to 10.00, 1.0*}
 
-   The center frequency of the graph.
-
-   \itempar{Oct.}{formant!octaves}
+   \itempar{Oct.}{formants!octaves}
    Number of Octaves.
+   This slider controls the number of octaves shown in the graph.
 
-   Values:  \texttt{0 to xxx?}
-
-   The number of octaves in the graph.
+   Values:  \texttt{0 to 10}
 
 \paragraph{Formant Vowel Parameters}
 \label{paragraph:formant_vowel_parameters}
 
-   \itempar{Vowel no}{formant!vowel number}
+   \itempar{Vowel no}{formants!vowel number}
+   Vowel Number.
    The number of the current vowel.
-   This number means what?
+   Each number represents a different vowel, and leads to a gross change in the
+   shape of the formant spectrum.
+   We do not yet have a mapping between the numbers and which vowel is
+   represented.
 
-   Values:  \texttt{0 to xxx?}
+   Values:  \texttt{0 to 5}
 
-   \itempar{Formant}{formant!number}
-   The current formant.
+   \itempar{Formant}{formants!number}
+   Formant Number.
+   The current formant to be emphasized or modified.  The vertical marker in
+   the graph moves as this value is changed.
 
-   Values:  \texttt{0 to xxx?}
+   Values:  \texttt{0 to 11}
 
-   \itempar{freq}{formant!frequency}
+   \itempar{freq}{formants!frequency}
+   Formant Frequency.
    The frequency of the current formant.
+   This knob changes the frequency of the formant peak selected by the 
+   Formant Number control.
 
-   Values:  \texttt{0 to xxx?}
+   Values:  \texttt{0 to 127}
 
-   \itempar{Q}{formant!Q}
+   \itempar{Q}{formants!Q}
+   Formant Resonance, Formant Q.
    The Q (resonance depth or bandwidth) of the current formant.
+   Used to sharpen or make the current formant sound dull.
 
-   Values:  \texttt{0 to xxx?}
+   Values:  \texttt{0 to 127}
 
-   \itempar{amp}{formant!amplitude}
-   Amplitude of the current formant.
+   \itempar{amp}{formants!amplitude}
+   Formant Amplitude.
+   Controls the amplitude of the current formant.
+   Initially, one will want to set this to the maximum value.
 
-   Values:  \texttt{0 to xxx?}
+   Values:  \texttt{0 to 127}
 
 \paragraph{Formant Sequence Parameters}
 \label{paragraph:formant_sequence_parameters}
 
    The sequence represents what vowel is selected to sound according to the
    input from the filter envelopes and LFO's.
+   We need to learn a bit about how this setup actually works.
  
-   \itempar{Seq Size}{formant!seq size}
+   \itempar{Seq Size}{formants!seq size}
    Sequence Size.
    The number of vowels in the sequence.
 
-   Values:  \texttt{0 to xxx?}
+   Values:  \texttt{1 to 7}
 
-   \itempar{S.Pos}{formant!seq position}
+   \itempar{S.Pos}{formants!seq position}
    Sequence Position.
    The current position of the sequence.
 
-   Values:  \texttt{0 to xxx?}
+   Values:  \texttt{0 to 6}
 
-   \itempar{Vowel}{formant!vowel position}
+   \itempar{Vowel}{formants!vowel position}
+   Vowel Position.
    The vowel from the current position.
 
-   Values:  \texttt{0 to xxx?}
+   Values:  \texttt{0 to 5}
 
-   \itempar{Strtch}{formant!seq stretch}
+   \itempar{Strtch}{formants!seq stretch}
    How the sequence is stretched.
-   This number means what?
+   This number probably means that the duration of the sequence decreases as
+   the pitch of the selected notes increase.
 
-   Values:  \texttt{0 to xxx?}
+   Values:  \texttt{0 to 127}
 
-   \itempar{Neg Input}{formant!reversed}
+   \itempar{Neg Input}{formants!reversed}
    Negative Input.
-   If enabled, the sequence is reversed.
+   If enabled, the input from the envelope or LFO control is reversed.
 
-   Values:  \texttt{0 to xxx?}
-
-\subsubsection{Controller Settings}
-\label{subsubsec:controller_settings}
-
-TODO.
+   Values:  \texttt{off, on}
 
 \subsection{Clipboard Presets}
 \label{subsec:clipboard_presets}
 
-In many of the settings panels, there are buttons
-labelled \textbf{C}, \textbf{P}, and \textbf{E},
-\textbf{E} is the editor window, discussed in 
-section \ref{subsubsec:freemode_envelope_settings}
-\textbf{C} and \textbf{P} are the clipboard/present copy and paste
-dialogs, respectively.
+   In many of the settings panels, there are buttons
+   labelled \textbf{C}, \textbf{P}, and \textbf{E},
+   \textbf{E} is the editor window, discussed in 
+   section \ref{subsubsec:freemode_envelope_settings}
+   \textbf{C} and \textbf{P} are the clipboard/present copy and paste
+   dialogs, respectively.
+   These buttons allow cut-and-paste for shorter sections of the XML
+   configuration.
 
 \subsubsection{Clipboard/Preset Copy}
 \label{subsubsec:clipboard_copy}

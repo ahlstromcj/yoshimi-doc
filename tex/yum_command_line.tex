@@ -225,17 +225,21 @@ Ones that we're pretty sure will be added are:
 \label{subsec:command_line_command_table}
 
    When running from the command line, these commands
-   (see \tableref{table:yoshimi_text_commands})
+   (see \tableref{table:yoshimi_text_commands_part_1}
+   and \tableref{table:yoshimi_text_commands_part_2})
    can be entered after the 'up and running' message.
    The commands are not case-sensitive.
-   The commands can be abbreviated to the first three letters of each command.
+   The commands can be abbreviated to the first three letters of each command,
+   or, in some cases, just one letter.
+   The commands that are available depend on the current "context" of the
+   command line.
    There are a group of commands that are always available. These are
 
    \begin{itemize}
-      \item \texttt{?} (Help)
-      \item \texttt{List}
-      \item \texttt{RESet}
-      \item \texttt{EXit}
+      \item \texttt{\textbf{?}} or \texttt{\textbf{help}}
+      \item \texttt{\textbf{L}ist}
+      \item \texttt{\textbf{RES}et}
+      \item \texttt{\textbf{EX}it}
    \end{itemize}
 
    Apart from these basic commands, the command line works on a system of
@@ -246,11 +250,11 @@ Ones that we're pretty sure will be added are:
    using the "help" command in the \textsl{Yoshimi} command-line mode.
    More detailed descriptions are given in the section following the table.
 
-   The \texttt{paths} command no longer exists. Instead we have \texttt{add} \&
-   \texttt{remove}, so instead of \texttt{path add} it's \texttt{add root}. Also
-   you can now add and remove banks using the same structure. \texttt{paths
-   show} has now been moved into lists as \texttt{list roots}.  These changes
-   make roots/banks/instruments more consistent.
+   The \texttt{paths} command no longer exists. Instead we have \texttt{add}
+   and \texttt{remove}, so instead of \texttt{path add} it's \texttt{add root}.
+   Also, one can now add and remove banks using the same structure.
+   \texttt{paths show} has now been moved into lists as \texttt{list roots}.
+   These changes make roots/banks/instruments more consistent.
 
    \begin{table}[H]
       \centering
@@ -265,31 +269,25 @@ Ones that we're pretty sure will be added are:
             Step back up to the top command level. \\
 
          \texttt{add bank [s]} &
-            Define a new bank and add it to the current root. \\
+            Add a new bank to the current root. \\
 
          \texttt{add root [s]} &
             Define a new root path and add it to the list. \\
 
          \texttt{remove bank [s]} &
-            Delete the bank and all its contents from the current root. \\
+            Delete the bank from the current root. \\
 
          \texttt{remove root [s]} &
-            De-list the root path ID. \\
+            De-list the given root path. \\
 
          \texttt{list banks [n]} &
-            List instruments and IDs in bank \textsl{n} or the
-            current bank/root. \\
+            List instruments in bank \textsl{n} or the current bank. \\
 
          \texttt{list effects [n]} &
-            List effect types for \textsl[n].  \\
-
-         \texttt{list effects all} &
-            List every effect and all its presets along with the
-            preset number. \\
+            List effect types for \textsl[n] or for 'all'.  \\
 
          \texttt{list instruments [n]} &
-            List all instruments and IDs in bank \textsl{n}
-            or current bank/root. \\
+            List all instruments in bank \textsl{n} or current bank. \\
 
          \texttt{list parts} &
             List number of parts available, and more. \\
@@ -298,16 +296,16 @@ Ones that we're pretty sure will be added are:
             List all available root paths. \\
 
          \texttt{list setup} &
-            Displays the current dynamic system settings. \\
+            Displays the dynamic system settings. \\
 
          \texttt{list vectors [n]} &
-            Lists the settings for all enabled vectors. \\
+            Lists the settings for enabled vectors, channel \textsl{n}. \\
 
          \texttt{load instrument [n]} &
             Loads an instrument. \\
 
          \texttt{load patchset [s]} &
-            Load a complete patch set from a named file. \\
+            Load a complete patch set from the file. \\
 
          \texttt{save patchset [s]} &
             Save the patch set to a named file. \\
@@ -319,14 +317,13 @@ Ones that we're pretty sure will be added are:
             Save the current dynamic system settings. \\
 
          \texttt{set activate [n]} &
-            Set part-activate on MIDI program change (\textsl{n}=0 disables
-            1 enables). \\
+            Set part-activate on MIDI program change (0 on, 1 off). \\
 
          \texttt{set alsa audio [s]} * &
-            Sets the name of the audio hardware device ALSA looks for. \\
+            Sets the name of the audio device to look for. \\
 
          \texttt{set alsa midi [s]} * &
-            Sets the name of the MIDI source ALSA looks for. \\
+            Sets the name of the MIDI source to look for. \\
 
          \texttt{set available [n]} &
             Set the number of available parts (16, 32, 64). \\
@@ -335,13 +332,13 @@ Ones that we're pretty sure will be added are:
             Set current bank to ID \textsl{n}. \\
 
          \texttt{set ccbank [n]} &
-            Set the MIDI CC for bank changes (non-0 or non-32 disables). \\
+            Set MIDI CC for bank changes (non-0 or -32 disables). \\
 
          \texttt{set ccroot [n]} &
-            Set the MIDI CC for root path changes (above 119 disables). \\
+            Set MIDI CC for root path changes (above 119 disables). \\
 
          \texttt{set extend [n]} &
-            Set CC value for extended program change (above 119 disables). \\
+            Set MIDI CC for extended program change (above 119 disables). \\
 
          \texttt{set insert effects [n]} &
             Set insertion effects for editing. \\
@@ -360,7 +357,7 @@ Ones that we're pretty sure will be added are:
 
          \texttt{set part [n1] destination [n2]} &
             Set audio destination of part \textsl{n1}
-            to main (\textsl{1}), part (\textsl{2}), both (\textsl{3}). \\
+            to main, part, or both. \\
 
          \texttt{set preferred audio [s]} * &
             Set audio connection type (jack/alsa). \\
@@ -384,7 +381,7 @@ Ones that we're pretty sure will be added are:
             Set numbered effect preset. \\
 
          \texttt{set program [n]} &
-            Set MIDI program change (0 disables, anything else enables). \\
+            Set MIDI program change (0 disables, otherwise enables). \\
 
          \texttt{set reports [n]} &
             Set report destination (gui, stderr, show, and hide). \\
@@ -393,15 +390,13 @@ Ones that we're pretty sure will be added are:
             Set current root path to ID \textsl{n}. \\
 
          \texttt{set shift [n]} &
-            Set master key shift for notes, semitones (+- octave,
-            64=no shift). \\
+            Set master key shift for notes, semitones. \\
 
          \texttt{set system effects [n]} &
             Set System Effects for editing. \\
 
          \texttt{set vector [n1] x/y cc [n2]} &
-            CC \textsl{n2} is for ch. \textsl{n1} X/Y axis sweep.
-            For X, enables vector. \\
+            Sets and enables vector CC.  See section below. \\
 
          \texttt{set vector [n1] x/y features [n2]} &
             Sets channel \textsl{n1} X or Y features to \textsl{n2}. \\
@@ -425,9 +420,6 @@ Ones that we're pretty sure will be added are:
 
          \texttt{stop} &
             Cease all sound immediately! \\
-
-         \texttt{mode [s]} &
-            Change to different menus: addsynth, subsynth, or padsynth. \\
 
          \texttt{?} or \texttt{help} &
             List all commands. \\
@@ -463,31 +455,40 @@ Ones that we're pretty sure will be added are:
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{..}{cmd!up one level}
-      Step back up one command level.
+      \index{cmd!..}
+      Step back up one command context level.
+      This command can immediately precede another command, so that the second
+      command takes places at the context above the current context.
 
    \itempar{/}{cmd!to top level}
-      Step back up to the top command level.
+      \index{cmd!/}
+      Step back up to the top command context level.
+      This command can immediately precede another command, so that the second
+      command takes places at the top context.
 
    \itempar{add bank [s]}{cmd!add bank}
-      Define a new bank and add it to the current root.
+      Define a new bank, \textsl{s}, where \textsl{s} is a bank name,
+      and add it to the current root.
 
    \itempar{add root [s]}{cmd!add root}
-      Define a new root path and add it to the list.
+      Define a new root path, \textsl{s}, and add it to the list of root paths.
 
    \itempar{remove bank [s]}{cmd!remove bank}
-      Delete the bank and all its contents from the current root.
+      Delete the bank named \textsl{s}, and all its contents,
+      from the current root path.
 
    \itempar{remove root [s]}{cmd!remove root}
-      De-list the root path ID.
+      De-list the root path named \textsl{s}.
 
    \itempar{list banks [n]}{cmd!list banks}
-      List instruments and IDs in bank \textsl{n} or the
+      List the instruments and IDs in bank \textsl{n} or the
       current bank/root.
 
    \itempar{list effects [n]}{cmd!list effects}
       List effect types for \textsl[n].
-      If the parameter is 'all', then list every effect and all its presets
-      along with the preset number.
+      If the parameter is the word \textsl{all},
+      then list every effect and all its
+      presets along with the preset number.
 
    \itempar{list instruments [n]}{cmd!list instruents}
       List all instruments and IDs in bank \textsl{n}
@@ -505,7 +506,7 @@ Ones that we're pretty sure will be added are:
       unless it is enabled.
 
    \itempar{list roots}{cmd!list roots}
-      Displays all available root paths.
+      Displays all defined root paths.
 
    \itempar{list setup}{cmd!list setup}
       Displays the current dynamic system settings.
@@ -515,57 +516,67 @@ Ones that we're pretty sure will be added are:
 
    \itempar{load instrument [n]}{cmd!load instrument}
       Loads an instrument.
+      Is \textsl{n} an ID number, an instrument name, or simply either one?
 
    \itempar{load patchset [s]}{cmd!load instrument}
-      Load a complete patch set from a named file.
+      Load a complete patch set from a named file, \textsl{s}.
+
+   \itempar{save patchset [s]}{cmd!save patchset}
+      Saves the current patchset to the file named \textsl{s}.
 
    \itempar{save instrument [n]}{cmd!save instrument}
       Saves an instrument.
+      Is \textsl{n} an instrument name, ID number, or either one.
 
    \itempar{save setup}{cmd!save setup}
       Save the current dynamic system settings.
-
-   \itempar{save patchset [s]}{cmd!save patchset}
-      Save the patch set to a named file.
+      These settings get saved to the ????? file.
 
    \itempar{set activate [n]}{cmd!set activate}
-      Set part-activate on MIDI program change (\textsl{n}=0 disables
-      1 enables).
+      Set part-activate on MIDI program change.
+      \textsl{n}=0 disables this feature, and
+      1 or any non-zero value enables this feature.
       This feature applies to command line program change as well.
 
    \itempar{set alsa audio [s]}{cmd!set alsa audio}
       Sets the name of the audio hardware device ALSA looks for.
-      Requires a restart.
+      Requires a restart of \textsl{Yoshimi}.
 
    \itempar{set alsa midi [s]}{cmd!set alsa midi}
       Sets the name of the MIDI source ALSA looks for.
+      Requires a restart of \textsl{Yoshimi}.
 
    \itempar{set available [n]}{cmd!set available}
       Set the number of available parts (16, 32, 64).
+      Note that 32 and 64 are supported in the newest versions of
+      \textsl{Yoshimi}.
 
    \itempar{set bank [n]}{cmd!set bank}
       Set current bank to ID \textsl{n}.
 
    \itempar{set ccbank [n]}{cmd!set ccbank}
       Set the MIDI CC for bank changes (anything other than 0 or 32
-      disables it).
+      disables MIDI CC).
 
    \itempar{set ccroot [n]}{cmd!set ccroot}
-      Set the MIDI CC for root path changes (above 119 disables).
+      Set the MIDI CC for root path changes (values above 119 disable this
+      feature).
 
    \itempar{set extend [n]}{cmd!set extend}
-      Set CC value for extended program change (above 119 disables).
+      Set CC value for extended program change (values above 119 disables this
+      feature).
 
    \itempar{set insert effects [n]}{cmd!set insert effects}
       Set insertion effects for editing.
+      What are the possible values of \textsl{n}?
 
    \itempar{set jack midi [s]}{cmd!set jack midi}
       Sets the name of the JACK MIDI source for Yoshimi.
-      Requires a restart.
+      Requires a restart of \textsl{Yoshimi}.
 
    \itempar{set jack server [s]}{cmd!set jack server}
       Sets the name of the JACK server Yoshimi tries to connect to.
-      Requires a restart.
+      Requires a restart of \textsl{Yoshimi}.
 
    \itempar{set part [n1] program [n2]}{cmd!set part program}
       Load instrument \textsl{n2} into part \textsl{n1}.
@@ -582,10 +593,12 @@ Ones that we're pretty sure will be added are:
       Also enables the part if not already enabled.
 
    \itempar{set preferred audio [s]}{cmd!set preferred audio}
-      Set audio connection type (jack/alsa).
+      Set the audio connection type.
+      The parameter should be either "jack" or "alsa".
 
    \itempar{set preferred midi [s]}{cmd!set preferred midi}
-      Set MIDI connection type (jack/alsa).
+      Set the MIDI connection type.
+      The parameter should be either "jack" or "alsa".
 
    \itempar{set - preset [n]}
       Set effect preset.
@@ -595,7 +608,24 @@ Ones that we're pretty sure will be added are:
       Set MIDI program change (0 disables, anything else enables).
 
    \itempar{set reports [n]}{cmd!set reports}
-      Set report destination (1 = GUI, anything else sets stderr).
+      Sets the report destination or where messages are displayed, and, to some
+      extent, which messages are displayed.  Here are the variations on this
+      command that are supported:
+
+      \begin{itemize}
+         \item \texttt{set reports gui} or \texttt{s r g}.
+            All reports are sent to the GUI console window.
+         \item \texttt{set reports stderr} or \texttt{s r s}.
+            All reports are sent to stderr.
+         \item \texttt{set reports show} or \texttt{s r sh}.
+            All messages are displayed.
+         \item \texttt{set reports hide} or \texttt{s r h}.
+            Non fatal low-level messages are discarded.
+         \item \texttt{set reports (any other word or nothing at all)} or
+            \texttt{s r (other)}.
+            This sets the default condition of sending reports to the CLI and
+            displaying all of them.
+      \end{itemize}
 
    \itempar{set root [n]}{cmd!set root}
       Set current root path to ID \textsl{n}.
@@ -638,9 +668,6 @@ Ones that we're pretty sure will be added are:
 
    \itempar{stop}{cmd!stop}
       Cease all sound immediately!
-
-   \itempar{mode [s]}{cmd!mode}
-      Change to different menus: addsynth, subsynth, or padsynth.
 
    \itempar{? or help}{cmd!help}
       List commands for current mode.
