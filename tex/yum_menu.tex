@@ -207,20 +207,17 @@ Page 34 - 2
 
    \itempar{AddSynth Oscillator Size}{Main Settings!oscillator size}
    ADDsynth Oscillator Size (in samples).  This item used to be called
-   "OscilSize".
-
-   Values: \texttt{128, 256, 512*, 1024, 2048, 4096, 8192, 16384}
-
-   Sets the number of the points of the ADDsynth oscillator. The
-   bigger is better, but it takes more CPU time on the start of any note,
-   and it may add latency to some processes.
+   "OscilSize".  Sets the number of the points of the ADDsynth oscillator. The
+   bigger is better, but it takes more CPU time on the start of any note, and
+   it may add latency to some processes.
 
    The default value for \textsl{Yoshimi} is shown marked with an asterisk,
    and the default value for \textsl{ZynAddSubFX} is 512.
    (This asterisk/plus-sign convention is used throughout this manual).
    See \figureref{fig:yoshimi_oscilsize_values},
-   shown below for the OscilSize
-   drop-down element.
+   shown below for the AddSynth Oscillator Size drop-down element.
+
+   Values: \texttt{128, 256, 512*, 1024, 2048, 4096, 8192, 16384}
 
 \begin{figure}[H]
    \centering 
@@ -233,7 +230,6 @@ Page 34 - 2
    This is a new item for version 1.3.6.  It is actually the old
    \textbf{Period Size} field from the \textbf{Alsa} tab.
    It sets the granularity of the sound generation.
-   The default value is 1024 samples.
    To find out the internal delay in milliseconds, divide the
    buffer-size value by the sample-rate, then multiply the result by 1000:
    For example, \(256 / 44100 * 1000 = 5.8 ms\).
@@ -241,9 +237,39 @@ Page 34 - 2
    The default internal buffer size has been reduced from 1024 to 256.  One
    gets better latency that way.  Almost all modern computers can run
    \textsl{Yoshimi} with the current default (smaller) buffer-size value, and
-   many will do so at 64 frames without any special precautions.
+   many will do so at 64 frames (and even 16 frames!)
+   without any special precautions.
+   
+   Note that, for ALSA, if the audio destination is "default",
+   then ALSA decides on the buffer size (among other settings), and
+   \textsl{Yoshimi} will set it's internal buffer size to match,
+   which always seems to be 1024.
 
    Values: \texttt{64, 128, 256*, 512, 1024}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Yoshimi/main-internalsize.jpg}
+   \caption[Internal Size Values]{AddSynth Internal Buffer Size (samples)}
+   \label{fig:yoshimi_internalsize_values}
+\end{figure}
+
+   \itempar{PADsynth interpolation}{Main Settings!PADsynth Interpolation}
+   See \figureref{fig:padsynth_interpolation}, shown below,
+   for the interpolation values.
+   From an email conversation with Paul Nasca, Will notes that
+   the sound improvement with cubic interpolation is quite subtle, and requires
+   a well designed audio setup, a PADsynth instrument with a fair amount of
+   high-frequency content... and good hearing!
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Yoshimi/main-padsynth-interpolation.jpg}
+   \caption[PADSynth Interpolation]{PADSynth Interpolation Values}
+   \label{fig:padsynth_interpolation}
+\end{figure}
+
+   Values: \texttt{Linear(fast)*, Cubic(slow)}
 
    \itempar{Virtual Keyboard Layout}{Main Settings!Virtual Keyboard Layout}
    The virtual keyboard is useful, but it is difficult to move the mouse
@@ -266,10 +292,9 @@ Page 34 - 2
    Note that this is a QWERTY layout.  
    \textsl{Yoshimi} also supports other keyboard layouts.
    See \figureref{fig:virtual_kbd_layout},
-   for the virtual keyboard
-   layout settings drop-down.
+   for the virtual keyboard layout settings drop-down.
 
-   Values: \texttt{Dvorak, QWERTY*, AZERTY}
+   Values: \texttt{QWERTY*, Dvorak, QWERTZ, AZERTY}
 
 \begin{figure}[H]
    \centering 
@@ -278,47 +303,25 @@ Page 34 - 2
    \label{fig:virtual_kbd_layout} 
 \end{figure}
 
-   \itempar{PADsynth interpolation}{Main Settings!PADsynth Interpolation}
-
-   See \figureref{fig:padsynth_interpolation}, shown below,
-   for the interpolation values.
-   From an email conversation with Paul Nasca, Will notes that
-   the sound improvement with cubic interpolation is quite subtle, and requires
-   a well designed audio setup, a PADsynth instrument with a fair amount of
-   high-frequency content... and good hearing!
-
-\begin{figure}[H]
-   \centering 
-   \includegraphics[scale=0.75]{menu/Yoshimi/main-padsynth-interpolation.jpg}
-   \caption[PADSynth Interpolation]{PADSynth Interpolation Values}
-   \label{fig:padsynth_interpolation}
-\end{figure}
-
-   Values: \texttt{Linear(fast)*, Cubic(slow)}
-
    \itempar{XML compression level}{Main Settings!XML compression level}
-   Compression level of \textsl{Yoshimi} XML files.
-
-   Values: \texttt{0 to 9, 3*}
-
+   Gzip Compression level of \textsl{Yoshimi} XML files.
    The settings and instruments of
    \textsl{Yoshimi}
    are preserved in XML files.
    The value of 0 indicates that the XML file is uncompressed.
 
-   In general, 0 is probably the best setting for debugging only.
-   Setting this option makes the XML files a bit larger, perhaps larger by a 
-   factor of more than 10, making a 10K file into a 180K file.
-   For a little "wasted"
-   space and time, one can view the XML file in a text/programmer's editor.
-   But, if one's system is tight on disk space, higher levels of compression
-   can be specified.
+   In general, 0 is probably the best setting for debugging only.  Setting this
+   option makes the XML files a bit larger, perhaps larger by a factor of more
+   than 10, making a 10K file into a 180K file.  For a little "wasted" space
+   and time, one can view the XML file in a text/programmer's editor.  But, if
+   one's system is tight on disk space, higher levels of compression can be
+   specified.  Using XML compression can also save file access time which may
+   be beneficial if one's computer is borderline on latency.  This setting
+   should stay at 3 if one is going to save large patchsets that will later be
+   loaded while running. Uncompressing is \textsl{much} faster than file
+   loading.
 
-   Using XML compression can also save file access time which may be
-   beneficial if one's computer is borderline on latency.
-   This setting should stay at 3 if one is going to save large patchsets that
-   will later be loaded while running. Uncompressing is \textsl{much}
-   faster than file loading.
+   Values: \texttt{0 to 9, 3*}
 
    \itempar{Send reports to}{Main Settings!Send Reports Destination}
 
@@ -347,7 +350,7 @@ Page 34 - 2
    and ones that cause a forced exit (... surely not!)
 
    \itempar{Log XML headers}{Main Settings!Log XML headers}
-   This itme sends the information to the console window (or stderr) so that
+   This item sends the information to the console window (or stderr) so that
    one can then see what \textsl{ynAddSubFX}/\textsl{Yoshimi}
    version created the file.
 
@@ -409,29 +412,26 @@ Page 34 - 2
    Jack Server Name.
    It is possible to have more than one JACK server running.  This option
    tells this instance of \textsl{Yoshimi} which JACK server to use.
-
-   Values: \texttt{default*, name} name, as in "jackd --name"
-
    This option corresponds to the \textsl{Yoshimi} command line option
    \texttt{--jack-audio(=server)}.
+
+   Values: \texttt{default*, name} name, as in "jackd --name"
 
    \itempar{Set as preferred audio}{JACK!Set as preferred audio}
    Set as preferred audio for JACK.
    This setting determines which audio connections a particular instance will
    first attempt. The switches are mutually exclusive across JACK and ALSA,
    so if you check ALSA for audio, it automatically unchecks JACK for audio.
-
    As well as from the GUI, this setting can be set (for instance 0) from the
    command line, both at start-up and once running.
-
    Note that any of these setting changes require a restart of \textsl{Yoshimi}
    to take effect.
 
-\paragraph{Menu / Yoshimi / Settings / Alsa}
+\paragraph{Menu / Yoshimi / Settings / ALSA}
 \label{paragraph:menu_yoshimi_settings_alsa}
 
    A significant improvement is to the handling of ALSA audio, which is still
-   very important for some people. Up till now \textsl{Yoshimi} has insisted
+   very important for some people. Until now, \textsl{Yoshimi} has insisted
    on a 2-channel, 16-bit format. Tests have shown that virtually all
    motherboard sound chipsets will handle this, but many external ones don't.
 
@@ -441,7 +441,6 @@ Page 34 - 2
    whatever the soundcard will support.  For example, a card might support
    only 24 bits, and 6 channels.  So \textsl{Yoshimi} will fall back to
    24 bit, and, due to its own limits, will use only channels 1 and 2.
-
    With external sound modules in mind, endian swaps are also implemented.
 
    To be able to reliably use ALSA audio you need to set a card name, not just
@@ -463,8 +462,8 @@ Page 34 - 2
    This ensures you will always connect to this card at startup regardless of
    the order this and other ones.  Another benefit of using this hardware name
    is that ALSA will now use \textsl{Yoshimi}'s internal
-   buffer size, otherwise ALSA will force \textsl{Yoshimi} to accept its
-   default size.
+   buffer size (256), otherwise ALSA will force \textsl{Yoshimi} to accept its
+   default size (usually 1024).
 
    One can also set the sample rate, but bear in mind that not all cards can use
    all of these.  The sample rates 44100 and 48000 are almost always available.
@@ -486,14 +485,14 @@ Page 34 - 2
       Client 128 : "TiMidity" [User]
    \end{verbatim}
 
-   It is not obvious how ALSA audio is controlled and who takes command.  If one
-   sets a specific audio destination, then \textsl{Yoshimi} makes a request.
-   It's often a negotiation on bit depth and channel count, but \textsl{Yoshimi}
-   nearly always gets to decide the buffer size, which is the internal buffer
-   size.  However, if the destination is 'default' then ALSA decides on the
-   sound card, bit depth, number of channels and the buffer size, and
-   \textsl{Yoshimi} will set it's internal buffer size to match.  On most
-   machines this seems to be 1024.
+   It is not obvious how ALSA audio is controlled and who takes command.  If
+   one sets a specific audio destination, then \textsl{Yoshimi} makes a
+   request.  It's often a negotiation on bit depth and channel count, but
+   \textsl{Yoshimi} nearly always gets to decide the buffer size, which is the
+   internal buffer size.  However, if the destination is 'default' then ALSA
+   decides on the sound card, bit depth, number of channels and the buffer
+   size, and \textsl{Yoshimi} will set it's internal buffer size to match.  On
+   most machines this seems to be 1024.
 
 \begin{figure}[H]
    \centering 
@@ -514,6 +513,10 @@ Page 34 - 2
    as name = "Hua Xing".
    A port name, such as "128:0" (for one of the ports provided by
    \textsl{TiMidity}) should work as well.
+   If the destination is "default",
+   then ALSA decides on the sound card, bit depth, number of channels and the
+   buffer size, and \textsl{Yoshimi} will set it's internal buffer size to
+   match.  On most machines this always seems to be 1024.
 
    Values: \texttt{default*}
 
@@ -547,33 +550,23 @@ Page 34 - 2
 
    \itempar{Samplerate}{ALSA!sample rate}
    Sample Rate.
-   Sets the quality of the sound, higher is better, but it uses more CPU.
-   One can select from a list.
+   Sets the quality of the sound, higher is better, but it uses more CPU.  One
+   can select from a list.  Note that both ALSA and JACK will support the
+   192000 rate, if the sound-card supports it.  To find out the internal delay
+   in milliseconds, divide the buffer-size value by the Sample Rate and
+   multiply the result by 1000 (256 / 44100 * 1000 = 5.8 ms).
+
+   Note that, as of version 1.3.6, the \textbf{Period Size} field has been
+   removed from the \textbf{Alsa} tab, and is replaced by the 
+   \textbf{Internal Buffer Size} field in the \textbf{Main Settings} tab.
+   Note that any of these setting changes require a restart of \textsl{Yoshimi}
+   to take effect.
    
    \textsl{ZynAddSubFX}: if one wants a sample-rate that
    is not in the list, select "Custom" and change the value from the right.
    Default is 44100.
 
    Values: \texttt{192000, 96000, 48000*, 44100}
-
-   Note that both ALSA and JACK will support the 192000 rate, if the sound-card
-   supports it.
-
-   Note that, as of version 1.3.6, the \textbf{Period Size} field has been
-   removed from the \textbf{Alsa} tab, and is replaced by the 
-   \textbf{Internal Buffer Size} field in the \textbf{Main Settings} tab.
-
-%  \itempar{Period Size}{ALSA!period size}
-%  Buffer Size.
-%  Sets the granularity of the sound. The Default is 256 (TODO: 1024?)
-%  samples. To find out the internal delay in milliseconds, divide the
-%  Period Size value by the Sample Rate and multiply the result by 1000
-%  (eg.: 256/44100*1000=5.8 ms).
-%
-%  Values: \texttt{64, 128, 256, 512, 1024*}
-
-   Note that any of these setting changes require a restart of \textsl{Yoshimi}
-   to take effect.
 
 \paragraph{Menu / Yoshimi / Settings / MIDI}
 \label{paragraph:menu_yoshimi_settings_ccs}

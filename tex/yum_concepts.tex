@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-15
-% \update      2016-03-01
+% \update      2016-03-02
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -31,8 +31,7 @@
    refer to \textsl{ZynAddSubFX} or \textsl{Zyn}.
 
    Note that there are some audio/electrical concepts discussed in greater
-   detail in
-   \sectionref{sec:stock_settings_elements}.
+   detail in \sectionref{sec:stock_settings_elements}.
    Perhaps they belong in this "concepts" section, but
    they are directly tied to user-interface items.
 
@@ -211,7 +210,7 @@
    takes command.  If one sets a specific destination, then \textsl{Yoshimi}
    says what it wants. It's often a negotiation on bit depth and channel count,
    but \textsl{Yoshimi} nearly always gets to decide the buffer size (it will be
-   set to the internal buffer size).  However, if the destination is 'default'
+   set to the internal buffer size).  However, if the destination is "default",
    then ALSA decides on the sound card, bit depth, number of channels and the
    buffer size, and \textsl{Yoshimi} will set it's internal buffer size to
    match.  On most machines this always seems to be 1024.
