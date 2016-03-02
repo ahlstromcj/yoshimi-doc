@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2016-02-28
+% \update      2016-03-01
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -100,7 +100,7 @@
    See \figureref{fig:yoshimi_instance_dialog}.
    It tries to open a \textsl{Yoshimi} instance based on the configuration
    found in the file
-   \texttt{~/.config/\-yoshimi/\-yoshimi.configXX}, where
+   \texttt{\textasciitilde/.config/\-yoshimi/\-yoshimi.configXX}, where
    \textsl{XX} is the ID one supplied.
 
 \begin{figure}[H]
@@ -116,9 +116,13 @@
    \textsl{Yoshimi} will start another instance
    of itself, with an ID of whatever number one specified.
    This instance can be verified by running a JACK session manager such as
-   QJackCtl.
+   \textsl{QJackCtl}.
 
-   Again, though, in a non-JACK setup it simply fails.  
+   In a non-JACK setup it won't fail, but in the absence of any specific
+   setting, it will have null audio, but (probably) will still connect to ALSA
+   MIDI.  Not too useful, but we should test that sometime.
+
+Page 34 - 2
 
 \subsubsection{Menu / Yoshimi / Settings...}
 \label{subsubsec:menu_yoshimi_settings}
@@ -234,10 +238,12 @@
    buffer-size value by the sample-rate, then multiply the result by 1000:
    For example, \(256 / 44100 * 1000 = 5.8 ms\).
 
-   Values: \texttt{64, 128, 256*, 512, 1024}
+   The default internal buffer size has been reduced from 1024 to 256.  One
+   gets better latency that way.  Almost all modern computers can run
+   \textsl{Yoshimi} with the current default (smaller) buffer-size value, and
+   many will do so at 64 frames without any special precautions.
 
-   The default internal buffer size has been reduced from 1024 to 256.
-   One gets better latency that way.
+   Values: \texttt{64, 128, 256*, 512, 1024}
 
    \itempar{Virtual Keyboard Layout}{Main Settings!Virtual Keyboard Layout}
    The virtual keyboard is useful, but it is difficult to move the mouse
@@ -274,10 +280,12 @@
 
    \itempar{PADsynth interpolation}{Main Settings!PADsynth Interpolation}
 
-   Values: \texttt{Linear(fast)*, Cubic(slow)}
-
    See \figureref{fig:padsynth_interpolation}, shown below,
    for the interpolation values.
+   From an email conversation with Paul Nasca, Will notes that
+   the sound improvement with cubic interpolation is quite subtle, and requires
+   a well designed audio setup, a PADsynth instrument with a fair amount of
+   high-frequency content... and good hearing!
 
 \begin{figure}[H]
    \centering 
@@ -285,6 +293,8 @@
    \caption[PADSynth Interpolation]{PADSynth Interpolation Values}
    \label{fig:padsynth_interpolation}
 \end{figure}
+
+   Values: \texttt{Linear(fast)*, Cubic(slow)}
 
    \itempar{XML compression level}{Main Settings!XML compression level}
    Compression level of \textsl{Yoshimi} XML files.
@@ -380,12 +390,12 @@
    \itempar{Jack Midi Source}{JACK!MIDI source}
    Jack MIDI Source.
    It is possible to have more than one JACK MIDI source.  This option
-   tells this instance of \textsl{Yoshimi} which JACK server to use.
-
-   Values: \texttt{default*, name} name, as in "jackd --name"
-
+   tells this instance of \textsl{Yoshimi} which JACK
+   client to try to auto-connect to for MIDI input.
    This option corresponds to the \textsl{Yoshimi} command line option
    \texttt{--jack-midi(=device)}.
+
+   Values: \texttt{default*, name} name, as in "jackd --name"
 
    \itempar{Set as preferred MIDI}{JACK!Set as preferred MIDI}
    Set as preferred MIDI for JACK.

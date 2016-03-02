@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-15
-% \update      2016-02-27
+% \update      2016-03-01
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -139,6 +139,8 @@
 
    A patch set is akin to a preset, in that it stores a combination of
    items, that took awhile to set up, for easy retrieval later.
+   See \sectionref{subsec:concepts_patch_sets}, which has a deeper treatment of
+   this term.
 
 \subsubsection{Concepts / Terms / Presets}
 \label{subsubsec:concepts_terms_preset}
@@ -219,12 +221,16 @@
 
    In \textsl{Yoshimi}, a \textsl{root} is a location in which banks can be
    stored.  It is basically a directory, though it ultimately is assigned a
-   number by \textsl{Yoshimi}, presumably to be able to access it in an
+   number by \textsl{Yoshimi}, to be able to access it in an
    automated way.  By choosing a root, one can hone in on a smaller
    collection of banks.
-   Recently, \textsl{Yoshimi} has adopted the name \textsl{path} instead of
+
+   Sometimes, one will see the term \textsl{path}.
+   In \textsl{Yoshimi}, a \textsl{path} is simply the directory location of a
    root.  This change is reflected in the user-interfaces, both graphical and
    command-line.
+   Note that there are other file categories, such as presets, that are located
+   via paths.
    
    Another important concept in \textsl{Yoshimi} is \textsl{banks}.
    Instruments can be stored in banks. These are loaded and saved
@@ -252,17 +258,24 @@
    last-used root and bank IDs to always match what that instance thinks is
    there.
 
-\subsection{Concepts / Sessions}
-\label{subsec:concepts_sessions}
+\subsection{Concepts / Patch Sets}
+\label{subsec:concepts_patch_sets}
 
    As with most applications, \textsl{Yoshimi} and \textsl{ZynAddSubFX}
    allow for one to save one's work and reload it.
-   Here are the file extensions used for saving the data:
+   \textsl{Yoshimi} has a number of different files that make up the current
+   configuration.
+   Together, they make up the concept of a \textsl{patch set} (also called a
+   \textsl{patchset}).
+   Sometimes one will see reference to a "session", but that term is too easy
+   to confuse with the "session" in "JACK session manager".
+   Here are the file extensions used for saving the \textsl{Yoshimi}
+   patch-set data:
 
    \begin{itemize}
       \item \texttt{.xmz}
-         A Session. Everything.  It's format is either XML
-         or compressed XML, as explained below.
+         A full \textsl{Yoshimi} configuration. Everything.  It's format is
+         either XML or compressed XML, as explained below.
          The \textbf{Parameters / Save} menu entry saves files with this
          extension.
          See \sectionref{paragraph:menu_yoshimi_settings_main_settings}.
@@ -396,23 +409,24 @@
    these files.  In general, the contents are structured a lot like the
    user-interface elements that are used to set them.
 
-\subsubsection{Concepts / Sessions / All}
-\label{subsec:concepts_sessions_all}
+\subsubsection{Concepts / Patch Sets / All}
+\label{subsec:concepts_patch_sets_all}
 
-   One of the simplest ways to save one's work is to save the entire session.
-   This can be done through the \textbf{Yoshimi} menu
-   (the \textbf{File} menu in \textsl{ZynAddSubFX})
+   One of the simplest ways to save one's work is to save the entire
+   \textsl{Yoshimi} configuration.
+   This saving can be done through the \textbf{Patch Sets} menu
+   (the \textbf{File} menu in \textsl{ZynAddSubFX}),
    and will result in the creation of
-   an \texttt{.xmz} file. Once created, this file will hold the settings for
-   all settings within that session, such as microtonal tunings, all
+   a \texttt{.xmz} file. Once created, this file will hold the settings for
+   all settings within that setup, such as microtonal tunings, all
    patches, system effects, insertion effects, etc.
 
-\subsubsection{Concepts / Sessions / Management}
-\label{subsec:concepts_sessions_management}
+\subsubsection{Concepts / Patch Set / Management}
+\label{subsec:concepts_patch_set_management}
 
    The 'state' file consists of the entire setup from basic configuration to
-   currently loaded instrument sets.  However, on investigating some session
-   managers it looks like they don't want (or can't use) most of the
+   currently loaded instrument sets.  However, on investigating some JACK
+   session managers it looks like they don't want (or can't use) most of the
    configuration information because they are expecting to be able to change
    state in \textsl{running} instances.
 
@@ -421,7 +435,7 @@
    buy saving only the 'true' configuration locally, and to the state save.
    However, the 'instance' data will include things like ALSA/JACK settings.
    Currently we can't change these live (although it would be nice if we could),
-   but would anyone want to do so from a session manager?
+   but would anyone want to do so from a JACK session manager?
 
 \subsection{Concepts / Basic Synthesis}
 \label{subsec:concepts_basics}
@@ -495,8 +509,8 @@
    
    The figure represents the synthesizer module components. The continuous
    lines are the signal routing, and the dotted lines are frequency
-   controlling signals (they controls the frequency of something).  The
-   dashed lines controls the bandwidths of bandpass filters. "Env" are the
+   controlling signals (they control the frequency of something).  The
+   dashed lines control the bandwidths of bandpass filters. "Env" are the
    envelopes, "LFO" the Low Frequency Oscillators, "BPF" are band pass
    filters, "bw" are the bandwidth of the BPF's.  If one uses instrument kits,
    the "note out" represents the output of the kit item.
@@ -606,7 +620,7 @@
    same recorded sample is played over and over on each key-press.  There is
    no difference between a note played the first time and second time.
    Exceptions may be the filtering and some effects, but these are not
-   enough. In natural or analogue instruments this doesn't happen because
+   enough. In natural or analog instruments this doesn't happen because
    it is impossible to reproduce exactly the same conditions for each
    note. To make a warm instrument one must make sure that it sounds
    slightly different each time. In \textsl{Yoshimi}
@@ -630,17 +644,19 @@
    starts at a random position. The second is \textsl{phase randomness}:
    from -64 (max) to -1 (min) and each harmonic (the oscillator is phase
    distorted) is from 1 (min) to 63 (max). 0 is no randomness. One
-   could use this parameter for making warm sounds like analogue
+   could use this parameter for making warm sounds like analog
    synthesizers.
 
-   See the ADDSynth oscillator editor for this kind of
-   control, named \textbf{Ph.rnd} or \textbf{rnd}.
+   See the ADDSynth oscillator editor,
+   \sectionref{subsubsec:addsynth_voice_parameters_oscillator},
+   for this kind of control, named \textbf{Ph.rnd} or \textbf{rnd}.
 
    There is now the possibility to add a 'naturalising' random pitch element
    to a part. This is found in the part-edit window. The settings are not
    currently saved, but will be once the control values are settled, and
    there has been enough experience to decide whether it should be a part or
-   voice setting.
+   voice setting.  (In the newer versions of \textsl{Yoshimi}, see the
+   \textbf{Humanise} setting in the part-edit window.
 
 \subsubsection{Concepts / Basic Synthesis / Components}
 \label{subsubsec:concepts_basics_components}

@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-06
-% \update      2016-02-28
+% \update      2016-03-01
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -24,8 +24,6 @@
    features of the application.
    The bottom panel is shown in
    \figureref{fig:yoshimi_main_screen}.
-%  figure~\ref{fig:yoshimi_main_screen} on
-%  page~\pageref{fig:yoshimi_main_screen}.
 
    Here are the major elements of the bottom panel.
 
@@ -103,9 +101,7 @@
    Ummm, one does need a decent processor though :)
 
    Yes, one could run more instances of Yoshimi on different MIDI ports, but
-where's the fun in that?
-
-
+   where's the fun in that?
 
    By default, all the upper parts (numbers greater than 16)
    are mapped to the same MIDI channel
@@ -217,8 +213,7 @@ where's the fun in that?
 
    \itempar{M}{bottom panel!M}
    Maximum Note Capture Button.
-
-   Set maximum note to last pressed key.
+   Sets the maximum note to the last pressed key.
 
    \itempar{Key Shift}{bottom panel!key shift}
    Key Shift.
@@ -537,13 +532,15 @@ where's the fun in that?
       \end{enumber}
       \item \textbf{Kit Edit}
       \item \textbf{Effects}
-      \item \textbf{Rnd. Det.}
+      \item \textbf{Rnd. Det.}, now replaced by a \textbf{Humanise} slider.
       \item \textbf{Close}
    \end{enumber}
 
    The ADDsynth, SUBsynth, PADsynth, Kit Edit, and Effects
    dialogs are detailed in separated sections, as they are all
    very complex dialogs with many sub-dialogs.
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{Type}{edit!category}
    Instrument Type.
@@ -556,7 +553,7 @@ where's the fun in that?
 \begin{figure}[H]
    \centering 
    \includegraphics[scale=1.0]{bottom-panel/edit-instrument-type.jpg}
-   \caption{Instrument Type Dropdown}
+   \caption{Instrument Type Drop-down List}
    \label{fig:instrument_type_dropdown}
 \end{figure}
 
@@ -619,12 +616,15 @@ where's the fun in that?
    There one will find a full discussion of that dialog.
 
    \itempar{Rnd. Det.}{edit!rnd det}
-   Small Random Detune.
+   Small Random Detune, Humanise.
+   \index{humanise}
+   \index{edit!humanise}
+   In the most recent versions of \textsl{Yoshimi}, this
+   item has been replaced by a \textbf{Humanise} slider.
+   This value is an experimental feature.  It lends some complexity or
+   piquancy to the part.
 
    Values: \texttt{0* to 20}
-
-   This value is an experimental feature.  It would lend some complexity or
-   piquancy to the part/instrument.
 
    \itempar{Close}{edit!close}
    Closes the Edit window.

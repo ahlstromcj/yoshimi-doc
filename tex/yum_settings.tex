@@ -591,8 +591,8 @@
 
    In \textsl{Yoshimi}, LFO parameters are available for amplitude, filters,
    and frequency.  They all have essentially the same interface elements.
-   Note that
-   \figureref{fig:amplitude_lfo} shows an example of an LFO stock sub-panel.
+   Note \figureref{fig:amplitude_lfo}, which
+   shows an example of an LFO stock sub-panel.
 
 These parameters are:
 
@@ -616,6 +616,8 @@ These parameters are:
    LFO Frequency.
    This parameter varies from 0 to 1.
    We still need to figure out what that scale means, however.
+   Obviously, it is a relative scale, and is perhaps related to the
+   overall sampling frequency.
 
    Values: \texttt{0 to 1, 0.63*}
 
@@ -629,7 +631,7 @@ These parameters are:
    LFO Start Phase. If this knob is at the lowest value, the LFO Start
    Phase will be random.
 
-   Values: \texttt{0 = random to 127, 64*}
+   Values: \texttt{0 = random, to 127, 64*}
 
    \itempar{Delay}{LFO!delay}
    LFO Delay.
@@ -654,7 +656,7 @@ These parameters are:
    \itempar{Str}{LFO!stretch}
    LFO Stretch. See the image in
    \figureref{fig:amplitude_lfo}.
-   It shows the LFO stretch is set to zero,
+   It shows that the LFO stretch is set to zero,
    though the tooltip would show it to be 64.
 
    Values: \texttt{0 to 127, 64*}
