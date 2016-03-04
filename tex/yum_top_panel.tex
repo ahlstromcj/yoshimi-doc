@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-29
-% \update      2016-02-25
+% \update      2016-03-04
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -128,8 +128,8 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{top-panel/yoshimi-panel-2x8.jpg}
-   \caption[Yoshimi Part Panel]{Yoshimi Part Panel, 2x8}
+   \includegraphics[scale=0.75]{top-panel/yoshimi-panel-2x8.jpg}
+   \caption[Yoshimi Part Panel]{Yoshimi Part Panel, 2x8 View}
    \label{fig:yoshimi_part_panel_2x8}
 \end{figure}
 
@@ -159,6 +159,8 @@
    Panning Dial-Button.
    Changes the panning of the part.
 
+   Values: \texttt{0 (left) to 64* (center) to 127 (right)}
+
    \itempar{Channel}{parts!channel}
    Receive from MIDI channel.
    Changes the MIDI channel assigned to the part.
@@ -171,29 +173,26 @@
    the audio specified by the part setup, or to both outputs.
    This option requires that \textsl{Yoshimi} use JACK audio.  If running
    ALSA, this option is disabled (greyed out).
-
-   Values: \texttt{Main, Part, or Both}
-
-   The part audio destination (JACK) is saved with the parameter sets, and
+   The part's audio destination (JACK) is saved with the parameter sets, and
    so is the number of available parts.  (\textsl{ZynAddSubFX} will still
    load these files, but it ignores any settings it doesn't recognise. If
    one re-saves in \textsl{ZynAddSubFX}, the settings will be lost.)
+
+   Values: \texttt{Main, Part, or Both}
 
    \itempar{Edit}{parts!edit}
    The Edit button provides two function
    Left mouse button: Part select.
    Right mouse button: Instrument edit.
-
-   \textsl{This is a bit unintuitive.  The left/right clicks could be
-   reversed, and the button named something like "Edit/Pick".}
+   This setup is a bit unintuitive, but the tooltips make it clear
+   which click one might want to use.
 
    \itempar{Parts Layout}{parts!change layout}
    \index{parts!2x8}
    \index{parts!1x16}
-   Changes the layout of the panel.
-
-   \itempar{Refresh}{obsolete!refresh}
-   Refresh Edit. OBSOLETE.
+   Changes the layout of the panel to the other layout, either
+   \textbf{Change to 2 x 8} or
+   \textbf{Change to 1 x 16}.
 
    \itempar{Close}{parts!close}
    Close the window.
@@ -206,16 +205,17 @@
    The virtual keyboard lets one play notes using the keyboard/mouse. There is
    no MIDI requirement. 
     
-   Using the keyboard. The keyboard is split into two "octaves"(in fact it is
+   Using the keyboard: The keyboard is split into two "octaves"(in fact it is
    more than 1 octave). It may happen that the keys will not trigger any
    note-on This is because another widget than the keyboard itself is selected.
    In order to continue playing using the keyboard, click with the mouse on
    some keys on the virtual keyboard.
    
-   Using the mouse. One can use the mouse too, to play.
+   Using the mouse: One can use the mouse too, to play.
    If one presses the shift key while pressing the mouse button,
    the keys will be not released when the mouse button is released.  If one
-   presses the "Panic" or "Stop!" button from the ZynAddSubFX/Yoshimi
+   presses the \textbf{Stop!} or "Panic" button from the
+   \textsl{ZynAddSubFX}/\textsl{Yoshimi}
    main window, all keys will be released. 
 
 \begin{figure}[H]
@@ -292,12 +292,18 @@
       74:Filter Freq*, 75:Bandwidth, 76:FM Gain,
       77:Res.c.freq, 78:Res.bw.}
 
-   Sets the controller to be changed according to Cval.
+   Sets the controller to be changed according to the \textbf{Cval}
+   controller.
    See \sectionref{subsubsec:virtual_keyboard_controllers}.
 
    \itempar{Cval}{vkdb!controller value}
    Controller value.
-   Changes the controller value. Note that the Cval might not reflect the
+   Changes the controller value.
+   This item consists of two parts.  The top part shows a tiny
+   number representing the current value of the selected controller.
+   The bottom part is a combination value-bar and slider that one
+   can move up and down with the mouse, to change the controller value.
+   Note that the \textbf{Cval} value might not reflect the
    internal value of the controller when one changes the controller.
 
    Values: \texttt{1 to 127, 96*}
@@ -331,27 +337,31 @@
 \subsubsection{Virtual Keyboard, Controllers}
 \label{subsubsec:virtual_keyboard_controllers}
 
+   This section (will give) a brief overview of the controller's that this
+   window supports.
+
    \begin{enumber}
-      \item \textbf{Mod. Wheel}
-      \item \textbf{Volume}
-      \item \textbf{Panning}
-      \item \textbf{Expression}
-      \item \textbf{Sustain}
-      \item \textbf{Portamento}
-      \item \textbf{Filter Q}
-      \item \textbf{Filter Freq.}
-      \item \textbf{Bandwidth}
-      \item \textbf{FM Gain}
-      \item \textbf{Res. c. freq}
-      \item \textbf{Res. bw.}
+      \item \textbf{01: Mod. Wheel}
+      \item \textbf{07: Volume}
+      \item \textbf{10: Panning}
+      \item \textbf{11: Expression}
+      \item \textbf{64: Sustain}
+      \item \textbf{65: Portamento}
+      \item \textbf{71: Filter Q}
+      \item \textbf{74: Filter Freq.}
+      \item \textbf{75: Bandwidth}
+      \item \textbf{76: FM Gain}
+      \item \textbf{77: Res. c. freq}
+      \item \textbf{78: Res. bw.}
    \end{enumber}
 
-% The following diagram is actually in the the wrong directory, it is really
-% a top-panel diagram.
+      The following figure shows the corresponding drop-down list of controller
+      values, each preceded by its MIDI control number, re 1.
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=0.75]{menu/Instrument/virtual-keyboard-controllers.jpg}
+%  \includegraphics[scale=0.75]{menu/Instrument/virtual-keyboard-controllers.jpg}
+   \includegraphics[scale=0.75]{top-panel/virtual-keyboard-controller.png}
    \caption{Virtual Keyboard Controllers}
    \label{fig:virtual_keyboard_controllers}
 \end{figure}
@@ -359,51 +369,39 @@
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{Mod. Wheel}{controllers!modulation wheel}
-
    TODO.
 
    \itempar{Volume}{controllers!volume}
-
    TODO.
 
    \itempar{Panning}{controllers!panning}
-
    TODO.
 
    \itempar{Expression}{controllers!expression}
-
    TODO.
 
    \itempar{Sustain}{controllers!sustain}
-
    TODO.
 
    \itempar{Portamento}{controllers!portamento}
-
    TODO.
 
    \itempar{Filter Q}{controllers!filter q}
-
    TODO.
 
    \itempar{Filter Freq.}{controllers!filter frequency}
-
    TODO.
 
    \itempar{Bandwidth}{controllers!bandwidth}
-
    TODO.
 
    \itempar{FM Gain}{controllers!fm gain}
-
    TODO.
 
    \itempar{Res. c. freq}{controllers!resonant center frequency}
-
    TODO.
 
    \itempar{Res. bw.}{controllers!resonant bandwidth}
-
    TODO.
 
 %-------------------------------------------------------------------------------
