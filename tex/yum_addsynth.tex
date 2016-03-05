@@ -353,10 +353,10 @@
       \item \textbf{On}
       \item \textbf{Delay}
       \item \textbf{R.}
-      \item \textbf{AMPLITUDE} (see section below)
-      \item \textbf{FILTER} (see section below)
-      \item \textbf{MODULATOR} (see section below)
-      \item \textbf{FREQUENCY} (see section below)
+      \item \textbf{AMPLITUDE} (see the stock-panel section below)
+      \item \textbf{FILTER} (see the stock-panel section below)
+      \item \textbf{MODULATOR} (see the stock-panel section below)
+      \item \textbf{FREQUENCY} (see the stock-panel section below)
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
@@ -388,7 +388,7 @@
 
    Values: \texttt{0* to 127}
 
-   \itempar{R.}{voice!resonance}
+   \itempar{R}{voice!resonance}
    ADDsynth Voice Resonance On/Off.
    The rest of the GUI elements
    (AMPLITUDE, FILTER, MODULATOR, FREQUENCY, and Voice Oscillator)
@@ -538,7 +538,7 @@
          \index{modulator!ring}
          The ring modulator is useful for making bell-like sounds and some
          weird effects.  The ring modulator works by multiplying two
-         waveforms together, producing a signal that is the sum and
+         waveforms together, producing a signal that possesses the sum and
          difference of the frequencies present in the waveforms.  The
          ins-and-outs of the ring modulator are explained in detail in
          paragraph~\ref{paragraph:tips_using_the_ring_modulator}.
@@ -562,12 +562,12 @@
          \index{pitch modulator}
          \index{modulator!pitch}
          The pitch modulator works by...
-         we're not sure... TODO: is this pitch shifting?
+         we're not sure... is this pitch shifting?
    \end{enumber}
 
-   Values: \texttt{OFF(, MORPH, RING, PM, FM, PITCH}
+   Values: \texttt{OFF, MORPH, RING, PM, FM, PITCH}
 
-   \itempar{External Mod.}{modulator!external}
+   \itempar{External Mod}{modulator!external}
 
    \textbf{External Oscillator}.
    \index{oscillator!external}
@@ -708,8 +708,6 @@
    Now the joker in the pack is that one can disable both the previous
    voices but \textsl{still} use their Mod Oscillators.
 
-   What is going on here?  Need to explain better!!!!!
-
    In a newsgroup (\cite{ringmodulator}, the following note is found.
 
    \begin{quotation}
@@ -727,6 +725,9 @@
       does not seem to have ring modulation option, so the coolest sounds
       stay out of question for massive lead tones. :-(
    \end{quotation}
+
+   We have provided a more useful "tutorial" on using the ring modulator in the
+   \cite{cookbook} document.
 
 \subsubsection{ADDsynth / Voice Parameters / FREQUENCY}
 \label{subsubsec:addsynth_voice_parameters_frequency}
@@ -773,9 +774,9 @@
 
    Values: \texttt{Off*, On}
 
-   \itempar{Eq.T.}{voice parameters!eq type}
+   \itempar{Eq.T}{voice parameters!eq type}
    Equal Temperament?
-   This item is enabled if the \textbf{440Hz} check-box is enabled.
+   This item is enabled only if the \textbf{440Hz} check-box is enabled.
    It determines how the frequency varies according to the 
    keyboard.  If set to its leftmost (0) value, then the frequency is fixed.
 
@@ -801,7 +802,7 @@
    \label{fig:frequency_detune_tYpe}
 \end{figure}
 
-   Values: \texttt{L35cents, L10cents, E100cents, E1200cents}
+   Values: \texttt{Default*, L35cents, L10cents, E100cents, E1200cents}
 
    \itempar{Coarse det.}{voice parameters!coarse detune}
    Coarse Detune.
@@ -848,7 +849,7 @@
 
    Values: \texttt{0 to 360 (0 to 2*pi)}
 
-   \itempar{Use Oscil.}{voice oscillator!use}
+   \itempar{Use Oscil}{voice oscillator!use}
    Use Oscillator.
    If the \textbf{Current Voice} is set to a value greater than 1, meaning
    that one is editing additional voices, then this dropdown item also
@@ -908,10 +909,12 @@
    \itempar{Unison}{voice oscillator!Unison}
    Unison is useful in creating the chorus like sound of many simultaneous
    oscillators.
-   Enabling this item causes the following Unison-related items to become
-   enabled.
 
    Values: \texttt{Off*, On}
+
+   Enabling this item causes the Unison-related items to become
+   enabled (they are discussed below, starting with \textbf{Size}
+   and \textbf{Frequency Spread}.
 
 \begin{figure}[H]
    \centering 
