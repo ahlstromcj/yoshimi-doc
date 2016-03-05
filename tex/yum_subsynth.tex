@@ -156,9 +156,6 @@
 
    \itempar{frcR}{bandwidth!forced release}
    Forced release.
-
-   Values: \texttt{Off, On*}
-
    If this option is turned on, the release will go to the
    final value, even if the sustain level is not reached.
 
@@ -166,6 +163,8 @@
    and \textbf{P}aste buttons that call up a copy-parameters or
    paste-parameters dialog, as well as a button
    to bring up the editor window.
+
+   Values: \texttt{Off, On*}
 
 \subsection{SUBsynth / FREQUENCY}
 \label{subsec:subsynth_frequency}
@@ -340,18 +339,18 @@ click to set the parameters to default values.
 \subsection{SUBsynth / Harmonics}
 \label{subsec:subsynth_harmonics}
 
-This section consists of 64 sliders to control the amplitude of the narrow
-noise band at a given harmonic, and 64 sliders to control the bandwidth of
-each band.
+   This section consists of 64 sliders to control the amplitude of the narrow
+   noise band at a given harmonic, and 64 sliders to control the bandwidth of
+   each band.
 
-The top row of SUBsynth sliders sets the \textsl{relative} amplitude.  This
-used of the word "relative" is an important distinction, as the overall level
-of the output is normalised; all actual levels will be dependent on whichever
-is the highest.
+   The top row of SUBsynth sliders sets the \textsl{relative} amplitude.  This
+   used of the word "relative" is an important distinction, as the overall level
+   of the output is normalised; all actual levels will be dependent on whichever
+   is the highest.
 
-The bottom row sets the bandwidth of each harmonic. If one has just the
-fundamental, and drops the bandwith to the minimum, one gets very nearly a
-sinewave.  Set it to maximum and it is very obviously filtered noise.
+   The bottom row sets the bandwidth of each harmonic. If one has just the
+   fundamental, and drops the bandwith to the minimum, one gets very nearly a
+   sinewave.  Set it to maximum and it is very obviously filtered noise.
 
 
 %-------------------------------------------------------------------------------

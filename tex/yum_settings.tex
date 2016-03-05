@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-15
-% \update      2016-03-01
+% \update      2016-03-05
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -994,6 +994,8 @@ These parameters are:
 
    \itempar{FreeMode}{envelope!freemode enable}
    Freemode Enable.
+   Enables the envelope editor's Free Mode.
+   See the next section for details.
 
    Values: \texttt{Off*, On} \\
 
@@ -1016,8 +1018,8 @@ These parameters are:
    stage where the point is.
 
    \figureref{fig:amplitude_envelope_freemode}
-   shows an example of the stock freemode envelope editor, with
-   freemode enabled.
+   shows an example of the stock Freemode envelope editor, with
+   Freemode enabled.
 
 \begin{figure}[H]
    \centering 
@@ -1049,18 +1051,18 @@ These parameters are:
    \itempar{E}{envelope!editor}
    Editor.  Graph Window.
    Shows a window with the real envelope shape and the option to convert to
-   freemode to edit it.
+   Freemode to edit it.
    The envelope editor shows a window in which one can view and modify the
-   detailed envelope shape, or convert it to "freemode" to edit it almost
+   detailed envelope shape, or convert it to Freemode to edit it almost
    without restriction.
    By default, only the \textsl{Freemode} button/checkbox is visible.
 
-   If an envelope has the FreeMode mode enabled, it allows one to edit the
+   If an envelope has FreeMode enabled, it allows one to edit the
    graph of the envelope directly. Select a point from the graph and move it.
-   Notice that \textsl{only the line before the currently edited point of the
+   Notice that
+   \textsl{only the line \textbf{before} the currently edited point of the
    envelope} changes its duration.
-
-   If a point is being dragged, the text on the right shows the duration of
+   As the point is dragged, the text on the right shows the duration of
    the line before it. Otherwise, the text shows the total duration of the
    envelope. 
 
@@ -1125,9 +1127,9 @@ These parameters are:
 
    \itempar{frcR}{envelope!forced release}
    Forced Release.
-   This means that if this option is turned on, the release will go to the
-   final value, even if the sustain stage is not reached. Usually, this must
-   be set.
+   This means that if this option is turned on, the release will go
+   immediately to the final value, even if the sustain stage is not reached.
+   Usually, this must be set.
    When the key is released, the position of the envelope jumps directly to
    the point after the release point. If the release is disabled, the
    envelope position jumps to the last point on release.
@@ -1188,8 +1190,6 @@ These parameters are:
    \itempar{Enable}{envelope!enable}
    Enable the panel.  (Present on some versions of this sub-panel).
 
-%  \itempar{A.value}{envelope!attack value}
-
    \itempar{A.val}{envelope!attack value}
    Attack value.
    We need to figure out what this means.
@@ -1223,12 +1223,12 @@ These parameters are:
    If this option is turned on, the release will go to the
    final value, even if the sustain level is not reached.
 
+   Values: \texttt{Off, On*}
+
    Also present in this sub-panel are the usual \textbf{C}opy
    and \textbf{P}aste buttons that call up a copy-parameters or
    paste-parameters dialog, as well as a button
    to bring up the editor window.
-
-   Values: \texttt{Off, On*}
 
 \subsubsection{Envelope Settings for Filter}
 \label{subsubsec:envelope_settings_for_filter}
@@ -1311,6 +1311,8 @@ These parameters are:
    If this option is turned on, the release will go to the
    final value, even if the sustain level is not reached.
 
+   Values: \texttt{Off, On*}
+
    Also present in this sub-panel are the usual \textbf{C}opy
    and \textbf{P}aste buttons that call up a copy-parameters or
    paste-parameters dialog, as well as a button that bring up the editor
@@ -1318,8 +1320,6 @@ These parameters are:
 
 %  Additional picture and GUI items for ADDsynth version?
 %  Figure: bottom-panel/instrument-edit/ADD/ADDsynth-filter-envelope.jpg
-
-   Values: \texttt{Off, On*}
 
    \itempar{L}{envelope!linearity}
    If this option is set, the envelope is linear, otherwise, it will be

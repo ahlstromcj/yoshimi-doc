@@ -60,9 +60,6 @@
       We abbreviate this value as \texttt{Dlow}.
    \end{itemize}
 
-   If the effect/parameter doesn't exists or is set to none, then the NRPN is
-   ignored.
-
    One must send NRPN coarse/fine before sending Data entry coarse/fine.  If
    the effect/parameter doesn't exists or is set to none, then the NRPN is
    ignored.
@@ -70,21 +67,16 @@
    It's generally advisable to set NRPN MSB before LSB However, once MSB has
    been set one can set a chain of LSBs if they share the same MSB.
    The data CCs associated with these are 6 for MSB and 38 for LSB.
-
    Only when an NRPN has been established can the data values be entered
    (they will be ignored otherwise).
-
    If a supported control is identified, these data values will be stored
    locally (if needed) so that other NRPNs can be set.
-
    Whenever either byte of the NRPN is changed, the data values will be
    cleared (but stored settings will not be affected).
-
    If either NRPN byte is set to 127, all data values are ignored again.
 
    In \textsl{Yoshimi} NRPNs are not themselves channel-sensitive, but the
    final results will often be sent to whichever is the current channel.
-
    \textsl{Yoshimi} also supports the curious 14-bit NRPNs, but this shouldn't
    be noticeable to the user. In order to deal with this, and also some
    variations in the way sequencers present NRPNs generally, if a complete
@@ -345,7 +337,6 @@
 
    For Insert effects, if the Data MSB bit 5 is set (32) then Data LSB sets
    the destination part number. 127 is off and 126 is the Master Output.
-
    A complete example:
 
    \begin{itemize}
@@ -365,7 +356,6 @@
 
    Notes (*): these repeats are not needed as far as \textsl{Yoshimi}
    is concerned, but some sequencers get unhappy without them.
-
    Change just a parameter on an exisiting system effect:
 
    \begin{itemize}

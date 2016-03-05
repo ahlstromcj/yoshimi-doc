@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-05
-% \update      2015-07-10
+% \update      2016-03-05
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -44,7 +44,8 @@
    System effects apply to all parts and allows one to set the amount of effect
    that applies to each part. Also, it is possible to send the output of
    one system effect to another system effect. In the user interface this is
-   shown as "source -\textless destination". eg. "0 -\textless 1" means how
+   shown as "source -\textless destination". For example:
+   The \textbf{0 -\textless 1} knob controls how
    much of the system effect 0 is sent to system effect 1.
 
    Insertion effects are described in
@@ -66,7 +67,7 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{effects-panel/system-effects.jpg}
+   \includegraphics[scale=0.75]{effects-panel/system-effects.jpg}
    \caption{System Effects Dialog}
    \label{fig:system_effects_dialog}
 \end{figure}
@@ -108,9 +109,8 @@
 
    \itempar{Send to}{effects!send to}
    Effects Send To.
-
-   TODO:  Document how effects/send-to works.
-   \index{todo!send to}
+   Each knob controls how much of the system effect indicated by the left
+   number is sent to the system effect indicated by the right number.
 
 \begin{figure}[H]
    \centering 
@@ -121,6 +121,7 @@
 
    \itempar{C}{effects!copy dialog}
    Copy-to-clipboard Dialog.
+   We need to learn more about how this dialog gets populated.
 
 \begin{figure}[H]
    \centering 
@@ -129,8 +130,12 @@
    \label{fig:effects_copy_to_clipboard}
 \end{figure}
 
+   Note that, in recent versions of \textsl{Yoshimi}, the Type label at the top
+   is not "effect", but "Peffect".  What does this mean?
+
    \itempar{P}{effects!paste dialog}
    Paste-from-clipboard Dialog.
+   We need to learn more about how this dialog gets populated.
 
 \begin{figure}[H]
    \centering 
@@ -211,26 +216,20 @@
       \item \textbf{P}
    \end{enumber}
 
-   The insertion effects apply to one part or to master out. One may use more
-   than one insertion effect for one part or master out. If one does so the
+   The insertion effects apply to one part or to the master output.
+   One may use more
+   than one insertion effect for one part or the master output.
+   If one uses more than one effect, the
    effects with smaller indexes will be applied first (eg. first insertion
-   effect no.0, than no.1, ...). If the part selected for insertion
-   effect is "-1" then the effect will be disabled; if the part is "-2" the
+   effect 0 occurs, then effect 1, and so on).
+   If the part selected for insertion
+   effect is "-1" then the effect will be \textsl{disabled};
+   \index{insertion effect!-1}
+   \index{insertion effect!disable}
+   if the part is "-2" the
    effect will be applied to Master Out. 
-
-% \begin{figure}[H]
-%    \centering 
-%    \includegraphics[scale=1.0]{effects-panel/insertion-effects.jpg}
-%    \caption{Insertion Effects Dialog}
-%    \label{fig:insertion_effects_dialog}
-% \end{figure}
-% 
-% \begin{figure}[H]
-%    \centering 
-%    \includegraphics[scale=1.0]{effects-panel/insertion-effects-to-part.jpg}
-%    \caption{Insertion Effects To Part}
-%    \label{fig:insertion_effects_to_part}
-% \end{figure}
+   \index{insertion effect!-2}
+   \index{insertion effect!master out}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
@@ -271,8 +270,6 @@
 
    Values: \texttt{Master Out, Off, Part 1, Part 2, ..., Part 16}
 
-%  instruments-effects-panel.png (or, less nice part-window-effects.png)
-
 \begin{figure}[H]
    \centering 
    \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/instruments-effects-panel.png}
@@ -282,24 +279,6 @@
 
    Note the extra \textbf{Bypass} check-box, which presumably can be used to
    bypass this effects box in a given part.
-
-%  FOURTH SUBSECTION?
-%
-%  There is a fourth type I have screen captures for, but I can't get
-%  to them now!  Are these now out-of-date screen captures?
-%  The ????? variation adds the following elements:
-%
-%  \begin{enumber}
-%     \item \textbf{FX No.}
-%     \item \textbf{bypass}
-%     \item \textbf{EffType}
-%     \item \textbf{Send To.}
-%     \item \textbf{C}
-%     \item \textbf{P}
-%     \item \textbf{Close}
-%  \end{enumber}
-
-% ----------------------------------------------------------
 
 \subsection{Effects / None}
 \label{subsec:effects_edit_none}
@@ -313,17 +292,21 @@
 
    This dialog form may be obsolete with the latest \textsl{Yoshimi}.
    It was captured around April of 2015.
+   However, it seems that all but the \textbf{bypass} control and
+   the \textbf{Close} button have been removed
+   from the latest versions of \textsl{Yoshimi}.
    We have a lot of others in the same style that may need to be recaptured
    for use in new versions of the figures.
+   For now, keep this difference in mind.
 
 \subsection{Effects / DynFilter}
 \label{subsec:effects_edit_dynfilter}
 
    A dynamic filter is, as the name says, a filter which changes its
    parameters dynamically, dependent on the input and current time. In
-   ZynAddSubFX, frequency is the only variable parameter. It can be used as
-   an "envelope following filter" (sometimes referenced "Auto Wah" or simply
-   "envelope filter").
+   \textsl{ZynAddSubFX}, frequency is the only variable parameter. It can be
+   used as an "envelope following filter" (sometimes referenced "Auto Wah" or
+   simply "envelope filter").
 
 \subsubsection{Effects / DynFilter / Circuit}
 \label{subsubsec:effects_edit_dynfilter_circuit}
@@ -331,10 +314,12 @@
    Though this filter might look a bit complicated, it is actually easy. We
    divide the parameters into two classes:
 
-   Filter Parameters are the ones obtained when one clicks on Filter. They
-   give the filter its basic settings.
-
-   Effect Parameters are the other ones that control how the filter changes.
+   \begin{itemize}
+      \item Filter Parameters are the ones obtained when one clicks on Filter.
+         They give the filter its basic settings.
+      \item Effect Parameters are the other ones that control how the filter
+         changes.
+   \end{itemize}
 
    The filter basically works like this: The input signal is passed through a
    filter which dynamically changes its frequency. The frequency is an
@@ -351,9 +336,9 @@
    the current amplitude and the past values. How much the new amplitude
    takes influence is determined by the Amplitude Smoothness (see below).
 
-   RMS value plays an important role in the term loudness. A fully distorted
-   signal can sound 20 db louder due to its higher RMS value. This filter
-   takes this into account, depending on the smoothness.
+   RMS value plays an important role in the term \textsl{loudness}.
+   A fully distorted signal can sound 20 db louder due to its higher RMS value.
+   This filter takes this into account, depending on the smoothness.
 
 \begin{figure}[H]
    \centering 
@@ -364,15 +349,6 @@
 
 \subsubsection{Effects / DynFilter / User Interface}
 \label{subsubsec:effects_edit_dynfilter_ui}
-
-% This version is too simplistic and old:
-%
-% \begin{figure}[H]
-%    \centering 
-%    \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/dynfilter-parameters.jpg}
-%    \caption{DynFilter Parameters}
-%    \label{fig:effects_edit_dynfilter_parameters}
-% \end{figure}
 
 \begin{figure}[H]
    \centering 
@@ -399,8 +375,27 @@
       \item \textbf{A.Inv.}
    \end{enumber}
 
-   The 4 knobs in the middle (Freq, Rnd, LFO Type, St.df) control the LFO.
+   This figure shows an additional section, in the bottom panel of the effect's
+   user-interface.
+   See \sectionref{subsubsec:effects_edit_reverb_ui}, which
+   describes these elements in more detail.
+   However, it seems that all but the \textbf{bypass} control and
+   the \textbf{Close} button have been removed
+   from the latest versions of \textsl{Yoshimi}.
 
+   \begin{enumber}
+      \item \textbf{FX No.}
+      \item \textbf{bypass}
+      \item \textbf{EffType}
+      \item \textbf{Send To}
+      \item \textbf{C}
+      \item \textbf{P}
+      \item \textbf{Close}
+   \end{enumber}
+
+   The four controls in the middle of the middle panel
+   (\textbf{Freq}, \textbf{Rnd}, \textbf{LFO Type}, and \textbf{St.df})
+   control the LFO.
    Let's start with the user-interface elements present in the
    System/Insertion variation of this effect.
 
@@ -495,9 +490,10 @@
 \label{subsubsec:effects_edit_dynfilter_nrpn}
 
    Effects can be controlled via "non-registered parameter numbers", or NRPNs.
-   This section details the value supported by the DynFilter effect.
+   This section will eventually (we hope)
+   detail the NRPN values supported by the DynFilter effect.
 
-   For more information on NRPN, see
+   For more information on the concept of NRPNs, see
    \sectionref{subsubsec:concepts_midi_nrpn}.
 
 % ----------------------------------------------------------
@@ -1350,8 +1346,6 @@ This section details the value supported by the Phaser effect.
    The user-interface for the Reverb effect depends on whether it is used as a
    System effect or an Insertion effect.
    Observr \figureref{fig:effects_edit_reverb}, where
-%  In figure~\ref{fig:effects_edit_reverb} on
-%  page~\pageref{fig:effects_edit_reverb},
    the Insertion mode is shown.  In the System mode, only the light-blue
    portion of the user-interface appears.
 
@@ -1376,6 +1370,12 @@ This section details the value supported by the Phaser effect.
       \item \textbf{LPF}
       \item \textbf{HPF}
       \item \textbf{Damp}
+   \end{enumber}
+
+  There is a fourth type we have screen captures for, but we can't seem
+  to navigate to them now!  Are these now out-of-date screen captures?
+
+   \begin{enumber}
       \item \textbf{FX No.}
       \item \textbf{bypass}
       \item \textbf{EffType}

@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-15
-% \update      2016-03-02
+% \update      2016-03-05
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -103,7 +103,7 @@
    a bank.  This instrument will remain in that slot for future use until it is
    deleted. To see the physical location of the \texttt{.xiz} file, one
    should check the
-   "Yoshimi / Settings / Banks / Root Dirs"
+   \textbf{Yoshimi / Settings / Banks / Root Dirs}
    (\textsl{File→Settings→Bank\_Root\_Dirs}) window to see the paths for
    banks.
 
@@ -311,6 +311,7 @@
          Scale Settings.
          These files stored microtonal settings that \textsl{Yoshimi}
          can use to produce non-standard musical scales.
+         Recent scales settings are saved and recorded.
       \item \texttt{.xpz}
          Presets.
          A preset is canned version of a \textsl{Yoshimi} sub-setting.
@@ -328,7 +329,7 @@
          Recent patch sets are now stored in the \texttt{.history} file.
          And why not recent instruments and scales?
          This is a single file that every instance can read and write.
-         The \texttt{.history} file is save only upon a normal exit, as it is
+         The \texttt{.history} file is saved only upon a normal exit, as it is
          comparatively unimportant.
       \item \texttt{.banks}
          A new feature of the \textsl{Yoshimi} configuration.
@@ -767,8 +768,10 @@
 \subsubsection{Concepts / MIDI / Messages}
 \label{subsubsec:concepts_midi_messages}
 
-   \textsl{Yoshimi} responds to the following MIDI messages
+   \textsl{Yoshimi} responds to the following MIDI controller messages
    (\ref{table:zynaddsubfx_midi_messages}).
+   This list seems to be more extensive than that presented in the
+   online \textsl{ZynAddSubFX} documentation.
 
    \begin{table}
       \centering
@@ -805,7 +808,7 @@
       \end{tabular}
    \end{table}
 
-   For the controllers that are not defined in GM:
+   For the controllers (numbers 75 to 78) that are not defined in GM:
 
    \begin{itemize}
       \item \textbf{Bandwidth} control (75) increases or decreases the bandwidth
@@ -818,7 +821,7 @@
       resonance. 
    \end{itemize}
 
-   The Program Change (192) also provides user selectable CC for voices
+   Program Change (192) also provides user selectable CC for voices
    128-160.  There is now an option to make Program Change enable a part if
    it's currently disabled.
 

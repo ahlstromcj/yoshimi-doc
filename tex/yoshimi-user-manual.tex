@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-04-20
-% \update      2016-03-01
+% \update      2016-03-04
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -173,9 +173,9 @@
    intelligently work with however many are set, as will all the NRPN direct
    part controls.
 
-   When opening an instrument bank, one can now tell exactly which synth engines
-   are used by each instrument. This is represented by three pale background
-   colours: Red = AddSynth; Blue = SubSynth; and Green = PadSynth.
+   When opening an instrument bank, one can now tell exactly which synth
+   engines are used by each instrument. This is represented by three pale
+   background colours: Red = AddSynth; Blue = SubSynth; and Green = PadSynth.
 
    If the instruments are kits they scanned to find out if any member of the
    kit contains each engine, so that the colors above can be applied.
@@ -203,6 +203,13 @@
 
    Also, when running from the command line there is now access to many of the
    system and root, bank, and other settings.
+
+	\textsl{Yoshimi} now splits out roots and banks from the main configuration
+	file, and also creates a new histories file. The separation means that the
+	different functions can be implemented, saved, and loaded at the most
+   appropriate time. These files have
+   "yoshimi" as the doctype, as they are in no way relevant to
+   \textsl{ZynAddSubFX}.
    See the new Banks sections.
 
    \textsl{Yoshimi} now remembers where major windows were last placed (per
@@ -261,6 +268,9 @@
 
    Barring major system failures, there are now no circumstances where Yoshimi
    will fail to start.
+
+   \textsl{Yoshimi} is now verified as being able to use the 192000 Hz sample
+   rate in both ALSA and JACK - if one has a suitable soundcard!
 
    There is greater control of one's working environment. One can have just the
    GUI, just a CLI or both, and these settings can be saved. If one tries to

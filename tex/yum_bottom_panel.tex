@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-06
-% \update      2016-03-01
+% \update      2016-03-05
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -251,8 +251,7 @@
    There is also a pair of boxes on the end of these grids which will show the
    highest peak level seen. If clipping has happened the box background will
    change from black to red.
-
-   To clear clip and peak level indication click on this area.
+   To clear the clip and peak level indication, click on this area.
 
    As well as the peak level, the display shows a much slower responding RMS
    level, as a yellow line on top of the blue bar. This gives and indication of
@@ -260,25 +259,22 @@
 
    If one opens the panel window one will see vertical bargraphs for each
    individual part. On these, the faint bars are 5dB steps and the bright ones
-   10dB. The peak leve isn't shown numerically, but if one exceeds 0dB a thick
+   10dB. The peak level isn't shown numerically, but if one exceeds 0dB a thick
    red line will appear at the top of the bargraph. This is also cleared from
    the box in the main window.
-
-   (More information to come).
 
 \paragraph{Tip: Using the VU Meter}
 \label{paragraph:tips_using_the_vu_meter}
 \index{tips!vu meter}
 
    The VU meter topic is very interesting, because one of the problems
-   is a tendency to overdrive by way of sustain pedal.  At the last test it
+   is a tendency to overdrive it by way of sustain pedal.  At the last test, it
    showed up in the output before it showed up in the VU meter, so
    the VU meter should help a lot in analysis.
 
    One way to avoid overdrive is to keep polyphony to 20 on each patch (two
    or three patches per \textsl{Yoshimi} instance, with two or three
    \textsl{Yoshimi} simultaneous instances depending on the patch).
-
    Another item which helps a lot is compression (for example, the Calf
    multiband compressor is amazingly good.
 
@@ -451,17 +447,15 @@
 
    \itempar{threshx100 cnt.}{controllers!portamento threshold}
    Threshold of the Portamento.
-
-   Values: \texttt{0 to 127, 3*}
-
-   Minimum or maximum difference of notes in order
+   The minimum or maximum difference of notes in order
    to do the portamento (x 100 cents).
    It represents the minimum or the maximum number of halftones (or hundred
    cents) required to start the portamento. The difference is computed
    between the last note and current note.
+   The threshold refers to the frequencies and \textsl{not} to MIDI notes (one
+   should consider this if one uses microtonal scales).
 
-   The threshold refers to the frequencies and not to MIDI notes (one should
-   consider this if one uses microtonal scales).
+   Values: \texttt{0 to 127, 3*}
 
    \itempar{th.type}{controllers!portamento threshold type}
    Threshold Type (min/max).

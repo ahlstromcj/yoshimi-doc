@@ -327,10 +327,6 @@
 
    The computer keyboard will produce notes only when the virtual keyboard
    is active.
-
-   TODO: Note that there may be some other keys that serve a purpose with
-   the QWERTY keyboard.
-
    Also note that we replaced the monopoly symbol with the monopolist
    symbol.  On X11 systems, this key is known as the "Super" key.
 
@@ -368,41 +364,69 @@
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
+   One question worth answering is if these controls, when changed, emit MIDI
+   messages to change the control, versus them simply affecting the current
+   playback.
+
    \itempar{Mod. Wheel}{controllers!modulation wheel}
-   TODO.
+   Sets the MIDI modulation value.  This control will
+   only have an effect on certain instruments.  (It has no effect on the
+   "Simple Sound", for example).
 
    \itempar{Volume}{controllers!volume}
-   TODO.
+   Controls the overall volume of the instrument being played by the virtual
+   keyboard.
 
    \itempar{Panning}{controllers!panning}
-   TODO.
+   Controls the left-right location of the sounds played by the virtual
+   keyboard.
 
    \itempar{Expression}{controllers!expression}
-   TODO.
+   Controls the expression.  This probably can have different effects depending
+   on the instrument.  For example, with the "Simple Sound", this control is a
+   lot like volume.
 
    \itempar{Sustain}{controllers!sustain}
-   TODO.
+   Controls the sustain duration.  This works even with the "Simple Sound".
+   Using it makes even this virtual keyboard capable of some "virtuoso"
+   expression.
 
    \itempar{Portamento}{controllers!portamento}
-   TODO.
+   Controls the time of transition from one pitch to another.
+   Using it makes even this virtual keyboard capable of some "virtuoso"
+   expression.
 
    \itempar{Filter Q}{controllers!filter q}
-   TODO.
+   Controls the sharpness of the filters used in an instrument.
+   Generally requires a complex instrument to take effect.
+   For example, try this control with the "Weird Pad" instrument in the
+   "Fantasy" bank.
 
    \itempar{Filter Freq.}{controllers!filter frequency}
-   TODO.
+   Controls the center frequency of the filters used in an instrument.
+   Generally requires a complex instrument to take effect.
+   For example, try this control with the "Weird Pad" instrument in the
+   "Fantasy" bank.
 
    \itempar{Bandwidth}{controllers!bandwidth}
-   TODO.
+   Controls the frequency bandwidth of the filters used in an instrument.
 
    \itempar{FM Gain}{controllers!fm gain}
    TODO.
+   Haven't found a sound that exercises this control.
+   Haven't looked all that hard yet.
 
    \itempar{Res. c. freq}{controllers!resonant center frequency}
    TODO.
+   Not sure how this differs from \textbf{Filter Freq.}.
+   Haven't found a sound that exercises this control.
+   Haven't looked all that hard yet.
 
    \itempar{Res. bw.}{controllers!resonant bandwidth}
    TODO.
+   Not sure how this differs from \textbf{Bandwidth}.
+   Haven't found a sound that exercises this control.
+   Haven't looked all that hard yet.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex
