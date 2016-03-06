@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-07
-% \update      2016-02-28
+% \update      2016-03-06
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -22,23 +22,27 @@
    beautiful pads and other instruments. (These instruments can be exported
    for use with other programs too).
 
-   The PADsynth dialog consists of two major tabs, "Harmonic Structure" and
-   "EnvelopesLFOs".  Each of these tabs is fairly complex, so the discussion
+   The PADsynth dialog consists of two major tabs,
+   \textbf{Harmonic Structure} and \textbf{EnvelopesLFOs}.
+   Each of these tabs is complex, so the discussion
    will break the tabs down by sub-sections.
 
 \subsection{PADsynth / Algorithm}
 \label{subsec:padsynth_algorithm}
 
+   The complexity of the PADsynth dailog merely reflects the complexity of the
+   PADsynth algorithms.
+
 \subsubsection{PADsynth / Algorithm / General}
 \label{subsubsec:padsynth_algorithm_general}
 
-   This algorithm generates very beautiful sounds, even if its idea is much
-   simpler than other algorithms. It generates a perfectly looped wave-table
-   sample which can be used in instruments. It easily generates sounds of
-   ensembles, choirs, metallic sounds (bells) and many other types of sound.
-   Paul Nasca wanted to make this algorithm known, and everyone is welcome to
-   learn and use this algorithm into one's projects or products (non-commercial
-   or commercial).
+   The PADsynth algorithm generates very beautiful sounds, even if its idea is
+   much simpler than other algorithms. It generates a perfectly looped
+   wave-table sample which can be used in instruments. It easily generates
+   sounds of ensembles, choirs, metallic sounds (bells) and many other types of
+   sound.  Paul Nasca wanted to make this algorithm known, and everyone is
+   welcome to learn and use this algorithm into one's projects or products
+   (non-commercial or commercial).
    
    Quote \cite{zyndoc}:
 
@@ -188,6 +192,8 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    \label{fig:padsynth_edit_dialog}
 \end{figure}
 
+   Note how, in the newer versions of \textsl{Yoshimi}, the
+   part number and part name are part of the window caption.
    There are a lot of parameter sections to keep track of, and to describe.
 
    \begin{enumber}
@@ -364,7 +370,7 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    Values: \texttt{C-2, G-2, C-3, G-3, C-4*, G-4, C-5, G-5, G-6}
 
    \itempar{smp/oct}{padsynth!harmonic samples per oct}
-   Harmonic Samples Per Octave?
+   Harmonic Samples Per Octave.
 
 \begin{figure}[H]
    \centering 
@@ -417,7 +423,7 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    \itempar{BandWidth}{padsynth!bandwidth}
    Harmonics Bandwidth.
 
-   Values: \texttt{0 to 127?}
+   Values: \texttt{0 to 127}
 
    \itempar{cents}{padsynth!bandwidth reading}
    Bandwidth Reading (cents).
@@ -459,16 +465,33 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    Values: \texttt{Harmonic*, ShiftU, ShiftL, PowerU, PowerL, Sine, Power}
 
    \itempar{Par1}{padsynth!par1}
-   PADSynth Bandwidth Parameters 1?
+   PADSynth Bandwidth Parameters 1.
+   If the \textbf{Overtones Position} drop-down is set to something other than
+   \texttt{Harmonic}, then this knob changes the harmonic lines shown in the
+   spectrum view just below this item.
+   It is best to play with this setting and observe and hear the changes it
+   makes.
 
    \itempar{Par2}{padsynth!par2}
-   PADSynth Bandwidth Parameters 2?
+   PADSynth Bandwidth Parameters 2.
+   If the \textbf{Overtones Position} drop-down is set to something other than
+   \texttt{Harmonic}, then this knob changes the harmonic lines shown in the
+   spectrum view (\textbf{Harmonics Plot}) just below this item.
+   It is best to play with this setting and observe and hear the changes it
+   makes.
 
    \itempar{ForceH}{padsynth!forceh}
    PADSynth Bandwidth ForceH.
+   If the \textbf{Overtones Position} drop-down is set to something other than
+   \texttt{Harmonic}, then this knob changes the harmonic lines shown in the
+   spectrum view just below this item.
+   It is best to play with this setting and observe and hear the changes it
+   makes.
 
    \itempar{Harmonics Plot}{padsynth!harmonics plot}
    PADSynth Harmonics Plot.
+   Shows the position and amplitude of each of the harmonic lines that the
+   settings will generate.
 
 \subsubsection{PADsynth / Harmonic Structure / Export}
 \label{subsubsec:padsynth_harmonic_structure_export}
@@ -486,20 +509,17 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 \subsubsection{PADsynth / Harmonic Structure / Resonance}
 \label{subsubsec:padsynth_harmonic_structure_resonance}
 
-   The PADsynth Harmonics resonance dialog is identical to the resonance
-   dialog described in
-   \sectionref{subsec:addsynth_resonance},
-   except that it shows something that the ADDsynth version doesn't... an
-   "Apply" button.
+   This dialog, shared in common with the ADDsynth editor, is a stock
+   user-interface element described in
+   \sectionref{subsec:stock_resonance_settings}.
 
 \subsubsection{PADsynth / Harmonic Structure / Change}
 \label{subsubsec:padsynth_harmonic_structure_change}
 
-   Harmonic Content Editor.  Another complex dialog.
-   Like
-   \figureref{fig:addsynth_oscillator_editor},
-   it allows one to create an unlimited
-   number of oscillators. 
+   The ambiguously-named \textbf{Change} button brings up the
+   Harmonic Content editor, which is another complex dialog.
+   Like \figureref{fig:addsynth_oscillator_editor},
+   it allows one to create an essentially unlimited number of oscillators. 
 
 \begin{figure}[H]
    \centering 
@@ -525,28 +545,19 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
       \item \textbf{Oscillator Spectrum Graph}
       \item \textbf{Oscillator Waveform Graph}
       \item \textbf{Mag.Type}
-      \item \textbf{rnd} (ADDsynth Oscillator Editor only)
-      \item \textbf{H.rnd} (ADDsynth Oscillator Editor only)
-      \item \textbf{H.rnd knob} (ADDsynth Oscillator Editor only)
-      \item \textbf{Apply} (not present in ADDsynth Oscillator Editor)
+      \item \textbf{Apply}
    \end{enumber}
-
-   TODO:  Describe the 3 ADDsynth elements noted above.
-
-   rnd - Set the randomness of the oscillator output. There are 2 types of
-   randomnesses, first is group randomness(the oscillator starts at random
-   position), second is from -64(max) to -1 (min) and each harmonic
-   (the oscillator is phase distorted) is from 1(min) to 63 (max). 0 is no
-   randomness. One could use this parameter to make warm sounds like
-   analogue synthesizers.
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{Oscillator Spectrum Graph}{padsynth!oscillator graph}
    Oscillator Spectrum Graph.
+   This graph shows the spectrum of the oscillator as a series of vertical
+   lines, a kind of frequency histogram.
 
    \itempar{Oscillator Waveform Graph}{padsynth!waveform graph}
    Oscillator Waveform Graph.
+   This graph shows the temporal waveform  of the oscillator.
 
    \itempar{Mag.Type}{padsynth!mag type}
    Oscillator Magnitude Type.
@@ -588,7 +599,7 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    \itempar{Base Func. Waveform Graph}{padsynth!base function waveform}
    Harmonic Base Function Waveform Graph.
 
-   \itempar{Base F..}{padsynth!base function}
+   \itempar{Base F}{padsynth!base function}
    Harmonic Base Function.
    Sets what function to use as the harmonics base function.
    One can use any base function as harmonics. 
@@ -611,18 +622,30 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    PADsynth Parameter Wheel.
    Change the parameter of the base function. 
 
-   \itempar{B.F.Mod.}{padsynth!bf mod}
+   \itempar{B.F.Mod}{padsynth!bf mod}
    PADSynth Base Frequency Mod.
+   This item is very similar to the Harmonic Editor Modulation
+   (\textbf{Mod.}) setting.
+
+   Values: \texttt{None*, Rev, Sine, Pow}
 
    \itempar{Wheel 1}{padsynth!wheel 1}
    PADsynth Wheel 1.
+   With the \textbf{B.F.Mod.} selection set to something other than
+   \texttt{None}, this modifies one (unknown at this time) parameter of the
+   modulation selection.
 
    \itempar{Wheel 2}{padsynth!wheel 2}
    PADsynth Wheel 2.
+   With the \textbf{B.F.Mod.} selection set to something other than
+   \texttt{None}, this modifies one (unknown at this time) parameter of the
+   modulation selection.
 
    \itempar{Wheel 3}{padsynth!wheel 3}
    PADsynth Wheel 3.
-
+   With the \textbf{B.F.Mod.} selection set to something other than
+   \texttt{None}, this modifies one (unknown at this time) parameter of the
+   modulation selection.
 
 \paragraph{PADsynth / Harmonic Structure / Change / Middle}
 \label{paragraph:padsynth_harmonic_structure_change_middle}
@@ -652,13 +675,13 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    Convert the oscillator output to a base function. Changing the Base
    function or its parameter will erase the converted base function. 
 
-   \itempar{Clr.}{padsynth!harm editor clr}
+   \itempar{Clr}{padsynth!harm editor clr}
    Clear.
    Clear the settings and make the oscillator equal to a base function. If
    this is cleared, one can click the \textbf{Use as base} button to make
    multiple conversions to base functions. 
 
-   \itempar{Wsh.}{padsynth!harm editor wsh}
+   \itempar{Wsh}{padsynth!harm editor wsh}
    Harmonic Editor Wave-shaping, "W.sh".
 
    Wave shaping function that applies to the oscillator.
@@ -726,7 +749,7 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    leads to overtones being generated on the full frequency band.
 
    \itempar{Wsh Wheel}{padsynth!harm editor wsh wheel}
-   Harmonic Editor Wave-shaping Wheel?
+   Harmonic Editor Wave-shaping Wheel.
 
    \itempar{Filter}{padsynth!harm editor filter}
    Harmonic Editor Filter.
@@ -744,15 +767,24 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 
    \itempar{Filter Wheel 1}{padsynth!harm editor filter wheel}
    Harmonic Editor Filter, Wheel 1.
+   The knob on the left sets one filter parameter, which is either the cutoff
+   frequency, or, if the filter is a bandpass filter, the lower corner
+   frequency.
+   It is best to play with this knob with various kinds of filters selected
+   from the filter drop-down list.
 
    \itempar{Filter Wheel 2}{padsynth!harm editor filter wheel}
    Harmonic Editor Filter, Wheel 2.
-   The knob in the right sets the filter parameter (frequency).
+   The knob on the right sets, if the filter is a bandpass filter, the upper
+   corner frequency.
+   It is best to play with this knob with various kinds of filters selected
+   from the filter drop-down list.
 
    \itempar{Filter p}{padsynth!harm editor filter p}
-   Harmonic Editor Filter, p?
+   Harmonic Editor Filter, p.
+   If set, the filter is applied before waveshaping.
 
-   \itempar{Mod.}{padsynth!harm editor mod}
+   \itempar{Mod}{padsynth!harm editor mod}
    Harmonic Editor Modulation.
 
 \begin{figure}[H]
@@ -765,15 +797,24 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    Values: \texttt{None*, Rev, Sine, Pow}
 
    \itempar{Mod. Wheel 1}{padsynth!harm editor mod wheel}
-   Harmonic Editor Modulation Wheel 1?
+   Harmonic Editor Modulation Wheel 1.
+   With the \textbf{Mod.} selection set to something other than
+   \texttt{None}, this modifies one (unknown at this time) parameter of the
+   modulation selection.
 
    \itempar{Mod. Wheel 2}{padsynth!harm editor mod wheel}
-   Harmonic Editor Modulation Wheel 2?
+   Harmonic Editor Modulation Wheel 2.
+   With the \textbf{Mod.} selection set to something other than
+   \texttt{None}, this modifies one (unknown at this time) parameter of the
+   modulation selection.
 
    \itempar{Mod. Wheel 3}{padsynth!harm editor mod wheel}
-   Harmonic Editor Modulation Wheel 3?
+   Harmonic Editor Modulation Wheel 3.
+   With the \textbf{Mod.} selection set to something other than
+   \texttt{None}, this modifies one (unknown at this time) parameter of the
+   modulation selection.
 
-   \itempar{Sp.adj.}{padsynth!harm editor spadj}
+   \itempar{Sp.adj}{padsynth!harm editor spadj}
    Harmonic Editor Spectrum Adjust.
    Adjust the spectrum of the waveform.
 
@@ -795,7 +836,7 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    Values: \texttt{None*, Pow, ThrsD, ThrsU}
 
    \itempar{Sp.adj. Wheel}{padsynth!harm editor spadj wheel}
-   Harmonic Editor Spectrum Adjust Wheel?
+   Harmonic Editor Spectrum Adjust Wheel.
 
 \paragraph{PADsynth / Harmonic Structure / Change / Harmonic}
 \label{paragraph:padsynth_harmonic_structure_change_harmonic}
@@ -805,7 +846,7 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
       \item \textbf{Harmonics Bandwidth}
       \item \textbf{Harmonics Scrollbar}
       \item \textbf{Harmonic Shift}
-      \item \textbf{Harmonic Shift R} (dialog?)
+      \item \textbf{Harmonic Shift R}
       \item \textbf{Harmonic Shift preH}
       \item \textbf{Adpt.Harm.}
       \item \textbf{Adpt.Harm. Slider}
@@ -820,11 +861,11 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 
    \itempar{Harmonics Amplitude}{padsynth!harmonics amplitude}
    Harmonics Amplitude.
-   Provides 128? sliders for the amplitude of harmonics.
+   Provides 128 sliders for the amplitude of harmonics.
 
    \itempar{Harmonics Bandwidth}{padsynth!harmonics bandwidth}
    Harmonics Bandwidth.
-   Provides 128? sliders for the bandwidth of harmonics.
+   Provides 128 sliders for the bandwidth of harmonics.
 
    \itempar{Harmonics Scrollbar}{padsynth!harmonics scrollbar}
    Harmonics Scrollbar.
@@ -832,20 +873,19 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    \itempar{Harmonic Shift}{padsynth!harmonics shift}
    Harmonics Shift.
 
-   Values: \texttt{-x to 0 to x?}
-
    \itempar{Harmonic Shift R}{padsynth!harmonics shift r}
-   Harmonics Shift R?.
+   Harmonics Shift Reset.
+   Pressing this button resets the \textbf{Harmonic Shift} value to zero
+   (0).
 
    \itempar{Harmonic Shift preH}{padsynth!harmonics shift preh}
-   Harmonics Shift preH?
-   preF in Zyn?
+   Harmonics Shift preH.
+   If set, applies the harmonic shift before the filtering and waveshaping.
 
-   preF. Set the order of doing the filter and wave-shaper (uncheck to filter
-   after wave-shaping, check to wave-shape after filtering).
-
-   \itempar{Adpt.Harm.}{padsynth!harmonics}
-   Adaptive Harmonics?
+   \itempar{Adpt.Harm}{padsynth!harmonics}
+   Adaptive Harmonics.
+   Changes the type of the adaptive harmonics.  
+   (The tooltip spells "adaptive" wrong.)
 
 \begin{figure}[H]
    \centering 
@@ -857,13 +897,28 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    Values: \texttt{OFF*, ON, Square, 2xSub, 2xAdd, 3xSub, 3xAdd, 4xSub, 4xAdd}
 
    \itempar{Adpt.Harm. Slider}{padsynth!harmonics slider}
-   Adaptive Harmonics Slider?
+   Adaptive Harmonics Slider.
+   If something other that \texttt{OFF} or \texttt{ON} is selected,
+   then this slider changes the waveform appearance.
+   Even more informative is the change in the spectrum that is shown.
+   Obviously, this setting is something to play with while listening to the
+   waveform.
 
    \itempar{Adpt.Harm. baseF}{padsynth!harmonics basef}
-   Adaptive Harmonics Base Frequency?
+   Adaptive Harmonics Base Frequency.
+   If something other that \texttt{OFF} is selected,
+   then this knob changes the waveform appearance.
+   Even more informative is the change in the spectrum that is shown.
+   Obviously, this setting is something to play with while listening to the
+   waveform.
 
    \itempar{Adpt.Harm. pow}{padsynth!harmonics pow}
-   Adaptive Harmonics Power?
+   Adaptive Harmonics Power.
+   If something other that \texttt{OFF} is selected,
+   then this knob changes the waveform appearance.
+   Even more informative is the change in the spectrum that is shown.
+   Obviously, this setting is something to play with while listening to the
+   waveform.
 
    \itempar{Clear}{padsynth!harmonics clear}
    Harmonics Clear.
@@ -872,8 +927,7 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    \itempar{Sine}{padsynth!harmonics sine}
    Harmonics Sine.  
    The user is prompted to "Convert to sine?"
-   This seems to reset everything to the state where it has not been
-   modified, but that's not certain.
+   This seems simply to reset the base function to a sine wave.
 
    \itempar{C}{padsynth!harmonics copy}
    Harmonics Copy.
@@ -886,6 +940,13 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 
 \subsection{PADsynth / Envelopes and LFOs}
 \label{subsec:padsynth_envelopes_lfos}
+   
+   This dialog is reached by click on the \textbf{Envelopes LFOs}
+   tab of the PADsynth parameters dialog.  This tab is next to the
+   \textbf{Harmonic Structure} tab.
+
+   It consists of nothing but stock user-interface elements that are described
+   elsewhere in this manual.
 
 \begin{figure}[H]
    \centering 

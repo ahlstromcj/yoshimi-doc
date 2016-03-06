@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-06
-% \update      2016-03-05
+% \update      2016-03-06
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -428,7 +428,7 @@
 
    Values: \texttt{Off, On*}
 
-   \itempar{Proprt.}{controllers!portamento proportional}
+   \itempar{Proprt}{controllers!portamento proportional}
    Portamento Proportional,
    Enable Proportional Portamento (over fixed portamento).
 
@@ -445,7 +445,7 @@
 
    Values: \texttt{0 to 127, 64*}
 
-   \itempar{threshx100 cnt.}{controllers!portamento threshold}
+   \itempar{threshx100 cnt}{controllers!portamento threshold}
    Threshold of the Portamento.
    The minimum or maximum difference of notes in order
    to do the portamento (x 100 cents).
@@ -465,7 +465,7 @@
 
    Values: \texttt{Off, On*}
 
-   \itempar{Propt.}{controllers!portamento proportional}
+   \itempar{Propt}{controllers!portamento proportional}
    Proportional Portamento.
    If set, the portamento is proportional to ratio of frequencies.
 
@@ -495,7 +495,7 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{1.3.5/edit-instrument.png}
+   \includegraphics[scale=1.0]{1.3.9/edit-instrument.png}
    \caption{Instrument Edit Dialog}
    \label{fig:instrument_edit_dialog}
 \end{figure}
@@ -609,16 +609,18 @@
    \figureref{fig:effects_edit_none}.
    There one will find a full discussion of that dialog.
 
-   \itempar{Rnd. Det.}{edit!rnd det}
+   \itempar{Humanise (Rnd. Det.)}{edit!rnd det}
    Small Random Detune, Humanise.
    \index{humanise}
    \index{edit!humanise}
+   Sets the random detune value of the whole \textsl{part} in
+   cents.
    In the most recent versions of \textsl{Yoshimi}, this
    item has been replaced by a \textbf{Humanise} slider.
    This value is an experimental feature.  It lends some complexity or
    piquancy to the part.
 
-   Values: \texttt{0* to 20}
+   Values: \texttt{0* to 50}
 
    \itempar{Close}{edit!close}
    Closes the Edit window.

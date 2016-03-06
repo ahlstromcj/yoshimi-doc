@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-05
-% \update      2016-03-05
+% \update      2016-03-06
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -457,7 +457,7 @@
    DynFilter LFO Type.
 
    \itempar{St.df}{dynfilter!lfo stdf}
-   DynFilter LFO ??????.  TODO
+   DynFilter LFO.
    Left/right channel phase shift.
 
    \itempar{LfoD}{dynfilter!lfo depth}
@@ -465,21 +465,21 @@
    This control is one that helps define the mix of the LFO and the
    amplitude.
 
-   \itempar{A.S.}{dynfilter!a.s.}
-   DynFilter A.S. TODO
+   \itempar{A.S}{dynfilter!a.s.}
+   DynFilter A.S.
    This control is one that helps define the mix of the LFO and the
    amplitude.
    A.S sets the Amplitude Sensing (i.e. how much influence the amplitude
    shall have).
 
-   \itempar{A.M.}{dynfilter!a.m.}
+   \itempar{A.M}{dynfilter!a.m.}
    DynFilter A.M.
    One of two knobs let one control the way how the RMS value of the
    amplitudes is measured.
    A.M sets the Amplitude Smoothness (this is described above). The higher
    one sets this value, the more slowly will the filter react.
 
-   \itempar{A.Inv.}{dynfilter!a.inv}
+   \itempar{A.Inv}{dynfilter!a.inv}
    DynFilter A.Inv.  One of two knobs let one control the way how the RMS
    value of the amplitudes is measured.  A.Inv., if set, negates the
    (absolute) RMS value. This will lower the filter frequency instead of
@@ -607,7 +607,7 @@
    Note that the LFO in other contexts has ramps and exponential shapes that
    are not present here.
 
-   \itempar{St.df.}{alienwah!phase diff}
+   \itempar{St.df}{alienwah!phase diff}
    AlienWah Left/Right Chanell Phase Difference.
 
    Values: \texttt{0 to 127}
@@ -633,7 +633,7 @@
 
    If this value is low, the sound is turned more into a "wah-wah"-effect.
 
-   \itempar{Fb.}{alienwah!feedback}
+   \itempar{Fb}{alienwah!feedback}
    AlienWah Feedback.
 
    Values: \texttt{0 to 127}
@@ -750,7 +750,7 @@ This section details the value supported by the AlienWah effect.
    \itempar{LFO type}{chorus!lfo type}
    Set the LFO shape.
 
-   \itempar{St.df.}{chorus!l/r phase}
+   \itempar{St.df}{chorus!l/r phase}
    The phase difference between LFO for left/right channels .
 
    \itempar{Dpth}{chorus!lfo depth}
@@ -761,7 +761,7 @@ This section details the value supported by the AlienWah effect.
    If one uses low delays and LFO depths, this will result in a flanger
    effect.
 
-   \itempar{Fb.}{chorus!feedback}
+   \itempar{Fb}{chorus!feedback}
    Chorus Feedback.
 
    \itempar{L/R}{chorus!l/r routing}
@@ -901,7 +901,7 @@ This section details the value supported by the Chorus effect.
    \itempar{Type}{distortion!type}
    Set the function of the distortion (like arctangent, sine).
 
-   \itempar{Neg.}{distortion!negate}
+   \itempar{Neg}{distortion!negate}
    Negates the amplitude (invert the signal).
 
    \itempar{LPF}{distortion!lpf}
@@ -910,7 +910,7 @@ This section details the value supported by the Chorus effect.
    \itempar{HPF}{distortion!hpf}
    High Pass Filter.
 
-   \itempar{St.}{distortion!stereo}
+   \itempar{St}{distortion!stereo}
    Set the distortion mode (stereo or mono, checked is stereo).
 
 \subsubsection{Effects / Distortion / NRPN Values}
@@ -990,7 +990,7 @@ This section details the value supported by the Chorus effect.
    \itempar {Delay}{echo!delay}
    The delay time of one echo.
 
-   \itempar {LRdl.}{echo!l/r delay}
+   \itempar {LRdl}{echo!l/r delay}
    Left-Right-Delay.
    The delay between left/right channels.
    If it is set to the middle, then both sides are delayed equally. If
@@ -998,11 +998,11 @@ This section details the value supported by the Chorus effect.
    same amount) later than the average echo; or the other way round.
    Set the knob to 0 to hear on the right first.
 
-   \itempar {LRc.}{echo!crossover}
+   \itempar {LRc}{echo!crossover}
    Echo Crossover.
    The "crossing" between left/right channels.
 
-   \itempar {Fb.}{echo!feedback}
+   \itempar {Fb}{echo!feedback}
    Echo feedback.
    Feedback describes how much of the delay is added back to the input.
    Set Fb. to the maximum to hear an infinite echo, or to the minimum to
@@ -1423,7 +1423,7 @@ This section details the value supported by the Phaser effect.
 
    Values: \texttt{Random, Freeverb, Bandwidth}
 
-   \itempar{R.S.}{reverb!room size}
+   \itempar{R.S}{reverb!room size}
    Reverb Room Size.
    The room size defines parameters only for the comb and allpass filters.
 
@@ -1477,7 +1477,7 @@ This section details the value supported by the Phaser effect.
    damp low frequencies. Its parameters are used by the comb and allpass
    filters.
 
-   \itempar{FX No.}{reverb!fx no.}
+   \itempar{FX No}{reverb!fx no.}
    Reverb FX Number.
 
    Values: \texttt{1 to 8?}

@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-07
-% \update      2016-03-05
+% \update      2016-03-06
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -155,7 +155,7 @@
 
    Values: \texttt{Off*, On}
 
-   \itempar{P.Str.}{addsynth!punch strength}
+   \itempar{P.Str}{addsynth!punch strength}
    ADDsynth Punch Strength.
    The punch strength of a note in ADDsynth is a constant amplification to
    the output at the start of the note, with its length determined by the
@@ -172,14 +172,14 @@
 
    Values: \texttt{0 to 127, 64*}
 
-   \itempar{P.Stc.}{addsynth!punch stretch}
+   \itempar{P.Stc}{addsynth!punch stretch}
    ADDsynth Punch Stretch.
    Sets the punch effect stretch according to frequency. On lower-frequency
    notes, punch stretch makes the punch effect last longer. 
 
    Values: \texttt{0 to 127, 64*}
 
-   \itempar{P.Vel.}{addsynth!punch vel sens}
+   \itempar{P.Vel}{addsynth!punch vel sens}
    ADDsynth Punch Velocity Sensing.
    The higher this value, the higher the effect of velocity on the punch of
    the note.
@@ -299,7 +299,7 @@
 
    Values: \texttt{L35cents, L10cents, E100cents, E1200cents}
 
-   \itempar{Coarse det.}{addsynth!coarse detune}
+   \itempar{Coarse det}{addsynth!coarse detune}
    Coarse Detune, "C.detune".
    The one-arrow buttons change the value by one.
    The two-arrow buttons change the value by ten.
@@ -481,7 +481,7 @@
 
    Values: \texttt{Off*, On}
 
-   \itempar{Bypass Global F.}{voice par filter!bypass}
+   \itempar{Bypass Global F}{voice par filter!bypass}
    ADDsynth Voice Bypass Global Filter.
    The voice signal bypasses the global filter.
 
@@ -739,10 +739,10 @@
       \item \textbf{Detune}
       \item \textbf{FREQUENCY slider}
       \item \textbf{440Hz}          % addition to stock
-      \item \textbf{Eq.T.}          % addition to stock
+      \item \textbf{Eq.T}          % addition to stock
       \item \textbf{Octave}
       \item \textbf{Detune Type}
-      \item \textbf{Coarse det.}
+      \item \textbf{Coarse det}
       \item \textbf{Frequency Env, Stock + Enable}
       \item \textbf{Frequency LFO, Stock + Enable}
       \item \textbf{Voice Oscillator}
@@ -804,7 +804,7 @@
 
    Values: \texttt{Default*, L35cents, L10cents, E100cents, E1200cents}
 
-   \itempar{Coarse det.}{voice parameters!coarse detune}
+   \itempar{Coarse det}{voice parameters!coarse detune}
    Coarse Detune.
    Is this setting in units of semitones?
    \index{todo!coarse detune units}
@@ -865,13 +865,12 @@
    Shows a period of the currently configured oscillator.
 
    \itempar{Change}{voice oscillator!Change}
-   Voice Oscillator Change.
-   
+   ADDSynth Voice Oscillator Change.
    This button brings up the ADDsynth Oscillator Editor dialog.
    This dialog is described elsewhere.
 
    \itempar{Sound}{voice oscillator!sound}
-   Oscillator Type (sound/noise).
+   ADDSynth Oscillator Type (sound/noise).
    Sound/Noise choice.
    Select the mode of the oscillator (sound versus white noise).
 
@@ -913,71 +912,59 @@
    Values: \texttt{Off*, On}
 
    Enabling this item causes the Unison-related items to become
-   enabled (they are discussed below, starting with \textbf{Size}
+   enabled (they are discussed next, starting with \textbf{Size}
    and \textbf{Frequency Spread}.
 
-\begin{figure}[H]
-   \centering 
-   \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/ADDsynth-oscillator-editor.jpg}
-   \caption{ADDsynth Oscillator Editor}
-   \label{fig:addsynth_oscillator_editor}
-\end{figure}
-
-   This item is nearly identical to the PADsynth harmonic editor depicted in
-   \figureref{fig:padsynth_harmonic_content_editor}.
-   Obviously, it is a topic unto itself!
-   Let us continue with rest of the minor controls.
-
-      \begin{enumber}
-         \item \textbf{Size}
-         \item \textbf{Frequency Spread}
-         \item \textbf{Ph.rnd}
-         \item \textbf{Stereo}
-         \item \textbf{Vibrato}
-         \item \textbf{V.speed}
-         \item \textbf{Invert}
-      \end{enumber}
+   \begin{enumber}
+      \item \textbf{Size}
+      \item \textbf{Frequency Spread}
+      \item \textbf{Ph.rnd}
+      \item \textbf{Stereo}
+      \item \textbf{Vibrato}
+      \item \textbf{V.speed}
+      \item \textbf{Invert}
+   \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
-   \itempar{Unison Size}{Size}
+   \itempar{Unison Size}{unison!size}
    Sets the number of unison sub-voices.
 
    Values: \texttt{2* to 50}
 
-   \itempar{Unison Frequency Spread}{Frequency Spread}
+   \itempar{Unison Frequency Spread}{unison!freq spread}
    Frequency spread of the unison (cents).
 
    Values: \texttt{0 to 200, 44.6*}
 
-   \itempar{Phase Randomness}{Ph.rnd}
+   \itempar{Phase Randomness}{unison!Ph.rnd}
    Unison Phase Randomness.
 
    Values: \texttt{0 to 127*}
 
-   \itempar{Stereo Spread}{Stereo}
+   \itempar{Stereo Spread}{unison!Stereo}
    Unison Stereo Spread.
 
    Values: \texttt{0 to 127, 64*}
 
-   \itempar{Unison Vibrato}{Vibrato}
+   \itempar{Unison Vibrato}{unison!Vibrato}
    Unison Vibrato.
 
    Values: \texttt{0 to 127, 64*}
 
-   \itempar{Vibrato Speed}{V.speed}
+   \itempar{Vibrato Speed}{unison!V.speed}
    Unison Vibrato Average Speed.
 
    Values: \texttt{0 to 127, 64*}
 
-   \itempar{Phase Invert}{Invert}
+   \itempar{Phase Invert}{unison!Invert}
    Unison Phase Invert.
    Values: \texttt{None*, Random, 50\%, 33\%, 25\%, 20\%}
 
 \begin{figure}[H]
    \centering 
    \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/voice-oscillator-phase-invert-dropdown.jpg}
-   \caption{Phase Invert Dropdown}
+   \caption{Unison Phase Invert Dropdown}
    \label{fig:phase_invert_dropdown}
 \end{figure}
 
@@ -1054,7 +1041,7 @@
 
    Values: \texttt{0 to 127, 64*}
 
-   \itempar{R.}{voice list!resonance}
+   \itempar{R}{voice list!resonance}
    Resonance On/Off.
    Enable/disable the resonance effect of a voice.
    Note that the resonance is configured in by the Resonance dialog brought
@@ -1084,148 +1071,94 @@
    Hide Voice List.  A Close button, really, and that is what it is in the
    latest version of \textsl{Yoshimi}.
 
-\subsection{ADDsynth / Resonance}
-\label{subsec:addsynth_resonance}
+\subsection{ADDsynth / Oscillator}
+\label{subsec:addsynth_oscillator}
 
-   The ADDsynth resonance editor is brought on-screen via the
-   \textbf{Resonance} button of the ADDsynth global part editor.
-
-   The resonance effect acts as a "resonance box" or a filter with arbitrary
-   frequency response. This produces very realistic sounds. 
-   The cursor location is shown below the graph (the frequency, kHz, and
-   the amplitude, dB). 
-
-   Paul Nasca has a video on YouTube that includes a demonstration of how
-   the resonance dialog works and affects the sound, if you care to look for
-   it.
+   Pressing the ambiguously-named \textbf{Change} button in the ADDsynth
+   voice-editor dialog brings up a very complex dialog for modifying the
+   harmonics of the voice.
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/ADDsynth-resonance.jpg}
-   \caption{ADDsynth Resonance}
-   \label{fig:addsynth_resonance}
+   \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/ADDsynth-oscillator-editor.jpg}
+   \caption{ADDsynth Oscillator Editor}
+   \label{fig:addsynth_oscillator_editor}
 \end{figure}
 
+   This item is nearly identical to the PADsynth harmonic editor depicted in
+   \figureref{fig:padsynth_harmonic_content_editor},
+   except for the items noted below.
+   Obviously, it is a topic unto itself!
+
    \begin{enumber}
-      \item \textbf{Graph Window}
-      \item \textbf{Enable}
-      \item \textbf{Max dB (wheel)}
-      \item \textbf{C.f. (knob)}
-      \item \textbf{Oct.}
-      \item \textbf{P.1st}
-      \item \textbf{InterpP}
-      \item \textbf{KHz}
-      \item \textbf{dB}
-      \item \textbf{Zero}
-      \item \textbf{Smooth}
-      \item \textbf{RND1}
-      \item \textbf{RND2}
-      \item \textbf{RND3}
-      \item \textbf{C}
-      \item \textbf{P}
-      \item \textbf{Close}
+      \item \textbf{Oscillator Spectrum Graph}
+      \item \textbf{Oscillator Waveform Graph}
+      \item \textbf{Mag.Type}
+      \item \textbf{rnd} (ADDsynth Oscillator Editor only)
+      \item \textbf{H.rnd} (ADDsynth Oscillator Editor only)
+      \item \textbf{H.rnd knob} (ADDsynth Oscillator Editor only)
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
-   \itempar{Graph Window}{resonance!graph}
-   Resonance Graph Window.
-   Lets one draw the resonance frequency response in "freehand" mode.
+   \itempar{Oscillator Spectrum Graph}{addsynth!oscillator graph}
+   Oscillator Spectrum Graph.
+   This graph shows the spectrum of the oscillator as a series of vertical
+   lines, a kind of frequency histogram.
 
-   \itempar{Enable}{resonance!Enable}
-   Resonance Enable.
-   Turn the Resonance effect on.
+   \itempar{Oscillator Waveform Graph}{addsynth!waveform graph}
+   Oscillator Waveform Graph.
+   This graph shows the temporal waveform  of the oscillator.
 
-   Values: \texttt{Off*, On}
+   \itempar{Mag.Type}{addsynth!mag type}
+   Oscillator Magnitude Type.
+   Sets how the magnitudes from the user interface behave.  See the values
+   below.
 
-   \itempar{Max dB (wheel)}{resonance!max db}
-   The Maximum Amplitude (dB) wheel.
-   Sets the amount of resonance: lower values have little effect. Use the
-   roller below to set it. 
+   \itempar{rnd}{addsynth!rnd}
+   rnd. Sets the randomness of the oscillator output. There are 2 types of
+   randomness provided.  The first type of randomness is
+   \textsl{group randomness},
+   \index{group randomness}
+   \index{randomness!group}
+   where the oscillator starts at random positions within the waveform,
+   and the second type of randomness is
+   \textsl{phase randomness},
+   \index{phase randomness}
+   \index{randomness!phase}
+   which is settable from -64 (the maximum) to -1 (the minimum),
+   the oscillator is phase distorted,
+   and each harmonic is from 1 (the maximum) to 63 (the minimum).
+   A setting of zero (0) is no randomness.
+   One can use this parameter to make warm sounds like
+   analogue synthesizers.
 
-   Values: \texttt{1 to 90, 20*}
+   \itempar{H.rnd}{addsynth!H.rnd}
+   Harmonic Amplitude Randomness.
+   Adjusts how the randomness is employed.
+   Not sure how this works, so, for now, experiment!
 
-   \itempar{C.f. (knob)}{resonance!cf}
-   Center Frequency (kHz).
-   Sets the center frequency of the graph.
-   The value is shown in the read-only text-box to the left.
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/ADDsynth-hrnd.png}
+   \caption{ADDsynth Oscillator Harmonic Randomness Selections}
+   \label{fig:addsynth_hrnd}
+\end{figure}
 
-   Values: \texttt{0 to 127, 64*} for \texttt{0.10 to 10.0, 1.0*}
+   Values: \texttt{None, Pow, and Sin}
 
-   \itempar{Oct.}{resonance!octaves}
-   Number of Octaves.
-   Sets the number of octaves the graph represents.
-   The value is shown in the read-only text-box to the left.
+   \itempar{H.rnd knob}{addsynth!H.rnd knob}
+   Harmonic Amplitude Randomness Knob.
+   This knob provides the oscillator's spectrum-adjust parameter.
 
-   Values: \texttt{0 to 127, 64*} for \texttt{0 to 10, 5*}
+   Values: \texttt{0 to 127, 64*}
 
-   \itempar{P.1st}{resonance!first harmonic}
-   Protect the fundamental Frequency.
-   Do not damp the first harmonic.
-   What does this mean, what affect does it have?
-   \index{todo!first harmonic}
+\subsection{ADDsynth / Resonance}
+\label{subsec:addsynth_resonance}
 
-   Values: \texttt{Off, On}
-
-   \itempar{InterpP}{resonance!interpolate}
-   Interpolate the peaks.
-   This setting is a weird one where mouse movement affects it,
-   but also affects the next field as well.  Oh, kHz and dB.
-
-   This setting allows one to make resonance functions very easily.  To use
-   it effectively, first, clear the graph using the \textbf{Zero} button.
-   Click the left button on a position on the graph. Click the
-   \textbf{InterpP} button. It will interpolate automatically between the
-   positions pointed to (or drew).  Also one can clear a part of the graph
-   by dragging with the right mouse button. In fact, the \textbf{interpP}
-   button interpolates between non-zero values.  If one presses the
-   \textbf{InterpP} with the right mouse button, the interpolation will be
-   linear, and if one uses the left button, the interpolation will be
-   smooth. 
-
-   \itempar{KHz}{resonance!khz}
-   The current frequency on graph.
-
-   \itempar{dB}{resonance!db}
-   The current level on graph window.
-
-   Values: \texttt{-90 to +90}
-
-   \itempar{Zero}{resonance!clear}
-   Clear the resonance function.
-   Zero. Clear the graph.
-
-   Amplification - how the output signal is amplified (WHERE?)
-
-   \itempar{Smooth}{resonance!smooth}
-   Smooth the resonance function.
-   Smooth the graph.
-
-   TODO:  What is the exact nature of this smoothing?
-   \index{todo!resonance smooth}
-
-   \itempar{RND1}{resonance!randomize}
-   Randomize the resonance function, 1.
-   RND1, RND2, RND3 are used to create random resonance functions.
-
-   TODO:  Why three buttons?
-
-   \index{todo!RND123}
-
-   \itempar{RND2}{resonance!randomize}
-   Randomize the resonance function, 2.
-
-   \itempar{RND3}{resonance!randomize}
-   Randomize the resonance function, 3.
-
-   \itempar{C}{resonance!copy}
-   Copy Dialog.
-
-   \itempar{P}{resonance!paste}
-   Paste Dialog.
-
-   \itempar{Close}{resonance!close}
-   Close.
+   This dialog, shared in common with the PADsynth editor, is a stock
+   user-interface element described in
+   \sectionref{subsec:stock_resonance_settings}.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex

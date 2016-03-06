@@ -17,8 +17,8 @@
 \section{SUBsynth}
 \label{sec:subsynth}
 
-   The \textsl{Yoshimi} SUBsynth dialog is a complex dialog for creating a
-   subtractive-synthesis instrument,
+   The \textsl{Yoshimi} SUBsynth dialog is yet another complex dialog, this time
+   for creating a subtractive-synthesis instrument,
    "SUBsynth" or "SUBnote" is a simple engine which makes sounds through
    subtraction of harmonics from white noise.  \cite{zyndoc}
 
@@ -28,6 +28,10 @@
    \caption{SUBsynth Edit Dialog}
    \label{fig:subsynth_edit_dialog}
 \end{figure}
+
+   This dialog, though very complex, consists of a number of stock sections
+   that are described elsewhere in this manual.
+   Some descriptions are repeated here, though.
 
    \begin{enumber}
       \item \textbf{AMPLITUDE} (section)
@@ -103,8 +107,9 @@
    Sets how the bandwidth of each harmonic is increased according to the
    frequency. The default (0) increases the bandwidth linearly according to
    the frequency.
+   This setting is kind of a "frequency stretch" parameter.
 
-   Values: \texttt{0 to 127???}
+   Values: \texttt{-64 to 63, 0*}
 
    \itempar{Bandwidth Env}{subsynth!bandwidth envelope}
    SUBsynth Bandwidth.
@@ -180,15 +185,15 @@
       \item \textbf{Frequency Env}
    \end{enumber}
 
-   Category - Filter category: Analog/Formant/SVF ????
-
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{Detune}{subsynth!freq detune}
-   Frequency Detune.  Fine detune?
+   Frequency Detune Indicator
 
    \itempar{FREQUENCY Slider}{subsynth!freq slider}
    Frequency Slider.
+
+   Values: \texttt{-35 to 34.99}
 
    \itempar{440Hz}{subsynth!freq 440hz}
    Frequency 440Hz.
@@ -197,6 +202,8 @@
 
    \itempar{Eq.T}{subsynth!freq eq t}
    Frequency Equalize Time.
+   Sets how the frequency varies according to the keyboard.
+   Set to the leftmost setting for a fixed frequency.
 
    \itempar{Octave}{subsynth!freq octave}
    Frequency Octave.
@@ -206,7 +213,7 @@
    Frequency Detune Type.
    Sets the "Detune" and "Coarse Detune" behavior 
 
-   \itempar{Coarse Det.}{subsynth!freq detune coarse}
+   \itempar{Coarse Det}{subsynth!freq detune coarse}
    Frequency Coarse Detune, "C.Detune".
 
    \itempar{Frequency Env}{subsynth!freq env}
@@ -302,17 +309,19 @@ click to set the parameters to default values.
    \itempar{Stereo}{subsynth!filter stereo}
    SUBsynth Stereo.
    Make the instrument stereo. The CPU usage goes up about 2 times.
-   Is this really a FILTER item?
+   This item isn't really a \textbf{FILTER} item, it is just located in that
+   same area.
 
    \itempar{Filter Stages}{subsynth!filter stages}
    Filter Stages.  Filter Order.
    Sets the number of filter stages applied to white noise. This parameter
    affects the CPU usage. 
 
-   Values: \texttt{0, 1, 2*, 3, 4, 5???}
+   Values: \texttt{0, 1, 2*, 3, 4, 5}
 
    \itempar{Mag. Type}{subsynth!filter mag type}
-   Magnitude Type. Type of magnitude settings (Linear/dBs) 
+   Magnitude Type.
+   Sets the type of magnitude settings (linear versus dB values) 
 
 \begin{figure}[H]
    \centering 

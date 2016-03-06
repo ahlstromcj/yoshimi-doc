@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2016-03-02
+% \update      2016-03-06
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -324,15 +324,16 @@ Page 34 - 2
    Values: \texttt{0 to 9, 3*}
 
    \itempar{Send reports to}{Main Settings!Send Reports Destination}
-
-   Values: \texttt{stderr, Console Window*}
-
    Notices and error messages can be sent to the standard error log of
    the terminal in which 
    \textsl{Yoshimi} can be run, or, more usefully, to
    an output console window.
+   Now these messages are pushed in reverse order, to avoid scrolling
+   and to make the most recent statuses easily visible.
    See \figureref{fig:send_reports_to}.
    It provides a depiction of the selection drop-down.
+
+   Values: \texttt{stderr, Console Window*}
 
 \begin{figure}[H]
    \centering 
@@ -677,20 +678,6 @@ Page 34 - 2
 
    Values: \texttt{0-127, 110*}
 
-% HAVE THESE ITEMS BEEN MOVED OR DELETED????
-%
-%  \itempar{Set immediate - Control}{MIDI preferences!set immediate control}
-%  TODO.
-%  Sets the control number for ...
-
-%  Values: \texttt{0-127, 0*}
-
-%  \itempar{Set immediate - Value}{MIDI preferences!set immediate value}
-%  TODO.
-%  Sets the value number of the given control for ...
-
-%  Values: \texttt{0-127, 0*}
-
    \itempar{Log incoming CCs}{MIDI preferences!Log incoming CCs}
    This setting is is about the only setting that is never saved. It is there
    solely as an aid for when \textsl{Yoshimi} appears to ignore MIDI commands,
@@ -890,7 +877,7 @@ Page 34 - 2
 
    Values: \texttt{Off*, On}
 
-   \itempar{"A" Freq.}{"A"}
+   \itempar{"A" Freq}{"A"}
    Frequency of the "A" Note.
    Sets the frequency of the "A" key. The standard is 440.0 Hz.
 
@@ -951,7 +938,7 @@ Page 34 - 2
    Retune.
    TODO:  What does this button do?
 
-   \itempar{nts./oct.}{Notes per Octave}
+   \itempar{nts./oct}{Notes per Octave}
    Notes Per Octave.
 
    Values: \texttt{12*} (range not yet known)
