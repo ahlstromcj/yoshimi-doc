@@ -1,14 +1,14 @@
-Yoshimi Document
+Yoshimi User Manual Document
 Chris Ahlstrom
-2015-04-20 to 2015-07-05
+2015-04-20 to 2016-03-06
 
 This project provides two things:
 
    1. A document, still in progress, to cover just about everything
       to do with Yoshimi, with some material covering ZynAddSubFX as
-      well.  Tips and bug notes are also included.
+      well.  Tips, bug notes, and "to-do's" are also included.
 
-   2. A safe place for notes, banks, presets, and other material I've
+   2. A safe place for notes, banks, presets, and other material I have
       discovered while using Yoshimi.  Some of this material has
       since disappeared from where I first got it.
 
@@ -16,11 +16,11 @@ Now, if you see your material in this project, and want me to take it
 out, just send me a mailto:ahlstromcj@gmail.com and I will comply
 after verifying you provide that material somewhere.
 
-To recreate the PDF file (the latest version is stored in the "pdf"
+To recreate the PDF file (the latest version is always available in the "pdf"
 directory), you will need to install GNU make, latexmk, tex-live, pdf2latex,
-and other resources related to LaTeX and PDF support.  If everything is
-in place, then change to the "tex" directory, and a simple "make" command
-will create the document.
+and other resources related to LaTeX and PDF support.  If everything is in
+place, then change to the "tex" directory, and a simple "make" command will
+create the document.
 
 "make clean" in the "tex" directory will remove all of the generated
 products.
@@ -33,3 +33,4 @@ Lastly, although this manual is much larger than any other I have seen,
 there is still much to be done to make it complete, readable, and easy to
 use.  Any help or suggestions are quite welcome!
 
+# vim: sw=4 ts=4 wm=4 et ft=sh
