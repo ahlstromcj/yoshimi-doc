@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2016-03-07
-% \update      2016-03-07
+% \update      2016-03-08
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -103,6 +103,11 @@
    patches, system effects, insertion effects, etc.
    See \sectionref{paragraph:menu_yoshimi_settings_main_settings}.
 
+   In many cases saving everything in a part is not what is desired.
+   Saving a patch later on in an editing session is one such example.
+   In order to save a patch, one can either save it from the
+   \textbf{Instruments} menu, or through the \textbf{Bank} window.
+
 \subsection{Configuration Files / Config}
 \label{subsec:configuration_config}
 
@@ -129,6 +134,14 @@
    common files and memory locations for those that should be shared.  The
    \texttt{.config} file is saved only when the user explicitly calls for it to
    be saved.
+   \textsl{Yoshimi} will still mention its absense:
+
+   \begin{verbatim}
+      $ yoshimi -a -A
+      Yoshimi is starting
+      ConfigFile /home/ahlstrom/.config/yoshimi/yoshimi.config not found, will
+         use default settings ...
+   \end{verbatim}
 
    The \texttt{.config} file will be readable by all instances of
    \textsl{Yoshimi}, but writeable only by the main instance. The relevant
@@ -153,12 +166,14 @@
    information, that needed to duplicate a \textsl{Yoshimi} session that was
    saved.  Seems to be a superset of an \texttt{.xmz} file, saving everything.
    This is a facility that is peculiar to \textsl{Yoshimi}.
+   The state file is accessed from the \textbf{State} menu item in the main
+   window.
+   Its default name is
+   \texttt{\textasciitilde/.config/yoshimi/yoshimi.state}.
 
    The \textsl{Yoshimi} 'state' file consists of the entire setup, from basic
    configuration settings to currently-loaded instrument sets.
-
-   The 'state' file consists of the entire setup from basic configuration to
-   currently loaded instrument sets.  However, upon investigating some JACK
+   However, upon investigating some JACK
    session managers, it looks like they don't want (or can't use) most of the
    configuration information because they are expecting to be able to change
    the state in \textsl{running} instances.
@@ -178,6 +193,8 @@
    \index{file!instrument}
    An Instrument.  These files can have two formats, compressed and
    uncompressed.
+   With the \textbf{Instrument} menu, one can just save the file to any
+   given location with the \texttt{.xiz} extension.
 
 \subsection{Configuration Files / Scale}
 \label{subsec:configuration_scale}
@@ -200,6 +217,11 @@
    settings for any of the components which support copy/paste operations.
    This is done with preset files (\texttt{.xpz}), which get stored in the
    folders indicated by \textsl{Paths / Preset Dirs...}.
+   The key thing about using presets is that one must first
+   specify a presets directory!  Otherwise, who knows where they go?
+   A good choice for a preset directory is
+   \texttt{\textasciitilde/.config/yoshimi/presets}.
+
    In \textsl{Yoshimi}, a
    \textsl{preset} is any collection of settings that can be saved to the
    clipboard or to a file, for later loading elsewhere.
@@ -209,6 +231,13 @@
    associated with many of the \textsl{Yoshimi} dialog windows.  They make it
    easy to save portions of the current settings for later use.  For example,
    resonance settings can be saved.
+
+   The naming convention for a preset file is
+   \texttt{presetname.presettype.xpz}, where
+   \textsl{presename} is the name one types into the \textbf{Copy to Preset}
+   name field, \textsl{presettype} is the name that appears in the
+   \textbf{Type} field, and \textsl{xpz} is the file-extension for compressed
+   XML preset files.
 
 % \subsection{Configuration Files / Patch Sets}
 % \label{subsec:configuration_patch_sets}
@@ -246,6 +275,11 @@
    even if one could it would simply mean that one very briefly waited for the
    other, which is not an issue as they are not in the realtime thread.
 
+   Now, there is also another "history" file apparently created by
+   \textsl{Yoshimi}: \texttt{\textasciitilde/.yoshimi\_history}.
+   This file seems to be a history of commands typed into the command-line
+   interface of \textsl{Yoshimi}.
+
 \subsection{Configuration Files / Banks}
 \label{subsec:configuration_banks}
 
@@ -257,6 +291,32 @@
    up.  However, they can all save, delete, or rename the actual files without
    talking to the other instances, so one can move a file in one instance, and
    then try (and fail) to access it from another.
+
+   With the \textbf{Banks} menu, one can assign a patch to a given slot with
+   a bank.  This instrument will remain in that slot for future use until it is
+   deleted. To see the physical location of the \texttt{.xiz} file, one
+   should check the
+   \textbf{Yoshimi / Settings / Banks / Root Dirs}
+   (\textsl{File→Settings→Bank\_Root\_Dirs}) window to see the paths for
+   banks.
+
+   At startup, after all the configuration is complete, the banks are loaded and
+   installed.  On a per instance basis, the first thing this process does is
+   look for a \texttt{yoshimi(-n).banks} file, if it can't, find that it then
+   hunts for a \texttt{yoshimi(-n).config} file, and if that fails it does a
+   rescan for banks. In this way it should be completely backward compatible
+   with any previous config files.
+
+   The \texttt{.banks} file is \textsl{saved} every time roots, banks, or
+   instruments are changed, and again on a normal exit to catch the current
+   root and bank (which don't otherwise trigger a save).  This allows the
+   last-used root and bank IDs to always match what that instance thinks is
+   there.
+   Note that one needs to have write permissions to add instruments to the
+   bank.
+   
+   Banks are more thoroughly described in
+   \sectionref{subsec:concepts_banks_and_roots}.
 
 \subsection{Configuration Files / Windows}
 \label{subsec:configuration_windows}
