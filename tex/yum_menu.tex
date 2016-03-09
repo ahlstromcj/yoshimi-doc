@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2016-03-08
+% \update      2016-03-09
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -800,19 +800,22 @@ Page 34 - 2
 
    Navigate to the desired directory, select it, and press the \textbf{Ok}
    button.  (There is no need to press the \textbf{Save and Close} button;
-   the directory is added as soon as \textsl{OK} is clicked.
+   the directory is added as soon as \textsl{OK} is clicked.  However, one
+   tends to want to click it anyway, to be sure.)
    \textsl{Important}:  Restart \textsl{Yoshimi} to use the preset directory.
 
    \itempar{Remove preset directory...}{Yoshimi Presets!Remove Directory}
    Select one of the preset directories in the preset list, then press this
    button to remove the preset directory from the list of preset
-   directories.  It is removed immediately, no need to confirm the deletion,
-   click an OK button, or click a Save button.
+   directories.  It is removed immediately, with no need to confirm the
+   deletion, click an OK button, or click a Save button.
 
    \itempar{Make default presets}{Yoshimi Presets!Make Default}
    Make Default Presets Directory.
    Select one of the preset directories in the preset list, then press this
    button to make the preset directory the default preset directory.
+   It should be a directory for which one has write permissions.
+   By default, it is \texttt{\textasciitilde/.config/yoshimi/presets}.
 
 \subsection{Menu / Scales}
 \label{subsec:menu_scales}
@@ -830,35 +833,14 @@ Page 34 - 2
 \end{figure}
 
    \begin{enumber}
-      \item \textbf{Load Scale Settings...}
-      \item \textbf{Save Scale Settings...}
-      \item \textbf{Show Scale Settings...}
+      \item \textbf{Show Settings...}
+      \item \textbf{Load...}
+      \item \textbf{Save...}
+      \item \textbf{Recent Scales...}
+      \item \textbf{Clear}
    \end{enumber}
 
-\subsubsection{Menu / Scales / Load}
-\label{subsec:menu_scales_load}
-
-\begin{figure}[H]
-   \centering 
-   \includegraphics[scale=0.75]{menu/Scales/open-scales.jpg}
-   \caption{Yoshimi Menu, Open Scales}
-   \label{fig:yoshimi_menu_open_scales}
-\end{figure}
-
-\begin{figure}[H]
-   \centering 
-   \includegraphics[scale=0.75]{menu/Scales/failed-to-load-scl-file-vice-xsz.jpg}
-   \caption{Yoshimi Menu, Failed to Load Scales}
-   \label{fig:yoshimi_menu_failed_to_load_scales}
-\end{figure}
-
-\subsubsection{Menu / Scales / Save}
-\label{subsec:menu_scales_save}
-
-   This dialog opens a stock file-dialog to allow the saving of
-   \texttt{*.xsz} files.
-
-\subsubsection{Menu / Scales / Show}
+\subsubsection{Menu / Scales / Show Settings}
 \label{subsec:menu_scales_show}
 
 \begin{figure}[H]
@@ -1050,6 +1032,42 @@ Page 34 - 2
    In the current version of \textsl{Yoshimi}, up to 25 recently used scales are
    now stored in the new history file, and can be quickly reinstalled with a
    mini browser in exactly the same way as patch sets.
+
+\subsubsection{Menu / Scales / Load}
+\label{subsec:menu_scales_load}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Scales/open-scales.jpg}
+   \caption{Yoshimi Menu, Open Scales}
+   \label{fig:yoshimi_menu_open_scales}
+\end{figure}
+
+   If the format of the scales file is not correct, then the following prompt
+   will appear.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Scales/failed-to-load-scl-file-vice-xsz.jpg}
+   \caption{Yoshimi Menu, Failed to Load Scales}
+   \label{fig:yoshimi_menu_failed_to_load_scales}
+\end{figure}
+
+\subsubsection{Menu / Scales / Save}
+\label{subsec:menu_scales_save}
+
+   This dialog opens a stock file-dialog to allow the saving of
+   \texttt{*.xsz} or \texttt{*.scl} files.
+
+\subsubsection{Menu / Scales / Recent Scales...}
+\label{subsec:menu_scales_recent_scales}
+
+   TODO.
+
+\subsubsection{Menu / Scales / Clear}
+\label{subsec:menu_scales_clear}
+
+   TODO.
 
 \subsection{Menu / State}
 \label{subsec:menu_state}

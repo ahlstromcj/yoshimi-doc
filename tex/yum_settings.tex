@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-15
-% \update      2016-03-08
+% \update      2016-03-09
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -1631,7 +1631,7 @@ These parameters are:
    labelled \textbf{C}, \textbf{P}, and \textbf{E},
    \textbf{E} is the editor window, discussed in 
    section \ref{subsubsec:freemode_envelope_settings}
-   \textbf{C} and \textbf{P} are the clipboard/present copy and paste
+   \textbf{C} and \textbf{P} are the clipboard/preset copy and paste
    dialogs, respectively.
    These buttons allow cut-and-paste for shorter sections of the XML
    configuration.
@@ -1646,6 +1646,13 @@ These parameters are:
    name field, \textsl{presettype} is the name that appears in the
    \textbf{Type} field, and \textsl{xpz} is the file-extension for compressed
    XML preset files.
+
+   The presets are stored in the current default preset directory,
+   which is normally
+   \texttt{\textasciitilde/.config/yoshimi/presets}.
+   Preset directories can be added to the list, and
+   the default preset directory can be changed.
+   See \sectionref{subsec:menu_paths}.
 
 \subsubsection{Clipboard/Preset Copy}
 \label{subsubsec:clipboard_copy}
