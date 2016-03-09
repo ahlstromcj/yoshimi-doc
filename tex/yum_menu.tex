@@ -939,10 +939,16 @@ Page 34 - 2
    (intonation scales, micro-tonal,...etc.). From its home page \cite{scala},
    one can download more than 2800 scales which one can import directly into
    \textsl{Yoshimi}.  Note that the zip file \textsl{must} be unzipped with
-   the \texttt{-aa} ("autoconvert") option.
+   the \texttt{-aa} ("autoconvert") option.  However, we have converted it to a
+   a much smaller tar file (it crams 18 Mb of files into an sub-500 Kb file),
+   which can be untarred directly into
+   one's configuration directory to create a
+   \texttt{\textasciitilde/.config/yoshimi/scales} directory chock full of
+   scales.
 
     \begin{verbatim}
-      $ unzip -aa scales.zip
+      $ cd ~/.config/yoshimi/
+      $ tar xf yoshimi-scales.tar.xz
     \end{verbatim}
 
 \begin{figure}[H]
