@@ -951,6 +951,8 @@ Page 34 - 2
       $ tar xf yoshimi-scales.tar.xz
     \end{verbatim}
 
+    Note that a Scala file cannot be loaded directly.  It must be imported.
+
 \begin{figure}[H]
    \centering 
    \includegraphics[scale=0.75]{menu/Scales/import-scl-file.jpg}
@@ -996,30 +998,30 @@ Page 34 - 2
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
-   \itempar{Scales!ON}{scales flag}
+   \itempar{ON}{scales!on}
 
    Values: \texttt{Off*, On}
 
-   \itempar{Scales!First Note}{first note}
+   \itempar{First Note}{scales!first note}
    First MIDI Note Number.
    Keys below this value are ignored.
 
    Values: \texttt{0* to 127}
 
-   \itempar{Scales!Last Note}{last note}
+   \itempar{Last Note}{scales!last note}
    Last MIDI Note Number.
    Keys above this value are ignored.
 
    Values: \texttt{0 to 127*}
 
-   \itempar{Scales!Middle Note}{middle note}
+   \itempar{Middle Note}{scales!middle note}
    Middle note where scale-degree 0 is mapped to;
    the middle note represents the note where the formal octave starts.
    Note the misspelling of "middle".
 
    Values: \texttt{0 to 127*}
 
-   \itempar{Scales!Map}{map}
+   \itempar{Map}{scales!map}
    Scales map.  This is the input field where the mappings are entered.
    The numbers represent the order (degree) entered on
    \textbf{Tunings Input} field, with the first value being 0.
@@ -1030,7 +1032,7 @@ Page 34 - 2
 
    Values: \texttt{0 to 11}
 
-   \itempar{Scales!Map Size}{map size}
+   \itempar{Map Size}{scales!map size}
    Provides the size of the scale-map.
 
    Values: \texttt{12}
@@ -1063,17 +1065,29 @@ Page 34 - 2
 \label{subsec:menu_scales_save}
 
    This dialog opens a stock file-dialog to allow the saving of
-   \texttt{*.xsz} or \texttt{*.scl} files.
+   \texttt{*.xsz} files.
+   If one has imported a scale from an \texttt{*.scl} file, and one
+   wants direct access to it from the \textbf{Scales / Recent Scales} menu, one
+   must first save the imported file as an \texttt{*.xsz} files.
 
 \subsubsection{Menu / Scales / Recent Scales...}
 \label{subsec:menu_scales_recent_scales}
 
-   TODO.
+   Once some scale file has been loaded (or imported and saved), then it
+   becomes available in this list, for more convenient access to it.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Scales/recent-scales.png}
+   \caption{Yoshimi Menu, Recent Scales}
+   \label{fig:yoshimi_menu_recent_scales}
+\end{figure}
 
 \subsubsection{Menu / Scales / Clear}
 \label{subsec:menu_scales_clear}
 
-   TODO.
+   This menu entry simply resets the \textsl{Yoshimi} scale back to it default,
+   the twelve-tone equally-tempered scale.
 
 \subsection{Menu / State}
 \label{subsec:menu_state}
