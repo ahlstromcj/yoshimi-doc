@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-15
-% \update      2016-03-08
+% \update      2016-03-09
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -18,20 +18,26 @@
 \section{Stock Settings Elements}
 \label{sec:stock_settings_elements}
 
-   This section collects all of the setting values one will find for
+   This section collects all of the setting values and small user-interface
+   items that one will find for
    audio parameters in the \textsl{Yoshimi} GUI.
    Sometimes the labels and tool-tips
    in the application are a bit too brief to understand. 
-   One will find their meanings in this section.
+   One will find their full meanings, their tricks, and usage notes
+   in this section.
 
    This section also covers the sub-panels that provide the settings.
-   By describing these deep details here, we can refer to them when
+   Many of these sub-panels are used in many places in \textsl{Yoshimi},
+   not only as user-interface elements, but as presets that can be saved and
+   load.
+   By describing the deep details of these sub-panels
+   here, we can refer to them when
    describing how to set up specific sounds in
    \textsl{Yoshimi}.
 
    Much of this material comes from
    \url{http://sourceforge.net/zynaddsubfx/Doc}
-   and has been reorganized in minor ways.
+   and has been reorganized, and, it is to be hoped, expanded.
 
 \subsection{Settings Features}
 \label{sec:stock_settings_ui_features}
@@ -1631,7 +1637,7 @@ These parameters are:
    labelled \textbf{C}, \textbf{P}, and \textbf{E},
    \textbf{E} is the editor window, discussed in 
    section \ref{subsubsec:freemode_envelope_settings}
-   \textbf{C} and \textbf{P} are the clipboard/present copy and paste
+   \textbf{C} and \textbf{P} are the clipboard/preset copy and paste
    dialogs, respectively.
    These buttons allow cut-and-paste for shorter sections of the XML
    configuration.
@@ -1646,6 +1652,13 @@ These parameters are:
    name field, \textsl{presettype} is the name that appears in the
    \textbf{Type} field, and \textsl{xpz} is the file-extension for compressed
    XML preset files.
+
+   The presets are stored in the current default preset directory,
+   which is normally
+   \texttt{\textasciitilde/.config/yoshimi/presets}.
+   Preset directories can be added to the list, and
+   the default preset directory can be changed.
+   See \sectionref{subsec:menu_paths}.
 
 \subsubsection{Clipboard/Preset Copy}
 \label{subsubsec:clipboard_copy}
