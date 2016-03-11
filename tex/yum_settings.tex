@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-15
-% \update      2016-03-06
+% \update      2016-03-09
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -18,20 +18,26 @@
 \section{Stock Settings Elements}
 \label{sec:stock_settings_elements}
 
-   This section collects all of the setting values one will find for
+   This section collects all of the setting values and small user-interface
+   items that one will find for
    audio parameters in the \textsl{Yoshimi} GUI.
    Sometimes the labels and tool-tips
    in the application are a bit too brief to understand. 
-   One will find their meanings in this section.
+   One will find their full meanings, their tricks, and usage notes
+   in this section.
 
    This section also covers the sub-panels that provide the settings.
-   By describing these deep details here, we can refer to them when
+   Many of these sub-panels are used in many places in \textsl{Yoshimi},
+   not only as user-interface elements, but as presets that can be saved and
+   load.
+   By describing the deep details of these sub-panels
+   here, we can refer to them when
    describing how to set up specific sounds in
    \textsl{Yoshimi}.
 
    Much of this material comes from
    \url{http://sourceforge.net/zynaddsubfx/Doc}
-   and has been reorganized in minor ways.
+   and has been reorganized, and, it is to be hoped, expanded.
 
 \subsection{Settings Features}
 \label{sec:stock_settings_ui_features}
@@ -108,7 +114,8 @@
 
    As one wants to save, as well as load, these presets, it makes sense to copy
    all the default ones to a location such as
-   \texttt{~/.config/yoshimi/presets}. That makes them fully accessible, but
+   \texttt{\textasciitilde/.config/yoshimi/presets}.
+   That makes them fully accessible, but
    tucked away out of sight.  \textsl{Yoshimi} creates this directory at first
    time start up.
 
@@ -252,8 +259,7 @@
 
    The Q value of a filter affects how concentrated
    the signal’s energy is at the cutoff frequency. The result of differing Q
-   values are shown in figure~\ref{fig:low_q_vs_high_q} on
-   page~\pageref{fig:low_q_vs_high_q}.
+   values are shown in \figureref{fig:low_q_vs_high_q}.
    For many classical analog sounds, high Q values were used on sweeping
    filters. A simple high Q low pass filter modulated by a strong envelope is
    usually sufficient to get a good sound.
@@ -284,8 +290,6 @@
 \end{figure}
 
    The affect of the order of the filter can be seen in the figure above.
-%  in figure~\ref{fig:2_pole_vs_8_pole_filter}
-%  on page~\pageref{fig:2_pole_vs_8_pole_filter}.
    This is roughly synonymous with the number of stages of the filter. For
    more complex patches, it is important to realize that the extra sharpness
    in the filter does not come for free, as it requires many more
@@ -1633,10 +1637,28 @@ These parameters are:
    labelled \textbf{C}, \textbf{P}, and \textbf{E},
    \textbf{E} is the editor window, discussed in 
    section \ref{subsubsec:freemode_envelope_settings}
-   \textbf{C} and \textbf{P} are the clipboard/present copy and paste
+   \textbf{C} and \textbf{P} are the clipboard/preset copy and paste
    dialogs, respectively.
    These buttons allow cut-and-paste for shorter sections of the XML
    configuration.
+
+   \index{preset!dialog}
+   The preset dialog also provides a way
+   \index{preset!file}
+   to save a preset to a preset file.
+   The naming convention for a preset file is
+   \texttt{presetname.presettype.xpz}, where
+   \textsl{presename} is the name one types into the \textbf{Copy to Preset}
+   name field, \textsl{presettype} is the name that appears in the
+   \textbf{Type} field, and \textsl{xpz} is the file-extension for compressed
+   XML preset files.
+
+   The presets are stored in the current default preset directory,
+   which is normally
+   \texttt{\textasciitilde/.config/yoshimi/presets}.
+   Preset directories can be added to the list, and
+   the default preset directory can be changed.
+   See \sectionref{subsec:menu_paths}.
 
 \subsubsection{Clipboard/Preset Copy}
 \label{subsubsec:clipboard_copy}
@@ -1658,47 +1680,54 @@ These parameters are:
    Clipboard type for copying.
    This field indicates the context (e.g h. "envamplitude") or name of the
    clipboard to which the data will be copied.
+   If the preset is saved/copied to a file, this
+   field becomes the second part of the preset's file-name.
 
    \itempar{Clipboard list}{clipboard!list}
    Clipboard list.
+   \index{preset!list}
+   This itemm is actually a list of preset files available to be selected for
+   this block of \textsl{Yoshimi} settings.
 
    \itempar{Copy to Preset}{preset!copy}
    Clipboard to preset.
-   Provides a way to specify the preset to which this data should be
-   copied.
+   Provides a way to specify the preset (and, indirectly, the preset file)
+   to which this data should be copied.
 
    To save to a preset, type the desired name of the setting.  This entry
    will enable this button.  When the button is pressed, the preset will
-   be saved to the default directory.
-   (Be sure to set up a default directory where ordinary users have write
-   permissions!)
+   be saved to the default preset directory.
+   Be sure to set up a default present directory where ordinary users have write
+   permissions!
+   A good choice for a preset directory is
+   \texttt{\textasciitilde/.config/yoshimi/presets}.
    \index{preset files!.ADnoteParameters.xpz}
-   The file-name of the of the preset will be a hidden file such as
+   The file-name of the of the preset will be a non-hidden file such as
 
    \begin{verbatim}
-      .ADnoteParameters.xpz
+      my_preset.ADnoteParameters.xpz
    \end{verbatim}
 
-   The main part of this name is shown near the top of the preset dialog, as
+   The middle part of this name is shown near the top of the preset dialog, as
    a cue.
-   There is no way in \textsl{Yoshimi} to change this name.  One
-   must do it using file system commands.  However, changing the name won't
-   do much good.  Only the name shown above will ever be visible
-   in \textsl{Yoshimi}.
-   (And yet it ships with a large number of non-hidden \texttt{.xpz} files!)
+   There is no way in \textsl{Yoshimi} to change this part of the file-name.
+   And don't do it using file system commands!  Modify the first part of the
+   file-name to distinguish it from other versions of the preset.
+   Only the type-name will ever be visible in the \textsl{Yoshimi}
+   presets \textbf{Type} field.
 
-   \index{todo!preset file question}
-   One other question about the preset file, not yet answered, is if all
-   the presets ever copied remain in that file, so that the user doesn't
-   have to keep making copies of the hidden preset file.
+   Note that \textsl{Yoshimi} ships with a number of non-hidden \texttt{.xpz}
+   files.
 
    \itempar{Copy to Clipboard}{clipboard!copy}
-   Preset to Clipboard.
+   \index{preset!copy}
+   Copies the preset to the clipboard.
 
 \subsubsection{Clipboard/Preset Paste}
 \label{subsubsec:clipboard_paste}
-\index{subsubsec:clipboard!paste}
 
+   \index{clipboard!paste}
+   \index{preset!paste}
    Observe \figureref{fig:paste_to_clipboard}.
    It shows an example of the pasting dialog for the clipboard.
 

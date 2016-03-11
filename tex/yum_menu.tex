@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2016-03-06
+% \update      2016-03-09
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -771,6 +771,14 @@ Page 34 - 2
    This interface element contains a list of preset directories.
    By default, the only directory present is the installed preset directory.
    For example, \texttt{/usr/share/yoshimi/presets}.
+   
+   \textbf{Tip:}
+   \index{tip!preset directory}
+   If there is no directory in this dialog, then one must
+   add one, otherwise there is no place to store the presets.
+   So make this one of the first items specified when first running
+   \textsl{Yoshimi}!
+
    Another example would be this project; let YOSHIMI-DOC be the directory
    where this project is stored.  Then one can add
    \texttt{YOSHIMI-DOC/config/yoshimi/presets} to this list, using the
@@ -792,19 +800,22 @@ Page 34 - 2
 
    Navigate to the desired directory, select it, and press the \textbf{Ok}
    button.  (There is no need to press the \textbf{Save and Close} button;
-   the directory is added as soon as \textsl{OK} is clicked.
+   the directory is added as soon as \textsl{OK} is clicked.  However, one
+   tends to want to click it anyway, to be sure.)
    \textsl{Important}:  Restart \textsl{Yoshimi} to use the preset directory.
 
    \itempar{Remove preset directory...}{Yoshimi Presets!Remove Directory}
    Select one of the preset directories in the preset list, then press this
    button to remove the preset directory from the list of preset
-   directories.  It is removed immediately, no need to confirm the deletion,
-   click an OK button, or click a Save button.
+   directories.  It is removed immediately, with no need to confirm the
+   deletion, click an OK button, or click a Save button.
 
    \itempar{Make default presets}{Yoshimi Presets!Make Default}
    Make Default Presets Directory.
    Select one of the preset directories in the preset list, then press this
    button to make the preset directory the default preset directory.
+   It should be a directory for which one has write permissions.
+   By default, it is \texttt{\textasciitilde/.config/yoshimi/presets}.
 
 \subsection{Menu / Scales}
 \label{subsec:menu_scales}
@@ -822,35 +833,14 @@ Page 34 - 2
 \end{figure}
 
    \begin{enumber}
-      \item \textbf{Load Scale Settings...}
-      \item \textbf{Save Scale Settings...}
-      \item \textbf{Show Scale Settings...}
+      \item \textbf{Show Settings...}
+      \item \textbf{Load...}
+      \item \textbf{Save...}
+      \item \textbf{Recent Scales...}
+      \item \textbf{Clear}
    \end{enumber}
 
-\subsubsection{Menu / Scales / Load}
-\label{subsec:menu_scales_load}
-
-\begin{figure}[H]
-   \centering 
-   \includegraphics[scale=0.75]{menu/Scales/open-scales.jpg}
-   \caption{Yoshimi Menu, Open Scales}
-   \label{fig:yoshimi_menu_open_scales}
-\end{figure}
-
-\begin{figure}[H]
-   \centering 
-   \includegraphics[scale=0.75]{menu/Scales/failed-to-load-scl-file-vice-xsz.jpg}
-   \caption{Yoshimi Menu, Failed to Load Scales}
-   \label{fig:yoshimi_menu_failed_to_load_scales}
-\end{figure}
-
-\subsubsection{Menu / Scales / Save}
-\label{subsec:menu_scales_save}
-
-   This dialog opens a stock file-dialog to allow the saving of
-   \texttt{*.xsz} files.
-
-\subsubsection{Menu / Scales / Show}
+\subsubsection{Menu / Scales / Show Settings}
 \label{subsec:menu_scales_show}
 
 \begin{figure}[H]
@@ -949,11 +939,19 @@ Page 34 - 2
    (intonation scales, micro-tonal,...etc.). From its home page \cite{scala},
    one can download more than 2800 scales which one can import directly into
    \textsl{Yoshimi}.  Note that the zip file \textsl{must} be unzipped with
-   the \texttt{-aa} ("autoconvert") option.
+   the \texttt{-aa} ("autoconvert") option.  However, we have converted it to a
+   a much smaller tar file (it crams 18 Mb of files into an sub-500 Kb file),
+   which can be untarred directly into
+   one's configuration directory to create a
+   \texttt{\textasciitilde/.config/yoshimi/scales} directory chock full of
+   scales.
 
     \begin{verbatim}
-      $ unzip -aa scales.zip
+      $ cd ~/.config/yoshimi/
+      $ tar xf yoshimi-scales.tar.xz
     \end{verbatim}
+
+    Note that a Scala file cannot be loaded directly.  It must be imported.
 
 \begin{figure}[H]
    \centering 
@@ -1000,30 +998,30 @@ Page 34 - 2
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
-   \itempar{Scales!ON}{scales flag}
+   \itempar{ON}{scales!on}
 
    Values: \texttt{Off*, On}
 
-   \itempar{Scales!First Note}{first note}
+   \itempar{First Note}{scales!first note}
    First MIDI Note Number.
    Keys below this value are ignored.
 
    Values: \texttt{0* to 127}
 
-   \itempar{Scales!Last Note}{last note}
+   \itempar{Last Note}{scales!last note}
    Last MIDI Note Number.
    Keys above this value are ignored.
 
    Values: \texttt{0 to 127*}
 
-   \itempar{Scales!Middle Note}{middle note}
+   \itempar{Middle Note}{scales!middle note}
    Middle note where scale-degree 0 is mapped to;
    the middle note represents the note where the formal octave starts.
    Note the misspelling of "middle".
 
    Values: \texttt{0 to 127*}
 
-   \itempar{Scales!Map}{map}
+   \itempar{Map}{scales!map}
    Scales map.  This is the input field where the mappings are entered.
    The numbers represent the order (degree) entered on
    \textbf{Tunings Input} field, with the first value being 0.
@@ -1034,7 +1032,7 @@ Page 34 - 2
 
    Values: \texttt{0 to 11}
 
-   \itempar{Scales!Map Size}{map size}
+   \itempar{Map Size}{scales!map size}
    Provides the size of the scale-map.
 
    Values: \texttt{12}
@@ -1042,6 +1040,54 @@ Page 34 - 2
    In the current version of \textsl{Yoshimi}, up to 25 recently used scales are
    now stored in the new history file, and can be quickly reinstalled with a
    mini browser in exactly the same way as patch sets.
+
+\subsubsection{Menu / Scales / Load}
+\label{subsec:menu_scales_load}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Scales/open-scales.jpg}
+   \caption{Yoshimi Menu, Open Scales}
+   \label{fig:yoshimi_menu_open_scales}
+\end{figure}
+
+   If the format of the scales file is not correct, then the following prompt
+   will appear.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Scales/failed-to-load-scl-file-vice-xsz.jpg}
+   \caption{Yoshimi Menu, Failed to Load Scales}
+   \label{fig:yoshimi_menu_failed_to_load_scales}
+\end{figure}
+
+\subsubsection{Menu / Scales / Save}
+\label{subsec:menu_scales_save}
+
+   This dialog opens a stock file-dialog to allow the saving of
+   \texttt{*.xsz} files.
+   If one has imported a scale from an \texttt{*.scl} file, and one
+   wants direct access to it from the \textbf{Scales / Recent Scales} menu, one
+   must first save the imported file as an \texttt{*.xsz} files.
+
+\subsubsection{Menu / Scales / Recent Scales...}
+\label{subsec:menu_scales_recent_scales}
+
+   Once some scale file has been loaded (or imported and saved), then it
+   becomes available in this list, for more convenient access to it.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{menu/Scales/recent-scales.png}
+   \caption{Yoshimi Menu, Recent Scales}
+   \label{fig:yoshimi_menu_recent_scales}
+\end{figure}
+
+\subsubsection{Menu / Scales / Clear}
+\label{subsec:menu_scales_clear}
+
+   This menu entry simply resets the \textsl{Yoshimi} scale back to it default,
+   the twelve-tone equally-tempered scale.
 
 \subsection{Menu / State}
 \label{subsec:menu_state}
