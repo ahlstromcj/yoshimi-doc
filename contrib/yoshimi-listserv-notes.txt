@@ -4951,3 +4951,165 @@ Will now has to go to bed :(
 
 
  
+
+
+Date: Fri, 18 Mar 2016 14:25:15 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: The unkillable zombie -A leap into the dark
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.29; x86_64-pc-linux-gnu)
+
+On Sun, 13 Mar 2016 20:58:53 +0000
+Will Godfrey <willgodfrey@musically.me.uk> wrote:
+
+> The attached patch *only* works on the current master, and should be applied
+> against src/CMakeLists.txt
+>
+> It works for me on debian, but needs to be tested on fedora and related distros 
+> - or indeed on any non-debian (or highly specialised) distros.
+>
+> If this works correctly - all files in the correct places - then it brings two
+> more distros into the fold, without needing any special treatment.
+>
+> fingers crossed :)
+
+I decided to install Fedora on the spare machine that I use for general
+'dangerous' testing. It was the first time I actually saw Gnome 3. I was
+utterly appalled! How can anyone with two functioning brain cells actually do
+anything on it? It fights you every step of the way.
+
+The combination of that, GDM and SystemD also made it an epic battle trying to
+get rid of it and install something sane like XFCE. Overall it took me the best
+part of a day to get to a state where I could compile Yoshimi.
+
+Well, the good news is that I was able to compile it with the current Exherbo
+patch and everything seemed to be placed in sensible locations. For LV2, it
+first looks for the LV2_PATH environment variable, and if that isn't there it
+makes an educated guess. Also, you do have the option (at CCmake setup time) of
+overriding this and deciding where you want LV2 to go.
+
+The bad news is that being a long-term debian user I don't really know how
+fedora lays things out, so performance was rather poor, and none of Ardour,
+Muse, Qtractor was able to find any LV2 plugins, so clearly I've got something
+wrong. However, having established that we have a workable multi-distro install
+system, I'm not going to waste any more time on it. There's far too much that
+needs doing already :(
+
+This patch will go into the next commit.
+
+
+
+
+
+Date: Sat, 19 Mar 2016 17:12:12 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] a little bit more
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+GUI start up is now slightly staggered so if you have a slower computer of a
+lot of roots and banks you see something sooner. roots and banks are read after
+everything else is running.
+
+More importantly, the CLI can now list the recent patch set, scale &
+state histories :)
+
+
+
+
+
+Date: Sun, 20 Mar 2016 19:45:19 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: a little bit more
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+On Sat, 19 Mar 2016 15:29:41 -0500
+"Jonathan E. Brickman" <jeb@ponderworthy.com> wrote:
+
+> Excellent!!!
+Thanks Jonathan :)
+
+... However,
+> > More importantly, the CLI can now list the recent patch set, scale &
+> > state histories :)
+
+This has just opened a (very old) can of worms :(
+
+When I reorganised the top menu I discovered that loading states didn't apply
+new tunings, although it appeared to load them correctly. Thinking that Cal had
+maybe overlooked this I added a call in the gui to 'microtonalui->apply()'.
+This worked OK so I thought no more about it.
+
+Having implemented the CLI entry above, I thought about enabling scale and state
+load & save from there too. So, from the gui I first created a special scale,
+and a distinctive patch set, then saved patch, scale and state.
+
+Imagine my surprise when the only thing that applied the tunings was state
+load! For the others you had to go into the Scales window and hit the 'Retune'
+button. Now both of these were old Zyn functions, and had never been changed.     The latest master has a fix for this, but only when working within the gui.
+
+Trying to work out how to go directly from the XML to the tunings is proving to
+be a nightmare. The above systems load the file, then convert the data to a form
+for the window, then from there convert it to the actual tunings when that
+apply() function is called :(
+
+
+
+
+
+Date: Sat, 19 Mar 2016 17:27:25 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: yoshimi CLI
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Hi Chris,
+
+I've made a little bit more work for you :)
+
+In the CLI help 'lists' after 'setup' you need to insert:
+
+list history [s]               - recent files (patchsets, scales, states)
+
+If no parameter is given it lists all three in sequence.
+
+
+I notice you have load and save instrument wrong on both page 186 and 188 it
+should be:
+
+load instrument <s>            - instrument to current part from named file
+save instrument <s>            - current part to named file
+
+All the load and save parameters are strings and are compulsory, not optional.
+
+
+I haven't forgotten about writing something for LV2 - I just can't think of
+anything I can say :(
+
+
+
+
+
+
+Date: Sun, 20 Mar 2016 19:17:24 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: yoshimi CLI
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Ummm.
+
+There is also state load and save from/to named file in there now :)
+
+
+
+
+
+
+
+
+
+
+
+
