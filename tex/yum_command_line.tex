@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-09-06
-% \update      2016-03-06
+% \update      2016-03-21
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -150,17 +150,20 @@
 
    As well as an immediate history, \textsl{Yoshimi} maintains a command
    history file, so provided one makes a normal command-line exit, the last
-   commands will be available on the next run of \textsl{Yoshimi}..
+   commands will be available on the next run of \textsl{Yoshimi}.
 
    Originally this section described the currently implemented commands,
    but as the command set is very much a moving target, it is simpler to just
-   ask one to run Yoshimi and type the "?" command.
+   ask one to run \textsl{Yoshimi} and type the "?" command.
 
    Commands with "*" in the description need the setup to be saved,
    and \textsl{Yoshimi} restarted to be activated. 
 
+   Note that \textsl{Yoshimi}'s command-line can also load and save states,
+   patchsets, and scales, and can list recent histories.
+
    More will be added, and the organisation of them may be changed slightly.
-   If any configuratiion settings are changed, either at the command-line
+   If any configuration settings are changed, either at the command-line
    or in the graphical user-interface, one will be given a warning when
    exiting, with the option to continue running so one can save the changes.
 
@@ -228,7 +231,7 @@ Ones that we're pretty sure will be added are:
    (see \tableref{table:yoshimi_text_commands_part_1}
    and \tableref{table:yoshimi_text_commands_part_2})
    can be entered after the 'up and running' message.
-   The commands are not case-sensitive.
+   The commands are \textsl{not} case-sensitive.
    The commands can be abbreviated to the first three letters of each command,
    or, in some cases, just one letter.
    The commands that are available depend on the current "context" of the
@@ -298,11 +301,14 @@ Ones that we're pretty sure will be added are:
          \texttt{list setup} &
             Displays the dynamic system settings. \\
 
+         \texttt{list history [s]} &
+            Lists recent files (patchsets, scales, and states). \\
+
          \texttt{list vectors [n]} &
             Lists the settings for enabled vectors, channel \textsl{n}. \\
 
-         \texttt{load instrument [n]} &
-            Loads an instrument. \\
+         \texttt{load instrument [s]} &
+            Loads an instrument to the current part from a file. \\
 
          \texttt{load patchset [s]} &
             Load a complete patch set from the file. \\
@@ -310,8 +316,8 @@ Ones that we're pretty sure will be added are:
          \texttt{save patchset [s]} &
             Save the patch set to a named file. \\
 
-         \texttt{save instrument [n]} &
-            Saves an instrument. \\
+         \texttt{save instrument [s]} &
+            Saves the current part to a named instrument file. \\
 
          \texttt{save setup} &
             Save the current dynamic system settings. \\
@@ -451,6 +457,8 @@ Ones that we're pretty sure will be added are:
 
    This section describes the command-line commands in more detail.
    Obviously, some more needs to be written about some of the commands.
+   Note that all the parameters for the \texttt{load} and \texttt{save}
+   parameters are strings, and the parameters are compulsory, not optional.
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
@@ -490,6 +498,11 @@ Ones that we're pretty sure will be added are:
       then list every effect and all its
       presets along with the preset number.
 
+   \itempar{list history [s]}{cmd!list history}
+      Displays the recently-used files, including patchsets, scales, and
+      states.  If no parameter is given, then this command lists all three
+      files in sequence.
+
    \itempar{list instruments [n]}{cmd!list instruents}
       List all instruments and IDs in bank \textsl{n}
       or the current bank/root.
@@ -514,9 +527,9 @@ Ones that we're pretty sure will be added are:
    \itempar{list vector [n]}{cmd!list vector}
       Lists the settings for vector on channel \textsl{n}.
 
-   \itempar{load instrument [n]}{cmd!load instrument}
-      Loads an instrument.
-      Is \textsl{n} an ID number, an instrument name, or simply either one?
+   \itempar{load instrument [s]}{cmd!load instrument}
+      Loads an instrument into the current part from the named file.
+      The file-name parameter \textsl{s} is mandatory.
 
    \itempar{load patchset [s]}{cmd!load instrument}
       Load a complete patch set from a named file, \textsl{s}.
@@ -524,9 +537,9 @@ Ones that we're pretty sure will be added are:
    \itempar{save patchset [s]}{cmd!save patchset}
       Saves the current patchset to the file named \textsl{s}.
 
-   \itempar{save instrument [n]}{cmd!save instrument}
-      Saves an instrument.
-      Is \textsl{n} an instrument name, ID number, or either one.
+   \itempar{save instrument [s]}{cmd!save instrument}
+      Saves the instrument of the current part to the named file.
+      The file-name parameter \textsl{s} is mandatory.
 
    \itempar{save setup}{cmd!save setup}
       Save the current dynamic system settings.
