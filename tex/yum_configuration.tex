@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2016-03-07
-% \update      2016-03-08
+% \update      2016-03-24
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -37,31 +37,34 @@
    Here is a summary of the files.
 
    \begin{itemize}
-      \item \texttt{.xmz}
-         A full \textsl{Yoshimi} configuration; everything.
-         This file is also called a \textsl{parameter set}.
+      \item \texttt{.banks}
+         Contains information on the accessible instrument banks.
       \item \texttt{.config}
          Contains information to translate between bank directory names and
          bank ID values.
+      \item \texttt{.history}
+         Recent patch sets are now stored in the \texttt{.history} file.
+      \item \texttt{.instance(n)}
+         Contains the current root/bank, MIDI settings, and preferred engines.
       \item \texttt{.state}
          Contains the state information needed to
          duplicate a \textsl{Yoshimi} session that was saved.
-      \item \texttt{.xiz}
-         An Instrument file.
-      \item \texttt{.xsz}
-         Scale Settings.
-      \item \texttt{.xpz}
-         Presets.
-         A preset is a \textsl{Yoshimi} sub-setting file.
-      \item \texttt{.instance(n)}
-         Contains the current root/bank, MIDI settings, and preferred engines.
-      \item \texttt{.history}
-         Recent patch sets are now stored in the \texttt{.history} file.
-      \item \texttt{.banks}
-         Contains information on the accessible instrument banks.
       \item \texttt{.windows}
          Contains the current layout of windows for reinstantiation at the next
          startup of \textsl{Yoshimi}.
+      \item \texttt{.xiz}
+         An Instrument file.
+      \item \texttt{.xmz}
+         A full \textsl{Yoshimi} configuration; everything.
+         This file is also called a \textsl{parameter set}.
+      \item \texttt{.xpz}
+         Presets.
+         A preset is a \textsl{Yoshimi} sub-setting file.
+      \item \texttt{.xsz}
+         Scale Settings.
+      \item \texttt{.xvy}
+         Vector settings. The extension stands for "Xml Vector Yoshimi".
+         It will eventually be integrated with the saved states.
    \end{itemize}
 
    The entire config set should then be:

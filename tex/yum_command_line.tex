@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-09-06
-% \update      2016-03-21
+% \update      2016-03-24
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -161,11 +161,23 @@
 
    Note that \textsl{Yoshimi}'s command-line can also load and save states,
    patchsets, and scales, and can list recent histories.
+   Vector load and save is also supported from the command-line.
+   That's a complete vector set, with all mappings, instruments, etc.
+   One can independently decide which
+   channel to load and save from, so that one
+   can actually build up a vector set in
+   (say) channel 3, then later decide to use it in channel 7.
+   It has the extension \texttt{.xvy}, standing for "Xml/Vector/Yoshimi".
+   It will eventually be integrated with the saved states.
 
-   More will be added, and the organisation of them may be changed slightly.
-   If any configuration settings are changed, either at the command-line
-   or in the graphical user-interface, one will be given a warning when
-   exiting, with the option to continue running so one can save the changes.
+   Another small detail is that all of the minimum command-line
+   abbreviations are now \textbf{C}apitalised in the help list.     
+
+   More features will be added, and the organisation of them may be changed
+   slightly.  If any configuration settings are changed, either at the
+   command-line or in the graphical user-interface, one will be given a warning
+   when exiting, with the option to continue running so one can save the
+   changes.
 
 \subsection{Command Level}
 \label{subsec:command_line_command_level}
@@ -653,6 +665,23 @@ Ones that we're pretty sure will be added are:
    \itempar{set vector [n1] x/y cc [n2]}{cmd!set vector cc}
       CC \textsl{n2} is used for channel \textsl{n1} X or Y axis sweep.
       For X, this also enables vector control for the channel.
+
+      The individual features are now numbered 1-4 and can be
+      \index{vector!enable} \texttt{enabled} or
+      \index{vector!reverse} \texttt{reversed} (any
+      other word disables the feature).
+      "Reversed" means that, instead of the X left rising in
+      value with increasing CC value, it decreases.
+      X right does the opposite of course.
+
+      Feature 1 is always fixed as 7 (volume) and is not reversible.
+      Features 2 to 4 can also have the outgoing CC changed to any valid one.
+      The vector is just about the only command-line
+      entry that starts from 1.
+
+      The original system where bits were ORred together was done to make NRPN
+      control as efficient as possible. That hasn't changed, but log messages
+      refer to the command-line numbering.
 
    \itempar{set vector [n1] x/y features [n2]}{cmd!set vector features}
       Sets channel \textsl{n1} X or Y features to \textsl{n2}.

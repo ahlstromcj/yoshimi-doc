@@ -4950,4 +4950,53 @@ and Jack - if you have a suitable soundcard! Woo :)
 Will now has to go to bed :(
 
 
+
+Date: Wed, 23 Mar 2016 02:14:17 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: On a bit of a roll now :)
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Vector load and save is now possible from the CLI. That's a complete vector
+set, with all mappings, instruments etc. You can independently decide which
+channel to load and save from, so you can actually build up a vector set in
+(say) channel 3, then later decide you want to use it in channel 7.
+It has the extension .xvy standing for Xml, Vector, Yoshimi
+
+It seems to be reliable, but there is a bit more tidying up I'll be doing. 
+Also, I want to integrate it with saved states.
+
+Another small detail is that all the minimum CLI abbreviations are now
+Capitalised in the help list.
+
+
+
+
+
+
+Date: Wed, 23 Mar 2016 22:33:46 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: On a bit of a roll now :)
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Some more CLI goodness.
+
+The way you enter vector features is now much more user friendly.
+
+The individual features are now numbered 1-4 and can be Enabled or Reversed (any
+other word disables). Reversed means that instead of the X left rising in value
+with increasing CC value it decreases. X right does the opposite of course.
+
+1 is always fixed as 7 (volume) and is not reversible.
+2-4 can also have the outgoing CC changed to any valid one.
+
+This is just about the only CLI entry that starts from 1. This is because
+internally 0 means no features, and trying to fiddle the numbers makes the code
+a lot more confusing.
+
+The original system where bits were ORred together was done to make NRPN
+control as efficient as possible. That hasn't changed, but log messages refer
+to the CLI numbering.
+
  
