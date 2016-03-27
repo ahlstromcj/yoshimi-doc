@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-09-06
-% \update      2016-03-24
+% \update      2016-03-27
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -54,7 +54,8 @@
    The command-line mode provides extensive error checking and feedback.
    Note the change in nomenclature from "Parameters" to "Patch Set", which is
    visible in the main screen, and also reflected in the command line.
-   The prompt will always show what level
+   \index{command level}
+   The prompt will always show what \textsl{command level}
    one is on, along with relevant information.
    At the CLI prompt, when effects are being managed, the preset number is also
    shown on the prompt so you'll typically see something like:
@@ -235,6 +236,9 @@ Ones that we're pretty sure will be added are:
       set vector 5
       s ve 5
    \end{verbatim}
+
+   A more detailed discussion of command-line vector control is presented in
+   \sectionref{subsection:vector_command_line}.
 
 \subsection{Command Table}
 \label{subsec:command_line_command_table}
@@ -666,6 +670,7 @@ Ones that we're pretty sure will be added are:
       CC \textsl{n2} is used for channel \textsl{n1} X or Y axis sweep.
       For X, this also enables vector control for the channel.
 
+      \index{vector!features}
       The individual features are now numbered 1-4 and can be
       \index{vector!enable} \texttt{enabled} or
       \index{vector!reverse} \texttt{reversed} (any
@@ -682,6 +687,9 @@ Ones that we're pretty sure will be added are:
       The original system where bits were ORred together was done to make NRPN
       control as efficient as possible. That hasn't changed, but log messages
       refer to the command-line numbering.
+
+      A more detailed discussion of command-line vector control is presented in
+      \sectionref{subsection:vector_command_line}.
 
    \itempar{set vector [n1] x/y features [n2]}{cmd!set vector features}
       Sets channel \textsl{n1} X or Y features to \textsl{n2}.
