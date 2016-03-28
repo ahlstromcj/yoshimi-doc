@@ -5140,3 +5140,114 @@ Loaded Vector CoolSound to source channel
 The file extension we use is .xvy but this will be added automatically.
 
 
+
+
+
+
+Date: Sat, 26 Mar 2016 15:37:15 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: On a bit of a roll now :)
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+I was playing about yesterday evening with Rosegarden (and Yoshimi of course)
+but was getting frustrated with wrong volume and pan settings.
+
+Eventually it occurred to me to enable our (fairly) new CC monitor. This pretty
+quickly revealed the problem. Rosegarden was sending CC121 - reset all
+controllers - at the start of some segments!
+
+This prompted me to add an ignore button in the midi config window. It's off
+by default, but mine is now on, and will probably remain so!
+
+It seems some people don't like our startup splash - Boo!
+
+So if you really can't wait another second for Yoshimi, you can now disable it
+in the main config window.
+
+
+
+
+
+
+
+ate: Sun, 27 Mar 2016 15:22:42 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: On a bit of a roll now :)
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+On Sun, 27 Mar 2016 08:38:25 -0400
+Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
+
+> Will,
+>
+> I have added your examples to the "Vector Control" section of
+> yoshimi-doc.  The latest is currently only in the "cja" branch.
+>
+> However, you will note in that section that I have some questions that
+> occurred to me while working through it.
+>
+> Thanks man!
+
+NP. You've done a good job of putting it into more digestible form :)
+
+<aside>
+Whenever I get a cold I always end with 2-3 days extreme cough. I sometimes
+think that's actually far worse than the cold itself -BLEAH
+</aside>
+
+Right {rolls up virtual sleeves}
+
+To answer your second question first:
+
+
+In Yoshimi, all CLI file operations are standard file specs.
+
+"/home/user/directory/file" will go to that specific location.
+
+"file" will look only in the current directory, whatever that happens to be.
+
+
+Now for the more complicated bit :)
+
+I first thought about vector control long before we had 64 part capability,
+iand ntended to use just sequential parts/channels. I was put off by several
+things.
+
+First: How do you stop one vector definition overlapping another? Do you
+restrict it to blocks of 4? If so, what about the 'wastage' with a mixture of
+single and dual vectors?
+
+Second: My compositions frequently use 12 out of the 16 available channels. That
+leaves room for only one vectored one.
+
+Third: how do you stop an otherwise valid MIDI CC breaking a vectored setup?
+
+Stepping forward, 64 parts was initially just an experiment to see if it could
+be done. Once proved viable, my first thought was vectors!
+
+By going down 'columns', instead of across 'rows' you don't reduce the number
+of available channels for normal MIDI operations.
+
+By default an entire column uses the same MIDI channel, so, remembering that      almost all numbers in the CLI start from zero, you have:
+
+CH 0 - parts 0, 16, 32, 48
+HH 3 - parts 3, 19, 35, 51
+
+Although seemingly offset by 1, these match up nicely with the part groups in
+the mixer panel.
+
+As setting the programs is not done by numbers, but by X/Y L/R I thought it
+best to report back the actual parts that were being set. This also meant I
+could use the existing code without any modification.
+
+With steady refinements over time, it probably wouldn't be too difficult to give
+the user the choice of a vertical' or 'horizontal' basis, but I'm not keen on
+the idea myself - we're still falling behind on more important stuff :(
+
+Usual caveats apply: If someone wants to offer a patch I'll look at it :)
+
+Incidentally, with Yoshimi idling on this office computer. 16 parts gives 0.8%
+dsp load and 64 parts pushes that up to a whopping 1.1% :)
+
