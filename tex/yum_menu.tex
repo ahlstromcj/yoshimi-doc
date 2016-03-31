@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2016-03-29
+% \update      2016-03-31
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -588,7 +588,8 @@ Page 34 - 2
 \begin{figure}[H]
    \centering 
 %  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-ccs.jpg}
-   \includegraphics[scale=0.75]{1.3.8/yoshimi-settings-midi.png}
+%  \includegraphics[scale=0.75]{1.3.8/yoshimi-settings-midi.png}
+   \includegraphics[scale=0.75]{1.3.9/yoshimi-settings-ccs.jpg}
    \caption[MIDI Preferences]{MIDI Preferences}
    \label{fig:yoshimi_settings_cc}
 \end{figure}
@@ -605,6 +606,7 @@ Page 34 - 2
       \item \textbf{Enable Part On Program Change}
       \item \textbf{Enable Extended Program Change}
       \item \textbf{Extended Program Change}
+      \item \textbf{Ignore Reset all CCs}
       \item \textbf{Log incoming CCs}
       \item \textbf{Save and Close}
       \item \textbf{Close Unsaved}
@@ -681,10 +683,17 @@ Page 34 - 2
 
    Values: \texttt{0-127, 110*}
 
+   \itempar{Ingore Reset all CCs}{MIDI preferences!Ignore Reset all CCs}
+   Causes \textsl{Yoshimi} to ignore this message.
+
+   Values: \texttt{Off*, On}
+
    \itempar{Log incoming CCs}{MIDI preferences!Log incoming CCs}
    This setting is is about the only setting that is never saved. It is there
    solely as an aid for when \textsl{Yoshimi} appears to ignore MIDI commands,
    as it tells you exaclty what \textsl{Yoshimi} thinks it received.
+
+   Values: \texttt{Off*, On}
 
 \subsubsection{Menu / Yoshimi / Exit}
 \label{subsubsec:menu_yoshimi_exit}

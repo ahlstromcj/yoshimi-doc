@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-09-06
-% \update      2016-03-27
+% \update      2016-03-31
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -329,6 +329,9 @@ Ones that we're pretty sure will be added are:
          \texttt{load patchset [s]} &
             Load a complete patch set from the file. \\
 
+         \texttt{load vector [s]} &
+            Loads a vector setup from a file. \\
+
          \texttt{save patchset [s]} &
             Save the patch set to a named file. \\
 
@@ -337,6 +340,9 @@ Ones that we're pretty sure will be added are:
 
          \texttt{save setup} &
             Save the current dynamic system settings. \\
+
+         \texttt{save vector [s]} &
+            Saves the current vector setup to a named vector file. \\
 
          \texttt{set activate [n]} &
             Set part-activate on MIDI program change (0 on, 1 off). \\
@@ -550,6 +556,10 @@ Ones that we're pretty sure will be added are:
    \itempar{load patchset [s]}{cmd!load instrument}
       Load a complete patch set from a named file, \textsl{s}.
 
+   \itempar{load vector [s]}{cmd!load vector}
+      Loads an vector setup from the named file.
+      The file-name parameter \textsl{s} is mandatory.
+
    \itempar{save patchset [s]}{cmd!save patchset}
       Saves the current patchset to the file named \textsl{s}.
 
@@ -560,6 +570,10 @@ Ones that we're pretty sure will be added are:
    \itempar{save setup}{cmd!save setup}
       Save the current dynamic system settings.
       These settings get saved to the state file (we think).
+
+   \itempar{save vector [s]}{cmd!save vector}
+      Saves the vector setup to the named file.
+      The file-name parameter \textsl{s} is mandatory.
 
    \itempar{set activate [n]}{cmd!set activate}
       Set part-activate on MIDI program change.

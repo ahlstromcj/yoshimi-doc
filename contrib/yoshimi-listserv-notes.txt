@@ -5251,3 +5251,33 @@ Usual caveats apply: If someone wants to offer a patch I'll look at it :)
 Incidentally, with Yoshimi idling on this office computer. 16 parts gives 0.8%
 dsp load and 64 parts pushes that up to a whopping 1.1% :)
 
+
+
+
+
+Date: Wed, 30 Mar 2016 23:44:07 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: correction!
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+On Mon, 28 Mar 2016 18:23:54 -0400
+Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
+
+> No problem, it is easy!
+>
+> I've been trying to have the ALSA mode of Sequencer64 support pause.
+> Amazing how easy it is to break functionality, have to test thoroughly with
+> every goddam change I make :-D
+
+Ah yes. I know exactly how you feel. I revised the ALSA code in yoshimi. It's
+much better than it was, but I'm still not totally confident it's right :(
+
+Oh, another note (or two). The MIDI tab has changed. All the items squished up a
+bit to make room for a new one 'Ignore Reset All Controllers'.
+
+In the command line lists there is now. Load Vector <s> and Save Vector <s>
+
+Sadly my best command line tester is having GCC5 related problems and can't
+compile anything at the moment :(
+
