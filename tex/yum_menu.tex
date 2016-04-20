@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2016-03-31
+% \update      2016-04-20
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -48,8 +48,8 @@
 \subsubsection{Menu / Yoshimi / About...}
 \label{subsubsec:menu_yoshimi_about}
 
-   There is no "Help" menu in \textsl{Yoshimi}.
-   Therefore, the "About" dialog appears in the "Yoshimi" menu, as shown in
+   There is no \textbf{Help} menu in \textsl{Yoshimi}.  Therefore, the
+   \textbf{About} dialog appears in the \textbf{Yoshimi} menu, as shown in
    \figureref{fig:yoshimi_about_dialog}.
    These guys need some acknowledgment for their hard work!
    And they acknowledge the massive groundwork laid by the
@@ -121,8 +121,6 @@
    In a non-JACK setup it won't fail, but in the absence of any specific
    setting, it will have null audio, but (probably) will still connect to ALSA
    MIDI.  Not too useful, but we should test that sometime.
-
-Page 34 - 2
 
 \subsubsection{Menu / Yoshimi / Settings...}
 \label{subsubsec:menu_yoshimi_settings}
@@ -206,13 +204,15 @@ Page 34 - 2
 
    \itempar{AddSynth Oscillator Size}{Main Settings!oscillator size}
    ADDsynth Oscillator Size (in samples).  This item used to be called
-   "OscilSize".  Sets the number of the points of the ADDsynth oscillator. The
-   bigger is better, but it takes more CPU time on the start of any note, and
+   "OscilSize".  Sets the number of the points of the ADDsynth oscillator.
+   Bigger is better, but it takes more CPU time on the start of any note, and
    it may add latency to some processes.
 
    The default value for \textsl{Yoshimi} is shown marked with an asterisk,
    and the default value for \textsl{ZynAddSubFX} is 512.
-   (This asterisk/plus-sign convention is used throughout this manual).
+   \index{asterisk}
+   \index{default!asterisk}
+   This asterisk/plus-sign convention is used throughout this manual.
    See \figureref{fig:yoshimi_oscilsize_values},
    shown below for the AddSynth Oscillator Size drop-down element.
 
@@ -363,7 +363,6 @@ Page 34 - 2
 
    JACK is the "Jack Audio Connection Kit", very useful for increasing audio
    performance and configurability.
-
    When using the JACK audio backend, instruments can be individually routed
    and sent to the main L/R outputs. This is controlled from the
    panel window,
@@ -408,7 +407,7 @@ Page 34 - 2
    Set as preferred MIDI for JACK.
    This setting determines which MIDI connections a particular instance will
    first attempt. The switches are mutually exclusive across JACK and ALSA,
-   so if you check ALSA for MIDI, it automatically unchecks JACK for MIDI.
+   so if one checks ALSA for MIDI, it automatically unchecks JACK for MIDI.
    As well as from the GUI, this setting can be set (for instance 0) from the
    command line, both at start-up and once running.
 
@@ -419,13 +418,14 @@ Page 34 - 2
    This option corresponds to the \textsl{Yoshimi} command line option
    \texttt{--jack-audio(=server)}.
 
-   Values: \texttt{default*, name} name, as in "jackd --name"
+   Values: \texttt{default*, name} name, as in
+   \texttt{jackd --name}.
 
    \itempar{Set as preferred audio}{JACK!Set as preferred audio}
    Set as preferred audio for JACK.
    This setting determines which audio connections a particular instance will
    first attempt. The switches are mutually exclusive across JACK and ALSA,
-   so if you check ALSA for audio, it automatically unchecks JACK for audio.
+   so if one checks ALSA for audio, it automatically unchecks JACK for audio.
    As well as from the GUI, this setting can be set (for instance 0) from the
    command line, both at start-up and once running.
    Note that any of these setting changes require a restart of \textsl{Yoshimi}
@@ -447,7 +447,7 @@ Page 34 - 2
    24 bit, and, due to its own limits, will use only channels 1 and 2.
    With external sound modules in mind, endian swaps are also implemented.
 
-   To be able to reliably use ALSA audio you need to set a card name, not just
+   To be able to reliably use ALSA audio, one needs to set a card name, not just
    "Default".  In a terminal window enter the following command:
 
    \begin{verbatim}
@@ -463,7 +463,7 @@ Page 34 - 2
 
    Go to the ALSA settings tab illustrated below, and in 
    \textsl{Alsa Audio Device} enter, for example, "hw:PCH".
-   This ensures you will always connect to this card at startup regardless of
+   This ensures one will always connect to this card at startup regardless of
    the order this and other ones.  Another benefit of using this hardware name
    is that ALSA will now use \textsl{Yoshimi}'s internal
    buffer size (256), otherwise ALSA will force \textsl{Yoshimi} to accept its
@@ -471,7 +471,7 @@ Page 34 - 2
 
    One can also set the sample rate, but bear in mind that not all cards can use
    all of these.  The sample rates 44100 and 48000 are almost always available.
-   If you set a Midi Device as well (such as a keyboard) Yoshimi will try to
+   If one sets a Midi Device as well (such as a keyboard) Yoshimi will try to
    find and connect to this device at startup.
 
    To find the MIDI devices available, try:
@@ -528,7 +528,7 @@ Page 34 - 2
    Set as preferred MIDI for ALSA.
    This setting determines which MIDI connections a particular instance will
    first attempt. The switches are mutually exclusive across JACK and ALSA,
-   so if you check ALSA for MIDI, it automatically unchecks JACK for MIDI.
+   so if one checks ALSA for MIDI, it automatically unchecks JACK for MIDI.
    As well as from the GUI, this setting can be set (for instance 0) from the
    command line, both at start-up and once running.
 
@@ -548,7 +548,7 @@ Page 34 - 2
    Set as preferred audio for ALSA.
    This setting determines which audio connections a particular instance will
    first attempt. The switches are mutually exclusive across JACK and ALSA,
-   so if you check ALSA for audio, it automatically unchecks JACK for audio.
+   so if one checks ALSA for audio, it automatically unchecks JACK for audio.
    As well as from the GUI, this setting can be set (for instance 0) from the
    command line, both at start-up and once running.
 
@@ -683,15 +683,20 @@ Page 34 - 2
 
    Values: \texttt{0-127, 110*}
 
-   \itempar{Ingore Reset all CCs}{MIDI preferences!Ignore Reset all CCs}
+   \itempar{Ignore Reset all CCs}{MIDI preferences!Ignore Reset all CCs}
    Causes \textsl{Yoshimi} to ignore this message.
+   \index{CC monitor}
+   For example, using \textsl{Yoshimi}'s fairly new CC monitor (see the next
+   item), Will found that \textsl{Rosegarden} was sending CC 121 (reset all
+   controllers) at the start of some song segments.  Checking this option
+   prevents unwanted resets.
 
    Values: \texttt{Off*, On}
 
    \itempar{Log incoming CCs}{MIDI preferences!Log incoming CCs}
    This setting is is about the only setting that is never saved. It is there
    solely as an aid for when \textsl{Yoshimi} appears to ignore MIDI commands,
-   as it tells you exaclty what \textsl{Yoshimi} thinks it received.
+   as it tells one exactly what \textsl{Yoshimi} thinks it received.
 
    Values: \texttt{Off*, On}
 
