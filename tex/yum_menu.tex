@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2016-04-20
+% \update      2016-05-04
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -925,7 +925,7 @@
    \itempar{Comment}{comment}
    Comment for Key Mapping.
    Provides a comment or a description of the scale.
-   By default, this is "Equal Temperament 12 notes per octave.
+   By default, this is "Equal Temperament 12 notes per octave".
 
    \itempar{Tunings}{tuning}
    Tunings.
@@ -934,17 +934,19 @@
 
    \begin{enumber}
       \item As the number of cents (1200 cents=1 octave) as a float number
-      like "100.0", "123.234"
+         like "100.0", "123.234"
       \item As a proportion like "2/1" which represents one octave, "3/2" a
-      perfect fifth, "5734/6561".  "2/1" is equal to "1200.0" cents.
+         perfect fifth, "5734/6561".  "2/1" is equal to "1200.0" cents.
    \end{enumber}
 
    The default is a series of values:
    \texttt{0100.0, 0200.0, ..., 1100.0, 2/1}.
 
    \itempar{Retune}{retune}
-   Retune.
-   TODO:  What does this button do?
+   Retune button.
+   This button retunes the synthesizer according to the settings of
+   the \textbf{Tunings} and \textbf{Keyboard Mapping} lists.
+   All other changes operate immediately.
 
    \itempar{nts./oct}{Notes per Octave}
    Notes Per Octave.
