@@ -716,3 +716,344 @@ How does that look?
 
 
 
+
+
+
+
+Date: Fri, 6 May 2016 22:43:48 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Yoshi 1.3.9 jack client names differ for audio and midi
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+On Sun, 20 Mar 2016 17:53:21 +0100
+Frank Kober <goemusic@yahoo.fr> wrote:
+
+> Hi Will,
+> thanks for keeping yoshimi up, I hope you are fine!
+> I was wondering why since the latest release (1.3.9 at least) you changed the
+> client name of the yoshimi jack midi portion to "yoshimi-01" and left that of
+> the audio portion at "yoshimi".
+
+Coming back to this.
+
+The problem is that creating audio and midi clients is now two quite separate
+operations. Audio first, then midi.
+
+The upside is that if the requested connection is not available,each can hunt
+for a valid one, or just set a NULL client so that Yoshimi can continue to run.
+It also paves the way for additional back-ends at a later date.
+
+The problem for jack is that if you have both audio and midi then you need to
+set up just one client that handles both. This potentially has performance
+issues at low latencies as well as out of sync names.
+
+What I think needs to happen is that when a call is made to start a jack audio
+client it should look ahead to see if midi is jack too, and if so incorporate     that. Then, in the midi loop recognise that it has already been set up and
+simply do nothing. As far as I know, there is no way that jack audio can succeed
+and at the same time jack midi fail.
+
+I've had a good look through the code (MusicClient, JackEngine) but so far
+haven't been able to get my head round it. I also privately asked two people for
+help but unfortunately both are heavily committed to other projects - mostly
+stuff that puts food on the table.
+
+This is an inconvenience rather than a show-stopper, but I don't really want to
+push out another release with this still unresolved, so I'm rather hoping
+someone can take a look at this for us.
+
+Talking of which, the next release will probably be some time in June. I'm
+currently working on a quite involved part of Yoshimi that is likely to take up
+most, if not all, of my coding time till then :/
+
+
+
+
+
+Date: Fri, 6 May 2016 23:03:11 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: More updates
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Hi Granddad :)
+
+Has junior worn you out yet?
+
+Just a recap of some recent changes in Yoshimi.
+
+Global and Part Key shift is now +-36 semitones wherever they are set from.
+
+These can be set in the GUI the CLI and via MIDI NRPNs. With NRPNs part shift
+can be set by direct part control or *channel* based shift with channel number 
+in system NRPNs.
+
+The notes that have been updated in 'doc' are Direct_Part_Control.txt and
+Dynamic_System_Settings.txt
+
+
+*All* nested windows can be traversed with a right mouse click closing the
+parent as you open the child, or returning to the parent when closing the child.
+
+
+Specifically for jack audio, there is a new GUI option in Settings->Jack to
+enable/disable auto-connecting the main L&R audio outputs.
+
+This is also available for the CLI.
+
+The -K argument will still auto-connect from a CLI start-up if it's not already
+configured for that. Currently there is no start-up way to disable this.
+
+
+
+
+
+Date: Sat, 7 May 2016 18:10:09 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Standards - decisions made!
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+The work I'm doing right now (even though its still proof of concept at the
+moment) was getting a right pain, so C++11 it now is - much easier. As and when
+working through other areas I'll make changes if appropriate. Besides, it only
+required a single statement in CMakeLists.txt :)
+
+FLTK version I'll leave for a while.
+
+As for making changes to either the build method or the GUI type. I'm not
+convinced the issues are important enough to divert time away from long overdue
+development that I'm only *beginning* to really get a grip of. If you want a
+clue - with the current master - have the reports window open and click on any
+LFO control with the middle mouse button.
+
+Also, any GUI is a problem for both blind musicians and those with significant
+motor control issues. That's why I've been developing the CLI. It's current
+status is that you can do almost anything you want except actually edit the
+instruments, and that will eventually come. In fact, you can do some things
+there that you can't do in the GUI.
+
+Although I don't want to divert to these other areas, as usual, if anyone wants
+to offer patches I'm more than happy to look at them.
+
+
+
+
+
+
+
+Date: Sat, 7 May 2016 21:53:06 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Standards - decisions made!
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+On Sat, 7 May 2016 18:59:27 +0100
+"Tom" <dmarc-noreply@freelists.org> (Redacted sender "madtom1999" for DMARC)
+wrote:
+
+> Are you working closely with anyone who is partially sighted? I used to
+> do accessibility for web stuff and working with people who will use
+> something in anger is, well an eye opener.  You can see where some of
+> the ideas in agile development come from!
+
+There is one I very occasionally hear from. There is also a totally blind
+person (working with a braille reader/writer) who has offered a lot of
+suggestions, and very much likes vector control :)
+
+The overall impression I get is that these people tend to use their memory
+much more than us lazy 20-20 types. However, there are context sensitive
+prompts and help information along with lists of settings etc. while at the
+same time (hopefully) minimising the typing the need to do.
+
+> > There is only one of me :)
+> Are you sure? My mail system and cmake seem to think otherwise.
+> If only I could control my grasshopper mind!
+> Tom
+
+If you know of more, tell them to stop faffing about and give me some help!
+
+
+
+
+
+Date: Thu, 12 May 2016 20:49:12 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Following On, and on
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+On Tue, 10 May 2016 23:21:24 +0100
+Will Godfrey <willgodfrey@musically.me.uk> wrote:
+
+> On Sat, 7 May 2016 18:10:09 +0100
+> Will Godfrey <willgodfrey@musically.me.uk> wrote:
+>
+> > development that I'm only *beginning* to really get a grip of. If you want a
+> > clue - with the current master - have the reports window open and click on any
+> > LFO control with the middle mouse button.
+>
+> This also now works for any filter control and all of SubSynth, except the
+> embedded envelopes).
+>
+> Come on guys! You should have guessed what I'm up to by now :)
+
+Well, in the current master we now have almost all the engine controls
+identified with that middle button click. Effects, Envelopes & Resonance are
+still to do - they are a bit more complicated - but progress is being made.
+
+
+
+
+
+
+Date: Sat, 14 May 2016 23:03:43 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Following On, and on - rolls up sleeves.
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+*Warning*
+
+Long-winded, technical info that I'm not even sure makes sense to me!
+
+OK?
+
+In the current master I've now got the vast majority of the controls uniquely
+identified. There's more to do. Effects are particularly difficult to follow,
+and I haven yet worked out to manage Envelopes in free-mode, but apart from
+that almost everything from part level upwards is there.
+
+This routine doesn't actually change any controls, but if you use the
+mouse middle button, it builds up the messages representing them. This is
+entirely inside the GUI and makes no references to the backend at all.
+
+If you press any other mouse button, you get a report from within synthengine
+itself listing the bytes representing the steps, as well as a float for the
+actual value. There are just 7 steps needed, and I'm not massively packing the
+bytes to do that. Again these don't do anything... yet :)
+
+The next step is to build up a tree from these bytes to then poke the control
+values into the engine itself via a ring buffer - read synchronously by the
+audio thread. This tree will also be used to synchronously interrogate the
+engine, and use that information to update the GUI.
+Finally, it should be possibly to use the same tree for the CLI and for MIDI
+access.
+
+For the time being I'll be continuing to fill in the gaps in the GUI
+identification, and as this doesn't interfere with Yoshimi's normal running
+I'll carry on working within master for convenience.
+
+However, once I start to poke around with the actual settings I'll start a new
+branch - I know that a few people run with master, and I do as a bug shakedown.
+I don't want to risk any nasty surprises!
+
+Of course, I need to think of a decent name for this branch. Thinking about it,
+"Multi_mode_data_exchange" doesn't exactly roll off the tongue. Nor does,
+"Decoupled_Graphical_User_and_Command_Line_Interfaces".
+
+I think "MidiLearn" should do the trick :D
+
+
+
+
+
+
+
+Date: Sun, 15 May 2016 18:55:18 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Following On, and on
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+On Sun, 15 May 2016 08:19:49 -0400
+Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
+
+> About the middle-click...  I have this godawful touchpad on this otherwise
+> nice laptop (well, except that the keycaps are wearing out) that has no
+> buttons.  It is one big button, and the driver provides left and right click
+> depending where your finger is on the pad.  (Focaltech, if you want to avoid
+> this crapware.)
+>
+> Anyway, the current Linux driver doesn't offer any way to achieve a
+> middle-click.  I've had to code workarounds for this limitation in my main
+> project:  Mod4 (the Super or Windoze key) to hold the middle key, keystrokes
+> to substitute for the middle key, Ctrl-left as a middle key....
+>
+> I don't know how centralize Fltk processing is, but ...
+> ...something to consider.
+>
+This is actually a temporary setup for checking things out. I generally avoid
+middle-click operations, although how you non-mousers survive without a scroll
+wheel is beyond me :)
+
+On my machine FLTK is able to identify all three mouse buttons, and the scroll
+wheel as 4 & 5.
+
+Eventually, the 'normal' text data will go and everything will relate to the
+control numbers (Over the next few days I'll start drawing up a spreadsheet with
+all of these on it).
+
+
+
+
+
+
+Date: Sun, 15 May 2016 19:17:36 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Yoshimi - Resonance
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+While going through identifying all the various controls I re-discovered that
+'Interpolate peaks' in resonance has two different algorithms. These are
+determined by whether you press the left or right mouse button. This I thought
+was quite unsatisfactory so now there are two buttons each with their own
+tooltip, while the original tooltip covers the new frame they are in.
+
+To do this I had to juggle other controls quite a bit. I also changed two rotary
+controls and one roller all to sliders. They now pack in better without looking
+crowded, are easier to manage, with clearer indication. This also meant I could
+make some of the text less cryptic!
+
+Chris will probably be muttering under his breath as it means another layout
+drawing has changed :p
+
+
+
+
+
+
+Date: Sun, 15 May 2016 23:38:57 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Yoshimi - Resonance
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+On Sun, 15 May 2016 17:19:30 -0400
+Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
+
+> Heh.  What dialog is that "interpolate peak" in?  Save me some scouting. :-)
+
+Either AddSynth->Resonance or PadSynth->Resonance
+
+> One thing I would like to see is, every time you do a check-in to master,
+> increment the final digit of the version as displayed in the splash screen
+> and the "yoshimi --version" command.  Useful for reference, and I can
+> add it to the documentation.  Example:  Instead of "1.3.9 M", "1.3.9.6 M".
+>
+> Alternatively, do it in a branch and don't worry about the version until you
+> merge back to master.
+>
+> At your convenience, of course!
+
+Actually, I have been thinking of employing a build number (I don't want to
+mess with the versioning). Ideally I want to find a way of automating this, and
+have it only displayed if the version has the 'M' suffix. With a release
+version it would be irrelevant.
+
+P.S.
+Some documentation in place now :)
+
+
+
