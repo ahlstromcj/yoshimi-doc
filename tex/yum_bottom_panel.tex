@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-06
-% \update      2016-03-06
+% \update      2016-05-21
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -73,7 +73,7 @@
 
    \textsl{Yoshimi} now has up to 64 parts in blocks of 16. One can now decide
    how many one wants to have available using this user-interface item.  By
-   default these are wraped around the normal MIDI channels, so that parts 1,
+   default these are wrapped around the normal MIDI channels, so that parts 1,
    17, 33, and 49 all respond to channel 1 messages. This was originally
    implemented for Vector Control, working with up to four sounds on a channel
    (similar to the Yamaha SY hardware series).
@@ -84,24 +84,54 @@
    pitch range, and this is what we can make use of.
 
    As an example, in \textsl{Yoshimi}'s main window select 64 parts, then on
-   part 1 set (say) Steel Bass and maximum note as 52 (E).  Next select part 17
-   and enable it (easiest to use the mixer panel for this) set Tunnel Piano,
-   the *minimum* note as 53 and maximum as 71 (B).  Finally, enable part 33,
-   set Rushes, and set it's minimum note as 72, but key shift down an octave.
-   With a 61 note keyboard that gives one quite a useful working range, on just
-   one channel.
+   part 1 set (say) 'Steel Bass' and maximum note as 52 (E).  Next select part
+   17 and enable it (easiest to use the mixer panel for this) set 'Tunnel
+   Piano', the \textsl{minimum} note as 53 and maximum as 71 (B).  Finally,
+   enable part 33, set 'Rushes', and set its minimum note as 72, but key shift
+   down an octave.  With a 61 note keyboard that gives one quite a useful
+   working range, on just one channel.
 
    However, the idea really comes into its own with a sequencer like Rosegarden
    where one can record multiple parts over the full MIDI range and track them
    to the same channel. Also, in Rosegarden the parts can be separately named,
-   and identified as Bass and Treble in the notation editor. This makes it very
-   convenient for those wanting a more formal musical layout.
+   and identified as 'Bass' and 'Treble' in the notation editor. This setup
+   makes it very convenient for those wanting a more formal musical layout.
 
    So, with very little effort, one can now have 48 tracks playing at once!
-   Ummm, one does need a decent processor though :)
+   Ummm, one does need a decent processor though :) Yes, one could run more
+   instances of Yoshimi on different MIDI ports, but where's the fun in that?
 
-   Yes, one could run more instances of Yoshimi on different MIDI ports, but
-   where's the fun in that?
+   Another possibility is obtaining very smooth transitions between different
+   sounds on the same channel.  If one uses program change to do this, that
+   part has to be muted, and there is a variable time lag (while the new part
+   is loaded) before one can play any more notes on that channel. However, with
+   32 and 64 parts one can actually overlap notes with different instruments on
+   a playing channel.
+
+   This setup is accomplished by pre-loading the wanted instruments, then
+   switching channel numbers. If (via the direct part NRPN) one adds 16 to a
+   sounding part's channel number, it will then only respond to Note Off
+   events.  To bring it back into operation simply restore the original channel
+   number.  An example:
+
+   \begin{enumerate}
+      \item Enable 32 parts.
+      \item Load 'Simple Chimes' into part 0 (part 1 in the GUI).
+      \item Load 'Silver Bell' into part 16 (part 17 in the GUI).
+      \item In your sequencer, via direct part NRPN set part 16 to channel 16.
+          This will now be 'whited out' in the GUI.
+      \item Record some notes to channel 0 (1 in human-readable terms).
+      \item In the sequencer, just before the first note that one wants to
+         sound as 'Silver Bell', insert two direct part NRPNs, with one to set
+         part 0 to channel 16, and the other to set part 16 to channel 0.
+   \end{enumerate}
+
+   Now, when played through, the last 'Simple Chimes' note will have its full
+   release and reverb tail, blending into the first 'Silver Bell' note.  To go
+   back to using 'Simple Chimes' just reverse the NRPNs.  The only time this
+   gets complicated is if the new note is exactly the same pitch as the old
+   one, in which case the NRPNs need to be between the old note-off and the new
+   note-on.
 
    By default, all the upper parts (numbers greater than 16)
    are mapped to the same MIDI channel
@@ -217,13 +247,23 @@
 
    \itempar{Key Shift}{bottom panel!key shift}
    Key Shift.
+   This value is like the master \textbf{Key Shift} in the top panel, but
+   it applies only to the current part active in the bottom panel.
+   In recent versions of \textsl{Yoshimi}, it has been extended to a larger
+   semitone range.
+   Also note that the key shift can be set via the user-interface, the
+   command-line, or by MIDI NRPN commands.
+   With NRPN, this part shift 
+   can be set by direct part control or by channel number.
 
-   Values: \texttt{-12 to 12, 0*}
+%  Values: \texttt{-12 to 12, 0*}
+
+   Values: \texttt{-36 to 36, 0*}
 
    \itempar{Key Limit}{bottom panel!key limit}
-   Maximum keys for this part.
+   Maximum keys to be allocated for this part.
 
-   Values: \texttt{0 to 55, 15*}
+   Values: \texttt{0 to 60, 20*}
 
    \itempar{System Effect Sends 1, 2, 3, and 4}{bottom panel!system effect sends}
 

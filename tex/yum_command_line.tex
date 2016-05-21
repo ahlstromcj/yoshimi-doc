@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-09-06
-% \update      2016-05-04
+% \update      2016-05-21
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -17,7 +17,7 @@
 \section{The Yoshimi Command Line Interface}
 \label{sec:command_line}
 
-   Applies through version:  1.3.9
+   Applies through version:  1.3.9 May 2016
 
    \textsl{Yoshimi} provides a "no GUI" or "command-line" mode of operation
    where some aspects of the application can be controlled via textual commands.
@@ -149,9 +149,11 @@
    The help menus and lists are also partially context sensitive. This
    feature should help avoid clutter and confusion.
 
-   As well as an immediate history, \textsl{Yoshimi} maintains a command
-   history file, so provided one makes a normal command-line exit, the last
-   commands will be available on the next run of \textsl{Yoshimi}.
+   As well as an immediate history, \textsl{Yoshimi} maintains a single command
+   history file for all instances of \textsl{Yoshimi} that records any
+   non-duplicated loads or save.  Thus, provided one makes a normal
+   command-line exit, the last commands will be available on the next run of
+   \textsl{Yoshimi}.
 
    Originally this section described the currently implemented commands,
    but as the command set is very much a moving target, it is simpler to just

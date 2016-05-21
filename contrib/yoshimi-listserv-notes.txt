@@ -481,7 +481,6 @@ can be set by direct part control or by channel number.
 The notes that have been updated in 'doc' are Direct_Part_Control.txt and
 Dynamic_System_Settings
 
-
 Date: Sun, 24 Apr 2016 11:03:52 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -653,6 +652,7 @@ On a first start, there will be no yoshimi.windows file so this fact is used to
 open the keyboard alongside the main window. From then on it will obey the
 stored data as to whether it is shown and where it is placed.
 
+========================== CONTINUE HERE ================================
 
 Date: Mon, 2 May 2016 14:48:33 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
@@ -1054,6 +1054,58 @@ version it would be irrelevant.
 
 P.S.
 Some documentation in place now :)
+
+
+
+
+
+
+Date: Sun, 15 May 2016 23:38:57 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Yoshimi - Resonance
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+On Sun, 15 May 2016 17:19:30 -0400
+Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
+
+> Heh.  What dialog is that "interpolate peak" in?  Save me some scouting. :-)
+
+Either AddSynth->Resonance or PadSynth->Resonance
+
+> One thing I would like to see is, every time you do a check-in to master,
+> increment the final digit of the version as displayed in the splash screen
+> and the "yoshimi --version" command.  Useful for reference, and I can
+> add it to the documentation.  Example:  Instead of "1.3.9 M", "1.3.9.6 M".
+>
+> Alternatively, do it in a branch and don't worry about the version until you
+> merge back to master.
+>
+> At your convenience, of course!
+
+Actually, I have been thinking of employing a build number (I don't want to
+mess with the versioning). Ideally I want to find a way of automating this, and
+have it only displayed if the version has the 'M' suffix. With a release
+version it would be irrelevant.
+
+P.S.
+Some documentation in place now :)
+
+
+
+
+
+Date: Mon, 16 May 2016 22:06:36 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Yoshimi - Resonance
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+ 
+To really see the difference, with a cleared graph click on the highest point,
+creating a spike, then try one of the buttons. Clear the graph, then do the
+same but use the other button.
+
+
 
 
 

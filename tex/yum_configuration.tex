@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2016-03-07
-% \update      2016-03-24
+% \update      2016-05-21
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -34,47 +34,68 @@
    Here are the file extensions used for saving the \textsl{Yoshimi}
    patch-set data:
 
-   Here is a summary of the files.
+   Here is a summary of the files.  Please note that the names all start with
+   \texttt{yoshimi}.  For example, \texttt{.banks} is really
+   \texttt{yoshimi.banks}.
 
    \begin{itemize}
       \item \texttt{.banks}
+         \index{.banks}
          Contains information on the accessible instrument banks.
       \item \texttt{.config}
+         \index{.config}
          Contains information to translate between bank directory names and
          bank ID values.
       \item \texttt{.history}
+         \index{.history}
          Recent patch sets are now stored in the \texttt{.history} file.
+         (Does this include command history?)
       \item \texttt{.instance(n)}
+         \index{.instance(n)}
          Contains the current root/bank, MIDI settings, and preferred engines.
       \item \texttt{.state}
+         \index{.state}
          Contains the state information needed to
          duplicate a \textsl{Yoshimi} session that was saved.
       \item \texttt{.windows}
+         \index{.windows}
          Contains the current layout of windows for reinstantiation at the next
          startup of \textsl{Yoshimi}.
+         If there is no such file
+         (\texttt{\textasciitilde/.config/yoshimi/yoshimi.window}) at
+         \textsl{Yoshimi}, then the keyboard is also opened, alongside the main
+         window, as a help to those new to \textsl{Yoshimi}.
+         And of course that state will be saved, if present, when
+         \textsl{Yoshimi} exits.
       \item \texttt{.xiz}
+         \index{.xiz}
          An Instrument file.
       \item \texttt{.xmz}
+         \index{.xmz}
          A full \textsl{Yoshimi} configuration; everything.
          This file is also called a \textsl{parameter set}.
       \item \texttt{.xpz}
+         \index{.xpz}
          Presets.
          A preset is a \textsl{Yoshimi} sub-setting file.
       \item \texttt{.xsz}
+         \index{.xsz}
          Scale Settings.
       \item \texttt{.xvy}
+         \index{.xvy}
          Vector settings. The extension stands for "Xml Vector Yoshimi".
          It will eventually be integrated with the saved states.
          For a good example, see \sectionref{subsection:vector_command_line}.
    \end{itemize}
 
-   The entire config set should then be:
+   The entire config set should then be (ignoring the prepended
+   \texttt{yoshimi}):
 
    \begin{itemize}
-      \item .config
-      \item .instance[n]
-      \item .history
-      \item .banks (this is currently per instance)
+      \item \texttt{.config}
+      \item \texttt{.instance[n]}
+      \item \texttt{.history}
+      \item \texttt{.banks} (this is currently per instance)
    \end{itemize}
 
    The \texttt{.windows} file is specific to the GUI, so doesn't figure in this
@@ -265,8 +286,17 @@
    \index{file!history}
    A new feature of the \textsl{Yoshimi} configuration.
    Recent patch sets are now stored in the \texttt{.history} file.
-   And why not recent instruments and scales?
-   This is a single file that every instance can read and write.
+   For example, if the \textbf{XML Compression} option is set to 0, and one
+   exits \textsl{Yoshimi}, then the file
+   \texttt{\textasciitilde/.config/yoshimi/yoshimi.history} might
+   contain the following items (ignoring the XML markup):
+
+   \begin{verbatim}
+		/home/me/yoshimi-cookbook/sequencer64/b4uacuse/yoshimi-b4uacuse-gm.state
+		/home/me/sequencer64/contrib/yoshimi/horse.state
+   \end{verbatim}
+
+   \texttt{.history} is a single file that every instance can read and write.
    The \texttt{.history} file is saved only upon a normal exit, as it is
    comparatively unimportant.
 
@@ -282,7 +312,7 @@
    Now, there is also another "history" file apparently created by
    \textsl{Yoshimi}: \texttt{\textasciitilde/.yoshimi\_history}.
    This file seems to be a history of commands typed into the command-line
-   interface of \textsl{Yoshimi}.
+   interface of \textsl{Yoshimi}.  TO BE DETERMINED.
 
 \subsection{Configuration Files / Banks}
 \label{subsec:configuration_banks}
@@ -355,12 +385,20 @@
 
    \index{saving settings}
    Saving settings or not:
-   If one changes settings and closes without saving, that means the settings
+   If one changes settings, and closes without saving, that means the settings
    remain in place only for the current session. If one has changed anything,
    when one closes \textsl{Yoshimi}, one will be given a second chance to
    save them. If one responds 'No',  the next time \textsl{Yoshimi} starts,
    the old settings will be restored.  An 'undo' feature would get pretty
    crazy very quickly.
+
+   In the \textbf{Settings} window, \textbf{Save Settings}
+   refers to the entire window, not just individual tabs. The close buttons are
+   actually outside the frame of the tabs.
+
+   \textbf{Close without saving} doesn't mean revert to previous settings; it
+   means to use the changes, but don't immediately store them to the
+   filesystem.
 
    In general, the contents are structured a lot like the
    user-interface elements that are used to set them.

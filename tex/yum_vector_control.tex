@@ -37,6 +37,8 @@
    controllers.  It is a little bit reminiscent of the "vector" control knob
    on the Yamaha PSS-790 consumer MIDI synthesizer.  Vector control is only
    possible if one has 32 or 64 parts active.
+   Setup is per MIDI channel, so one can have totally different vector
+   behaviour on, say, channel 1 and channel 5.
 
    Vector control has been extended so that there are four independent
    'features' that each axis can control. One is fixed as \textsl{Volume} (if
@@ -73,8 +75,8 @@
       \item NRPN LSB (98) set to 1 [8192]
       \item Data MSB (6) set mode:
       \begin{itemize}
-         \item 0 = X sweepjCC
-         \item 1 = Y sweepjCC
+         \item 0 = X sweep CC
+         \item 1 = Y sweep CC
          \item 2 = enable X features
          \item 3 = enable Y features
          \item 4 = x1 instrument (optional)
@@ -104,8 +106,8 @@
 
    Setting the sweep CC for the X axis enables vector control. It also sets,
    but doesn't enable the default X axis features.  Setting the sweep CC for
-   the Y axis sets, but doesn't enable the default Y axis features.  If you
-   don't enable any features, not a lot will happen.
+   the Y axis sets, but doesn't enable the default Y axis features.  If one
+   doesn't enable any features, not a lot will happen.
 
    The feature numbers are chosen so they can be combined. So, 5 would be
    Volume + Brightness and 19 would be Volume + Reversed Pan.
@@ -129,9 +131,9 @@
               
    The IDs are for instruments in the current bank.
    Any data MSB value outside the above list disables vector control.
-   Sweep CCs and feature CCs are sanity checked.
+   Sweep CCs and feature CCs are sanity-checked.
     
-   An Example: From channel 1, send the following CCs
+   An Example. From channel 1, send the following CCs:
 
    \begin{verbatim}
       CC      Value
