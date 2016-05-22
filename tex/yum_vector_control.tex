@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-10-24
-% \update      2016-02-25
+% \update      2016-03-27
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -20,6 +20,16 @@
    This section comes from the source-code documentation file
    \texttt{doc/Vector\_Control.txt}.
 
+   Vector load and save work from the command-line, for a complete vector
+   set, with all mappings, instruments, etc.
+   One can independently decide which
+   channel to load and save from, so one can actually build up a vector set in
+   (say) channel 3, then later decide to use it in channel 7.
+   The vector settings file
+   \index{vector! settings file}
+   has the extension \texttt{.xvy} standing for 
+   \textsl{Xml / Vector / Yoshimi}.
+
 \subsection{Vector / Basics}
 \label{subsection:vector_basics}
 
@@ -27,6 +37,8 @@
    controllers.  It is a little bit reminiscent of the "vector" control knob
    on the Yamaha PSS-790 consumer MIDI synthesizer.  Vector control is only
    possible if one has 32 or 64 parts active.
+   Setup is per MIDI channel, so one can have totally different vector
+   behaviour on, say, channel 1 and channel 5.
 
    Vector control has been extended so that there are four independent
    'features' that each axis can control. One is fixed as \textsl{Volume} (if
@@ -56,7 +68,6 @@
 \label{subsection:vector_control}
 
    Setting up vector control is currently done as follows.
-
    In the required channel send:
 
    \begin{itemize}
@@ -64,8 +75,8 @@
       \item NRPN LSB (98) set to 1 [8192]
       \item Data MSB (6) set mode:
       \begin{itemize}
-         \item 0 = X sweepjCC
-         \item 1 = Y sweepjCC
+         \item 0 = X sweep CC
+         \item 1 = Y sweep CC
          \item 2 = enable X features
          \item 3 = enable Y features
          \item 4 = x1 instrument (optional)
@@ -95,8 +106,8 @@
 
    Setting the sweep CC for the X axis enables vector control. It also sets,
    but doesn't enable the default X axis features.  Setting the sweep CC for
-   the Y axis sets, but doesn't enable the default Y axis features.  If you
-   don't enable any features, not a lot will happen.
+   the Y axis sets, but doesn't enable the default Y axis features.  If one
+   doesn't enable any features, not a lot will happen.
 
    The feature numbers are chosen so they can be combined. So, 5 would be
    Volume + Brightness and 19 would be Volume + Reversed Pan.
@@ -120,9 +131,9 @@
               
    The IDs are for instruments in the current bank.
    Any data MSB value outside the above list disables vector control.
-   Sweep CCs and feature CCs are sanity checked.
+   Sweep CCs and feature CCs are sanity-checked.
     
-   An Example: From channel 1, send the following CCs
+   An Example. From channel 1, send the following CCs:
 
    \begin{verbatim}
       CC      Value
@@ -154,6 +165,162 @@
    really necessary for the earlier commands, but should be done if one sets
    the instruments with NRPNs as well, otherwise one will try to set them
    twice.
+
+\subsection{Vector / Command Line}
+\label{subsection:vector_command_line}
+
+   This section covers material that could be in the command-line section
+   (see \sectionref{sec:command_line}), but is really too detailed to cover
+   there.  The examples here, to set up vectors from the command line,
+   are provided by Will.
+
+   Assuming we want just a single axis on channel 1 (which is channel
+   2 in the GUI), first we need to make sure we have enough parts available:
+
+   \begin{verbatim}
+      yoshimi> set available 32
+      Available parts set to 32
+   \end{verbatim}
+
+   The next command must aways be the first command, as everthing else depends
+   on it. It's the command that \textsl{enables} vector control.  The
+   \texttt{x} token denotes the "x axis", and the \texttt{cc} token, followed
+   by 14, is the incoming sweep CC (control change) that will vary the
+   features one sets.
+
+   \begin{verbatim}
+      yoshimi > set vector 1 x cc 14
+      Vector channel set to 1
+   \end{verbatim}
+
+   Note that, according to the list of MIDI CC's at
+   \url{http://nickfever.com/music/midi-cc-list}, CC 14 is undefined,
+   normally.  It is thus available for \textsl{Yoshimi} to assign
+   for its own purpose.
+
+   \index{vector!features}
+   There are four vector features currently available:
+
+   \index{vector!1 volume}
+   \index{vector!2 pan}
+   \index{vector!3 brightness}
+   \index{vector!4 modulation}
+   \begin{itemize}
+      \item \textbf{1} is fixed as \textsl{volume}.
+      \item \textbf{2} is \textsl{pan} by default.
+      \item \textbf{3} is \textsl{brightness} by default.
+      \item \textbf{4} is \textsl{modulation} by default.
+   \end{itemize}
+
+   We will select \textsl{volume} for this example.  Let's enable this
+   feature:
+
+   \begin{verbatim}
+      yoshimi Vect Ch 1 X > set features 1 enable
+      Set X features 1 en
+   \end{verbatim}
+
+   Next, one needs to set the instruments that will be used.
+   The instruments can only be selected from the instruments
+   in the current bank. Therefore, assuming the current bank is
+   the "\textsl{Will Godfrey Companion}", let's set up two instruments:
+
+   \begin{verbatim}
+      yoshimi Vect Ch 1 X > set program left 20
+      Loaded 20 "Bubbles" to Part 1
+
+      yoshimi Vect Ch 1 X > set program right 120
+      Loaded 120 "Ghost Ensemble" to Part 16
+   \end{verbatim}
+
+   The \texttt{left} token merely assigns instrument 20 to a "virtual"
+   left side of the X axis,
+   and the \texttt{right} token assigns instrument 20 to a "virtual"
+   right side of the X axis.
+
+   \textsl{(Chris asks:  How did the part numbers 1 and 16 come about? What
+   are the rules?  Why are 32 parts needed, if only 1 to 16 are involved?  Why
+   do we need to have 64 parts when we add the Y axis below?  Can we set
+   intermediate values between "left" and "right" and "up" and "down" to
+   get some really weird morphs?)}
+
+   \index{vector!morph}
+   If one now sweeps the the controller assigned to CC 14,
+   the sound will morph between these two instruments.
+
+   To continue on to using the other axis as well, one needs to have 64 parts
+   available:
+
+   \begin{verbatim}
+      yoshimi Vect Ch 1 X > /set available 64
+      Available parts set to 64
+   \end{verbatim}
+
+   \index{command level}
+   Note the slash, which lets the user immediately access the topmost command
+   level, where the "available parts" setting can be performed.
+   Then:
+
+   \begin{verbatim}
+      yoshimi > set vector y cc 15
+      Vector 1 Y CC set to 15
+   \end{verbatim}
+
+   This command sets up the Y axis to be controlled by MIDI CC 15, which is,
+   again, a CC that is normally undefined.
+   We will use \textsl{panning} (feature 2) for this vector, which is defined
+   on the Y axis:
+
+   \begin{verbatim}
+      yoshimi Vect Ch 1 Y > set features 2 enable
+      Set Y features 2 en
+   \end{verbatim}
+
+   Analogous to the "left" and "right" virtual directions used above for the X
+   axis, the Y axis used the "up" and "down" virtual directions:
+
+   \begin{verbatim}
+      yoshimi Vect Ch 1 Y > set program down 107
+      Loaded 107 "Angel Harp" to Part 32
+
+      yoshimi Vect Ch 1 Y > set program up 78
+      Loaded 78 "Brassy Flutter" to Part 48
+   \end{verbatim}
+
+   Notice that the directions left, right, up, and down match the directions
+   provided by a traditional joystick.
+
+   So we have now set up a vector sound where MIDI CC 14 morphs the sound
+   through a continuous linear combination of two different instruments,
+   and MIDI CC 15 morphs the sound between two other instruments.
+   One can then save one's cool vector sound to a file:
+
+   \begin{verbatim}
+      yoshimi Vect Ch 1 Y > save vector CoolSound
+      Saved channel 1 Vector to CoolSound
+   \end{verbatim}
+
+   The file extension for the save vector sound file is \texttt{.xvy}, and
+   this extension is added automatically.  The final name of the file is
+   \texttt{CoolSound.xvy}.
+
+   \textsl{(Chris asks:  Where is this file saved?  Is there a way to modify
+   this location?)}
+
+   At any time one can reload this vector sound file from the command-line:
+
+   \begin{verbatim}
+      yoshimi> load vector channel 0 CoolSound
+      Loaded Vector CoolSound to channel 0
+   \end{verbatim}
+
+   If there is no channel number provided, then the vector sound
+   will be loaded to the same channel as it was saved from:
+
+   \begin{verbatim}
+      yoshimi> load vector CoolSound
+      Loaded Vector CoolSound to source channel
+   \end{verbatim}
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex

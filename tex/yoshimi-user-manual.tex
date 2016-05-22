@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-04-20
-% \update      2016-03-07
+% \update      2016-05-21
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -116,11 +116,21 @@
    other... use them both and make your own decision!  Or just continue using
    both of them!
 
+   That being said, please note that the references to \textsl{ZynAddSubFx}
+   in this manual apply primarly to versions of \textsl{ZynAddSubFx}
+   prior to version 3.0 -- the \textsl{ZynAddSubFx} project is planning
+   a major user-interface change for version 3.0, and many of the file formats
+   will change as well.  Of course, one can still continue to use the old
+   "Zyn" as well.
+
 \subsection{New Features}
 \label{subsec:introduction_new_features}
 
    This section provides an \textsl{ad hoc}, catch-as-catch-can survey of the
    new features of \textsl{Yoshimi}, in no particular order.
+
+\subsubsection{LV2 Plugin}
+\label{subsubsec:new_features_lv2_plugin}
 
    \textsl{Yoshimi} can now run as an LV2 plugin.  Supported features:
 
@@ -134,107 +144,35 @@
          All individual ports numbers start at 4.
    \end{enumber}
 
-   A planned feature:
-   Controls automation support.
-   This will be a part of a common controls interface.
+\subsubsection{Control Automation}
+\label{subsubsec:new_features_control_automation}
 
-   Sensitivity to MIDI volume change (CC \#7) is now variable in 'Controllers' in
-   the same way as pan width, etc. The numeric range is 64 to 127; the default
-   at 96 gives the same sensitivity as before at -12dB relative to the GUI
-   controls.  127 gives 0dB and 64 gives -26dB.
+   A planned feature, already well underway, is
+   controls automation support.
+   This is a part of a common controls interface.
+   There are significant extensions to the NRPNs that
+   \textsl{Yoshimi} handles.  
 
-   \textsl{Yoshimi} now stamps instrument and patch set XML files with its own
-   major and minor version numbers so it is possible to tell which version
-   created the files, or whether they were created by \textsl{ZynAddSubFX}.
+   Sensitivity to MIDI volume change (CC \#7) is now variable in 'Controllers'
+   in the same way as pan width, etc. The numeric range is 64 to 127; the
+   default at 96 gives the same sensitivity as before at -12dB relative to the
+   GUI controls.  127 gives 0dB and 64 gives -26dB.
 
-   It is now possible to direct messages to either \texttt{stderr}
-   (the error output of a terminal console) or the report window
-   on the fly. If one chooses \texttt{stderr}, the \textbf{Reports} button is
-   greyed out.
+   In parallel with this there are more NRPNs supported so that one can perform
+   some of these controls via automation. The arrangment looks positively
+   steam-punk, but is actually very easy to use, requiring only a utility that
+   can send MIDI CCs.  NRPNs aren't special. They are simply a specific pattern
+   of CCs.  \textsl{Yoshimi}'s implementation is very forgiving, doesn't mind
+   if one stops halfway through (will just get on with other things while it
+   waits) and will report exactly what it is doing.  See the new NRPN
+   sections.
 
-   Some NRPNs are now supported.
-   See the new NRPN sections.
-
-   One can now use the mouse scroll wheel to adjust rotary controls. Holding
-   down the Ctrl key gives access to finer adjustment.  Also, horizontal as
-   well as vertical mouse movement will adjust the knob.
-
-   Part-editing windows carry the part number and voice name in the title bar.
-   For the AddSynth oscillator window this also includes the voice number.
-
-   \textsl{Yoshimi} now can provide  up to 64 parts, in blocks of 16. One can
-   now decide how many one wants to have available using the spin-box alongside
-   the channel number.  One can have 16, 32 or 64 parts.  By default, all the
-   upper parts are mapped to the same MIDI channel numbers as the lowest ones,
-   but have independent voice and patch set values. They can not normally
-   receive independent note or control messages. However, vector control will
-   intelligently work with however many are set, as will all the NRPN direct
-   part controls.
-
-   When opening an instrument bank, one can now tell exactly which synth
-   engines are used by each instrument. This is represented by three pale
-   background colours: Red = AddSynth; Blue = SubSynth; and Green = PadSynth.
-
-   If the instruments are kits they scanned to find out if any member of the
-   kit contains each engine, so that the colors above can be applied.
-   This feature is duplicated in the current part, the mixer panel for the
-   currently loaded instruments, and in the Instrument Edit window.
-   The same colors highlight the engine names when they are enabled with the
-   check boxes. 
-
-   Bank root directories are better identified, with IDs that can be changed by
-   the user in the GUI. This is also made available for selecting over MIDI.
-   MIDI only sees banks in the \textsl{current}
-   \textbf{root} directory, but all banks are accessible to the GUI.
-
-   It is now possible to set up a new bank root path when starting from the
-   command line. This takes the form:
-
-   \begin{verbatim}
-      $ yoshimi -D /home/(username)/(directory)/(subdirectory)/bank
-   \end{verbatim}
-
-   \textsl{Yoshimi} will then immediately scan this path for new banks, but
-   won't make the root (or any of its banks) current. The final directory
-   doesn't in fact have to be 'banks', but, traditionally, we have always done
-   this.
-
-   Also, when running from the command line there is now access to many of the
-   system and root, bank, and other settings.
-
-	\textsl{Yoshimi} now splits out roots and banks from the main configuration
-	file, and also creates a new histories file. The separation means that the
-	different functions can be implemented, saved, and loaded at the most
-   appropriate time. These files have
-   "yoshimi" as the doctype, as they are in no way relevant to
-   \textsl{ZynAddSubFX}.
-   See the new Banks sections.
-
-   \textsl{Yoshimi} now remembers where major windows were last placed (per
-   instance), and if any were left open at shutdown, they will be reopened at
-   the same location on the next run.
+\subsubsection{MIDI CC}
+\label{subsubsec:new_features_midi_cc}
 
    To help when things don't seem to go right, one can now show 'raw' incoming
    CCs. This is enabled from the 'MIDI' tab in 'Settings'. These are the values
    before \textsl{Yoshimi} does any processing.
-
-   Thanks to the \textsl{ZynAddSubFX} developers, \textsl{Yoshimi} now has pink
-   as well as white noise available on Addsynth voices. Pink noise sounds
-   'softer'.
-
-   The preferred JACK/ALSA MIDI and audio connections are no longer fixed at
-   compile time. There are now checkboxes on 'Settings' to change them.
-
-   With the latest 'depop' port from \textsl{ZynAddSubFX}, \textsl{Yoshimi}
-   is now fully compatibly with all instrument files.
-
-   \textsl{Yoshimi} will now always start even if the audio/MIDI backend called
-   for doesn't exist. In this situation it will try all combinations in the
-   order JACK, ALSA, and null. This enables one to then change the settings and
-   try again.
-
-   One can also set 'preferred' startup ALSA/JACK/MIDI and audio devices.
-   These selections will be remembered on the next run.
 
    MIDI program changes have always been pretty clean from the time Cal first
    introduced them, but now GUI changes are just as clean. While it is
@@ -253,22 +191,81 @@
    This feature combines volume with
    filter cutoff.
 
-   The 'Humanise' feature has had more interest so it's been upgraded. It's now
-   a slider and it's setting can be saved in patch sets. It provides a tiny
-   per-note random detune to an \textsl{entire} part (all engines in all kits),
-   but only for that part.
+\subsubsection{Vectors}
+\label{subsubsec:new_features_vectors}
 
-   Audio and MIDI preferences have been improved. If one sets (say) ALSA MIDI
-   and JACK audio, either from the GUI or the command line, the setting can be
-   saved and will be reinstated on the next run. These settings are
-   per-instance, so if one has multiple sound cards, one can make full use of
-   them.
+   It's probably best to more clearly separate the concept of
+   \textsl{parts} versus \textsl{channels} these days. 
+   \textsl{Yoshimi} now can provide up to 64 parts, in blocks of 16. One can
+   now decide how many one wants to have available using the spin-box alongside
+   the channel number.  One can have 16, 32 or 64 parts.  By default, all the
+   upper parts are mapped to the same MIDI channel numbers as the lowest ones,
+   but have independent voice and patch set values. They can not normally
+   receive independent note or control messages. However, vector control will
+   intelligently work with however many are set, as will all the NRPN direct
+   part controls.
 
-   Barring major system failures, there are now no circumstances where Yoshimi
-   will fail to start.
+\subsubsection{Bank Support}
+\label{subsubsec:new_features_bank_support}
 
-   \textsl{Yoshimi} is now verified as being able to use the 192000 Hz sample
-   rate in both ALSA and JACK - if one has a suitable soundcard!
+   Bank root directories are better identified, with IDs that can be changed by
+   the user in the GUI. This is also made available for selecting over MIDI.
+   MIDI only sees banks in the \textsl{current}
+   \textbf{root} directory, but all banks are accessible to the GUI.
+
+   It is now possible to set up a new bank root path when starting from the
+   command line. This takes the form:
+
+   \begin{verbatim}
+      $ yoshimi -D /home/(username)/(directory)/(subdirectory)/bank
+   \end{verbatim}
+
+   \textsl{Yoshimi} will then immediately scan this path for new banks, but
+   won't make the root (or any of its banks) current. The final directory
+   doesn't in fact have to be 'banks', but, traditionally, we have always done
+   this.  Also, when running from the command line there is now access to many
+   of the system and root, bank, and other settings.
+
+	\textsl{Yoshimi} now splits out roots and banks from the main configuration
+	file, and also creates a new history file. The separation means that the
+	different functions can be implemented, saved, and loaded at the most
+   appropriate time. These files have
+   "yoshimi" as the doctype, as they are in no way relevant to
+   \textsl{ZynAddSubFX}.
+   See the new Banks sections.
+
+\subsubsection{Accessibility}
+\label{subsubsec:new_features_accessibility}
+
+   One of the main features of recent releases of \textsl{Yoshimi} is improved
+   accessibility. The effectiveness (and indeed usefulness) of this will help
+   shape future complimentary interfaces. Also, a number of first-time defaults
+   have been changed to make this easier.
+
+   It has always been possible to run \textsl{Yoshimi} headless, but now real
+   control is available. In the first place, when starting from the command
+   line, an argument can be included for a new root path to be defined to point
+   to a set of banks fetched from elsewhere. This will be given the next free
+   ID.
+
+   Once running, almost all dynamic setup (i.e. doesn't require a restart) can
+   now be done within the terminal window. There is also extensive control of
+   roots, banks, parts and instruments including the ability to list and set
+   all of these. One can now do things like:
+
+   \begin{verbatim}
+      path add /home/music/yoshimi/banks
+      set part 4 program 130
+   \end{verbatim}
+
+   Additional controls that are frequently taken forgranted in the GUI but
+   otherwise get forgotten are master key shift and master volume.  We have the
+   most important parts of vector control exposed to the command line.
+   For all of this there is extensive error checking and feedback, which can be
+   rendered aurally using text-to-speech software.
+
+\subsubsection{Command Line}
+\label{subsubsec:new_features_command_line}
 
    There is greater control of one's working environment. One can have just the
    GUI, just a CLI or both, and these settings can be saved. If one tries to
@@ -320,6 +317,91 @@
    that \textsl{Yoshimi} instrument patches are still fully compatible with
    \textsl{ZynAddSubFX} patches, and have now ported across the new refinements
    with thanks.
+
+\subsubsection{Audio Support}
+\label{subsubsec:new_features_audio_support}
+
+   The preferred JACK/ALSA MIDI and audio connections are no longer fixed at
+   compile time. There are now checkboxes on 'Settings' to change them.
+   One can also set 'preferred' startup ALSA/JACK/MIDI and audio devices.
+   These selections will be remembered on the next run.
+
+   \textsl{Yoshimi} will now always start even if the audio/MIDI backend called
+   for doesn't exist. In this situation it will try all combinations in the
+   order JACK, ALSA, and null. This enables one to then change the settings
+   and try again.
+
+   Another significant improvement is to the handling of ALSA audio, which is
+   still very important for some people. Up until now,
+   \textsl{Yoshimi} has insisted on
+   2-channel 16-bit format. Tests have shown that virtually all motherboard
+   sound chipsets will handle this setting, but many external ones don't. So
+   now we initially request 32 bit 2 channel and work towards a compromise with
+   the hardware. With external sound modules in mind, endian swaps are also
+   implemented.
+
+   \textsl{Yoshimi} is now verified as being able to use the 192000 Hz sample
+   rate in both ALSA and JACK... if one has a suitable soundcard!
+
+\subsubsection{Miscellany}
+\label{subsubsec:new_features_miscellany}
+
+   \textsl{Yoshimi} now stamps instrument and patch set XML files with its own
+   major and minor version numbers so it is possible to tell which version
+   created the files, or whether they were created by \textsl{ZynAddSubFX}.
+
+   It is now possible to direct messages to either \texttt{stderr}
+   (the error output of a terminal console) or the report window
+   on the fly. If one chooses \texttt{stderr}, the \textbf{Reports} button is
+   greyed out.
+
+   One can now use the mouse scroll wheel to adjust rotary controls. Holding
+   down the Ctrl key gives access to finer adjustment.  Also, horizontal as
+   well as vertical mouse movement will adjust the knob.
+
+   Part-editing windows carry the part number and voice name in the title bar.
+   For the AddSynth oscillator window this also includes the voice number.
+
+   When opening an instrument bank, one can now tell exactly which synth
+   engines are used by each instrument. This is represented by three pale
+   background colours: Red = AddSynth; Blue = SubSynth; and Green = PadSynth.
+
+   If the instruments are kits they scanned to find out if any member of the
+   kit contains each engine, so that the colors above can be applied.
+   This feature is duplicated in the current part, the mixer panel for the
+   currently loaded instruments, and in the Instrument Edit window.
+   The same colors highlight the engine names when they are enabled with the
+   check boxes. 
+
+   \textsl{Yoshimi} now remembers where major windows were last placed (per
+   instance), and if any were left open at shutdown, they will be reopened at
+   the same location on the next run.
+
+   Thanks to the \textsl{ZynAddSubFX} developers, \textsl{Yoshimi} now has pink
+   as well as white noise available on Addsynth voices. Pink noise sounds
+   'softer'.  With the latest 'depop' port from \textsl{ZynAddSubFX},
+   \textsl{Yoshimi} is now fully compatibly with all instrument files.
+
+   The 'Humanise' feature has had more interest so it's been upgraded. It's now
+   a slider and it's setting can be saved in patch sets. It provides a tiny
+   per-note random detune to an \textsl{entire} part (all engines in all kits),
+   but only for that part.
+
+   Audio and MIDI preferences have been improved. If one sets (say) ALSA MIDI
+   and JACK audio, either from the GUI or the command line, the setting can be
+   saved and will be reinstated on the next run. These settings are
+   per-instance, so if one has multiple sound cards, one can make full use of
+   them.
+
+   Barring major system failures, there are now no circumstances where Yoshimi
+   will fail to start.
+
+   We have tested \textsl{Yoshimi} in 'recovery' mode, logged in as root, with
+   no X server. Using the command \texttt{/usr/local/share/bin/yoshimi -A -i}
+   worked perfectly and auto-connected the keyboard so we could prove
+   everything worked.  We still need the X11 libraries to compile
+   \textsl{Yoshimi}, but we don't know if it is practical to provide a compile
+   time option to build a purely headless version.
 
 \subsection{Document Structure}
 \label{subsec:introduction_document_structure}

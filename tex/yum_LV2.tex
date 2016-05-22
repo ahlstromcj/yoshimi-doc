@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-10-25
-% \update      2016-03-13
+% \update      2016-05-21
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -40,10 +40,37 @@ Supported features:
    \texttt{LV2\_Plugin/yoshimi\_lv2.so}
 
    The LV2 \textsl{Yoshimi} interface can be run in hosts such as
-   Ardour 3, Carla, and QTractor.
+   \textsl{Ardour 3}, \textsl{Carla}, and \textsl{QTractor}.  We have tested
+   LV2 using the latest versions of \textsl{Ardour}, \textsl{Muse} and
+   \textsl{Qtractor} as LV2 hosts. We also tried \textsl{Carla} but couldn't
+   get anywhere with it at all... if someone is familiar with it we'd be
+   interested in what results they get.  Slightly to our surprise the one that
+   performed the best in every respect was \textsl{Qtractor}. \textsl{Muse} got
+   everything correct, but was prone to Xruns on program changes.
+   \textsl{Ardour} was very problematical.  There were no Xruns but it seemed
+   to have odd timing issues. Also, on two occasions it managed to shorten the
+   decay times of two of the instruments.  We don't understand how it managed
+   that.  Our reference was the original MIDI file played into a stand-alone
+   \textsl{Yoshimi} via \texttt{aplaymidi}. This also behaves identically to
+   the file being sequenced by \textsl{Rosegarden}.
 
    At some point we hope to document the process of setting up and using
-   the \textsl{Yoshimi} LV2 plugin.
+   the \textsl{Yoshimi} LV2 plugin.  In the meantime, we include some notes.
+
+   If \textsl{Yoshimi}'s internal buffer is \textsl{smaller} than the JACK
+   buffer, it sounds quite horrible. If it's the same or greater there's no
+   problem. The reason we didn't find this before is that it only affects
+   \textsl{Yoshimi} LV2.  Also it doesn't apply to any of the released
+   versions.  The cause of the problem is that the LV2 code doesn't have the
+   same looping structure that was added to the standalone routine to deal with
+   exactly this situation (re-entering the audio 'construction' function until
+   the JACK buffer is filled). We hope Andrew can deal with this fairly soon as
+   we don't understand the LV2 code very well.  There are valid reasons for
+   wanting different sizes for these buffers. The internal buffer size as well
+   as affecting latency and CPU load also alters the sound in quite subtle
+   ways. It particularly affects the behaviour of filters.  One day we may be
+   able to stop this happening, but in the mean time we have to live with it.
+   For our purposes, we find a buffer size of 128 or 256 is best.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex

@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2016-03-09
+% \update      2016-05-21
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -48,8 +48,8 @@
 \subsubsection{Menu / Yoshimi / About...}
 \label{subsubsec:menu_yoshimi_about}
 
-   There is no "Help" menu in \textsl{Yoshimi}.
-   Therefore, the "About" dialog appears in the "Yoshimi" menu, as shown in
+   There is no \textbf{Help} menu in \textsl{Yoshimi}.  Therefore, the
+   \textbf{About} dialog appears in the \textbf{Yoshimi} menu, as shown in
    \figureref{fig:yoshimi_about_dialog}.
    These guys need some acknowledgment for their hard work!
    And they acknowledge the massive groundwork laid by the
@@ -122,8 +122,6 @@
    setting, it will have null audio, but (probably) will still connect to ALSA
    MIDI.  Not too useful, but we should test that sometime.
 
-Page 34 - 2
-
 \subsubsection{Menu / Yoshimi / Settings...}
 \label{subsubsec:menu_yoshimi_settings}
 
@@ -181,7 +179,7 @@ Page 34 - 2
 \begin{figure}[H]
    \centering 
 %  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-main.jpg}
-   \includegraphics[scale=0.75]{1.3.8/yoshimi-settings-main.png}
+   \includegraphics[scale=0.75]{1.3.9/yoshimi-settings-main.png}
    \caption{Yoshimi Main Settings Tab}
    \label{fig:yoshimi_main_settings_dialog}
 \end{figure}
@@ -195,10 +193,9 @@ Page 34 - 2
       \item \textbf{Virtual Keyboard Layout}
       \item \textbf{XML compression level}
       \item \textbf{Send reports to}
-%     \item \textbf{Session state save file}
-%     \item \textbf{Select}
-      \item \textbf{Hide Non Fatal Errors} (new)
-      \item \textbf{Log XML headers} (new)
+      \item \textbf{Hide Non Fatal Errors}
+      \item \textbf{Log XML headers}
+      \item \textbf{Show Splash} (new)
       \item \textbf{Save and Close}
       \item \textbf{Close Unsaved}
    \end{enumber}
@@ -207,17 +204,19 @@ Page 34 - 2
 
    \itempar{AddSynth Oscillator Size}{Main Settings!oscillator size}
    ADDsynth Oscillator Size (in samples).  This item used to be called
-   "OscilSize".  Sets the number of the points of the ADDsynth oscillator. The
-   bigger is better, but it takes more CPU time on the start of any note, and
+   "OscilSize".  Sets the number of the points of the ADDsynth oscillator.
+   Bigger is better, but it takes more CPU time on the start of any note, and
    it may add latency to some processes.
 
    The default value for \textsl{Yoshimi} is shown marked with an asterisk,
    and the default value for \textsl{ZynAddSubFX} is 512.
-   (This asterisk/plus-sign convention is used throughout this manual).
+   \index{asterisk}
+   \index{default!asterisk}
+   This asterisk/plus-sign convention is used throughout this manual.
    See \figureref{fig:yoshimi_oscilsize_values},
    shown below for the AddSynth Oscillator Size drop-down element.
 
-   Values: \texttt{128, 256, 512*, 1024, 2048, 4096, 8192, 16384}
+   Values: \texttt{256, 512*, 1024, 2048, 4096, 8192, 16384}
 
 \begin{figure}[H]
    \centering 
@@ -355,12 +354,15 @@ Page 34 - 2
    one can then see what \textsl{ynAddSubFX}/\textsl{Yoshimi}
    version created the file.
 
+   \itempar{Show Splash}{Main Settings!Show Splash}
+   This item will speed up the start-up of \textsl{Yoshimi} slightly
+   if unchecked, by not showing the splash screen while files are being loaded.
+
 \paragraph{Menu / Yoshimi / Settings / Jack}
 \label{paragraph:menu_yoshimi_settings_jack}
 
    JACK is the "Jack Audio Connection Kit", very useful for increasing audio
    performance and configurability.
-
    When using the JACK audio backend, instruments can be individually routed
    and sent to the main L/R outputs. This is controlled from the
    panel window,
@@ -405,7 +407,7 @@ Page 34 - 2
    Set as preferred MIDI for JACK.
    This setting determines which MIDI connections a particular instance will
    first attempt. The switches are mutually exclusive across JACK and ALSA,
-   so if you check ALSA for MIDI, it automatically unchecks JACK for MIDI.
+   so if one checks ALSA for MIDI, it automatically unchecks JACK for MIDI.
    As well as from the GUI, this setting can be set (for instance 0) from the
    command line, both at start-up and once running.
 
@@ -416,13 +418,14 @@ Page 34 - 2
    This option corresponds to the \textsl{Yoshimi} command line option
    \texttt{--jack-audio(=server)}.
 
-   Values: \texttt{default*, name} name, as in "jackd --name"
+   Values: \texttt{default*, name} name, as in
+   \texttt{jackd --name}.
 
    \itempar{Set as preferred audio}{JACK!Set as preferred audio}
    Set as preferred audio for JACK.
    This setting determines which audio connections a particular instance will
    first attempt. The switches are mutually exclusive across JACK and ALSA,
-   so if you check ALSA for audio, it automatically unchecks JACK for audio.
+   so if one checks ALSA for audio, it automatically unchecks JACK for audio.
    As well as from the GUI, this setting can be set (for instance 0) from the
    command line, both at start-up and once running.
    Note that any of these setting changes require a restart of \textsl{Yoshimi}
@@ -444,7 +447,7 @@ Page 34 - 2
    24 bit, and, due to its own limits, will use only channels 1 and 2.
    With external sound modules in mind, endian swaps are also implemented.
 
-   To be able to reliably use ALSA audio you need to set a card name, not just
+   To be able to reliably use ALSA audio, one needs to set a card name, not just
    "Default".  In a terminal window enter the following command:
 
    \begin{verbatim}
@@ -460,7 +463,7 @@ Page 34 - 2
 
    Go to the ALSA settings tab illustrated below, and in 
    \textsl{Alsa Audio Device} enter, for example, "hw:PCH".
-   This ensures you will always connect to this card at startup regardless of
+   This ensures one will always connect to this card at startup regardless of
    the order this and other ones.  Another benefit of using this hardware name
    is that ALSA will now use \textsl{Yoshimi}'s internal
    buffer size (256), otherwise ALSA will force \textsl{Yoshimi} to accept its
@@ -468,7 +471,7 @@ Page 34 - 2
 
    One can also set the sample rate, but bear in mind that not all cards can use
    all of these.  The sample rates 44100 and 48000 are almost always available.
-   If you set a Midi Device as well (such as a keyboard) Yoshimi will try to
+   If one sets a Midi Device as well (such as a keyboard) Yoshimi will try to
    find and connect to this device at startup.
 
    To find the MIDI devices available, try:
@@ -525,7 +528,7 @@ Page 34 - 2
    Set as preferred MIDI for ALSA.
    This setting determines which MIDI connections a particular instance will
    first attempt. The switches are mutually exclusive across JACK and ALSA,
-   so if you check ALSA for MIDI, it automatically unchecks JACK for MIDI.
+   so if one checks ALSA for MIDI, it automatically unchecks JACK for MIDI.
    As well as from the GUI, this setting can be set (for instance 0) from the
    command line, both at start-up and once running.
 
@@ -545,7 +548,7 @@ Page 34 - 2
    Set as preferred audio for ALSA.
    This setting determines which audio connections a particular instance will
    first attempt. The switches are mutually exclusive across JACK and ALSA,
-   so if you check ALSA for audio, it automatically unchecks JACK for audio.
+   so if one checks ALSA for audio, it automatically unchecks JACK for audio.
    As well as from the GUI, this setting can be set (for instance 0) from the
    command line, both at start-up and once running.
 
@@ -585,7 +588,8 @@ Page 34 - 2
 \begin{figure}[H]
    \centering 
 %  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-ccs.jpg}
-   \includegraphics[scale=0.75]{1.3.8/yoshimi-settings-midi.png}
+%  \includegraphics[scale=0.75]{1.3.8/yoshimi-settings-midi.png}
+   \includegraphics[scale=0.75]{1.3.9/yoshimi-settings-ccs.jpg}
    \caption[MIDI Preferences]{MIDI Preferences}
    \label{fig:yoshimi_settings_cc}
 \end{figure}
@@ -602,6 +606,7 @@ Page 34 - 2
       \item \textbf{Enable Part On Program Change}
       \item \textbf{Enable Extended Program Change}
       \item \textbf{Extended Program Change}
+      \item \textbf{Ignore Reset all CCs}
       \item \textbf{Log incoming CCs}
       \item \textbf{Save and Close}
       \item \textbf{Close Unsaved}
@@ -678,10 +683,22 @@ Page 34 - 2
 
    Values: \texttt{0-127, 110*}
 
+   \itempar{Ignore Reset all CCs}{MIDI preferences!Ignore Reset all CCs}
+   Causes \textsl{Yoshimi} to ignore this message.
+   \index{CC monitor}
+   For example, using \textsl{Yoshimi}'s fairly new CC monitor (see the next
+   item), Will found that \textsl{Rosegarden} was sending CC 121 (reset all
+   controllers) at the start of some song segments.  Checking this option
+   prevents unwanted resets.
+
+   Values: \texttt{Off*, On}
+
    \itempar{Log incoming CCs}{MIDI preferences!Log incoming CCs}
    This setting is is about the only setting that is never saved. It is there
    solely as an aid for when \textsl{Yoshimi} appears to ignore MIDI commands,
-   as it tells you exaclty what \textsl{Yoshimi} thinks it received.
+   as it tells one exactly what \textsl{Yoshimi} thinks it received.
+
+   Values: \texttt{Off*, On}
 
 \subsubsection{Menu / Yoshimi / Exit}
 \label{subsubsec:menu_yoshimi_exit}
@@ -742,7 +759,8 @@ Page 34 - 2
       /usr/local/share/yoshimi/presets
    \end{verbatim}
    
-   The user can provide additional directories for the presets.
+   The user can provide additional directories for the presets, up to a limit
+   of 128 directories (the same limit as for roots and banks).
    These directories are useful for containing copies of the system
    presets that one can modify safely, and for providing custom
    presets designed by the user.
@@ -907,7 +925,7 @@ Page 34 - 2
    \itempar{Comment}{comment}
    Comment for Key Mapping.
    Provides a comment or a description of the scale.
-   By default, this is "Equal Temperament 12 notes per octave.
+   By default, this is "Equal Temperament 12 notes per octave".
 
    \itempar{Tunings}{tuning}
    Tunings.
@@ -916,17 +934,19 @@ Page 34 - 2
 
    \begin{enumber}
       \item As the number of cents (1200 cents=1 octave) as a float number
-      like "100.0", "123.234"
+         like "100.0", "123.234"
       \item As a proportion like "2/1" which represents one octave, "3/2" a
-      perfect fifth, "5734/6561".  "2/1" is equal to "1200.0" cents.
+         perfect fifth, "5734/6561".  "2/1" is equal to "1200.0" cents.
    \end{enumber}
 
    The default is a series of values:
    \texttt{0100.0, 0200.0, ..., 1100.0, 2/1}.
 
    \itempar{Retune}{retune}
-   Retune.
-   TODO:  What does this button do?
+   Retune button.
+   This button retunes the synthesizer according to the settings of
+   the \textbf{Tunings} and \textbf{Keyboard Mapping} lists.
+   All other changes operate immediately.
 
    \itempar{nts./oct}{Notes per Octave}
    Notes Per Octave.
@@ -1038,8 +1058,9 @@ Page 34 - 2
    Values: \texttt{12}
 
    In the current version of \textsl{Yoshimi}, up to 25 recently used scales are
-   now stored in the new history file, and can be quickly reinstalled with a
-   mini browser in exactly the same way as patch sets.
+   now stored in the new history file
+   (\texttt{yoshimi.history}), and can be quickly reinstalled with a
+   mini-browser in exactly the same way as patch sets.
 
 \subsubsection{Menu / Scales / Load}
 \label{subsec:menu_scales_load}

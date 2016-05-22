@@ -4,9 +4,9 @@
 %
 % \file        yum_concepts.tex
 % \library     Documents
-% \author      Chris Ahlstrom
+% \author      Chris Ahlstrom and Will Godfrey
 % \date        2015-06-15
-% \update      2016-03-07
+% \update      2016-05-21
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -69,6 +69,14 @@
    Buffers generally range in size from 16 to 1024 frames.
    Low values provide less latency, but make the CPU work harder.
 
+   ALSA is more complex as it handles pretty much the sound card's format,
+   commonly integers, 24 bit integers (low byte ignored), and short integers.
+   Less commonly it may be floats or the weird 24-bit long integers.  Are these
+   packed or low-aligned (top byte ignored)? It's assumed they are low-aligned,
+   but we don't know anyone who has such a card in order to prove it. As a
+   matter of interest, the only ALSA format \textsl{Yoshimi} doesn't support is
+   float; again, no way to test it.
+
 \subsubsection{Concepts / Terms / Instrument}
 \label{subsubsec:concepts_terms_instrument}
 
@@ -114,8 +122,10 @@
 \subsubsection{Concepts / Terms / Patch Set}
 \label{subsubsec:concepts_terms_patch_set}
 
+   \index{patchset}
    \index{patch set}
-   A patch set is basically a group of instruments related simply by the user
+   A patch set (also known as "patchset")
+   is basically a group of instruments related simply by the user
    wanting to have them all loaded at once into \textsl{Yoshimi}.
    A patch set is stored in a \texttt{.xmz} file.
    A patch set is akin to a preset, in that it stores a combination of
@@ -133,10 +143,12 @@
 \label{subsubsec:concepts_terms_preset}
 
    \index{preset}
-   Presets allow for one to save the
+   Presets allow one to save the
    settings for any of the components which support copy/paste operations.
    This is done with preset files (\texttt{.xpz}), which get stored in the
-   folders indicated by \textsl{Paths / Preset Dirs...}.
+   folders indicated by \textbf{Paths / Preset Dirs...}.
+   Note that the number of preset directories that can be set is limited to 128
+   (the same as for roots and banks).
 
    In MIDI jargon, a \textsl{preset} is an instrument that can be easily
    loaded.  It is also called a \textsl{program} or a \textsl{patch}.  A
@@ -184,13 +196,13 @@
    one is using JACK, a mono signal will have frames of 1 float, 2 for stereo,
    etc.
 
-   ALSA is more complex as it handles the sound card's format, commonly integers
-   (16 bit), 24 bit integers (low byte ignored), and short integers. Less
-   commonly it may be floats or the weird 24 L ints. We're still not sure if
-   these are packed or low-aligned (top byte ignored). We've assumed they are
-   low aligned, but we don't know anyone who has such a card, in order to prove
-   it.  As a matter of interest the only ALSA format \textsl{Yoshimi} doesn't
-   support is float.
+   ALSA is more complex as it handles the sound card's format, commonly
+   integers (16 bit), 24 bit integers (low byte ignored), and short integers.
+   Less commonly it may be floats or the weird 24-bit long integers. We're
+   still not sure if these are packed or low-aligned (top byte ignored). We've
+   assumed they are low-aligned, but we don't know anyone who has such a card,
+   in order to prove it.  As a matter of interest the only ALSA format
+   \textsl{Yoshimi} doesn't support is float.
 
    Something that's not obvious is the way that ALSA audio is controlled and who
    takes command.  If one sets a specific destination, then \textsl{Yoshimi}
@@ -200,6 +212,9 @@
    then ALSA decides on the sound card, bit depth, number of channels and the
    buffer size, and \textsl{Yoshimi} will set it's internal buffer size to
    match.  On most machines this always seems to be 1024.
+
+   \textsl{Yoshimi} is now verified as being able to use the 192000 Hz sample
+   rate in both ALSA and JACK... if one has a suitable soundcard!
 
 \subsection{Concepts / Banks and Roots}
 \label{subsec:concepts_banks_and_roots}
@@ -596,8 +611,8 @@
          \textbf{120} & All Sounds OFF \\
          \textbf{121} & Reset All Controllers \\
          \textbf{123} & All Notes OFF \\
-         \textbf{192} & Program Change (voices 1-128) \\
-         \textbf{224} & Pitch Bend \\
+         \textbf{192} & Program Change (voices 1-128; see notes below) \\
+         \textbf{224} & Pitch Bend (see notes below) \\
       \end{tabular}
    \end{table}
 
@@ -614,24 +629,29 @@
       resonance. 
    \end{itemize}
 
-   Program Change (192) also provides user selectable CC for voices
-   128-160.  There is now an option to make Program Change enable a part if
-   it's currently disabled.
+   Some standard MIDI messages are handled a bit differently by
+   \textsl{Yoshimi}:
 
-   Key pressure (aftertouch) is internally translated as CC 900.
-
-   Channel Pressure is internally translated as CC 901.
-
-   Pitch Bend is internally translated as CC 1000.
-
-   The modulation wheel only affects AddSynth and PadSynth, and then only the
-   frequency LFO depth. Just to make it more confusing, it changes the level
-   from 0 up to it's current (GUI) setting only. Therefore, if the LFO depth is
-   set to zero, the Mod Wheel will have no effect.
-
-   User selectable CC for Bank Root Path change.
-   For more details of bank changes see
-   \sectionref{subsec:concepts_banks_and_roots}.
+   \begin{itemize}
+      \item \textbf{Program Change (192)}
+         also provides user selectable CC for
+         voices 128-160.  There is now an option to make Program Change enable
+         a part if it's currently disabled.
+      \item \textbf{Key pressure (aftertouch)}
+         is internally translated as CC 900.
+      \item \textbf{Channel Pressure}
+         is internally translated as CC 901.
+      \item \textbf{Pitch Bend}
+         is internally translated as CC 1000.
+      \item \textbf{Modulation}
+         The wheel only affects AddSynth and PadSynth, and then only the
+         frequency LFO depth. Just to make it more confusing, it changes the
+         level from 0 up to it's current (GUI) setting only. Therefore, if the
+         LFO depth is set to zero, the Mod Wheel will have no effect.
+      \item \textbf{User selectable CC for Bank Root Path change}
+         For more details of bank changes see
+         \sectionref{subsec:concepts_banks_and_roots}.
+   \end{itemize}
 
    Instruments inside banks should \textsl{always} have file-names that
    begin with four digits,  followed

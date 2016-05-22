@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-15
-% \update      2016-03-09
+% \update      2016-05-21
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -40,10 +40,23 @@
    and has been reorganized, and, it is to be hoped, expanded.
 
 \subsection{Settings Features}
-\label{sec:stock_settings_ui_features}
+\label{subsec:stock_settings_ui_features}
 
    This section notes some minor interface and synthesizer features that may
    be seen thoughout \textsl{Yoshimi}.
+
+\subsubsection{Mouse Features}
+\label{subsubsec:stock_settings_mouse_features}
+
+   \textbf{New:}
+   \index{new!right-click}
+   \index{mouse!right-click}
+   In the AddSynth dialogs, if one right-clicks on a button that opens a child
+   window, the current window is closed. Conversely, if one right-clicks on the
+   \textbf{Close} button of a child window, it will re-open the parent.  This
+   feature is especially useful when going up and down the AddSynth stack, and
+   avoids having a screenful of intermediate windows.
+   Note that this feature does \textsl{not} apply to the main window.
 
 \subsubsection{Title Bars}
 \label{subsubsec:stock_settings_elements_title_bars}
@@ -103,6 +116,7 @@
 \subsubsection{Presets}
 \label{subsubsec:stock_settings_elements_presets}
 
+   \index{preset}
    The \textsl{ZynAddSubFX}/\textsl{Yoshimi} concept of presets is very
    powerful.
 
@@ -118,6 +132,12 @@
    That makes them fully accessible, but
    tucked away out of sight.  \textsl{Yoshimi} creates this directory at first
    time start up.
+   Preset files allow one to save the
+   settings for any of the components which support copy/paste operations.
+   This is done with preset files (\texttt{.xpz}), which get stored in the
+   folders indicated by \textbf{Paths / Preset Dirs...}.
+   Note that the number of preset directories that can be set is limited to 128
+   (the same as for roots and banks).
 
 \subsubsection{Automation}
 \label{subsubsec:stock_settings_elements_automation}

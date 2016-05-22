@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-29
-% \update      2016-03-07
+% \update      2016-05-21
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -57,9 +57,15 @@
 
    \itempar{Key Shift}{top panel!key shift}
    Master Key Shift.
-   This is the key-shift (transpose) that applies to all parts.
+   This is the key-shift (transpose) that applies to all parts, in units of
+   semitones.
+   In recent versions of \textsl{Yoshimi}, this range has been extended.
+   Also note that the master key shift can be set via the user-interface, the
+   command-line, or (we suspect) by MIDI NRPN commands.
 
-   Values: \texttt{-12 to 12, 0*}
+%   Values: \texttt{-12 to 12, 0*}
+
+   Values: \texttt{-36 to 36, 0*}
 
    \itempar{Detune}{top panel!detune}
    Detune.  Provides a global fine detune functionality.
