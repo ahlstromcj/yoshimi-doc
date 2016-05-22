@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-26
-% \update      2016-05-21
+% \update      2016-05-22
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -409,7 +409,7 @@
   2 & LSB key       & Set master key shift, 52\textless=key\textless=76
                       (-36 to +36) \\
   7 & LSB volume    & Set master Volume 'volume' \\
-  64-79 & LSB key   & Set channel (n-64) key shift \\
+  64-79 & LSB key   & Set channel-based (n-64) key shift \\
 100 & LSB \textgreater 63 & Send reports to Reports window, otherwise to stderr. \\
 108 & LSB x [13824] & List settings of all vectors. \\
 109 & LSB x [13843] & List the following: \\

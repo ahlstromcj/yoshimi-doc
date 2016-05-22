@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2016-05-21
+% \update      2016-05-22
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -67,7 +67,6 @@
 \label{subsubsec:menu_yoshimi_new_instance}
 
    Creates a new instance of \textsl{Yoshimi}.
-
    If JACK is running,
    start a normal (JACK-using) instance of \textsl{Yoshimi}.
    Then use this menu entry.  \textsl{Yoshimi} will start another instance
@@ -332,7 +331,7 @@
    See \figureref{fig:send_reports_to}.
    It provides a depiction of the selection drop-down.
 
-   Values: \texttt{stderr, Console Window*}
+   Values: \texttt{stderr*, Console Window}
 
 \begin{figure}[H]
    \centering 
@@ -341,16 +340,62 @@
    \label{fig:send_reports_to}
 \end{figure}
 
+   If the \textbf{Console Window} option is chosen, then the
+   \textbf{Reports} button in the effects panel is enabled.
+   Pressing the \textbf{Reports} button brings up a small console dialog, as
+   shown in \figureref{fig:console_window}.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.3.9/console-window.png}
+   \caption[Yoshimi Console Window]{Console Window}
+   \label{fig:console_window}
+\end{figure}
+
+   \index{reports!middle-click}
+   An interesting feature of the console window is that one can identify
+   user-interface elements of the \textsl{Yoshimi} configuration in this window
+   by a middle-click on the user-interface element.  The console window figure
+   shows the results of middle-clicking on the following bottom-panel knobs in
+   order:
+
+   \begin{enumerate}
+      \item Velocity Sense (left-click)
+      \item Velocity Offset
+      \item Pan
+      \item Volume
+   \end{enumerate}
+
+   \index{reports!middle-click}
+   Information about each knob middle-clicked is pushed to the top of the
+   windows in reverse order.
+   \index{reports!left-click}
+   \index{reports!right-click}
+   Information about an earlier left-click is shown at the bottom of the figure.
+   Each left-click ("Button 1") will increase the parameter represented by the
+   knob, and each right-click ("Button3") will decrease the parameter
+   represented by the knob, and each change is reported in the console window.
+   And, of course, each middle-click changes nothing, but reports the current
+   value in the console window.
+   This powerful feature provides a way to gather the information needed to
+   control the parameter from the command-line.
+   The output can be selected, copied, and pasted to a script or archive text
+   file for safe-keeping.
+   \index{MIDI learn}
+   Consider it a form of "MIDI learn" that will be developed in the future.
+   And note that it applies to output to \texttt{stderr} as well.
+
    \itempar{Hide Non Fatal Errors}{Main Settings!Hide Non-Fatal Errors}
    Especially when running from the command line (with reports going there
    too), under some circumstances one can get a swamp of low-level error
    messages (such as XRUNs) that is so large that one cannot work out what is
    going on. This feature disables these error messages; it is a work in
    progress to catch the bulk of them, while still reporting top-level messages
-   and ones that cause a forced exit (... surely not!)
+   and ones that cause a forced exit (surely not!)
 
    \itempar{Log XML headers}{Main Settings!Log XML headers}
-   This item sends the information to the console window (or stderr) so that
+   This item sends the information to the console window
+   (or \texttt{stderr}) so that
    one can then see what \textsl{ynAddSubFX}/\textsl{Yoshimi}
    version created the file.
 
@@ -375,7 +420,8 @@
 \begin{figure}[H]
    \centering 
 %  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-jack.jpg}
-   \includegraphics[scale=0.75]{1.3.8/yoshimi-settings-jack.jpg}
+%  \includegraphics[scale=0.75]{1.3.8/yoshimi-settings-jack.jpg}
+   \includegraphics[scale=0.75]{1.3.9/yoshimi-settings-jack.png}
    \caption[JACK Settings]{JACK Settings Dialog}
    \label{fig:yoshimi_settings_jack}
 \end{figure}
@@ -387,6 +433,7 @@
       \item \textbf{Set as preferred MIDI}
       \item \textbf{Jack Server}
       \item \textbf{Set as preferred audio}
+      \item \textbf{Autoconnect audio} (new, 1.3.9)
       \item \textbf{Save and Close}
       \item \textbf{Close Unsaved}
    \end{enumber}
@@ -403,7 +450,7 @@
 
    Values: \texttt{default*, name} name, as in "jackd --name"
 
-   \itempar{Set as preferred MIDI}{JACK!Set as preferred MIDI}
+   \itempar{Set as preferred MIDI}{JACK!set as preferred MIDI}
    Set as preferred MIDI for JACK.
    This setting determines which MIDI connections a particular instance will
    first attempt. The switches are mutually exclusive across JACK and ALSA,
@@ -421,7 +468,7 @@
    Values: \texttt{default*, name} name, as in
    \texttt{jackd --name}.
 
-   \itempar{Set as preferred audio}{JACK!Set as preferred audio}
+   \itempar{Set as preferred audio}{JACK!set as preferred audio}
    Set as preferred audio for JACK.
    This setting determines which audio connections a particular instance will
    first attempt. The switches are mutually exclusive across JACK and ALSA,
@@ -430,6 +477,12 @@
    command line, both at start-up and once running.
    Note that any of these setting changes require a restart of \textsl{Yoshimi}
    to take effect.
+
+   \itempar{Autoconnect audio}{JACK!autoconnect audio}
+   Sets \textsl{Yoshimi} to connect automatically to the JACK server, just like
+   the \texttt{-K} command-line option does.  (However, note that the
+   command-line has no way to disable this feature it the configuration has been
+   saved.)
 
 \paragraph{Menu / Yoshimi / Settings / ALSA}
 \label{paragraph:menu_yoshimi_settings_alsa}

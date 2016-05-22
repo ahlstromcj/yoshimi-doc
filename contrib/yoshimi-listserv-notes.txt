@@ -30,7 +30,7 @@ channel to load and save from, so you can actually build up a vector set in
 (say) channel 3, then later decide you want to use it in channel 7.
 It has the extension .xvy standing for Xml, Vector, Yoshimi
 
-It seems to be reliable, but there is a bit more tidying up I'll be doing. 
+It seems to be reliable, but there is a bit more tidying up I'll be doing.
 Also, I want to integrate it with saved states.
 
 Another small detail is that all the minimum CLI abbreviations are now
@@ -643,7 +643,7 @@ To: yoshimi@freelists.org
 Subject: [yoshimi] Another small detail
 X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
-At miniLAC2016 I was asked about whether it was possible to show the virtual 
+At miniLAC2016 I was asked about whether it was possible to show the virtual
 keyboard on a first time start up to help new users get quick results.
 
 Well that happens now :)
@@ -651,8 +651,6 @@ Well that happens now :)
 On a first start, there will be no yoshimi.windows file so this fact is used to
 open the keyboard alongside the main window. From then on it will obey the
 stored data as to whether it is shown and where it is placed.
-
-========================== CONTINUE HERE ================================
 
 Date: Mon, 2 May 2016 14:48:33 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
@@ -699,7 +697,7 @@ From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: (yet) Another small detail
 X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
- 
+
 As of now, the jack autoconnect status can be set in both the GUI and CLI
 It defaults to 'on'.
 
@@ -713,10 +711,6 @@ autoconnect' and 'no main jack autoconnect', but still keeping the 'K' for
 backward compatibility.
 
 How does that look?
-
-
-
-
 
 
 
@@ -767,9 +761,6 @@ currently working on a quite involved part of Yoshimi that is likely to take up
 most, if not all, of my coding time till then :/
 
 
-
-
-
 Date: Fri, 6 May 2016 23:03:11 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
@@ -785,16 +776,14 @@ Just a recap of some recent changes in Yoshimi.
 Global and Part Key shift is now +-36 semitones wherever they are set from.
 
 These can be set in the GUI the CLI and via MIDI NRPNs. With NRPNs part shift
-can be set by direct part control or *channel* based shift with channel number 
+can be set by direct part control or *channel* based shift with channel number
 in system NRPNs.
 
 The notes that have been updated in 'doc' are Direct_Part_Control.txt and
 Dynamic_System_Settings.txt
 
-
 *All* nested windows can be traversed with a right mouse click closing the
 parent as you open the child, or returning to the parent when closing the child.
-
 
 Specifically for jack audio, there is a new GUI option in Settings->Jack to
 enable/disable auto-connecting the main L&R audio outputs.
@@ -803,9 +792,6 @@ This is also available for the CLI.
 
 The -K argument will still auto-connect from a CLI start-up if it's not already
 configured for that. Currently there is no start-up way to disable this.
-
-
-
 
 
 Date: Sat, 7 May 2016 18:10:09 +0100
@@ -835,11 +821,6 @@ there that you can't do in the GUI.
 
 Although I don't want to divert to these other areas, as usual, if anyone wants
 to offer patches I'm more than happy to look at them.
-
-
-
-
-
 
 
 Date: Sat, 7 May 2016 21:53:06 +0100
@@ -874,9 +855,6 @@ same time (hopefully) minimising the typing the need to do.
 If you know of more, tell them to stop faffing about and give me some help!
 
 
-
-
-
 Date: Thu, 12 May 2016 20:49:12 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -903,9 +881,7 @@ identified with that middle button click. Effects, Envelopes & Resonance are
 still to do - they are a bit more complicated - but progress is being made.
 
 
-
-
-
+========================== UPCOMING SCRIPT CONTROL ????? ================
 
 Date: Sat, 14 May 2016 23:03:43 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
@@ -955,11 +931,6 @@ Of course, I need to think of a decent name for this branch. Thinking about it,
 I think "MidiLearn" should do the trick :D
 
 
-
-
-
-
-
 Date: Sun, 15 May 2016 18:55:18 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -995,10 +966,6 @@ control numbers (Over the next few days I'll start drawing up a spreadsheet with
 all of these on it).
 
 
-
-
-
-
 Date: Sun, 15 May 2016 19:17:36 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -1020,10 +987,6 @@ Chris will probably be muttering under his breath as it means another layout
 drawing has changed :p
 
 
-
-
-
-
 Date: Sun, 15 May 2016 23:38:57 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -1054,45 +1017,6 @@ version it would be irrelevant.
 
 P.S.
 Some documentation in place now :)
-
-
-
-
-
-
-Date: Sun, 15 May 2016 23:38:57 +0100
-From: Will Godfrey <willgodfrey@musically.me.uk>
-To: yoshimi@freelists.org
-Subject: [yoshimi] Re: Yoshimi - Resonance
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
-
-On Sun, 15 May 2016 17:19:30 -0400
-Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
-
-> Heh.  What dialog is that "interpolate peak" in?  Save me some scouting. :-)
-
-Either AddSynth->Resonance or PadSynth->Resonance
-
-> One thing I would like to see is, every time you do a check-in to master,
-> increment the final digit of the version as displayed in the splash screen
-> and the "yoshimi --version" command.  Useful for reference, and I can
-> add it to the documentation.  Example:  Instead of "1.3.9 M", "1.3.9.6 M".
->
-> Alternatively, do it in a branch and don't worry about the version until you
-> merge back to master.
->
-> At your convenience, of course!
-
-Actually, I have been thinking of employing a build number (I don't want to
-mess with the versioning). Ideally I want to find a way of automating this, and
-have it only displayed if the version has the 'M' suffix. With a release
-version it would be irrelevant.
-
-P.S.
-Some documentation in place now :)
-
-
-
 
 
 Date: Mon, 16 May 2016 22:06:36 +0100
@@ -1100,12 +1024,87 @@ From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Yoshimi - Resonance
 X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
- 
+
 To really see the difference, with a cleared graph click on the highest point,
 creating a spike, then try one of the buttons. Clear the graph, then do the
 same but use the other button.
 
 
+Date: Fri, 20 May 2016 19:47:25 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Progress
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+I've finally started identifying effects. I'd been putting that off till
+more-or-less last. I think it has more pointers that Clapham railway junction :(
+However, once I'd tracked (sorry!) those, it's turning out to be tedious rather
+than difficult.
+
+All the manipulation for these messages is now in SynthEngine. It really should
+be in a new file, but I need to work out how to set this up in such a way that
+it has the same access to all the other parts. It will have to stay there for
+now.
+
+I've not done anything at all with text fields (names) as they have no effect on
+the dsp. As such, I'm hoping they can be handled 'normally' and if I stick to
+fixed size fields there won't be any unwanted memory shuffling.
+
+At some point I'll need to work out the GUI interface for midi-learn of course!
+{sigh}
+
+Oh, anyone fancy knocking up a GUI interface for vector control? :)
 
 
+
+========================== CONTINUE HERE ================================
+
+Date: Sat, 21 May 2016 20:05:23 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Cc: Frank Kober <goemusic@yahoo.fr>
+Subject: [yoshimi] Re: Yoshi 1.3.9 jack client names - FIXED
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+This turned out to be remarkably easy - almost suspiciously, so I'd *really*
+like other people to test the current master.
+
+I've tried all the following combinations and everything seems OK.
+
+alsa midi + alsa audio
+jack midi + alsa audio
+alsa midi + jack audio
+jack midi + jack audio
+
+> How do we know if it worked?
+
+Run a2jmidid and then yoshimi - set for jack midi (in yoshimi->setup - but you
+have to save settings and restart)
+
+Both a2j and yoshimi should appear in qjackctl's MIDI tab, and your external
+alsa midi source should be connected to midi through in qjackctl's ALSA tab
+
+You should see just yoshimi as the client for both audio and midi if you run
+further instances of yoshimi they should track correctly with number suffixes
+
+
+
+Date: Sat, 21 May 2016 22:09:34 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: ... and there's more :)
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Hi Chris,
+
+The current master should produce no build warnings.
+
+debian testing now fully supports gcc6 (although it defaults to gcc5)
+
+Although compile time is slightly long, warnings are *far* more detailed and
+accurate. It also reports things like indentation ambiguities, which actually
+led me to spot a minor bug  - clearing NRPNs.
+
+As an aside, 5 produces an image that is slightly smaller than 4.9 and 6 is in
+the middle.
 

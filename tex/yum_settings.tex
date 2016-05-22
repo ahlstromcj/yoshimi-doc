@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-15
-% \update      2016-05-21
+% \update      2016-05-22
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -51,7 +51,8 @@
    \textbf{New:}
    \index{new!right-click}
    \index{mouse!right-click}
-   In the AddSynth dialogs, if one right-clicks on a button that opens a child
+   In the AddSynth dialogs and other dialogs with nested windows,
+   if one right-clicks on a button that opens a child
    window, the current window is closed. Conversely, if one right-clicks on the
    \textbf{Close} button of a child window, it will re-open the parent.  This
    feature is especially useful when going up and down the AddSynth stack, and
@@ -518,7 +519,8 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/ADDsynth-resonance.jpg}
+%  \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/ADDsynth-resonance.jpg}
+   \includegraphics[scale=0.75]{1.3.9/ADDsynth-resonance.png}
    \caption{ADDsynth/PADsynth Resonance}
    \label{fig:addsynth_resonance}
 \end{figure}
@@ -526,11 +528,11 @@
    \begin{enumber}
       \item \textbf{Graph Window}
       \item \textbf{Enable}
-      \item \textbf{Max dB (wheel)}
-      \item \textbf{C.f. (knob)}
+      \item \textbf{Max dB}
+      \item \textbf{C.f.}
       \item \textbf{Oct.}
-      \item \textbf{P.1st}
-      \item \textbf{InterpP}
+      \item \textbf{P.1st} (gone)
+      \item \textbf{InterpPk}
       \item \textbf{KHz}
       \item \textbf{dB}
       \item \textbf{Zero}
@@ -584,21 +586,48 @@
 
    Values: \texttt{Off, On}
 
-   \itempar{InterpP}{resonance!interpolate}
-   Interpolate the peaks.
-   This setting is a weird one where mouse movement affects it,
-   but also affects the next field as well.  Oh, kHz and dB.
+   \itempar{InterpPk}{resonance!interpolate peaks}
+   Interpolate the resonance peaks.
+   This setting used to be a weird one where the mouse button (left versus
+   right) affected the kind of interpolation used,
+   but also affects the next field as well, but in \textsl{Yoshimi} 1.3.9 the
+   mechanism for interpolation has been made more clear.
+   In addition, some of the controls have been changed to sliders for easier
+   usage.
 
    This setting allows one to make resonance functions very easily.  To use
-   it effectively, first, clear the graph using the \textbf{Zero} button.
-   Click the left button on a position on the graph. Click the
-   \textbf{InterpP} button. It will interpolate automatically between the
-   positions pointed to (or drew).  Also one can clear a part of the graph
-   by dragging with the right mouse button. In fact, the \textbf{interpP}
-   button interpolates between non-zero values.  If one presses the
-   \textbf{InterpP} with the right mouse button, the interpolation will be
-   linear, and if one uses the left button, the interpolation will be
-   smooth. 
+   it effectively, first, clear the graph using the \textbf{Clear} button.
+   Click the left button on a position on the graph to create a peak (or do it
+   more than once to create more peaks). Click either the
+   \textbf{InterpPk S} button (smooth interpolation)
+   or the \textbf{InterpPk L} button (linear interpolation).
+   \textsl{Yoshimi} will interpolate automatically between the
+   peaks drawn,
+   as shown in \figureref{fig:addsynth_resonance_interpolated},
+   which shows \textsl{smooth interpolation}.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.3.9/ADDsynth-resonance-interpolated.png}
+   \caption{ADDsynth/PADsynth Resonance Interpolated}
+   \label{fig:addsynth_resonance_interpolated}
+\end{figure}
+   
+%  Obsolete:
+%  If one presses the
+%  \textbf{InterpPk} with the right mouse button, the interpolation will be
+%  linear, and if one uses the left button, the interpolation will be
+%  smooth. 
+
+   Please do not confuse this "smoothing" with the processing done using the
+   \textbf{Smooth} button discussed below.
+   
+   Also note that one can clear a part of the graph
+   by dragging with the right mouse button. In fact, the \textbf{interpPk}
+   functionality interpolates between non-zero values.
+   Oh, and note that the \textbf{kHz} and \textbf{dB} fields update to match it.
+   And don't forget to try the middle-click feature to see the corresponding
+   command-line needed to achieve the setting.
 
    \itempar{KHz}{resonance!khz}
    The current frequency on graph.
@@ -608,18 +637,31 @@
 
    Values: \texttt{-90 to +90}
 
-   \itempar{Zero}{resonance!clear}
-   Clear the resonance function.
-   Zero. Clear the graph.
-
-   Amplification - how the output signal is amplified (WHERE?)
+   \itempar{Clear}{resonance!clear}
+   Clear the resonance function.  (Used to be called "Zero".)
+   Clear the graph.
 
    \itempar{Smooth}{resonance!smooth}
    Smooth the resonance function.
    Smooth the graph.
+   This button causes each jagged portion of the graph to be smoothed.
+   This smooth does not interpolate between the peaks, unlike the 
+   \textbf{InterpPk} functionality described earlier.  Compare the
+   interpolation shown in \figureref{fig:addsynth_resonance_interpolated},
+   and the smoothing shown in \figureref{fig:addsynth_resonance_smoothed}.
 
-   TODO:  What is the exact nature of this smoothing?
-   \index{todo!resonance smooth}
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.3.9/ADDsynth-resonance-smoothed.png}
+   \caption{ADDsynth/PADsynth Resonance Smoothed}
+   \label{fig:addsynth_resonance_smoothed}
+\end{figure}
+
+   Note how the amplitude of the peaks is also reduced by the smoothing.
+   Presumably, a frequency-smoothing window is applied to the peaks, thus making
+   each new data-point a weighted average of the data-points around it.
+   Don't forget to try the middle-click feature to see the corresponding
+   command-line needed to achieve the setting.
 
    \itempar{RND1}{resonance!randomize}
    Randomize the resonance function, 1.
