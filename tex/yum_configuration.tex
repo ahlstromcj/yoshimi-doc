@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2016-03-07
-% \update      2016-05-21
+% \update      2016-05-24
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -41,11 +41,13 @@
    \begin{itemize}
       \item \texttt{.banks}
          \index{.banks}
-         Contains information on the accessible instrument banks.
+         Contains information on the accessible instrument banks, and
+         information to translate between bank directory names and bank ID
+         values.
       \item \texttt{.config}
          \index{.config}
-         Contains information to translate between bank directory names and
-         bank ID values.
+         Contains the setup information configured in the
+         \textbf{Yoshimi / Settings} dialog.
       \item \texttt{.history}
          \index{.history}
          Recent patch sets are now stored in the \texttt{.history} file.
@@ -53,6 +55,7 @@
       \item \texttt{.instance(n)}
          \index{.instance(n)}
          Contains the current root/bank, MIDI settings, and preferred engines.
+         (This file does not yet exist, but is a planned future feature.)
       \item \texttt{.state}
          \index{.state}
          Contains the state information needed to
@@ -93,13 +96,15 @@
 
    \begin{itemize}
       \item \texttt{.config}
-      \item \texttt{.instance[n]}
+      \item \texttt{.instance[n]} (future)
+      \item \texttt{.windows}
       \item \texttt{.history}
       \item \texttt{.banks} (this is currently per instance)
    \end{itemize}
 
    The \texttt{.windows} file is specific to the GUI, so doesn't figure in this
-   scheme at all.
+   scheme at all, but it is created or saved when one exits
+   \textsl{Yoshimi}.
 
 \subsection{Configuration Files / Patch Set}
 \label{subsec:configuration_patch_set}
@@ -113,10 +118,13 @@
    it stores a combination of items, that took awhile to set up, for easy
    retrieval later.
 
-   This is the full \textsl{Yoshimi} configuration. Everything.  It's format is
-   either XML or compressed XML, as explained elsewhere.  The \textbf{Parameters
-   / Save} menu entry saves files with this extension.  This file is also called
-   a \textsl{parameter set}.
+   Patch sets are not the full configuration. They carry \textsl{most} of it,
+   including almost all of the dynamic settings, but they don't contain the
+   configuration settings that \texttt{.state} does.  The patch set format is
+   either XML or compressed XML, as explained elsewhere.  The
+   \textbf{Parameters / Save} menu entry saves files with this extension.  This
+   file used to be called \textsl{parameter set}, but that name is no longer
+   used in \textsl{Yoshimi}..
 
    One of the simplest ways to save one's work is to save the entire
    \textsl{Yoshimi} configuration.

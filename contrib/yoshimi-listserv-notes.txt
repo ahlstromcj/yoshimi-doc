@@ -1108,3 +1108,91 @@ led me to spot a minor bug  - clearing NRPNs.
 As an aside, 5 produces an image that is slightly smaller than 4.9 and 6 is in
 the middle.
 
+
+
+
+
+Date: Tue, 24 May 2016 00:00:02 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Yoshimi-doc
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Hi Chris,
+
+I finally had time to take a quick look at this.
+
+Hum, this was going to be a few quick notes before going to bed. It's now an
+epic and it's tomorrow :(
+
+I'm sorry if it all looks rather critical. I do very much appreciate all the
+ahrd work you've put into this!
+
+Page 76 Item 6 P.1st hasn't gone. It's moved and changed its name to Prot.1st
+
+Ummmm. Page 10 Yoshimi has had a *considerably* revised GUI!!!
+
+Page 28. All bank information has been taken out of the .config file and is
+in .banks.
+
+.instance doesn't yet exist - I've been a wee bit busy :)
+
+Bottom of page Patch Sets are not the full configuration. They carry *most* of
+it - almost all the dynamic stuff, but don't contain the config settings that
+state does. Note. The old 'parameters' name at the bottom of this page. it's
+never referred to as parameters now. Not in the GUI, CLI or any of the notes.
+
+Page 31. The readline history is stored in /home/(user}/.yoshimi_history and is
+a plain text dot file. It only records CLI entries.
+
+Most to the part effect displays are still upside down. Dynfilter is correct,
+but the box round A.S. A.M. A Inv now as a nice raised border, and the knobs
+are the same size art the others in the window.
+
+There are still several references to just the 'Panel' window, but everywhere
+in the GUI it is now referred to as the Mixer Panel, and in some of the notes
+just as the mixer.
+
+Quite a few of the larger images don't show the part/kit/voice etc.
+
+With the exception of the Mixer Panel (haven't got round to it_) all the
+*vertical* sliders will return to their 'home' positions if right clicked
+anywhere in their track.
+
+I'm rather unhappy about the long paragraph on LV2 near the bottom of page 197.
+In the first place it was just list discussion, and never intended to be a
+permanent record. Also it is now completely untrue! It has been untrue since
+Version 1.3.6 was released at the end of September 2015.
+
+Also, since then all three sequencers have had very considerable development,
+and of course Yoshimi has seen massive changes.
+
+Maybe replace it with something like:
+
+"Yoshimi's LV2 implementation is frequently tested using the latest versions of
+Ardour, Muse and Qtractor as LV2 hosts. Like Yoshimi, these are also in
+continuous development. So far we've not been able to get anywhere with Carla -
+if someone is familiar with it We'd be interested in what results they get."
+
+Talking of versions. The current release is 1.3.9 (end of February).
+
+The next release will be sometime in June - I really don't want to leave it any
+longer or people might think I'm losing interest!
+
+However, although I would really like the version number to be 1.4.0 I don't
+know if I can get enough of the new code in place and working reliably in time
+to justify such a step. If not, it will have to be version 1.3.10
+
+I've still got one piece of the GUI to identify, and it's proving to be a right
+pig to pin down. It's the system effect sends and is one of those
+programatically generated windows :(
+
+This *must* be in place before I go any further. I've had to juggle the numbers
+several times to get everything properly separated, and don't want to have to
+do this once real code changes are being made.
+
+The next stage in the development will be a hidden CLI entry where you will be
+able to just directly type in the numbers and it will follow the tree to
+perform the functions, and only once that is working reliably will I start to
+strip down the GUI
+
