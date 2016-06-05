@@ -64,6 +64,8 @@ The original system where bits were ORred together was done to make NRPN
 control as efficient as possible. That hasn't changed, but log messages refer
 to the CLI numbering.
 
+DONE
+
 
 Date: Fri, 25 Mar 2016 14:20:36 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
@@ -159,6 +161,8 @@ Loaded Vector CoolSound to source channel
 
 The file extension we use is .xvy but this will be added automatically.
 
+DONE
+
 
 Date: Sat, 26 Mar 2016 15:37:15 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
@@ -180,6 +184,8 @@ It seems some people don't like our startup splash - Boo!
 
 So if you really can't wait another second for Yoshimi, you can now disable it
 in the main config window.
+
+DONE
 
 
 ate: Sun, 27 Mar 2016 15:22:42 +0100
@@ -1474,7 +1480,7 @@ some underlying code adjustments.
 
 Once again, apologies for making more work for you.
 
-
+DONE
 
 
 
@@ -1635,5 +1641,50 @@ mess them up. It won't do any harm - just be puzzling.
 
 
 
+DONE:
+
+Date: Sun, 5 Jun 2016 06:44:50 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: Yoshimi 1.4.0 rc3
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Mornin' Chris.
+
+The file extension is .xyv and it doesn't matter if you put it there or not. If
+it's missing, or the wrong one it will be automatically replaced. This is
+actually true of almost all file saves, and has been for quite some time now. I
+just forgot to mention it to anyone :(
+
+For vectors, (in common with external instruments and patch sets) it's up to
+you as to where you save. The filer generally defaults to the either your user
+home directory, or if Yoshimi was launched for userland, it's the directory you
+launched from. Then as you guessed it's the normal browser selection.
+
+Once saved, Options->Recent is your friend.
+
+One day (not today) it will also be part of state save, and possibly patch sets
+too. A severe lack of round tuit here :(
+
+DONE:
+
+Date: Sun, 5 Jun 2016 07:26:34 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: Yoshimi 1.4.0 rc3
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+A quick recap on knobs.
+
+Right click sends it to the home position. For things like Pan and detune it is
+the mid position, for others it's whatever their default value is.
+
+For everything except effects, a drag also gives fine adjustment. One day I
+might get effects to do this too - Effects are just weird in every way :(
+
+Left button drag normal adjustment.
+Scroll wheel fine adjustment.
+Middle button drag very fine adjustment.
+Scroll wheel + ctrl extremely fine adjustment.
 
 

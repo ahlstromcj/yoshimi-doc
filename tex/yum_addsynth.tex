@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-07
-% \update      2016-05-21
+% \update      2016-06-05
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -46,7 +46,8 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/ADDsynth-edit.jpg}
+%  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/ADDsynth-edit.jpg}
+   \includegraphics[scale=1.0]{1.4.0/ADDsynth-edit.png}
    \caption{ADDsynth Edit/Global Dialog}
    \label{fig:addsynth_edit_dialog}
 \end{figure}
@@ -68,6 +69,11 @@
    This complex dialog is best described section by section.
    Many of the sub-sections are stock sub-panels described elsewhere
    in this document.  References to those sections are included.
+
+   One thing to note is that the small \textbf{\textcolor{red}{Red}}
+   reset button next to the \textbf{Pan} knob is no longer present.  Instead,
+   one can use a right-click on this knob to reset it to its home position and
+   value.
 
 \subsection{ADDsynth / AMPLITUDE}
 \label{subsec:addsynth_amplitude}
@@ -312,11 +318,12 @@
    ADDsynth Show Voice Parameters.
    This button brings up the "voice parameters" dialog discussed in the next
    section.
-   Again, this dialog is built from some stock sections and stock
-   sub-panels, plus additional elements.
 
 \subsection{ADDsynth / Voice Parameters}
 \label{subsec:addsynth_voice_parameters}
+
+   Again, this dialog is built from some stock sections and stock
+   sub-panels, plus additional elements.
 
    Each \textsl{Yoshimi} ADDsynth instrument consists of up to 8 voices.
    This dialog provides a way to define each of the 8 voices in great
@@ -325,10 +332,15 @@
 \begin{figure}[H]
    \centering 
 %  \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/ADDsynth-voice-parameters.jpg}
-   \includegraphics[scale=0.75]{1.3.9/ADDsynth-voice-parameters.png}
+%  \includegraphics[scale=0.75]{1.3.9/ADDsynth-voice-parameters.png}
+   \includegraphics[scale=0.75]{1.4.0/ADDsynth-voice-parameters.png}
    \caption{ADDsynth Voice Parameters Dialog}
    \label{fig:addsynth_voice_parameters_dialog}
 \end{figure}
+
+   Again, note that the small \textbf{\textcolor{red}{Red}}
+   reset button next to the \textbf{Pan} knob is no longer present,
+   replaced a right-click on this knob to reset it.
 
    This dialog consists of a few extra settings, plus a number of
    stock dialog sections.  Take some time to compare
@@ -725,7 +737,7 @@
    \end{quotation}
 
    We have provided a more useful "tutorial" on using the ring modulator in the
-   \cite{cookbook} document.
+   \textsl{Yoshimi Cookbook} \cite{cookbook} document.
 
 \subsubsection{ADDsynth / Voice Parameters / FREQUENCY}
 \label{subsubsec:addsynth_voice_parameters_frequency}

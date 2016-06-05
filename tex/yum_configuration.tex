@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2016-03-07
-% \update      2016-05-24
+% \update      2016-06-05
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -89,6 +89,8 @@
          Vector settings. The extension stands for "Xml Vector Yoshimi".
          It will eventually be integrated with the saved states.
          For a good example, see \sectionref{subsection:vector_command_line}.
+         One day, vector settings will also be part of the state save, and
+         possibly patch sets too.
    \end{itemize}
 
    The entire config set should then be (ignoring the prepended
@@ -105,6 +107,19 @@
    The \texttt{.windows} file is specific to the GUI, so doesn't figure in this
    scheme at all, but it is created or saved when one exits
    \textsl{Yoshimi}.
+
+   In the file-save dialogs, the file extension is determined by the type of
+   file being saved, and it doesn't matter if one enters the extension
+   explicity, or not. If it's missing, or it is the wrong one, it will be
+   replaced. This is actually true of almost all file saves, and has been for
+   quite some time now.
+
+   For vectors (in common with external instruments and patch sets), it's up to
+   the user as to where to save. The file filter generally defaults to the
+   either the user home directory, or if \textsl{Yoshimi} was launched from
+   userland, it's the directory it launched from. Then it's the normal
+   file browser selection.  Once saved,
+   \textbf{Vectors / Options / Recent} is your friend.
 
 \subsection{Configuration Files / Patch Set}
 \label{subsec:configuration_patch_set}

@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-15
-% \update      2016-05-24
+% \update      2016-06-05
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -91,28 +91,74 @@
    Visual rotary knobs are used for modifying numerical parameters in the
    user-interface.
    Horizontal, as well as vertical, mouse movements will adjust the knob.
-   \index{knobs!coarse control}
-   When rotated using the left mouse button, the rotary knobs give a coarse
-   control of the numerical settings of the knob.
-   \index{knobs!fine control}
-   When rotated using the right mouse button, the rotary knobs give a finer
-   control of the numerical settings of the knob.
-   \index{knobs!scroll wheel}
-   One can also use the mouse scroll wheel to adjust rotary controls, which
-   gives better control that using the mouse pointer.
-   \index{knobs!scroll wheel fine}
-   If the Ctrl key is held at the same time as the wheel is scrolled, the
-   control is \textsl{extremely} fine.
+   Mouse clicks also can adjust the knob.
+
+   \begin{itemize}
+
+      \item \textbf{Coarse Control}.
+         \index{knobs!coarse control}
+         \index{knobs!left-drag}
+         When rotated using the left mouse button, the rotary knobs give a
+         coarse control of the numerical settings of the knob.
+
+      \item \textbf{Fine Control}.
+         \index{knobs!fine control}
+         \index{knobs!right-drag}
+         When a knob is rotated using the right mouse button, the rotary knobs
+         give a finer control of the numerical settings of the knob.
+
+      \item \textbf{Scroll Wheel}.
+         \index{knobs!fine control, scroll}
+         \index{knobs!scroll-wheel}
+         One can also use the mouse scroll wheel to adjust rotary controls,
+         which gives better control than using the mouse pointer.
+
+      \item \textbf{Super Fine Control}.
+         \index{knobs!super-fine, scroll}
+         \index{knobs!scroll-wheel}
+         If the Ctrl key is held at the same time as the wheel is scrolled, the
+         control is \textsl{extremely} fine.
+         \index{knobs!super-fine, middle}
+         \index{knobs!middle-drag}
+         If the middle button is dragged, the
+         control is \textsl{extremely} fine.
+
+% Will:
+% For everything except effects, a drag also gives fine adjustment. One day I
+% might get effects to do this too - Effects are just weird in every way :(
+
+      \item \textbf{Home Position}.
+         \index{right-click}
+         \index{mouse!right-click}
+         \index{knobs!home position}
+         \index{knobs!right-click}
+         A right-click sends the knob to the home position (and sets its value
+         to the home value). For setting like \textbf{Pan} and
+         \textbf{Detune} it is the middle position; for other settings,
+         it is whatever the default value is for that setting.
+
+   \end{itemize}
+
+   The fact that \textsl{every} control can now be homed with a right mouse
+   click means there is no longer a need for the few 'Zero' and 'Reset' buttons
+   dotted around, so they are all gone as of version 1.4.0.
 
 \subsubsection{Sliders}
 \label{subsubsec:stock_settings_elements_sliders}
 
+   \index{right-click}
+   \index{mouse!right-click}
    \index{sliders}
-   For vertical sliders only, if one holds down the right mouse button, then
-   moves it slightly, the peg will go to it's default position. The same
-   thing will happen if you click on the track with the right button.
+   \index{sliders!right-click}
+   For both horizontal and vertical sliders, if one holds down the right mouse
+   button, the thumb will go to it's default position.  The same thing will
+   happen if you click on the track with the right button.  If on top of the
+   thumb of the control, it won't move unless one moves the mouse slightly
+   while right-clicking.
 
-   \textsl{(Doesn't seem to hold in the Parts panel, though).}
+   \textsl{Yoshimi} has changed some rotary controls or rollers to sliders.
+   These controls pack better without looking crowded, are easier to manage,
+   with clearer indication.
 
 \subsubsection{Presets}
 \label{subsubsec:stock_settings_elements_presets}
@@ -197,6 +243,10 @@
    reasonable it pays to use fairly simple instruments, but if one has
    sufficient processing power, it would be theoretically possible to set up
    all 16 channels with quite independent vector behavior!
+   Also see
+   \sectionref{subsubsec:menu_yoshimi_vectors}, for a discusson of the vector
+   configuration dialog, and \sectionref{sec:vector}, for an in-depth
+   discussion of how vectors work.
 
    \itempar{Direct part audio}{automation!part audio}
    Direct part audio is JACK-specific, and allows one to apply further
@@ -698,7 +748,7 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=0.75]{zyn/basic_parameters_lfo0.png}
+   \includegraphics[scale=0.65]{zyn/basic_parameters_lfo0.png}
    \caption[Basic LFO Parameters]{Basic LFO Parameters}
    \label{fig:basic_parameters_lfo} 
 \end{figure}
@@ -748,7 +798,7 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=0.75]{zyn/types_of_lfo1.png}
+   \includegraphics[scale=0.65]{zyn/types_of_lfo1.png}
    \caption[LFO Functions]{LFO Types, Shapes, or Functions}
    \label{fig:types_of_lfo}
 \end{figure}
@@ -1056,7 +1106,7 @@ These parameters are:
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=0.75]{zyn/ADSR_envelope1.png}
+   \includegraphics[scale=0.65]{zyn/ADSR_envelope1.png}
    \caption{ADSR Envelope (Amplitude)}
    \label{fig:adsr_envelope_depiction}
 \end{figure}
@@ -1067,7 +1117,7 @@ These parameters are:
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=0.75]{zyn/ASR_frequency_envelope2.png}
+   \includegraphics[scale=0.65]{zyn/ASR_frequency_envelope2.png}
    \caption{ASR Envelope, Frequency}
    \label{fig:asr_envelope_depiction}
 \end{figure}

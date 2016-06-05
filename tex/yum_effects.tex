@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-05
-% \update      2016-05-24
+% \update      2016-06-05
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -1131,25 +1131,25 @@ Bands:
 \subsubsection{Effects / Phaser / Circuit}
 \label{subsubsec:effects_edit_phaser_circuit}
 
-   No circuit diagram, just a picture of the results of the phaser effect in the
-   form of a spectrogram.
+   No circuit diagram, just a picture of the results of the phaser effect in
+   the form of a spectrogram.
 
 \begin{figure}[H]
    \centering 
    \includegraphics[scale=0.75]{zyn/effects/phaser-spectrogram.jpg}
-   \caption{Phaser Circuit Diagram}
-   \label{fig:phaser_circuit_diagram}
+   \caption{Phaser Circuit Spectrogram}
+   \label{fig:phaser_circuit_spectrogram}
 \end{figure}
 
    The audio signal is split into two paths. One path remains unchanged. The
-   other one is sent to a delay line. The delay time (the so called phase) is
+   other one is sent to a delay line. The delay time (the so-called phase) is
    made dependent on the frequency. Therefore, an all-pass filter is applied
    to the signal, which preserves the amplitude, but determines the delay
    time. In the end, both paths are added.
 
-   The following picture describes how this works on white noise. Light blue
-   signalises that the frequency is not present at the current time, and dark
-   blue signalises the opposite. The dark blue peaks appear if the delay time
+   The spectrogram describes how this works on white noise. Light blue
+   indicates that the frequency is not present at the current time, and dark
+   blue indicates the opposite. The dark blue peaks appear if the delay time
    is very short, because then, the second path almost equals the first one,
    which results in duplication of the signal. If the delay line is very
    long, then it is -- in the case of white noise -- totally at random
@@ -1160,42 +1160,55 @@ Bands:
    ZynAddSubFX offers different types of phasers:
 
    \begin{itemize}
-      \item Analog and "normal" phasers. Analog phasers are more complicated.
+      \item \textbf{Analog and "normal" phasers}.
+      Analog phasers are more complicated.
       They sound punchier, while normal phasers sound more fluently. However,
       analog filters usually need more filter stages to reach a
       characteristic sound.
-      \item Sine and triangle filters. Note that an analog triangle filter
+      \item \textbf{Sine and triangle filters}.
+      Note that an analog triangle filter
       with many poles is a barber pole filter and can be used to generate
       Shepard Tones, i.e. tones that seem to increase or decrease with time,
       but do not really.
-      \item The LFO function can be squared. This converts the triangle wave
+      \item \textbf{The LFO function can be squared}.
+      This converts the triangle wave
       into a hyper sine wave. The sine squared is simply a faster sine wave.
    \end{itemize}
 
-   TODO: Barber is deactivated, since PLFOtype is only 0 or 1?
+%  TODO: Barber is deactivated, since PLFOtype is only 0 or 1?
 
-   For the normal phaser:
+   For the normal phaser,
+   \figureref{fig:effects_edit_phaser}, below, shows the controls referred to
+   in this list of steps.
    
    \begin{enumber}
       \item First, the LFO is generated.
-         There are 4 controls (Freq,Rnd,LFO tpye,St.df) that define the LFO.
-      \item Phase and Depth are applied afterwards in the usual way (TODO: I
-            don’t understand the code here for the normal phase…). For the
-            analog phaser, Phase is not implemented, yet.
-      \item If hyp is being set, then the LFO function is being squared.
-      \item Next, the input is being used.
-      \item Analog decides whether the phaser is analog or "normal".
-      \item First, Pan applies panning to the original input in every loop.
-      \item Next, barber pole phasing is being applied (Analog only).
-      \item Fb applies feedback. The last sound buffer element is (after
+         There are 4 controls
+         (\textbf{Freq}, \textbf{Rnd}, \textbf{LFO} type, \textbf{St.df})
+         that define the LFO.
+      \item \textbf{Phase} and \textbf{Depth} are applied afterwards in the
+            usual way.
+%           (TODO: I don’t understand the code here for the normal phase.)
+            For the analog phaser (see the \textbf{Analog} check-box),
+            \textbf{Phase} is not implemented yet.
+      \item If \textbf{hyper} is set, then the LFO function is squared.
+      \item Next, the input is used.
+      \item The \textbf{Analog} setting
+            decides whether the phaser is analog or "normal".
+      \item \textbf{Pan} applies panning to the original input in every loop.
+      \item Next, barber-pole phasing is applied (\textbf{Analog} only).
+      \item \textbf{Fb} applies feedback. The last sound buffer element is (after
             phasing) multiplied by this value and then added to the current
-            one. For normal filter, the value is added before, for analog
-            after the first phasing stage.
-      \item Now, Stages phasing stages are being applied. dist sets the
-            distortion for when applying the phasing stages. This has only
-            effect for analog phasers.
-      \item The feedback is performed next.
-      \item In the end, Substract inverts the signal, multiplying it by -1.
+            one. For the normal filter, the value is added before, and, for
+            analog, after the first phasing stage.
+      \item Next, based on the setting of \textbf{Stages},
+            phasing stages are applied.
+            The \textbf{dist} control sets the amount of
+            distortion when applying the phasing stages. This
+            setting has only effect for analog phasers.
+      \item The feedback is applied next, for analog filtering.
+      \item In the end, the \textbf{Substract} option
+            inverts the signal, multiplying it by -1.
    \end{enumber}
 
 \subsubsection{Effects / Phaser / User Interface}
@@ -1209,7 +1222,7 @@ Bands:
    \label{fig:effects_edit_phaser}
 \end{figure}
 
-   TODO. Include the item-paragraphs for each GUI element.
+%  TODO. Include the item-paragraphs for each GUI element.
 
    \begin{enumber}
       \item \textbf{Preset.}
@@ -1231,14 +1244,16 @@ Bands:
    \end{enumber}
 
    The extra fields that are shown if the effect is an insertion effect are
-   not shown.  They are described in section TODO TODO TODO.
+   not shown.  They are still need to be described.
 
    \itempar{Preset}{phaser!preset}
    Phaser Presets.
 
-   TODO: need a diagram of the dropdown
+%  TODO: need a diagram of the dropdown
 
-   Values: \texttt{Phaser 1, ...} TODO.
+   Values: \texttt{Phaser 1, ...}
+   
+%  TODO.
 
    \itempar{Depth}{phaser!depth}
    Phaser Depth. Phaser LFO Depth?
