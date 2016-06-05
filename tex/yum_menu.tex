@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2016-05-22
+% \update      2016-06-04
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -17,6 +17,7 @@
 \section{Menu}
 \label{sec:menu}
 
+   At last, we're now ready to describe the user-interface of \textsl{Yoshimi}!
    The \textsl{Yoshimi} menu, as seen at the top of
    \figureref{fig:yoshimi_main_screen},
    is fairly simple, but it is important to understand the
@@ -35,10 +36,18 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=0.75]{menu/yoshimi-menu-yoshimi.jpg}
+%  \includegraphics[scale=0.75]{menu/yoshimi-menu-yoshimi.jpg}
+   \includegraphics[scale=1.0]{1.4.0/yoshimi-menu-yoshimi.png}
    \caption{Yoshimi Menu Items}
    \label{fig:yoshimi_menu_items}
 \end{figure}
+
+   \textbf{New:}
+   \index{new!Vector menu entry}
+   New with version 1.4.0 of \textsl{Yoshimi} is the \textbf{Vectors} menu
+   entry.
+   See \sectionref{subsubsec:menu_yoshimi_vectors}, which presents this dialog
+   and briefly describes it.
 
    \textbf{Bug:}
    \index{bugs!menu hot keys don't work}
@@ -120,6 +129,62 @@
    In a non-JACK setup it won't fail, but in the absence of any specific
    setting, it will have null audio, but (probably) will still connect to ALSA
    MIDI.  Not too useful, but we should test that sometime.
+
+\subsubsection{Menu / Yoshimi / Vectors}
+\label{subsubsec:menu_yoshimi_vectors}
+
+   This new menu entry brings up the following dialog:
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-dialog.png}
+   \caption{Yoshimi Vectors Dialog}
+   \label{fig:yoshimi_vectors_dialog}
+\end{figure}
+
+   TO BE EXPLAINED.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-options.png}
+   \caption{Yoshimi Vectors Options}
+   \label{fig:yoshimi_vectors_options}
+\end{figure}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-saved.png}
+   \caption{Yoshimi Vectors Saved as "My First Vector"}
+   \label{fig:yoshimi_vectors_saved}
+\end{figure}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-feature-1.png}
+   \caption{Yoshimi Vectors, Feature 1}
+   \label{fig:yoshimi_vectors_feature_1}
+\end{figure}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-feature-2.png}
+   \caption{Yoshimi Vectors, Feature 2}
+   \label{fig:yoshimi_vectors_feature_2}
+\end{figure}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-feature-3.png}
+   \caption{Yoshimi Vectors, Feature 3}
+   \label{fig:yoshimi_vectors_feature_3}
+\end{figure}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-feature-4.png}
+   \caption{Yoshimi Vectors, Feature 4}
+   \label{fig:yoshimi_vectors_feature_4}
+\end{figure}
 
 \subsubsection{Menu / Yoshimi / Settings...}
 \label{subsubsec:menu_yoshimi_settings}

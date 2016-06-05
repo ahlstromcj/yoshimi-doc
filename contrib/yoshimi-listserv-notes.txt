@@ -1196,3 +1196,444 @@ able to just directly type in the numbers and it will follow the tree to
 perform the functions, and only once that is working reliably will I start to
 strip down the GUI
 
+
+
+
+
+
+
+te: Thu, 26 May 2016 21:25:26 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Something for the poor downtrodden GUI users :)
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+NRPN-ers and CLI-ers have been able to manage...
+
++ + + VECTOR CONTROL + + +
+
+for quite some time, but now this has come in some small way to those
+disadvantaged and having to push a pointer around on the screen.
+
+If you look at the 'Yoshimi' drop down you'll see a new menu entry called...
+
++ + + VECTOR + + +
+
+and clicking on that will open a shiny new window also marked...
+
++ + + VECTOR + + +
+
+Almost all the settings are in place and working. The options menu doesn't do
+anything, but will do eventually. For the time being your stuck with the CLI
+for saves and loads.
+
+So, have a play. See if anything breaks, and let me know what you think of the
+layout.
+
+
+At a later date I'd like to extend the window downwards and have a nice polar
+graph tracking the sweet-spot - but there's other stuff to get on with first.
+
+
+
+
+
+Date: Fri, 27 May 2016 21:03:39 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Something for the poor downtrodden GUI users :)
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Vector loading and saving is now there. Recent history should also be OK. When
+a Vector file has been loaded a label appears at the bottom (alongside
+'Close') for just that base channel.
+
+Could do with some feedback on this before casting it out to the world :)
+
+
+
+
+ate: Fri, 27 May 2016 01:03:43 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: A slight change of focus.
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Hi Chris,
+
+Well I now have the trigger for V 1.4.0 :)
+
+I'll put the id stuff on the back burner while I polish up GUI vector control.
+In fact, I think I'll hide the id stuff in the next release and just keep it
+active in master until it's ready for public consumption.
+
+I see you've updated the effects windows. great stuff!
+
+The other ones, off the top of my head were the controllers, oscillator and
+addsynth global & voice list windows.
+
+P.S.
+
+In the next commit. Mixer panel sliders will also home if the slot is right
+clicked.
+
+
+
+
+Date: Fri, 27 May 2016 16:51:59 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: A slight change of focus.
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+On Fri, 27 May 2016 05:38:08 -0400
+Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
+
+> I'm blankin' on what the "id stuff" is.  Can you clarify?
+
+The bit recognising which control has been used - not including vector control
+yet!
+
+
+
+
+
+
+Date: Tue, 31 May 2016 20:31:12 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Next release
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+I hope you guys are keeping up with me :)
+
+In the current master, The vector control window is now complete. There is a
+box alongside the 'Close' icon giving the name of the last loaded or saved
+Vector for that specific base channel. If starting a new vector, first
+select the base channel (1 to 16)  that you want to set the vector on. Next,
+use the X and Y spinboxes to select the incoming CC - this isn't error checked
+yet, as I haven't worked out the best way to do this. So if you set an invalid
+one strange things may happen - although it won't actually do any harm :)
+
+The instrument entries bring up the instrument list window in exactly the same
+way as the main part one does, but I haven't implemented the right click
+return. I have some doubts as to whether it would be wanted here as you are
+likely to want to set 4 instruments one after another while holding the
+vector window open for feature adjustments etc.
+
+Incidentally, while working on this I discovered what was causing the mixer and
+part names to sometimes get 'furry'. So that's fixed now.
+
+The features you can set are fairly obvious - they tell you what they are!
+
+When setting up a completely new vector, if you have the mixer or the main part
+visible, they are slightly out of sync but correct themselves as soon as you
+change an instrument or part - another detail that I want to try to get fixed
+soon.
+
+When you *clear* a vector it doesn't delete loaded voices, nor does it change
+the active status of the part, nor the number of parts available. This is
+because these settings may have been made independent of vector control. In
+short, vector control will add things but not remove them.
+
+
+Moving on, if you right click on *any* slider's track it will jump to its home
+position. All the horizontal sliders now have their tracks indented so it's a
+bit more obvious. I've also managed to make some of the slightly longer, and
+sliders with the same functions are more consistent across all three engines.
+
+The banks of vertical harmonics sliders seem to look better without this
+indentation - otherwise it looks like some weird barcode :?
+
+This juggling about also enabled me to make the tiniest knobs a bit bigger, so
+they are also easier to manage (and look better).
+
+During the process I uncovered another ancient bug going right back to Zyn
+2.2.1. The default setting of the resonance dB roller (now slider) was 10dB out
+from the actual value. The default setting in the *code* is 20dB so that is now
+what it shows - and is.
+
+Yoshimi has sprouted two new knobs in each engine. Bend, and Offset. These
+apply to the pitch wheel behaviour - well they will do once I've sorted the
+code out (hopefully before final release). We've been picking up and re-saving
+these for a long time, just not doing anything with them.
+
+
+
+
+
+te: Wed, 1 Jun 2016 19:30:25 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Next release Yoshimi 1.4.0 rc1
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+The 'Diamond Dove' is getting ready to fly :)
+
+The last few details:
+
+The vector control window is now fully in sync with the rest of the GUI.
+
+Pitch bend and offset are completed.
+
+Hands up those who knew that the AddSynth engine has overall resonance but it
+can be enabled/disabled per voice?
+
+Well it's a bit clearer now. The button's box is a little bigger and the label
+is "Reson" instead of just "R."
+
+This release candidate still has the experimental control logging. It's only
+the final release that won't have it. Then, once the next master is committed
+it'll be back again.
+
+
+
+
+
+
+Date: Thu, 2 Jun 2016 18:03:45 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Next release Yoshimi 1.4.0 rc2
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Damn!
+
+On rc2 already!
+A mistake in the new vector control meant that 'Clear' was wiping out all the
+vector names not just for that channel :(
+Still, the good news is that you now have 'Clear Chan' and 'Clear All' :)
+
+
+
+
+
+
+
+Date: Sat, 4 Jun 2016 17:19:35 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Next release Yoshimi 1.4.0 rc3
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+... and we have another one :)
+
+Current master is rc3
+
+I finally pinned down that bug with Echo & Distortion having the wrong defaults
+for l/r cross. My guess is that they were the victim of the dangers of
+copy/paste.
+
+This control is used hidden by some of the other effects so has an overall
+default value, but for these two specific effects it is different, and these
+are independently set by just those effects. However, when I tracked them down,
+the values were the same as the overall default!
+
+When changing presets within an effect the values are obtained differently, as
+groups from byte arrays. It's this code I modified so I could get individual
+ones for the 'home' function. Everything now lines up!
+
+Hopefully Frank's build fix will work for everyone. Please do shout if you have
+a problem. I especially want this release to be as clean and complete as
+possible.
+
+If we can just get those sliders under mouse wheel control that would be the
+icing on the cake. It will be the final piece of the puzzle for complete
+consistency in the GUI.                                                          j
+
+
+
+
+
+
+
+
+Date: Tue, 31 May 2016 20:43:03 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Groveling apologies!
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Hi Chris,
+
+Title says it all. I've once again changed the following windows:
+
+Part Edit
+AddSynth Base
+Addsynth Voice
+Subsynth
+PadSynth Envelopes
+Resonance
+
+I really, really, REALLY hope this is the last time!
+
+Also I think the Vectors window is now ready for inclusion.
+
+I can't think of any changes needed for the GUI now, but there will probably be
+some underlying code adjustments.
+
+Once again, apologies for making more work for you.
+
+
+
+
+
+
+Date: Sat, 4 Jun 2016 14:43:45 +0200
+From: Frank Neumann <beachnase@web.de>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Build errors on Mint 17, and a possible fix
+X-Mailer: Sylpheed 3.4.1 (GTK+ 2.24.23; x86_64-pc-linux-gnu)
+Organization: Disorganized, kind of.
+
+
+Hi,
+
+haven't been building Yoshimi from source for quite a while, I tried it again
+today on my LinuxMint 17 (Qiana), using gcc4.8.
+
+I found hundreds of error messages like this:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/mmintrin.h: In function ‘__m64
+_mm_cvtsi32_si64(int)’:
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/mmintrin.h:61:54: error: can’t convert
+between vector values of different size
+   return (__m64) __builtin_ia32_vec_init_v2si (__i, 0);
+                                                      ^
+ . . .
+
+
+but wasn't sure at first what changed. Then, a bit of googling brought me to
+the recently introduced C++11 standard changes.
+This page:
+http://stackoverflow.com/questions/19043109/gcc-4-8-1-combining-c-code-with-c11-co
+de
+stated that:
+"...As it is not practical to comment a system header, a workaround is to use g++ 
+--std=gnu++11 instead of g++ --std=c++11 as it does not define __STRICT_ANSI__. It
+worked in my case.
+
+It seems to be a bug in gcc."
+
+
+So, I tried this:
+franky@silence:~/src/audio/yoshimi-git/build/src> diff -u CMakeLists.txt.orig
+CMakeLists.txt
+--- CMakeLists.txt.orig 2016-06-04 14:29:38.518835880 +0200
++++ CMakeLists.txt      2016-06-04 14:30:53.324831450 +0200
+@@ -24,7 +24,7 @@
+     cmake_policy (SET CMP0046 OLD)
+ endif (POLICY CMP0046)
+ set (CMAKE_CXX_STANDARD 11) # we seem to need both for
+-add_definitions(-std=c++11) # various versions of cmake
++add_definitions(-std=gnu++11) # various versions of cmake
+ set (YOSHIMI_VERSION "1.4.0 rc2")
+ file (WRITE version.txt "${YOSHIMI_VERSION}")
+and was able to build Yoshimi fine again afterwards.
+
+Not sure whether this can be regarded as an actual fix or just a workaround,
+but I thought you might want to know.
+
+
+AND Will's response:
+
+
+Good catch Frank!
+
+As luck would have it, I've been testing with gcc 4.9, 5.3, 6.1 Yours just
+slipped underneath :o
+This change seems to work correctly with these so will go in rc3.
+
+rc3 will also have 'home' on right mouse click for all knobs as well as
+sliders. However, this showed up another ancient bug.
+
+When first selecting either Echo or Distortion the l/r crossover knob (LRc.)
+shows the wrong value even though the correct one seems to be set. Change
+preset then go back again and it's correct - our new 'home' feature also sets
+it correctly. So far I've spent over a day trying to track this one down :(
+
+
+
+
+
+Date: Sat, 4 Jun 2016 22:42:21 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Yoshimi 1.4.0 rc3
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Hi Chris,
+
+It's OK, you're safe now. No more GUI changes :)
+
+The *only* thing I'd like to get in place before release is mouse wheel control
+of sliders, but I'm not having any luck at the moment :(
+
+If I can't get it done, (and nobody comes forward to do it) in the next week or
+so, it'll have to be passed over to the next version. In any case this will
+have no effect on the GUI at all.
+
+With the 'archaeological' bugs I've been fixing lately I'm hoping this release
+will be as clean as possible, but I also want this ready before the middle of
+the month.
+
+For the user guide:
+
+The fact that *every* control can now be homed with a right mouse click means
+there is no longer a need for the few 'zero' and 'reset' buttons dotted
+around, so they've all gone. Sliders are slightly odd in that if you right
+click on the button itself nothing happens unless you move the mouse slightly,
+you need to click on the track. Knobs are easy, just a click on them does the
+job.
+
+
+Vector control:
+
+The 'base channel' refers to the incoming midi channel that a particular vector
+setup will respond to and directly relates to the 1 to 16 range of parts in the
+mixer panel.
+
+Setting an X axis control CC will immediately enable the base channel part and
+the part number + 16, as well as setting Yoshimi for 32 parts if it was less
+than that. If it was the same, or was set to 64 the nothing changes. Setting
+the CC will also ensure that both parts are actually responding to that midi
+channel (they might have been set to something else, or even disabled).
+
+You can't make any Y axis settings until at the very least the X CC has be set,
+and if you set that back to zero, the Y axis is again disabled.
+
+Setting a Y axis control CC will immediately enable the part (base channel +
+32) and the part number + 48, as well as setting for 64 parts if it was
+less than that. If it was the same, again nothing changes, and again the parts
+are set to the correct midi channel.
+
+The instruments that are loaded into the respective parts are always shown,
+regardless of whether there is a configured vector or not. They are a direct
+analogue of the main part instrument selector and behave in the same way. i.e.
+click on them to open the instrument selection window.
+
+There are tooltips for these along with Base channel and controller.
+
+
+The features are pretty self descriptive as soon and you click on them! The
+apply inveresly to the *pair* of instruments on each axis. You could have all
+four if you wanted to, but it's probably sound a mess.
+
+Options again are pretty obvious and follow a familiar pattern for load, save,
+etc.
+
+Loading or saving a vector will put the leafname in the bootm text field
+
+Disabling or clearing vectors will *not* change the number of parts because
+they may have already been set to increased numbers for some other purpose.
+Similarly this will not clear any instrument patches that have been loaded.
+
+Of course making any changes to the parts outside vector control will likely
+mess them up. It won't do any harm - just be puzzling.
+
+
+
+
+
+
+
