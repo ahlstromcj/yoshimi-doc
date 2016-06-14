@@ -1670,6 +1670,22 @@ Scroll wheel + ctrl extremely fine adjustment.
 
 
 
+Date: Mon, 6 Jun 2016 07:04:54 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: Ride With Yoshimi
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+
+
+http://www.musically.me.uk/music/Ride_With_Yoshimi.ogg
+
+These are from the original recording I made using two 'fixed' instances of
+Yoshimi (before bank changes were possible), so may have slight variations in
+levels.
+
+
+
 
 
 
@@ -1711,4 +1727,201 @@ As an aside, messing about with disabling or hiding menu items in fltk can
 be... 'interesting', so what I'll do with vectors is pop up a 'Nothing to Save'
 alert if someone tries to save an empty one. Clearing can stay as it is - it
 doesn't make any system changes.
+
+
+
+
+
+
+ate: Mon, 6 Jun 2016 20:43:06 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: A quick update.
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Hi Chris,
+
+Work computer behaved as I expected - no problems :?
+
+Also there's new branch called mwheel that Rob started off for me.
+It now does two-speed mousewheel slider control. Normal is quite fast,
+but holding down ctrl at the same time makes it go at the step size, which
+gives the highest possible resolution for any given slider - give it a try.
+
+A bit more testing and it'll go into master and be part of V 1.4.0.
+
+I'm actually wondering if it might be an idea to do the same with the rotary
+controls.
+
+
+
+
+
+
+Date: Tue, 7 Jun 2016 22:38:16 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Next release Yoshimi 1.4.0 rc4
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+I don't think we've ever got to rc4 before :o
+
+Anyway, there is a fix for a sneaky bug that could eat filenames - Thanks Chris.
+
+Also Rob worked out how to get scroll wheel control of sliders, so that is also
+in. The knobs have also been modified so they give similar scroll wheel
+behaviour.
+
+There is just one exception - the roller on the virtual keyboard. This is
+actually a very strange control. It's sort of like a slider but with the knob
+being the entire length of the track. It'll have to wait for another time.
+
+So, to recap for all other controls:
+
+Scroll wheel action gives you quite coarse movement, but hold down the ctrl key
+and you get the maximum resolution of the slider or knob. In fact with some of
+the frequency controls you'll think nothing is happening until you look at the
+numerical box alongside!
+
+A right button click takes the control to whatever its home position is.
+
+Left button drags are the same as the always were, pretty much following the
+mouse. If you are holding down the ctrl key you get much finer movement.
+
+Some variations that will have to be worked on later:
+
+Middle button drag on knobs gives quite fine control, and right button control
+goes home first, then lets you have fine control on most knobs - not very
+useful!
+
+Middle button drag on sliders is exactly the same as left button drag and right
+button only ever homes the slider.
+ 
+
+
+Date: Fri, 10 Jun 2016 09:55:57 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Bugs and omissions
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+That's what rc5 is all about.
+
+OK, stand up the person who was doing the 'home' function... Oh, that was me!
+Id forgotten to allow for the *fundamental* in harmonics always homing to max
+while the rest home to min :(
+
+
+The virtual keyboard 'controller' was sending the correct home value but not
+showing it correctly.
+
+
+I'd also forgotten to update the incoming CC in vector control. When enabling,
+it now only sets CC14 if you don't enter a valid number.
+While looking at this I took the opportunity to make all forms of vector
+control setting consistent, whether you do so via NRPNs, CLI or GUI.
+
+When you set the X or Y incoming CCs the number of available parts is always
+increased if it's not high enough. Required parts are activated and set to
+listen on the base channel (they may have previously be set differently).
+
+
+Finally, I've slightly modified the slider and rotary knob behaviour.
+On both, right mouse click/drag *only* sets the home position. Later I want to
+extend this for midi learn operations so don't want any confusion.
+
+Mouse wheel and drag give very similar behaviour on knobs with Left & Middle
+buttons, and the CTRL key.
+
+Sliders more-or-less match this with the scroll wheel, but getting incremental
+drags has proved to be elusive! It will have to wait.
+
+
+
+
+Date: Mon, 13 Jun 2016 00:23:06 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Version 1.4.0 is out {phew!}
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Just to remind you...
+
+V 1.4.0
+Diamond Dove
+
+About 18 months ago vector control became a 'thing' for Yoshimi and later, was
+first demonstrated to a handful of people at LAC 2015. At that time it was only
+accessible via NRPNs. Then about 6 months ago it became available to command
+line users as well, and 3 months ago vector saving and loading became possible.
+
+Now however, there is a shiny new window so the poor disadvantaged
+pointer-pushers can also have full control. This is currently reached via the
+'Yoshimi' tab, but we may move it to its own button. Also, saving and loading
+vectors is now preserved in the recent histories file so you can quickly
+restore these - the same as you can for saved patch sets, scales and states.
+
+Vector entry via NRPNs and the CLI have also been upgraded slightly, so they
+will now automatically set the right number of parts available, and enable the
+required ones with the correct incoming channel number.
+
+
+A new concept is shortform NRPNs. This is where instead of the NRPN setting up
+for data entry of values, the NRPN is of itself the entire command. With a
+suitable sequencer like Rosegarden, you start with a two byte value, then only
+need to enter single byte CCs to change the setting. See doc/Shortform_NRPN.txt
+
+This came about through discussion after my demo of channel switching on
+MiniLAC2016. The idea was liked, but having to mess about with multiple NRPNs
+and their data settings was a fiddle.
+
+
+Some other usability enhancements:
+
+Some people don't like our splash window - Boo!
+You can now disable it in settings {mutter}{mutter}
+
+Many people didn't realise there were two types of resonance interpolation, 
+determined by whether you click the left or right mouse button. This has now
+been split into two with better tooltips.
+
+Jack audio autoconnect is now configurable in the GUI and stored so you don't
+have to set it with a startup argument.
+
+In MIDI settings you can now tell Yoshimi to ignore the 'reset all controllers'
+message - various bits of hardware and software can send these at the most
+inappropriate times.
+
+A right click on a button for a child window now closes the parent and a right
+click on that child's close button re-opens the parent. Use this a few times
+and you'll wonder how you managed without. Actually, this has been possible for
+a long time with Root/Bank/Instrument windows :)
+
+A right click on the track of any slider, or on any rotary knob will return it    to its home position.
+
+There has been some shuffling in the GUI to make the different windows more
+consistent and easier to recognise. This has also enabled us to increase the
+size of the smallest control knobs. Most sliders are now indented - it makes
+them more obvious.
+
+Scroll wheel behaviour on both knobs and sliders has also been adjusted to be
+more consistent. By itself movement is pretty fast, but hold down the ctrl key,
+and you'll get very fine resolution.
+
+Other matters:
+
+Yoshimi now has a build number, and this appears in the startup log. That's
+probably only of interest to those building the master, or for reporting bugs -
+whatever they are :P
+
+Actually, there are the usual bugfixes (ancient and modern) and we've also made
+a small improvement in the way we handle an all-jack environment.
+
+The compatibility work we did for V1.3.8 ensured the all-important instrument
+files were correct, but we didn't have time to implement all of the controls.
+These are now in place.
+
+Currently there is quite a lot of preparatory work under way but its not ready
+for prime time. It's still really proof of concept.
+
 
