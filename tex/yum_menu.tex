@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2016-05-21
+% \update      2016-06-05
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -17,6 +17,7 @@
 \section{Menu}
 \label{sec:menu}
 
+   At last, we're now ready to describe the user-interface of \textsl{Yoshimi}!
    The \textsl{Yoshimi} menu, as seen at the top of
    \figureref{fig:yoshimi_main_screen},
    is fairly simple, but it is important to understand the
@@ -35,10 +36,18 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=0.75]{menu/yoshimi-menu-yoshimi.jpg}
+%  \includegraphics[scale=0.75]{menu/yoshimi-menu-yoshimi.jpg}
+   \includegraphics[scale=1.0]{1.4.0/yoshimi-menu-yoshimi.png}
    \caption{Yoshimi Menu Items}
    \label{fig:yoshimi_menu_items}
 \end{figure}
+
+   \textbf{New:}
+   \index{new!Vector menu entry}
+   New with version 1.4.0 of \textsl{Yoshimi} is the \textbf{Vectors} menu
+   entry.
+   See \sectionref{subsubsec:menu_yoshimi_vectors}, which presents this dialog
+   and briefly describes it.
 
    \textbf{Bug:}
    \index{bugs!menu hot keys don't work}
@@ -67,7 +76,6 @@
 \label{subsubsec:menu_yoshimi_new_instance}
 
    Creates a new instance of \textsl{Yoshimi}.
-
    If JACK is running,
    start a normal (JACK-using) instance of \textsl{Yoshimi}.
    Then use this menu entry.  \textsl{Yoshimi} will start another instance
@@ -121,6 +129,262 @@
    In a non-JACK setup it won't fail, but in the absence of any specific
    setting, it will have null audio, but (probably) will still connect to ALSA
    MIDI.  Not too useful, but we should test that sometime.
+
+\subsubsection{Menu / Yoshimi / Vectors}
+\label{subsubsec:menu_yoshimi_vectors}
+
+   Vectors provide a way of mixing up to four parts in a manner that can be
+   automatec, saved, and loaded.  The features of vector control are presented
+   in \sectionref{sec:vector}.
+   Vector setup and control from the \textsl{Yoshimi} command-line are
+   discussed in
+   \sectionref{subsec:command_line_command_level}.
+   Here, we discuss the vector configuration dialog.
+   (As an exercise, one can compare the various functions of the vector dialog
+   to the command-line commands one can use to set up the vector
+   functionality.)
+   The new \textbf{Yoshimi / Vectors} menu entry brings up the following
+   dialog:
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-dialog.png}
+   \caption{Yoshimi Vectors Dialog}
+   \label{fig:yoshimi_vectors_dialog}
+\end{figure}
+
+   The user-interface items in the vector dialog are:
+
+   \begin{enumber}
+      \item \textbf{Top Line}
+      \begin{enumber}
+         \item \textbf{Base Channel}
+         \item \textbf{Options}
+      \end{enumber}
+      \item \textbf{X Vector}
+      \begin{enumber}
+         \item \textbf{Controller} (CC Event)
+         \item \textbf{Part 1}
+         \item \textbf{Part 2}
+         \item \textbf{Features}
+         \begin{enumber}
+            \item \textbf{Feature 1} (Volume)
+            \item \textbf{Feature 2} (Pan)
+            \item \textbf{Feature 3} (Brightness)
+            \item \textbf{Feature 4} (Modulation)
+         \end{enumber}
+      \end{enumber}
+      \item \textbf{Y Vector}
+      \begin{enumber}
+         \item \textbf{Controller} (CC Event)
+         \item \textbf{Part 1}
+         \item \textbf{Part 2}
+         \item \textbf{Features}
+         \begin{enumber}
+            \item \textbf{Feature 1} (Volume)
+            \item \textbf{Feature 2} (Pan)
+            \item \textbf{Feature 3} (Brightness)
+            \item \textbf{Feature 4} (Modulation)
+         \end{enumber}
+      \end{enumber}
+      \item \textbf{Bottom Line}
+      \begin{enumber}
+         \item \textbf{Vector Name}
+         \item \textbf{Close}
+      \end{enumber}
+   \end{enumber}
+
+   Although they are nested, for simplicity we will discuss the unique items
+   serially.
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Base Channel}{Vectors!base channel}
+   Vector Base Channel.
+   This item specifies the MIDI channel on which the vector (of parts) will be
+   based.  This channel is the incoming MIDI channel to which the vector setup
+   will respond to on all parts.
+
+   Values: \texttt{1 to 16, 1*}
+
+   \itempar{Options}{Vectors!options}
+   Vector Options.
+
+   Values: \texttt{1 to 127, 64*}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-options.png}
+   \caption{Yoshimi Vectors Options}
+   \label{fig:yoshimi_vectors_options}
+\end{figure}
+
+   The menu entries provide the actions described in this list:
+
+   \begin{enumber}
+      \item \textbf{Load}.
+         Brings up a file dialog that let's one pick an arbitary vector file
+         (extension \texttt{.xvy}) in an arbitrary directory, or select a
+         "Favorites" directory in which to look for vector files.
+         The base name of the file is then shown in the \textbf{Vector Name}
+         field.
+      \item \textbf{Save}.
+         Brings up a file dialog that let's one save an arbitary vector file
+         (extension \texttt{.xvy}) in an arbitrary directory, or select a
+         "Favorites" directory in which to save a vector file.
+         The base name of the file is then shown in the \textbf{Vector Name}
+         field.
+      \item \textbf{Recent}.
+         Brings up a short list of the previous vector files dealt with.
+      \item \textbf{Clear Chan}.
+         Clears the base channel number????
+      \item \textbf{Clear All}.
+         Clears out the full vector setup, rendering it an "empty" vector setup
+         that cannot be saved.
+   \end{enumber}
+
+   \itempar{X Vector}{Vectors!x}
+   The X Vector.
+   This vector provides the minimal setup for a vector.  This setup requires
+   \textsl{Yoshimi} to be configured for 32 parts, to be able to fully support
+   a two-part vector for every MIDI channel.  This section is disabled until
+   selects a \textbf{Controller} event value for it.
+
+   \itempar{Controller}{Vectors!controller}
+   Vector Controller CC Event.
+   If 0, the section (\textbf{X} or \textbf{Y}) that this value is in is
+   disabled.  Otherwise, the number is the MIDI continuous controller (CC)
+   event value that is to be used to control the mix of the two parts involved
+   in this vector.
+
+   Values: \texttt{1 to 119, 0*}
+
+   \itempar{Part 1}{Vectors!part 1}
+   Part 1.
+   The top button in the section (\textbf{X} or \textbf{Y}) selects the first
+   part to use in the two-part vector.  Clicking this button brings up the
+   default bank dialog.  This dialog allows one to select a part (instrument),
+   or to select an different bank from which to choose a part (instrument).
+
+   \itempar{Part 2}{Vectors!part 2}
+   Part 2.
+   The bottom button in the section (\textbf{X} or \textbf{Y}) selects the
+   second part to use in the two-part vector.  Clicking this button brings up
+   the default bank dialog, just as for the \textbf{Part 1} button.
+
+   \itempar{Feature 1}{Vectors!volume}
+   Vector Feature 1, Volume.
+   This feature can be disabled, or enabled.  Feature 1 is always fixed as MIDI
+   event 7 (volume), and is not reversible.
+   When enabled, the volume is traded off between the first part and second part
+   as the selected MIDI CC controller event data value changes.
+   While the first part increases in volume, the second part decrease in
+   volume, and vice versa.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-feature-1.png}
+   \caption{Yoshimi Vectors, Feature 1}
+   \label{fig:yoshimi_vectors_feature_1}
+\end{figure}
+
+   Values: \texttt{Off*, Vol}
+
+   Note that the common theme between all features is that they apply inversely
+   to the two parts/instruments that are paired in an \textbf{X}
+   or \textbf{Y} vector.
+
+   \itempar{Feature 2}{Vectors!pan}
+   Vector Feature 2, Pan.
+   This feature can be disabled, enabled, or reversed.
+   When enabled, it acts similarly to volume, panning from left to right as the
+   data value increases.
+   When reversed, it pans from right to left as the data value increases.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-feature-2.png}
+   \caption{Yoshimi Vectors, Feature 2}
+   \label{fig:yoshimi_vectors_feature_2}
+\end{figure}
+
+   Values: \texttt{Off*, Pan, Pan R}
+
+   \itempar{Feature 3}{Vectors!brightness}
+   Vector Feature 3, Brightness.
+   Brightness here refers to the application of a (we presume) low-pass filter
+   with a varying cutoff frequency.
+   This feature can be disabled, enabled, or reversed.
+   When enabled, it acts similarly to volume, changing the brightness
+   from left to right as the data value increases.
+   When reversed, it changes the brightness from right to left as the data
+   value increases.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-feature-3.png}
+   \caption{Yoshimi Vectors, Feature 3}
+   \label{fig:yoshimi_vectors_feature_3}
+\end{figure}
+
+   Values: \texttt{Off*, Filt, Filt R}
+
+   \itempar{Feature 4}{Vectors!modulation}
+   Vector Feature 4, Modulation.
+   Modulation here refers to the application of an (we presume) LFO
+   (for amplitude or frequency) with a varying modulation depth.
+   This feature can be disabled, enabled, or reversed.
+   When enabled, it acts similarly to volume, changing the modulation
+   from left to right as the data value increases.
+   When reversed, it changes the modulation from right to left as the data
+   value increases.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-feature-4.png}
+   \caption{Yoshimi Vectors, Feature 4}
+   \label{fig:yoshimi_vectors_feature_4}
+\end{figure}
+
+   Values: \texttt{Off*, Mod, Mod R}
+
+   \itempar{X Vector}{Vectors!x}
+   The X Vector.
+   This vector provides the maximal setup for a vector.  This setup requires
+   \textsl{Yoshimi} to be configured for 64 parts, to be able to fully support
+   an additional two-part vector for every MIDI channel.  This section is
+   disabled until selects a \textbf{Controller} event value for it.
+
+   Other than that, the \textbf{Y} vector acts like the \textbf{X} vector, and
+   all of the sub-items have the same functionality as in the
+   \textbf{X} vector.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-saved.png}
+   \caption{Yoshimi Vectors Saved as "My First Vector"}
+   \label{fig:yoshimi_vectors_saved}
+\end{figure}
+
+   If starting a new vector setup, first
+   select the base channel (1 to 16) to set the vector on. Next,
+   use the \textbf{X} and \textbf{Y} \textbf{Controller}
+   spin-boxes to select the incoming CC.
+   If you set an invalid one strange things may happen, though it won't
+   actually do any harm.
+
+   The instrument buttons bring up the instrument list window in exactly the same
+   way as the main part one does, but do not currently the right-click
+   windows return feature.
+
+   When setting up a completely new vector, if the mixer or the main part are
+   visible, they may be slightly out of sync, but will correct themselves as
+   soon as one changes an instrument or part.
+
+   When one \textbf{clears} a vector it doesn't delete loaded voices, nor does
+   it change the active status of the part, nor the number of parts available.
+   This is because these settings may have been made independent of vector
+   control. In short, vector setup will add things but not remove them.
 
 \subsubsection{Menu / Yoshimi / Settings...}
 \label{subsubsec:menu_yoshimi_settings}
@@ -332,14 +596,59 @@
    See \figureref{fig:send_reports_to}.
    It provides a depiction of the selection drop-down.
 
-   Values: \texttt{stderr, Console Window*}
+   Values: \texttt{stderr*, Console Window}
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=0.75]{menu/Yoshimi/main-send-reports-to.jpg}
+   \includegraphics[scale=1.0]{menu/Yoshimi/main-send-reports-to.jpg}
    \caption[Send Reports]{Send Reports To}
    \label{fig:send_reports_to}
 \end{figure}
+
+   If the \textbf{Console Window} option is chosen, then the
+   \textbf{Reports} button in the effects panel is enabled.
+   Pressing the \textbf{Reports} button brings up a small console dialog, as
+   shown in \figureref{fig:console_window}.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{1.3.9/console-window.png}
+   \caption[Yoshimi Console Window]{Console Window}
+   \label{fig:console_window}
+\end{figure}
+
+   \index{reports!middle-click}
+   An interesting feature of the console window is that one can identify
+   user-interface elements of the \textsl{Yoshimi} configuration in this window
+   by a middle-click on the user-interface element.  The console window figure
+   shows the results of middle-clicking on the following bottom-panel knobs in
+   order:
+
+   \begin{enumerate}
+      \item Velocity Sense (left-click)
+      \item Velocity Offset
+      \item Pan
+      \item Volume
+   \end{enumerate}
+
+   \index{reports!middle-click}
+   Information about each knob middle-clicked is pushed to the top of the
+   windows in reverse order.
+   \index{reports!left-click}
+   \index{reports!right-click}
+   Information about an earlier left-click is shown at the bottom of the figure.
+   Each left-click ("Button 1") will increase the parameter represented by the
+   knob, and each right-click ("Button3") will decrease the parameter
+   represented by the knob, and each change is reported in the console window.
+   And, of course, each middle-click changes nothing, but reports the current
+   value in the console window.
+   This powerful feature provides a way to gather the information needed to
+   control the parameter from the command-line.
+   The output can be selected, copied, and pasted to a script or archive text
+   file for safe-keeping.
+   \index{MIDI learn}
+   Consider it a form of "MIDI learn" that will be developed in the future.
+   And note that it applies to output to \texttt{stderr} as well.
 
    \itempar{Hide Non Fatal Errors}{Main Settings!Hide Non-Fatal Errors}
    Especially when running from the command line (with reports going there
@@ -347,10 +656,11 @@
    messages (such as XRUNs) that is so large that one cannot work out what is
    going on. This feature disables these error messages; it is a work in
    progress to catch the bulk of them, while still reporting top-level messages
-   and ones that cause a forced exit (... surely not!)
+   and ones that cause a forced exit (surely not!)
 
    \itempar{Log XML headers}{Main Settings!Log XML headers}
-   This item sends the information to the console window (or stderr) so that
+   This item sends the information to the console window
+   (or \texttt{stderr}) so that
    one can then see what \textsl{ynAddSubFX}/\textsl{Yoshimi}
    version created the file.
 
@@ -375,7 +685,8 @@
 \begin{figure}[H]
    \centering 
 %  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-jack.jpg}
-   \includegraphics[scale=0.75]{1.3.8/yoshimi-settings-jack.jpg}
+%  \includegraphics[scale=0.75]{1.3.8/yoshimi-settings-jack.jpg}
+   \includegraphics[scale=0.75]{1.3.9/yoshimi-settings-jack.png}
    \caption[JACK Settings]{JACK Settings Dialog}
    \label{fig:yoshimi_settings_jack}
 \end{figure}
@@ -387,6 +698,7 @@
       \item \textbf{Set as preferred MIDI}
       \item \textbf{Jack Server}
       \item \textbf{Set as preferred audio}
+      \item \textbf{Autoconnect audio} (new, 1.3.9)
       \item \textbf{Save and Close}
       \item \textbf{Close Unsaved}
    \end{enumber}
@@ -403,7 +715,7 @@
 
    Values: \texttt{default*, name} name, as in "jackd --name"
 
-   \itempar{Set as preferred MIDI}{JACK!Set as preferred MIDI}
+   \itempar{Set as preferred MIDI}{JACK!set as preferred MIDI}
    Set as preferred MIDI for JACK.
    This setting determines which MIDI connections a particular instance will
    first attempt. The switches are mutually exclusive across JACK and ALSA,
@@ -421,7 +733,7 @@
    Values: \texttt{default*, name} name, as in
    \texttt{jackd --name}.
 
-   \itempar{Set as preferred audio}{JACK!Set as preferred audio}
+   \itempar{Set as preferred audio}{JACK!set as preferred audio}
    Set as preferred audio for JACK.
    This setting determines which audio connections a particular instance will
    first attempt. The switches are mutually exclusive across JACK and ALSA,
@@ -430,6 +742,12 @@
    command line, both at start-up and once running.
    Note that any of these setting changes require a restart of \textsl{Yoshimi}
    to take effect.
+
+   \itempar{Autoconnect audio}{JACK!autoconnect audio}
+   Sets \textsl{Yoshimi} to connect automatically to the JACK server, just like
+   the \texttt{-K} command-line option does.  (However, note that the
+   command-line has no way to disable this feature it the configuration has been
+   saved.)
 
 \paragraph{Menu / Yoshimi / Settings / ALSA}
 \label{paragraph:menu_yoshimi_settings_alsa}
@@ -845,7 +1163,7 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=0.75]{menu/yoshimi-menu-scales.jpg}
+   \includegraphics[scale=0.9]{menu/yoshimi-menu-scales.jpg}
    \caption{Yoshimi Menu, Scales}
    \label{fig:yoshimi_menu_scales}
 \end{figure}
@@ -1145,6 +1463,8 @@
 \end{figure}
 
    This item is a standard \textsl{Yoshimi} file dialog.
+   Note that XML text is shown in the preview pane, but, if XML compression is
+   set, then a large question mark is all that would be shown.
 
    \itempar{State Save}{State!Save}
    Provides a way to save a new or modified \textsl{Yoshimi} state file.

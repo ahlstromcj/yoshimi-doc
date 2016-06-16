@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-09-06
-% \update      2016-05-21
+% \update      2016-06-05
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -594,7 +594,9 @@ Ones that we're pretty sure will be added are:
    \itempar{set available [n]}{cmd!set available}
       Set the number of available parts (16, 32, 64).
       Note that 32 and 64 are supported in the newest versions of
-      \textsl{Yoshimi}.
+      \textsl{Yoshimi}.  Also note that a single two-part vector setup (the
+      \textbf{X} vector) requires 32 parts, while the dual two-part vector
+      setup (both \textbf{X} and \textbf{Y}) requires 64 parts.
 
    \itempar{set bank [n]}{cmd!set bank}
       Set current bank to ID \textsl{n}.

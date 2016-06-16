@@ -30,7 +30,7 @@ channel to load and save from, so you can actually build up a vector set in
 (say) channel 3, then later decide you want to use it in channel 7.
 It has the extension .xvy standing for Xml, Vector, Yoshimi
 
-It seems to be reliable, but there is a bit more tidying up I'll be doing. 
+It seems to be reliable, but there is a bit more tidying up I'll be doing.
 Also, I want to integrate it with saved states.
 
 Another small detail is that all the minimum CLI abbreviations are now
@@ -63,6 +63,8 @@ a lot more confusing.
 The original system where bits were ORred together was done to make NRPN
 control as efficient as possible. That hasn't changed, but log messages refer
 to the CLI numbering.
+
+DONE
 
 
 Date: Fri, 25 Mar 2016 14:20:36 +0000
@@ -159,6 +161,8 @@ Loaded Vector CoolSound to source channel
 
 The file extension we use is .xvy but this will be added automatically.
 
+DONE
+
 
 Date: Sat, 26 Mar 2016 15:37:15 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
@@ -180,6 +184,8 @@ It seems some people don't like our startup splash - Boo!
 
 So if you really can't wait another second for Yoshimi, you can now disable it
 in the main config window.
+
+DONE
 
 
 ate: Sun, 27 Mar 2016 15:22:42 +0100
@@ -643,7 +649,7 @@ To: yoshimi@freelists.org
 Subject: [yoshimi] Another small detail
 X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
-At miniLAC2016 I was asked about whether it was possible to show the virtual 
+At miniLAC2016 I was asked about whether it was possible to show the virtual
 keyboard on a first time start up to help new users get quick results.
 
 Well that happens now :)
@@ -651,8 +657,6 @@ Well that happens now :)
 On a first start, there will be no yoshimi.windows file so this fact is used to
 open the keyboard alongside the main window. From then on it will obey the
 stored data as to whether it is shown and where it is placed.
-
-========================== CONTINUE HERE ================================
 
 Date: Mon, 2 May 2016 14:48:33 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
@@ -699,7 +703,7 @@ From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: (yet) Another small detail
 X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
- 
+
 As of now, the jack autoconnect status can be set in both the GUI and CLI
 It defaults to 'on'.
 
@@ -713,10 +717,6 @@ autoconnect' and 'no main jack autoconnect', but still keeping the 'K' for
 backward compatibility.
 
 How does that look?
-
-
-
-
 
 
 
@@ -767,9 +767,6 @@ currently working on a quite involved part of Yoshimi that is likely to take up
 most, if not all, of my coding time till then :/
 
 
-
-
-
 Date: Fri, 6 May 2016 23:03:11 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
@@ -785,16 +782,14 @@ Just a recap of some recent changes in Yoshimi.
 Global and Part Key shift is now +-36 semitones wherever they are set from.
 
 These can be set in the GUI the CLI and via MIDI NRPNs. With NRPNs part shift
-can be set by direct part control or *channel* based shift with channel number 
+can be set by direct part control or *channel* based shift with channel number
 in system NRPNs.
 
 The notes that have been updated in 'doc' are Direct_Part_Control.txt and
 Dynamic_System_Settings.txt
 
-
 *All* nested windows can be traversed with a right mouse click closing the
 parent as you open the child, or returning to the parent when closing the child.
-
 
 Specifically for jack audio, there is a new GUI option in Settings->Jack to
 enable/disable auto-connecting the main L&R audio outputs.
@@ -803,9 +798,6 @@ This is also available for the CLI.
 
 The -K argument will still auto-connect from a CLI start-up if it's not already
 configured for that. Currently there is no start-up way to disable this.
-
-
-
 
 
 Date: Sat, 7 May 2016 18:10:09 +0100
@@ -835,11 +827,6 @@ there that you can't do in the GUI.
 
 Although I don't want to divert to these other areas, as usual, if anyone wants
 to offer patches I'm more than happy to look at them.
-
-
-
-
-
 
 
 Date: Sat, 7 May 2016 21:53:06 +0100
@@ -874,9 +861,6 @@ same time (hopefully) minimising the typing the need to do.
 If you know of more, tell them to stop faffing about and give me some help!
 
 
-
-
-
 Date: Thu, 12 May 2016 20:49:12 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -903,9 +887,7 @@ identified with that middle button click. Effects, Envelopes & Resonance are
 still to do - they are a bit more complicated - but progress is being made.
 
 
-
-
-
+========================== UPCOMING SCRIPT CONTROL ????? ================
 
 Date: Sat, 14 May 2016 23:03:43 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
@@ -955,11 +937,6 @@ Of course, I need to think of a decent name for this branch. Thinking about it,
 I think "MidiLearn" should do the trick :D
 
 
-
-
-
-
-
 Date: Sun, 15 May 2016 18:55:18 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -995,10 +972,6 @@ control numbers (Over the next few days I'll start drawing up a spreadsheet with
 all of these on it).
 
 
-
-
-
-
 Date: Sun, 15 May 2016 19:17:36 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -1020,10 +993,6 @@ Chris will probably be muttering under his breath as it means another layout
 drawing has changed :p
 
 
-
-
-
-
 Date: Sun, 15 May 2016 23:38:57 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -1054,45 +1023,6 @@ version it would be irrelevant.
 
 P.S.
 Some documentation in place now :)
-
-
-
-
-
-
-Date: Sun, 15 May 2016 23:38:57 +0100
-From: Will Godfrey <willgodfrey@musically.me.uk>
-To: yoshimi@freelists.org
-Subject: [yoshimi] Re: Yoshimi - Resonance
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
-
-On Sun, 15 May 2016 17:19:30 -0400
-Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
-
-> Heh.  What dialog is that "interpolate peak" in?  Save me some scouting. :-)
-
-Either AddSynth->Resonance or PadSynth->Resonance
-
-> One thing I would like to see is, every time you do a check-in to master,
-> increment the final digit of the version as displayed in the splash screen
-> and the "yoshimi --version" command.  Useful for reference, and I can
-> add it to the documentation.  Example:  Instead of "1.3.9 M", "1.3.9.6 M".
->
-> Alternatively, do it in a branch and don't worry about the version until you
-> merge back to master.
->
-> At your convenience, of course!
-
-Actually, I have been thinking of employing a build number (I don't want to
-mess with the versioning). Ideally I want to find a way of automating this, and
-have it only displayed if the version has the 'M' suffix. With a release
-version it would be irrelevant.
-
-P.S.
-Some documentation in place now :)
-
-
-
 
 
 Date: Mon, 16 May 2016 22:06:36 +0100
@@ -1100,12 +1030,898 @@ From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Yoshimi - Resonance
 X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
- 
+
 To really see the difference, with a cleared graph click on the highest point,
 creating a spike, then try one of the buttons. Clear the graph, then do the
 same but use the other button.
 
 
+Date: Fri, 20 May 2016 19:47:25 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Progress
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
+I've finally started identifying effects. I'd been putting that off till
+more-or-less last. I think it has more pointers that Clapham railway junction :(
+However, once I'd tracked (sorry!) those, it's turning out to be tedious rather
+than difficult.
+
+All the manipulation for these messages is now in SynthEngine. It really should
+be in a new file, but I need to work out how to set this up in such a way that
+it has the same access to all the other parts. It will have to stay there for
+now.
+
+I've not done anything at all with text fields (names) as they have no effect on
+the dsp. As such, I'm hoping they can be handled 'normally' and if I stick to
+fixed size fields there won't be any unwanted memory shuffling.
+
+At some point I'll need to work out the GUI interface for midi-learn of course!
+{sigh}
+
+Oh, anyone fancy knocking up a GUI interface for vector control? :)
+
+
+
+========================== CONTINUE HERE ================================
+
+Date: Sat, 21 May 2016 20:05:23 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Cc: Frank Kober <goemusic@yahoo.fr>
+Subject: [yoshimi] Re: Yoshi 1.3.9 jack client names - FIXED
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+This turned out to be remarkably easy - almost suspiciously, so I'd *really*
+like other people to test the current master.
+
+I've tried all the following combinations and everything seems OK.
+
+alsa midi + alsa audio
+jack midi + alsa audio
+alsa midi + jack audio
+jack midi + jack audio
+
+> How do we know if it worked?
+
+Run a2jmidid and then yoshimi - set for jack midi (in yoshimi->setup - but you
+have to save settings and restart)
+
+Both a2j and yoshimi should appear in qjackctl's MIDI tab, and your external
+alsa midi source should be connected to midi through in qjackctl's ALSA tab
+
+You should see just yoshimi as the client for both audio and midi if you run
+further instances of yoshimi they should track correctly with number suffixes
+
+
+
+Date: Sat, 21 May 2016 22:09:34 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: ... and there's more :)
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Hi Chris,
+
+The current master should produce no build warnings.
+
+debian testing now fully supports gcc6 (although it defaults to gcc5)
+
+Although compile time is slightly long, warnings are *far* more detailed and
+accurate. It also reports things like indentation ambiguities, which actually
+led me to spot a minor bug  - clearing NRPNs.
+
+As an aside, 5 produces an image that is slightly smaller than 4.9 and 6 is in
+the middle.
+
+
+
+
+
+Date: Tue, 24 May 2016 00:00:02 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Yoshimi-doc
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Hi Chris,
+
+I finally had time to take a quick look at this.
+
+Hum, this was going to be a few quick notes before going to bed. It's now an
+epic and it's tomorrow :(
+
+I'm sorry if it all looks rather critical. I do very much appreciate all the
+ahrd work you've put into this!
+
+Page 76 Item 6 P.1st hasn't gone. It's moved and changed its name to Prot.1st
+
+Ummmm. Page 10 Yoshimi has had a *considerably* revised GUI!!!
+
+Page 28. All bank information has been taken out of the .config file and is
+in .banks.
+
+.instance doesn't yet exist - I've been a wee bit busy :)
+
+Bottom of page Patch Sets are not the full configuration. They carry *most* of
+it - almost all the dynamic stuff, but don't contain the config settings that
+state does. Note. The old 'parameters' name at the bottom of this page. it's
+never referred to as parameters now. Not in the GUI, CLI or any of the notes.
+
+Page 31. The readline history is stored in /home/(user}/.yoshimi_history and is
+a plain text dot file. It only records CLI entries.
+
+Most to the part effect displays are still upside down. Dynfilter is correct,
+but the box round A.S. A.M. A Inv now as a nice raised border, and the knobs
+are the same size art the others in the window.
+
+There are still several references to just the 'Panel' window, but everywhere
+in the GUI it is now referred to as the Mixer Panel, and in some of the notes
+just as the mixer.
+
+Quite a few of the larger images don't show the part/kit/voice etc.
+
+With the exception of the Mixer Panel (haven't got round to it_) all the
+*vertical* sliders will return to their 'home' positions if right clicked
+anywhere in their track.
+
+I'm rather unhappy about the long paragraph on LV2 near the bottom of page 197.
+In the first place it was just list discussion, and never intended to be a
+permanent record. Also it is now completely untrue! It has been untrue since
+Version 1.3.6 was released at the end of September 2015.
+
+Also, since then all three sequencers have had very considerable development,
+and of course Yoshimi has seen massive changes.
+
+Maybe replace it with something like:
+
+"Yoshimi's LV2 implementation is frequently tested using the latest versions of
+Ardour, Muse and Qtractor as LV2 hosts. Like Yoshimi, these are also in
+continuous development. So far we've not been able to get anywhere with Carla -
+if someone is familiar with it We'd be interested in what results they get."
+
+Talking of versions. The current release is 1.3.9 (end of February).
+
+The next release will be sometime in June - I really don't want to leave it any
+longer or people might think I'm losing interest!
+
+However, although I would really like the version number to be 1.4.0 I don't
+know if I can get enough of the new code in place and working reliably in time
+to justify such a step. If not, it will have to be version 1.3.10
+
+I've still got one piece of the GUI to identify, and it's proving to be a right
+pig to pin down. It's the system effect sends and is one of those
+programatically generated windows :(
+
+This *must* be in place before I go any further. I've had to juggle the numbers
+several times to get everything properly separated, and don't want to have to
+do this once real code changes are being made.
+
+The next stage in the development will be a hidden CLI entry where you will be
+able to just directly type in the numbers and it will follow the tree to
+perform the functions, and only once that is working reliably will I start to
+strip down the GUI
+
+
+
+
+
+
+
+te: Thu, 26 May 2016 21:25:26 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Something for the poor downtrodden GUI users :)
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+NRPN-ers and CLI-ers have been able to manage...
+
++ + + VECTOR CONTROL + + +
+
+for quite some time, but now this has come in some small way to those
+disadvantaged and having to push a pointer around on the screen.
+
+If you look at the 'Yoshimi' drop down you'll see a new menu entry called...
+
++ + + VECTOR + + +
+
+and clicking on that will open a shiny new window also marked...
+
++ + + VECTOR + + +
+
+Almost all the settings are in place and working. The options menu doesn't do
+anything, but will do eventually. For the time being your stuck with the CLI
+for saves and loads.
+
+So, have a play. See if anything breaks, and let me know what you think of the
+layout.
+
+
+At a later date I'd like to extend the window downwards and have a nice polar
+graph tracking the sweet-spot - but there's other stuff to get on with first.
+
+
+
+
+
+Date: Fri, 27 May 2016 21:03:39 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Something for the poor downtrodden GUI users :)
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Vector loading and saving is now there. Recent history should also be OK. When
+a Vector file has been loaded a label appears at the bottom (alongside
+'Close') for just that base channel.
+
+Could do with some feedback on this before casting it out to the world :)
+
+
+
+
+ate: Fri, 27 May 2016 01:03:43 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: A slight change of focus.
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Hi Chris,
+
+Well I now have the trigger for V 1.4.0 :)
+
+I'll put the id stuff on the back burner while I polish up GUI vector control.
+In fact, I think I'll hide the id stuff in the next release and just keep it
+active in master until it's ready for public consumption.
+
+I see you've updated the effects windows. great stuff!
+
+The other ones, off the top of my head were the controllers, oscillator and
+addsynth global & voice list windows.
+
+P.S.
+
+In the next commit. Mixer panel sliders will also home if the slot is right
+clicked.
+
+
+
+
+Date: Fri, 27 May 2016 16:51:59 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: A slight change of focus.
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+On Fri, 27 May 2016 05:38:08 -0400
+Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
+
+> I'm blankin' on what the "id stuff" is.  Can you clarify?
+
+The bit recognising which control has been used - not including vector control
+yet!
+
+
+
+
+
+
+Date: Tue, 31 May 2016 20:31:12 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Next release
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+I hope you guys are keeping up with me :)
+
+In the current master, The vector control window is now complete. There is a
+box alongside the 'Close' icon giving the name of the last loaded or saved
+Vector for that specific base channel. If starting a new vector, first
+select the base channel (1 to 16)  that you want to set the vector on. Next,
+use the X and Y spinboxes to select the incoming CC - this isn't error checked
+yet, as I haven't worked out the best way to do this. So if you set an invalid
+one strange things may happen - although it won't actually do any harm :)
+
+The instrument entries bring up the instrument list window in exactly the same
+way as the main part one does, but I haven't implemented the right click
+return. I have some doubts as to whether it would be wanted here as you are
+likely to want to set 4 instruments one after another while holding the
+vector window open for feature adjustments etc.
+
+Incidentally, while working on this I discovered what was causing the mixer and
+part names to sometimes get 'furry'. So that's fixed now.
+
+The features you can set are fairly obvious - they tell you what they are!
+
+When setting up a completely new vector, if you have the mixer or the main part
+visible, they are slightly out of sync but correct themselves as soon as you
+change an instrument or part - another detail that I want to try to get fixed
+soon.
+
+When you *clear* a vector it doesn't delete loaded voices, nor does it change
+the active status of the part, nor the number of parts available. This is
+because these settings may have been made independent of vector control. In
+short, vector control will add things but not remove them.
+
+
+Moving on, if you right click on *any* slider's track it will jump to its home
+position. All the horizontal sliders now have their tracks indented so it's a
+bit more obvious. I've also managed to make some of the slightly longer, and
+sliders with the same functions are more consistent across all three engines.
+
+The banks of vertical harmonics sliders seem to look better without this
+indentation - otherwise it looks like some weird barcode :?
+
+This juggling about also enabled me to make the tiniest knobs a bit bigger, so
+they are also easier to manage (and look better).
+
+During the process I uncovered another ancient bug going right back to Zyn
+2.2.1. The default setting of the resonance dB roller (now slider) was 10dB out
+from the actual value. The default setting in the *code* is 20dB so that is now
+what it shows - and is.
+
+Yoshimi has sprouted two new knobs in each engine. Bend, and Offset. These
+apply to the pitch wheel behaviour - well they will do once I've sorted the
+code out (hopefully before final release). We've been picking up and re-saving
+these for a long time, just not doing anything with them.
+
+
+
+
+
+te: Wed, 1 Jun 2016 19:30:25 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Next release Yoshimi 1.4.0 rc1
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+The 'Diamond Dove' is getting ready to fly :)
+
+The last few details:
+
+The vector control window is now fully in sync with the rest of the GUI.
+
+Pitch bend and offset are completed.
+
+Hands up those who knew that the AddSynth engine has overall resonance but it
+can be enabled/disabled per voice?
+
+Well it's a bit clearer now. The button's box is a little bigger and the label
+is "Reson" instead of just "R."
+
+This release candidate still has the experimental control logging. It's only
+the final release that won't have it. Then, once the next master is committed
+it'll be back again.
+
+
+
+
+
+
+Date: Thu, 2 Jun 2016 18:03:45 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Next release Yoshimi 1.4.0 rc2
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Damn!
+
+On rc2 already!
+A mistake in the new vector control meant that 'Clear' was wiping out all the
+vector names not just for that channel :(
+Still, the good news is that you now have 'Clear Chan' and 'Clear All' :)
+
+
+
+
+
+
+
+Date: Sat, 4 Jun 2016 17:19:35 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Next release Yoshimi 1.4.0 rc3
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+... and we have another one :)
+
+Current master is rc3
+
+I finally pinned down that bug with Echo & Distortion having the wrong defaults
+for l/r cross. My guess is that they were the victim of the dangers of
+copy/paste.
+
+This control is used hidden by some of the other effects so has an overall
+default value, but for these two specific effects it is different, and these
+are independently set by just those effects. However, when I tracked them down,
+the values were the same as the overall default!
+
+When changing presets within an effect the values are obtained differently, as
+groups from byte arrays. It's this code I modified so I could get individual
+ones for the 'home' function. Everything now lines up!
+
+Hopefully Frank's build fix will work for everyone. Please do shout if you have
+a problem. I especially want this release to be as clean and complete as
+possible.
+
+If we can just get those sliders under mouse wheel control that would be the
+icing on the cake. It will be the final piece of the puzzle for complete
+consistency in the GUI.                                                          j
+
+DONE
+
+
+Date: Tue, 31 May 2016 20:43:03 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Groveling apologies!
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Hi Chris,
+
+Title says it all. I've once again changed the following windows:
+
+Part Edit
+AddSynth Base
+Addsynth Voice
+Subsynth
+PadSynth Envelopes
+Resonance
+
+I really, really, REALLY hope this is the last time!
+
+Also I think the Vectors window is now ready for inclusion.
+
+I can't think of any changes needed for the GUI now, but there will probably be
+some underlying code adjustments.
+
+Once again, apologies for making more work for you.
+
+DONE
+
+
+Date: Sat, 4 Jun 2016 14:43:45 +0200
+From: Frank Neumann <beachnase@web.de>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Build errors on Mint 17, and a possible fix
+X-Mailer: Sylpheed 3.4.1 (GTK+ 2.24.23; x86_64-pc-linux-gnu)
+Organization: Disorganized, kind of.
+
+haven't been building Yoshimi from source for quite a while, I tried it again
+today on my LinuxMint 17 (Qiana), using gcc4.8.
+
+I found hundreds of error messages like this:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/mmintrin.h: In function ‘__m64
+_mm_cvtsi32_si64(int)’:
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/mmintrin.h:61:54: error: can’t convert
+between vector values of different size
+   return (__m64) __builtin_ia32_vec_init_v2si (__i, 0);
+ . . .
+
+but wasn't sure at first what changed. Then, a bit of googling brought me to
+the recently introduced C++11 standard changes.
+This page:
+http://stackoverflow.com/questions/19043109/gcc-4-8-1-combining-c-code-with-c11-co
+de
+stated that:
+"...As it is not practical to comment a system header, a workaround is to use g++ 
+--std=gnu++11 instead of g++ --std=c++11 as it does not define __STRICT_ANSI__. It
+worked in my case.
+
+It seems to be a bug in gcc."
+
+So, I tried this:
+franky@silence:~/src/audio/yoshimi-git/build/src> diff -u CMakeLists.txt.orig
+CMakeLists.txt
+--- CMakeLists.txt.orig 2016-06-04 14:29:38.518835880 +0200
++++ CMakeLists.txt      2016-06-04 14:30:53.324831450 +0200
+@@ -24,7 +24,7 @@
+     cmake_policy (SET CMP0046 OLD)
+ endif (POLICY CMP0046)
+ set (CMAKE_CXX_STANDARD 11) # we seem to need both for
+-add_definitions(-std=c++11) # various versions of cmake
++add_definitions(-std=gnu++11) # various versions of cmake
+ set (YOSHIMI_VERSION "1.4.0 rc2")
+ file (WRITE version.txt "${YOSHIMI_VERSION}")
+and was able to build Yoshimi fine again afterwards.
+
+Not sure whether this can be regarded as an actual fix or just a workaround,
+but I thought you might want to know.
+
+AND Will's response:
+
+Good catch Frank!
+
+As luck would have it, I've been testing with gcc 4.9, 5.3, 6.1 Yours just
+slipped underneath :o
+This change seems to work correctly with these so will go in rc3.
+
+rc3 will also have 'home' on right mouse click for all knobs as well as
+sliders. However, this showed up another ancient bug.
+
+When first selecting either Echo or Distortion the l/r crossover knob (LRc.)
+shows the wrong value even though the correct one seems to be set. Change
+preset then go back again and it's correct - our new 'home' feature also sets
+it correctly. So far I've spent over a day trying to track this one down :(
+
+
+Date: Sat, 4 Jun 2016 22:42:21 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Yoshimi 1.4.0 rc3
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+It's OK, you're safe now. No more GUI changes :)
+
+The *only* thing I'd like to get in place before release is mouse wheel control
+of sliders, but I'm not having any luck at the moment :(
+
+If I can't get it done, (and nobody comes forward to do it) in the next week or
+so, it'll have to be passed over to the next version. In any case this will
+have no effect on the GUI at all.
+
+With the 'archaeological' bugs I've been fixing lately I'm hoping this release
+will be as clean as possible, but I also want this ready before the middle of
+the month.
+
+For the user guide:
+
+The fact that *every* control can now be homed with a right mouse click means
+there is no longer a need for the few 'zero' and 'reset' buttons dotted
+around, so they've all gone. Sliders are slightly odd in that if you right
+click on the button itself nothing happens unless you move the mouse slightly,
+you need to click on the track. Knobs are easy, just a click on them does the
+job.
+
+
+Vector control:
+
+The 'base channel' refers to the incoming midi channel that a particular vector
+setup will respond to and directly relates to the 1 to 16 range of parts in the
+mixer panel.
+
+Setting an X axis control CC will immediately enable the base channel part and
+the part number + 16, as well as setting Yoshimi for 32 parts if it was less
+than that. If it was the same, or was set to 64 the nothing changes. Setting
+the CC will also ensure that both parts are actually responding to that midi
+channel (they might have been set to something else, or even disabled).
+
+You can't make any Y axis settings until at the very least the X CC has be set,
+and if you set that back to zero, the Y axis is again disabled.
+
+Setting a Y axis control CC will immediately enable the part (base channel +
+32) and the part number + 48, as well as setting for 64 parts if it was
+less than that. If it was the same, again nothing changes, and again the parts
+are set to the correct midi channel.
+
+The instruments that are loaded into the respective parts are always shown,
+regardless of whether there is a configured vector or not. They are a direct
+analogue of the main part instrument selector and behave in the same way. i.e.
+click on them to open the instrument selection window.
+
+There are tooltips for these along with Base channel and controller.
+
+
+The features are pretty self descriptive as soon and you click on them! The
+apply inveresly to the *pair* of instruments on each axis. You could have all
+four if you wanted to, but it's probably sound a mess.
+
+Options again are pretty obvious and follow a familiar pattern for load, save,
+etc.
+
+Loading or saving a vector will put the leafname in the bootm text field
+
+Disabling or clearing vectors will *not* change the number of parts because
+they may have already been set to increased numbers for some other purpose.
+Similarly this will not clear any instrument patches that have been loaded.
+
+Of course making any changes to the parts outside vector control will likely
+mess them up. It won't do any harm - just be puzzling.
+
+
+
+
+
+DONE:
+
+Date: Sun, 5 Jun 2016 06:44:50 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: Yoshimi 1.4.0 rc3
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Mornin' Chris.
+
+The file extension is .xyv and it doesn't matter if you put it there or not. If
+it's missing, or the wrong one it will be automatically replaced. This is
+actually true of almost all file saves, and has been for quite some time now. I
+just forgot to mention it to anyone :(
+
+For vectors, (in common with external instruments and patch sets) it's up to
+you as to where you save. The filer generally defaults to the either your user
+home directory, or if Yoshimi was launched for userland, it's the directory you
+launched from. Then as you guessed it's the normal browser selection.
+
+Once saved, Options->Recent is your friend.
+
+One day (not today) it will also be part of state save, and possibly patch sets
+too. A severe lack of round tuit here :(
+
+DONE:
+
+Date: Sun, 5 Jun 2016 07:26:34 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: Yoshimi 1.4.0 rc3
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+A quick recap on knobs.
+
+Right click sends it to the home position. For things like Pan and detune it is
+the mid position, for others it's whatever their default value is.
+
+For everything except effects, a drag also gives fine adjustment. One day I
+might get effects to do this too - Effects are just weird in every way :(
+
+Left button drag normal adjustment.
+Scroll wheel fine adjustment.
+Middle button drag very fine adjustment.
+Scroll wheel + ctrl extremely fine adjustment.
+
+
+
+Date: Mon, 6 Jun 2016 07:04:54 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: Ride With Yoshimi
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+
+
+http://www.musically.me.uk/music/Ride_With_Yoshimi.ogg
+
+These are from the original recording I made using two 'fixed' instances of
+Yoshimi (before bank changes were possible), so may have slight variations in
+levels.
+
+
+
+
+
+
+
+Date: Mon, 6 Jun 2016 21:49:55 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: The expected comments :)
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Small point - title still showing V 1.3.9
+
+Page 14 - Yoshimi now stamps ... as well as the nearest compatible Zyn version.
+        - With the exception of ... no longer true :)
+
+Page 30 - ... The Parameters / Save ... Patch Sets please :(
+
+Page 39 - Please make a note that setting the Vector CCs also ensures that the
+respective parts are set to receive the base channel.
+
+Page 41 - X vector again? Should be Y
+        - When setting up a completely new vector ... no longer true!
+
+Page 63 - Parameter sets ... again. Last sentence before 5.3.3
+
+Page 64 - The sentence is repeated at the top of this page.
+
+Page 65 - Please make a note that removing a root path does *not* delete any
+files or directories.
+
+Page 191 - The feature numbers ... repeated.
+
+Page 193 - (Chris asks: ... resolved I think!
+
+
+page 199 - List history ... include vectors
+
+As an aside, messing about with disabling or hiding menu items in fltk can
+be... 'interesting', so what I'll do with vectors is pop up a 'Nothing to Save'
+alert if someone tries to save an empty one. Clearing can stay as it is - it
+doesn't make any system changes.
+
+
+
+
+
+
+ate: Mon, 6 Jun 2016 20:43:06 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: A quick update.
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Hi Chris,
+
+Work computer behaved as I expected - no problems :?
+
+Also there's new branch called mwheel that Rob started off for me.
+It now does two-speed mousewheel slider control. Normal is quite fast,
+but holding down ctrl at the same time makes it go at the step size, which
+gives the highest possible resolution for any given slider - give it a try.
+
+A bit more testing and it'll go into master and be part of V 1.4.0.
+
+I'm actually wondering if it might be an idea to do the same with the rotary
+controls.
+
+
+
+
+
+
+Date: Tue, 7 Jun 2016 22:38:16 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Next release Yoshimi 1.4.0 rc4
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+I don't think we've ever got to rc4 before :o
+
+Anyway, there is a fix for a sneaky bug that could eat filenames - Thanks Chris.
+
+Also Rob worked out how to get scroll wheel control of sliders, so that is also
+in. The knobs have also been modified so they give similar scroll wheel
+behaviour.
+
+There is just one exception - the roller on the virtual keyboard. This is
+actually a very strange control. It's sort of like a slider but with the knob
+being the entire length of the track. It'll have to wait for another time.
+
+So, to recap for all other controls:
+
+Scroll wheel action gives you quite coarse movement, but hold down the ctrl key
+and you get the maximum resolution of the slider or knob. In fact with some of
+the frequency controls you'll think nothing is happening until you look at the
+numerical box alongside!
+
+A right button click takes the control to whatever its home position is.
+
+Left button drags are the same as the always were, pretty much following the
+mouse. If you are holding down the ctrl key you get much finer movement.
+
+Some variations that will have to be worked on later:
+
+Middle button drag on knobs gives quite fine control, and right button control
+goes home first, then lets you have fine control on most knobs - not very
+useful!
+
+Middle button drag on sliders is exactly the same as left button drag and right
+button only ever homes the slider.
+ 
+
+
+Date: Fri, 10 Jun 2016 09:55:57 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Bugs and omissions
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+That's what rc5 is all about.
+
+OK, stand up the person who was doing the 'home' function... Oh, that was me!
+Id forgotten to allow for the *fundamental* in harmonics always homing to max
+while the rest home to min :(
+
+
+The virtual keyboard 'controller' was sending the correct home value but not
+showing it correctly.
+
+
+I'd also forgotten to update the incoming CC in vector control. When enabling,
+it now only sets CC14 if you don't enter a valid number.
+While looking at this I took the opportunity to make all forms of vector
+control setting consistent, whether you do so via NRPNs, CLI or GUI.
+
+When you set the X or Y incoming CCs the number of available parts is always
+increased if it's not high enough. Required parts are activated and set to
+listen on the base channel (they may have previously be set differently).
+
+
+Finally, I've slightly modified the slider and rotary knob behaviour.
+On both, right mouse click/drag *only* sets the home position. Later I want to
+extend this for midi learn operations so don't want any confusion.
+
+Mouse wheel and drag give very similar behaviour on knobs with Left & Middle
+buttons, and the CTRL key.
+
+Sliders more-or-less match this with the scroll wheel, but getting incremental
+drags has proved to be elusive! It will have to wait.
+
+
+
+
+Date: Mon, 13 Jun 2016 00:23:06 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Version 1.4.0 is out {phew!}
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Just to remind you...
+
+V 1.4.0
+Diamond Dove
+
+About 18 months ago vector control became a 'thing' for Yoshimi and later, was
+first demonstrated to a handful of people at LAC 2015. At that time it was only
+accessible via NRPNs. Then about 6 months ago it became available to command
+line users as well, and 3 months ago vector saving and loading became possible.
+
+Now however, there is a shiny new window so the poor disadvantaged
+pointer-pushers can also have full control. This is currently reached via the
+'Yoshimi' tab, but we may move it to its own button. Also, saving and loading
+vectors is now preserved in the recent histories file so you can quickly
+restore these - the same as you can for saved patch sets, scales and states.
+
+Vector entry via NRPNs and the CLI have also been upgraded slightly, so they
+will now automatically set the right number of parts available, and enable the
+required ones with the correct incoming channel number.
+
+
+A new concept is shortform NRPNs. This is where instead of the NRPN setting up
+for data entry of values, the NRPN is of itself the entire command. With a
+suitable sequencer like Rosegarden, you start with a two byte value, then only
+need to enter single byte CCs to change the setting. See doc/Shortform_NRPN.txt
+
+This came about through discussion after my demo of channel switching on
+MiniLAC2016. The idea was liked, but having to mess about with multiple NRPNs
+and their data settings was a fiddle.
+
+
+Some other usability enhancements:
+
+Some people don't like our splash window - Boo!
+You can now disable it in settings {mutter}{mutter}
+
+Many people didn't realise there were two types of resonance interpolation, 
+determined by whether you click the left or right mouse button. This has now
+been split into two with better tooltips.
+
+Jack audio autoconnect is now configurable in the GUI and stored so you don't
+have to set it with a startup argument.
+
+In MIDI settings you can now tell Yoshimi to ignore the 'reset all controllers'
+message - various bits of hardware and software can send these at the most
+inappropriate times.
+
+A right click on a button for a child window now closes the parent and a right
+click on that child's close button re-opens the parent. Use this a few times
+and you'll wonder how you managed without. Actually, this has been possible for
+a long time with Root/Bank/Instrument windows :)
+
+A right click on the track of any slider, or on any rotary knob will return it    to its home position.
+
+There has been some shuffling in the GUI to make the different windows more
+consistent and easier to recognise. This has also enabled us to increase the
+size of the smallest control knobs. Most sliders are now indented - it makes
+them more obvious.
+
+Scroll wheel behaviour on both knobs and sliders has also been adjusted to be
+more consistent. By itself movement is pretty fast, but hold down the ctrl key,
+and you'll get very fine resolution.
+
+Other matters:
+
+Yoshimi now has a build number, and this appears in the startup log. That's
+probably only of interest to those building the master, or for reporting bugs -
+whatever they are :P
+
+Actually, there are the usual bugfixes (ancient and modern) and we've also made
+a small improvement in the way we handle an all-jack environment.
+
+The compatibility work we did for V1.3.8 ensured the all-important instrument
+files were correct, but we didn't have time to implement all of the controls.
+These are now in place.
+
+Currently there is quite a lot of preparatory work under way but its not ready
+for prime time. It's still really proof of concept.
 
 

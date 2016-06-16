@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-05
-% \update      2016-03-06
+% \update      2016-06-05
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -279,25 +279,22 @@
 
    Note the extra \textbf{Bypass} check-box, which presumably can be used to
    bypass this effects box in a given part.
+   Also be aware that some of the effects dialogs have been modified in the
+   latest revisions of \textsl{Yoshimi}.
 
 \subsection{Effects / None}
 \label{subsec:effects_edit_none}
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-none.jpg}
-   \caption{Effects Edit, None}
+%  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-none.jpg}
+   \includegraphics[scale=1.0]{1.3.9/effects-edit-none.png}
+   \caption{Effects Edit, No Effect}
    \label{fig:effects_edit_none}
 \end{figure}
 
-   This dialog form may be obsolete with the latest \textsl{Yoshimi}.
-   It was captured around April of 2015.
-   However, it seems that all but the \textbf{bypass} control and
-   the \textbf{Close} button have been removed
-   from the latest versions of \textsl{Yoshimi}.
-   We have a lot of others in the same style that may need to be recaptured
-   for use in new versions of the figures.
-   For now, keep this difference in mind.
+   This dialog form is reversed (top and bottom) with the latest
+   \textsl{Yoshimi}, and slightly simplified in appearance.
 
 \subsection{Effects / DynFilter}
 \label{subsec:effects_edit_dynfilter}
@@ -352,7 +349,8 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-dynfilter.jpg}
+%  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-dynfilter.jpg}
+   \includegraphics[scale=1.0]{1.3.9/effects-edit-dynfilter.png}
    \caption{Effects Edit, DynFilter}
    \label{fig:effects_edit_dynfilter}
 \end{figure}
@@ -372,7 +370,7 @@
       \item \textbf{LfoD}
       \item \textbf{A.S.}
       \item \textbf{A.M.}
-      \item \textbf{A.Inv.}
+      \item \textbf{Inv.}
    \end{enumber}
 
    This figure shows an additional section, in the bottom panel of the effect's
@@ -384,13 +382,13 @@
    from the latest versions of \textsl{Yoshimi}.
 
    \begin{enumber}
-      \item \textbf{FX No.}
-      \item \textbf{bypass}
-      \item \textbf{EffType}
-      \item \textbf{Send To}
+      \item \textbf{FX No.} (an unlabelled number "wheel")
+      \item \textbf{bypass} (bottom panel)
+      \item \textbf{EffType} (now unlabelled, obvious from context)
+      \item \textbf{To} (where the effect is sent to)
       \item \textbf{C}
       \item \textbf{P}
-      \item \textbf{Close}
+      \item \textbf{Close} (bottom panel)
    \end{enumber}
 
    The four controls in the middle of the middle panel
@@ -479,7 +477,7 @@
    A.M sets the Amplitude Smoothness (this is described above). The higher
    one sets this value, the more slowly will the filter react.
 
-   \itempar{A.Inv}{dynfilter!a.inv}
+   \itempar{Inv.}{dynfilter!a.inv}
    DynFilter A.Inv.  One of two knobs let one control the way how the RMS
    value of the amplitudes is measured.  A.Inv., if set, negates the
    (absolute) RMS value. This will lower the filter frequency instead of
@@ -505,8 +503,8 @@
    or wahwah a bit, but it is more strange. That's why he called it "AlienWah"
    The effect is a feedback delay with complex numbers. 
 
-   The AlienWah effect is a special, dynamic formant filter (TODO: is this
-   true?). Paul Nasca named it AlienWah because it sounded "a bit like
+   The AlienWah effect is a special, dynamic formant filter.
+   Paul Nasca named it AlienWah because it sounded "a bit like
    wahwah, but more strange". The result of the filter is a sound varying
    between the vocals "Ahhhhh" (or "Uhhhhh") and "Eeeeee".
 
@@ -536,7 +534,8 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-alienwah.jpg}
+%  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-alienwah.jpg}
+   \includegraphics[scale=1.0]{1.3.9/effects-edit-alienwah.png}
    \caption{Effects Edit, AlienWah}
    \label{fig:effects_edit_alienwah}
 \end{figure}
@@ -722,7 +721,8 @@ This section details the value supported by the AlienWah effect.
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-chorus.jpg}
+%  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-chorus.jpg}
+   \includegraphics[scale=1.0]{1.3.9/effects-edit-chorus.png}
    \caption{Effects Edit, Chorus}
    \label{fig:effects_edit_chorus}
 \end{figure}
@@ -736,7 +736,7 @@ This section details the value supported by the AlienWah effect.
       \item \textbf{Delay}
       \item \textbf{Fb.}
       \item \textbf{L/R}
-      \item \textbf{Subtract}
+      \item \textbf{Subtract} (still misspelled as "Substract")
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
@@ -819,10 +819,8 @@ This section details the value supported by the Chorus effect.
    applying is to achieve multiband distortion. ZynAddSubFX has no "real"
    multiband distortion by now, however.
 
-   The topic of types of distortion is completely discussed in the
+   The topic of types of distortion is discussed in the
    Oscillator Section.
-
-   (FIND THE REFERENCE)
 
    Note that one can use the Oscillator editor in order
    to find out what the distortion effect does. Also note that while the
@@ -875,7 +873,8 @@ This section details the value supported by the Chorus effect.
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-distortion.jpg}
+%  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-distortion.jpg}
+   \includegraphics[scale=1.0]{1.3.9/effects-edit-distortion.png}
    \caption{Effects Edit, Distortion}
    \label{fig:effects_edit_distortion}
 \end{figure}
@@ -970,7 +969,8 @@ This section details the value supported by the Chorus effect.
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-echo.jpg}
+%  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-echo.jpg}
+   \includegraphics[scale=1.0]{1.3.9/effects-edit-echo.png}
    \caption{Effects Edit, Echo}
    \label{fig:effects_edit_echo}
 \end{figure}
@@ -1024,12 +1024,7 @@ This section details the value supported by the Chorus effect.
    (NEED A REFERENCE)
 
    Effects can be controlled via "non-registered parameter numbers", or NRPNs.
-   This section details the value supported by the Echo effect.
-
-   TODO
-   TODO
-   TODO
-   TODO
+   This section details the value supported by the Echo effect.  TODO.
 
 \subsection{Effects / EQ}
 \label{subsec:effects_edit_eq}
@@ -1054,7 +1049,8 @@ This section details the value supported by the Chorus effect.
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-eq.jpg}
+%  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-eq.jpg}
+   \includegraphics[scale=1.0]{1.3.9/effects-edit-EQ.png}
    \caption{Effects Edit, EQ}
    \label{fig:effects_edit_eq}
 \end{figure}
@@ -1121,6 +1117,8 @@ Bands:
    Effects can be controlled via "non-registered parameter numbers", or NRPNs.
    This section details the value supported by the EQ effect.
 
+   TODO.
+
 \subsection{Effects / Phaser}
 \label{subsec:effects_edit_phaser}
 
@@ -1133,25 +1131,25 @@ Bands:
 \subsubsection{Effects / Phaser / Circuit}
 \label{subsubsec:effects_edit_phaser_circuit}
 
-   No circuit diagram, just a picture of the results of the phaser effect in the
-   form of a spectrogram.
+   No circuit diagram, just a picture of the results of the phaser effect in
+   the form of a spectrogram.
 
 \begin{figure}[H]
    \centering 
    \includegraphics[scale=0.75]{zyn/effects/phaser-spectrogram.jpg}
-   \caption{Phaser Circuit Diagram}
-   \label{fig:phaser_circuit_diagram}
+   \caption{Phaser Circuit Spectrogram}
+   \label{fig:phaser_circuit_spectrogram}
 \end{figure}
 
    The audio signal is split into two paths. One path remains unchanged. The
-   other one is sent to a delay line. The delay time (the so called phase) is
+   other one is sent to a delay line. The delay time (the so-called phase) is
    made dependent on the frequency. Therefore, an all-pass filter is applied
    to the signal, which preserves the amplitude, but determines the delay
    time. In the end, both paths are added.
 
-   The following picture describes how this works on white noise. Light blue
-   signalises that the frequency is not present at the current time, and dark
-   blue signalises the opposite. The dark blue peaks appear if the delay time
+   The spectrogram describes how this works on white noise. Light blue
+   indicates that the frequency is not present at the current time, and dark
+   blue indicates the opposite. The dark blue peaks appear if the delay time
    is very short, because then, the second path almost equals the first one,
    which results in duplication of the signal. If the delay line is very
    long, then it is -- in the case of white noise -- totally at random
@@ -1162,42 +1160,55 @@ Bands:
    ZynAddSubFX offers different types of phasers:
 
    \begin{itemize}
-      \item Analog and "normal" phasers. Analog phasers are more complicated.
+      \item \textbf{Analog and "normal" phasers}.
+      Analog phasers are more complicated.
       They sound punchier, while normal phasers sound more fluently. However,
       analog filters usually need more filter stages to reach a
       characteristic sound.
-      \item Sine and triangle filters. Note that an analog triangle filter
+      \item \textbf{Sine and triangle filters}.
+      Note that an analog triangle filter
       with many poles is a barber pole filter and can be used to generate
       Shepard Tones, i.e. tones that seem to increase or decrease with time,
       but do not really.
-      \item The LFO function can be squared. This converts the triangle wave
+      \item \textbf{The LFO function can be squared}.
+      This converts the triangle wave
       into a hyper sine wave. The sine squared is simply a faster sine wave.
    \end{itemize}
 
-   TODO: Barber is deactivated, since PLFOtype is only 0 or 1?
+%  TODO: Barber is deactivated, since PLFOtype is only 0 or 1?
 
-   For the normal phaser:
+   For the normal phaser,
+   \figureref{fig:effects_edit_phaser}, below, shows the controls referred to
+   in this list of steps.
    
    \begin{enumber}
       \item First, the LFO is generated.
-         There are 4 controls (Freq,Rnd,LFO tpye,St.df) that define the LFO.
-      \item Phase and Depth are applied afterwards in the usual way (TODO: I
-            don’t understand the code here for the normal phase…). For the
-            analog phaser, Phase is not implemented, yet.
-      \item If hyp is being set, then the LFO function is being squared.
-      \item Next, the input is being used.
-      \item Analog decides whether the phaser is analog or "normal".
-      \item First, Pan applies panning to the original input in every loop.
-      \item Next, barber pole phasing is being applied (Analog only).
-      \item Fb applies feedback. The last sound buffer element is (after
+         There are 4 controls
+         (\textbf{Freq}, \textbf{Rnd}, \textbf{LFO} type, \textbf{St.df})
+         that define the LFO.
+      \item \textbf{Phase} and \textbf{Depth} are applied afterwards in the
+            usual way.
+%           (TODO: I don’t understand the code here for the normal phase.)
+            For the analog phaser (see the \textbf{Analog} check-box),
+            \textbf{Phase} is not implemented yet.
+      \item If \textbf{hyper} is set, then the LFO function is squared.
+      \item Next, the input is used.
+      \item The \textbf{Analog} setting
+            decides whether the phaser is analog or "normal".
+      \item \textbf{Pan} applies panning to the original input in every loop.
+      \item Next, barber-pole phasing is applied (\textbf{Analog} only).
+      \item \textbf{Fb} applies feedback. The last sound buffer element is (after
             phasing) multiplied by this value and then added to the current
-            one. For normal filter, the value is added before, for analog
-            after the first phasing stage.
-      \item Now, Stages phasing stages are being applied. dist sets the
-            distortion for when applying the phasing stages. This has only
-            effect for analog phasers.
-      \item The feedback is performed next.
-      \item In the end, Substract inverts the signal, multiplying it by -1.
+            one. For the normal filter, the value is added before, and, for
+            analog, after the first phasing stage.
+      \item Next, based on the setting of \textbf{Stages},
+            phasing stages are applied.
+            The \textbf{dist} control sets the amount of
+            distortion when applying the phasing stages. This
+            setting has only effect for analog phasers.
+      \item The feedback is applied next, for analog filtering.
+      \item In the end, the \textbf{Substract} option
+            inverts the signal, multiplying it by -1.
    \end{enumber}
 
 \subsubsection{Effects / Phaser / User Interface}
@@ -1205,12 +1216,13 @@ Bands:
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-phaser.jpg}
+%  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-phaser.jpg}
+   \includegraphics[scale=1.0]{1.3.9/effects-edit-phaser.png}
    \caption{Effects Edit, Phaser}
    \label{fig:effects_edit_phaser}
 \end{figure}
 
-   TODO. Include the item-paragraphs for each GUI element.
+%  TODO. Include the item-paragraphs for each GUI element.
 
    \begin{enumber}
       \item \textbf{Preset.}
@@ -1232,14 +1244,16 @@ Bands:
    \end{enumber}
 
    The extra fields that are shown if the effect is an insertion effect are
-   not shown.  They are described in section TODO TODO TODO.
+   not shown.  They are still need to be described.
 
    \itempar{Preset}{phaser!preset}
    Phaser Presets.
 
-   TODO: need a diagram of the dropdown
+%  TODO: need a diagram of the dropdown
 
-   Values: \texttt{Phaser 1, ...} TODO.
+   Values: \texttt{Phaser 1, ...}
+   
+%  TODO.
 
    \itempar{Depth}{phaser!depth}
    Phaser Depth. Phaser LFO Depth?
@@ -1351,7 +1365,8 @@ This section details the value supported by the Phaser effect.
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-reverb.jpg}
+%  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-reverb.jpg}
+   \includegraphics[scale=1.0]{1.3.9/effects-edit-reverb.png}
    \caption{Effects Edit, Reverb}
    \label{fig:effects_edit_reverb}
 \end{figure}

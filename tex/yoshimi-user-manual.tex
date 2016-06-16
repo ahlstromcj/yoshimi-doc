@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-04-20
-% \update      2016-05-21
+% \update      2016-06-07
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -107,7 +107,8 @@
    than \textsl{ZynAddSubFX}, but that is no longer true.
    Both projects are now in active development, and both are
    progressing along their respective roadmaps.
-   \textsl{Yoshimi} currently has a slight revamped graphical user interface,
+   \textsl{Yoshimi} currently has a considerably
+   revised graphical user interface,
    while \textsl{ZynAddSubFX} has a major user-interface upgrade planned.
    Each project has some features and capabilities that the other lacks.
    There may be internal differences of importance to
@@ -264,6 +265,11 @@
    For all of this there is extensive error checking and feedback, which can be
    rendered aurally using text-to-speech software.
 
+   There is one partially-sighted persion we very occasionally hear from. There
+   is also a totally blind person (working with a Braille reader/writer) who has
+   offered a lot of suggestions, and very much likes vector control.  So
+   accessibility is an important feature of \textsl{Yoshimi}.
+
 \subsubsection{Command Line}
 \label{subsubsec:new_features_command_line}
 
@@ -358,6 +364,9 @@
    One can now use the mouse scroll wheel to adjust rotary controls. Holding
    down the Ctrl key gives access to finer adjustment.  Also, horizontal as
    well as vertical mouse movement will adjust the knob.
+
+   Including the Mixer Panel, all the \textsl{vertical} sliders will return to
+   their 'home' positions if right-clicked anywhere in the control.
 
    Part-editing windows carry the part number and voice name in the title bar.
    For the AddSynth oscillator window this also includes the voice number.
@@ -549,8 +558,10 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{1.3.8/yoshimi-first-screen.jpg}
-   \caption{Yoshimi Main Screen, 1.3.8 and Above}
+%  \includegraphics[scale=1.0]{1.3.8/yoshimi-first-screen.jpg}
+%  \caption{Yoshimi Main Screen, 1.3.8 and Above}
+   \includegraphics[scale=1.0]{1.4.0/yoshimi-first-screen.png}
+   \caption{Yoshimi Main Screen, 1.4.0 and Above}
    \label{fig:yoshimi_main_screen}
 \end{figure}
 
@@ -563,6 +574,14 @@
    \item \textbf{Effects Panel}.
    \item \textbf{Bottom Panel}.  Includes the VU-meter at the bottom.
 \end{enumber}
+
+   \index{control!reset}
+   \index{reset!control}
+   One thing to note is that the \textbf{Detune} and \textbf{Pan} buttons no
+   longer have a small red button next to them to press in order to reset the
+   control to its center value.  Starting with version 1.4.0, a right-click on
+   any control in \textsl{Yoshimi} will reset the control's value to its center
+   position.
 
    There's a lot going on with \textsl{Yoshimi}, and there's no way to describe
    it in linear order.  This manual will describe how to do useful things in

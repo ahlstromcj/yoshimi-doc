@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2016-03-07
-% \update      2016-05-21
+% \update      2016-06-05
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -41,11 +41,13 @@
    \begin{itemize}
       \item \texttt{.banks}
          \index{.banks}
-         Contains information on the accessible instrument banks.
+         Contains information on the accessible instrument banks, and
+         information to translate between bank directory names and bank ID
+         values.
       \item \texttt{.config}
          \index{.config}
-         Contains information to translate between bank directory names and
-         bank ID values.
+         Contains the setup information configured in the
+         \textbf{Yoshimi / Settings} dialog.
       \item \texttt{.history}
          \index{.history}
          Recent patch sets are now stored in the \texttt{.history} file.
@@ -53,6 +55,7 @@
       \item \texttt{.instance(n)}
          \index{.instance(n)}
          Contains the current root/bank, MIDI settings, and preferred engines.
+         (This file does not yet exist, but is a planned future feature.)
       \item \texttt{.state}
          \index{.state}
          Contains the state information needed to
@@ -86,6 +89,8 @@
          Vector settings. The extension stands for "Xml Vector Yoshimi".
          It will eventually be integrated with the saved states.
          For a good example, see \sectionref{subsection:vector_command_line}.
+         One day, vector settings will also be part of the state save, and
+         possibly patch sets too.
    \end{itemize}
 
    The entire config set should then be (ignoring the prepended
@@ -93,13 +98,28 @@
 
    \begin{itemize}
       \item \texttt{.config}
-      \item \texttt{.instance[n]}
+      \item \texttt{.instance[n]} (future)
+      \item \texttt{.windows}
       \item \texttt{.history}
       \item \texttt{.banks} (this is currently per instance)
    \end{itemize}
 
    The \texttt{.windows} file is specific to the GUI, so doesn't figure in this
-   scheme at all.
+   scheme at all, but it is created or saved when one exits
+   \textsl{Yoshimi}.
+
+   In the file-save dialogs, the file extension is determined by the type of
+   file being saved, and it doesn't matter if one enters the extension
+   explicity, or not. If it's missing, or it is the wrong one, it will be
+   replaced. This is actually true of almost all file saves, and has been for
+   quite some time now.
+
+   For vectors (in common with external instruments and patch sets), it's up to
+   the user as to where to save. The file filter generally defaults to the
+   either the user home directory, or if \textsl{Yoshimi} was launched from
+   userland, it's the directory it launched from. Then it's the normal
+   file browser selection.  Once saved,
+   \textbf{Vectors / Options / Recent} is your friend.
 
 \subsection{Configuration Files / Patch Set}
 \label{subsec:configuration_patch_set}
@@ -113,10 +133,14 @@
    it stores a combination of items, that took awhile to set up, for easy
    retrieval later.
 
-   This is the full \textsl{Yoshimi} configuration. Everything.  It's format is
-   either XML or compressed XML, as explained elsewhere.  The \textbf{Parameters
-   / Save} menu entry saves files with this extension.  This file is also called
-   a \textsl{parameter set}.
+   Patch sets are not the full configuration. They carry \textsl{most} of it,
+   including almost all of the dynamic settings, but they don't contain the
+   configuration settings that \texttt{.state} does.  The patch set format is
+   either XML or compressed XML, as explained elsewhere.  The
+   \textbf{Patch Sets / Save External...} menu entry saves files with
+   the \texttt{.xmz} extension.
+   (This file used to be called \textsl{parameter
+   set}, but that name is no longer used in \textsl{Yoshimi}.)
 
    One of the simplest ways to save one's work is to save the entire
    \textsl{Yoshimi} configuration.

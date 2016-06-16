@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom and Will Godfrey
 % \date        2015-06-15
-% \update      2016-05-21
+% \update      2016-05-24
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -63,19 +63,9 @@
    is a single sample of however many channels an application is handling.
    If one is using JACK, a mono signal will have frames of 1 float, 2 floats
    for stereo, etc.  A six-channel device will have six samples in a single
-   frame.
-
-   An audio or JACK buffer will contain more than one frame of data.
-   Buffers generally range in size from 16 to 1024 frames.
-   Low values provide less latency, but make the CPU work harder.
-
-   ALSA is more complex as it handles pretty much the sound card's format,
-   commonly integers, 24 bit integers (low byte ignored), and short integers.
-   Less commonly it may be floats or the weird 24-bit long integers.  Are these
-   packed or low-aligned (top byte ignored)? It's assumed they are low-aligned,
-   but we don't know anyone who has such a card in order to prove it. As a
-   matter of interest, the only ALSA format \textsl{Yoshimi} doesn't support is
-   float; again, no way to test it.
+   frame.  An audio or JACK buffer will contain more than one frame of data.
+   Buffers generally range in size from 16 to 1024 frames.  Low values provide
+   less latency, but make the CPU work harder.
 
 \subsubsection{Concepts / Terms / Instrument}
 \label{subsubsec:concepts_terms_instrument}
@@ -192,16 +182,12 @@
    do the translation.  (Jack v. 1 has this integrated in recent versions,
    apparently).
 
-   A frame is a single sample of however many channels one is handling, so if
-   one is using JACK, a mono signal will have frames of 1 float, 2 for stereo,
-   etc.
-
    ALSA is more complex as it handles the sound card's format, commonly
-   integers (16 bit), 24 bit integers (low byte ignored), and short integers.
+   16-bit integers, 24 bit integers (low byte ignored), and short integers.
    Less commonly it may be floats or the weird 24-bit long integers. We're
    still not sure if these are packed or low-aligned (top byte ignored). We've
    assumed they are low-aligned, but we don't know anyone who has such a card,
-   in order to prove it.  As a matter of interest the only ALSA format
+   in order to prove it.  The only ALSA format
    \textsl{Yoshimi} doesn't support is float.
 
    Something that's not obvious is the way that ALSA audio is controlled and who
@@ -215,6 +201,18 @@
 
    \textsl{Yoshimi} is now verified as being able to use the 192000 Hz sample
    rate in both ALSA and JACK... if one has a suitable soundcard!
+
+   If \textsl{Yoshimi} is configured for JACK, but cannot find the JACK server,
+   it will try for ALSA. If neither JACK nor ALSA works, it will run with a null
+   client so one can at least try to work out what went wrong.
+   This status is reported to the command line or Reports window.
+
+   For JACK, if one has started \textsl{Yoshimi}
+   from the command-line with the \texttt{-K} option, it will
+   auto-connect the main left and right outputs.
+   On some machines, using the \texttt{-k} argument to also start JACK
+   ends up running \textsl{jackdbus} which seems to route all JACK audio
+   to \texttt{/dev/null}.
 
 \subsection{Concepts / Banks and Roots}
 \label{subsec:concepts_banks_and_roots}
@@ -488,7 +486,7 @@
          insertion effects for one part, but the number of these cannot be
          bigger than NUM.INS.EFX.
       \item \textbf{Part Mixer}.
-         Mixes all parts.
+         Mixes all parts.  Also known as the "Panel" or "Mixer Panel".
       \item \textbf{System Effects}.
          Applied to all parts, one can set how much signal
          is routed through a system effect.

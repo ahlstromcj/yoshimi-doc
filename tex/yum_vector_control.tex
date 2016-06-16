@@ -19,8 +19,13 @@
 
    This section comes from the source-code documentation file
    \texttt{doc/Vector\_Control.txt}.
+   Also see 
+   \sectionref{subsubsec:stock_settings_elements_automation}, for a discussion
+   of vector automation, and
+   \sectionref{subsubsec:menu_yoshimi_vectors}, for a discusson of the vector
+   configuration dialog.
 
-   Vector load and save work from the command-line, for a complete vector
+   Vector load and save also work from the command-line, for a complete vector
    set, with all mappings, instruments, etc.
    One can independently decide which
    channel to load and save from, so one can actually build up a vector set in
@@ -33,29 +38,64 @@
 \subsection{Vector / Basics}
 \label{subsection:vector_basics}
 
-   Vector control is a way to control more than one part with the
-   controllers.  It is a little bit reminiscent of the "vector" control knob
-   on the Yamaha PSS-790 consumer MIDI synthesizer.  Vector control is only
-   possible if one has 32 or 64 parts active.
-   Setup is per MIDI channel, so one can have totally different vector
-   behaviour on, say, channel 1 and channel 5.
+   Vector control is a way to control more than one part with the controllers.
+   It is a little bit reminiscent of the "vector" control knob on the Yamaha
+   PSS-790 consumer MIDI synthesizer.  Vector control is only possible if one
+   has 32 or 64 parts active.  Setup is per MIDI channel, so one can have
+   totally different vector behaviour on, say, channel 1 and channel 5.
+   \index{vector!base channel} The term \textsl{base channel} refers to the
+   incoming MIDI channel that a particular vector setup will respond to, and
+   the base channel directly relates to the 1 to 16 range of parts in the mixer
+   panel.
 
    Vector control has been extended so that there are four independent
    'features' that each axis can control. One is fixed as \textsl{Volume} (if
-   enabled) but the other three can be any valid CC, and can also be
-   reversed. The vector 'sweep' CCs are split out very early in the MIDI
-   chain, and the new CCs created are fed back in before any other
-   processing. The result of this is that once we eventually get MIDI-learn
-   implemented, the control possibilities will expand dramatically.
-   \textsl{(Will notes: "sorry about the extreme delay :(")}
+   enabled) but the other three can be any valid CC, and can also be reversed.
+   The vector 'sweep' CCs are split out very early in the MIDI chain, and the
+   new CCs created are fed back in before any other processing. The result of
+   this is that once we eventually get MIDI-learn implemented, the control
+   possibilities will expand dramatically.
 
    In vector mode parts will still play together but the vector controls can
-   change their volume, pan, filter cutoff in pairs, controlled by
-   user-defined CCs set up with NRPNs.
+   change their volume, pan, filter cutoff in pairs, controlled by user-defined
+   CCs set up with NRPNs.
 
-   One must set the X axis CC before the Y axis, but if one doesn't set the
-   Y axis at all, one can run just a single axis.
-   If one has only 32 parts active, Y settings are ignored.
+   One must set the X axis CC before the Y axis, but if one doesn't set the Y
+   axis at all, one can run just a single axis.  If one has only 32 parts
+   active, Y settings are ignored.  One cannot make any Y axis settings until,
+   at the very least, the X CC has be set, and if one sets that back to zero,
+   the Y axis is again disabled.  Setting an X axis control CC will immediately
+   enable the base channel part and the part number + 16, as well as setting
+   \textsl{Yoshimi} for 32 parts, if it was less than that. If it was the same,
+   or was set to 64 parts, then nothing changes. Setting the CC will also
+   ensure that both parts are actually responding to that MIDI channel (they
+   might have been set to something else, or even disabled).
+
+   Setting a Y axis control CC will immediately enable the part (base channel +
+   32) and the part number + 48, as well as setting for 64 parts, if it was
+   less than that. If it was the same, again nothing changes, and again the
+   parts are set to the correct MIDI channel.
+
+   The instruments that are loaded into the respective parts are always shown,
+   regardless of whether there is a configured vector or not. They are a direct
+   analogue of the main part instrument selector and behave in the same way
+   (i.e.  click on them to open the instrument selection window).  There are
+   tooltips for these items, along with the base channel and controller.
+
+   The features are pretty self descriptive as soon and you click on them. They
+   apply inversely to the \textsl{pair} of instruments on each axis.  One could
+   have all four if One wanted to, but it would probably sound messmessy
+
+   Options are pretty obvious, and follow a familiar pattern for load, save,
+   etc.  Loading or saving a vector will put the leafname in the bottom text
+   field.
+
+   Disabling or clearing vectors will \textsl{not} change the number of parts
+   because they may have already been set to increased numbers for some other
+   purpose.  Similarly disabling or clearing vectors will  \textsl{not} clear
+   any instrument patches that have been loaded.
+   Of course making any changes to the parts outside vector control will likely
+   mess them up. It won't do any harm, just be puzzling.
 
    For example:
    parts 1 and 17 can be set as x1 \& x2 (volume only) while parts 33 and 49
