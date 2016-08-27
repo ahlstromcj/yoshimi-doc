@@ -1925,3 +1925,585 @@ Currently there is quite a lot of preparatory work under way but its not ready
 for prime time. It's still really proof of concept.
 
 
+
+
+Date: Thu, 23 Jun 2016 10:32:06 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Current version
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Just been on a distro tour. Every one I can find is now carrying V 1.4.0.1, so
+if you can't or don't want to self-build you can still get it.
+
+A couple of small details:
+
+You may have noticed that "64ft Organ" seems to have been changed. This hasn't
+actually changed acoustically, but I recently noticed the sub-bass content was
+shifted heavily to the RH channel - at such low frequencies you won't hear any
+stereo positioning. There appears to be something odd with the low pass filters
+when set to extreme levels, so I slightly changed the filter Q and added a
+small left shift pan. This means your amplifier will have an easier time.
+
+Following a discussion on Rosegarden:
+
+On the subject of control ranges, originally Yosh/Zyn had a reduced MIDI volume
+range, so as soon as you start up Rosegarden it immediately drops the level of
+any parts that are active. I don't know why this was done, but a couple of
+years ago we added a volume range setting in part controllers. This defaults
+to the same value for compatibility, but if increased to maximum then gives a
+1:1 relationship. If you prefer that, it's probably best to set it for all part
+controllers then do a state save.
+
+Hmmm. I wonder if we should provide a switch to auto-load a default saved state.
+
+
+
+
+Date: Wed, 29 Jun 2016 22:30:13 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: A slight change of plan :)
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+On Tue, 28 Jun 2016 07:27:16 +0200
+Kristian Amlie <kristian@amlie.name> wrote:
+
+> Cool! I love these optimizations!
+>
+
+Quite a bit further now :)
+
+Referring to:
+/dev_notes/Yoshimi Control Numbers.ods
+
+All the direct access controls are in place for both reading and writing in the
+following sections:
+
+Top level controls
+Main part controls
+Controllers
+Kit edit window
+
+Some of the control numbers have changed, so this document is only correct for 
+the current master.
+
+These entries aren't fully error checked, so wildly wrong values could result in
+{cough} undefined {cough} actions.
+
+
+
+
+
+
+
+
+
+
+Date: Sat, 30 Jul 2016 21:28:51 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: More progress on direct access
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Well, we now have all effects accessible to direct control - with the exception
+of the actual filter in dynfilter. However, that will automatically pop into
+place when I get round to doing the filters.
+
+In the process I made another curious discovery. Going through all the
+parameters for each effect one at a time, I checked the direct access behaviour
+against using the GUI control. This was fine until I got to parameter number 10
+in chorus. There *was* no parameter 10 in the GUI, although it was definitely
+there in the effects manager.
+
+So, I loaded up the file in fluid to see if that would reveal anything. After a
+bit of hunting around I found a hidden check button called 'Flange'. Anyway, as
+I now had access to it I decided to see what it actually did. The answer is
+'Not Much'. It seems to just disable the chorus effect and raise the volume
+slightly :o
+
+Up to now, all this code has been rather sprawling while I got to grips with
+the underlying ideas, but now things are far more settled I've started
+optimising it (although it's still working in parallel with the 'old' code).
+
+Finally, I been updating dev_notes/Yoshimi Control Numbers.ods and have added a
+new column with the min/max values - there are a lot of them so that's rather
+slow and tedious :(
+
+
+
+
+Date: Fri, 12 Aug 2016 20:13:57 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: More progress on direct access
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+On Sat, 30 Jul 2016 21:28:51 +0100
+Will Godfrey <willgodfrey@musically.me.uk> wrote:
+
+In the current master we now have Filters under direct control. Boy was that a
+brain burglar! Everything is pointers to arrays... of pointers to pointers to
+arrays :(
+
+The toughest was DynFilter, which is an effect that has a filter component, all
+sitting on top of a part number and effect number.
+
+Still no GUI update when using the direct control. I'm leaving that till later.
+
+
+
+
+
+
+
+Date: Fri, 5 Aug 2016 17:24:47 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Another small diversion
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+I need these to retain sanity while wading through the direct access stuff :(
+
+Recently I got a new instrument bank. There are some interesting sounds in
+there, but I was astonished to find one that took 11 seconds to load! The good
+news is that this gave me two ideas.
+
+The first was to make a program change to it in a silent track in the middle of
+one of my test files. I'm delighted to say it loaded without any Xruns, and not
+so much as a burble from the playing tracks :)
+
+The other idea, was to provide reporting of load times, making it easier to
+work out how far ahead a program change needs to be in order to be ready for
+playing. In the current master, that is now there and is in whole milliseconds,
+and will be tacked onto the instrument load message if enabled.
+
+
+Another thing that was mentioned a very long time ago (and I'd completely
+forgotten about) was to enable auto-loading of a default state file. This is
+also now in place, and if set it will try to load:
+/home/{user}/.config/yoshimi/yoshimi.state
+If it's not there, then it will simply carry on with the normal settings.
+
+The advantage of this is that you can set up a complete patch set of instruments
+you commonly use, and with all their settings (including audio destination).
+Save it to the default state and it will be loaded (along with the
+system settings) every time you start Yoshimi.
+
+To revert, simply uncheck the setting (and change any other needed) and save
+settings.
+
+
+The 'Main Settings' tab was already getting pretty crowded so now there is a
+new tab called 'Switches', and I've moved all the system check boxes there as
+well as adding the two new ones.
+
+Hmmm. I expect I'm in trouble with Chris now :p
+
+
+
+
+
+ate: Sat, 6 Aug 2016 21:24:45 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Another small diversion
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+This has actually been very instructive!
+
+Almost all pure SubSynth patches are 1mS on my machine.
+
+AddSynth ones can be that low, but rapidly go up into the tens if you have
+things like unison and/or modulators operating.
+
+PadSynth ones start at around 40mS and are frequently up to 80mS. Then of
+course, there's that monster at 11.5 seconds!
+
+In the current master I've also added root and bank load times (MIDI & CLI
+only), but they are in microseconds! Typically 15uS for a bank change and 30uS
+for a root change. It's probably not worth recording that.
+
+Now back to direct access. That break gave my subconscious time to come up with
+an idea for managing filters :)
+
+
+
+
+
+
+
+Date: Tue, 9 Aug 2016 22:19:31 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] A funny thing happened to me at the bank
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Instrument bank that is.
+
+To stop very slow program loads freezing the GUI (only happens when GUI
+initiated) instead of directly accessing program change, this now goes through
+the more correct ring buffer route (still not totally kosher actually). However
+this showed up and incredibly obscure bug!
+
+The idea, is to check for files with a numerical index and hyphen. If either of
+these was missing then it would be regarded as a plain name and listed at the
+top of the stack away from midi numbered entries.
+
+However, if the numerical part of the instrument filename is less than 4 digits
+and there is also a space in the filename at the 6th character, this would
+appear in the apparently correct place in the bank, but would be unrecognisable
+for load operations. e.g.
+
+Filename is '103-A name'
+
+The original routine would scan through for digits until it hit the
+hyphen, assume it was correctly prefixed, then jump 5 characters to where it
+thought the name itself started and copy this into the stored instrument
+name.
+
+When trying to load a file from a bank it would check for a valid slot name,
+and seeing the space *at the start* it would think there was no instument there,
+even though the actual filename is correctly stored in a different part of the
+map!
+
+Rather than be pedantic and insist on exactly 4 digits, I've modified the code
+so it will accept any number and adjust the name start accordingly - although
+if the number is greater than 160 it will still end up in the 'naughty'
+column :)
+
+Now where was I?
+Oh, yes {sigh} direct access :(
+
+
+
+
+
+
+
+Date: Sat, 13 Aug 2016 23:14:40 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: A funny thing happened to me at the bank
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+This has turned up another oddity.
+
+Program loads have never been quite as clean with LV2 as with standalone, and
+when I checked out monster patch... No, wait! This could now justifiably be
+called the 'Heffalump Patch'.
+
+Anyway, on LV2, trying to load this caused literally hundreds of XRuns. This
+was the same regardless as to whether it was loaded by the GUI, CLI or LV2
+itself. This was very puzzling as the 'outside' controls all used a ring buffer,
+that worked perfectly in standalone mode, while LV2 hosts made direct calls to
+the code.
+
+Eventually running htop gave me the clue. In LV2 mode all of Yoshimi's threads
+were running at a much *higher* priority than the LV2 host (regardless of which
+one it was). The reason for that was that when Cal did the first major
+improvements to Jack, he set the priority high then made a call to the jack
+subsystem to adjust it down to the highest allowable priority. All threads are
+then steped down from that. But, that call isn't made in LV2 mode (I don't
+think it can be actually) - hence the effective priority inversion.
+
+The fix for that was to set the initial priority much lower. With that done
+external program changes are now quite seamless in LV2. There is also a very
+slight improvement in an all Alsa environment.
+
+Previously (unaware of the priority issue) I had tried diverting LV2 program
+loads through the ring buffer and had been puzzled by things getting worse
+rather than better. Now, however these are perfectly clean, including the
+Heffalump Patch. It's quite fun watching one processor swing up to 100% while
+everything else just trundles along as if nothing was happening :)
+
+
+
+
+Date: Mon, 15 Aug 2016 22:58:52 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] A tweak, an nudge, a shove...
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+... and we now have vector controls that are set on any and all channels
+stored in both patch sets and saved state :)
+
+This was supposed to have been in place some time ago :o
+
+
+
+
+
+
+Date: Tue, 16 Aug 2016 23:42:02 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: A tweak, an nudge, a shove...
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+On Mon, 15 Aug 2016 18:34:46 -0400
+Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
+
+> Letter bait than never!  :-)
+>
+
+Hi Chris. Numour Hoted :)
+
+All these little diversions  (while recovering from bouts of the scary stuff)
+are sort of related in that they are completions of older work and tend to
+follow on, as each one reminds me of the next.
+
+The latest surrounds the issue of 'Simple Sound' - which certainly isn't simple
+to sort out. So, a little history :)
+
+Original Zyn (I *do* like that!) let you save a file with no internal name, and
+if you had a part with the default instrument enabled, that would also be
+pointlessly saved - with no name. As both of these could be reloaded you didn't
+actually know what was currently resident.
+
+One thing I did quite a while ago was to ensure the name field always
+displayed *something* as, apart from anything else, users didn't realise it was
+a name field! Unfortunately, at that time I didn't know that default
+instruments were saved, so now instead of getting loads of untitled one you
+got Simple Sound instead, but you still get unnamed ones from Zyn banks, even
+from the latest version.
+
+So, the final answer (maybe) in the latest master.
+
+If you load an external instrument file with no internal name, you'll be shown
+the file leafname.
+
+If you load an external instrument file with the name 'Simple Sound', you'll be
+given the name 'No Title'
+
+If you load a patch set that has unnamed instruments, or ones with the name       'Simple Sound', those will be given the name 'No Title'
+
+The part and mixer name fields will always show the (possibly adjusted)
+internal name regardless of the external filename, which could easily have been
+changed at some time.
+
+The instrument banks will always show the file leafname, so it more-or-less
+matches external files (or what you see from a filer display).
+
+As soon as you edit an instrument, if it was 'Simple Sound' the name will be
+changed to 'No Title'.
+
+Yoshimi won't let you rename an instrument to 'Simple Sound' :p
+... but you can have 'Simple sound' if you really want it.
+
+Default instruments are never saved, not even in patch sets and states, but if
+the parts are activated that fact *is* saved - it's a part feature not an
+instrument one.
+
+Patch sets will save all other instruments regardless of whether they are
+activated or not.
+
+When you save an instrument to a bank slot, it will be given a filename with the
+internal name as the leafname.
+
+When you save an instrument to an external file, you will first be offered the
+internal name and in the current directory, but you can change it if you wish.
+
+Hmmm.
+I'm sure 'the kitchen sink' is supposed to come into it somewhere
+
+
+
+
+
+
+Date: Thu, 18 Aug 2016 19:18:22 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: A tweak, a... wot?.
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Just discovered another little oddity.
+
+If you have an instrument kit, but switch kit mode off then if you save it, the
+kit information is still stored (just as it should be), but when you try to
+reload the instrument none of the kit information is fetched!
+
+Well it is now :)
+
+This also revealed that loading an instrument doesn't update the kit window-
+although the kit is all there and sounds correctly. Do the usual dance of
+switching part back and forth and it magically reappears. However, if that
+instrument is part of a patch set everything is hunky-dory. I spent several
+hours trying to track this down, but was getting nowhere, so it's added to the
+to-do list :(
+
+While testing all this, I created a new multi-part instrument kit. I rather
+liked the sound so it's now in the 'companion' set and called 'Pad Kit'. I also
+found a couple of instruments that I hadn't filled the info fields, so they've
+been updated too (without any change to the sound).
+
+Onwards and upwards :)
+
+
+
+
+
+ate: Mon, 22 Aug 2016 22:06:16 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: (another) tweak.
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+
+After much scanning of the 'net, I finally worked out how to get static
+variables in a class properly accessible externally.
+
+The significance of this is that I can set up critical config settings to be
+writeable only by the main instance, but readable (and used) by any others. In
+the current master this applies to AddSynth Oscillator Size, Internal Buffer
+Size, and Alsa Samplerate. These three *must* be defined before any other
+initialisation.
+
+At the moment, secondary instances show these figures de-activated, but I think
+they should probably be hidden. Apart from anything else, it means I don't have
+to work out GUI code to update them every time they are changed by the main
+instance :p
+
+I can't think of any practical situation where the would be different across
+instances, and there are one or two others (compression level?) that could fit
+into this regime.
+
+
+
+
+
+Date: Tue, 23 Aug 2016 23:27:09 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: (another) tweak.
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+On Mon, 22 Aug 2016 17:58:05 -0500
+Jonathan Brickman <jeb@ponderworthy.com> wrote:
+
+> Even more performance!!! I love it!!!!! :-)
+>
+> J.E.B.
+
+It rather opened a door :)
+
+We now have instance data separated from the main config file and carrying the
+name 'yoshimi-{n}.instance
+
+There are two new 'switches':
+        enable GUI
+        enable CLI
+
+These now don't have to be set only from a command line. They are sanity
+checked - you can't disable both! You are also warned that disabling the GUI
+can only be reversed from the command line.
+
+The list of hidden 'base parameters' that are set only by the main instance is
+now:
+        sample rate
+        buffer size
+        oscillator size
+        Gzip copmpression
+        enable GUI
+        enable splash
+        enable CLI
+
+In the other instances these are now hidden instead of deactivated. I think it
+makes more sense as they are *never* enabled. All of this makes things just
+that more consistent and yoshimi's config directory a bit tidier.
+
+The first time you run the current master, you'll find all the above have been
+set to the defaults, as their file locations have changed.
+
+For the coming release I want to go through all this lot with a fine tooth comb
+and - for once - shake out any bugs *before* the release!
+
+The biggie I want to sort out (much later) is to make banks a common file. I've
+never been happy with them being per instance. In the first place it's easily 
+possible to make them quite inconsistent, and secondly it wastes memory.
+Finally it also greatly slows down starting later instances.
+
+However, this will need a lot of thought as I not only want a single banks file
+(and internal map) but also want to allow people to edit roots/banks/instruments
+from any instance with all open windows kept in sync.
+
+
+
+
+Date: Thu, 25 Aug 2016 19:12:36 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: (yet another) tweak.
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Current root and current bank settings have now been moved from 'banks' to the
+'config' and 'instance' files, so the banks file now consists *only* of the
+bank structure.
+
+As a point of interest, the new config file includes the instance data for the
+main instance. For many people (who don't use multiple instances) this will be
+the only config type file they have.
+
+I have finally managed to make a first time startup correctly identify
+'arpeggios' both in the instrument bank list, and current bank setting - it's
+been a long time coming!
+
+Hmmm, one day I must find out what happens if there are no banks anywhere on
+the system - a rather contrived situation.
+
+And on that note, the current master is version 1.4.1 rc1.
+No matter what the temptation I'm not going to fiddle with this before release
+time, unless anyone finds a bug!
+
+
+
+
+
+
+Date: Fri, 26 Aug 2016 19:46:56 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: (yet another) tweak.
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Well, I found a bug :(
+Squashed in rc2 :)
+
+If you opened multiple instances, then closed them one at a time it disabled
+the GUI when restarting - yes it was weird!
+
+At the same time I noticed some of the settings windows now had incorrect
+wording on the bottom line - also fixed.
+
+Checking the (fairly new) shortform NRPN for making fast silent patch 'changes'
+I realised I'd overcomplicated it, so that's simplified now. I then realised it
+would be trivially easy to set up a GUI implementation. Also done now and in
+Yoshimi->Settings->MIDI and called 'Channel Switch'.
+
+Just to go over the details:
+
+This takes two forms. Row, means all of the first 16 channels will be set to
+channel 1 but with only one active, and your CC will dial up any of the parts
+disabling the others. This is aimed at live players.
+
+The other form, Columns, needs Yoshimi to be set for 64 parts, and this time
+you select 1 of 4, but per channel, and this is much more suited to post
+recording automation.
+
+So, if you want to use this to change parts on (say) actual channel 3 - counting
+from zero, sending 3 with your defined CC will enable part 3 but disable parts
+19, 35, 51. Similarly sending 35 enables that part to respond to channel 3
+messages, disabling the others.
+
+To keep it all lightweight, you need to load and activate all the patches and
+parts you want, but that could be from a saved patch set, and the channels are
+only changed from the very first time you send the CC.
+
+If you want to look really clever the whole lot can be bedded in a MIDI file :)
+
+
+
+
+
