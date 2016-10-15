@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-04-20
-% \update      2016-06-07
+% \update      2016-10-15
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -48,7 +48,7 @@
 
 \begin{document}
 
-\title{A Yoshimi 1.3.9 User Manual}
+\title{A Yoshimi User Manual}
 \author{Chris Ahlstrom \texttt{(ahlstromcj@gmail.com)} with Will J. Godfrey}
 \date{\today}
 \maketitle
@@ -66,7 +66,7 @@
 \section{Introduction}
 \label{sec:introduction}
 
-   This document was inspired by finding a fairly thorough wiki version of a
+   This document was inspired by finding a wiki version of a
    \textsl{ZynAddSubFX} manual (see reference \cite{zynwiki}).  That wiki, and
    the Open Document Format version of it, showed a lot of screen shots and a
    detailed survey of the settings and parameters of \textsl{ZynAddSubFX}.  It
@@ -74,7 +74,7 @@
    then Will got involved to provide even more details.  Please note that this
    document also owes a lot to the descriptions and diagrams provided by the
    original \textsl{ZynAddSubFX} author, Paul Nasca, as well as some others
-   whose names we do not have.
+   whose names we don't know.
 
 \subsection{Yoshimi Versus ZynAddSubFX}
 \label{subsec:introduction_yoshimi_vs_zyn}
@@ -83,8 +83,8 @@
    the software synthesizer derived from the great
    \textsl{ZynAddSubFx} \cite{zynaddsubfx} software
    synthesizer.  Because of their common origin, much of this document also
-   applies to \textsl{ZynAddSubFx} and depends upon some \textsl{ZynAddSubFX}
-   documentation and diagrams.
+   applies to \textsl{ZynAddSubFx} (versions less than 3)
+   and depends upon some \textsl{ZynAddSubFX} documentation and diagrams.
 
    \textsl{Yoshimi} is an algorithmic MIDI software synthesizer for Linux.
    It synthesizes in real time, can run polyphonic or monophonic, with multiple
@@ -148,10 +148,8 @@
 \subsubsection{Control Automation}
 \label{subsubsec:new_features_control_automation}
 
-   A planned feature, already well underway, is
-   controls automation support.
-   This is a part of a common controls interface.
-   There are significant extensions to the NRPNs that
+   Already well underway, controls automation support is a part of a common
+   controls interface.  There are significant extensions to the NRPNs that
    \textsl{Yoshimi} handles.  
 
    Sensitivity to MIDI volume change (CC \#7) is now variable in 'Controllers'
@@ -172,17 +170,17 @@
 \label{subsubsec:new_features_midi_cc}
 
    To help when things don't seem to go right, one can now show 'raw' incoming
-   CCs. This is enabled from the 'MIDI' tab in 'Settings'. These are the values
-   before \textsl{Yoshimi} does any processing.
+   CCs. This is enabled from the \textbf{Settings / MIDI} tab.
+   These are the values before \textsl{Yoshimi} does any processing.
 
    MIDI program changes have always been pretty clean from the time Cal first
    introduced them, but now GUI changes are just as clean. While it is
    generally best to change a program when the part is silent, even if a part
-   is sounding there is usually barely a click. There is no interference at all
+   is sounding there is barely a click. There is no interference at all
    with any other sounding parts.
 
    Sometimes MIDI CCs don't seem to give the results one expects. There is
-   now a setting that will report all incoming CCs so that one can discover
+   now a setting that reports all incoming CCs so that one can discover
    what \textsl{Yoshimi} actually sees (which may not be what was expected).
 
    At the request of one user, \textsl{Yoshimi} now has an
@@ -352,7 +350,7 @@
 \subsubsection{Miscellany}
 \label{subsubsec:new_features_miscellany}
 
-   \textsl{Yoshimi} now stamps instrument and patch set XML files with its own
+   \textsl{Yoshimi} now stamps instrument and patch-set XML files with its own
    major and minor version numbers so it is possible to tell which version
    created the files, or whether they were created by \textsl{ZynAddSubFX}.
 
@@ -406,7 +404,7 @@
    will fail to start.
 
    We have tested \textsl{Yoshimi} in 'recovery' mode, logged in as root, with
-   no X server. Using the command \texttt{/usr/local/share/bin/yoshimi -A -i}
+   no X server. Using the command \texttt{/usr/share/bin/yoshimi -A -i}
    worked perfectly and auto-connected the keyboard so we could prove
    everything worked.  We still need the X11 libraries to compile
    \textsl{Yoshimi}, but we don't know if it is practical to provide a compile
@@ -444,8 +442,7 @@
    marked all new developments, as \textsl{Yoshimi} is advancing fast.
 
    \index{todo!in document}
-   TODO items are also present, in the same vein.  This document currently has
-   a number of them!
+   To-do items are also present, in the same vein.
 
 \subsection{Yoshimi Mailing List}
 \label{subsec:introduction_mailing_list}
@@ -560,13 +557,13 @@
    \centering 
 %  \includegraphics[scale=1.0]{1.3.8/yoshimi-first-screen.jpg}
 %  \caption{Yoshimi Main Screen, 1.3.8 and Above}
-   \includegraphics[scale=1.0]{1.4.0/yoshimi-first-screen.png}
-   \caption{Yoshimi Main Screen, 1.4.0 and Above}
+%  \includegraphics[scale=1.0]{1.4.0/yoshimi-first-screen.png}
+   \includegraphics[scale=1.0]{1.4.1/Front.png}
+   \caption{Yoshimi Main Screen, 1.4.1}
    \label{fig:yoshimi_main_screen}
 \end{figure}
 
-   For this manual, we describe the main window as being composed of
-   the following sections:
+   For this manual, the main window is composed of the following sections:
 
 \begin{enumber}
    \item \textbf{Menu}.
@@ -581,20 +578,26 @@
    longer have a small red button next to them to press in order to reset the
    control to its center value.  Starting with version 1.4.0, a right-click on
    any control in \textsl{Yoshimi} will reset the control's value to its center
-   position.
+   position.  In version 1.4.1, the \textbf{Vectors} control appears, with some
+   minor rearrangement of the top panel.
 
-   There's a lot going on with \textsl{Yoshimi}, and there's no way to describe
-   it in linear order.  This manual will describe how to do useful things in
+   There's a lot going on with \textsl{Yoshimi}, with no way to describe
+   it in linear order.  This manual describes how to do useful things in
    each of the sections noted above, while leaving some of the details to be
    described in later sections, to which reference can be made for the details.
    This document depends heavily on index entries and references.
-   There is also a "cookbook" at \cite{book}, but it is a long way from being
-   comprehensive.  Check it out anyway.
+   There is also a "cookbook" at \cite{book}; it is a long way from being
+   comprehensive, but still has some useful tips.
 
-   Finally, if one grabs the latest source code for \textsl{Yoshimi}, in the
-   'examples' directory there is a complete song set, 'OutThere.mid' and
-   'OutThere.xmz'. Together these produce a fairly complex 12 part tune that
-   makes \textsl{Yoshimi} work quite hard.
+   If one downloads the source code for \textsl{Yoshimi}, in the
+   \texttt{examples} directory one finds a complete song set,
+   \texttt{OutThere.mid} and \texttt{OutThere.xmz}. Together these produce a
+   fairly complex 12 part tune that makes \textsl{Yoshimi} work quite hard.
+   Also, after installing \textsl{Yoshimi}, one can find a nice, short
+   introduction to \textsl{Yoshimi} in Will's document,
+   \texttt{/usr/share/doc/yoshimi/The Short Yoshimi Guide.odt},
+   along with a number of texts files with information that might not yet be
+   present in the long manual.
 
 \rhead{\rightmark}         % shows section number and section name
 

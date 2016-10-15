@@ -1504,7 +1504,7 @@ This page:
 http://stackoverflow.com/questions/19043109/gcc-4-8-1-combining-c-code-with-c11-co
 de
 stated that:
-"...As it is not practical to comment a system header, a workaround is to use g++ 
+"...As it is not practical to comment a system header, a workaround is to use g++
 --std=gnu++11 instead of g++ --std=c++11 as it does not define __STRICT_ANSI__. It
 worked in my case.
 
@@ -1796,7 +1796,7 @@ useful!
 
 Middle button drag on sliders is exactly the same as left button drag and right
 button only ever homes the slider.
- 
+
 
 
 Date: Fri, 10 Jun 2016 09:55:57 +0100
@@ -1881,7 +1881,7 @@ Some other usability enhancements:
 Some people don't like our splash window - Boo!
 You can now disable it in settings {mutter}{mutter}
 
-Many people didn't realise there were two types of resonance interpolation, 
+Many people didn't realise there were two types of resonance interpolation,
 determined by whether you click the left or right mouse button. This has now
 been split into two with better tooltips.
 
@@ -1985,7 +1985,7 @@ Main part controls
 Controllers
 Kit edit window
 
-Some of the control numbers have changed, so this document is only correct for 
+Some of the control numbers have changed, so this document is only correct for
 the current master.
 
 These entries aren't fully error checked, so wildly wrong values could result in
@@ -2421,7 +2421,7 @@ For the coming release I want to go through all this lot with a fine tooth comb
 and - for once - shake out any bugs *before* the release!
 
 The biggie I want to sort out (much later) is to make banks a common file. I've
-never been happy with them being per instance. In the first place it's easily 
+never been happy with them being per instance. In the first place it's easily
 possible to make them quite inconsistent, and secondly it wastes memory.
 Finally it also greatly slows down starting later instances.
 
@@ -2506,4 +2506,831 @@ If you want to look really clever the whole lot can be bedded in a MIDI file :)
 
 
 
+Date: Mon, 29 Aug 2016 20:08:13 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: (yet another) tweak.
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Still not quite there yet.
+
+The aforementioned ancient 'pooter has been given a new drive, but it seems the
+current debian no longer has a driver for the graphics card, so it is running in
+frame buffer mode and v e r r y  s l o w :(
+
+However, I installed and ran up Yoshimi. Everything seemed fine until trying to
+load the Heffalump patch then there were a very considerable number of Xruns :(
+
+At first I thought this was just due to it being a single core machine, but on
+further investigation discovered if I take program loading right out of the RT
+scheduling altogether (not even the lowest setting) then it seems fine - albeit
+taking a minute and a half!
+
+Running it on my other machines seems to show exactly the same timings as it
+did before (including as an LV2 plugin), so I think it's OK. The only possible
+issue that might possibly occur is if a very hungry high priority thread
+effectively blocks it, but that seems unlikely, and won't happen at all on a
+multi-core machine.
+
+So, here we are with rc4.
+
+
+
+
+
+Date: Sun, 4 Sep 2016 17:41:13 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: V 1.4.1 - tomorrow?
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Two more bugs fixed, although neither would have been show stoppers, and now
+both my DAW and office 'pooter have had many hours with Yoshimi continuously
+running. It has taken everything I've thrown at it with a shrug. The only
+time I got Xruns was when I was messing about with a web browser while
+Rosegarden/Yoshimi were playing an 8 part tune ... buffer size 64 frames :)
+
+The channel switching is working beautifully. I've been able to play a piece
+that needs to live switch between 10 instruments, using an Arduino-based foot
+switch to do the channel changes. This holds a channel number (starting with
+zero) and increments/decrements it depending on which switch is pressed, then
+sends the resulting CC.
+
+Like so many things, it's only when you use something seriously you get to find
+out what *else* it can do :)
+
+Well, in this case the 'else' is that if you set for 32 parts, while merrily
+switching the 'top' row the next row continues to look at their respective
+channel numbers, so ignoring the first of these, that's another 15 'fixed'
+patches you can have, all driven as a backing band via a sequencer !!!
+
+Now you'll have to excuse me while I go and have another play :)
+
+
+
+
+
+
+Date: Wed, 7 Sep 2016 17:45:04 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: V 1.4.1 - tomorrow?
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+On Tue, 6 Sep 2016 22:02:13 +0200
+Kristian Amlie <kristian@amlie.name> wrote:
+
+> On 04. sep. 2016 18:41, Will Godfrey wrote:
+> > Like so many things, it's only when you use something seriously you get to
+find
+> > out what *else* it can do :)
+>
+> With me being so paranoid about stability when using Yoshimi in musical
+> work, I'm really happy to read about this intense testing!
+>
+> Kudos on the Lyrebird!
+
+I fully understand your caution!
+
+Wanting to keep that user confidence is one of the reasons I even try to ensure
+pushes to 'master' are stable.
+
+Apart from that obscure illegal write bug - now fixed, I don't know of anything
+that can actually crash Yoshimi these days. Even pulling the rug out from
+underneath by stopping Jack won't make it lock up (it used to some time back).
+
+The only exception is using the experimental 'direct access' from the command
+line, as this has virtually no error checking. Which reminds me, I must include
+that warning in the dev notes!
+
+
+
+
+
+Date: Mon, 5 Sep 2016 00:28:40 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] V 1.4.1 - The Lyrebird is out of it's cage :)
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+I couldn't sleep (too much brain activity) so pushed this out now, rather than
+later today.
+
+Just to recap the major points.
+
+Maybe not be the prettiest, but this bird sure knows how to create great sounds!
+
+First of all, we have a new quick guide that's in Yoshimi's 'doc' directory.
+It's just something to help new users get started.
+
+We've always logged warnings if it wasn't possible to run either audio or MIDI,
+but now we also give a GUI alert.
+
+From this version onward it is possible to autoload a default state on startup,
+so you have Yoshimi already configured exactly as you like, with patches loaded
+and part destinations set etc.
+
+To make it easier to position program change CCs in a MIDI file, there is a new
+option to report the time these take to load.
+
+Vector control settings are now stored in patch set and state files.
+
+We implemented a simpler way to perform channel switching so the 'current' MIDI
+instrument can seem to be changed instantly, but retaining the note tails of
+the previous one.
+
+All the usual background improvements.
+
+When installed, full details are in either:
+    /usr/local/share/doc/yoshimi/Yoshimi_1.4.1-features.txt
+Or:
+    /usr/local/share/doc/yoshimi/Yoshimi_1.4.1-features.txt
+
+
+
+
+Date: Wed, 7 Sep 2016 21:39:27 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Fun
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Just thought I'd mention that yesterday I 'wasted' and entire evening playing
+with the new channel switch feature, running it in 'single row' mode.
+
+With early tests I was using a rotary controller on my keyboard - doable but
+you've got to be rather precise!
+
+Since then I built an Arduino based controller with two foot switches,
+specially for this. It stores a part number internally, then depending on which
+switch I press, it increments or decrements the value and sends it via the
+appropriate CC.
+
+I used to (try to) play one of my compositions from a long time ago on a Yamaha
+SY22, switching between voices. The timing was really critical, and it never
+actually sounded good.
+
+Anyway, yesterday I was playing it on Yoshimi so much my wrists were aching -
+doing ten fast patch 'changes' totally seamlessly, with all proper note
+releases and reverb tails.
+
+Just messing about, at one point I was able to get all 10 of those parts
+showing release tails at the same time in the mixer panel, and had a good
+giggle!
+
+Now I'm practising double and triple tapping the switches so I can jump
+backwards or forwards across a full bank of 16 parts. It's just pure fun, and
+so liberating for this wannabe live musician!
+
+
+
+
+Date: Sat, 10 Sep 2016 20:12:39 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Nose... grindstone, grindstone... nose.
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Direct access to Envelopes is now 99.999% done, which makes the whole of
+SubSynth 'feature complete' - just the precise settings when switching to
+freemode to be decided. Freemode was, um, interesting. It also meant going up
+to a massive *eight bytes* for IDing everything :p
+
+LFOs are also done and were actually easier than I expected. Makes a change :)
+
+I think PadSynth should be next on the agenda, then Resonance and the
+oscillators. That should make the biggie (AddSynth) a bit less of a mountain
+climb.
+
+Time for a cup of tea I think.
+
+TTFN.
+
+
+
+
+
+ate: Sun, 18 Sep 2016 07:08:40 +0200
+From: Tony Travolta <dj.ton.e@gmx.de>
+To: yoshimi-user@lists.sourceforge.net
+Subject: [yoshimi-user] merging a patch set into parts 17,18,19, how?
+
+[-- Attachment #1 --]
+[-- Type: text/html, Encoding: 7bit, Size: 0.9K --]
+
+[-- Autoview using w3m -I 'UTF-8' -T text/html --]
+Dear yoshimi friends,
+
+this is my first post. Following scenario. I have filled parts 1..16 already.
+Then I switched to 32 parts mode. Great, now I have another empty part slots
+17..32. From the past experiments I know there is a patch set I would like to
+use now, together with what I have already in the parts 1..16.
+
+So the question is:  Is there a way to merge a patch set, without destroying
+all loaded parts so far into yoshimi?
+
+Here an example patch set, I would like to merge, also as an example:
+https://www.youtube.com/watch?v=wD08ocvNcns#t=6m37s
+
+
+
+
+
+
+ate: Sun, 18 Sep 2016 15:40:35 +0200
+From: Tony Travolta <dj.ton.e@gmx.de>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Fw: Re: [yoshimi-user] merging a patch set into parts
+        17,18,19, how?
+
+[-- Autoview using w3m -I 'UTF-8' -T text/html --]
+Ok, thanks Will,
+
+yes, after merging a new patch set, I would usually adjust the midi channel
+value to what I want. My main workflow would be in future then, in steps of
+'patch sets', often each using 3 parts. It would be cool if yoshimi would be
+intelligent enough and check the highest available midi channel in current
+parts, then count up one, for the new imported patch set.
+
+Two examples:
+
+I am using already midi channels 1..5, in the parts 1..16.  Now merging a new
+patch set using three parts with midi channels 1..3 into part 17.  What would
+yoshimi do? Highest midi channel is 5. Thus it would import as:
+part 17:  midi channel 5+1
+part 18:  midi channel 5+2
+part 19:  midi channel 5+3
+
+
+If my merged new patch set would use only a single midi channel, e.g. midi
+channel 1, it would do:
+part 17:  midi channel 5+1
+part 18:  midi channel 5+1
+part 19:  midi channel 5+1
+
+Best regards
+Tony
+
+Ps. My midi channel switching I do inside Sequetron by Phil Tipping.
+http://myweb.tiscali.co.uk/philweb/philizound/freebies/software/sequetron/
+sequetron.html
+
+
+Two yoshimi examples from me, some improvisation playing around, for those who
+are interested:
+Example 1, from below:  https://www.youtube.com/watch?v=wD08ocvNcns#t=6m37s
+Example 2: https://www.youtube.com/watch?v=3WSHQNGWHGg#t=15m22s
+
+
+
+Gesendet: Sonntag, 18. September 2016 um 10:19 Uhr
+Von: "Will Godfrey" <willgodfrey@musically.me.uk>
+An: yoshimi-user@lists.sourceforge.net
+Betreff: Re: [yoshimi-user] merging a patch set into parts 17,18,19, how?
+On Sun, 18 Sep 2016 07:08:40 +0200
+"Tony Travolta" <dj.ton.e@gmx.de> wrote:
+
+> Dear yoshimi friends,
+>
+> this is my first post. Following scenario. I have filled parts 1..16 already.
+Then I switched to 32 parts mode. Great, now I have another empty part slots
+17..32. From the past experiments I know there is a patch set I would like to
+use now, together with what I have already in the parts 1..16.
+>
+> So the question is: Is there a way to merge a patch set, without destroying
+all loaded parts so far into yoshimi?
+>
+> Here an example patch set, I would like to merge, also as an example:
+> https://www.youtube.com/watch?v=wD08ocvNcns#t=6m37s
+>
+> Best regards
+> Tony
+
+Hi Tony,
+
+This isn't currently possible, but it's a thought :)
+The only way I can think of that you could, sort of, do it, would be to
+externally patch together the xml files, but it might be quicker to just save
+out the one set as individual patches then reload them into the other.
+
+Also, remember that the second set (usually) share the same MIDI channels as
+the
+first, so to make use of them you either need to be using things like vector
+control, or changing the key ranges to effectively get per channel split
+keyboard.
+
+I notice that the version of Yoshimi in the vid is now quite old. There has
+been a lot of development since then including an instant channel switching
+feature for fast solo instrument changes.
+
+Finally, these days our main discussion list these days is:
+https://www.freelists.org/archive/yoshimi
+To post, email to:
+yoshimi@freelists.org
+
+--
+Will J Godfrey
+http://www.musically.me.uk
+Say you have a poem and I have a tune.
+Exchange them and we can both have a poem, a tune, and a song.
+
+
+
+
+
+
+Date: Tue, 20 Sep 2016 22:34:28 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Fw: Re: [yoshimi-user] merging a patch set into parts
+        17,18,19, how?
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+On Sun, 18 Sep 2016 15:40:35 +0200
+"Tony Travolta" <dj.ton.e@gmx.de> wrote:
+
+> Ok, thanks Will,
+>
+> yes, after merging a new patch set, I would usually adjust the midi channel
+value to what I want. My main workflow would be in future then, in steps of 'patch
+sets', often each using 3 parts. It would be cool if yoshimi would be intelligent
+enough and check the highest available midi channel in current parts, then count
+up one, for the new imported patch set.
+>
+> Two examples:
+>
+> I am using already midi channels 1..5, in the parts 1..16.  Now merging a new
+patch set using three parts with midi channels 1..3 into part 17.  What would
+yoshimi do? Highest midi channel is 5. Thus it would import as:
+> part 17:  midi channel 5+1
+> part 18:  midi channel 5+2
+> part 19:  midi channel 5+3
+>
+>
+> If my merged new patch set would use only a single midi channel, e.g. midi
+channel 1, it would do:
+> part 17:  midi channel 5+1
+> part 18:  midi channel 5+1
+> part 19:  midi channel 5+1
+>
+> Best regards
+> Tony
+>
+
+Just a quick note to say I haven't forgotten this, it's just that I'm up to my
+eyeballs in 'stuff'.
+
+
+
+
+
+Date: Tue, 20 Sep 2016 22:36:51 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: V 1.4.1 - The Lyrebird is out of it's cage :)
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+On Tue, 6 Sep 2016 18:19:20 +0100
+Will Godfrey <willgodfrey@musically.me.uk> wrote:
+
+> On Mon, 5 Sep 2016 11:13:37 +0100
+> "Tom" <dmarc-noreply@freelists.org> (Redacted sender "madtom1999" for DMARC)
+> wrote:
+>
+> > Just as a comment on the The Short Yoshimi Guide I find the easiest way
+> > to get users started is to ignore jack and 'boot' into alsa and use
+> > Aconnectgui to connect your midi keyboard into Yosh.
+> >
+> > Tom
+>
+> This is a very valid point, and related to that I'm wondering if the very first
+> time default should be changed from all Jack to all Alsa.
+>
+> With the way Yoshimi has developed over the years, it is now trivially easy
+> for an experienced user to change the settings, which will be remembered
+> permanently - unless some idiot changes the config files :p
+>
+> I don't have strong feelings either way myself.
+>
+
+Just an additional thought. If a new user doesn't have jack running on first
+startup, they *will* be in an all Alsa environment, as Yoshimi tries this if
+it can't find the jack server.
+
+
+
+
+
+Date: Tue, 20 Sep 2016 22:41:09 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Nose... grindstone, grindstone... nose.
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+On Sat, 10 Sep 2016 20:12:39 +0100
+Will Godfrey <willgodfrey@musically.me.uk> wrote:
+
+> Direct access to Envelopes is now 99.999% done, which makes the whole of
+> SubSynth 'feature complete' - just the precise settings when switching to
+> freemode to be decided. Freemode was, um, interesting. It also meant going up
+> to a massive *eight bytes* for IDing everything :p
+>
+> LFOs are also done and were actually easier than I expected. Makes a change :)
+>
+> I think PadSynth should be next on the agenda, then Resonance and the
+> oscillators. That should make the biggie (AddSynth) a bit less of a mountain
+> climb.
+>
+
+All now done except AddSynth :)
+
+
+
+> All now done except AddSynth :)
+>
+Actually that's not true.
+
+AddSynth is done as well now :@)
+
+After some more testing, the next step is to start integrating this properly.
+I'll probably start with full command line control (as this is in the same
+region and the ring buffer already points there).
+
+Meanwhile, has anyone else been playing with the channel switcher?
+
+
+
+
+
+Date: Tue, 20 Sep 2016 23:17:06 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: A question
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+On Tue, 30 Aug 2016 21:52:02 +0100
+Will Godfrey <willgodfrey@musically.me.uk> wrote:
+
+> Currently the new channel switcher is disabled every time you load a patch, set
+> so has to be set again each time.
+>
+> Is this the right thing to do?
+> Or should it remain in place?
+> Or should it become part of the patch set and be loaded and saved with it?
+
+Having now spent quite a lot of time actually using this, I'm convinced it
+should be stored in patch sets. However that presents a logic problem, as the
+control is currently in 'Settings'. All existing stored settings are only found
+in config or state files, and I would rather like to maintain this consistency.
+
+So, (without being rude) where do I put the switcher control?
+
+
+
+
+
+ate: Wed, 21 Sep 2016 12:33:10 +0200
+From: Tony Travolta <dj.ton.e@gmx.de>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Aw: Re: A question
+
+[-- Autoview using w3m -I 'UTF-8' -T text/html --]
+One idea, for a switcher file per patch set.
+
+if name_of_switcher = name_of_patchset
+    load this switcher file
+else
+    load from elsewhere
+
+New switcher files can be saved in the same directory as a patchset, with the
+same name, only different extension, maybe name.switch , if it exists this will
+be used instead of some other default setting from somewhere. Just an idea. I
+do not know much of yoshimi system.
+
+Best regards
+Tony
+
+
+
+
+
+
+Date: Thu, 22 Sep 2016 11:03:01 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Aw: Re: A question
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Just to clarify.
+
+There are just two extra parameters involved, and I would envisage them being
+embedded in the patch set file itself. The problem is where to actually place
+these in the GUI so they fit in stylistically and don't clutter any of the
+'front' windows.
+
+
+
+
+ate: Thu, 22 Sep 2016 10:58:46 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: new instance for each patch set, a good idea?
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+On Wed, 21 Sep 2016 23:03:20 +0200
+"Tony Travolta" <dj.ton.e@gmx.de> wrote:
+
+> What about using for each patch set a new yoshimi instance? Bad idea? What would
+be the disadvantages?
+You can do that, although you would need to have each instance looking at a
+different MIDI port and maybe run some kind of port switching script.
+
+This all seems to be getting very complicated and I'm wondering if you've
+considered the simplest option.
+
+At any time you can silently perform a standard MIDI program change to any
+non-sounding part. We have a demo vid on youtube that shows exactly this.
+https://www.youtube.com/watch?v=rDIvkfoYYss
+
+Also, on miniLAC2016 I demonstrated a much longer piece that was performing bank
+*and* program changes all the way through.
+
+Doing a program changed doesn't change the channel number the part is listening
+to.
+
+Does that help at all?
+
+
+
+Date: Thu, 22 Sep 2016 12:11:46 +0200
+From: Tony Travolta <dj.ton.e@gmx.de>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Aw: Re: new instance for each patch set, a good idea?
+
+[-- Autoview using w3m -I 'UTF-8' -T text/html --]
+Thanks, this video I watched before*. Regarding ports no problem, I would
+simply route to those 5 ports from a single port in the midi sequencer, in my
+case Sequetron by Phil Tipping. Their midi channels have to be still
+complementary.
+
+How do banks and directories work in yoshimi I could not understand fully. It
+seemed to me I can not have for each part a different base directory? This was
+like a showstopper, if even parts change their base directory where I did not
+change it. For me ideal would be:
+
+-part1:dir1/patch_a
+-part2:dir2/patch_b
+...
+-part16:dir16/patch_c
+
+If I change dir16 using bank select and program change events in part16 I do
+not want the other dirs to change. They should still keep their positions, so
+pure program change events in those parts, would change from their banks, and
+not the last used bank. I tried various settings but could not achieve this
+behaviour. Is this possible currently?
+
+Best regards
+Tony
+
+* I will search now for miniLAC2016.
+
+
+
+
+Date: Thu, 22 Sep 2016 13:09:18 +0200
+From: Tony Travolta <dj.ton.e@gmx.de>
+To: yoshimi@freelists.org
+Subject: [yoshimi] how to save multiple instance yoshimi setup?
+
+[-- Autoview using w3m -I 'UTF-8' -T text/html --]
+If I use 5 instances and want to save the entire 'instance state', is this
+possible? I guess no. This would be the reason not to use this way. Otherwise
+that would be useful.
+
+Best regards
+Tony
+
+
+
+Date: Thu, 22 Sep 2016 19:44:56 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: how to save multiple instance yoshimi setup?
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+On Thu, 22 Sep 2016 13:09:18 +0200
+"Tony Travolta" <dj.ton.e@gmx.de> wrote:
+
+> If I use 5 instances and want to save the entire 'instance state', is this
+possible? I guess no. This would be the reason not to use this way. Otherwise that
+would be useful.
+>
+> Best regards
+> Tony
+
+Interesting. That's never come up before, but is a valid point. Currently,
+Yoshimi saves state on a per-instance basis, whereas logically, there should
+only be one state file for any given session which should include all enabled
+instances, and should be able to re-open these exactly as stored.
+
+I don't know what the implications of that are, and will need to discuss it
+with other devs, but I'll certainly put it on the to-do list (don't hold your
+breath).
+
+
+
+Date: Wed, 5 Oct 2016 19:38:45 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Synthfest UK
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+
+I'm fairly well known now as 'Mr Yoshimi' and got a few enquiries as to how
+development was going. Also a couple of people commented very favourably on our
+new demo:
+
+https://www.youtube.com/watch?v=kzBy5tnDoBw
+
+On top of this, we had some excellent weather for the days I was in Derbyshire,
+and I was pleasantly tired after many very long walks in the dales. The B&B I
+was staying at was excellent. Lovely people, great breakfasts and stunning
+views out of every window.
+
+
+
+
+
+Date: Fri, 7 Oct 2016 16:01:08 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Yoshimi user guide
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+Hi Chris,
+You've been very quiet lately :(
+
+While trying to track down something quite different I've found the text that's
+supposed to go with that phase spectrograph.
+
+#####################
+
+The following picture describes how this works on white noise. Light blue
+signals that the frequency is not present at the current time,and dark blue
+signals the opposite. The dark blue peaks appear if the delay time is very
+short, because then, the second path almost equals the first one, which results
+in duplication of the signal. If the delay line is very long, then it is (in the
+case of white noise) totally at random whether the delayed signal currently
+duplicates the unchanged path, or whether it cancels it out to zero. This
+random effect results in white noise between the clear blue structures.
+
+#####################
+
+What I was *actually* looking for was information on the formant filter. I'm
+beginning to get the concept, but there is a dearth of information about it and
+a few gaps in my understanding - especially in respect to the sequencing.
+
+
+
+
+
+
+Date: Tue, 11 Oct 2016 19:13:01 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Boo! :¬)
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+One of the things about all this 'underground' work is that I have to get a
+much better understanding of how the whole of Yoshimi works. The latest
+head-scratcher was understanding formant filters. The man himself was able to
+clarify this, as below:
+
+"The easiest way to understand the formants/wovel is to image at the first
+that each vowel contains a single formant.
+
+In that case each vowel consist in sequence of band-pass filter (with
+Q/frequency/amplitude). These vowels are arranged on a line (sequence) and
+the space between them is controleed by the "Strch" (lower right). This
+sequence could be used to create some simple words and the current position
+in that line is controlled by the filter LFO/Envelope.
+
+So for example, you can define two vowels like: "vowel_1" which has the
+formant at 1000Hz and the "vowel_2" with the formant at 2000Hz and define a
+simple raising envelope. You should get a sliding bandpass filter between
+these (eg: you get a bandpass filter which rises in the frequency from
+1000Hz to 2000Hz).
+
+If you define a second formant (you set "Num formants") to 2, each vowel
+will get another formant.
+The sound is processed using the first formant (like in the above example)
+and is added to the sound processed using the second formant. The formants
+are bandpass filter in parallel as you've guessed.
+
+I preferred for a vowel to have several formant (than the other way around)
+because I've arranged the data according to the high level of abstraction
+(that the vowel contains several formants) instead of how it was
+implemented.
+
+Paul"
+
+I hope you're reading this Chris - more for the user guide.
+
+It's back to the mind numbing stuff for me though :(
+
+
+
+
+
+
+
+Date: Fri, 14 Oct 2016 22:59:27 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] More small changes
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+It might not seem like it, but I do try very hard to avoid changing the GUI.
+However, today I made two relatively benign ones to the current 'master'.
+
+I've never really liked having vector control launched from the 'Yoshimi'
+drop-down, so now it has it's own button in the main window. It only took some
+minor reorganisation of the top row to do this, and has (I think) produced a
+neater result. Also, the three 'main' controls are now grouped and framed.
+
+The second change was to the new channel switcher. Again, I didn't like it
+being in the MIDI configuration window, but it took a while to think of a
+logical place for it. It is now in the mixer panel window. This makes sense as
+it is a part switcher, but not attached to just one part. It can be thought of
+as an semi-automated 'solo'.
+
+At the same time, these settings are now saved in patch sets. Having used it
+quite a lot now, I was getting really frustrated having to re-set it every
+time I started up with the patches I use.
+
+Just to recap what it does:
+
+There are two commands that change the way Yoshimi responds to incoming MIDI so
+that only one of a group of instruments will get note-on events, but all of the
+group will see note-off ones.
+
+The 'Channel Switch' menu enables the feature for either 'row' or 'column'
+mode and also makes the CC spinbox visible.
+
+You use this spinbox to set which incoming CC changes the part that responds.
+The *value* this CC sends performs the actual change, instantly and silently.
+Most importantly it leaves any existing notes sounding through a note off, it's
+release and effects tail.
+
+
+In row mode the whole of the first 16 parts are ostensibly receiving channel 1.
+This is most useful if you want to play live through a piece, with multiple
+instrument changes while playing. It works best with a foot switch that
+internally stores a channel number and increments then sends it with every
+press.
+
+Although this uses all of the first 16 parts, you can still set the number of
+parts to 32 and use the 17+ row for normal 1 - 16 channels. Also, if you have
+vector control set up, this intelligently recognises the fact, and for each
+one it finds it will switch in/out the whole vector column appropriately.
+
+For running the switcher in column mode you need to have 32 or (preferably) 64
+parts set, like this you can have up to 4 parts switched per channel, and
+independently of each other. However, this works more like vector control in
+that you have to switch in 16s. For example to control the channel 4 column
+you would send 4, 20, 36, 52 to select the wanted part. This is more appropriate
+for post recording MIDI automation.
+
+
+
+
+
+Date: Fri, 14 Oct 2016 23:07:41 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: screens
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+[-- Attachment #1 --]
+[-- Type: text/plain, Encoding: 7bit, Size: 0.5K --]
+
+Hi Chris,
+
+Along with the changes I've noted in the yoshimi user list there are a few
+others that have appeared over time, so I've grabbed all the main ones and
+attached then to the email for you. I've selected them so that they also show a
+lot of information on the title bars.
+
+I hope you can find some time for updates.
+
+
+Will.
+
+--
+Will J Godfrey
+http://www.musically.me.uk
+Say you have a poem and I have a tune.
+Exchange them and we can both have a poem, a tune, and a song.
+
+[-- Attachment #2: Screens.tgz --]
 
