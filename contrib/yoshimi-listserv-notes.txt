@@ -3334,3 +3334,73 @@ Exchange them and we can both have a poem, a tune, and a song.
 
 [-- Attachment #2: Screens.tgz --]
 
+
+
+
+
+
+Date: Sun, 16 Oct 2016 10:24:02 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: screens
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+
+[-- Attachment #1 --]
+[-- Type: text/plain, Encoding: 7bit, Size: 2.0K --]
+
+Hi Chris,
+
+Normally, I'd be out walking at this time, but currently everything out there
+is shades of grey, with 100% humidity :(
+
+So...
+
+The latest 'Solo' feature was a bonus. I'm currently bogged down with direct
+access and getting it to update the GUI (when present) - seriously
+soul-destroying work. Do you have any idea just how many controls there are in
+Yoshi... and the weird way some of them behave?
+
+However, some extra details:
+
+config instances are now in place, so the main config file is common to all,
+but each instance has it's own file for things like current bank, jack/alsa
+settings. Common settings are only visible in the main instance and completely
+hidden in all the later ones.
+
+Banks are still separate but will eventually also be common - when I can work
+out how to do it!
+
+
+There are a few more explanatory files in the 'doc' directory. There are also a
+*lot* more in 'dev-notes' but these wouldn't be of interest to ordinary users.
+
+
+*** An FLTK specific anomally ***
+
+We've slowly converted warning meassages so that the default option is the
+safest on. i.e don't delete a file. However, if instead of hitting 'return' you
+use the window manager's close icon FLTK will sometimes perform the unsafe
+option :(
+
+
+Ummm. Figure 28 on page 54 *doesn't* show Arpeggios :)
+
+
+Knobs and Sliders.
+Right click now *only* sets default value. Once we finally have mdid-learn in
+place CTRL/right click will perform a learn request.
+
+
+Not sure if this gets mentioned anywhere, but on first time start up, yoshimi
+will look for Zyn banks as well as Yoshi ones in the usual locations. It *won't*
+look for a Zyn config file as these are no longer relevant.
+
+
+I've updated the INSTALL file and included a very simple way to build outside
+the source directory. I know it works - I use it all the time myself now :)
+
+
+One more window attached that I missed :( If you want alternatives of any others
+let me know.
+
+
