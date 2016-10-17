@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2016-10-15
+% \update      2016-10-16
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -149,7 +149,8 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-dialog.png}
+%  \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-dialog.png}
+   \includegraphics[scale=0.75]{1.4.1/Vectors.png}
    \caption{Yoshimi Vectors Dialog}
    \label{fig:yoshimi_vectors_dialog}
 \end{figure}
@@ -390,7 +391,7 @@
 \subsubsection{Menu / Yoshimi / Settings...}
 \label{subsubsec:menu_yoshimi_settings}
 
-   The \textsl{Yoshimi Settings} dialog contains four tabs that control the
+   The \textsl{Yoshimi Settings} dialog contains five tabs that control the
    major and overall settings of \textsl{Yoshimi}.  At the bottom of this
    dialog are two buttons:
    \textbf{Save and Close} and \textbf{Close Unsaved}.
@@ -421,14 +422,25 @@
    However, note that any changes made in the tabs
    \textsl{are preserved}.  They are preserved for the current
    \textsl{Yoshimi} session, but are not saved to the filesystem.
-   
+
+   Here are the tabs included in the main settings of \textsl{Yoshimi}
+   as of version 1.4.1; each is described in its own section.
+
+   \begin{itemize}
+      \item \textbf{Main settings}
+      \item \textbf{Switches} (new)
+      \item \textbf{Jack}
+      \item \textbf{Alsa}
+      \item \textbf{MIDI}
+   \end{itemize}
+
 \paragraph{Menu / Yoshimi / Settings / Main Settings}
 \label{paragraph:menu_yoshimi_settings_main_settings}
 
    The Main Settings tab controls the main configuration items that
    follow, which apply to all patches/instruments.
    The main settings are shown in
-   \figureref{fig:yoshimi_main_settings_dialog}.
+   \figureref{fig:yoshimi_main_settings_tab}.
 
    Some settings only take effect after restarting the synthesizer.
    In Main settings, only items marked with an asterisk ('*')
@@ -444,9 +456,10 @@
 \begin{figure}[H]
    \centering 
 %  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-main.jpg}
-   \includegraphics[scale=0.75]{1.3.9/yoshimi-settings-main.png}
+%  \includegraphics[scale=0.75]{1.3.9/yoshimi-settings-main.png}
+   \includegraphics[scale=0.75]{1.4.1/SettingsMain.png}
    \caption{Yoshimi Main Settings Tab}
-   \label{fig:yoshimi_main_settings_dialog}
+   \label{fig:yoshimi_main_settings_tab}
 \end{figure}
 
    The following settings exist in the \textsl{Main settings} tab:
@@ -458,11 +471,9 @@
       \item \textbf{Virtual Keyboard Layout}
       \item \textbf{XML compression level}
       \item \textbf{Send reports to}
-      \item \textbf{Hide Non Fatal Errors}
-      \item \textbf{Log XML headers}
-      \item \textbf{Show Splash} (new)
-      \item \textbf{Save and Close}
-      \item \textbf{Close Unsaved}
+      \item \textbf{Hide Non Fatal Errors} (moved to 'Switches')
+      \item \textbf{Log XML headers} (moved to 'Switches')
+      \item \textbf{Show Splash} (new) (moved to 'Switches')
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
@@ -651,6 +662,37 @@
    Consider it a form of "MIDI learn" that will be developed in the future.
    And note that it applies to output to \texttt{stderr} as well.
 
+\paragraph{Menu / Yoshimi / Settings / Switches}
+\label{paragraph:menu_yoshimi_settings_switches}
+
+   Many of the check-box items have been moved into this new tab, to reduce
+   clutter.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.4.1/SettingsSwitches.png}
+   \caption{Yoshimi Switches Tab}
+   \label{fig:yoshimi_settings_switches_tab}
+\end{figure}
+
+   The following settings exist in the \textsl{Switches} tab:
+
+   \begin{enumber}
+      \item \textbf{Start With Default State}
+      \item \textbf{Hide Non Fatal Errors}
+      \item \textbf{Show Splash Screen}
+      \item \textbf{Log Load times}
+      \item \textbf{Log XML headers}
+      \item \textbf{Enable GUI}
+      \item \textbf{Enable CLI}
+   \end{enumber}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Start With Default State}{Switches!Start With Default State}
+   Requires \textsl{Yoshimi} to be restarted, to take effect.
+   MORE TO COME.
+
    \itempar{Hide Non Fatal Errors}{Main Settings!Hide Non-Fatal Errors}
    Especially when running from the command line (with reports going there
    too), under some circumstances one can get a swamp of low-level error
@@ -659,15 +701,24 @@
    progress to catch the bulk of them, while still reporting top-level messages
    and ones that cause a forced exit (surely not!)
 
+   \itempar{Show Splash Screen}{Main Settings!Show Splash Screen}
+   This item will speed up the start-up of \textsl{Yoshimi} slightly
+   if unchecked, by not showing the splash screen while files are being loaded.
+
+   \itempar{Log Load times}{Switches!Log Load times}
+   Provides a way of noting problematic patch sets.  MORE TO COME.
+
    \itempar{Log XML headers}{Main Settings!Log XML headers}
    This item sends the information to the console window
    (or \texttt{stderr}) so that
    one can then see what \textsl{ynAddSubFX}/\textsl{Yoshimi}
    version created the file.
 
-   \itempar{Show Splash}{Main Settings!Show Splash}
-   This item will speed up the start-up of \textsl{Yoshimi} slightly
-   if unchecked, by not showing the splash screen while files are being loaded.
+   \itempar{Enable GUI}{Switches!Enable GUI}
+   MORE TO COME.
+
+   \itempar{Enable CLI}{Switches!Enable CLI}
+   MORE TO COME.
 
 \paragraph{Menu / Yoshimi / Settings / Jack}
 \label{paragraph:menu_yoshimi_settings_jack}
@@ -687,9 +738,10 @@
    \centering 
 %  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-jack.jpg}
 %  \includegraphics[scale=0.75]{1.3.8/yoshimi-settings-jack.jpg}
-   \includegraphics[scale=0.75]{1.3.9/yoshimi-settings-jack.png}
-   \caption[JACK Settings]{JACK Settings Dialog}
-   \label{fig:yoshimi_settings_jack}
+%  \includegraphics[scale=0.75]{1.3.9/yoshimi-settings-jack.png}
+   \includegraphics[scale=0.75]{1.4.1/SettingsJack.png}
+   \caption[JACK Settings]{JACK Settings Tab}
+   \label{fig:yoshimi_settings_jack_tab}
 \end{figure}
 
    The following items are provided by the Jack settings:
@@ -700,8 +752,6 @@
       \item \textbf{Jack Server}
       \item \textbf{Set as preferred audio}
       \item \textbf{Autoconnect audio} (new, 1.3.9)
-      \item \textbf{Save and Close}
-      \item \textbf{Close Unsaved}
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
@@ -750,8 +800,8 @@
    command-line has no way to disable this feature it the configuration has been
    saved.)
 
-\paragraph{Menu / Yoshimi / Settings / ALSA}
-\label{paragraph:menu_yoshimi_settings_alsa}
+\paragraph{Menu / Yoshimi / Settings / Alsa}
+\label{paragraph:menu_yoshimi_settings_alsa_tab}
 
    A significant improvement is to the handling of ALSA audio, which is still
    very important for some people. Until now, \textsl{Yoshimi} has insisted
@@ -820,9 +870,10 @@
 \begin{figure}[H]
    \centering 
 %  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-alsa.jpg}
-   \includegraphics[scale=0.75]{1.3.8/yoshimi-settings-alsa.png}
-   \caption[ALSA Settings]{ALSA Settings Dialog}
-   \label{fig:yoshimi_settings_alsa}
+%  \includegraphics[scale=0.75]{1.3.8/yoshimi-settings-alsa.png}
+   \includegraphics[scale=0.75]{1.4.1/SettingsAlsa.png}
+   \caption[ALSA Settings]{ALSA Settings Tab}
+   \label{fig:yoshimi_settings_alsa_tab}
 \end{figure}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
@@ -885,9 +936,9 @@
    Note that any of these setting changes require a restart of \textsl{Yoshimi}
    to take effect.
    
-   \textsl{ZynAddSubFX}: if one wants a sample-rate that
-   is not in the list, select "Custom" and change the value from the right.
-   Default is 44100.
+%  \textsl{ZynAddSubFX}: if one wants a sample-rate that
+%  is not in the list, select "Custom" and change the value from the right.
+%  Default is 44100.
 
    Values: \texttt{192000, 96000, 48000*, 44100}
 
@@ -900,20 +951,26 @@
    presents MIDI bank-root, bank, program change, and extended program
    change settings, plus some new values.
 
+\begin{figure}[H]
+   \centering 
+%  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-ccs.jpg}
+%  \includegraphics[scale=0.75]{1.3.8/yoshimi-settings-midi.png}
+%  \includegraphics[scale=0.75]{1.3.9/yoshimi-settings-ccs.jpg}
+   \includegraphics[scale=0.75]{1.4.1/SettingsMidi.png}
+   \caption[MIDI Preferences]{MIDI Preferences Tab}
+   \label{fig:yoshimi_settings_cc}
+\end{figure}
+
    A new feature as of version 1.3.6 is that some changes to the items in this
    tab cause a red \textbf{Pending} button to appear.  Pressing this
    button saves that particular change.
 
 \begin{figure}[H]
    \centering 
-%  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-ccs.jpg}
-%  \includegraphics[scale=0.75]{1.3.8/yoshimi-settings-midi.png}
-   \includegraphics[scale=0.75]{1.3.9/yoshimi-settings-ccs.jpg}
-   \caption[MIDI Preferences]{MIDI Preferences}
-   \label{fig:yoshimi_settings_cc}
+   \includegraphics[scale=0.75]{1.4.1/SettingsPending.png}
+   \caption[MIDI Settings Pending]{MIDI Settings Pending}
+   \label{fig:yoshimi_settings_pending}
 \end{figure}
-
-%  TODO:  Could add a figure showing the red Pending button.
 
    The following items are provided by the MIDI settings tab:
 
@@ -927,8 +984,6 @@
       \item \textbf{Extended Program Change}
       \item \textbf{Ignore Reset all CCs}
       \item \textbf{Log incoming CCs}
-      \item \textbf{Save and Close}
-      \item \textbf{Close Unsaved}
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
