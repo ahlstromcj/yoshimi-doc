@@ -3404,3 +3404,492 @@ One more window attached that I missed :( If you want alternatives of any others
 let me know.
 
 
+
+
+
+
+
+Date: Sat, 22 Oct 2016 20:49:41 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Solo Was: More small changes
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+
+Amongst all the low-level stuff in the current master I've added a small
+extension to this. As well as 'Row' and 'Column' modes you now have a variation
+on Row called 'Loop'.
+
+With this, if you send *any* value via the designated CC it will increment the
+active part by one, rolling round to 1 after 16. This should make even the
+dumbest foot controller usable - and I don't mean the person operating it :)
+
+
+
+
+Date: Mon, 24 Oct 2016 21:27:35 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Info snippets.
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+
+By default Yoshimi doesn't assign a bank ID 0 (zero) in any root. This actually
+has an interesting benefit. Several sequencers insist on setting a bank with
+every program change, and if you don't give one they will try to set 0. However,
+Yoshi is smart enough to ignore any invalid bank ID and remain with the existing
+bank number :)
+
+When I have time (haha) I'll investigate the possibility of making bank roots
+behave in the same way. This will then also deal with sequencers that insist
+on two byte bank numbers - which currently screws up our bank/root separation.
+
+
+
+While working on the nitty-gritty, I have now (finally) come to understand how
+the various oscillators in Addsynth interact.
+
+There are two of these per voice. The voice oscillator and the modulation
+oscillator.
+
+For the voice oscillator you can use one defined for that voice (internal) or
+link to the oscillator of any lower numbered voice.
+
+For the modulation oscillator you can again have a locally defined one
+(internal) or you can have two other alternatives. Either the modulation
+oscillator from a lower numbered voice or the oscillator from the lower           numbered voice itself!
+
+In the voice window, the 'External Mod' at the top right give the choice of
+previous modulation oscillator and the 'Mod Oscillator' at the bottom right
+gives you the choice of previous voice oscillators.
+
+
+Previously I thought you could use lower numbered voice oscillators for
+modulators if the voice itself was disabled. This was wrong. What made it seem
+to work was that it actually gave you *no* modulation instead of that from the
+internal modulator.
+
+
+
+
+
+
+Date: Mon, 24 Oct 2016 22:25:51 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Info
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+
+Hi Chris,
+
+Just a heads-up that I've made some more notes on the Yoshimi list. There is
+also a small extension to the new 'Solo' feature, but it doesn't change the
+screen shots.
+
+It's a bit 'two steps forward and one step back' for me at the moment. I've
+realised that I *have* to move all the text responses out of the direct
+encoding function, and into a new CLI dedicated one. Also, in the GUI reporting
+I had been setting write status in bulk, whereas it should really be per
+control, so that I can then eventually include individual reads too. That's a
+*lot* of send_data() entries to change :(
+
+
+
+
+
+Date: Fri, 28 Oct 2016 23:57:36 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Well that was fun!
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+
+I lost internet access for over 24 hours, so (without my normal distractions)
+got my head down and did some needed code revisions. I also had a first serious
+look at scales (microtonal). It's not pretty!
+
+Well it is slightly prettier, as I've found a way to chop out quite a bit of
+math at note-on. Instead of calculating key shifts and tuning on the fly we now
+have a look-up table per part which is updated when these controls are changed.
+One of my test pieces that typically produced 5-6 xruns (at 16 frames) now only
+produces 3-4 :)
+
+
+
+
+Date: Sun, 30 Oct 2016 16:16:25 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Info snippets.
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+
+On Mon, 24 Oct 2016 21:27:35 +0100
+Will Godfrey <willgodfrey@musically.me.uk> wrote:
+
+> By default Yoshimi doesn't assign a bank ID 0 (zero) in any root. This actually 
+> has an interesting benefit. Several sequencers insist on setting a bank with
+> every program change, and if you don't give one they will try to set 0. However,
+> Yoshi is smart enough to ignore any invalid bank ID and remain with the existing
+> bank number :)
+>
+> When I have time (haha) I'll investigate the possibility of making bank roots
+> behave in the same way. This will then also deal with sequencers that insist
+> on two byte bank numbers - which currently screws up our bank/root separation.
+>
+This is now done :)
+
+A first time startup will assign the first root it finds an ID of 5, and any
+more will be spaced 5 apart. Also, an attempt to set an invalid root will
+restore the previous bank and root. A valid root change will always then set
+the bank to the lowest numbered one it finds.
+
+
+
+
+https://my.pcloud.com/publink/show?code=XZQ21gZ6cwRtfkRAbLsaxrLBxAuY8IEOU8y
+
+Lorenzo.
+
+
+
+
+
+
+
+Date: Wed, 16 Nov 2016 23:22:39 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Help imitating synth
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+
+
+I don't recommend trying to do that manually. It quickly gets tiring and is
+quite hard to keep steady timing, especially while trying to sing as well.
+
+If you start with SynthPiano/AnalogPiano3, once you have it loaded, click on the
+'Edit' button. Then in the new window 'Effects'.
+
+Click on the effect selector and from the dropdown list chose 'Echo'.
+
+Adjust the 'Delay' control until the repeats come at the speed you want (if you
+hold downs the ctrl key you get much finer control).
+The 'Fb' control will decide how may repeats you hear before it fades out.
+
+If you only want one repeat set it to zero.
+
+If you want exactly 3 repeats do the same for effect number 2 but double the
+delay time - might need to fiddle with this a bit.
+
+Of course, as soon as you have it the way you want SAVE IT!
+
+
+
+
+
+
+Date: Thu, 17 Nov 2016 00:47:00 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Fun times ahead
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+
+For some time I've been working on a system for creating lists of data blocks
+that are extendible, editable and quickly readable. It just so happens that the
+new direct access work forms such data blocks, so the idea is to combine these.
+
+For anyone who hasn't twigged yet, I'm talking about MIDI learn :)
+
+In my test program I generate approximately 500 entries - many similar but no
+two identical. If I deliberately search for the very last one (or a non-existent
+one) it takes just 20uS.
+
+Direct access still isn't ready for full GUI control, but it is more than good
+enough for at least basic MIDI learn, so as this is *well* overdue I'll start
+working on that. Initially it will only be able to handle controls that have an
+actual range of 0 to 127.
+
+However, some clarification on just what I'm eventually hoping to provide.
+
+Your first action will be to right-click on a knob/slider while holding down
+the 'ctrl' key, this will put you into learn mode if the knob is learnable. If
+not you'll get a popup message.
+
+As soon as you move the external control or send any controller MIDI message,
+this will be grabbed, a new window will open called something like 'MIDI list'
+and Yoshimi will go back to normal operation.
+
+You will now see a line entry with the incoming CC number, the incoming
+channel number, Min and Max values, and some switch check boxes. Finally there
+will be a text field that will show in human readable form exactly what control
+has been grabbed. All of these will be editable.
+
+You will be able to stack up message lines that have the same CC and channel,
+so a single incoming can change a part volume and at the same time change the
+filter cutoff and with a third line change the panning of a *different* part.
+
+Multiple lines will always be displayed (and actioned) in ascending order of
+CC, then channel number
+CC: This can be changed to any valid CC
+
+Channel: This can be changed to any incoming one or to 'all'
+
+Min/Max: These will default to 0 & 127, but can be set to any value in that
+range. If Min is greater than Max, then the incoming CC value will be inverted
+and Min & Max swapped.
+
+Switches:
+    Mode: Limit/Compress.
+        Set to 'limit'. The min/max will be hard cutoffs. e.g. min is 20
+incoming is 5. result is 20. Set to 'compress'. The incomming will be converted
+to fit the range. e.g. min is 32, max is 95. Incomming 0 will be 32, incomming
+2 will be 33 etc.
+
+    Mute: completely ignore this entry, but don't delete it.
+
+    Block: ignore all later entries that have the same channel and CC. This
+    will include the defaults like volume and pan, but not root/bank/program
+    changes, nor any NRPNs.
+
+    Delete: removes the line completely (with a warning)
+
+
+I'll start working out how to shoehorn this in, but at first, although you'll be
+able to set up lines, you won't be able to see them or remove them. Indeed
+there won't be a window at all!
+
+Apart from anything else, at the moment I have no idea how to implement a
+varible length list of controls in FLTK.
+
+
+
+
+
+
+Date: Fri, 18 Nov 2016 21:58:28 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Fun times ahead - MIDI learn
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+
+Quite a bit of progress on the current master :)
+
+
+What you can do:
+
+A large number of controls are now learnable. CTRL-Right click puts Yoshimi
+into learn mode. You should have reports open as that gives a 'learning'
+message.
+
+There are some that are supposed to be learnable but for some reason aren't -
+will need investigation.
+
+Every time you learn a new one all those defined will be listed.
+
+Usually, if not learnable you'll get a popup message saying so.
+
+Quite a number of them work, but don't update the gui - don't know why that is.
+
+You can have multiple controls on the same CC - Wooo!
+But although they work, only the last one updates the gui - Rats!
+
+They are channel specific. So if you are rich enough to have two MIDI keyboards
+you can set them up to do quite different jobs.
+
+Some of them like volume and pan are immediate but most are 'next note'.
+
+
+What you can't do yet:
+
+You can't unset one. It's there for the session - so get it right :)
+
+You can't edit them - There's no Learn window yet!
+
+You can't get them to block others on the same CC/channel pair - that will come
+later.
+
+
+
+
+
+Date: Sun, 20 Nov 2016 02:27:50 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: MIDI learn - progress :)
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+
+In the current master there is now a Midi learn window accesed from the
+'Yoshimi' dropdown.
+
+It doesn't actually do anything yet, but you can play with the controls and
+pretend :)
+
+It's real function is to give you the chance to see what it will do while I try
+to think out how to actually connect up the plumbing.
+
+I've decided the 'Control Function' should not be editable. There is no point,
+and it would make for unnecessary complications.
+
+Now to try and get some sleep. It's *very* early morning here, amid heavy
+blustery (noisy) rain :(
+
+
+
+
+
+
+Date: Sun, 20 Nov 2016 22:40:00 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: MIDI learn - progress :)
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+
+Well, it seems I still have a roof over my head :)
+
+Had a bit of fun with SubSynth this evening. One CC midi linked to 4
+even-order harmonics and another linked to 3 odd-order ones. These harmonics are
+per note but it was still fun being able to have consecutive notes sounding
+quite different.
+
+However, this highlights a problem.
+
+An 'ordinary' midi-learn can only link to 119 controls (and that's if you allow
+sitting on standard ones), but with the grouping capability we can have far more
+than that... per channel! So this raises two problems.
+
+What is a practical number?
+
+How do we handle the Gui?
+
+In my test program over 500 lines were scanned in a few microseconds, but would
+anyone really want that many? I really have no idea. Has anyone here used
+midi-learn much?
+
+
+Trying to update the Gui when making changes to such a large number becomes a
+issue. You would end up with a massively long scroll in the window, which might
+be quite slow to update and would suck up quite a bit of memory.
+
+For this I'm inclined to go for 'viewing groups' of (say) 128 lines. This
+gives the user a much more reasonable scroll length. The group numbers could be
+automatically generated depending on how many lines there actually are. Also,
+changing either the CC or channel number will change the position of the line
+in the list, quite possibly a long way. Having groups means we can
+automatically display the one the line is in.
+
+There's a little bit more done to the Gui in the current master - still not
+linked up though.
+
+Date: Thu, 24 Nov 2016 11:50:30 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: MIDI learn - 90% :)
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+
+Gui is now fully functional. All the line editor controls work. You can shuffle
+them around by CC and channel, change the ranges or even reverse them, as well
+as mute, block later ones with the same CC and channel.
+
+You are still limited to the controls with the 0 to 127 range (by far the
+majority that you'd want to alter)
+
+I've temporarily reduced the maximum number of lines to 128, and you still
+can't delete a line.
+
+Finally, I haven't decided on the best format to save complete learn sets. It's
+unlikely that it would be compatible with zyn. Apart from anything else we
+provide a richer control set. I suppose someone could write some form of python
+conversion script if they were really interested.
+
+
+
+
+Date: Thu, 24 Nov 2016 19:15:53 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: MIDI learn - An again :)
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+
+On Thu, 24 Nov 2016 15:46:54 +0000
+Will Godfrey <willgodfrey@musically.me.uk> wrote:
+
+> Normal non-kit engines are fine - even as kit 0, but I've had lots of trouble
+> with kits so maybe it's time for a re-think.
+
+Also squashed.
+
+An earlier fix to prevent midi-learn from accessing a non existent kit item
+worked too well. It stopped all access to their engines :(
+
+I've now spent some time jumping all over it and so far no further problems.
+
+One point to note: You can learn the master fine detune but this does a lot of
+work when being changed, so if there is aheavy activity at the time, you are
+likely to get Xruns.
+
+So, have at it musicians :D
+
+
+
+
+
+Date: Thu, 24 Nov 2016 15:16:38 +0100
+From: Jörn Eichler <joerneichler@gmx.net>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Filter Frequency Key Tracking 100% value
+User-Agent: KMail/4.13.3 (Linux/4.8.3-040803-generic; KDE/4.13.3; x86_64; ; )
+
+Hi,
+
+this is my first post to this list. So I hope, it is the right place for what I
+want to ask/discuss:
+
+I've been playing around with Yoshimi for some time, and I noticed, that there
+seems to be no 100% setting for the filter cut-off frequency key tracking.
+
+I'm using a band pass filter with high resonance on a noise to create a whistle
+sound (like Tomita). But even setting the key tracking to maximum gives a
+quite noticable detuning for pitches further away from the reference note.
+
+float FilterParams::getfreqtracking(float notefreq)
+{
+    return logf(notefreq / 440.0f) * (Pfreqtrack - 64.0f) / (64.0f * LOG_2);
+}
+
+For a 100% setting a value of 128 for Pfreqtrack would be needed. However, the
+highest possible value seems to be 127.
+
+An easy solution might just "redefine" the maximum setting 127, to behave like
+128. Something like:
+unsigned char tempfreqtrack = (Pfreqtrack == 127) ? 128 : Pfreqtrack;
+
+Any thoughts?
+
+Greetings,
+Jörn
+
+
+
+
+
+Date: Thu, 24 Nov 2016 16:58:38 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Filter Frequency Key Tracking 100% value
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+
+
+127 is supposed to correspond to 100% on all controls, as they start out as
+chars, although I agree this sounds sightly out.
+
+Changing it creates a dilemma, as it changes peoples perception of the synth.
+While making additions I've been very careful to avid changing the original
+sounds. Rather than changing the existing controls I would be more inclined to
+add a tracking range switch somewhere - if there was enough demand for it.
+Maybe a *1.5 checkbox so you could maybe go beyond 100%
+
+Finally, though I used the same technique myself for such a whistle, I
+think you're actually better off using subsynth and fiddling the bandwidths.
+For example just increase the bandwidth of the fundamental and add reverb :)
+
+
+
+
+
+
