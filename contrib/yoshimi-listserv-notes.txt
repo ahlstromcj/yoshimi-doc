@@ -3892,4 +3892,65 @@ For example just increase the bandwidth of the fundamental and add reverb :)
 
 
 
+Date: Sun, 11 Dec 2016 10:55:32 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Xruns? Graphics? - The thot plickens!
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+
+Well, I've just confirmed that when running other programs using jack audio
+that dsp load increases a lot when moving *any* windows around.
+
+However, it looks like Yoshimi has an issue with loading midi-learn lists. It's
+not a show stopper, but is something I'd like to try to resolve before the next
+release. It also seems to be directly related to working from the GUI.
+
+These days Yoshimi has CLI access to midi-learn and if I use this to load a
+learned list there is no problem at all - even working down at 16 frames/period
+and with the learn window open and displaying the result of the command.
+However, from a clean start, even at 128 frames I'll get a couple of xruns
+performing exactly the same operation via the button in the midi-learn window.
+
+Now some good news.
+
+I've resolved the problem with FLTKs alert window screwing up. I've created our
+own simplified one. Now you get a messages saying 'Learning' followed by the
+exact description of the control you're using. This will automatically close
+once the physical control has been captured. Also, the same window is used to
+tell you a control is not learnable.
+
+
+
+
+Date: Tue, 13 Dec 2016 23:25:25 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Yoshimi 1.5 - raises hand nervously
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+
+[-- Attachment #1 --]
+[-- Type: text/plain, Encoding: 7bit, Size: 0.7K --]
+
+Hi Chris,
+
+Some screenshot corrections and additions.
+
+FLTK has a 'feature' whereby it doesn't always correctly redraw windows that
+have just been uncovered. This happened to the MidiLearn one :(
+
+Now that we can cancel a learn (should have done that right away) there is a
+extra button on the message window. It's also slightly larger and the message
+text is slightly smaller. Oh, and the title bar is correctly identified now.
+
+I would like to say there will be no more changes until after 1.5.0 release -
+then again, there are lots of things I'd like :)
+
+TTFN
+
+Will.
+
+
+
+
+
 
