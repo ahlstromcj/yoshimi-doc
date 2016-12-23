@@ -1,0 +1,254 @@
+%-------------------------------------------------------------------------------
+% yum_midi_learn
+%-------------------------------------------------------------------------------
+%
+% \file        yum_midi_learn.tex
+% \library     Documents
+% \author      Chris Ahlstrom
+% \date        2016-12-22
+% \update      2016-12-22
+% \version     $Revision$
+% \license     $XPC_GPL_LICENSE$
+%
+%     Provides the midi_learn section of yoshimi-user-manual.tex.
+%
+%-------------------------------------------------------------------------------
+
+\section{MIDI Learn}
+\label{sec:midi_learn}
+
+   In this section, we show how to use the new (with 1.5.0)
+   \textbf{MIDI Learn} feature of \textsl{Yoshimi}.
+
+\subsection{MIDI Learn / Basics}
+\label{subsec:midi_learn_basics}
+
+   TODO
+
+\subsection{MIDI Learn / User Interface}
+\label{subsec:midi_learn_user_interface}
+
+   \textsl{Yoshimi} ...
+
+   To activate MIDI Learn, \texttt{Ctrl-right-click}
+   on any user interface control.
+   A pop-up window will detail the control selected.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.5.0/Learning-30amp.png}
+   \caption{MIDI Learn Prompt Example 1}
+   \label{fig:midi_learn_ex_1}
+\end{figure}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.5.0/Learning-Mods.png}
+   \caption{MIDI Learn Prompt Example 2}
+   \label{fig:midi_learn_ex_2}
+\end{figure}
+
+   If a \texttt{Yoshimi} control is not MIDI-learnable, a message pop-up
+   will indicate that it is not learnable:
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.5.0/Learning-No.png}
+   \caption{MIDI Learn Prompt Unsupported Example}
+   \label{fig:midi_learn_unsupported}
+\end{figure}
+
+   A message will also appear in the console window/CLI.
+
+   After turning on learn, the first physical controller moved, or CC message sent
+   will be locked in, and one will see the user-interface knob or slider move in
+   synchrony with the physical control. The pop-up window will disappear, and the
+   console message \texttt{Learned} appears,
+   with a line underneath with exactly what control was caught.
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.5.0/MidiLearn.png}
+   \caption{MIDI Learn Dialog}
+   \label{fig:midi_learn_dialog}
+\end{figure}
+
+   The major items of this dialog are the editor settings available:
+
+   \begin{enumber}
+      \item \textbf{Mute}
+      \item \textbf{CC}
+      \item \textbf{Chan}
+      \item \textbf{Min}
+      \item \textbf{Max}
+      \item \textbf{Limit}
+      \item \textbf{Block}
+      \item \textbf{Control Function}
+      \item \textbf{Load}
+      \item \textbf{Save}
+      \item \textbf{Recent}
+      \item \textbf{Clear}
+   \end{enumber}
+
+   Now use the \texttt{Yoshimi} drop-down menu
+   and click on \texttt{Midi Learn}, to see a new window displaying the
+   recently-learned controller. Along with a number of settings, it shows text
+   with precise details of this complete
+   action.
+
+   Also shown is an \texttt{activity} LED that flickers when the associated
+   CC/channel is received.
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Mute}{MIDI Learn!Mute}
+   Mute.
+   Disables the MIDI Learn control specified by the corresponding line of
+   settings.
+
+   Values: \texttt{Checked, Unchecked}
+
+   \itempar{CC}{MIDI Learn!CC}
+   CC.
+   Incoming CC.
+   Provides the value of the controller that is learned.
+   For example, a value of 7 indicates that the control value affects the main
+   volume of \texttt{Yoshimi}.
+
+   Values: \texttt{1 to 127, 64*}
+
+   \itempar{Chan}{MIDI Learn!Chan}
+   Chan.
+   Incoming channel number.
+   Note that, in the \textbf{MIDI Learn} window, only the channel numbers start
+   from 1.  All the other numbers in that window start from 0.  This
+   follows the conventions of the \textsl{Yoshimi} command-line.
+
+   Values: \texttt{1 to 16, 1*}
+
+   \itempar{Min/Max}{MIDI Learn!Min/Max}
+   Min and Max.
+   Provides the minimum and maximum incoming values.
+   If Min is greater than Max, this reverses the control direction.
+
+   Values: \texttt{1 to 127, 64*}
+
+   \itempar{Limit}{MIDI Learn!Limit}
+   Limit.
+   Limiter versus compression.
+   The Min/Max range can either be in the style of a limiter or a compression.
+
+   Values: \texttt{Checked, Unchecked}
+
+   \itempar{Block}{MIDI Learn!Block}
+   Block.
+   Specifies blocking of all later actions on the same CC/channel pair
+   (including system ones).
+   NEEDS CLARIFICATION.
+
+   Values: \texttt{Checked, Unchecked}
+
+   \itempar{Control Function}{MIDI Learn!Control Function}
+   Control function.
+   Provides text describing what control is affected, or if the
+   part is disabled or not.
+
+   One can delete any existing MIDI Learn via
+   \texttt{Ctrl-right-click}
+   on the
+   \texttt{Control Function} text for that line.
+   One is then presented with a confirmation message giving the line number and
+   the text as a reminder.
+   Adding or deleting lines, or changing either CC or channel numbers, will
+   re-order the lines.
+
+   The same CC/controller can be used to change several different
+   internal \texttt{Yoshimi} controls.
+   For example, one can have a part's volume being changed while another part is
+   having an effect level changed.
+   (HOW IS THIS EFFECTED?)
+
+   \itempar{Load}{MIDI Learn!Load}
+   Load.
+   Loads a set of MIDI Learn values from a file.
+   The extension of the file is ...?
+   If a loaded set refers to \texttt{Yoshimi}
+   controls that are disabled, or don't exist, those controls will be ignored.
+   However the Block feature will still be active, unless the line is muted.
+
+   \itempar{Save}{MIDI Learn!Save}
+   Save.
+   A complete list of MIDI Learn values
+   can be saved by clicking on the Save button; one then sees
+   the usual file-chooser window.
+
+   \itempar{Recent}{MIDI Learn!Recent}
+   Recent.
+   This button is used for loading a set of
+   MIDI Learn values from the recent history.
+
+   \itempar{Clear}{MIDI Learn!Clear}
+   Clear.
+   This button clears the entire learned list.
+
+% To come:
+% Paging of the display to avoid scrolling through a massive list.
+
+\subsection{MIDI Learn / Tutorial}
+\label{subsec:midi_learn_tutorial}
+
+   \textsl{This mini-tutorial is courtesy of Will.}
+
+   Say one has a foot pedal that outputs CC values on the standard volume, CC 7.
+   Now this is per channel, so only instruments on the first channel will pick
+   it up.  This presents a problem if one has automation/backing tracks on
+   other channels and one wants to keep everything together. So here is what to
+   do:
+
+   While holding down \texttt{Ctrl}, right-click on the
+   \textbf{Volume} knob at the top of the
+   main window. A window will open with the message "Learning Main Volume".
+   If one now operates the foot pedal, the window will disappear and one will
+   see that the main volume control is now responding to the foot pedal.
+
+   \textsl{However}, this means one is changing both the main volume
+   \textsl{and} the part 0 volume at the same time.  So now open the
+   \textbf{MIDI learn} window via the \textbf{Yoshimi} drop-down menu. One will
+   see that it now has a line detailing the incoming CC and channel, along with
+   other controls and the control function named \textbf{Main Volume}.  Click
+   on the \textbf{Block} check box, and one will see that the part 0 volume
+   control no longer responds.
+
+   Now the foot pedal will control \textsl{only} the master volume, not the
+   individual part volumes. This setup will survive loading new patch sets, and
+   also a main reset (while still running).
+
+   It's quite likely that the foot pedal will go from 0 to 127, when one actually
+   wants a much smaller control range.  In that case, one can change the
+   \textbf{Min} and \textbf{Max}
+   values to (for example) 40 and 90.
+   In this way, the entire range of the pedal control will be reduced linearly to
+   40-90.
+
+   If one sets the \textbf{Limit} checkbox, then these values will instead be
+   cutoff points so anything from the pedal between 0 and 40 will be 40, and
+   anything between 90 and 127 will be 90
+
+   To temporarily disable this controller line, use the \textbf{Mute} checkbox.
+   The entire line will be greyed, and as the \textbf{Block} is no longer
+   active normal part volume control will be restored.
+
+   A point that is not obvious is that although incoming CCs are per-channel,
+   the actions are per-\textsl{part}, so if one sets controller 94 for part 1
+   volume and then set it again for part 2 volume, one gets \textsl{two} lines,
+   each controlling just one part but \textsl{acting together}.  Change the
+   \textbf{Min} and \textbf{Max} of one of them to 127 and 0 respectively and
+   one will increase in volume while the other reduces.
+
+   Volume, pan, and most of the effects are \textsl{immediate}, while most of
+   the other controls start on the \textsl{next note}.  Eventually I want to
+   get LFOs, filters etc. to be immediate, but that's for another release!
+
+%-------------------------------------------------------------------------------
+% vim: ts=3 sw=3 et ft=tex
+%-------------------------------------------------------------------------------

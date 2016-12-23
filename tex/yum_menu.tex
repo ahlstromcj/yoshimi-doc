@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2016-10-16
+% \update      2016-12-22
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -43,12 +43,29 @@
    \label{fig:yoshimi_menu_items}
 \end{figure}
 
+   This figure needs to be updated for version 1.5.0 of \textsl{Yoshimi}.
+   The items it contains are:
+
+   \begin{enumber}
+      \item \textbf{About}
+      \item \textbf{New instance...}
+      \item \textbf{New instance with id...}
+      \item \textbf{Settings}
+      \item \textbf{MIDI Learn}  (new)
+      \item \textbf{Exit}
+   \end{enumber}
+
    \textbf{New:}
    \index{new!vectors}
    The \textbf{Vectors} menu entry of version 1.4.0 has been moved to its own
    button in version 1.4.1, as can be seen in the figure.  See
    \sectionref{subsubsec:menu_yoshimi_vectors}, which presents this dialog and
    briefly describes it.
+
+   \textbf{New:}
+   \index{new!MIDI Learn}
+   \textsl{MIDI Learn} is a new feature of \textsl{Yoshimi}, and is described
+   below.
 
    \textbf{Bug:}
    \index{bugs!menu hot keys don't work}
@@ -1073,6 +1090,18 @@
    as it tells one exactly what \textsl{Yoshimi} thinks it received.
 
    Values: \texttt{Off*, On}
+
+\subsubsection{Menu / Yoshimi / MIDI Learn...}
+\label{subsubsec:menu_yoshimi_midi_learn}
+
+   The \textbf{MIDI Learn} functionality of \textsl{Yoshimi} gives it the
+   ability to redirect MIDI input from physical controllers to various
+   user-interface controls in \textsl{Yoshimi}, so that the user can basically
+   control \textsl{Yoshimi}'s knobs and sliders via MIDI equipment.
+
+   There's enough to say about this topic so that we describe it in a section
+   of its own.
+   See \sectionref{sec:midi_learn} for details.
 
 \subsubsection{Menu / Yoshimi / Exit}
 \label{subsubsec:menu_yoshimi_exit}

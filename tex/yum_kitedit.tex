@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-07
-% \update      2015-06-27
+% \update      2016-12-22
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -149,27 +149,73 @@
    \itempar{Mode}{kit!mode}
    Kit Mode.
 
+   We need a picture to show the full \textbf{Mode} menu.
+
+   \index{kit!mode off}
+   \index{kit!mode single}
+   \index{kit!mode multi}
+   \index{kit!mode crossfade}
    \begin{itemize}
-      \item \textbf{OFF} means no kit is enabled, so one only has the Add,
+      \item \textbf{Off} means no kit is enabled, so one only has the Add,
          Sub, and Pad sounds in the Instrument Edit window.
-      \item \textbf{MULTI} means all the kit items will sound together
+      \item \textbf{Multi} means all the kit items will sound together
          regardless of their note ranges.
-      \item \textbf{SINGLE} means only the lowest numbered item will sound
+      \item \textbf{Single} means only the lowest numbered item will sound
          in a given note range. There will be no overlap.
+      \item \textbf{Crossfade} is described in detail below.
    \end{itemize}
 
    For example:
    Item 0 has \textbf{Min.k} set to 0 and \textbf{Max.k} set to 60, and
    Item 1 has \textbf{Min.k} set to 40 and \textbf{Max.k} set to 127.
 
+   \index{kit!mode single}
    In \textbf{SINGLE mode}, only Item 0 will sound in the note range 0 to
    60, and Item 1 will sound in the range 61 to 127.
 
+   \index{kit!mode multi}
    In \textbf{MULTI} mode, only Item 0 will sound in the range 0 to 40, both
    items will sound from 41 to 60, and only Item 1 will sound from 61 to
    127.
 
    Values: \texttt{OFF*, MULTI, SINGLE}.
+
+   \index{kit!mode crossfade}
+   The part's kit edit \textbf{Mode} menu has an extra entry
+   called \textbf{Crossfade}.
+   When cross-fade is set, one gets Multi behaviour with overlapping key
+   ranges, but with a very smooth cross-fade between sequential \textsl{pairs}
+   of kit items. This follows the pattern 1+2, 3+4, etc. Each pair will not
+   affect any other kit items.
+
+   It doesn't matter which of the pair has the lower range, as long as there is
+   a range overlap. The code is semi-intelligent, and any that are not paired
+   will exhibit normal Multi behaviour. If one item in a pair is not enabled
+   then the other one will exhibit normal Multi behaviour and will not fade at
+   all.
+
+   An interesting effect is that if one of the pair is enabled, but muted or
+   has no engines enabled, then the other one still fades through the overlap
+   range, so one can get sounds fading out (or fading in) with increasing
+   pitch!
+
+   If one wants a fade to come in then go out again, one needs two sets of pairs,
+   with a hard non-overlapped point in the middle.
+
+   \begin{verbatim}
+   item 1 - min 0 max 60
+   item 2 - min 40 max 80 (fades up)
+   \end{verbatim}
+
+   \begin{verbatim}
+   item 3 - min 81 max 100 (fades down)
+   item 4 - min 90 max 127
+   \end{verbatim}
+
+   This feature is backward-compatible, in that older versions of
+   \textsl{Yoshimi} will
+   see it as an ordinary Multi -- it uses a new variable stored in the
+   instrument file that is simply ignored by earlier versions.
 
    \itempar{Drum mode}{kit!drum mode}
    Kit Drum Mode.
