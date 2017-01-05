@@ -4042,3 +4042,235 @@ the CLI being the main user.
 (snipped, incorporated into yum_midi_learn.tex)
 
 
+
+
+
+
+
+
+
+Date: Thu, 15 Dec 2016 21:32:57 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Countdown
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+
+On Thu, 15 Dec 2016 20:10:50 +0100
+Frank Neumann <beachnase@web.de> wrote:
+
+<various>
+
+Some good points here and exactly the sort of thing I need feedback on :)
+
+Midi > MIDI, easy fix will be done, same with (...)
+
+Hadn't noticed the missing bit in README.txt - The dangers of copy-paste :o
+
+'Incoming' - got it.
+
+Spinners not spinning - confession time :¬)
+
+This was a happy accident.  Every time you change these values the window is
+completely redrawn. This takes the mouse focus away from where you just
+clicked. That's a bit of a nuisance, but in the case of changing CCs, it's a
+benefit as not only is the line likely to move (leaving you spinning through
+multiple different lines), but when it does move the underlying code has to do a
+fair bit of work.
+
+The list is kept sorted so that when a CC comes in, it is checked as quickly
+and efficiently as possible for both CC and channel numbers. it also makes it
+easier for you to see the associated lines, especially if you have a CC
+performing multiple actions.
+
+I initially tried FLTK's number entry boxes, but they they are much worse, as
+they send a response on every digit change! However, I've found a way to get
+number entry - use the vertical spinners, but hide the arrows! Like this, they
+only send a response when you hit the 'return' key :)
+
+I'll give it a good workout before committing, but it's looking good so far.
+
+Toggling window open/close is not something that occurred to me. It won't go in
+this release but I'll give it further thought. Same with function keys.
+However, it could present an interesting problem. Currently the parent window
+doesn't know whether it's child is open or not so will simply re-open it on
+each click. 
+
+
+
+
+
+Date: Sun, 18 Dec 2016 22:44:44 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] The road ahead
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+
+Hmmm, sounds like a song title :)
+
+Now the dust has (hopefully) settled - V1.5.0 is already in debian sid - I
+thought it'd be nice to go over possible future work, although I'm not
+intending to actually do anything until the new year. Who knows, I might even
+get to compose some music :)
+
+There is a lot of tidying up needed.
+
+The setup routines for MIDI learn could be significantly improved, although the
+CC interpretation code is pretty slick I think.
+
+Most of the system controls not handled by the ring buffers, and none of the
+tuning is either. Also, some of the direct controls still don't update the GUI.
+
+Only when that is all in place and tested can we realistically progress with
+detaching the GUI.
+
+The CLI stuff needs a major overhaul so it also works this way, and very many
+more commands need to be added.
+
+LFOs Filters and Envelopes are all 'next note'. They need to be converted to
+immediate effect somehow.
+
+Reporting control limits and defaults to 'interested parties' needs to be
+dramatically expanded - boring work rather than difficult.
+
+This would then allow LV2 to meaningfully expose a lot of controls.
+
+I think that covers all the 'old' stuff, and that's enough in itself :(
+
+
+The elephant in the room is Note On, as I outlined in earlier discussion.
+
+If you build with 'ReportNoteOnTimes' enabled in ccmake, you'll see what I
+mean. Even with 'Simple Sound' if you play a bunch of notes you'll get a lot of   variation in times, and every so often you'll get one that at least three times
+greater than the others. The more complex the instrument, the worse this gets.
+Running 'MasterSynth High' occasionally gets to 5x.
+
+The NoteOn event is an insane labyrinth of memory allocation, initialisation
+and adjustment, yet there are only two variables - pitch and velocity. It all
+gets thrown way when the note releases!
+
+Per part, the memory allocation doesn't change at all, nor does quite a lot of
+the initialisation. The allocation for *different* parts is of course dependent
+on the instruments loaded.
+
+What I propose is that we create note pools per *active* part of however many
+notes are set by its note limit. These would be handled in three stages:
+
+Memory allocation.
+Initialisation.
+Application.
+
+At start-up or any time that a part changes (in a way that alters it's memory
+footprint) this pool is created and then initialised (any previous one being
+deleted first) for that part only. This would be done outside the RT thread
+with that part muted.
+
+When a note is called for, the first free one then has the velocity and pitch
+passed through the 'Application' code and the note is set as sounding.
+
+Every time a note is released, not only is it marked as available, but it is
+re-initialised, thereby spreading the CPU load between note on/off more evenly.
+
+AddSynth (as usual) would be the most difficult one to handle, and SubSynth
+the easiest.
+
+
+Now the thing is, I really can't manage this and all the tidy-up stuff at the
+same time, and it would be quite unreasonable to expect anyone else to take on
+half-completed code, so... is there anyone here who fancies the challenge of
+taking this on?
+
+
+
+
+
+
+Date: Mon, 2 Jan 2017 18:14:15 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] (Yawn) 2017 already? Oh well a bit more done.
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+
+Something I forgot to do when preparing for V1.5.0 was to to improve the
+layout of the filter inserts. This is now done and hopefully the filter
+stages and tracking controls are better placed and look more obvious now.
+
+Some external controllers use the pitch wheel control per channel for up to 16
+high resolution faders. Well in the latest master, MIDI learn can now handle
+that. The controls that can actually benefit from the better resolution are
+most of the volume and detune ones.
+
+Also, changing CC and channel numbers within a limited range that doesn't move
+the line no longer completely redraws the window. Changing any of the other
+controls also no longer does a complete redraw. It's still not perfect but it's
+progress.
+
+
+
+
+
+
+
+ate: Tue, 3 Jan 2017 20:26:14 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] YES!
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+
+Sorry about that little outburst but a tiny, tiny change in the MIDI learn code
+means that for the first time ever Yoshimi can respond to aftertouch :)
+
+It can't emulate the Mod. wheel, but that's only because there is no available
+GUI control... yet :)
+
+However, you can use it for any volume or pan, and can have a lot of fun with
+things like the Phaser effect as these are all 'instant'.
+
+MIDI learn sees this as controller 129 (we do a sneaky conversion). This has
+another nice result. If you don't have an aftertouch device currently to hand
+use any other controller, then in the editing window just change the controller
+number to 129. Save the learned set, and next time you *do* have such a device
+just load the file and you're away.
+
+
+
+
+
+
+
+Date: Wed, 4 Jan 2017 17:03:23 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] A little clarification
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+
+You might wonder why you'd want to MIDI learn modulation when there is already a
+dedicated CC for it - same for 'brightness'. Well, the answer is that there is
+currently no way to link these to aftertouch, and this is especially relevant
+for people using wind controllers.
+
+
+
+
+
+Date: Wed, 4 Jan 2017 19:25:12 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org, Jörn Eichler <joerneichler@gmx.net>
+Subject: [yoshimi] Tooltips
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+
+Hi Jörn,
+
+I thought you might like to know I've just had an email from another user
+saying that not only does he find the new tooltips a great help, but he also
+thinks they have helped to persuade his 70 year old dad to try Yoshimi :)
+
+Hope you had a good Christmas and New Year.
+
+Will.
+
+
+
+
+
+
+
