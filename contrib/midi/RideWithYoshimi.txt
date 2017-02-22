@@ -1,0 +1,48 @@
+Yoshimi Sample Song from Will
+Chris Ahlstrom
+2016-05-21 to 2016-05-21
+
+Explained by emails.  :-)
+
+Date: Sat, 23 Apr 2016 21:15:37 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: Yoshimi bits
+
+<snippage>
+
+At the end of my LAC workshop I demonstrated a song being played using 16 parts
+with multiple bank changes and program loads while playing, starting with a
+'bare' Yoshimi. Although I used Rosegarden for this, I also have a MIDI file
+that runs here with:
+
+aplaymidi -p yoshimi /data/Source/RideWithYoshimi.mid
+
+If you are interested I can send that file to you. Its only requirements are
+that root ID 9 points to the default bank set supplied with Yoshimi, and default
+MIDI settings are in place.
+
+The CLI 'read' command now has an alias 'get'. Personally, I don't like pairs
+of commands that are phonetically very similar (set/get) but this was requested
+and was very easy to implement. Which reminds me, I don't know if I ever
+mentions that there is another alias pair 'program' and 'instrument' are
+interchangable wherever either is used. This was added to deal with the
+conflict that MIDI talks about program changes, but Yoshimi thinks of
+instrument changes.
+
+
+Date: Sun, 24 Apr 2016 14:35:56 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: Yoshimi bits
+
+As well as doing program changes while running, this also overwrites some parts
+several times. Total playing time is just under 8 minutes. You should
+definitely have the Mixer panel showing, and if you have the 'Reports' window
+open you'll see the bank and program changes listed. Also if you have the
+instrument list window open you'll see it swap sets.
+
+We could certainly do with more tunes in the Yoshimi SC group ;)
+
+# vim: sw=4 ts=4 wm=4 et ft=sh
+

@@ -1,3 +1,8 @@
+2016-05-21:
+
+Went through most of this material, but there is much more to be
+mined for the manual! -- Chris
+
 NRPN:
 
    In the master version there are significant extensions to the NRPNs that

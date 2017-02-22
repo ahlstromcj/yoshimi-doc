@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-29
-% \update      2016-03-07
+% \update      2016-05-21
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -57,9 +57,15 @@
 
    \itempar{Key Shift}{top panel!key shift}
    Master Key Shift.
-   This is the key-shift (transpose) that applies to all parts.
+   This is the key-shift (transpose) that applies to all parts, in units of
+   semitones.
+   In recent versions of \textsl{Yoshimi}, this range has been extended.
+   Also note that the master key shift can be set via the user-interface, the
+   command-line, or (we suspect) by MIDI NRPN commands.
 
-   Values: \texttt{-12 to 12, 0*}
+%   Values: \texttt{-12 to 12, 0*}
+
+   Values: \texttt{-36 to 36, 0*}
 
    \itempar{Detune}{top panel!detune}
    Detune.  Provides a global fine detune functionality.
@@ -85,7 +91,8 @@
 \label{subsec:mixer_panel_window}
 \index{Panel}
 
-   The \textsl{Panel} button opens the mixer panel window.
+   The \textsl{Mixer Panel} button opens the mixer panel window, sometimes
+   called the "Mixer" window.
    The mixer panel window provides a global view of the most important
    adjustable parameters of all of the defined parts.
    There are two views, a 2x8 view and a 2x16 view.
@@ -93,7 +100,7 @@
    shows the 2x8 view.
 
    The Panel Window allows one to edit some important part parameters
-   (instrument/volume/panning/etc..) and it acts like a mixer. Also, this
+   (instrument/volume/panning/etc.) and it acts like a mixer. Also, this
    window shows VU-meters for each part.  To make a part the current part,
    left-click on its \textbf{Edit} button. To edit an instrument, right-click
    on the \textbf{Edit} button for that instrument.
@@ -127,10 +134,14 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=0.75]{top-panel/yoshimi-panel-2x8.jpg}
+%  \includegraphics[scale=0.75]{top-panel/yoshimi-panel-2x8.jpg}
+   \includegraphics[scale=0.75]{top-panel/yoshimi-panel-2x8-1_5.jpg}
    \caption[Yoshimi Part Panel]{Yoshimi Part Panel, 2x8 View}
    \label{fig:yoshimi_part_panel_2x8}
 \end{figure}
+
+   This dialog has been updated recently;  there is now a \textbf{Solo}
+   control, described below.
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
@@ -185,6 +196,54 @@
    Right mouse button: Instrument edit.
    This setup is a bit unintuitive, but the tooltips make it clear
    which click one might want to use.
+
+   \itempar{Solo}{parts!solo}
+   There are two commands that change the way
+   \textsl{Yoshimi} responds to incoming MIDI,
+   so that only one of a group of instruments will see note-on events, but all
+   of the group will see note-off ones. These commands
+   are both in the \textbf{Mixer Panel}.
+
+   Values: \texttt{Off*, Row, Col, Loop}
+
+   The \textbf{Solo} drop-down list enables the feature for either
+   \textbf{Row} or \textbf{Col}umn mode, and also makes the CC spin-box visible.
+
+   One uses this spin-box to set which incoming CC changes the part that gets
+   new notes.
+   The \textsl{value} this CC sends performs the actual change, instantly and
+   silently. Most importantly it leaves any existing notes sounding through a
+   note off release and the effects tail.
+
+   \index{solo!row}
+   In \textbf{Row} mode the whole of the first 16 parts are ostensibly
+   receiving on channel 1.  This mode is most useful if one wants to play live
+   through a piece with multiple instrument changes while playing. It works
+   best with a foot switch that internally stores a channel number and
+   increments/decrements it with every press, then sends it.
+
+   Although this uses all of the first 16 parts, one can set the number of
+   parts to 32, so that one can use the 17+ row for normal 1 through 16
+   channels. Also, if one has \textbf{vector control} set up, \textbf{Solo}
+   intelligently recognises this fact, and, for each vector it finds, it will
+   switch in/out the whole vector column appropriately.
+
+   \index{solo!column}
+   For running \textbf{Solo} in \textbf{Column} mode, one needs to have 32 or
+   (preferably) 64 parts set; with this setup, one can have up to 4 parts
+   switched per channel, and independently of each other. However, this works
+   more like vector control in that you have to switch in groups of 16. For
+   example, to control the channel 4 column one would send 4, 20, 36, 52 to
+   select the wanted part. This usage is more appropriate for post recording
+   MIDI automation.
+
+   For both of these modes, if one has a programmable MIDI controller, one can
+   set it up to activate a specific part, or the increment/decrement which part
+   in the set is active.
+
+   \index{solo!loop}
+   TODO.
+   Describe loop \textbf{Solo} mode!!!
 
    \itempar{Parts Layout}{parts!change layout}
    \index{parts!2x8}

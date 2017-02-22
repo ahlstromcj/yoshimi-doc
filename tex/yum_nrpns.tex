@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-26
-% \update      2016-03-07
+% \update      2016-05-22
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -104,7 +104,7 @@
    Additionally there is 96 for data increment and 97 for decrement.
 
    Data increment and decrement operation enables one to directly change the
-   data LSB by between 0 and 63. To change the MSB add 64 to cover the same
+   data LSB by between 0 and 63. To change the MSB, add 64 to cover the same
    range. Setting 0 might seem pointless, but it gives an alternative way
    to make an initial setting if one's sequencer doesn't play nice.
 
@@ -159,8 +159,9 @@
          \item 1 : data LSB = program number
          \item 2 : data LSB = controller number
          \item 3 : data LSB = controller value
-         \item 4 : data LSB = part's channel number (15 to 127 disconnects
-            the part from any channel)
+         \item 4 : data LSB = part's channel number (16 to 31 allows only
+            Note Off for this part, while numbers 32 or above disconnects
+            the part from all channel message)
          \item 5 : data LSB = part's audio destination, one of
                     1 = main L\&R;
                     2 = direct L\&R;
@@ -169,6 +170,7 @@
          \item 7 : data LSB = main volume (not yet implemented)
          \item 35 (0x23) : data LSB = controller LSB value (not yet implemented)
          \item 39 (0x27) : data LSB = main volume LSB (not yet implemented)
+         \item 64 (0x40) : data LSB = key shift value (64 = no shift)
          \item Other values are currently ignored.
       \end{itemize}
    \end{enumerate}
@@ -371,7 +373,7 @@
    Almost all dynamic setup (i.e. that doesn't require a restart) can now be
    done via NRPNs, so a MIDI file can manage \textsl{Yoshimi} starting from a
    pretty random state, and set up important features like Bank and Program
-   change behavior and the number of available parts.
+   Change behavior and the number of available parts.
 
    In parallel with this setup, there is a command to list all of these
    settings. One can also list the available bank roots, the banks in any
@@ -406,8 +408,10 @@
 
 \textbf{DATA MSB} & \textbf{DATA LSB} & \textbf{Setting} \\
 
-  2 & LSB key       & Set master key shift, 52\textless=key\textless=76 (-12 to + 12) \\
+  2 & LSB key       & Set master key shift, 52\textless=key\textless=76
+                      (-36 to +36) \\
   7 & LSB volume    & Set master Volume 'volume' \\
+  64-79 & LSB key   & Set channel-based (n-64) key shift \\
 100 & LSB \textgreater 63 & Send reports to Reports window, otherwise to stderr. \\
 108 & LSB x [13824] & List settings of all vectors. \\
 109 & LSB x [13843] & List the following: \\

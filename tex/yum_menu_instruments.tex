@@ -6,13 +6,13 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2016-02-27
-% \update      2016-03-01
+% \update      2016-10-15
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
-%     Provides the Menu / Instruments section of yoshimi-user-manual.tex,
-%     for the 1.3.8 and above versions of Yoshimi.  That menu entry has changed
-%     a lot.
+%     Provides the Menu / Instruments section of yoshimi-user-manual.tex, for
+%     the 1.3.8 and above versions of Yoshimi.  That menu entry has changed a
+%     lot.
 %
 %-------------------------------------------------------------------------------
 
@@ -25,14 +25,19 @@
    version numbers so it is possible to tell which version created the files,
    or whether they were created by \textsl{ZynAddSubFX}.
 
+   While the \textbf{Instrument Menu} allows for the management of parts, the
+   \textbf{Part Edit} dialog, described in
+   \sectionref{subsec:bottom_panel_instrument_edit},
+   is where one would start for the the creation of a new part/instrument.
+
    When opening an instrument bank one can now tell exactly which synth engines
    are used by each instrument. This is represented by three pale background
    colours:
 
    \begin{itemize}
-      \item \textcolor{red}{Red}: ADDsynth
-      \item \textcolor{blue}{Blue}: SUBsynth
-      \item \textcolor{green}{Green}: PADsynth
+      \item \textbf{\textcolor{red}{Red}}: ADDsynth
+      \item \textbf{\textcolor{blue}{Blue}}: SUBsynth
+      \item \textbf{\textcolor{green}{Green}}: PADsynth
    \end{itemize}
 
    These new colored engine backgrounds aren't just pretty. They give real
@@ -40,8 +45,14 @@
    loaded:
 
    \begin{itemize}
-      \item \textsl{Processor Load, low to high}: PAD, SUB, then ADD.
-      \item \textsl{Time to initialize, low to high}: SUB, ADD, PAD.
+      \item Processor Load, low to high:
+         \textbf{\textcolor{green}{PAD}},
+         \textbf{\textcolor{blue}{SUB}}, then
+         \textbf{\textcolor{red}{ADD}}.
+      \item Time to initialize, low to high:
+         \textbf{\textcolor{blue}{SUB}},
+         \textbf{\textcolor{red}{ADD}},
+         \textbf{\textcolor{green}{PAD}}.
    \end{itemize}
 
    If the instruments are kits they scanned to find out if 
@@ -56,7 +67,7 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=0.75]{1.3.8/yoshimi-menu-instrument.jpg}
+   \includegraphics[scale=0.9]{1.3.8/yoshimi-menu-instrument.jpg}
    \caption{Yoshimi Menu, Instrument}
    \label{fig:yoshimi_instrument_menu}
 \end{figure}
@@ -78,7 +89,9 @@
 \subsubsection{Menu / Instrument / Show Stored...}
 \label{subsubsec:menu_instrument_show}
 
-   Instruments are stored in banks. The banks (and current bank setting) are
+   Instruments are stored in banks
+   (see \sectionref{subsec:concepts_banks_and_roots}).
+   The banks (and current bank setting) are
    loaded/saved automatically by the program, so one doesn't have to worry
    about saving the banks before the program exits. On program start, the last
    used bank is loaded. A single bank can store up to 128 instruments.
@@ -91,7 +104,8 @@
    
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=0.75]{1.3.9/instruments_show_stored.png}
+%  \includegraphics[scale=0.75]{1.3.9/instruments_show_stored.png}
+   \includegraphics[scale=0.75]{1.4.1/Instrument.png}
    \caption[Show Stored Instruments]{Instruments Stored in Current Banks}
    \label{fig:instruments_show_stored}
 \end{figure}
@@ -431,7 +445,7 @@
 \begin{figure}[H]
    \centering 
    \includegraphics[scale=0.75]{menu/Instrument/favorites-dropdown.jpg}
-   \caption{Manage Favorites Dialog}
+   \caption{Manage Favorites Drop-Down List}
    \label{fig:open_instrument_favorites}
 \end{figure}
 
@@ -439,7 +453,7 @@
       \item \textbf{Add to Favorites}
       \item \textbf{Manage Favorites}
       \item \textbf{File Systems}
-      \item \textbf{(Additional favorite directories)}
+      \item \textbf{\textsl{(current favorite directories)}}
    \end{enumber}
 
    \index{Add to Favorites}
@@ -462,7 +476,7 @@
 \begin{figure}[H]
    \centering 
    \includegraphics[scale=0.75]{menu/Instrument/manage-favorites.png}
-   \caption{Favorites Drop-down}
+   \caption{Manage Favorites Dialog}
    \label{fig:manage_instrument_favorites}
 \end{figure}
 
@@ -533,10 +547,11 @@
 
    This dialog is very similar to the \textbf{Load External} dialog.
    Note the large question mark in the XML preview, indicating a compressed XML
-   file.
+   file.  If uncompressed, then an XML text preview will be shown.
 
-   Instrument saves save only what is essential to the instrument, and not the
-   part it may be sitting in.
+   The instrument save action saves only what is essential to the instrument,
+   and not the part it may be sitting in.  If there have been no changes in the
+   instrument, then a \textbf{Nothing to save!} dialog appears.
 
 \subsubsection{Menu / Instrument / Clear}
 \label{subsubsec:menu_instrument_clear}
@@ -553,6 +568,10 @@
    \caption{Clear Instrument Dialog}
    \label{fig:clear_instrument_dialog}
 \end{figure}
+
+   Funny, in recent versions of \textsl{Yoshimi}, the \textbf{Yes} and
+   \textbf{No} buttons have switched places.  \textbf{No} is now the default
+   action.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex

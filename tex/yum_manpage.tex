@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-22
-% \update      2015-10-25
+% \update      2016-05-22
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -87,9 +87,14 @@ Copyright 20014-2015 Will Godfrey and others.
 
   \optionpar{-k}{--autostart-jack}
       Auto-start the JACK server.
+      Note that this can cause some odd behavior on some systems, so be aware of
+      that possibility.
 
   \optionpar{-K}{--auto-connect}
-      Auto-connect JACK audio.
+      Auto-connect JACK audio.  Note that, if the auto-connect feature has been
+      specified in the user-interface, and saved to the \textsl{Yoshimi}
+      configuration file, there is then no way to disable this feature from the
+      command-line, at this time.
 
   \optionpar{-l}{--load=file}
       Load a \texttt{.xmz} file.
