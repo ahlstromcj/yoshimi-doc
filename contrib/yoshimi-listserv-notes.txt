@@ -4274,3 +4274,315 @@ Will.
 
 
 
+Date: Thu, 5 Jan 2017 17:06:36 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Hysterical Raisins
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+
+A bit of ancient history has bubbled to the surface.
+
+When you create a new bank in Yoshimi it inserts an empty file in the new bank
+called .bankdir
+
+The reason for this is that when scanning for banks (especially at startup) it
+looks for this file first. If it can't find it, then it has to go though the
+slower process of looking for at least one completely valid instrument file.
+
+These days, if you're running from SSDs it probably won't make a lot of
+difference but it will do on a conventional hard drive - especially if you have
+lots of banks.
+
+However, we've never made much fuss about that, and none of the default banks
+have this as they were mostly originally created with Zyn. The exceptions being
+my 'Collection' and 'Companion'. So if you want to get that little startup edge
+plonk a copy of this file into all your banks.
+
+Fast forward to modern times, and one if the main distros creates a warning
+for the packagers if it sees embedded dot files, and gets very unhappy if these
+are empty ones :(
+
+The obvious answer is to put something there, so I tried to think of a message
+that might actually be useful. What I came up with was that now when you create
+a new bank this file has a string with the Yoshi version number it was created
+with, and to add icing to the cake, every time you save an instrument file in a
+bank this file is created if it wasn't there, and in any case will have the
+current Yoshi version number.
+
+What this means is from now on it will always be possible to tell how recently
+a bank was changed - which may have implications if you try to run modern
+instruments on older Yoshi's or on Zyn. Also the distro will be happier because
+if the .bankdir file exists it won't be empty.
+
+
+For 'Collection' I've set the number to 0.0.0. Although I know most of the
+instruments were created with Yoshi, beyond that all I am sure of is that it
+was sometime before version 1.3.0. 'Drums' is set to 1.3.0. 'Companion' is set
+to 1.5.0 (there's a new one in there today)
+
+I'm wondering if I should also put 0.0.0 .bankdirs in all the other default
+banks.
+
+
+
+
+
+
+Date: Thu, 5 Jan 2017 23:40:38 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: A little clarification - done
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+
+On Wed, 4 Jan 2017 17:03:23 +0000
+Will Godfrey <willgodfrey@musically.me.uk> wrote:
+
+> You might wonder why you'd want to MIDI learn modulation when there is already a
+> dedicated CC for it - same for 'brightness'. Well, the answer is that there is  
+> currently no way to link these to aftertouch, and this is especially relevant
+> for people using wind controllers.
+
+
+Well that was rather easier than I expected :)
+
+There is a new very small window, accessed by right clicking on
+the 'controllers' button. This has just 4 controls that are MIDI-learnable
+Modulation
+Expression
+Filter Q
+Filter Cutoff (Brightness)
+
+I have one keyboard that sends aftertouch messages, and all of these work
+correctly with it. In fact an interesting effect was to have a sawtooth wave
+set up in AddSynth and the frequency LFO level turned up.
+I then learned Mod, Exp & Cutoff, all on aftertouch. I then reduced their
+ranges in the MIDI learn window and the effect was very interesting indeed :)
+
+Because of the way this is implemented these controls are also accessible
+via CLI direct access for both for read and write, and the knobs will respond to  
+this - as well as learned controls.
+
+At the moment, the GUI doesn't directly set them, nor will the controls move  
+when 'normal' MIDI messages come in, but these will eventually be taken care of.
+
+The info in dev_notes is also updated.
+
+Have fun!
+
+
+
+
+
+Date: Mon, 16 Jan 2017 22:10:14 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Numbers
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+When we started implimenting CLI access, the decision was made to use the
+internal counting system which, like almost everything else computery, starts at  
+zero. This threw up a few anomalies as most of the GUI numbering is from one,
+but was generally manageable.
+
+However, this is becoming much more of a problem with the progressive
+integration of both I/O streams to a common form where shared messages are
+starting to become quite confusing. This is most obvious with the Vector
+Control and MIDI learn windows.
+
+I did think about possibly detecting message destinations and adjusting
+accordingly but is not as easy as it seems, due to the fact that all the new
+ones are built strings, constructed step at a time. Also, some messages
+could go to both!
+
+I've spoken to one of our most prolific CLI users who, while prefering all zero
+count starts, appreciates the difficulties and can manage as long as things are
+consistent.
+
+If this comes about, banks and bank roots will continue to start from zero -
+this is what everyone expects from these as MIDI commands. Indeed, all MIDI
+CC numbers will do so. However, channel numbers, program change, part numbers,
+engines etc will start from one. Effects are an outlier. They seem to already
+start from one but that's because zero is the value for 'no effect' :)
+
+In any case this won't happen immediately as I still need to think through the
+full ramifications, and there are other priorities. However i think a decision
+needs to be made before the release of V 1.5.1 (proably late March or early
+April).
+
+LAC 2017 is mid May, so I'd certainly want everything sorted one way or the
+other by then - especially if I'm accepted for another workshop presentation.
+
+So, any thoughts or alternative suggestions more than welcome.
+
+
+
+
+
+
+Date: Wed, 1 Feb 2017 17:08:58 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] MIDI learn on steroids
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+Some synths send a number of high resolution controllers as NRPNs. Well,
+Yoshimi master can now MIDI learn these :)
+
+They are learned in exactly the same way as ordinary CCs, but instead of
+presenting a line that includes an editable CC field they show a non-editable
+hexadecimal number with a space between the bytes and followed by an 'h' e.g.
+0a 2c h.
+All the other fields are editable as before.
+
+Also, these lines default to having 'Block' set. This is so that the NRPN is
+not passed on to the rest of the code which would result in 'Go away' messages
+or obscure actions. However, like ordinary CCs they will stack and you can set
+several lines with the same NRPN performing mutiple actions and then unblock
+all but the last one.
+
+The way this fits in with the rest is that the incomming data values are
+combined as a 14 bit number, then (as a floating point number) divided by 128
+so the overall range is exactly the same as normal CCs.
+
+However, when decoded for various controls *all* CCs are converted by a second
+(hidden) set of limits to get the maximum possible resolution.
+
+So for:
+'Humanise' it's 0 to 50.
+Engine fine detunes it's -8192 to 8191.
+Engine coarse detunes it's -64 to 63.
+LFO frequency it's 0.0 to 1.0 (float).
+
+The *actual* resolution you get will be detirmined by the physical control
+source. Most seem to be 10 bit, but if generated within an automation source
+you'll get the full 14 bits.
+
+
+Now you'll have to excuse me - I've a new toy to play with :¬)
+
+
+
+
+
+
+Date: Thu, 2 Feb 2017 09:07:38 +0100
+From: Lorenzo Sutton <lorenzofsutton@gmail.com>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: MIDI learn on steroids - Portamento?
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101
+        Thunderbird/45.7.0
+
+Hi Will,
+
+On 01/02/2017 18:08, Will Godfrey wrote:
+> Some synths send a number of high resolution controllers as NRPNs. Well,
+> Yoshimi master can now MIDI learn these :)
+
+Lots of great stuff with MIDI learn seems to be going on!
+
+Admittedly I haven't had the chance to test it extensively, also due to the
+fact that I don't have particularly sophisticated controllers.
+
+One thing I was thinking of was: would it be possible to make the portamento
+parameters (also just the on/off but also the time) MIDI learn-able. I'm
+thinking of those cases where you want to have some passages with portamento
+but some others totally 'clean'. While the threshold may provide useful in
+many cases, It would be nice to e.g. map the portamento time to the mod wheel
+so that when it is at 0 you essentially have no portamento and when you have
+it a 127 (max) you have a max time, and all the combinations in between.
+
+I'm not sure if this is feasible and makes sense for anyone else.
+
+Also if it where (and I guess this is a more general question about MIDI
+learn) if for example midi learn is on CC1 (mod wheel) will yoshimi catch that
+and ignore the 'real' CC1?
+
+Lorenzo.
+
+
+
+
+
+
+Date: Thu, 2 Feb 2017 18:47:54 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: MIDI learn on steroids - Portamento?
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+
+Currently none of the 'Controllers' window is learnable, but that's because I
+didn't think anyone would want to change them dynamically!
+I would have to see what the limits are for the various controls and how best
+to go about it.
+
+No 'switches' are learnable yet because I haven't made up my mind how to
+resolve them. Do I assume that < 64 is 'off' and >= 64 is 'on'? I expect that's
+the case but am not sure if it's what everyone does. Also it means I have to
+define all the limits. I've been lucky so far. Most of the 'normal' controls
+are 0 to 127, so I've set that as default, and only properly implemented limit
+tests for the ones I know are different.
+
+> Also if it where (and I guess this is a more general question about MIDI
+> learn) if for example midi learn is on CC1 (mod wheel) will yoshimi
+> catch that and ignore the 'real' CC1?
+>
+> Lorenzo.
+
+Up to you :)
+The pickup point is after Vector Control and Solo but before everything else,
+so if you set 'Block' on your learned line, that specific CC and channel will
+not be passed on. If you set the channel to 'All' then the learned line will
+respond to all incoming channels, and will block them all for the rest of the
+system.
+
+I've covered this in bits here and there, but I guess there needs to be a
+writeup of the whole lot. There are some notes in doc/MIDI_Learn.txt
+
+Where is young Chris when you need him :p
+
+
+
+
+
+
+
+Date: Sat, 4 Feb 2017 11:53:02 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Another diversion
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+The recent extended access from MIDI-learn revealed that 'zipper' noise was
+quite bad when adjusting main volume, and not exactly ideal when adusting the
+part volume or pan controls.
+
+Main volume had no form of 'smoothing' - probably because Paul never invisaged
+it being changed dynamically, and the interpolation for part spread the change
+across one buffer. This meant that the smaller the buffer (better latency) the
+greater the step size, and the worse the noise.
+
+In the current master all of these have been changed to a time based
+interpolation. It seems the sweet spot is around 200mS for a zero to max
+change. At this rate, even on a pure sinewave I can hear no noise at all, and
+the ramp up time is just noticable when instantly going from zero to max (using
+CLI), but still much faster than anyone could physically move a control.
+
+The good:
+Silent Running  - great film that :)
+Finer control via NRPNs.
+Virtually infinite resolution for CLI access.
+
+The bad:
+A slight increase in 'idle' dsp load.
+A bit more dsp load when actually moving the controls.
+
+The ugly:
+Hey, there's nothing ugly about Yoshimi!
+
+
+
+
+
+
+
