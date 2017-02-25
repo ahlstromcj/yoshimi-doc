@@ -4338,7 +4338,7 @@ On Wed, 4 Jan 2017 17:03:23 +0000
 Will Godfrey <willgodfrey@musically.me.uk> wrote:
 
 > You might wonder why you'd want to MIDI learn modulation when there is already a
-> dedicated CC for it - same for 'brightness'. Well, the answer is that there is  
+> dedicated CC for it - same for 'brightness'. Well, the answer is that there is
 > currently no way to link these to aftertouch, and this is especially relevant
 > for people using wind controllers.
 
@@ -4359,10 +4359,10 @@ I then learned Mod, Exp & Cutoff, all on aftertouch. I then reduced their
 ranges in the MIDI learn window and the effect was very interesting indeed :)
 
 Because of the way this is implemented these controls are also accessible
-via CLI direct access for both for read and write, and the knobs will respond to  
+via CLI direct access for both for read and write, and the knobs will respond to
 this - as well as learned controls.
 
-At the moment, the GUI doesn't directly set them, nor will the controls move  
+At the moment, the GUI doesn't directly set them, nor will the controls move
 when 'normal' MIDI messages come in, but these will eventually be taken care of.
 
 The info in dev_notes is also updated.
@@ -4380,7 +4380,7 @@ Subject: [yoshimi] Numbers
 X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 When we started implimenting CLI access, the decision was made to use the
-internal counting system which, like almost everything else computery, starts at  
+internal counting system which, like almost everything else computery, starts at
 zero. This threw up a few anomalies as most of the GUI numbering is from one,
 but was generally manageable.
 
@@ -4730,5 +4730,211 @@ X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 Ummm.
 
 There is also state load and save from/to named file in there now :)
+
+
+
+
+
+Date: Fri, 10 Feb 2017 14:22:28 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] A bit of polish
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+If Yoshimi was rather 'busy' and you hit the panic button there were occasions
+where you might get one whole Xrun! Not anymore :)
+
+If you did a master reset while things are going on, that could produce a nasty
+click. Not now, it's a fast graceful fade down then change.
+
+If you loaded a new patchset while Yoshi was playing (why would anyone want to
+do that?) you could get a bit of a splutter. No more, again, it's a fast fade
+and change.
+
+I'll have a look to see if I can do the same for individual parts, but that's
+slightly more complicated because applying padsynth to individual kit items is
+also involved.
+
+
+There are a handful of fairly minor bugfixes and one really obscure crash fixed.
+
+These days Yoshi is aiming for smart *and* tough :)
+
+
+
+
+
+
+Date: Sat, 11 Feb 2017 20:33:59 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: A bit of polish - Postmortem
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+Yoshimi is positively awash with mutex locks, and there are three types that
+are used:
+
+lock
+lockmute
+unlock
+
+'lock' is pretty obvious, and 'lockmute' mutes the whole synthengine as well as
+performing the lock. There is no corresponding 'unlockmute'. Instead 'unlock'
+always unmutes the synth engine.
+
+This was the problem! I was performing a  lockmute before running the slow
+routines in low priority threads. Meanwhile something else (I don't know what)
+decided to lock a different area of the code, then unlocked it. The system was
+now unmuted so trying to read the same areas as I was trying to write.
+
+This action takes place at the *end* of a period, so large buffer + small
+patchset means there is a good chance it can still complete before the next
+period starts. Other way round and BOOM!
+
+There are a lot of obscure 'lockmutes' scattererd around too, so it's not a
+simple case of pairing them up. I've pushed a solution that seems to work for
+just a soft patchset loading. This is right down to 16 frames/period with a 32
+part patchset. I'll test it more before trying the other bits as well.
+While working through this, I'm also pushing much smaller commits so if it blows
+up again it will be easier to untangle.
+
+
+
+
+
+
+
+Date: Thu, 16 Feb 2017 23:12:21 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Numbers - in progress
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+I've spent much of the day on this (although I did have a nice walk in in the
+sunshine this morining) and now have all the messages using the GUI number
+bases... I think!
+
+This definitely makes MIDI-learn look more sensible, and also when sending
+reports to the console window you no longer see different ones to what is
+actually happing in the GUI!
+
+Actual CLI entries are still zero based, but I will deal with these soon. Like,
+when I can see straight again :o
+
+
+
+
+
+
+Date: Mon, 20 Feb 2017 22:20:19 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Numbers - done
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+Maybe :p
+
+I think I've got them all. It's amazing where some of the little beggers were
+hiding :o
+
+All *standard* CLI inputs, as well as the return message numbers should start
+from 1 with the following exceptions:
+
+Bank roots
+Banks
+CCs
+
+These follow standard MIDI practice (and do the same in the GUI).
+
+The unofficial direct access of course is all zero based (and will remain so)
+and is a useful cross-check.
+
+While doing this, I've tweaked the 'recent history' lists for lucky CLI users.
+You can now load MIDI-learned files, patchsets or vector files numerically
+from the associated list instead of having to type the names out.
+This uses @ {list number}.
+
+e.g.
+
+yoshimi> l h p {list history patchset}
+
+returns the last seen patchset list, then:
+
+yoshimi> lo p @4 {load patchset at location 4}
+
+loads the 4th item in the list.
+
+Oh, and loading vectors is now a 'soft' load like the others :)
+
+Ho hum, any ideas for a springtime bird for the next codename?
+
+
+
+
+
+
+
+Date: Tue, 21 Feb 2017 19:54:16 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Starting to think about V 1.5.1
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+[-- Attachment #1 --]
+[-- Type: text/plain, Encoding: 7bit, Size: 1.3K --]
+
+Hi Chris,
+
+Title says it all :)
+
+I'm not sure how much things have changed since I last heard from you (seems a
+long time ago), but attached is a batch of screens that I'v just re-grabbed.
+Some have minor alterations (positioning of envelope controls). Others, bigger
+ones - MIDI-learn main window now shows a mixure of learned controls, including
+two NRPNs - mixer panels show the patchset in the title.
+There is one new one - MIDIcontrols.
+
+I'm a bit puzzled about the two branches on your github project. I would think
+people would tend to go for 'master' but it in nearly a year out of date.
+Is there something I'm not understanding here?
+
+Hopefully, my workshop will be accepted for this yers LAC, in which case it
+will definitely be V1.5.1 the folks there will be seeing. During these
+presentation lots of people in the audience browse the related repositories, so
+it would be nice if we could get the manual as up to date as possible.
+
+With the CLI numbering sorted, I'll be concentrating on more low-level things,
+and am hoping there will be no more GUI changes, apart from the excelent work
+Jesper is doing with the tooltips (have you seen these lately?)
+
+
+
+
+
+
+Date: Thu, 23 Feb 2017 16:21:17 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] LFOs
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+Thanks to the work of one of Yoshimi's little helpers these now respond
+instantly to changes in the current master :)
+
+So here's a nice scenario that's possible for the first time.
+
+Select any AddSynth based 'wind' instrument.
+MIDI_learn the part's frequency LFO Freq. to an expression or volume controller
+(with 'block' on)
+
+MIDI_learn the same LFO depth to aftertouch.
+
+Set limits to taste.
+
+Dynamically play a wind controller :)
+
+
+
+
 
 
