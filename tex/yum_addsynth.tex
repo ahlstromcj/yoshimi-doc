@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-07
-% \update      2016-06-05
+% \update      2017-02-26
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -38,6 +38,14 @@
    Modulation includes ring modulation, phase modulation, and more.
    The modulators can have any shape.
    \cite{zyndoc}
+
+   There are two oscillators per voice: the \index{voice oscillator} voice
+   oscillator and the \index{modulation oscillator} modulation oscillator.
+   For the voice oscillator, one can use one defined for that voice (internal)
+   or link to the oscillator of any lower-numbered voice.  For the modulation
+   oscillator one can have a locally defined one (internal) or one can have
+   two alternatives: either the modulation oscillator from a lower-numbered
+   voice, or the oscillator from the lower-numbered voice itself.
 
    The sum of the voices are passed through filters and amplification to
    produce the final sound. This could lead one to think that ADDsynth is just
@@ -679,6 +687,8 @@
    per voice (extra change button), or \textbf{External}, which refers to
    the modulation oscillators one has already defined for the voices with a
    lower index.
+   The voice of lower index must be enabled in order to be used as a
+   modulator.
    This means one can make one modulation oscillator for voice 1, and reuse it
    in voices 2 and 3.  This is the same system used for the normal
    oscillators.

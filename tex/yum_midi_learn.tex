@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2016-12-22
-% \update      2016-12-22
+% \update      2017-02-26
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -23,16 +23,35 @@
 \subsection{MIDI Learn / Basics}
 \label{subsec:midi_learn_basics}
 
-   TODO
+   \index{MIDI Learn}
+   \index{midi!learn}
+   MIDI Learn is a method to remotely control many parameters in an audio/MIDI
+   application via a MIDI controller.  Each parameter that is "learned" can be
+   controlled, and the setting changes recorded.
+
+   In \textsl{Yoshimi}'s direct-access system, MIDI learn is available, to
+   the extent that it can handle controls that have a range of 0 to 127.
+
+   One can have multiple controls on the same CC.  But, although they all work,
+   only the last one updates the user inteface.  They are channel specific. So
+   if one is rich enough to have two MIDI keyboards, one can set them up to do
+   quite different jobs.
+   Some of the controls, like volume and pan, are immediate, but most are "next
+   note".
+
+   What you cannot do yet: One cannot unset a learned value. It's there for the
+   session, so get it right.  One cannot get them to block others on the same
+   CC/channel pair; that will come later.
 
 \subsection{MIDI Learn / User Interface}
 \label{subsec:midi_learn_user_interface}
 
-   \textsl{Yoshimi} ...
-
    To activate MIDI Learn, \texttt{Ctrl-right-click}
    on any user interface control.
-   A pop-up window will detail the control selected.
+   A pop-up window will detail the control selected, or indicate that the
+   control is not learnable.
+   A message will also appear in the console window or command-line interface
+   (if active).
 
 \begin{figure}[H]
    \centering 
@@ -40,6 +59,8 @@
    \caption{MIDI Learn Prompt Example 1}
    \label{fig:midi_learn_ex_1}
 \end{figure}
+
+   Here is another example:
 
 \begin{figure}[H]
    \centering 
@@ -49,7 +70,8 @@
 \end{figure}
 
    If a \texttt{Yoshimi} control is not MIDI-learnable, a message pop-up
-   will indicate that it is not learnable:
+   will indicate that it is not
+   learnable:
 
 \begin{figure}[H]
    \centering 
@@ -58,13 +80,56 @@
    \label{fig:midi_learn_unsupported}
 \end{figure}
 
+   If the \textsl{Yoshimi / MIDI Learn...} option is selected, and there are no
+   MIDI-learn entries available yet, then the following empty dialog appears:
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.50]{1.5.0/MidiLearn-empty.png}
+   \caption{Empty MIDI Learn Dialog}
+   \label{fig:empty_midi_learn_dialog}
+\end{figure}
+
    A message will also appear in the console window/CLI.
 
-   After turning on learn, the first physical controller moved, or CC message sent
-   will be locked in, and one will see the user-interface knob or slider move in
-   synchrony with the physical control. The pop-up window will disappear, and the
-   console message \texttt{Learned} appears,
-   with a line underneath with exactly what control was caught.
+   After turning on learn, the first physical controller moved, or CC message
+   sent, will be locked in, and one will see the user-interface knob or slider
+   move in synchrony with the physical control. The pop-up window will
+   disappear, and the console message \texttt{Learned} appears, with a line
+   underneath with exactly what control was caught.
+
+   There is also an activity "LED" between \textbf{Chan} and
+   \textbf{Min} indicators that flickers when the associated CC or channel
+   is received, provided the line is not muted, or blocked by an earlier one.
+
+   For a quick example, on our system we're running only ALSA.  So we
+   plug a \textsl{Korg NanoKEY2} mini-USB keyboard in.
+   We determine the existing ports using
+
+   \begin{verbatim}
+      $ aconnect -i -o
+   \end{verbatim}
+   
+   We see that we have (among other ports) client 24:0 is the nanoKEY2 MIDI
+   keyboard, and \textsl{Yoshimi} at client 129:0.
+   We connect it to \textsl{Yoshimi} using
+
+   \begin{verbatim}
+      $ aconnect 24:0 129:0
+   \end{verbatim}
+
+   We ctrl-right-click on \textsl{Yoshimi}'s \textbf{Velocity Sense} knob in
+   the main window, then we click on the \textbf{MOD} button on the
+   \textsl{nanoKEY2}, and we see an entry CC=1, Chan=1, Min=0, Max=127, and
+   control function name of "Part 1 Vel Sens".  Every time we press the
+   \textbf{MOD} button on the \textsl{nanoKEY2}, we see the "LED" appear, and
+   movement in \textsl{Yoshimi}'s \textbf{Velocity Sense} knob.
+
+   Once entries have been added, a fully-fleshed list of learned items is
+   presented if one then uses the \textsl{MIDI Learn} menu entry; one will
+   see a new window displaying the recently-learned controller. Along with a
+   number of settings, one sees text with precise details of this complete
+   action.
 
 \begin{figure}[H]
    \centering 
@@ -72,6 +137,13 @@
    \caption{MIDI Learn Dialog}
    \label{fig:midi_learn_dialog}
 \end{figure}
+
+   If the controller learned was an NRPN, this dialog will show a hexadecimal
+   number in the CC field, and this item will not be editable.
+
+   Adding or deleting rows in this dialog, or changing the CC or channel
+   number, will cause the rows to be sorted again.
+   There is currently a limit of 128 lines.
 
    The major items of this dialog are the editor settings available:
 
@@ -104,7 +176,7 @@
    \itempar{Mute}{MIDI Learn!Mute}
    Mute.
    Disables the MIDI Learn control specified by the corresponding line of
-   settings.
+   settings.  The control is still available, but will not be in effect.
 
    Values: \texttt{Checked, Unchecked}
 
@@ -114,6 +186,7 @@
    Provides the value of the controller that is learned.
    For example, a value of 7 indicates that the control value affects the main
    volume of \texttt{Yoshimi}.
+   Note that NRPNs are \textsl{not included}.
 
    Values: \texttt{1 to 127, 64*}
 
@@ -124,12 +197,13 @@
    from 1.  All the other numbers in that window start from 0.  This
    follows the conventions of the \textsl{Yoshimi} command-line.
 
-   Values: \texttt{1 to 16, 1*}
+   Values: \texttt{1* to 16, and All}
 
    \itempar{Min/Max}{MIDI Learn!Min/Max}
    Min and Max.
-   Provides the minimum and maximum incoming values.
-   If Min is greater than Max, this reverses the control direction.
+   Provides the minimum and maximum incoming values for the controller value.
+   If \textbf{Min} is greater than \textbf{Max}, this reverses the control
+   direction.
 
    Values: \texttt{1 to 127, 64*}
 
@@ -137,14 +211,24 @@
    Limit.
    Limiter versus compression.
    The Min/Max range can either be in the style of a limiter or a compression.
+   Set to \textbf{limit}, the \textbf{Min} and \textbf{Max} will be hard cutoffs.
+   For example, if \textbf{Min} is 20 and the incoming value is 5, then the
+   result is 20.
+   
+   Set to \textbf{compress}, the incoming value will be converted to fit
+   the range. For example, if \textbf{Min} is 32, \textbf{Max} is 95, then
+   an incoming value of 0 will be 32, an incoming value of 2
+   will be 33, etc.
 
-   Values: \texttt{Checked, Unchecked}
+   Values: \texttt{Checked (Limit), Unchecked (Compress)}
 
    \itempar{Block}{MIDI Learn!Block}
    Block.
    Specifies blocking of all later actions on the same CC/channel pair
    (including system ones).
-   NEEDS CLARIFICATION.
+   If a loaded set refers to \textsl{Yoshimi} controls that are disabled, or
+   don't exist, such controls will be ignored.
+   The \textsl{block} feature will be active unless the line is muted.
 
    Values: \texttt{Checked, Unchecked}
 
@@ -162,11 +246,13 @@
    Adding or deleting lines, or changing either CC or channel numbers, will
    re-order the lines.
 
-   The same CC/controller can be used to change several different
-   internal \texttt{Yoshimi} controls.
-   For example, one can have a part's volume being changed while another part is
-   having an effect level changed.
-   (HOW IS THIS EFFECTED?)
+   The same CC/controller can be used to change several different internal
+   \texttt{Yoshimi} controls.  For example, one can have a part's volume being
+   changed while another part is having an effect level changed.
+   This is done by selecting one part, and making a setting with the desired
+   controller, and then selecting another part, and making a setting with the
+   same controller.  
+   This single controller will then affect both parts at once.
 
    \itempar{Load}{MIDI Learn!Load}
    Load.
@@ -179,8 +265,9 @@
    \itempar{Save}{MIDI Learn!Save}
    Save.
    A complete list of MIDI Learn values
-   can be saved by clicking on the Save button; one then sees
+   will be saved by clicking on the Save button; one then sees
    the usual file-chooser window.
+   The file is saved where desired, with the extension \texttt{.xly},
 
    \itempar{Recent}{MIDI Learn!Recent}
    Recent.
@@ -189,7 +276,8 @@
 
    \itempar{Clear}{MIDI Learn!Clear}
    Clear.
-   This button clears the entire learned list.
+   This button clears the entire learned list from the
+   \textbf{MIDI Learn} dialog.
 
 % To come:
 % Paging of the display to avoid scrolling through a massive list.

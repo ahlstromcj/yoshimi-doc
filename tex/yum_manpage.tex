@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-22
-% \update      2016-05-22
+% \update      2017-02-25
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -113,7 +113,9 @@ Copyright 20014-2015 Will Godfrey and others.
 
   \optionpar{-S}{--state[=file]}
       Load saved state from file, where the file defaults to
-      \texttt{\$HOME/.config/yoshimi/yoshimi.state}
+      \texttt{\$HOME/.config/yoshimi/yoshimi.state}, which is loaded
+      automatically if present and not overridden by the \texttt{--state}
+      option.
 
   \optionpar{-u}{--jack-session-file[=file]}
       Load the named JACK session file.

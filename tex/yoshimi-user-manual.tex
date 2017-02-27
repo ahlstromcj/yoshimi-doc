@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-04-20
-% \update      2017-02-22
+% \update      2017-02-25
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -80,8 +80,8 @@
    the Open Document Format version of it, showed a lot of screen shots and a
    detailed survey of the settings and parameters of \textsl{ZynAddSubFX}.  It
    inspired us to be even more thorough in describing \textsl{Yoshimi}, and
-   then Will got involved to provide even more details.  Please note that this
-   document also owes a lot to the descriptions and diagrams provided by the
+   then Will got involved to provide even more details.  Note that this
+   document owes a lot to the descriptions and diagrams provided by the
    original \textsl{ZynAddSubFX} author, Paul Nasca, as well as some others
    whose names we don't know.
 
@@ -92,7 +92,7 @@
    the software synthesizer derived from the great
    \textsl{ZynAddSubFx} \cite{zynaddsubfx} software
    synthesizer.  Because of their common origin, much of this document also
-   applies to \textsl{ZynAddSubFx} (versions less than 3)
+   applies to \textsl{ZynAddSubFx}, for versions less than 3.0,
    and depends upon some \textsl{ZynAddSubFX} documentation and diagrams.
 
    \textsl{Yoshimi} is an algorithmic MIDI software synthesizer for Linux.
@@ -105,10 +105,10 @@
    Originally based on the 2.4.0 version of \textsl{ZynAddSubFX} (Copyright
    2002-2009 Nasca Octavian Paul), development of \textsl{Yoshimi} has
    continued for quite a while now in its own direction. These include
-   major optimizations for audio and MIDI performance, and more recently
+   major optimizations for audio and MIDI performance,
    progressive development of user-level and command-line access to all
-   controls. At the same time, refinement continues, both visually and within
-   the code.
+   controls, MIDI learn, and vector control.
+   At the same time, refinement continues, both visually and within the code.
 
    What are the advantages of
    \textsl{Yoshimi} versus \textsl{ZynAddSubFX}?
@@ -123,8 +123,7 @@
    There may be internal differences of importance to
    a developer, as well as features that aren't so easy to discover.  So,
    really, it is not clear that there is really a big advantage to one over the
-   other... use them both and make your own decision!  Or just continue using
-   both of them!
+   other... use them both!
 
    That being said, please note that the references to \textsl{ZynAddSubFx}
    in this manual apply primarly to versions of \textsl{ZynAddSubFx}
@@ -208,7 +207,7 @@
    now decide how many one wants to have available using the spin-box alongside
    the channel number.  One can have 16, 32 or 64 parts.  By default, all the
    upper parts are mapped to the same MIDI channel numbers as the lowest ones,
-   but have independent voice and patch set values. They can not normally
+   but have independent voice and patch set values. They cannot normally
    receive independent note or control messages. However, vector control will
    intelligently work with however many are set, as will all the NRPN direct
    part controls.
@@ -230,15 +229,15 @@
 
    \textsl{Yoshimi} will then immediately scan this path for new banks, but
    won't make the root (or any of its banks) current. The final directory
-   doesn't in fact have to be 'banks', but, traditionally, we have always done
-   this.  Also, when running from the command line there is now access to many
+   doesn't in fact have to be 'banks', but that is tradition.
+   When running from the command line there is now access to many
    of the system and root, bank, and other settings.
 
-	\textsl{Yoshimi} now splits out roots and banks from the main configuration
-	file, and also creates a new history file. The separation means that the
+	\textsl{Yoshimi} splits out roots and banks from the main configuration
+	file, and creates a new "history" file. The separation means that the
 	different functions can be implemented, saved, and loaded at the most
    appropriate time. These files have
-   "yoshimi" as the doctype, as they are in no way relevant to
+   "yoshimi" as the doc-type, as they are in no way relevant to
    \textsl{ZynAddSubFX}.
    See the new Banks sections.
 
@@ -272,15 +271,17 @@
    For all of this there is extensive error checking and feedback, which can be
    rendered aurally using text-to-speech software.
 
-   There is one partially-sighted persion we very occasionally hear from. There
+   There is one partially-sighted persion we occasionally hear from. There
    is also a totally blind person (working with a Braille reader/writer) who has
    offered a lot of suggestions, and very much likes vector control.  So
-   accessibility is an important feature of \textsl{Yoshimi}.
-
+   accessibility \index{accessibility} is an important feature of
+   \textsl{Yoshimi}.
+   
 \subsubsection{Command Line}
 \label{subsubsec:new_features_command_line}
 
-   There is greater control of one's working environment. One can have just the
+   \textsl{Yoshimi} offers great control of one's working environment.
+   One can have just the
    GUI, just a CLI or both, and these settings can be saved. If one tries to
    disable both, one will get a polite warning and will be left with just the
    CLI.
@@ -295,41 +296,52 @@
    \textsl{Yoshimi}'s parser is case-insensitive for commands (but not for
    filenames), and accepts the shortest unambiguous abbreviation. However it is
    quite pedantic, and expects spelling to be correct regardless of length.
-   Apart from the 'back' commands, it is word-based so spaces are significant.
+   Apart from the 'back' commands, it is word-based, so spaces are significant.
 
    Some examples:
 
-   "\texttt{s p 4 pr 6}" (set part 4 program 6):
+   "\texttt{s p 4 pr 6}" ("set part 4 program 6"):
    This command sets part 4 to the instrument with ID 6 from the current bank.
    It also then leaves one at the part context level and pointed to part 4.
    Additionally, it will activate that part if it was off (and the
    configuration setting is checked). In most cases the words 'program' and
    'instrument' are interchangable.
 
-   "\texttt{s ef 1 ty rev}":
+   "\texttt{s ef 1 ty rev}" ("set effect 1 type reverb"):
    This command moves one up to part effects context level and sets that part's
    effect number 1 to effect type 'reverb'.
 
-   "\texttt{s pre 2}":
+   "\texttt{s pre 2}" ("set preset 2"):
    This command sets preset number 2 (we use numbers here as most preset names
    repeat the effect type).
 
-   "\texttt{..s 6 v 80}":
+   "\texttt{..s 6 v 80}" ("up one level, set part 6 volume 80"):
    This command drops one back up to part level, switches one to part 6, and
    sets its volume to 80 (but doesn't actually enable it).
 
-   "\texttt{/s ve cc 93}":
+   "\texttt{/s ve cc 93}" ("to top level, set vector control cc 93"):
    This command drops back up to the top level, and sets vector control for
    channel 0, X axis to respond to CC 93 leaving one in the vector context.
 
    Whenever intermediate values are omitted, the default or last-used value
-   will be assumed, and all counting starts from zero.  The CLI prompt always
+   will be assumed, and all counting starts from zero.
+	All \textsl{standard} CLI inputs, as well as the return message numbers
+	should start from 1 with the following exceptions:
+
+	\begin{itemize}
+		\item Bank roots
+   	\item Banks
+   	\item CCs
+	\end{itemize}
+
+These follow standard MIDI practice (and do the same in the GUI).
+   
+   The CLI prompt always
    shows what level one is on, and the help lists are also partly
-   context-sensitive, so one doesn't see a lot of irrelevent clutter.  There is
-   more, and a lot more to come!  While doing all this work, we've also ensured
-   that \textsl{Yoshimi} instrument patches are still fully compatible with
-   \textsl{ZynAddSubFX} patches, and have now ported across the new refinements
-   with thanks.
+   context-sensitive, so one doesn't see a lot of irrelevent clutter.
+   We've also ensured that \textsl{Yoshimi} instrument patches are still fully
+   compatible with \textsl{ZynAddSubFX} patches, and have now ported across the
+   new refinements with thanks.
 
 \subsubsection{Audio Support}
 \label{subsubsec:new_features_audio_support}

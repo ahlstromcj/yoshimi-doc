@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2016-03-07
-% \update      2016-06-05
+% \update      2017-02-26
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -55,7 +55,8 @@
       \item \texttt{.instance(n)}
          \index{.instance(n)}
          Contains the current root/bank, MIDI settings, and preferred engines.
-         (This file does not yet exist, but is a planned future feature.)
+         \textsl{Yoshimi} now has instance data separated from the main
+         configuration file, with the name \texttt{yoshimi-(n).instance}.
       \item \texttt{.state}
          \index{.state}
          Contains the state information needed to
@@ -73,6 +74,11 @@
       \item \texttt{.xiz}
          \index{.xiz}
          An Instrument file.
+      \item \texttt{.xly}
+         \index{.xly}
+         \index{MIDI Learn!.xly}
+         A MIDI-Learn file for saving the MIDI-Learn settings in force at the
+         moment this file is saved.
       \item \texttt{.xmz}
          \index{.xmz}
          A full \textsl{Yoshimi} configuration; everything.
@@ -151,6 +157,8 @@
    all settings within that setup, such as microtonal tunings, all
    patches, system effects, insertion effects, etc.
    See \sectionref{paragraph:menu_yoshimi_settings_main_settings}.
+   Patch sets will save all other instruments regardless of whether they are
+   activated or not.
 
    In many cases saving everything in a part is not what is desired.
    Saving a patch later on in an editing session is one such example.
@@ -213,12 +221,19 @@
    Sometimes one will see the extension \texttt{.state} used in the
    \texttt{\$HOME/.config/yoshimi} directory.  These files contain a lot more
    information, that needed to duplicate a \textsl{Yoshimi} session that was
-   saved.  Seems to be a superset of an \texttt{.xmz} file, saving everything.
-   This is a facility that is peculiar to \textsl{Yoshimi}.
+   saved.  This file is a superset of an \texttt{.xmz} file, saving everything.
    The state file is accessed from the \textbf{State} menu item in the main
    window.
    Its default name is
    \texttt{\textasciitilde/.config/yoshimi/yoshimi.state}.
+   This file is auto-loaded when \textsl{Yoshimi} starts, if it is present. If
+   not present, then the normal settings are in place.
+   The advantage of this is that once
+   can set up a complete patch set of instruments one commonly uses, with
+   all their settings, including audio destination.  Save it to the default
+   state and it will be loaded, along with the system settings, every time one
+   starts \textsl{Yoshimi}.  To revert, simply uncheck the setting (and change
+   any other needed) and save settings.
 
    The \textsl{Yoshimi} 'state' file consists of the entire setup, from basic
    configuration settings to currently-loaded instrument sets.
@@ -227,7 +242,7 @@
    configuration information because they are expecting to be able to change
    the state in \textsl{running} instances.
 
-   If and when \textsl{Yoshimi} gets around to splitting the 'instance' data
+   When \textsl{Yoshimi} gets around to splitting the 'instance' data
    from the main configuration, then a lot of this session issue can be resolved
    buy saving only the 'true' configuration locally, and to the state save.
    However, the 'instance' data will include things like ALSA/JACK settings.
@@ -242,8 +257,16 @@
    \index{file!instrument}
    An Instrument.  These files can have two formats, compressed and
    uncompressed.
-   With the \textbf{Instrument} menu, one can just save the file to any
+   Uncompressed is set by
+   \textbf{Yoshimi / Settings / Main Settings / XML Compression Level} set to
+   0, and compressed is set by a value greater tha 0.
+
+   With the \textbf{Instrument} menu, one can save the file to any
    given location with the \texttt{.xiz} extension.
+
+   Default instruments are never saved, not even in patch sets and states, but
+   if the parts are activated, that fact \textsl{is} saved; it's a part
+   feature, not an instrument feature.
 
 \subsection{Configuration Files / Scale}
 \label{subsec:configuration_scale}
@@ -369,9 +392,27 @@
    instruments are changed, and again on a normal exit to catch the current
    root and bank (which don't otherwise trigger a save).  This allows the
    last-used root and bank IDs to always match what that instance thinks is
-   there.
-   Note that one needs to have write permissions to add instruments to the
-   bank.
+   there.  Note that one needs to have write permissions to add instruments to
+   the bank.  When one saves an instrument to a bank slot, it is given a
+   filename with the internal name as the leaf-name.  When one saves an
+   instrument to an external file, one is  first offered the internal name
+   and the current directory, but one can change it if desired.
+
+   By default \textsl{Yoshimi} does not assign a bank ID 0 (zero) in any root.
+   This feature has an interesting benefit. Several sequencers insist on
+   setting a bank with every program change, and if one doesn't give a bank,
+   they will try to set 0. However, \textsl{Yoshimi} is smart enough to ignore
+   any invalid bank ID and remain with the existing bank number.
+
+   Note: loading an instrument doesn't update the \textbf{Kit} window, although
+   the kit is all there and sounds correctly.  Switch between parts back and
+   forth, and it magically reappears. If that instrument is part of a patch set
+   everything is hunky-dory.  This issue will be fixed at some point.
+
+   On first time start up, \textsl{Yoshimi}
+   will look for \textsl{ZynAddSubFX} banks as well, in the usual locations.
+   It will not look for a \textsl{ZynAddSubFX} configuration file, as these
+   are no longer relevant to \textsl{Yoshimi}.
    
    Banks are more thoroughly described in
    \sectionref{subsec:concepts_banks_and_roots}.
@@ -426,6 +467,16 @@
 
    In general, the contents are structured a lot like the
    user-interface elements that are used to set them.
+
+\subsection{Configuration Files / MIDI Learn}
+\label{subsec:configuration_file_midi_learn}
+
+   \index{.xly}
+   The MIDI-Learn data is stored in files with an extension of 
+   \texttt{.xly} ("XML Learn Yoshimi").
+   If compression is turned off
+   (\textbf{Yoshimi / Settings / Main Settings / XML Compression Level} set to
+   0), this file is an XML/SGML file with a MIDILEARN section in it.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex

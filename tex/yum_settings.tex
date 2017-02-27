@@ -442,7 +442,40 @@
    \index{filter!formant}
    is a more complex kind of filter that acts a lot
    like the human vocal tract, allowing for sounds that
-   are a bit like human voices.
+   are a bit like human voices.  Here is Paul Nasca himself (mildly edited)
+   on how to undertand the format filter:
+
+   \begin{quotation}
+      The easiest way to understand the formants/vowel is to imagine at first
+      that each vowel contains a single formant.
+
+      In that case, each vowel consists, in sequence, of a band-pass filter
+      (with Q/frequency/amplitude). These vowels are arranged on a line
+      (sequence), and the space between them is controlled by the \textbf{Strch}
+      (lower right). This sequence could be used to create some simple words
+      and the current position in that line is controlled by the filter
+      LFO/Envelope.
+
+      So, for example, you can define two vowels like: "vowel\_1" which has the
+      formant at 1000Hz and the "vowel\_2" with the formant at 2000Hz and
+      define a simple raising envelope. You should get a sliding bandpass
+      filter between these (eg: you get a bandpass filter which rises in the
+      frequency from 1000Hz to 2000Hz).
+
+      If you define a second formant (you set \textbf{Num formants}) to 2, each
+      vowel will get another formant.  The sound is processed using the first
+      formant (like in the above example) and is added to the sound processed
+      using the second formant. The formants are bandpass filters, in parallel,
+      as you've guessed.
+
+      I preferred for a vowel to have several formants (than the other way around)
+      because I've arranged the data according to the high level of abstraction
+      (that the vowel contains several formants) instead of how it was
+      implemented.
+   \end{quotation}
+
+   See \sectionref{paragraph:formant_parameters} for the format parameters,
+   which may have slightly different names from what Paul used.
 
    A \textbf{state variable} ("StVarF") filter
    \index{filter!state variable}

@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2016-12-22
+% \update      2017-02-26
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -482,15 +482,12 @@
    The following settings exist in the \textsl{Main settings} tab:
 
    \begin{enumber}
-      \item \textbf{AddSynth Oscillator Size} (was "OscilSize")
-      \item \textbf{Internal Buffer Size} (new)
+      \item \textbf{AddSynth Oscillator Size}
+      \item \textbf{Internal Buffer Size}
       \item \textbf{PADsynth interpolation}
       \item \textbf{Virtual Keyboard Layout}
       \item \textbf{XML compression level}
       \item \textbf{Send reports to}
-      \item \textbf{Hide Non Fatal Errors} (moved to 'Switches')
-      \item \textbf{Log XML headers} (moved to 'Switches')
-      \item \textbf{Show Splash} (new) (moved to 'Switches')
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
@@ -1521,10 +1518,12 @@
 
    \textsl{Yoshimi} "state" will include the system settings, as well as all
    patches. Some of these settings (such as Oscillator Size) can only be
-   realised on a reload if loading via the command line at startup. However,
-   the ones that can't be dynamically changed will be set, and if the
-   configuration is then saved, will be set on the next load -- this is not
-   ideal. We are working on it, but don't expect improvements soon!
+   realised on a reload if loading via the command line at startup.
+
+%  However,
+%  the ones that can't be dynamically changed will be set, and if the
+%  configuration is then saved, will be set on the next load -- this is not
+%  ideal. We are working on it, but don't expect improvements soon!
 
    \begin{enumber}
       \item \textbf{Load}

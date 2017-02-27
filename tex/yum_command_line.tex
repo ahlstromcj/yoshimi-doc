@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-09-06
-% \update      2016-06-05
+% \update      2017-02-26
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -17,7 +17,7 @@
 \section{The Yoshimi Command Line Interface}
 \label{sec:command_line}
 
-   Applies through version:  1.3.9 May 2016
+   Applies through version: 1.5.0 Marc 2017.
 
    \textsl{Yoshimi} provides a "no GUI" or "command-line" mode of operation
    where some aspects of the application can be controlled via textual commands.
@@ -264,12 +264,12 @@ Ones that we're pretty sure will be added are:
    \end{itemize}
 
    Apart from these basic commands, the command line works on a system of
-   context levels, and normally only the commands relevant to that "level" will
-   be available.
+   context levels, and normally only the commands relevant to that "level"
+   will be available.
 
-   The brief descriptions in the following table can be obtained
-   using the "help" command in the \textsl{Yoshimi} command-line mode.
-   More detailed descriptions are given in the section following the table.
+   The brief descriptions in the following table can be obtained using the
+   "help" command in the \textsl{Yoshimi} command-line mode.  More detailed
+   descriptions are given in the section following the table.
 
    The \texttt{paths} command no longer exists. Instead we have \texttt{add}
    and \texttt{remove}, so instead of \texttt{path add} it's \texttt{add root}.
@@ -525,7 +525,8 @@ Ones that we're pretty sure will be added are:
    \itempar{list history [s]}{cmd!list history}
       Displays the recently-used files, including patchsets, scales, and
       states.  If no parameter is given, then this command lists all three
-      files in sequence.
+      files in sequence.  The shortest version of this command is
+      \texttt{l h p} (for patchsets).
 
    \itempar{list instruments [n]}{cmd!list instruents}
       List all instruments and IDs in bank \textsl{n}
@@ -557,6 +558,8 @@ Ones that we're pretty sure will be added are:
 
    \itempar{load patchset [s]}{cmd!load instrument}
       Load a complete patch set from a named file, \textsl{s}.
+      A variation on this command is \texttt{load patchset @4}, which
+      loads the patchset at location 4, the 4th item in the list.
 
    \itempar{load vector [s]}{cmd!load vector}
       Loads an vector setup from the named file.
@@ -743,6 +746,105 @@ Ones that we're pretty sure will be added are:
 
    \itempar{exit}{cmd!exit}
          Tidy up and close Yoshimi down.
+
+\subsection{Direct Access}
+\label{subsec:command_line_direct_access}
+
+   \index{Direct Access}
+   \index{cmd!direct access}
+   \textsl{Direct Access} is a very low-level access method for most of the
+   controls in \textsl{Yoshimi} control.
+   It is a test feature accessible only from the command line.
+   There are virtually no error checks on direct-access, so one can easily
+   crash Yoshimi with out of range values.
+   It mostly updates the GUI too.
+   Refer to \texttt{Yoshimi Control Numbers.ods}
+   for control numbers and actions and \texttt{GUI\_Interpretations.txt} for
+   further explanations.
+   Also, see \texttt{Effect\_Inserts} for the actual effect controllers and
+   \texttt{Envelope\_Inserts} for the enveople controller ranges.
+
+   Sections currently in place and tested:
+
+   \begin{itemize}
+      \item Top level controls
+      \item MIDI-learn, used for all operations
+      \item Main part controls, now used by GUI for writes
+      \item Controllers Window
+      \item MIDI CCs window, used for all except incoming real MIDI
+      \item Kit edit window
+      \item AddSynth Editor
+      \item AddSynth Voice Editor
+      \item Subsynth Editor
+      \item Padsynth Editor
+      \item Oscillator
+      \item Resonance
+      \item Effects
+      \item LFOs
+      \item Filters
+      \item Envelopes
+   \end{itemize}
+
+   The remaining section display as if written to, but don't
+   change anything.
+
+%  This matches the results from using the middle mouse button in the GUI
+%  (assuming it was enabled at build time). Commands that are purely within
+%  the GUI, e.g window changes are recognised but not acted on.
+%
+%  An alternative way to find out the correct command sequence is to click on
+%  a control with any button *except* the middle one. Trailing '255's can be
+%  ommitted if there are no following parameters set.
+%
+%  In some situations par2 is used as a miscMSG ID for passing text values
+%  between threads but synchronised via the RT thread.
+
+   The format of the direct-access command is:
+
+   \begin{verbatim}
+      direct [value] [type] [control] [part] [kit] [engine] [insert] [parameter] [par2]
+   \end{verbatim}
+
+   \begin{itemize}
+      \item \texttt{direct} is the actual command name, must be typed in full.
+      \item \texttt{value} is the value that will be set, may be negative and
+         floating point (looks for the devimal point).
+      \item \texttt{type} is a subset of the command type: 0 for read and 64 for
+         write. Sending 1 will just echo the bytes you sent.  Sending 3 will
+         turn it into a MIDI-learn command.
+      \item \texttt{control} is the number representing the control being
+         changed or queried.
+      \item \texttt{part} is the number of the part being changed.
+   \end{itemize}
+
+   All the parameters above are mandatory. The following must also be entered in
+   sequence when needed.
+
+   \begin{itemize}
+      \item \texttt{kit} is a part's kit number (if enabled otherwise zero).
+         also used for effects.
+      \item \texttt{engine} is the synth engine being adjusted.
+      \item \texttt{insert} is harmonics, LFOs, filters etc.
+      \item \texttt{parameter} is subtype associated with some inserts.
+      \item \texttt{par2} is an offset for some parameters.
+   \end{itemize}
+
+   A variation of the above is when you set flt\_max as the \texttt{value}.
+   This value will
+   be interpeted as requesting the min, max, and default values for the
+   command and using the same 'CommandBlock' struct will return them as short
+   integers in the form:
+
+   \begin{verbatim}
+      limits.min
+      limits.max
+      limits.def
+   \end{verbatim}
+
+   Only a few of these are independently declared so far, all the rest have the
+   values: min = 0, max = 127, and def = 0.  \textbf{def} will return the
+   default * 100. This is so that fractional values can be resolved. 0.5 comes
+   up quite often. No default values are very large, but may be negative.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex
