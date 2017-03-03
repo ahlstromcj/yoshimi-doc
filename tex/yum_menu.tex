@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2017-02-26
+% \update      2017-02-28
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -117,6 +117,23 @@
    Instances no longer fight for access to JACK/ALSA audio; they will simply
    try to find another route to a soundcard. Failing to find one,
    they will revert to null audio, but will nonetheless start cleanly.
+
+   The list of hidden "base parameters" that are set only by the main instance is
+   now:
+
+   \begin{itemize}
+      \item ALSA Sample Rate
+      \item Internal Buffer Size
+      \item AddSynth Oscillator Size
+      \item XML Compression Level
+      \item Show Splash Screen
+      \item Enable GUI
+      \item Enable CLI
+   \end{itemize}
+
+   In the other instances these are now hidden instead of deactivated.  This
+   behavior makes sense, as they are \textsl{never} enabled. This makes things
+   more consistent and \textsl{Yoshimi}'s configuration directory a bit tidier.
 
 \subsubsection{Menu / Yoshimi / New instance with id...}
 \label{subsubsec:menu_yoshimi_new_instance_with_id}
@@ -729,10 +746,14 @@
    version created the file.
 
    \itempar{Enable GUI}{Switches!Enable GUI}
-   MORE TO COME.
+   If checked, the user-interface is enabled.  This setting is normally what you
+   want.  If one unchecks it, it warns that disabling the GUI
+   can only be reversed from the command line.
 
    \itempar{Enable CLI}{Switches!Enable CLI}
-   MORE TO COME.
+   If checked, the command-line interface is enabled.
+   Note that one cannot disable both the user-interface and the command line
+   at the same time.
 
 \paragraph{Menu / Yoshimi / Settings / Jack}
 \label{paragraph:menu_yoshimi_settings_jack}
@@ -1494,7 +1515,7 @@
 \subsubsection{Menu / Scales / Recent Scales...}
 \label{subsec:menu_scales_recent_scales}
 
-   Once some scale file has been loaded (or imported and saved), then it
+   Once a scale file has been loaded (or imported and saved), then it
    becomes available in this list, for more convenient access to it.
 
 \begin{figure}[H]

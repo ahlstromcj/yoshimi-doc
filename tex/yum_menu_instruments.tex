@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2016-02-27
-% \update      2016-10-15
+% \update      2017-03-03
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -406,6 +406,16 @@
    These "xiz" files are normally found in a \texttt{banks} directory, but this
    operation allows access to instruments that are not located in a bank.
 
+   \begin{itemize}
+      \item If you load an external instrument file with no internal name,
+         you'll be shown the file leafname.
+      \item If you load an external instrument file with the name
+         \textsl{Simple Sound}, you'll be given the name \textsl{No Title}.
+      \item If you load a patch set that has unnamed instruments, or ones with
+         the name \textsl{Simple Sound}, those will be given the name \textsl{No
+         Title}.
+   \end{itemize}
+
    This dialog has a number of user-interface elements to discuss:
 
    \begin{enumber}
@@ -573,6 +583,46 @@
    Funny, in recent versions of \textsl{Yoshimi}, the \textbf{Yes} and
    \textbf{No} buttons have switched places.  \textbf{No} is now the default
    action.
+
+\subsubsection{Menu / Instrument / Random Notes}
+\label{subsubsec:menu_instrument_random_notes}
+
+   There are still a lot of \textsl{Yoshimi/ZynAddSUbFx}
+   instruments out there with no internal title. This fact applies to both
+   external files and instruments in banks, and means once loaded one does not
+   know what instruments one has. So now, if the internal name is missing,
+   \textsl{Yoshimi} will use the leafname of the file.
+
+   The part and mixer name fields will always show the (possibly adjusted)
+   internal name regardless of the external filename, which could easily have been
+   changed at some time.
+   The instrument banks will always show the file leafname, so it more-or-less
+   matches external files (what one sees from a file display).
+   As soon as one edits an instrument, if it was \textsl{Simple Sound},
+   the name will be changed to \textsl{No Title}.
+   \textsl{Yoshimi} generally won't let one rename an instrument to
+   \textsl{Simple Sound}.
+
+   Default instruments are never saved, not even in patch sets and states, but if
+   the parts are activated that fact *is* saved - it's a part feature not an
+   instrument one.
+
+   Patch sets will save all other instruments regardless of whether they are
+   activated or not.
+
+   When you save an instrument to a bank slot, it will be given a filename with the
+   internal name as the leafname.
+
+   When you save an instrument to an external file, you will first be offered the
+   internal name and in the current directory, but you can change it if you wish.
+
+   This also reveals that loading an instrument doesn't update the kit window,
+   although the kit is all there and sounds correctly. Do the usual dance of
+   switching part back and forth and it magically reappears. However, if that
+   instrument is part of a patch set everything is hunky-dory.
+
+   While testing all these features, Will created a new multi-part instrument
+   kit.  It's now in the \textsl{Companion} set and is called \textsl{Pad Kit}.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex

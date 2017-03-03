@@ -1,6 +1,6 @@
 Yoshimi User Manual Document
 Chris Ahlstrom
-2015-04-20 to 2016-03-06
+2015-04-20 to 2017-03-02
 
 This project provides two things:
 
@@ -32,5 +32,16 @@ build succeeds.
 Lastly, although this manual is much larger than any other I have seen,
 there is still much to be done to make it complete, readable, and easy to
 use.  Any help or suggestions are quite welcome!
+
+Build dependencies:
+
+To build the document, you need to install packages like the following:
+
+    -   latexmk.  Provides a way to make the PDF document with a "make"
+        command.
+    -   texlive-latex-base.
+    -   pdflatex.
+
+This list might be incomplete, still working on it.
 
 # vim: sw=4 ts=4 wm=4 et ft=sh

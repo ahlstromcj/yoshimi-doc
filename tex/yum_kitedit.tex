@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-07
-% \update      2016-12-22
+% \update      2017-03-02
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -224,6 +224,29 @@
 
    \itempar{Close Window}{kit!close}
    Close.
+
+   \index{kit!direct access}
+   \index{direct access!kit}
+   One kit mode is set, some direct-access to the kit mode is available.
+ 	We'll set it to 'multi'.
+
+   \begin{verbatim}
+      direct 1 64 58 0
+   \end{verbatim}
+
+   Kit item 0 is always enabled, although one can mute it and enable/disable the
+   individual engines.  To be clear, though, we'll enable kit item 3 and work
+   with that; add 32 to the kit number to get 35:
+
+   \begin{verbatim}
+      direct 1 64 8 0 35
+      direct 56 64 16 0 35             // set its minimum note
+      direct 1 64 8 0 35 1             // enable the subsynth engine
+      direct 40 64 0 0 3 1             // change its volume
+   \end{verbatim}
+
+   Note one adds 32 only for the kit item commands, not for the engine internal
+   commands.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex
