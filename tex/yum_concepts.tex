@@ -6,11 +6,11 @@
 % \library     Documents
 % \author      Chris Ahlstrom and Will Godfrey
 % \date        2015-06-15
-% \update      2016-12-17
+% \update      2017-03-05
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
-%     Provides the concepts.
+%     Provides some of the concepts useful to understanding Yoshimi.
 %
 %-------------------------------------------------------------------------------
 
@@ -166,21 +166,19 @@
 \subsection{Concepts / ALSA Versus JACK}
 \label{subsec:concepts_alsa_versus_jack}
 
-   Some discusson from the \textsl{Yoshimi} wiki.  Here for eventual
-   clarification.
+   Some discusson from the \textsl{Yoshimi} wiki, for clarification.
 
    A bit of a question mark was raised over ALSA MIDI support. A lot of
    people seem to be giving this up and relying on bridges like
    \textsl{a2jmidi} for legacy software and hardware inputs. JACK MIDI is
    already synchronous so should be jitter-free whereas ALSA MIDI runs on a
-   'best effort' basis. Added to which JACK is available for OS X and
-   Windows so concentrating on this could make a possible port to other
-   platforms more attractive -- not to me I (Will J. Godfrey) hasten to add!
+   "best effort" basis. Added to which JACK is available for OSX and
+   Windows, so concentrating on this could make a possible port to other
+   platforms more attractive.
 
-   \textsl{Seq24} (a nice, if old, sequencer) uses ALSA MIDI. To connect
+   \textsl{Seq24} (a nice old sequencer) uses ALSA MIDI. To connect
    applications that exclusively support JACK MIDI, \textsl{a2jmidid} will
-   do the translation.  (Jack v. 1 has this integrated in recent versions,
-   apparently).
+   do the translation.
 
    ALSA is more complex as it handles the sound card's format, commonly
    16-bit integers, 24 bit integers (low byte ignored), and short integers.
@@ -199,13 +197,13 @@
    buffer size, and \textsl{Yoshimi} will set it's internal buffer size to
    match.  On most machines this always seems to be 1024.
 
-   \textsl{Yoshimi} is now verified as being able to use the 192000 Hz sample
+   \textsl{Yoshimi} can use a 192000 Hz sample
    rate in both ALSA and JACK... if one has a suitable soundcard!
 
    If \textsl{Yoshimi} is configured for JACK, but cannot find the JACK server,
    it will try for ALSA. If neither JACK nor ALSA works, it will run with a null
-   client so one can at least try to work out what went wrong.
-   This status is reported to the command line or Reports window.
+   client so one can try to work out what went wrong.
+   This status is reported to the command-line or Reports window.
 
    For JACK, if one has started \textsl{Yoshimi}
    from the command-line with the \texttt{-K} option, it will
@@ -563,6 +561,42 @@
    Envelopes are thoroughly described in
    \sectionref{subsec:envelope_settings}.
 
+\subsubsection{Concepts / Basic Synthesis / Formants}
+\label{subsubsec:concepts_basics_formants}
+
+   Formants are basically peaks in the spectrum of the human voice cause by
+   the various resonant features of the human vocal tract.  They can be used in
+   \textsl{Yoshimi} to produce human-like sounds.
+   Paul Nasca describes formants:
+
+   \begin{quotation}
+      The easiest way to understand the formants/vowel is to imagine at first
+      that each vowel contains a single formant.
+
+      In that case, each vowel consist of a sequence of bandpass filters (with
+      Q/frequency/amplitude). These vowels are arranged on a line (sequence) and
+      the space between them is controlled by the \textbf{Strch} (lower right).
+      This sequence could be used to create some simple words and the current
+      position in that line is controlled by the filter LFO/Envelope.
+
+      So for example, you can define two vowels like: "vowel\_1" which has the
+      formant at 1000Hz and the "vowel\_2" with the formant at 2000Hz and define
+      a simple raising envelope. You should get a sliding bandpass filter between
+      these (eg: you get a bandpass filter which rises in the frequency from
+      1000Hz to 2000Hz).
+
+      If you define a second formant (you set \textbf{Num formants}) to 2, each
+      vowel will get another formant.  The sound is processed using the first
+      formant (like in the above example) and is added to the sound processed
+      using the second formant. The formants are bandpass filter in parallel as
+      you've guessed.
+
+      I preferred for a vowel to have several formants (than the other way
+      around) because I've arranged the data according to the high level of
+      abstraction (that the vowel contains several formants) instead of how it
+      was implemented.
+   \end{quotation}
+
 \subsection{Concepts / MIDI}
 \label{subsec:concepts_midi}
 
@@ -577,6 +611,12 @@
    \textsl{MIDI Learn} is
    the ability to assign DAW, sequencer, and plugin controls to physical
    knobs and faders on a MIDI control surface.
+
+   MIDI Learn is available on many software synthesizers, including
+   \textsl{Yoshimi}, allowing one to control virtually any on-screen parameter
+   with a MIDI controller. It is a very flexible system that can adapt to a
+   particular MIDI device.  It also allows changes made to any learned
+   parameter to be recorded by the host application.
 
 \subsubsection{Concepts / MIDI / Messages}
 \label{subsubsec:concepts_midi_messages}

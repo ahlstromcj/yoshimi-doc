@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-09-06
-% \update      2017-02-28
+% \update      2017-03-04
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -531,6 +531,10 @@ Ones that we're pretty sure will be added are:
    \itempar{list instruments [n]}{cmd!list instruents}
       List all instruments and IDs in bank \textsl{n}
       or the current bank/root.
+      Listing instruments will identify the current one with an asterisk, and
+      shows the current bank and root one is listing from, and adds a suffix to
+      the entry with \textbf{A}, \textbf{S}, or \textbf{P}
+      depending on the combination of AddSynth, SubSynth, and PadSynth.
 
    \itempar{list parts}{cmd!list parts}
       Lists the number of parts available and parts with instruments
@@ -545,6 +549,7 @@ Ones that we're pretty sure will be added are:
 
    \itempar{list roots}{cmd!list roots}
       Displays all defined root paths.
+      Listing roots will identify the current ones with an asterisk.
 
    \itempar{list setup}{cmd!list setup}
       Displays the current dynamic system settings.
@@ -765,7 +770,7 @@ Ones that we're pretty sure will be added are:
    Also, see \texttt{Effect\_Inserts.txt} for the actual effect controllers and
    \texttt{Envelope\_Inserts} for the enveople controller ranges.
 
-   Sections currently in place and tested:
+   Sections currently supported by direct access:
 
    \begin{itemize}
       \item Top level controls
@@ -776,8 +781,8 @@ Ones that we're pretty sure will be added are:
       \item Kit edit window
       \item AddSynth Editor
       \item AddSynth Voice Editor
-      \item Subsynth Editor
-      \item Padsynth Editor
+      \item SubSynth Editor
+      \item PadSynth Editor
       \item Oscillator
       \item Resonance
       \item Effects

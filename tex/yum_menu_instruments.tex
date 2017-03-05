@@ -113,7 +113,7 @@
    As \figureref{fig:instruments_show_stored},
    shows, this is a very complex dialog with a lot of options.
    The figure shows a default setup, with the first bank of instruments,
-   \textbf{5. Arpeggios}, listed.
+   \textbf{32. Cormi\_Sound}, listed.
    If one drops this list down (shown later), one also observes that the banks
    are numbered in increments of 5, to make it easier for a user to insert his
    or her own bank(s) of instruments.
@@ -177,7 +177,6 @@
       \item \textbf{DELETE}
       \item \textbf{SWAP}
       \item \textbf{Show synth engines}
-         (was \textbf{Show PADsynth status})
       \item \textbf{Close}
    \end{enumber}
 
@@ -227,6 +226,10 @@
    If one installed \textsl{Yoshimi} by building the source code, then
    this directory will be
    \texttt{/usr/local/share/yoshimi/banks}.
+   Also note that the directory that holds the banks is shown in the title bar.
+   Another good source of banks, if one installs \textsl{ZynAddSubFX},
+   is \texttt{/usr/share/zynaddsubfx/banks}, which has some new banks that look
+   very interesting.
 
    The first thing to note is that there are only 128 \textsl{Yoshimi} banks
    supported in a \textsl{Yoshimi} root.
@@ -252,7 +255,7 @@
    loads it into the Banks dialog.
 
    \index{anti-auto-clutter}
-   Right- or left-clicking on a bank in the drop-down list
+   Right-clicking or left-clicking on a bank in the drop-down list
    causes the instrument list of the previous bank to be replaced by the
    instrument list of the newly-selected bank.
 
@@ -584,42 +587,37 @@
    \textbf{No} buttons have switched places.  \textbf{No} is now the default
    action.
 
-\subsubsection{Menu / Instrument / Random Notes}
-\label{subsubsec:menu_instrument_random_notes}
+\subsubsection{Menu / Instrument / Misc Notes}
+\label{subsubsec:menu_instrument_misc_notes}
 
-   There are still a lot of \textsl{Yoshimi/ZynAddSUbFx}
-   instruments out there with no internal title. This fact applies to both
-   external files and instruments in banks, and means once loaded one does not
-   know what instruments one has. So now, if the internal name is missing,
-   \textsl{Yoshimi} will use the leafname of the file.
+   There are still many \textsl{Yoshimi/ZynAddSUbFx} instruments out there with
+   no internal title. This fact applies to both external files and instruments
+   in banks, and means that, once loaded, one does not know what instruments
+   one has. So now, if the internal name is missing, \textsl{Yoshimi} will use
+   the leaf-name of the file.  When one saves an instrument to a bank slot, it
+   will get a filename with the internal name as the leaf-name.  When one saves
+   an instrument to an external file, you will first be offered the internal
+   name and in the current directory, but you can change it if you wish.
 
    The part and mixer name fields will always show the (possibly adjusted)
-   internal name regardless of the external filename, which could easily have been
-   changed at some time.
-   The instrument banks will always show the file leafname, so it more-or-less
-   matches external files (what one sees from a file display).
-   As soon as one edits an instrument, if it was \textsl{Simple Sound},
-   the name will be changed to \textsl{No Title}.
-   \textsl{Yoshimi} generally won't let one rename an instrument to
-   \textsl{Simple Sound}.
+   internal name regardless of the external filename, which could easily have
+   been changed at some time.  The instrument banks will always show the file's
+   leaf-name, so it more-or-less matches external files (what one sees from a
+   file display).  As soon as one edits an instrument, if it was \textsl{Simple
+   Sound}, the name will be changed to \textsl{No Title}.  \textsl{Yoshimi}
+   generally won't let one rename an instrument to \textsl{Simple Sound}.
 
-   Default instruments are never saved, not even in patch sets and states, but if
-   the parts are activated that fact *is* saved - it's a part feature not an
-   instrument one.
+   Default instruments are never saved, not even in patch sets and states, but
+   if the parts are activated, that fact \textsl{is} saved; it's a part
+   feature, not an instrument one.
 
    Patch sets will save all other instruments regardless of whether they are
    activated or not.
 
-   When you save an instrument to a bank slot, it will be given a filename with the
-   internal name as the leafname.
-
-   When you save an instrument to an external file, you will first be offered the
-   internal name and in the current directory, but you can change it if you wish.
-
    This also reveals that loading an instrument doesn't update the kit window,
    although the kit is all there and sounds correctly. Do the usual dance of
    switching part back and forth and it magically reappears. However, if that
-   instrument is part of a patch set everything is hunky-dory.
+   instrument is part of a patch set, everything is hunky-dory.
 
    While testing all these features, Will created a new multi-part instrument
    kit.  It's now in the \textsl{Companion} set and is called \textsl{Pad Kit}.

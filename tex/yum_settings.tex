@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-15
-% \update      2016-10-15
+% \update      2017-03-04
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -48,7 +48,6 @@
 \subsubsection{Mouse Features}
 \label{subsubsec:stock_settings_mouse_features}
 
-   \textbf{New:}
    \index{new!right-click}
    \index{mouse!right-click}
    In the AddSynth dialogs and other dialogs with nested windows,
@@ -58,6 +57,16 @@
    feature is especially useful when going up and down the AddSynth stack, and
    avoids having a screenful of intermediate windows.
    Note that this feature does \textsl{not} apply to the main window.
+
+\subsubsection{Tooltips}
+\label{subsubsec:stock_settings_tooltips}
+
+   Like many applications, \textsl{Yoshimi} provides tooltips to help the user
+   navigate the many controls and data fields in the user-interface.  Many of
+   the controls now have active tooltips that show the current value of the
+   control when one hovers over it, so one no longer must click the control to
+   see its value (and accidentally change it at the same time). Also, many have
+   real-world data units, such as \textbf{dB}, \textbf{Hz}, \textbf{ms} etc.
 
 \subsubsection{Title Bars}
 \label{subsubsec:stock_settings_elements_title_bars}
@@ -140,7 +149,7 @@
    \end{itemize}
 
    The fact that \textsl{every} control can now be homed with a right mouse
-   click means there is no longer a need for the few 'Zero' and 'Reset' buttons
+   click means there is no longer a need for the few "Zero" and "Reset" buttons
    dotted around, so they are all gone as of version 1.4.0.
 
 \subsubsection{Sliders}
@@ -152,7 +161,7 @@
    \index{sliders!right-click}
    For both horizontal and vertical sliders, if one holds down the right mouse
    button, the thumb will go to it's default position.  The same thing will
-   happen if you click on the track with the right button.  If on top of the
+   happen if one clicks on the track with the right button.  If on top of the
    thumb of the control, it won't move unless one moves the mouse slightly
    while right-clicking.
 
@@ -244,7 +253,7 @@
    sufficient processing power, it would be theoretically possible to set up
    all 16 channels with quite independent vector behavior!
    Also see
-   \sectionref{subsubsec:menu_yoshimi_vectors}, for a discusson of the vector
+   \sectionref{subsec:vector_dialogs}, for a discusson of the vector
    configuration dialog, and \sectionref{sec:vector}, for an in-depth
    discussion of how vectors work.
 
@@ -378,9 +387,9 @@
    For the interested, functions having poles means that we are given a
    quotient of polynomials. The denominator has degree 1 or 2, depending on the
    filter having one or two poles. In the file \texttt{DSP/AnalogFilter.cpp},
-   \texttt{AnalogFilter :: computefiltercoefs()} sets the coefficients
+   \texttt{computefiltercoefs()} sets the coefficients
    (depending on the filter type), and
-   \texttt{AnalogFilter :: singlefilterout()} shows
+   \texttt{singlefilterout()} shows
    the whole polynomial (in a formula where no quotient is needed).
 
 \subsubsection{Filter Parameters User Interface}
@@ -388,14 +397,16 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{subpanels/Filter_Params.png}
+%  \includegraphics[scale=1.0]{subpanels/Filter_Params.png}
+   \includegraphics[scale=1.0]{1.5.0/Filter_Params.png}
    \caption[Filter Parameters Sub-panel]{Stock Filter Parameters Sub-Panel}
    \label{fig:filter_parameters_subpanel} 
 \end{figure}
 
    The user interface for filter parameters is a small stock sub-panel that
    is re-used in a number of larger dialog boxes, as shown in the figure
-   above.  Let's describe each item of this sub-panel.
+   above.  This panel has changed slightly with version 1.5.0.
+   Let's describe each item of this sub-panel.
 
 %  \figureref{fig:filter_parameters_subpanel}.
 
@@ -415,6 +426,7 @@
       \item \textbf{freq.tr}
       \item \textbf{gain}
       \item \textbf{St}
+      \item \textbf{0/+}
       \item \textbf{C}
       \item \textbf{P}
    \end{enumber}
@@ -442,37 +454,8 @@
    \index{filter!formant}
    is a more complex kind of filter that acts a lot
    like the human vocal tract, allowing for sounds that
-   are a bit like human voices.  Here is Paul Nasca himself (mildly edited)
-   on how to undertand the format filter:
-
-   \begin{quotation}
-      The easiest way to understand the formants/vowel is to imagine at first
-      that each vowel contains a single formant.
-
-      In that case, each vowel consists, in sequence, of a band-pass filter
-      (with Q/frequency/amplitude). These vowels are arranged on a line
-      (sequence), and the space between them is controlled by the \textbf{Strch}
-      (lower right). This sequence could be used to create some simple words
-      and the current position in that line is controlled by the filter
-      LFO/Envelope.
-
-      So, for example, you can define two vowels like: "vowel\_1" which has the
-      formant at 1000Hz and the "vowel\_2" with the formant at 2000Hz and
-      define a simple raising envelope. You should get a sliding bandpass
-      filter between these (eg: you get a bandpass filter which rises in the
-      frequency from 1000Hz to 2000Hz).
-
-      If you define a second formant (you set \textbf{Num formants}) to 2, each
-      vowel will get another formant.  The sound is processed using the first
-      formant (like in the above example) and is added to the sound processed
-      using the second formant. The formants are bandpass filters, in parallel,
-      as you've guessed.
-
-      I preferred for a vowel to have several formants (than the other way around)
-      because I've arranged the data according to the high level of abstraction
-      (that the vowel contains several formants) instead of how it was
-      implemented.
-   \end{quotation}
+   are a bit like human voices.  For a description of how formants work,
+   see \sectionref{subsubsec:concepts_basics_formants}.
 
    See \sectionref{paragraph:formant_parameters} for the format parameters,
    which may have slightly different names from what Paul used.
@@ -572,9 +555,21 @@
    \label{fig:filter_stage_dropdown} 
 \end{figure}
 
+   \itempar{0/+}{filter!0/+}
+   Filter tracking upgrade.
+   \index{filter!tracking}
+   Filter tracking could never quite reach 100\%,
+   so if using it to get "notes" from noise it would go slightly out-of-tune.
+   \textsl{Yoshimi} now has this new check box that changes its range so that
+   instead of -100\% : 98.4\% it will track 0\% : 198.4\%.
+
+   This new feature is one of the first that actually change instrument files.
+   However, the format is backwards compatible; older versions of
+   \textsl{Yoshimi} simply ignore them.
+
    Also present in this sub-panel are the usual \textbf{C}opy
    and \textbf{P}aste buttons that call up a copy-parameters or
-   paste-parameters dialog.
+   a paste-parameters dialog.
 
 \subsection{Stock Resonance Settings}
 \label{subsec:stock_resonance_settings}
@@ -597,7 +592,7 @@
    the amplitude, dB). 
 
    Paul Nasca has a video on YouTube that includes a demonstration of how
-   the resonance dialog works and affects the sound, if you care to look for
+   the resonance dialog works and affects the sound, if one cares to look for
    it.
 
 \begin{figure}[H]
@@ -1256,13 +1251,13 @@ These parameters are:
 
    Values: \texttt{Off, On*}
 
-   \itempar{C}
+   \itempar{C}{copy}
    Copy to Clipboard/Preset.
 
-   \itempar{P}
+   \itempar{P}{paste}
    Paste from Clipboard/Preset.
 
-   \itempar{E}
+   \itempar{E}{edit}
    Amplitude Envelope Editing Window.
    Described in the next section.
 
@@ -1555,6 +1550,9 @@ These parameters are:
    \label{fig:filter_env}
 \end{figure}
 
+   The newest version of this panel spells out "Filter Envelope".
+   The items in this panel are:
+
    \begin{enumber}
       \item \textbf{A.value}
       \item \textbf{A.dt}
@@ -1684,7 +1682,7 @@ These parameters are:
    Center Frequency.
    This slider control changes the center frequency of the graph, in relative
    units.  Not quite sure how to describe this one, so play with the slider and
-   see (and hear) for yourself.
+   see (and hear) for oneself.
 
    Values:  \texttt{0.09 to 10.00, 1.0*}
 

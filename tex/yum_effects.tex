@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-05
-% \update      2016-06-05
+% \update      2017-03-04
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -952,13 +952,13 @@ This section details the value supported by the Chorus effect.
    The exact formula in the source code for the dampening effect is as
    follows:
 
-   \[Y(t):=(1-d)⋅X(t)+d⋅Y(t-1)\]
+   \[Y(t)=(1-d)⋅X(t)+d⋅Y(t-1)\]
 
    where t be the time index for the input buffer, d be the dampening amount
    and X,Y be the input, respective the output of the dampening. This solves
    to
 
-   \[Y(z)=Z(Y(t))=(1-d)⋅X(z)+d⋅Y(z)⋅z-1 ⇔ H(z):=Y(z)X(z)=1-d1-d⋅z-1\]
+   \[Y(z)=Z(Y(t))=(1-d)⋅X(z)+d⋅Y(z)⋅z-1 ⇔ H(z)=Y(z)X(z)=1-d1-d⋅z-1\]
 
    which is used in \(Y(z)=H(z)⋅X(z)\). So H(z) is indeed a filter, and by
    looking at it, we see that it is an LP1. Note that infinite looping for
@@ -1131,8 +1131,8 @@ Bands:
 \subsubsection{Effects / Phaser / Circuit}
 \label{subsubsec:effects_edit_phaser_circuit}
 
-   No circuit diagram, just a picture of the results of the phaser effect in
-   the form of a spectrogram.
+   We have no circuit diagram, just a picture of the results of the phaser effect
+   in the form of a spectrogram.
 
 \begin{figure}[H]
    \centering 

@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2016-12-22
-% \update      2017-02-26
+% \update      2017-03-04
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -17,19 +17,18 @@
 \section{MIDI Learn}
 \label{sec:midi_learn}
 
-   In this section, we show how to use the new (with 1.5.0)
-   \textbf{MIDI Learn} feature of \textsl{Yoshimi}.
-
-\subsection{MIDI Learn / Basics}
-\label{subsec:midi_learn_basics}
-
    \index{MIDI Learn}
    \index{midi!learn}
+   In this section, we show how to use the new (with 1.5.0)
+   \textbf{MIDI Learn} feature of \textsl{Yoshimi}.
    MIDI Learn is a method to remotely control many parameters in an audio/MIDI
    application via a MIDI controller.  Each parameter that is "learned" can be
    controlled, and the setting changes recorded.
 
-   In \textsl{Yoshimi}'s direct-access system, MIDI learn is available, to
+\subsection{MIDI Learn / Basics}
+\label{subsec:midi_learn_basics}
+
+   In \textsl{Yoshimi}'s direct-access system, MIDI Learn is available, to
    the extent that it can handle controls that have a range of 0 to 127.
 
    One can have multiple controls on the same CC.  But, although they all work,
@@ -42,6 +41,36 @@
    What you cannot do yet: One cannot unset a learned value. It's there for the
    session, so get it right.  One cannot get them to block others on the same
    CC/channel pair; that will come later.
+
+   Some external controllers use the pitch wheel control per-channel for up to 16
+   high-resolution faders.
+   Some synthesizers send a number of high resolution controllers as NRPNs.
+   \textsl{Yoshimi} MIDI Learn can handle these.
+   The controls that can actually benefit from better resolution are
+   most of the volume and detune ones.
+   They are learned in exactly the same way as ordinary CCs, but instead of
+   presenting a line that includes an editable CC field, they show a non-editable
+   hexadecimal number with a space between the bytes and followed by an "h",
+   such as \texttt{0a 2c h}.
+   Also, these lines default to having \textbf{Block} set.
+   See that item's discussion below.
+
+   Now \textsl{Yoshimi} can respond to aftertouch.
+   One might wonder why one would want to MIDI-learn modulation when there is
+   already a dedicated CC for it; and the same for "brightness". The answer is
+   that there is currently no way to link these to aftertouch, and this is
+   especially relevant for people using wind controllers.
+
+   It can't emulate the \textbf{Mod} wheel, but only because there is no
+   available GUI control yet.  However, one can use it for any volume or pan, and
+   can have a lot of fun with things like the \textbf{Phaser} effect as these are
+   all "instant".
+
+   MIDI Learn sees aftertouch as controller 129 (we do a sneaky conversion). This
+   has another nice result. If one does not have an aftertouch device currently
+   in hand, use any other controller; then, in the editing window, just change the
+   controller number to 129. Save the learned set, and next time one
+   \textsl{does} have such a device, just load the file and off you go!
 
 \subsection{MIDI Learn / User Interface}
 \label{subsec:midi_learn_user_interface}
@@ -101,6 +130,14 @@
    There is also an activity "LED" between \textbf{Chan} and
    \textbf{Min} indicators that flickers when the associated CC or channel
    is received, provided the line is not muted, or blocked by an earlier one.
+
+   One can stack up message lines that have the same CC and channel, so tha ta
+   single incoming can change a part volume and at the same time change the
+   filter cutoff and with a third line change the panning of a
+   \textsl{different} part.
+
+   Multiple lines will always be displayed (and actioned) in ascending order of
+   CC, then channel number
 
    For a quick example, on our system we're running only ALSA.  So we
    plug a \textsl{Korg NanoKEY2} mini-USB keyboard in.
@@ -205,10 +242,10 @@
    If \textbf{Min} is greater than \textbf{Max}, this reverses the control
    direction.
 
-   Values: \texttt{1 to 127, 64*}
+   Values: \texttt{0 * (min) to 127 * (max)}
 
    \itempar{Limit}{MIDI Learn!Limit}
-   Limit.
+   Limit/Compression switch.
    Limiter versus compression.
    The Min/Max range can either be in the style of a limiter or a compression.
    Set to \textbf{limit}, the \textbf{Min} and \textbf{Max} will be hard cutoffs.
@@ -231,6 +268,25 @@
    The \textsl{block} feature will be active unless the line is muted.
 
    Values: \texttt{Checked, Unchecked}
+
+   For devices that send high resolution controllers as NRPNs.
+   Also, these lines default to having \textbf{Block} set.
+   This is so that the NRPN is
+   not passed on to \textsl{Yoshimi}, which would result in "go away" messages
+   or obscure actions. However, like ordinary CCs, they will stack and one can set
+   several lines with the same NRPN performing mutiple actions, and then unblock
+   all but the last one.
+
+   The way this fits in with the rest is that the incoming data values are
+   combined as a 14 bit number, then (as a floating point number) divided by 128
+   so the overall range is exactly the same as normal CCs.
+   However, when decoded for various controls *all* CCs are converted by a second
+   (hidden) set of limits to get the maximum possible resolution.
+   So for:
+   Humanise it's 0 to 50;
+   Engine fine detunes it's -8192 to 8191;
+   Engine coarse detunes it's -64 to 63;
+   LFO frequency it's 0.0 to 1.0 (float).
 
    \itempar{Control Function}{MIDI Learn!Control Function}
    Control function.

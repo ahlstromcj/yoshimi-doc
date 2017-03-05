@@ -4938,3 +4938,63 @@ Dynamically play a wind controller :)
 
 
 
+Date: Sun, 26 Feb 2017 22:27:23 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: Yoshimi Doc
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+On Sun, 26 Feb 2017 17:02:11 -0500
+Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
+
+> I am currently (at last!) working on this update!  I've already merged
+> cja to master to catch up a bit.
+>
+> Question:
+>
+>    What do you mean by "direct access controls"?
+>
+> Thanks!
+>
+> Chris
+>
+
+Hi Chris,
+
+There is a CLI entry 'direct' {parameters} that doesn't appear in the normal
+'doc' directory, but in the 'dev_notes' one there is quite a lot of information
+about this.
+
+TL-DR
+This is a very low-level access method for almost every Yoshimi control.
+I'm starting to move GUI, CLI & MIDI entries over to using it and eventually
+*everything* will go via this.
+
+Will.
+
+
+
+
+
+
+Date: Fri, 3 Mar 2017 19:04:59 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Another interesting snippet
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+While diving into the very bowels of Yoshimi {snerk} I made another discovery.
+
+You know those little LEDs below the panning knobs that indicate they are in
+random panning mode? Well they are actually active buttons. However most of
+them didn't work, and the ones that did took the control out of random and to
+the default 50:50.
+
+However, these days we have right-click on all controls to set defaults, so I
+decided to reinstate them all, but with a difference. Now when you click on them
+they *set* random mode.
+
+
+
+
+

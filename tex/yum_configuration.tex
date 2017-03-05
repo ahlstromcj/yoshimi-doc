@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2016-03-07
-% \update      2017-02-26
+% \update      2017-03-04
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -25,6 +25,10 @@
 
    As with most applications, \textsl{Yoshimi} and \textsl{ZynAddSubFX}
    allow for one to save one's work and reload it.
+   In recent versions of \textsl{Yoshimi}, it is possible to autoload a default
+   state on startup, so that \textsl{Yoshimi} is already configured exactly as
+   desired, with patches loaded and part destinations set.
+
    \textsl{Yoshimi} has a number of different files that make up the current
    configuration.
    Together, they make up the concept of a \textsl{patch set} (also called a
@@ -44,10 +48,23 @@
          Contains information on the accessible instrument banks, and
          information to translate between bank directory names and bank ID
          values.
+         Current root and current bank settings have now been moved from
+         \texttt{banks} to the \texttt{config} and \texttt{instance}
+         files, so the banks file now consists only of the bank structure.
+         On first time start up, \textsl{Yoshimi} will look for
+         \textsl{ZynAddSubFX} banks as well as \textsl{Yoshimi} banks in the
+         usual locations. It \textsl{will not} look for a \textsl{ZynAddSubFX}
+         configuration file, as these are no longer relevant.
       \item \texttt{.config}
          \index{.config}
          Contains the setup information configured in the
          \textbf{Yoshimi / Settings} dialog.
+         This is the main configuration file.
+         Configuration instances are now in place, so the main configuration
+         file is common to all, but each instance has its own file for things
+         like current bank, JACK/ALSA settings, etc.
+         Common settings are only visible
+         in the main instance and completely hidden in all the later ones.
       \item \texttt{.history}
          \index{.history}
          Recent patch sets are now stored in the \texttt{.history} file.
@@ -95,8 +112,8 @@
          Vector settings. The extension stands for "Xml Vector Yoshimi".
          It will eventually be integrated with the saved states.
          For a good example, see \sectionref{subsection:vector_command_line}.
-         One day, vector settings will also be part of the state save, and
-         possibly patch sets too.
+         Vector control settings are now also stored in patch set and state
+         files.
    \end{itemize}
 
    The entire config set should then be (ignoring the prepended
@@ -126,6 +143,12 @@
    userland, it's the directory it launched from. Then it's the normal
    file browser selection.  Once saved,
    \textbf{Vectors / Options / Recent} is your friend.
+
+   \textsl{Yoshimi} can set up critical configuration settings to be writable
+   only by the main instance, but readable (and used) by any others. In the
+   current version of \textsl{Yoshimi}, this applies to \textbf{AddSynth
+   Oscillator Size}, \textbf{Internal Buffer Size}, and \textbf{Alsa
+   Samplerate}. These three must be defined before any other initialisation.
 
 \subsection{Configuration Files / Patch Set}
 \label{subsec:configuration_patch_set}
@@ -404,6 +427,12 @@
    they will try to set 0. However, \textsl{Yoshimi} is smart enough to ignore
    any invalid bank ID and remain with the existing bank number.
 
+   As a further protection against rogue sequencers making assupmtions, any
+   attempt to set an invalid bank or bank root will be ignored.  Also, on
+   first-time startup, discovered roots will be given ID numbers starting from 5,
+   continuing in steps of 5. This makes it easier to re-arrange them to
+   preference. We recommend that you don't use 0.
+
    Note: loading an instrument doesn't update the \textbf{Kit} window, although
    the kit is all there and sounds correctly.  Switch between parts back and
    forth, and it magically reappears. If that instrument is part of a patch set
@@ -416,6 +445,43 @@
    
    Banks are more thoroughly described in
    \sectionref{subsec:concepts_banks_and_roots}.
+
+\subsection{Configuration Files / .bankdir}
+\label{subsec:configuration_bankdir}
+
+   A bit of ancient history has bubbled to the surface.
+   When one creates a new bank in \textsl{Yoshimi}, it inserts an empty file in
+   the new bank, called \texttt{.bankdir}.  For example:
+
+   \begin{verbatim}
+      ... /banks/Zen Collection/.bankdir
+   \end{verbatim}
+
+   The reason for this is that when scanning for banks (especially at startup) it
+   looks for this file first. If it can't find it, then it has to go though the
+   slower process of looking for at least one completely valid instrument file.
+   Running from SSDs, it probably won't make a lot of speed difference but it
+   will on a conventional hard drive, especially if one has lots of banks.  So,
+   if one wants to get that little startup edge, plonk a copy of this file into
+      all your banks.  It's an empty file.
+
+   In modern times, one of the main distros creates a warning for the packagers
+   if it sees embedded dot files, and gets very unhappy if these are empty ones.
+   The obvious answer is to put something there; \textsl{Yoshimi} now adds a
+   \texttt{.bankdir} file that is useful -- when one creates a new bank, this
+   file contains a string with the \textsl{Yoshimi} version number it was
+   created with, and to add icing to the cake, every time one saves an
+   instrument file in a bank, this file is created if it wasn't there, and
+   will have the current \textsl{Yoshimi} version number.
+
+   So now it is be possible to tell how recently a bank was changed, which may
+   have implications if running modern instruments on older \textsl{Yoshimi}'s or
+   on \textsl{ZynAddSubFX}. Also, the distro will be happier because the
+   \texttt{.bankdir} file won't be empty.
+
+   For the "Collection" bank, the version number is 0.0.0; all its instruments
+   were created with \textsl{Yoshimi}, sometime before version 1.3.0.  "Drums" is
+   set to 1.3.0; "Companion" is set to 1.5.0.
 
 \subsection{Configuration Files / Windows}
 \label{subsec:configuration_windows}

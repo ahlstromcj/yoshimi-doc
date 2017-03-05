@@ -256,9 +256,10 @@
    With NRPN, this part shift 
    can be set by direct part control or by channel number.
 
-%  Values: \texttt{-12 to 12, 0*}
-
    Values: \texttt{-36 to 36, 0*}
+
+   Also see the \textbf{Key Shift} item in 
+   \sectionref{sec:top_panel} for more information.
 
    \itempar{Key Limit}{bottom panel!key limit}
    Maximum keys to be allocated for this part.
@@ -438,6 +439,39 @@
 
    \itempar{Close}{controllers!close}
    Close Window.
+
+\subsubsection{Bottom Panel / Controllers / MIDI Controls}
+\label{subsubsec:bottom_panel_controllers_midi_controls}
+
+   There is a new very small window, accessed by right clicking on
+   the 'controllers' button.
+
+   This has just 4 controls that are MIDI-learnable:
+
+   \begin{enumber}
+      \item Modulation
+      \item Expression
+      \item Filter Q
+      \item Filter Cutoff (Brightness)
+   \end{enumber}
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{1.5.0/MIDIcontrols.png}
+   \caption{MIDI Controls from Controllers Button}
+   \label{fig:instrument_midi_controllers}
+\end{figure}
+
+   Will has one keyboard that sends aftertouch messages, and all of these work
+   correctly with it. An interesting effect was to have a sawtooth wave
+   set up in \textbf{AddSynth} and the frequency LFO level turned up.
+   Then Will learned \textbf{Modulation}, \textbf{Expression}, and
+   \textbf{Filter Cutoff}, all on aftertouch. He then reduced their
+   ranges in the MIDI learn window and the effect was very interesting.
+
+   Because of the way this is implemented, these controls are also accessible via
+   CLI direct access for both for read and write, and the knobs will respond to
+   this, as well as to learned controls.
 
 \subsubsection{Bottom Panel / Controllers / Resonance}
 \label{subsubsec:bottom_panel_controllers_resonance}

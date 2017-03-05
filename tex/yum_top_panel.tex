@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-29
-% \update      2016-05-21
+% \update      2017-03-05
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -26,11 +26,16 @@
 
    \begin{enumber}
       \item \textbf{Stop!}
-      \item \textbf{Panel}
-      \item \textbf{VirKbd}
+      \item \textbf{Reset}
+%     \item \textbf{Panel}
+      \item \textbf{Mixer Panel}
+%     \item \textbf{VirKbd}
+      \item \textbf{Virtual Keybd}
+      \item \textbf{Vectors}
+      \item \textbf{Reports}
       \item \textbf{Key Shift}
       \item \textbf{Detune}
-      \item \textbf{Reset Detune}
+%     \item \textbf{Reset Detune}
       \item \textbf{Volume}
    \end{enumber}
 
@@ -40,8 +45,15 @@
    Stop!
    This button causes \textsl{Yoshimi} to
    "Cease all sound immediately!"
+   Useful when MIDI input suddenly stops due to a bug in the MIDI source.
 
-   \itempar{Panel}{top panel!parts panel}
+   \itempar{Reset}{top panel!reset}
+   Resets \textsl{Yoshimi} to its default state (when no default configuration
+   files exist).  
+   Or does it reset to the default loaded state (which the user may have saved
+   earlier)?
+
+   \itempar{Mixer Panel}{top panel!mixer panel}
    This button brings up a panel that shows a "mixer" view
    of all of the parts that have been created in the current
    state of \textsl{Yoshimi}.
@@ -49,11 +61,24 @@
    For the details of this panel,
    see \sectionref{subsec:mixer_panel_window}.
 
-   \itempar{VirKbd}{top panel!virtual keyboard}
+   \itempar{Virtual Keybd}{top panel!virtual keyboard}
    This button brings up the virtual keyboard, which is a way to enter
    MIDI information without a real MIDI keyboard. 
    It also provides a way to use the computer keyboard for faster
    playing.  See \sectionref{subsec:virtual_keyboard}.
+
+   \itempar{Vectors}{top panel!vectors}
+   Provides the recent new feature of vector control.  This has been moved moved
+   to this button from the \textbf{Yoshimi} menu.  See
+   \sectionref{subsec:vector_dialogs}.
+
+   \itempar{Reports}{top panel!reports}
+   This button is active only if reports are not going to
+   \texttt{stdout}, by setting \textbf{Yoshimi / Settings / Main Settings / Send
+   reports to:} to \textsl{Console Window}
+   (see \sectionref{paragraph:menu_yoshimi_settings_main_settings} for this
+   item.)
+   When pressed, the \textsl{Yoshimi} console window is opened.
 
    \itempar{Key Shift}{top panel!key shift}
    Master Key Shift.
@@ -63,9 +88,10 @@
    Also note that the master key shift can be set via the user-interface, the
    command-line, or (we suspect) by MIDI NRPN commands.
 
-%   Values: \texttt{-12 to 12, 0*}
-
    Values: \texttt{-36 to 36, 0*}
+
+   Also see the \textbf{Key Shift} item in 
+   \sectionref{sec:bottom_panel} for more information.
 
    \itempar{Detune}{top panel!detune}
    Detune.  Provides a global fine detune functionality.
@@ -74,11 +100,11 @@
 
    Values: \texttt{0 to 127, 64*} (float)
 
-   \itempar{Reset, Detune}{top panel!detune reset}
-   Reset detune.
-   Resets the overall detuning functionality of 
-   \textsl{Yoshimi} off.
-   Resets the global fine detune to 0.
+%  \itempar{Reset, Detune}{top panel!detune reset}
+%  Reset detune.
+%  Resets the overall detuning functionality of 
+%  \textsl{Yoshimi} off.
+%  Resets the global fine detune to 0.
 
    \itempar{Volume}{top panel!overall volume}
    Volume, Master Volume.
@@ -135,12 +161,14 @@
 \begin{figure}[H]
    \centering 
 %  \includegraphics[scale=0.75]{top-panel/yoshimi-panel-2x8.jpg}
-   \includegraphics[scale=0.75]{top-panel/yoshimi-panel-2x8-1_5.jpg}
-   \caption[Yoshimi Part Panel]{Yoshimi Part Panel, 2x8 View}
+%  \includegraphics[scale=0.75]{top-panel/yoshimi-panel-2x8-1_5.jpg}
+   \includegraphics[scale=0.75]{1.5.0/Mixer8.png}
+   \caption[Yoshimi Mixer Panel]{Yoshimi Mixer Panel, 2x8 View}
    \label{fig:yoshimi_part_panel_2x8}
 \end{figure}
 
-   This dialog has been updated recently;  there is now a \textbf{Solo}
+   Note that there is also a 1x16 version of this dialog (not shown).
+   This dialog has been updated recently; there is now a \textbf{Solo}
    control, described below.
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
@@ -198,11 +226,17 @@
    which click one might want to use.
 
    \itempar{Solo}{parts!solo}
+   \index{channel switcher}
+   \index{parts!channel switcher}
    There are two commands that change the way
    \textsl{Yoshimi} responds to incoming MIDI,
    so that only one of a group of instruments will see note-on events, but all
    of the group will see note-off ones. These commands
    are both in the \textbf{Mixer Panel}.
+
+   They are referred as a \textsl{Solo} feature or a \textsl{Channel Mixer}
+   feature.  The \textbf{Solo} settings are saved in patch sets, which saves a
+   little frustration when loading one's current favorite patch set.
 
    Values: \texttt{Off*, Row, Col, Loop}
 
@@ -219,6 +253,9 @@
    note off release and the effects tail.
 
    \index{solo!row}
+   Row means that all of the first 16 channels will be set to channel 1, but with
+   only one active, and one's CC will dial up any of the parts, disabling the
+   others.
    In \textbf{Row} mode the whole of the first 16 parts are ostensibly
    receiving on channel 1.  This mode is most useful if one wants to play live
    through a piece with multiple instrument changes while playing. It works
@@ -245,8 +282,20 @@
    in the set is active.
 
    \index{solo!loop}
-   TODO.
-   Describe loop \textbf{Solo} mode!!!
+   Loop.  Loop is a variation on the Row mode.
+   With this mode, if one sends \textsl{any} value via the designated CC,
+   it will increment the active part by one, rolling round to 1 after 16.
+   This should make even the dumbest foot controller usable.
+
+   To keep it all lightweight, one needs to load and activate all the patches
+   and parts wanted, but that could be obtained from a saved patch set, and the
+   channels are only changed from the very first time one sends the CC.  To look
+   really clever, the whole lot can be embedded in a MIDI file.
+
+   One can play a piece that needs to live-switch between 10 instruments, using
+   a footswitch to do the channel changes. The device holds a channel
+   number (starting with zero) and increments/decrements it depending on which
+   switch is pressed, then sends the resulting CC.
 
    \itempar{Parts Layout}{parts!change layout}
    \index{parts!2x8}
@@ -266,18 +315,18 @@
    The virtual keyboard lets one play notes using the keyboard/mouse. There is
    no MIDI requirement. 
     
-   Using the keyboard: The keyboard is split into two "octaves"(in fact it is
-   more than 1 octave). It may happen that the keys will not trigger any
-   note-on This is because another widget than the keyboard itself is selected.
-   In order to continue playing using the keyboard, click with the mouse on
-   some keys on the virtual keyboard.
+   Using the computer keyboard: The keyboard is split into two "octaves" (in
+   fact it is more than 1 octave). It may happen that the keys will not trigger
+   any note-on. This is because another widget than the keyboard itself is
+   selected.  In order to continue playing using the keyboard, click with the
+   mouse on some keys on the virtual keyboard, to give it computer keyboard
+   focus.
    
-   Using the mouse: One can use the mouse too, to play.
-   If one presses the shift key while pressing the mouse button,
-   the keys will be not released when the mouse button is released.  If one
-   presses the \textbf{Stop!} or "Panic" button from the
-   \textsl{ZynAddSubFX}/\textsl{Yoshimi}
-   main window, all keys will be released. 
+   Using the mouse: One can use the mouse too, to play.  If one presses the
+   shift key while pressing the mouse button, the keys will be not released
+   when the mouse button is released.  If one presses the \textbf{Stop!} or
+   "panic" button from the \textsl{ZynAddSubFX}/\textsl{Yoshimi} main window,
+   all keys are released. 
 
 \begin{figure}[H]
    \centering 
