@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-29
-% \update      2017-03-05
+% \update      2017-03-08
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -330,7 +330,8 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{top-panel/yoshimi-virtual-keyboard.jpg}
+%  \includegraphics[scale=1.0]{top-panel/yoshimi-virtual-keyboard.jpg}
+   \includegraphics[scale=1.0]{1.5.0/Keyboard.png}
    \caption{Yoshimi Virtual Keyboard}
    \label{fig:yoshimi_virtual_keyboard}
 \end{figure}
@@ -340,13 +341,13 @@
 
    \begin{enumber}
       \item \textbf{Pwh}
-      \item \textbf{R}
+%     \item \textbf{R}
       \item \textbf{Midi Channel}
       \item \textbf{Velocity}
       \item \textbf{Velocity}
       \item \textbf{Octave}
-      \item \textbf{"qwer.." Oct}
-      \item \textbf{"zxcv.." Oct}
+      \item \textbf{Key Oct}
+      \item \textbf{Maps Oct}
       \item \textbf{Controller}
       \item \textbf{Cval}
       \item \textbf{Close}
@@ -354,10 +355,13 @@
 
    \itempar{Pwh}{vkdb!pitch bend}
    Pitch bend knob. Pitch wheel.
-   Press the \textbf{R} button to reset it.
+   This item is now a slider control.  To reset it to the middle position,
+   right-click within the slider.
 
-   \itempar{R}{vkdb!reset pitch bend}
-   Reset Pitch Bend.
+%  Press the \textbf{R} button to reset it.
+%
+%  \itempar{R}{vkdb!reset pitch bend}
+%  Reset Pitch Bend.
 
    \itempar{Midi Channel}{vkdb!midi channel}
    MIDI Channel.
@@ -382,15 +386,23 @@
 
    Values: \texttt{1, 2*, 3, 4, 5}
 
-   \itempar{"qwer.." Oct}{vkdb!qwert}
-   q2w3e4r5t6y Octave.
-   Transposes the upper keys ("qwert"); the range of these keys is from C-4
-   to A-5 (replace the '5' with the octave).
+%  \itempar{"qwer.." Oct}{vkdb!qwert}
+%  q2w3e4r5t6y Octave.
 
-   \itempar{"qwer.." Oct}{vkdb!zxcvb}
-   zsxdcfvgbh Octave.
-   Transposes the lower keys ("zxcvb"); the range of these keys is from C-3
-   to E-4 (replace the '4' with the octave).
+   \itempar{Key Oct}{vkdb!key octave}
+   Transposes the upper keys (the numbers and the "qwert" keys);
+   the range of these keys is from C-4 to A-5 (replace the '5' with the octave).
+   Look at the tooltips as a reminder.
+
+   Values: \texttt{1, 2*, 3, 4, 5}
+
+%  \itempar{"qwer.." Oct}{vkdb!zxcvb}
+%  zsxdcfvgbh Octave.
+
+   \itempar{Maps Oct}{vkdb!maps octave}
+   Transposes the lower keys ("sdghj" and "zxcvb"); the range of these keys is
+   from C-3 to E-4 (replace the '4' with the octave).  Look at the tooltips as a
+   reminder.
 
    Values: \texttt{1, 2*, 3, 4, 5}
 

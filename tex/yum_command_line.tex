@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-09-06
-% \update      2017-03-04
+% \update      2017-03-06
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -16,8 +16,6 @@
 
 \section{The Yoshimi Command Line Interface}
 \label{sec:command_line}
-
-   Applies through version: 1.5.0 March 2017.
 
    \textsl{Yoshimi} provides a "no GUI" or "command-line" mode of operation
    where some aspects of the application can be controlled via textual commands.
@@ -752,6 +750,169 @@ Ones that we're pretty sure will be added are:
    \itempar{exit}{cmd!exit}
          Tidy up and close Yoshimi down.
 
+\subsection{Command List}
+\label{subsec:command_line_command_list}
+
+   This section provides another list of CLI commands, and should be considered
+   the most complete.  We will reconcile it all at some point.
+   First, some general commands.  The capital letters denote the minimum token
+   needed for each command.
+
+\begin{verbatim}
+   ?,  Help                      Show commands.
+   STop                          All sound off.  Stop!
+   RESet                         Return to start-up conditions (if 'y').
+   EXit                          Tidy up and close Yoshimi (if 'y').
+   ..                            Step back one command level.
+   /                             Step back to top command level.
+\end{verbatim}
+
+   Commands to list various items.
+
+\begin{verbatim}
+   List                          Various available parameters.
+      Roots                      All available root paths.
+      Banks [n]                  Banks in root ID or current.
+      Instruments [n]            Instruments in bank ID or current.
+      Parts                      Parts with instruments installed.
+      Vectors                    Settings for all enabled vectors.
+      Settings                   Dynamic settings.
+      MLearn [s<n>]              MIDI learned controls; '@n' for full details, one line.
+      History [s]                Recent files; Patchsets, SCales, STates, Vectors, MLearn.
+      Effects [s]                Effect types; 'all' include preset numbers and names.
+      PREsets                    All the presets for the current selected effect.
+\end{verbatim}
+
+   Commands to load various items.
+
+\begin{verbatim}
+   LOad                          Load patch files.
+      Instrument <s>             Instrument to current part from named file.
+      Patchset <s>               Complete set of instruments from named file.
+      STate <s>                  All system settings and patch sets from named file.
+      SCale <s>                  Scale settings from named file.
+      VEctor [{Channel}n] <s>    Vector on channel n from named file.
+      MLearn <s>                 MIDI learned list from named file.
+\end{verbatim}
+
+   Commands to save various items.
+
+\begin{verbatim}
+   SAve                          Save various files.
+      Instrument <s>             Current part to named file.
+      Patchset <s>               Complete set of instruments to named file.
+      STate <s>                  All system settings and patch sets to named file.
+      SCale <s>                  Current scale settings to named file.
+      VEctor <{Channel}n> <s>    Vector on channel n to named file.
+      MLearn <s>                 MIDI learned list to named file.
+      Setup                      Dynamic settings.
+\end{verbatim}
+
+   Commands to add and remove various items.
+
+\begin{verbatim}
+   ADD                           Add paths and files.
+      Root <s>                   Root path to list.
+      Bank <s>                   Bank to current root.
+   REMove                        Remove paths, files and entries.
+      Root <n>                   De-list root path ID.
+      Bank <n>                   Delete bank ID and all contents from current root.
+      MLearn <s> [n]             Delete MIDI learned 'ALL' whole list, or '@'(n) line.
+\end{verbatim}
+
+   Commands to set and read some items.
+
+\begin{verbatim}
+   Set / Read                    Set or read all main parameters
+      SWitcher [{CC}n] [s]       Define CC n to set single part in group (Row / Column)
+      REPorts [s]                Destination (Gui/Stderr)
+                                   Non-fatal (SHow/Hide)
+      Root <n>                   Current root path to ID
+      Bank <n>                   Current bank to ID
+      MLearn <n> <s> [s]         midi learned line n control (MUte, CC, CHan, MIn,
+                                 MAx, LImit, BLock) Enable {other}
+\end{verbatim}
+
+   Commands to set and read parts.
+
+\begin{verbatim}
+      Part [n1]                  Set part ID operations
+        ENable                   Enables the part
+        DIsable                  Disables the part
+        Volume <n2>              Volume
+        Pan <n2>                 Panning
+        VElocity <n2>            Velocity sensing sensitivity
+        OFfset <n2>              Velocity sense offest
+        POrtamento <s>           Portamento (Enable, other disable
+        Mode <s>                 Key mode (Poly, Mono, Legato)
+        Note <n2>                Note polyphony
+        SHift <n2>               Key shift semitones (0 no shift)
+        MIn <n2>                 Minimum MIDI note value
+        MAx <n2>                 Maximum MIDI note value
+        EFfects [n2]             Effects for editing
+        Type <s>                 The effect type
+        PREset <n3>             Set numbered effect preset to n3
+        Send <n3> <n4>           Send part to system effect n3 at volume n4
+        PRogram <n2>             loads instrument ID
+        NAme <s>                 Sets the display name the part can be saved with
+        Channel <n2>             MIDI channel (> 31 disables, > 15 note off only)
+        Destination <s2>         JACK audio destination (Main, Part, Both)
+\end{verbatim}
+
+   Commands to set and read vectors.
+
+\begin{verbatim}
+      VEctor [n1]                Vector CHANNEL, operations
+        [X/Y] CC <n2>            CC n2 is used for CHANNEL X or Y axis sweep
+        [X/Y] Features <n2> <s>  Sets CHANNEL X or Y features 1-4 (Enable, Reverse, {other} off)
+        [X] PRogram <l/r> <n2>   X program change ID for CHANNEL LEFT or RIGHT part
+        [Y] PRogram <d/u> <n2>   Y program change ID for CHANNEL DOWN or UP part
+        [X/Y] Control <n2> <n3>  Sets n3 CC to use for X or Y feature n2 (2-4)
+        Off                      Disable vector for CHANNEL
+\end{verbatim}
+
+   Commands to set and read effects and presets.
+
+\begin{verbatim}
+      SYStem effects [n]         System effects for editing
+      Send <n2> <n3>             Send system effect to effect n2 at volume n3
+      preset <n2>                Set effect preset to number n2
+
+      INSert effects [n1]        Insertion effects for editing
+      Send <s>/<n2>              Set where (Master, Off or part number)
+      PREset <n2>                Set numbered effect preset to n2
+\end{verbatim}
+
+   Commands to set and read programs and more.
+
+\begin{verbatim}
+      PRogram <n>                MIDI program change enabled (0 off, other on)
+      ACtivate <n>               MIDI program change activates part (0 off, other on)
+      CCRoot <n>                 CC for root path changes (> 119 disables)
+      CCBank <n>                 CC for bank changes (0, 32, other disables)
+      EXtend <n>                 CC for extended MIDI program change (> 119 disables)
+      AVailable <n>              Available parts (16, 32, 64)
+      Volume <n>                 Master volume
+      SHift <n>                  Master key shift semitones (0 no shift)
+      DEtune <n>                 Master fine detune
+      SOlo <n>                   Channel 'solo' switcher (off, row, col, loop)
+      SCC <n>                    Incoming 'solo' channel number
+      TIMes [s]                  Time display on instrument load message (ENable / other
+\end{verbatim}
+
+      These entries need to be saved and Yoshimi restarted to activate:
+
+\begin{verbatim}
+      PREferred Midi <s>         MIDI connection type (Jack, Alsa)
+      PREferred Audio <s>        Audio connection type (Jack, Alsa)
+      Alsa Midi <s>              Name of alsa MIDI source
+      Alsa Audio <s>             Name of alsa hardware device
+      Jack Midi <s>              Name of jack MIDI source
+      Jack Server <s>            JACK server name
+      Jack AUto <s>              0 off, other on
+      AUTostate [s]              Autoload default state at start (ENable / other)
+\end{verbatim}
+
 \subsection{Direct Access}
 \label{subsec:command_line_direct_access}
 
@@ -851,6 +1012,12 @@ Ones that we're pretty sure will be added are:
    values: min = 0, max = 127, and def = 0.  \textbf{def} will return the
    default * 100. This is so that fractional values can be resolved. 0.5 comes
    up quite often. No default values are very large, but may be negative.
+
+   A number of limits are now defined, and more will be forthcoming. There is
+   now a specific variation for this. "direct", "lim", (control), (part), (kit)
+   etc.  These commands now report the full name of the control, and as well as
+   the limits, it gives the type (float/integer) and notes if it is MIDI
+   learnable.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex

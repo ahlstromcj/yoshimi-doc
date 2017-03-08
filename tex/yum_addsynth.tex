@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-07
-% \update      2017-02-26
+% \update      2017-03-08
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -17,7 +17,7 @@
 \section{ADDsynth}
 \label{sec:addsynth}
 
-   The \textsl{Yoshimi} ADDsynth (also spelled "ADsynth")
+   The \textsl{Yoshimi} ADDsynth (also spelled "ADsynth" or "AddSynth")
    dialog is a complex dialog for creating an
    instrument.  This is the most complex, most advanced and most
    sophisticated part of the synthesizer and allows one to edit the
@@ -60,7 +60,8 @@
 \begin{figure}[H]
    \centering 
 %  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/ADDsynth-edit.jpg}
-   \includegraphics[scale=1.0]{1.4.0/ADDsynth-edit.png}
+%  \includegraphics[scale=1.0]{1.4.0/ADDsynth-edit.png}
+   \includegraphics[scale=1.0]{1.5.0/AddSynth.png}
    \caption{ADDsynth Edit/Global Dialog}
    \label{fig:addsynth_edit_dialog}
 \end{figure}
@@ -346,7 +347,8 @@
    \centering 
 %  \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/ADDsynth-voice-parameters.jpg}
 %  \includegraphics[scale=0.75]{1.3.9/ADDsynth-voice-parameters.png}
-   \includegraphics[scale=0.75]{1.4.0/ADDsynth-voice-parameters.png}
+%  \includegraphics[scale=0.75]{1.4.0/ADDsynth-voice-parameters.png}
+   \includegraphics[scale=0.75]{1.5.0/AddVoice.png}
    \caption{ADDsynth Voice Parameters Dialog}
    \label{fig:addsynth_voice_parameters_dialog}
 \end{figure}
@@ -1019,16 +1021,19 @@
    some overall control of them, almost like a simple mixer.
    It is brought on-screen via the \textbf{Show Voice List} button
    of the ADDsynth global part editor.
+   It is fully in sync with the voice windows.
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/ADDsynth-voices-list.jpg}
+%  \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/ADDsynth-voices-list.jpg}
+   \includegraphics[scale=0.75]{1.5.0/AddSynthVoiceList.png}
    \caption{ADDsynth Voices List}
    \label{fig:addsynth_voices_list}
 \end{figure}
 
    \begin{enumber}
       \item \textbf{No. (1 to 8)}
+      \item \textbf{Edit}
       \item \textbf{Waveform}
       \item \textbf{Vol}
       \item \textbf{Pan}
@@ -1045,6 +1050,11 @@
    This check-box enables or disables a given voice in the current part.
 
    Values: \texttt{Off, On}
+
+   \itempar{Edit}{voice list!edit}
+   ADDSynth Voice List Edit Button.
+   This button brings up the appropriate ADDSynth Voice dialog so that the
+   waveform can be easily brought up for modification.
 
    \itempar{Waveform Icon}{voice list!waveform icon}
    Waveform Icon.

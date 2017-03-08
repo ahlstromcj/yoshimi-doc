@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-05
-% \update      2017-03-04
+% \update      2017-03-05
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -111,6 +111,10 @@
    Effects Send To.
    Each knob controls how much of the system effect indicated by the left
    number is sent to the system effect indicated by the right number.
+   This user-interface drop-down is shown only in the
+   \textbf{Part / Edit / Effects} version of the effects panel.
+
+   Values: \texttt{Next Effect, Part Out, Dry Out}
 
 \begin{figure}[H]
    \centering 
@@ -277,8 +281,13 @@
    \label{fig:sample_instrument_effects_dialog}
 \end{figure}
 
-   Note the extra \textbf{Bypass} check-box, which presumably can be used to
-   bypass this effects box in a given part.
+   \index{effects!bypass}
+   Note the extra \textbf{Bypass} check-box.  If the \textbf{Bypass} item is
+   checked, then the effect is not used; it is taken out of the circuit.  This
+   user-interface item only appears if one clicks the \textbf{Edit} button for
+   a Part, and then clicks the \textbf{Effects} button in the \textbf{Edit}
+   window.
+
    Also be aware that some of the effects dialogs have been modified in the
    latest revisions of \textsl{Yoshimi}.
 
@@ -699,8 +708,8 @@ This section details the value supported by the AlienWah effect.
 \end{figure}
 
    First, crossover is applied.
-
-   The Freq, Rnd, LFO Type, St.df, Depth knobs control the LFO
+   The \textbf{Freq}, \textbf{Rnd}, \textbf{LFO Type}, \textbf{St.df},
+   \textbf{Depth} knobs control the LFO
    for the pitch. If the depth is set to zero, the pitch will not be changed
    at all.
 
@@ -711,10 +720,10 @@ This section details the value supported by the AlienWah effect.
    Fb knob lets one set how loud it shall be played. This is mostly redundant
    to the D/W knob, but we have not applied panning and substraction yet.
 
-   Next, the signal can be negated. If the Substract Checkbox is activated,
-   the amplitude is multiplied by -1.
+   Next, the signal can be negated. If the \textbf{Subtract}
+   checkbox is activated, the amplitude is multiplied by -1.
 
-   Finally, Pan lets one apply panning.
+   Finally, \textbf{Pan} lets one apply panning.
 
 \subsubsection{Effects / Chorus / User Interface}
 \label{subsubsec:effects_edit_chorus_ui}
@@ -736,7 +745,7 @@ This section details the value supported by the AlienWah effect.
       \item \textbf{Delay}
       \item \textbf{Fb.}
       \item \textbf{L/R}
-      \item \textbf{Subtract} (still misspelled as "Substract")
+      \item \textbf{Subtract}
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
@@ -1061,6 +1070,7 @@ This section details the value supported by the Chorus effect.
 
    \begin{enumber}
       \item \textbf{Gain}
+      \item \textbf{Graph}
       \item \textbf{B}
       \item \textbf{T}
       \item \textbf{Freq}
@@ -1069,23 +1079,40 @@ This section details the value supported by the Chorus effect.
       \item \textbf{St}
    \end{enumber}
 
-Global:
+   Global:
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{Gain}{eq!gain}
    Amplifies or reduce the signal that passes through EQ.
 
+   \itempar{Graph}{eq!graph}
+   Shows the graph of the EQ frequency response, based on the
+   two \textbf{Gain} settings,
+   \textbf{T.},
+   \textbf{Gain},
+   \textbf{Gain},
+
    \itempar{B}{eq!band}
-   Set the current frequency band (or filter).
+   Set the current frequency band number (or filter).
    B lets one choose the passband number. Multiple passbands define one
    filter. This is important if one wants multiple filters to be called
    after each other. Note that filters are commutative.
 
-Bands:
+   Values: \texttt{0*, 1, ... 7}
+
+   Bands:
 
    \itempar{T}{eq!filter type}
    Set the type of the filter.
+
+   Values: \texttt{Off*, Lp1, Hp1, Lp2, Hp2, Bp2, N2, Pk, Lsh, Hsh}
+
+   At some point, we need to show this dropdown and explain each of these
+   filter types.
+
+   Note that, for certain values of the \textbf{B} parameter, some of the
+   \textbf{T} values will not be available.
 
    \itempar{Freq}{eq!filter freq}
    The frequency of the filter.
@@ -1111,13 +1138,15 @@ Bands:
    St. lets one define multiple filter stages. This is equivalent to
    having multiple copies of the same filter in sequence.
 
+   Values: \texttt{0*, 1, ... 4}
+
 \subsubsection{Effects / EQ / NRPN Values}
 \label{subsubsec:effects_edit_eq_nrpn}
 
    Effects can be controlled via "non-registered parameter numbers", or NRPNs.
    This section details the value supported by the EQ effect.
 
-   TODO.
+   TODO. 
 
 \subsection{Effects / Phaser}
 \label{subsec:effects_edit_phaser}
@@ -1258,50 +1287,66 @@ Bands:
    \itempar{Depth}{phaser!depth}
    Phaser Depth. Phaser LFO Depth?
 
-   Values: \texttt{TODO}
+   Values: \texttt{0\% to 100\%}
 
    \itempar{Phase}{phaser!phase}
    Phaser Phase.
 
-   Values: \texttt{TODO}
+   Values: \texttt{0\% to 100\%}
 
    \itempar{Stages}{phaser!stages}
    Phaser Stages.
 
-   Values: \texttt{TODO}
+   Values: \texttt{1*, 2, ... 12}
 
    \itempar{Subtract}{phaser!Subtract}
    Phaser Subtract.
+   Checking this box inverts the output.
 
    Values: \texttt{Off*, On}
 
    \itempar{hyper}{phaser!hyper}
    Phaser Hyper.
+   Checking this box sets the "hyper-sine" mode, whatever that is.
 
    Values: \texttt{Off*, On}
 
    \itempar{Analog}{phaser!analog}
    Phaser Analog.
+   Checking this box emulates the "FET".  Field-effect transistor?
 
    Values: \texttt{Off*, On}
 
    \itempar{D/W}{phaser!dry/wet}
    Phaser Dry/Wet.
+   This knob sets the effect volume.  The dry value ranges from 0 dB down to
+   "inf" (infinity) dB, while the wet values is the complementary range, from
+   "inf" dB to 0 dB.  Confusing?  The tooltip tells the user exactly what the
+   settings are.
 
    \itempar{Pan}{phaser!pan}
    Phaser Panning.
+   Ranges from 100\% left to centered to 100\% right.
 
    \itempar{Freq}{phaser!freq}
    Phaser Freq.
+   Set the Phaser LFO frequency.
+   Ranges from 0.0 Hz to 30.68 Hz.
 
    \itempar{Rnd}{phaser!randomness}
    Phaser Randomness.
+   Set the Phaser LFO randomness.
+   Ranges from 0.0\% to 100\% percent.
 
    \itempar{St.df}{phaser!stereo phase diff}
+   Left/Right Channel Phase Shift.
    The phase difference between LFO for left/right channels.
+   Ranges from -180 degrees (left 180) to equal to +180 degrees (right 180).
+   The actual end values can differ a little from 180.
 
    \itempar{Fb}{phaser!feedback}
    Phaser Feedback.
+   Ranges from -99\% to 99\%.
 
    \itempar{L/R}{phaser!l/r}
    L/R. How the left/right channels are routed to output:
@@ -1313,10 +1358,13 @@ Bands:
       \end{enumber}
 
    \itempar{dist}{phaser!dist}
-   Phaser Distortion? TODO
+   Phaser Distortion.
+   Ranges from 0\% to 100\%.
 
    \itempar{LFO}{phaser!lfo type}
    Phaser LFO Type.
+
+   Values: \texttt{SINE, TRI}
 
 \subsubsection{Effects / Phaser / NRPN Values}
 \label{subsubsec:effects_edit_phaser_nrpn}
@@ -1509,8 +1557,10 @@ This section details the value supported by the Phaser effect.
 
    \itempar{Send To}{reverb!send to}
    Reverb Send To.
+   This user-interface drop-down is shown only in the
+   \textbf{Part / Edit / Effects} version of the effects panel.
 
-   Values: \texttt{Next Effect, ... TODO}
+   Values: \texttt{Next Effect, Part Out, Dry Out}
 
    \itempar{C}{reverb!copy}
    Reverb Copy.

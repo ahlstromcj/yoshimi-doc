@@ -3523,7 +3523,7 @@ X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 On Mon, 24 Oct 2016 21:27:35 +0100
 Will Godfrey <willgodfrey@musically.me.uk> wrote:
 
-> By default Yoshimi doesn't assign a bank ID 0 (zero) in any root. This actually 
+> By default Yoshimi doesn't assign a bank ID 0 (zero) in any root. This actually
 > has an interesting benefit. Several sequencers insist on setting a bank with
 > every program change, and if you don't give one they will try to set 0. However,
 > Yoshi is smart enough to ignore any invalid bank ID and remain with the existing
@@ -3970,7 +3970,7 @@ the window look neater, and the master controls more obvious!
 
 As a further protection against rogue sequencers making assupmtions, any
 attempt to set an invalid bank root will be ignored. The same was already true
-for banks themselves. Also, on first time startup, discovered roots will be 
+for banks themselves. Also, on first time startup, discovered roots will be
 given ID numbers starting from 5 and in steps of 5. This makes it a little
 easier to re-arrange them to your preference. We recommend that you don't have
 zero for either, as this is the usual assumed number.
@@ -4093,7 +4093,7 @@ Toggling window open/close is not something that occurred to me. It won't go in
 this release but I'll give it further thought. Same with function keys.
 However, it could present an interesting problem. Currently the parent window
 doesn't know whether it's child is open or not so will simply re-open it on
-each click. 
+each click.
 
 
 
@@ -4594,7 +4594,7 @@ Will Godfrey <willgodfrey@musically.me.uk> wrote:
 > The attached patch *only* works on the current master, and should be applied
 > against src/CMakeLists.txt
 >
-> It works for me on debian, but needs to be tested on fedora and related distros 
+> It works for me on debian, but needs to be tested on fedora and related distros
 > - or indeed on any non-debian (or highly specialised) distros.
 >
 > If this works correctly - all files in the correct places - then it brings two
@@ -4972,11 +4972,6 @@ I'm starting to move GUI, CLI & MIDI entries over to using it and eventually
 
 Will.
 
-
-
-
-
-
 Date: Fri, 3 Mar 2017 19:04:59 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -4996,5 +4991,86 @@ they *set* random mode.
 
 
 
+
+Date: Mon, 6 Mar 2017 16:59:18 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Well you did ask :)
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+page 14
+    "path add" is now "add root"
+
+page 29
+    breath control is yoshimi only
+
+page 31
+
+    instance is here :)
+
+page 33
+    "when yoshim get's around to splitting"
+    we did in V 1.4.1
+
+page 35
+    ~/.yoshimi_history is purely for the command line and records the latest
+entries made there. Provided you made a normal exit, these become available on
+your next session.
+
+page 40
+    very old image of 'about' window.
+
+page 45
+    old 'Reports' image. Numbers all start from 1 now, although 'specialy' ones
+are still zero based. That window shows both so nowadays is likely to confuse
+normal users. Unless set at compile time you no longer see the specials.
+
+page 78 X
+    right hand button now *only* used for setting defaults and midi learn.
+
+page 108 X
+    very old keyboard image. Roller is now a slider, and key map tooltips
+reflect actual positions of keys.
+
+page 146 X
+    old image. stages now better placed, and part number and name in title bar.
+
+page 150 X
+    very old image. As above... and more :)
+
+page 159 X
+    old image. There is now an edit button and the layout is better. it's also
+now fully in sync with the voice windows.
+
+page 160 X
+    old... you know the drill :)
+
+page 178 X
+    yes, again. Those filter stages moved. How dare they!
+
+Page 179 X (replaced with Will's new screenshot)
+    guess what.
+
+Page 184   Where???????????????????????
+    and kit edit window.
+
+Page 205 X
+    you can 'unset' a learned line simply by deleting it. Also it sees the
+'mod' wheel as CC 130.
+
+Page 207 X
+    deleting lines will cause a redraw, but not a re-sort. changing cc/channel
+will only do a re-sort when necessary (the new number is now higher or lower
+than the adjacent ones).
+
+Page 208 X
+    CC and chan don't have default values. They are whatever the incoming
+learned ones are.
+
+Page 219 X
+    a lot of limits are now defined, and more will be forthcoming. There is now
+a specific variation for this. "direct", "lim", [control], [part], [kit] etc.
+this now reports the full name of the control, and as well as the limits, it
+goves the type (float/integer) and whether it is midi learnable.
 
 

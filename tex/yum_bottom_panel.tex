@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-06
-% \update      2016-05-21
+% \update      2017-03-05
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -563,8 +563,9 @@
    The main instrument-editing ("part edit")
    dialog is relatively simple, and provides for
    editing information that identifies the instrument, and buttons to access
-   the more complex dialogs of the ADDsynth, SUBsynth, PADsynth, Kit Edit,
-   and Effects components.
+   the more complex dialogs of the
+   \textbf{ADDsynth}, \textbf{SUBsynth}, \textbf{PADsynth}, \textbf{Kit Edit},
+   and \textbf{Effects} components.
 
 %  \includegraphics[scale=1.0]{bottom-panel/edit-instrument.jpg}
 
@@ -605,7 +606,8 @@
       \item \textbf{Close}
    \end{enumber}
 
-   The ADDsynth, SUBsynth, PADsynth, Kit Edit, and Effects
+   The \textbf{ADDsynth}, \textbf{SUBsynth}, \textbf{PADsynth},
+   \textbf{Kit Edit}, and \textbf{Effects}
    dialogs are detailed in separated sections, as they are all
    very complex dialogs with many sub-dialogs.
 
@@ -683,6 +685,13 @@
    Brings up the editing dialog presented in
    \figureref{fig:effects_edit_none}.
    There one will find a full discussion of that dialog.
+
+   When the effects panels are brought up from this button, there are two extra
+   user-interface elements:
+   \index{effects!bypass}
+   \textbf{Bypass} and \textbf{Close}.
+   If the \textbf{Bypass} item is checked, then the effect is not
+   used; it is taken out of the circuit.
 
    \itempar{Humanise (Rnd. Det.)}{edit!rnd det}
    Small Random Detune, Humanise.

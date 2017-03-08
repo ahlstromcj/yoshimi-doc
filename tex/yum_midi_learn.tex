@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2016-12-22
-% \update      2017-03-04
+% \update      2017-03-07
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -38,9 +38,9 @@
    Some of the controls, like volume and pan, are immediate, but most are "next
    note".
 
-   What you cannot do yet: One cannot unset a learned value. It's there for the
-   session, so get it right.  One cannot get them to block others on the same
-   CC/channel pair; that will come later.
+   In order to unset a learned value, simply delete the line.
+%  One cannot get them to block others on the same
+%  CC/channel pair; that will come later.
 
    Some external controllers use the pitch wheel control per-channel for up to 16
    high-resolution faders.
@@ -65,8 +65,9 @@
    available GUI control yet.  However, one can use it for any volume or pan, and
    can have a lot of fun with things like the \textbf{Phaser} effect as these are
    all "instant".
+   The \textbf{Mod} wheel is seen as CC 130.
 
-   MIDI Learn sees aftertouch as controller 129 (we do a sneaky conversion). This
+   MIDI Learn sees aftertouch as CC 129 (via a sneaky conversion). This
    has another nice result. If one does not have an aftertouch device currently
    in hand, use any other controller; then, in the editing window, just change the
    controller number to 129. Save the learned set, and next time one
@@ -224,8 +225,10 @@
    For example, a value of 7 indicates that the control value affects the main
    volume of \texttt{Yoshimi}.
    Note that NRPNs are \textsl{not included}.
+   Also note that CC has no default values; the values are whatever the
+   incoming learned values are.
 
-   Values: \texttt{1 to 127, 64*}
+   Values: \texttt{1 to 127}
 
    \itempar{Chan}{MIDI Learn!Chan}
    Chan.
@@ -233,8 +236,10 @@
    Note that, in the \textbf{MIDI Learn} window, only the channel numbers start
    from 1.  All the other numbers in that window start from 0.  This
    follows the conventions of the \textsl{Yoshimi} command-line.
+   Also note that CC has no default values; the values are whatever the
+   incoming learned values are.
 
-   Values: \texttt{1* to 16, and All}
+   Values: \texttt{1 to 16, and All}
 
    \itempar{Min/Max}{MIDI Learn!Min/Max}
    Min and Max.
@@ -299,8 +304,11 @@
    \texttt{Control Function} text for that line.
    One is then presented with a confirmation message giving the line number and
    the text as a reminder.
-   Adding or deleting lines, or changing either CC or channel numbers, will
+   Adding lines, or changing either CC or channel numbers, will
    re-order the lines.
+   Deleting lines will cause a redraw, but not a re-sort.
+   Changing the CC or channel will only do a re-sort when necessary, as when the
+   new number is now higher or lower than the adjacent ones.
 
    The same CC/controller can be used to change several different internal
    \texttt{Yoshimi} controls.  For example, one can have a part's volume being

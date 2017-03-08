@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-15
-% \update      2017-03-04
+% \update      2017-03-08
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -50,14 +50,19 @@
 
    \index{new!right-click}
    \index{mouse!right-click}
-   In the AddSynth dialogs and other dialogs with nested windows,
-   if one right-clicks on a button that opens a child
-   window, the current window is closed. Conversely, if one right-clicks on the
-   \textbf{Close} button of a child window, it will re-open the parent.  This
-   feature is especially useful when going up and down the AddSynth stack, and
-   avoids having a screenful of intermediate windows.
-   Note that this feature does \textsl{not} apply to the main window.
 
+%  In the AddSynth dialogs and other dialogs with nested windows,
+%  if one right-clicks on a button that opens a child
+%  window, the current window is closed. Conversely, if one right-clicks on the
+%  \textbf{Close} button of a child window, it will re-open the parent.  This
+%  feature is especially useful when going up and down the AddSynth stack, and
+%  avoids having a screenful of intermediate windows.
+%  Note that this feature does \textsl{not} apply to the main window.
+
+    The right mouse click is used for setting the default value of a control,
+    where it acts like a "reset" button, and is also used to bring up the
+    \textbf{MIDI Learn} dialog for controls that can be MIDI-learned.
+   
 \subsubsection{Tooltips}
 \label{subsubsec:stock_settings_tooltips}
 
@@ -1551,6 +1556,7 @@ These parameters are:
 \end{figure}
 
    The newest version of this panel spells out "Filter Envelope".
+   Not worth a new screen-shot.
    The items in this panel are:
 
    \begin{enumber}
