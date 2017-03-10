@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-09-06
-% \update      2017-03-06
+% \update      2017-03-09
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -318,13 +318,15 @@ Ones that we're pretty sure will be added are:
             Displays the dynamic system settings. \\
 
          \texttt{list history [s]} &
-            Lists recent files (patchsets, scales, and states). \\
+            Lists recent files (patchsets, scales, and states).
+            If no parameter is given, it lists all three in sequence. \\
 
          \texttt{list vectors [n]} &
             Lists the settings for enabled vectors, channel \textsl{n}. \\
 
-         \texttt{load instrument [s]} &
-            Loads an instrument to the current part from a file. \\
+         \texttt{load instrument s} &
+            Loads an instrument to the current part from a named file.
+            The parameter \textsl{s} is compulsory. \\
 
          \texttt{load patchset [s]} &
             Load a complete patch set from the file. \\
@@ -335,8 +337,9 @@ Ones that we're pretty sure will be added are:
          \texttt{save patchset [s]} &
             Save the patch set to a named file. \\
 
-         \texttt{save instrument [s]} &
-            Saves the current part to a named instrument file. \\
+         \texttt{save instrument s} &
+            Saves the current part to a named instrument file.
+            The parameter \textsl{s} is compulsory. \\
 
          \texttt{save setup} &
             Save the current dynamic system settings. \\
@@ -524,7 +527,7 @@ Ones that we're pretty sure will be added are:
       Displays the recently-used files, including patchsets, scales, and
       states.  If no parameter is given, then this command lists all three
       files in sequence.  The shortest version of this command is
-      \texttt{l h p} (for patchsets).
+      \texttt{l h p} (for patchsets, which returns the last-seen patchset list).
 
    \itempar{list instruments [n]}{cmd!list instruents}
       List all instruments and IDs in bank \textsl{n}
@@ -557,7 +560,13 @@ Ones that we're pretty sure will be added are:
 
    \itempar{load instrument [s]}{cmd!load instrument}
       Loads an instrument into the current part from the named file.
-      The file-name parameter \textsl{s} is mandatory.
+%     The file-name parameter \textsl{s} is mandatory.
+      An example of this command, abbreviated, is
+      \texttt{lo p @4} (load patchset at location 4).
+
+      The 'recent history' lists can now load MIDI-learned files, patchsets, or
+      vector files numerically from the associated list instead of having to
+      type the names out.  This uses the '@' (list number operator).
 
    \itempar{load patchset [s]}{cmd!load instrument}
       Load a complete patch set from a named file, \textsl{s}.
@@ -954,6 +963,8 @@ Ones that we're pretty sure will be added are:
 
    The remaining sections display as if written to, but don't
    change anything.
+
+   The official direct access numbering system is zero based (and will remain so).
 
 %  This matches the results from using the middle mouse button in the GUI
 %  (assuming it was enabled at build time). Commands that are purely within

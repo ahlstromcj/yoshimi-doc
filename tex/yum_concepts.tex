@@ -759,6 +759,41 @@
 
    TODO: Describe LV2 at a high-level.
 
+\subsection{Concepts / Numbering}
+\label{subsec:concepts_numbering}
+
+   When implementing CLI access, the decision was made to use the internal
+   counting system which, like almost everything else in computer programming,
+   starts at zero. This caused a few anomalies, as most of the GUI numbering is
+   from one.  This discordance is becoming much more of a problem, most
+   obviously with the Vector Control and MIDI learn windows.
+   Now all the messages use the GUI number bases.
+   This makes MIDI learn look more sensible; when sending
+   reports to the console window there is no difference in numbering re the
+   user-interface.
+
+   CLI entries are still zero-based, for now.
+   All standard CLI inputs, as well as the return message numbers,
+   should start from 1 with the following exceptions:
+
+   \begin{itemize}
+      \item Bank roots
+      \item Banks
+      \item CCs
+   \end{itemize}
+
+   These items follow standard MIDI practice (and do the same in the GUI).
+
+   One of our most prolific CLI users who, while prefering all zero as a base,
+   appreciates the difficulties and can manage as long as things are consistent.
+
+   If this comes about, banks and bank roots will continue to start from zero -
+   this is what everyone expects from these as MIDI commands. Indeed, all MIDI
+   CC numbers will do so. However, channel numbers, program change, part
+   numbers, engines etc will start from one. Effects are an outlier. They seem
+   to already start from one but that's because zero is the value for 'no
+   effect'.
+
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex
 %-------------------------------------------------------------------------------

@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2016-03-07
-% \update      2017-03-04
+% \update      2017-03-09
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -68,7 +68,10 @@
       \item \texttt{.history}
          \index{.history}
          Recent patch sets are now stored in the \texttt{.history} file.
-         (Does this include command history?)
+      \item \texttt{\textasciitilde/.yoshimi\_history}
+         \index{\textasciitilde/.yoshimi\_history}
+         Holds command-line history, which is then available on the next
+         \textsl{Yoshimi} session.
       \item \texttt{.instance(n)}
          \index{.instance(n)}
          Contains the current root/bank, MIDI settings, and preferred engines.
@@ -265,10 +268,10 @@
    configuration information because they are expecting to be able to change
    the state in \textsl{running} instances.
 
-   When \textsl{Yoshimi} gets around to splitting the 'instance' data
-   from the main configuration, then a lot of this session issue can be resolved
-   buy saving only the 'true' configuration locally, and to the state save.
-   However, the 'instance' data will include things like ALSA/JACK settings.
+   \textsl{Yoshimi} now splits the 'instance' data
+   from the main configuration.  This solves this session issue
+   by saving only the true configuration locally, and to the state save.
+   However, the 'instance' data includes things like ALSA/JACK settings.
    Currently we can't change these live (although it would be nice if we could),
    but would anyone want to do so from a JACK session manager?
 

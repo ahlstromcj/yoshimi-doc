@@ -4998,29 +4998,29 @@ To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Well you did ask :)
 X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
-page 14
+page 14 X
     "path add" is now "add root"
 
-page 29
+page 29 X
     breath control is yoshimi only
 
-page 31
+page 31 X
 
     instance is here :)
 
-page 33
+page 33 X
     "when yoshim get's around to splitting"
     we did in V 1.4.1
 
-page 35
+page 35 X
     ~/.yoshimi_history is purely for the command line and records the latest
 entries made there. Provided you made a normal exit, these become available on
 your next session.
 
-page 40
+page 40 X
     very old image of 'about' window.
 
-page 45
+page 45 X
     old 'Reports' image. Numbers all start from 1 now, although 'specialy' ones
 are still zero based. That window shows both so nowadays is likely to confuse
 normal users. Unless set at compile time you no longer see the specials.
