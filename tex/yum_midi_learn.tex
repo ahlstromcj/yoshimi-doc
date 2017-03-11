@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2016-12-22
-% \update      2017-03-07
+% \update      2017-03-11
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -286,12 +286,18 @@
    combined as a 14 bit number, then (as a floating point number) divided by 128
    so the overall range is exactly the same as normal CCs.
    However, when decoded for various controls *all* CCs are converted by a second
-   (hidden) set of limits to get the maximum possible resolution.
-   So for:
-   Humanise it's 0 to 50;
-   Engine fine detunes it's -8192 to 8191;
-   Engine coarse detunes it's -64 to 63;
-   LFO frequency it's 0.0 to 1.0 (float).
+   (hidden) set of limits to get the maximum possible resolution:
+
+   \begin{itemize}
+      \item \textbf{Humanise}: 0 to 50
+      \item \textbf{Engine fine detunes}: -8192 to 8191
+      \item \textbf{Engine coarse detunes}: -64 to 63
+      \item \textbf{LFO frequency}: 0.0 to 1.0 (float)
+   \end{itemize}
+
+   The actual resolution is determined by the physical control
+   source. Most controls seem to be 10 bit, but if generated within an
+   automation source, one will get the full 14 bits.
 
    \itempar{Control Function}{MIDI Learn!Control Function}
    Control function.

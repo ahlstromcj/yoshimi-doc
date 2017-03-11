@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-09-06
-% \update      2017-03-09
+% \update      2017-03-11
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -17,6 +17,9 @@
 \section{The Yoshimi Command Line Interface}
 \label{sec:command_line}
 
+   \index{CLI}
+   \index{cmd}
+   \index{command line}
    \textsl{Yoshimi} provides a "no GUI" or "command-line" mode of operation
    where some aspects of the application can be controlled via textual commands.
    This mode is useful for blind people, for example.  To access this mode, add
@@ -152,6 +155,11 @@
    non-duplicated loads or save.  Thus, provided one makes a normal
    command-line exit, the last commands will be available on the next run of
    \textsl{Yoshimi}.
+
+   \index{cmd!@}
+   The 'recent history' lists can now load MIDI-learned files, patchsets, or
+   vector files numerically from the associated list instead of having to type
+   the names out.  This uses the '@' (list number) operator.
 
    Originally this section described the currently implemented commands,
    but as the command set is very much a moving target, it is simpler to just
@@ -529,6 +537,18 @@ Ones that we're pretty sure will be added are:
       files in sequence.  The shortest version of this command is
       \texttt{l h p} (for patchsets, which returns the last-seen patchset list).
 
+      \index{@}
+      \index{cmd!@}
+      \index{cmd!list operator}
+      Once that list is displayed,
+      the \texttt{@} operator can be used to access
+      the item by number.  For example, to load the patch set at location 4 in
+      the list:
+
+      \begin{verbatim}
+         yoshimi> lo p @4
+      \end{verbatim}
+
    \itempar{list instruments [n]}{cmd!list instruents}
       List all instruments and IDs in bank \textsl{n}
       or the current bank/root.
@@ -561,12 +581,6 @@ Ones that we're pretty sure will be added are:
    \itempar{load instrument [s]}{cmd!load instrument}
       Loads an instrument into the current part from the named file.
 %     The file-name parameter \textsl{s} is mandatory.
-      An example of this command, abbreviated, is
-      \texttt{lo p @4} (load patchset at location 4).
-
-      The 'recent history' lists can now load MIDI-learned files, patchsets, or
-      vector files numerically from the associated list instead of having to
-      type the names out.  This uses the '@' (list number operator).
 
    \itempar{load patchset [s]}{cmd!load instrument}
       Load a complete patch set from a named file, \textsl{s}.

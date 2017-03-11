@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2017-03-09
+% \update      2017-03-11
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -749,12 +749,13 @@
 %  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-ccs.jpg}
 %  \includegraphics[scale=0.75]{1.3.8/yoshimi-settings-midi.png}
 %  \includegraphics[scale=0.75]{1.3.9/yoshimi-settings-ccs.jpg}
-   \includegraphics[scale=0.75]{1.4.1/SettingsMidi.png}
+%  \includegraphics[scale=0.75]{1.4.1/SettingsMidi.png}
+   \includegraphics[scale=0.75]{1.5.0/SettingsMidi.png}
    \caption[MIDI Preferences]{MIDI Preferences Tab}
    \label{fig:yoshimi_settings_cc}
 \end{figure}
 
-   A new feature as of version 1.3.6 is that some changes to the items in this
+   A recent feature is that some changes to the items in this
    tab cause a red \textbf{Pending} button to appear.  Pressing this
    button saves that particular change.
 
@@ -776,7 +777,8 @@
       \item \textbf{Enable Extended Program Change}
       \item \textbf{Extended Program Change}
       \item \textbf{Ignore Reset all CCs}
-      \item \textbf{Log incoming CCs}
+      \item \textbf{Log Incoming CCs}
+      \item \textbf{Show Learn Editor}
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
@@ -787,12 +789,12 @@
    controlled by MIDI messages, thereby making \textsl{Yoshimi} able to
    implement MIDI automation.
 
-   \itempar{Enable Bank Root Change}{MIDI preferences!enable bank root change}
+   \itempar{Enable Bank Root Change}{MIDI settings!enable bank root change}
    Enable Bank Root Change.
 
    Values: \texttt{Off*, On}
 
-   \itempar{Bank Root Change}{MIDI preferences!bank root change}
+   \itempar{Bank Root Change}{MIDI settings!bank root change}
 
    Values: \texttt{0*, to 127}
 
@@ -807,9 +809,9 @@
    abandoned. It remains available for when the user actually makes up his/her
    mind.
 
-   \itempar{Bank Change}{MIDI preferences!bank change}
+   \itempar{Bank Change}{MIDI settings!bank change}
    Bank Change.
-   Defines which MIDI preferences one wants to use.
+   Defines which MIDI settings one wants to use.
    Note that MIDI Controller 0 = CC0 = Bank Select MSB, and MIDI Controller
    32 = CC32 = Bank Select LSB.
    When combined, these Bank Select messages provide \[128*128 = 16384\]
@@ -824,7 +826,7 @@
 
    Values: \texttt{LSB, MSB*, Off}
 
-   \itempar{Enable Program Change}{MIDI preferences!enable program change}
+   \itempar{Enable Program Change}{MIDI settings!enable program change}
 
    Values: \texttt{Off*, On}
 
@@ -832,25 +834,25 @@
    Program changes can be completely disabled, but some hardware synths don't
    play nice!
 
-   \itempar{Enable Part On Program Change}{MIDI preferences!enable part change}
+   \itempar{Enable Part On Program Change}{MIDI settings!enable part change}
 
    Values: \texttt{Off*, On}
 
    The part is automatically enabled if the MIDI program was changed on this
    part.
 
-   \itempar{Enable Extended Program Change}{MIDI preferences!enable extended program change}
+   \itempar{Enable Extended Program Change}{MIDI settings!enable extended program change}
 
    Values: \texttt{Off*, On}
 
-   \itempar{Extended Program Change}{MIDI preferences!extended change}
+   \itempar{Extended Program Change}{MIDI settings!extended change}
    If enabled, a new reddish button, \textbf{Pending}, appears.
    Once the change has been made in the scroll list, click this button
    to set the change.
 
    Values: \texttt{0-127, 110*}
 
-   \itempar{Ignore Reset all CCs}{MIDI preferences!Ignore Reset all CCs}
+   \itempar{Ignore Reset all CCs}{MIDI settings!Ignore Reset all CCs}
    Causes \textsl{Yoshimi} to ignore this message.
    \index{CC monitor}
    For example, using \textsl{Yoshimi}'s fairly new CC monitor (see the next
@@ -860,12 +862,19 @@
 
    Values: \texttt{Off*, On}
 
-   \itempar{Log incoming CCs}{MIDI preferences!Log incoming CCs}
-   This setting is is about the only setting that is never saved. It is there
-   solely as an aid for when \textsl{Yoshimi} appears to ignore MIDI commands,
+   \itempar{Log Incoming CCs}{MIDI settings!Log Incoming CCs}
+   This setting is now saved (in the \texttt{config} file). It is there
+   as an aid for when \textsl{Yoshimi} appears to ignore MIDI commands,
    as it tells one exactly what \textsl{Yoshimi} thinks it received.
 
    Values: \texttt{Off*, On}
+
+   \itempar{Show Learn Editor}{MIDI settings!Show Learn Editor}
+   Sets whether the MIDI Learn editor window is to be opened when learning a
+   new control. One might find that when learning a new control one
+   usually wants to change the \textbf{Min} and \textbf{Max} settings.
+
+   Values: \texttt{Off, On*}
 
 \subsubsection{Menu / Yoshimi / MIDI Learn...}
 \label{subsubsec:menu_yoshimi_midi_learn}

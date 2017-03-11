@@ -578,6 +578,8 @@ hope will make things clear.
 
 It's here too if you want a quick overview:
 
+TODO TODO TODO TODO TODO TODO TODO TODO:
+
         /*
          * Test routine for direct access to all effect names & limits
          * -1 can be used as out of band parameter
@@ -717,7 +719,6 @@ autoconnect' and 'no main jack autoconnect', but still keeping the 'K' for
 backward compatibility.
 
 How does that look?
-
 
 
 Date: Fri, 6 May 2016 22:43:48 +0100
@@ -1062,9 +1063,6 @@ At some point I'll need to work out the GUI interface for midi-learn of course!
 Oh, anyone fancy knocking up a GUI interface for vector control? :)
 
 
-
-========================== CONTINUE HERE ================================
-
 Date: Sat, 21 May 2016 20:05:23 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -1094,7 +1092,6 @@ You should see just yoshimi as the client for both audio and midi if you run
 further instances of yoshimi they should track correctly with number suffixes
 
 
-
 Date: Sat, 21 May 2016 22:09:34 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
@@ -1113,9 +1110,6 @@ led me to spot a minor bug  - clearing NRPNs.
 
 As an aside, 5 produces an image that is slightly smaller than 4.9 and 6 is in
 the middle.
-
-
-
 
 
 Date: Tue, 24 May 2016 00:00:02 +0100
@@ -1203,12 +1197,7 @@ perform the functions, and only once that is working reliably will I start to
 strip down the GUI
 
 
-
-
-
-
-
-te: Thu, 26 May 2016 21:25:26 +0100
+Date: Thu, 26 May 2016 21:25:26 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Something for the poor downtrodden GUI users :)
@@ -1236,12 +1225,8 @@ for saves and loads.
 So, have a play. See if anything breaks, and let me know what you think of the
 layout.
 
-
 At a later date I'd like to extend the window downwards and have a nice polar
 graph tracking the sweet-spot - but there's other stuff to get on with first.
-
-
-
 
 
 Date: Fri, 27 May 2016 21:03:39 +0100
@@ -1257,9 +1242,7 @@ a Vector file has been loaded a label appears at the bottom (alongside
 Could do with some feedback on this before casting it out to the world :)
 
 
-
-
-ate: Fri, 27 May 2016 01:03:43 +0100
+Date: Fri, 27 May 2016 01:03:43 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: A slight change of focus.
@@ -1284,8 +1267,6 @@ In the next commit. Mixer panel sliders will also home if the slot is right
 clicked.
 
 
-
-
 Date: Fri, 27 May 2016 16:51:59 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
@@ -1299,10 +1280,6 @@ Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
 
 The bit recognising which control has been used - not including vector control
 yet!
-
-
-
-
 
 
 Date: Tue, 31 May 2016 20:31:12 +0100
@@ -1342,7 +1319,6 @@ the active status of the part, nor the number of parts available. This is
 because these settings may have been made independent of vector control. In
 short, vector control will add things but not remove them.
 
-
 Moving on, if you right click on *any* slider's track it will jump to its home
 position. All the horizontal sliders now have their tracks indented so it's a
 bit more obvious. I've also managed to make some of the slightly longer, and
@@ -1364,11 +1340,7 @@ apply to the pitch wheel behaviour - well they will do once I've sorted the
 code out (hopefully before final release). We've been picking up and re-saving
 these for a long time, just not doing anything with them.
 
-
-
-
-
-te: Wed, 1 Jun 2016 19:30:25 +0100
+Date: Wed, 1 Jun 2016 19:30:25 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Next release Yoshimi 1.4.0 rc1
@@ -1393,10 +1365,6 @@ the final release that won't have it. Then, once the next master is committed
 it'll be back again.
 
 
-
-
-
-
 Date: Thu, 2 Jun 2016 18:03:45 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -1409,11 +1377,6 @@ On rc2 already!
 A mistake in the new vector control meant that 'Clear' was wiping out all the
 vector names not just for that channel :(
 Still, the good news is that you now have 'Clear Chan' and 'Clear All' :)
-
-
-
-
-
 
 
 Date: Sat, 4 Jun 2016 17:19:35 +0100
@@ -1449,7 +1412,6 @@ consistency in the GUI.                                                         
 
 DONE
 
-
 Date: Tue, 31 May 2016 20:43:03 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
@@ -1477,7 +1439,6 @@ some underlying code adjustments.
 Once again, apologies for making more work for you.
 
 DONE
-
 
 Date: Sat, 4 Jun 2016 14:43:45 +0200
 From: Frank Neumann <beachnase@web.de>
@@ -1573,7 +1534,6 @@ click on the button itself nothing happens unless you move the mouse slightly,
 you need to click on the track. Knobs are easy, just a click on them does the
 job.
 
-
 Vector control:
 
 The 'base channel' refers to the incoming midi channel that a particular vector
@@ -1617,10 +1577,6 @@ Similarly this will not clear any instrument patches that have been loaded.
 
 Of course making any changes to the parts outside vector control will likely
 mess them up. It won't do any harm - just be puzzling.
-
-
-
-
 
 DONE:
 
@@ -1669,25 +1625,17 @@ Middle button drag very fine adjustment.
 Scroll wheel + ctrl extremely fine adjustment.
 
 
-
 Date: Mon, 6 Jun 2016 07:04:54 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Re: Ride With Yoshimi
 X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
-
-
 http://www.musically.me.uk/music/Ride_With_Yoshimi.ogg
 
 These are from the original recording I made using two 'fixed' instances of
 Yoshimi (before bank changes were possible), so may have slight variations in
 levels.
-
-
-
-
-
 
 
 Date: Mon, 6 Jun 2016 21:49:55 +0100
@@ -1720,7 +1668,6 @@ Page 191 - The feature numbers ... repeated.
 
 Page 193 - (Chris asks: ... resolved I think!
 
-
 page 199 - List history ... include vectors
 
 As an aside, messing about with disabling or hiding menu items in fltk can
@@ -1729,11 +1676,7 @@ alert if someone tries to save an empty one. Clearing can stay as it is - it
 doesn't make any system changes.
 
 
-
-
-
-
-ate: Mon, 6 Jun 2016 20:43:06 +0100
+Date: Mon, 6 Jun 2016 20:43:06 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: A quick update.
@@ -1752,10 +1695,6 @@ A bit more testing and it'll go into master and be part of V 1.4.0.
 
 I'm actually wondering if it might be an idea to do the same with the rotary
 controls.
-
-
-
-
 
 
 Date: Tue, 7 Jun 2016 22:38:16 +0100
@@ -1798,7 +1737,6 @@ Middle button drag on sliders is exactly the same as left button drag and right
 button only ever homes the slider.
 
 
-
 Date: Fri, 10 Jun 2016 09:55:57 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -1837,8 +1775,6 @@ Sliders more-or-less match this with the scroll wheel, but getting incremental
 drags has proved to be elusive! It will have to wait.
 
 
-
-
 Date: Mon, 13 Jun 2016 00:23:06 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -1874,7 +1810,6 @@ need to enter single byte CCs to change the setting. See doc/Shortform_NRPN.txt
 This came about through discussion after my demo of channel switching on
 MiniLAC2016. The idea was liked, but having to mess about with multiple NRPNs
 and their data settings was a fiddle.
-
 
 Some other usability enhancements:
 
@@ -1925,8 +1860,6 @@ Currently there is quite a lot of preparatory work under way but its not ready
 for prime time. It's still really proof of concept.
 
 
-
-
 Date: Thu, 23 Jun 2016 10:32:06 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -1956,8 +1889,6 @@ to the same value for compatibility, but if increased to maximum then gives a
 controllers then do a state save.
 
 Hmmm. I wonder if we should provide a switch to auto-load a default saved state.
-
-
 
 
 Date: Wed, 29 Jun 2016 22:30:13 +0100
@@ -1992,14 +1923,6 @@ These entries aren't fully error checked, so wildly wrong values could result in
 {cough} undefined {cough} actions.
 
 
-
-
-
-
-
-
-
-
 Date: Sat, 30 Jul 2016 21:28:51 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -2031,8 +1954,6 @@ new column with the min/max values - there are a lot of them so that's rather
 slow and tedious :(
 
 
-
-
 Date: Fri, 12 Aug 2016 20:13:57 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -2050,11 +1971,6 @@ The toughest was DynFilter, which is an effect that has a filter component, all
 sitting on top of a part number and effect number.
 
 Still no GUI update when using the direct control. I'm leaving that till later.
-
-
-
-
-
 
 
 Date: Fri, 5 Aug 2016 17:24:47 +0100
@@ -2093,7 +2009,6 @@ system settings) every time you start Yoshimi.
 To revert, simply uncheck the setting (and change any other needed) and save
 settings.
 
-
 The 'Main Settings' tab was already getting pretty crowded so now there is a
 new tab called 'Switches', and I've moved all the system check boxes there as
 well as adding the two new ones.
@@ -2101,10 +2016,7 @@ well as adding the two new ones.
 Hmmm. I expect I'm in trouble with Chris now :p
 
 
-
-
-
-ate: Sat, 6 Aug 2016 21:24:45 +0100
+Date: Sat, 6 Aug 2016 21:24:45 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Another small diversion
@@ -2126,11 +2038,6 @@ for a root change. It's probably not worth recording that.
 
 Now back to direct access. That break gave my subconscious time to come up with
 an idea for managing filters :)
-
-
-
-
-
 
 
 Date: Tue, 9 Aug 2016 22:19:31 +0100
@@ -2176,11 +2083,6 @@ Now where was I?
 Oh, yes {sigh} direct access :(
 
 
-
-
-
-
-
 Date: Sat, 13 Aug 2016 23:14:40 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -2218,8 +2120,6 @@ Heffalump Patch. It's quite fun watching one processor swing up to 100% while
 everything else just trundles along as if nothing was happening :)
 
 
-
-
 Date: Mon, 15 Aug 2016 22:58:52 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -2230,10 +2130,6 @@ X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 stored in both patch sets and saved state :)
 
 This was supposed to have been in place some time ago :o
-
-
-
-
 
 
 Date: Tue, 16 Aug 2016 23:42:02 +0100
@@ -2309,10 +2205,6 @@ Hmmm.
 I'm sure 'the kitchen sink' is supposed to come into it somewhere
 
 
-
-
-
-
 Date: Thu, 18 Aug 2016 19:18:22 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -2342,15 +2234,11 @@ been updated too (without any change to the sound).
 Onwards and upwards :)
 
 
-
-
-
-ate: Mon, 22 Aug 2016 22:06:16 +0100
+Date: Mon, 22 Aug 2016 22:06:16 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: (another) tweak.
 X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
-
 
 After much scanning of the 'net, I finally worked out how to get static
 variables in a class properly accessible externally.
@@ -2369,9 +2257,6 @@ instance :p
 I can't think of any practical situation where the would be different across
 instances, and there are one or two others (compression level?) that could fit
 into this regime.
-
-
-
 
 
 Date: Tue, 23 Aug 2016 23:27:09 +0100
@@ -2430,8 +2315,6 @@ However, this will need a lot of thought as I not only want a single banks file
 from any instance with all open windows kept in sync.
 
 
-
-
 Date: Thu, 25 Aug 2016 19:12:36 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -2456,10 +2339,6 @@ the system - a rather contrived situation.
 And on that note, the current master is version 1.4.1 rc1.
 No matter what the temptation I'm not going to fiddle with this before release
 time, unless anyone finds a bug!
-
-
-
-
 
 
 Date: Fri, 26 Aug 2016 19:46:56 +0100
@@ -2504,8 +2383,6 @@ only changed from the very first time you send the CC.
 If you want to look really clever the whole lot can be bedded in a MIDI file :)
 
 
-
-
 Date: Mon, 29 Aug 2016 20:08:13 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -2535,9 +2412,6 @@ multi-core machine.
 So, here we are with rc4.
 
 
-
-
-
 Date: Sun, 4 Sep 2016 17:41:13 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -2565,10 +2439,6 @@ channel numbers, so ignoring the first of these, that's another 15 'fixed'
 patches you can have, all driven as a backing band via a sequencer !!!
 
 Now you'll have to excuse me while I go and have another play :)
-
-
-
-
 
 
 Date: Wed, 7 Sep 2016 17:45:04 +0100
@@ -2602,9 +2472,6 @@ underneath by stopping Jack won't make it lock up (it used to some time back).
 The only exception is using the experimental 'direct access' from the command
 line, as this has virtually no error checking. Which reminds me, I must include
 that warning in the dev notes!
-
-
-
 
 
 Date: Mon, 5 Sep 2016 00:28:40 +0100
@@ -2647,8 +2514,6 @@ Or:
     /usr/local/share/doc/yoshimi/Yoshimi_1.4.1-features.txt
 
 
-
-
 Date: Wed, 7 Sep 2016 21:39:27 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -2683,8 +2548,6 @@ backwards or forwards across a full bank of 16 parts. It's just pure fun, and
 so liberating for this wannabe live musician!
 
 
-
-
 Date: Sat, 10 Sep 2016 20:12:39 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -2704,13 +2567,8 @@ climb.
 
 Time for a cup of tea I think.
 
-TTFN.
 
-
-
-
-
-ate: Sun, 18 Sep 2016 07:08:40 +0200
+Date: Sun, 18 Sep 2016 07:08:40 +0200
 From: Tony Travolta <dj.ton.e@gmx.de>
 To: yoshimi-user@lists.sourceforge.net
 Subject: [yoshimi-user] merging a patch set into parts 17,18,19, how?
@@ -2733,11 +2591,7 @@ Here an example patch set, I would like to merge, also as an example:
 https://www.youtube.com/watch?v=wD08ocvNcns#t=6m37s
 
 
-
-
-
-
-ate: Sun, 18 Sep 2016 15:40:35 +0200
+Date: Sun, 18 Sep 2016 15:40:35 +0200
 From: Tony Travolta <dj.ton.e@gmx.de>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Fw: Re: [yoshimi-user] merging a patch set into parts
@@ -2780,7 +2634,6 @@ Two yoshimi examples from me, some improvisation playing around, for those who
 are interested:
 Example 1, from below:  https://www.youtube.com/watch?v=wD08ocvNcns#t=6m37s
 Example 2: https://www.youtube.com/watch?v=3WSHQNGWHGg#t=15m22s
-
 
 
 Gesendet: Sonntag, 18. September 2016 um 10:19 Uhr
@@ -2835,10 +2688,6 @@ Say you have a poem and I have a tune.
 Exchange them and we can both have a poem, a tune, and a song.
 
 
-
-
-
-
 Date: Tue, 20 Sep 2016 22:34:28 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -2881,9 +2730,6 @@ Just a quick note to say I haven't forgotten this, it's just that I'm up to my
 eyeballs in 'stuff'.
 
 
-
-
-
 Date: Tue, 20 Sep 2016 22:36:51 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -2918,9 +2764,6 @@ startup, they *will* be in an all Alsa environment, as Yoshimi tries this if
 it can't find the jack server.
 
 
-
-
-
 Date: Tue, 20 Sep 2016 22:41:09 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -2944,10 +2787,6 @@ Will Godfrey <willgodfrey@musically.me.uk> wrote:
 
 All now done except AddSynth :)
 
-
-
-> All now done except AddSynth :)
->
 Actually that's not true.
 
 AddSynth is done as well now :@)
@@ -2957,9 +2796,6 @@ I'll probably start with full command line control (as this is in the same
 region and the ring buffer already points there).
 
 Meanwhile, has anyone else been playing with the channel switcher?
-
-
-
 
 
 Date: Tue, 20 Sep 2016 23:17:06 +0100
@@ -2986,10 +2822,7 @@ in config or state files, and I would rather like to maintain this consistency.
 So, (without being rude) where do I put the switcher control?
 
 
-
-
-
-ate: Wed, 21 Sep 2016 12:33:10 +0200
+Date: Wed, 21 Sep 2016 12:33:10 +0200
 From: Tony Travolta <dj.ton.e@gmx.de>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Aw: Re: A question
@@ -3007,13 +2840,6 @@ same name, only different extension, maybe name.switch , if it exists this will
 be used instead of some other default setting from somewhere. Just an idea. I
 do not know much of yoshimi system.
 
-Best regards
-Tony
-
-
-
-
-
 
 Date: Thu, 22 Sep 2016 11:03:01 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
@@ -3029,9 +2855,7 @@ these in the GUI so they fit in stylistically and don't clutter any of the
 'front' windows.
 
 
-
-
-ate: Thu, 22 Sep 2016 10:58:46 +0100
+Date: Thu, 22 Sep 2016 10:58:46 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: new instance for each patch set, a good idea?
@@ -3061,7 +2885,6 @@ to.
 Does that help at all?
 
 
-
 Date: Thu, 22 Sep 2016 12:11:46 +0200
 From: Tony Travolta <dj.ton.e@gmx.de>
 To: yoshimi@freelists.org
@@ -3089,12 +2912,7 @@ pure program change events in those parts, would change from their banks, and
 not the last used bank. I tried various settings but could not achieve this
 behaviour. Is this possible currently?
 
-Best regards
-Tony
-
 * I will search now for miniLAC2016.
-
-
 
 
 Date: Thu, 22 Sep 2016 13:09:18 +0200
@@ -3106,10 +2924,6 @@ Subject: [yoshimi] how to save multiple instance yoshimi setup?
 If I use 5 instances and want to save the entire 'instance state', is this
 possible? I guess no. This would be the reason not to use this way. Otherwise
 that would be useful.
-
-Best regards
-Tony
-
 
 
 Date: Thu, 22 Sep 2016 19:44:56 +0100
@@ -3138,13 +2952,11 @@ with other devs, but I'll certainly put it on the to-do list (don't hold your
 breath).
 
 
-
 Date: Wed, 5 Oct 2016 19:38:45 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Synthfest UK
 X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
-
 
 I'm fairly well known now as 'Mr Yoshimi' and got a few enquiries as to how
 development was going. Also a couple of people commented very favourably on our
@@ -3156,9 +2968,6 @@ On top of this, we had some excellent weather for the days I was in Derbyshire,
 and I was pleasantly tired after many very long walks in the dales. The B&B I
 was staying at was excellent. Lovely people, great breakfasts and stunning
 views out of every window.
-
-
-
 
 
 Date: Fri, 7 Oct 2016 16:01:08 +0100
@@ -3189,10 +2998,6 @@ random effect results in white noise between the clear blue structures.
 What I was *actually* looking for was information on the formant filter. I'm
 beginning to get the concept, but there is a dearth of information about it and
 a few gaps in my understanding - especially in respect to the sequencing.
-
-
-
-
 
 
 Date: Tue, 11 Oct 2016 19:13:01 +0100
@@ -3239,11 +3044,6 @@ I hope you're reading this Chris - more for the user guide.
 It's back to the mind numbing stuff for me though :(
 
 
-
-
-
-
-
 Date: Fri, 14 Oct 2016 22:59:27 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -3282,7 +3082,6 @@ The *value* this CC sends performs the actual change, instantly and silently.
 Most importantly it leaves any existing notes sounding through a note off, it's
 release and effects tail.
 
-
 In row mode the whole of the first 16 parts are ostensibly receiving channel 1.
 This is most useful if you want to play live through a piece, with multiple
 instrument changes while playing. It works best with a foot switch that
@@ -3300,9 +3099,6 @@ independently of each other. However, this works more like vector control in
 that you have to switch in 16s. For example to control the channel 4 column
 you would send 4, 20, 36, 52 to select the wanted part. This is more appropriate
 for post recording MIDI automation.
-
-
-
 
 
 Date: Fri, 14 Oct 2016 23:07:41 +0100
@@ -3323,9 +3119,6 @@ lot of information on the title bars.
 
 I hope you can find some time for updates.
 
-
-Will.
-
 --
 Will J Godfrey
 http://www.musically.me.uk
@@ -3333,10 +3126,6 @@ Say you have a poem and I have a tune.
 Exchange them and we can both have a poem, a tune, and a song.
 
 [-- Attachment #2: Screens.tgz --]
-
-
-
-
 
 
 Date: Sun, 16 Oct 2016 10:24:02 +0100
@@ -3382,31 +3171,21 @@ safest on. i.e don't delete a file. However, if instead of hitting 'return' you
 use the window manager's close icon FLTK will sometimes perform the unsafe
 option :(
 
-
 Ummm. Figure 28 on page 54 *doesn't* show Arpeggios :)
-
 
 Knobs and Sliders.
 Right click now *only* sets default value. Once we finally have mdid-learn in
 place CTRL/right click will perform a learn request.
 
-
 Not sure if this gets mentioned anywhere, but on first time start up, yoshimi
 will look for Zyn banks as well as Yoshi ones in the usual locations. It *won't*
 look for a Zyn config file as these are no longer relevant.
 
-
 I've updated the INSTALL file and included a very simple way to build outside
 the source directory. I know it works - I use it all the time myself now :)
 
-
 One more window attached that I missed :( If you want alternatives of any others
 let me know.
-
-
-
-
-
 
 
 Date: Sat, 22 Oct 2016 20:49:41 +0100
@@ -3422,8 +3201,6 @@ on Row called 'Loop'.
 With this, if you send *any* value via the designated CC it will increment the
 active part by one, rolling round to 1 after 16. This should make even the
 dumbest foot controller usable - and I don't mean the person operating it :)
-
-
 
 
 Date: Mon, 24 Oct 2016 21:27:35 +0100
@@ -3442,8 +3219,6 @@ When I have time (haha) I'll investigate the possibility of making bank roots
 behave in the same way. This will then also deal with sequencers that insist
 on two byte bank numbers - which currently screws up our bank/root separation.
 
-
-
 While working on the nitty-gritty, I have now (finally) come to understand how
 the various oscillators in Addsynth interact.
 
@@ -3461,15 +3236,10 @@ In the voice window, the 'External Mod' at the top right give the choice of
 previous modulation oscillator and the 'Mod Oscillator' at the bottom right
 gives you the choice of previous voice oscillators.
 
-
 Previously I thought you could use lower numbered voice oscillators for
 modulators if the voice itself was disabled. This was wrong. What made it seem
 to work was that it actually gave you *no* modulation instead of that from the
 internal modulator.
-
-
-
-
 
 
 Date: Mon, 24 Oct 2016 22:25:51 +0100
@@ -3492,9 +3262,6 @@ control, so that I can then eventually include individual reads too. That's a
 *lot* of send_data() entries to change :(
 
 
-
-
-
 Date: Fri, 28 Oct 2016 23:57:36 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -3510,8 +3277,6 @@ math at note-on. Instead of calculating key shifts and tuning on the fly we now
 have a look-up table per part which is updated when these controls are changed.
 One of my test pieces that typically produced 5-6 xruns (at 16 frames) now only
 produces 3-4 :)
-
-
 
 
 Date: Sun, 30 Oct 2016 16:16:25 +0000
@@ -3540,17 +3305,7 @@ more will be spaced 5 apart. Also, an attempt to set an invalid root will
 restore the previous bank and root. A valid root change will always then set
 the bank to the lowest numbered one it finds.
 
-
-
-
 https://my.pcloud.com/publink/show?code=XZQ21gZ6cwRtfkRAbLsaxrLBxAuY8IEOU8y
-
-Lorenzo.
-
-
-
-
-
 
 
 Date: Wed, 16 Nov 2016 23:22:39 +0000
@@ -3558,7 +3313,6 @@ From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Help imitating synth
 X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
-
 
 I don't recommend trying to do that manually. It quickly gets tiring and is
 quite hard to keep steady timing, especially while trying to sing as well.
@@ -3578,10 +3332,6 @@ If you want exactly 3 repeats do the same for effect number 2 but double the
 delay time - might need to fiddle with this a bit.
 
 Of course, as soon as you have it the way you want SAVE IT!
-
-
-
-
 
 
 Date: Thu, 17 Nov 2016 00:47:00 +0000
@@ -3649,17 +3399,12 @@ to fit the range. e.g. min is 32, max is 95. Incomming 0 will be 32, incomming
 
     Delete: removes the line completely (with a warning)
 
-
 I'll start working out how to shoehorn this in, but at first, although you'll be
 able to set up lines, you won't be able to see them or remove them. Indeed
 there won't be a window at all!
 
 Apart from anything else, at the moment I have no idea how to implement a
 varible length list of controls in FLTK.
-
-
-
-
 
 
 Date: Fri, 18 Nov 2016 21:58:28 +0000
@@ -3669,7 +3414,6 @@ Subject: [yoshimi] Re: Fun times ahead - MIDI learn
 X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 
 Quite a bit of progress on the current master :)
-
 
 What you can do:
 
@@ -3694,18 +3438,12 @@ you can set them up to do quite different jobs.
 
 Some of them like volume and pan are immediate but most are 'next note'.
 
-
 What you can't do yet:
 
 You can't unset one. It's there for the session - so get it right :)
-
 You can't edit them - There's no Learn window yet!
-
 You can't get them to block others on the same CC/channel pair - that will come
 later.
-
-
-
 
 
 Date: Sun, 20 Nov 2016 02:27:50 +0000
@@ -3728,10 +3466,6 @@ and it would make for unnecessary complications.
 
 Now to try and get some sleep. It's *very* early morning here, amid heavy
 blustery (noisy) rain :(
-
-
-
-
 
 
 Date: Sun, 20 Nov 2016 22:40:00 +0000
@@ -3798,8 +3532,6 @@ provide a richer control set. I suppose someone could write some form of python
 conversion script if they were really interested.
 
 
-
-
 Date: Thu, 24 Nov 2016 19:15:53 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -3824,9 +3556,6 @@ work when being changed, so if there is aheavy activity at the time, you are
 likely to get Xruns.
 
 So, have at it musicians :D
-
-
-
 
 
 Date: Thu, 24 Nov 2016 15:16:38 +0100
@@ -3861,13 +3590,6 @@ unsigned char tempfreqtrack = (Pfreqtrack == 127) ? 128 : Pfreqtrack;
 
 Any thoughts?
 
-Greetings,
-Jörn
-
-
-
-
-
 Date: Thu, 24 Nov 2016 16:58:38 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -3887,9 +3609,6 @@ Maybe a *1.5 checkbox so you could maybe go beyond 100%
 Finally, though I used the same technique myself for such a whistle, I
 think you're actually better off using subsynth and fiddling the bandwidths.
 For example just increase the bandwidth of the fundamental and add reverb :)
-
-
-
 
 
 Date: Sun, 11 Dec 2016 10:55:32 +0000
@@ -3920,8 +3639,6 @@ once the physical control has been captured. Also, the same window is used to
 tell you a control is not learnable.
 
 
-
-
 Date: Tue, 13 Dec 2016 23:25:25 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
@@ -3945,13 +3662,6 @@ text is slightly smaller. Oh, and the title bar is correctly identified now.
 I would like to say there will be no more changes until after 1.5.0 release -
 then again, there are lots of things I'd like :)
 
-TTFN
-
-Will.
-
-
-
-
 
 Date: Sat, 17 Dec 2016 14:11:49 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
@@ -3962,7 +3672,6 @@ X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 Still learning new songs and singing sweetly in the middle of winter.
 
 A recap of all the major changes since V 1.4.1
-
 
 Vector control now has its own dedicated button on the main window. A little
 bit of shuffling meant that space could be created for it while actually making
@@ -4015,11 +3724,6 @@ significant one is in the planning stages. Note-on is when the greatest load is
 put on the processor.
 
 
-
-
-
-
-
 ate: Sat, 17 Dec 2016 16:13:57 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
@@ -4040,13 +3744,6 @@ the CLI being the main user.
 ####################
 
 (snipped, incorporated into yum_midi_learn.tex)
-
-
-
-
-
-
-
 
 
 Date: Thu, 15 Dec 2016 21:32:57 +0000
@@ -4096,9 +3793,6 @@ doesn't know whether it's child is open or not so will simply re-open it on
 each click.
 
 
-
-
-
 Date: Sun, 18 Dec 2016 22:44:44 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -4136,7 +3830,6 @@ This would then allow LV2 to meaningfully expose a lot of controls.
 
 I think that covers all the 'old' stuff, and that's enough in itself :(
 
-
 The elephant in the room is Note On, as I outlined in earlier discussion.
 
 If you build with 'ReportNoteOnTimes' enabled in ccmake, you'll see what I
@@ -4173,15 +3866,10 @@ re-initialised, thereby spreading the CPU load between note on/off more evenly.
 AddSynth (as usual) would be the most difficult one to handle, and SubSynth
 the easiest.
 
-
 Now the thing is, I really can't manage this and all the tidy-up stuff at the
 same time, and it would be quite unreasonable to expect anyone else to take on
 half-completed code, so... is there anyone here who fancies the challenge of
 taking this on?
-
-
-
-
 
 
 Date: Mon, 2 Jan 2017 18:14:15 +0000
@@ -4205,12 +3893,7 @@ controls also no longer does a complete redraw. It's still not perfect but it's
 progress.
 
 
-
-
-
-
-
-ate: Tue, 3 Jan 2017 20:26:14 +0000
+Date: Tue, 3 Jan 2017 20:26:14 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] YES!
@@ -4232,11 +3915,6 @@ number to 129. Save the learned set, and next time you *do* have such a device
 just load the file and you're away.
 
 
-
-
-
-
-
 Date: Wed, 4 Jan 2017 17:03:23 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -4247,9 +3925,6 @@ You might wonder why you'd want to MIDI learn modulation when there is already a
 dedicated CC for it - same for 'brightness'. Well, the answer is that there is
 currently no way to link these to aftertouch, and this is especially relevant
 for people using wind controllers.
-
-
-
 
 
 Date: Wed, 4 Jan 2017 19:25:12 +0000
@@ -4267,11 +3942,6 @@ thinks they have helped to persuade his 70 year old dad to try Yoshimi :)
 Hope you had a good Christmas and New Year.
 
 Will.
-
-
-
-
-
 
 
 Date: Thu, 5 Jan 2017 17:06:36 +0000
@@ -4324,10 +3994,6 @@ I'm wondering if I should also put 0.0.0 .bankdirs in all the other default
 banks.
 
 
-
-
-
-
 Date: Thu, 5 Jan 2017 23:40:38 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -4341,7 +4007,6 @@ Will Godfrey <willgodfrey@musically.me.uk> wrote:
 > dedicated CC for it - same for 'brightness'. Well, the answer is that there is
 > currently no way to link these to aftertouch, and this is especially relevant
 > for people using wind controllers.
-
 
 Well that was rather easier than I expected :)
 
@@ -4368,9 +4033,6 @@ when 'normal' MIDI messages come in, but these will eventually be taken care of.
 The info in dev_notes is also updated.
 
 Have fun!
-
-
-
 
 
 Date: Mon, 16 Jan 2017 22:10:14 +0000
@@ -4415,10 +4077,6 @@ other by then - especially if I'm accepted for another workshop presentation.
 So, any thoughts or alternative suggestions more than welcome.
 
 
-
-
-
-
 Date: Wed, 1 Feb 2017 17:08:58 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -4457,12 +4115,7 @@ The *actual* resolution you get will be detirmined by the physical control
 source. Most seem to be 10 bit, but if generated within an automation source
 you'll get the full 14 bits.
 
-
 Now you'll have to excuse me - I've a new toy to play with :¬)
-
-
-
-
 
 
 Date: Thu, 2 Feb 2017 09:07:38 +0100
@@ -4497,19 +4150,14 @@ Also if it where (and I guess this is a more general question about MIDI
 learn) if for example midi learn is on CC1 (mod wheel) will yoshimi catch that
 and ignore the 'real' CC1?
 
-Lorenzo.
 
-
-
-
-
+TODO TODO TODO TODO TODO TODO TODO TODO TODO:
 
 Date: Thu, 2 Feb 2017 18:47:54 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: MIDI learn on steroids - Portamento?
 X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
-
 
 Currently none of the 'Controllers' window is learnable, but that's because I
 didn't think anyone would want to change them dynamically!
@@ -4540,11 +4188,6 @@ I've covered this in bits here and there, but I guess there needs to be a
 writeup of the whole lot. There are some notes in doc/MIDI_Learn.txt
 
 Where is young Chris when you need him :p
-
-
-
-
-
 
 
 Date: Sat, 4 Feb 2017 11:53:02 +0000
@@ -4579,7 +4222,6 @@ A bit more dsp load when actually moving the controls.
 
 The ugly:
 Hey, there's nothing ugly about Yoshimi!
-
 
 
 Date: Fri, 18 Mar 2016 14:25:15 +0000
@@ -4627,9 +4269,6 @@ needs doing already :(
 This patch will go into the next commit.
 
 
-
-
-
 Date: Sat, 19 Mar 2016 17:12:12 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -4644,8 +4283,7 @@ More importantly, the CLI can now list the recent patch set, scale &
 state histories :)
 
 
-
-
+TODO TODO TODO TODO TODO TODO TODO TODO TODO:
 
 Date: Sun, 20 Mar 2016 19:45:19 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
@@ -4684,9 +4322,6 @@ for the window, then from there convert it to the actual tunings when that
 apply() function is called :(
 
 
-
-
-
 Date: Sat, 19 Mar 2016 17:27:25 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
@@ -4703,7 +4338,6 @@ list history [s]               - recent files (patchsets, scales, states)
 
 If no parameter is given it lists all three in sequence.
 
-
 I notice you have load and save instrument wrong on both page 186 and 188 it
 should be:
 
@@ -4712,13 +4346,8 @@ save instrument <s>            - current part to named file
 
 All the load and save parameters are strings and are compulsory, not optional.
 
-
 I haven't forgotten about writing something for LV2 - I just can't think of
 anything I can say :(
-
-
-
-
 
 
 Date: Sun, 20 Mar 2016 19:17:24 +0000
@@ -4730,9 +4359,6 @@ X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 Ummm.
 
 There is also state load and save from/to named file in there now :)
-
-
-
 
 
 Date: Fri, 10 Feb 2017 14:22:28 +0000
@@ -4755,14 +4381,9 @@ I'll have a look to see if I can do the same for individual parts, but that's
 slightly more complicated because applying padsynth to individual kit items is
 also involved.
 
-
 There are a handful of fairly minor bugfixes and one really obscure crash fixed.
 
 These days Yoshi is aiming for smart *and* tough :)
-
-
-
-
 
 
 Date: Sat, 11 Feb 2017 20:33:59 +0000
@@ -4799,11 +4420,6 @@ While working through this, I'm also pushing much smaller commits so if it blows
 up again it will be easier to untangle.
 
 
-
-
-
-
-
 Date: Thu, 16 Feb 2017 23:12:21 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -4820,10 +4436,6 @@ actually happing in the GUI!
 
 Actual CLI entries are still zero based, but I will deal with these soon. Like,
 when I can see straight again :o
-
-
-
-
 
 
 Date: Mon, 20 Feb 2017 22:20:19 +0000
@@ -4869,11 +4481,6 @@ Oh, and loading vectors is now a 'soft' load like the others :)
 Ho hum, any ideas for a springtime bird for the next codename?
 
 
-
-
-
-
-
 Date: Tue, 21 Feb 2017 19:54:16 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
@@ -4908,10 +4515,6 @@ and am hoping there will be no more GUI changes, apart from the excelent work
 Jesper is doing with the tooltips (have you seen these lately?)
 
 
-
-
-
-
 Date: Thu, 23 Feb 2017 16:21:17 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
@@ -4932,10 +4535,6 @@ MIDI_learn the same LFO depth to aftertouch.
 Set limits to taste.
 
 Dynamically play a wind controller :)
-
-
-
-
 
 
 Date: Sun, 26 Feb 2017 22:27:23 +0000
@@ -4970,7 +4569,6 @@ This is a very low-level access method for almost every Yoshimi control.
 I'm starting to move GUI, CLI & MIDI entries over to using it and eventually
 *everything* will go via this.
 
-Will.
 
 Date: Fri, 3 Mar 2017 19:04:59 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
@@ -4988,9 +4586,6 @@ the default 50:50.
 However, these days we have right-click on all controls to set defaults, so I
 decided to reinstate them all, but with a difference. Now when you click on them
 they *set* random mode.
-
-
-
 
 Date: Mon, 6 Mar 2017 16:59:18 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
@@ -5073,4 +4668,30 @@ a specific variation for this. "direct", "lim", [control], [part], [kit] etc.
 this now reports the full name of the control, and as well as the limits, it
 goves the type (float/integer) and whether it is midi learnable.
 
+
+Date: Fri, 10 Mar 2017 22:40:16 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] V1.5.1 iminent :)
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+Not a code freeze yet, so if any of Yoshimi's little helpers want to slip
+something in that's not too dramatic, please do so over the next week.
+
+Meanwhile, a couple of little tweaks.
+
+The switch in settings->MIDI for monitoring incoming CCs is now saved in
+'config' - I was finding that when I did want it, it was quite annoying having
+to reset it every time I restarted. The first-time default is 'off'.
+
+There is also now a switch in settings->MIDI that sets whether the MIDI-learn
+editor window is to be opened when you learn a new control. I find that when
+learning a new control I nearly always want to change the min and max settings,
+so the first-time default is 'on'.
+
+Once we get to rc1 I'll switch to using the new splash screen.
+
+Apart from that I might do a bit more in the CLI, but otherwise I think I'll
+stick to bug-hunting. Anyone with nothing to do is more than welcome to join
+me :)
 
