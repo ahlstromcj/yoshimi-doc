@@ -95,7 +95,7 @@
 
    Disabling or clearing vectors will \textsl{not} change the number of parts
    because they may have already been set to increased numbers for some other
-   purpose.  Similarly disabling or clearing vectors will  \textsl{not} clear
+   purpose.  Similarly, disabling or clearing vectors will \textsl{not} clear
    any instrument patches that have been loaded.
    Of course making any changes to the parts outside vector control will likely
    mess them up. It won't do any harm, just be puzzling.
@@ -220,6 +220,11 @@
          Clears out the full vector setup, rendering it an "empty" vector setup
          that cannot be saved.
    \end{enumber}
+
+   \index{soft load}
+   Note that loading vectors is a 'soft' load. It first runs down the overall
+   volume (over about 100 ms), then mutes the whole synth before performing
+   the load operation. Only when that is complete does it unmute the synth. 
 
    \itempar{X Vector}{Vectors!x}
    The X Vector.

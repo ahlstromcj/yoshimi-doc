@@ -245,7 +245,7 @@ be done. Once proved viable, my first thought was vectors!
 By going down 'columns', instead of across 'rows' you don't reduce the number
 of available channels for normal MIDI operations.
 
-By default an entire column uses the same MIDI channel, so, remembering that      almost all numbers in the CLI start from zero, you have:
+By default an entire column uses the same MIDI channel, so, remembering that   almost all numbers in the CLI start from zero, you have:
 
 CH 0 - parts 0, 16, 32, 48
 HH 3 - parts 3, 19, 35, 51
@@ -524,7 +524,7 @@ Enable 32 parts
 Load 'Simple Chimes' into part 0 (part 1 in the GUI).
 Load 'Silver Bell' into part 16 (part 17 in the GUI).
 In your sequencer, via direct part NRPN set part 16 to channel 16.
-    This will now be 'whited out' in the GUI
+ This will now be 'whited out' in the GUI
 
 Record some notes to channel 0 - usually represented in sequencers as channel 1
 - yes I know this gets confusing :(
@@ -580,35 +580,35 @@ It's here too if you want a quick overview:
 
 TODO TODO TODO TODO TODO TODO TODO TODO:
 
-        /*
-         * Test routine for direct access to all effect names & limits
-         * -1 can be used as out of band parameter
-         *
-         * EQ (7) is very strange and still not quite right :(
-         *
-         * if t4 is 0 return string
-         * t1 effect number. 0 or out of band returns "No Effect'
-         *
-         * t2 preset or controller number to read
-         * out of band returns effect name
-         * t3 list type
-         *   0 - effect/preset name
-         *   1 - not used
-         *   2 - long controller name
-         *   3 - short controller name
-         * out of band retunes 'Invalid"
-         *
-         * if t4 is 1 return value
-         * t1 effect number. 0 or out of band returns number of effects
-         *
-         * t2 preset or controller number to read
-         * out of band returns number of presets or number of controls
-         *
-        *
-         * t3 data type
-         *   0 - min value (number of presets of t2 out of band)
-         *   1 - max value (number of controls of t2 out of band)
-         */
+     /*
+      * Test routine for direct access to all effect names & limits
+      * -1 can be used as out of band parameter
+      *
+      * EQ (7) is very strange and still not quite right :(
+      *
+      * if t4 is 0 return string
+      * t1 effect number. 0 or out of band returns "No Effect'
+      *
+      * t2 preset or controller number to read
+      * out of band returns effect name
+      * t3 list type
+      *   0 - effect/preset name
+      *   1 - not used
+      *   2 - long controller name
+      *   3 - short controller name
+      * out of band retunes 'Invalid"
+      *
+      * if t4 is 1 return value
+      * t1 effect number. 0 or out of band returns number of effects
+      *
+      * t2 preset or controller number to read
+      * out of band returns number of presets or number of controls
+      *
+     *
+      * t3 data type
+      *   0 - min value (number of presets of t2 out of band)
+      *   1 - max value (number of controls of t2 out of band)
+      */
 
 Hope you can look at this.
 
@@ -750,7 +750,7 @@ set up just one client that handles both. This potentially has performance
 issues at low latencies as well as out of sync names.
 
 What I think needs to happen is that when a call is made to start a jack audio
-client it should look ahead to see if midi is jack too, and if so incorporate     that. Then, in the midi loop recognise that it has already been set up and
+client it should look ahead to see if midi is jack too, and if so incorporate  that. Then, in the midi loop recognise that it has already been set up and
 simply do nothing. As far as I know, there is no way that jack audio can succeed
 and at the same time jack midi fail.
 
@@ -1408,7 +1408,7 @@ possible.
 
 If we can just get those sliders under mouse wheel control that would be the
 icing on the cake. It will be the final piece of the puzzle for complete
-consistency in the GUI.                                                          j
+consistency in the GUI.                                                       j
 
 DONE
 
@@ -1456,7 +1456,7 @@ I found hundreds of error messages like this:
 _mm_cvtsi32_si64(int)’:
 /usr/lib/gcc/x86_64-linux-gnu/4.8/include/mmintrin.h:61:54: error: can’t convert
 between vector values of different size
-   return (__m64) __builtin_ia32_vec_init_v2si (__i, 0);
+return (__m64) __builtin_ia32_vec_init_v2si (__i, 0);
  . . .
 
 but wasn't sure at first what changed. Then, a bit of googling brought me to
@@ -1475,9 +1475,9 @@ So, I tried this:
 franky@silence:~/src/audio/yoshimi-git/build/src> diff -u CMakeLists.txt.orig
 CMakeLists.txt
 --- CMakeLists.txt.orig 2016-06-04 14:29:38.518835880 +0200
-+++ CMakeLists.txt      2016-06-04 14:30:53.324831450 +0200
++++ CMakeLists.txt   2016-06-04 14:30:53.324831450 +0200
 @@ -24,7 +24,7 @@
-     cmake_policy (SET CMP0046 OLD)
+  cmake_policy (SET CMP0046 OLD)
  endif (POLICY CMP0046)
  set (CMAKE_CXX_STANDARD 11) # we seem to need both for
 -add_definitions(-std=c++11) # various versions of cmake
@@ -1647,7 +1647,7 @@ X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 Small point - title still showing V 1.3.9
 
 Page 14 - Yoshimi now stamps ... as well as the nearest compatible Zyn version.
-        - With the exception of ... no longer true :)
+     - With the exception of ... no longer true :)
 
 Page 30 - ... The Parameters / Save ... Patch Sets please :(
 
@@ -1655,7 +1655,7 @@ Page 39 - Please make a note that setting the Vector CCs also ensures that the
 respective parts are set to receive the base channel.
 
 Page 41 - X vector again? Should be Y
-        - When setting up a completely new vector ... no longer true!
+     - When setting up a completely new vector ... no longer true!
 
 Page 63 - Parameter sets ... again. Last sentence before 5.3.3
 
@@ -1832,7 +1832,7 @@ click on that child's close button re-opens the parent. Use this a few times
 and you'll wonder how you managed without. Actually, this has been possible for
 a long time with Root/Bank/Instrument windows :)
 
-A right click on the track of any slider, or on any rotary knob will return it    to its home position.
+A right click on the track of any slider, or on any rotary knob will return it to its home position.
 
 There has been some shuffling in the GUI to make the different windows more
 consistent and easier to recognise. This has also enabled us to increase the
@@ -2173,7 +2173,7 @@ the file leafname.
 If you load an external instrument file with the name 'Simple Sound', you'll be
 given the name 'No Title'
 
-If you load a patch set that has unnamed instruments, or ones with the name       'Simple Sound', those will be given the name 'No Title'
+If you load a patch set that has unnamed instruments, or ones with the name    'Simple Sound', those will be given the name 'No Title'
 
 The part and mixer name fields will always show the (possibly adjusted)
 internal name regardless of the external filename, which could easily have been
@@ -2278,8 +2278,8 @@ We now have instance data separated from the main config file and carrying the
 name 'yoshimi-{n}.instance
 
 There are two new 'switches':
-        enable GUI
-        enable CLI
+     enable GUI
+     enable CLI
 
 These now don't have to be set only from a command line. They are sanity
 checked - you can't disable both! You are also warned that disabling the GUI
@@ -2287,13 +2287,13 @@ can only be reversed from the command line.
 
 The list of hidden 'base parameters' that are set only by the main instance is
 now:
-        sample rate
-        buffer size
-        oscillator size
-        Gzip copmpression
-        enable GUI
-        enable splash
-        enable CLI
+     sample rate
+     buffer size
+     oscillator size
+     Gzip copmpression
+     enable GUI
+     enable splash
+     enable CLI
 
 In the other instances these are now hidden instead of deactivated. I think it
 makes more sense as they are *never* enabled. All of this makes things just
@@ -2509,9 +2509,9 @@ the previous one.
 All the usual background improvements.
 
 When installed, full details are in either:
-    /usr/local/share/doc/yoshimi/Yoshimi_1.4.1-features.txt
+ /usr/local/share/doc/yoshimi/Yoshimi_1.4.1-features.txt
 Or:
-    /usr/local/share/doc/yoshimi/Yoshimi_1.4.1-features.txt
+ /usr/local/share/doc/yoshimi/Yoshimi_1.4.1-features.txt
 
 
 Date: Wed, 7 Sep 2016 21:39:27 +0100
@@ -2595,7 +2595,7 @@ Date: Sun, 18 Sep 2016 15:40:35 +0200
 From: Tony Travolta <dj.ton.e@gmx.de>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Fw: Re: [yoshimi-user] merging a patch set into parts
-        17,18,19, how?
+     17,18,19, how?
 
 [-- Autoview using w3m -I 'UTF-8' -T text/html --]
 Ok, thanks Will,
@@ -2692,7 +2692,7 @@ Date: Tue, 20 Sep 2016 22:34:28 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Fw: Re: [yoshimi-user] merging a patch set into parts
-        17,18,19, how?
+     17,18,19, how?
 X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 On Sun, 18 Sep 2016 15:40:35 +0200
@@ -2831,9 +2831,9 @@ Subject: [yoshimi] Aw: Re: A question
 One idea, for a switcher file per patch set.
 
 if name_of_switcher = name_of_patchset
-    load this switcher file
+ load this switcher file
 else
-    load from elsewhere
+ load from elsewhere
 
 New switcher files can be saved in the same directory as a patchset, with the
 same name, only different extension, maybe name.switch , if it exists this will
@@ -3230,7 +3230,7 @@ link to the oscillator of any lower numbered voice.
 
 For the modulation oscillator you can again have a locally defined one
 (internal) or you can have two other alternatives. Either the modulation
-oscillator from a lower numbered voice or the oscillator from the lower           numbered voice itself!
+oscillator from a lower numbered voice or the oscillator from the lower        numbered voice itself!
 
 In the voice window, the 'External Mod' at the top right give the choice of
 previous modulation oscillator and the 'Mod Oscillator' at the bottom right
@@ -3385,19 +3385,19 @@ range. If Min is greater than Max, then the incoming CC value will be inverted
 and Min & Max swapped.
 
 Switches:
-    Mode: Limit/Compress.
-        Set to 'limit'. The min/max will be hard cutoffs. e.g. min is 20
+ Mode: Limit/Compress.
+     Set to 'limit'. The min/max will be hard cutoffs. e.g. min is 20
 incoming is 5. result is 20. Set to 'compress'. The incomming will be converted
 to fit the range. e.g. min is 32, max is 95. Incomming 0 will be 32, incomming
 2 will be 33 etc.
 
-    Mute: completely ignore this entry, but don't delete it.
+ Mute: completely ignore this entry, but don't delete it.
 
-    Block: ignore all later entries that have the same channel and CC. This
-    will include the defaults like volume and pan, but not root/bank/program
-    changes, nor any NRPNs.
+ Block: ignore all later entries that have the same channel and CC. This
+ will include the defaults like volume and pan, but not root/bank/program
+ changes, nor any NRPNs.
 
-    Delete: removes the line completely (with a warning)
+ Delete: removes the line completely (with a warning)
 
 I'll start working out how to shoehorn this in, but at first, although you'll be
 able to set up lines, you won't be able to see them or remove them. Indeed
@@ -3578,7 +3578,7 @@ quite noticable detuning for pitches further away from the reference note.
 
 float FilterParams::getfreqtracking(float notefreq)
 {
-    return logf(notefreq / 440.0f) * (Pfreqtrack - 64.0f) / (64.0f * LOG_2);
+ return logf(notefreq / 440.0f) * (Pfreqtrack - 64.0f) / (64.0f * LOG_2);
 }
 
 For a 100% setting a value of 128 for Pfreqtrack would be needed. However, the
@@ -3703,7 +3703,7 @@ that changes its range so that instead of -100% : 98.4% it will track 0% :
 198.4%
 
 These new features are the first that actually change instrument files.
-However, they are backwards compatible in that older versions of Yoshimi simply   ignore them.
+However, they are backwards compatible in that older versions of Yoshimi simplyignore them.
 
 
 Many of the controls now have active tooltips that show the current value when
@@ -3833,7 +3833,7 @@ I think that covers all the 'old' stuff, and that's enough in itself :(
 The elephant in the room is Note On, as I outlined in earlier discussion.
 
 If you build with 'ReportNoteOnTimes' enabled in ccmake, you'll see what I
-mean. Even with 'Simple Sound' if you play a bunch of notes you'll get a lot of   variation in times, and every so often you'll get one that at least three times
+mean. Even with 'Simple Sound' if you play a bunch of notes you'll get a lot ofvariation in times, and every so often you'll get one that at least three times
 greater than the others. The more complex the instrument, the worse this gets.
 Running 'MasterSynth High' occasionally gets to 5x.
 
@@ -4123,7 +4123,7 @@ From: Lorenzo Sutton <lorenzofsutton@gmail.com>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: MIDI learn on steroids - Portamento?
 User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101
-        Thunderbird/45.7.0
+     Thunderbird/45.7.0
 
 Hi Will,
 
@@ -4314,7 +4314,7 @@ and a distinctive patch set, then saved patch, scale and state.
 
 Imagine my surprise when the only thing that applied the tunings was state
 load! For the others you had to go into the Scales window and hit the 'Retune'
-button. Now both of these were old Zyn functions, and had never been changed.     The latest master has a fix for this, but only when working within the gui.
+button. Now both of these were old Zyn functions, and had never been changed.  The latest master has a fix for this, but only when working within the gui.
 
 Trying to work out how to go directly from the XML to the tunings is proving to
 be a nightmare. The above systems load the file, then convert the data to a form
@@ -4334,15 +4334,15 @@ I've made a little bit more work for you :)
 
 In the CLI help 'lists' after 'setup' you need to insert:
 
-list history [s]               - recent files (patchsets, scales, states)
+list history [s]            - recent files (patchsets, scales, states)
 
 If no parameter is given it lists all three in sequence.
 
 I notice you have load and save instrument wrong on both page 186 and 188 it
 should be:
 
-load instrument <s>            - instrument to current part from named file
-save instrument <s>            - current part to named file
+load instrument <s>         - instrument to current part from named file
+save instrument <s>         - current part to named file
 
 All the load and save parameters are strings and are compulsory, not optional.
 
@@ -4551,7 +4551,7 @@ Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
 >
 > Question:
 >
->    What do you mean by "direct access controls"?
+> What do you mean by "direct access controls"?
 >
 > Thanks!
 >
@@ -4594,76 +4594,76 @@ Subject: Well you did ask :)
 X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 page 14 X
-    "path add" is now "add root"
+ "path add" is now "add root"
 
 page 29 X
-    breath control is yoshimi only
+ breath control is yoshimi only
 
 page 31 X
 
-    instance is here :)
+ instance is here :)
 
 page 33 X
-    "when yoshim get's around to splitting"
-    we did in V 1.4.1
+ "when yoshim get's around to splitting"
+ we did in V 1.4.1
 
 page 35 X
-    ~/.yoshimi_history is purely for the command line and records the latest
+ ~/.yoshimi_history is purely for the command line and records the latest
 entries made there. Provided you made a normal exit, these become available on
 your next session.
 
 page 40 X
-    very old image of 'about' window.
+ very old image of 'about' window.
 
 page 45 X
-    old 'Reports' image. Numbers all start from 1 now, although 'specialy' ones
+ old 'Reports' image. Numbers all start from 1 now, although 'specialy' ones
 are still zero based. That window shows both so nowadays is likely to confuse
 normal users. Unless set at compile time you no longer see the specials.
 
 page 78 X
-    right hand button now *only* used for setting defaults and midi learn.
+ right hand button now *only* used for setting defaults and midi learn.
 
 page 108 X
-    very old keyboard image. Roller is now a slider, and key map tooltips
+ very old keyboard image. Roller is now a slider, and key map tooltips
 reflect actual positions of keys.
 
 page 146 X
-    old image. stages now better placed, and part number and name in title bar.
+ old image. stages now better placed, and part number and name in title bar.
 
 page 150 X
-    very old image. As above... and more :)
+ very old image. As above... and more :)
 
 page 159 X
-    old image. There is now an edit button and the layout is better. it's also
+ old image. There is now an edit button and the layout is better. it's also
 now fully in sync with the voice windows.
 
 page 160 X
-    old... you know the drill :)
+ old... you know the drill :)
 
 page 178 X
-    yes, again. Those filter stages moved. How dare they!
+ yes, again. Those filter stages moved. How dare they!
 
 Page 179 X (replaced with Will's new screenshot)
-    guess what.
+ guess what.
 
-Page 184   Where???????????????????????
-    and kit edit window.
+Page 184Where???????????????????????
+ and kit edit window.
 
 Page 205 X
-    you can 'unset' a learned line simply by deleting it. Also it sees the
+ you can 'unset' a learned line simply by deleting it. Also it sees the
 'mod' wheel as CC 130.
 
 Page 207 X
-    deleting lines will cause a redraw, but not a re-sort. changing cc/channel
+ deleting lines will cause a redraw, but not a re-sort. changing cc/channel
 will only do a re-sort when necessary (the new number is now higher or lower
 than the adjacent ones).
 
 Page 208 X
-    CC and chan don't have default values. They are whatever the incoming
+ CC and chan don't have default values. They are whatever the incoming
 learned ones are.
 
 Page 219 X
-    a lot of limits are now defined, and more will be forthcoming. There is now
+ a lot of limits are now defined, and more will be forthcoming. There is now
 a specific variation for this. "direct", "lim", [control], [part], [kit] etc.
 this now reports the full name of the control, and as well as the limits, it
 goves the type (float/integer) and whether it is midi learnable.
@@ -4694,4 +4694,32 @@ Once we get to rc1 I'll switch to using the new splash screen.
 Apart from that I might do a bit more in the CLI, but otherwise I think I'll
 stick to bug-hunting. Anyone with nothing to do is more than welcome to join
 me :)
+
+
+
+
+te: Sat, 18 Mar 2017 22:53:48 +0000                                          
+From: Will Godfrey <willgodfrey@musically.me.uk>                               
+To: yoshimi@freelists.org                                                      
+Subject: [yoshimi] Think I'm back now.                                         
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)           
+                                                                               
+A sneaky little gotcha!                                                        
+                                                                               
+When starting from the command line, some cli arguments actually require an '='
+between the switch and it's data. Whereas for others it's optional!            
+                                                                               
+Where it's used there must be *no* spaces either side of the '=' something I   
+forgot and had a minor panic over :(
+
+yoshimi -?
+shows these in the form
+-L, --load-instrument=<file>load .xiz file
+-S, --state[=<file>]    load saved state
+
+So, for an instument load it's optional, and for the state file it's compulsory.
+Notice the extra square brackets.
+
+
+
 
