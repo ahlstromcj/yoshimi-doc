@@ -4698,18 +4698,18 @@ me :)
 
 
 
-te: Sat, 18 Mar 2017 22:53:48 +0000                                          
-From: Will Godfrey <willgodfrey@musically.me.uk>                               
-To: yoshimi@freelists.org                                                      
-Subject: [yoshimi] Think I'm back now.                                         
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)           
-                                                                               
-A sneaky little gotcha!                                                        
-                                                                               
+te: Sat, 18 Mar 2017 22:53:48 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Think I'm back now.
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+A sneaky little gotcha!
+
 When starting from the command line, some cli arguments actually require an '='
-between the switch and it's data. Whereas for others it's optional!            
-                                                                               
-Where it's used there must be *no* spaces either side of the '=' something I   
+between the switch and it's data. Whereas for others it's optional!
+
+Where it's used there must be *no* spaces either side of the '=' something I
 forgot and had a minor panic over :(
 
 yoshimi -?
@@ -4721,5 +4721,56 @@ So, for an instument load it's optional, and for the state file it's compulsory.
 Notice the extra square brackets.
 
 
+
+
+Date: Mon, 27 Mar 2017 19:20:24 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: V 1.5.1 on the brink!
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+Hi Chris,
+
+On Sun, 26 Mar 2017 17:39:41 -0400
+Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
+
+> I wonder if floating point support is the issue.  I would expect Debian to
+> provide it, but...:
+>
+>
+http://raspberrypi.stackexchange.com/questions/545/does-the-raspberry-pi-have-hard
+ware-floating-point-support
+>
+> Chris
+
+From that, and various other sources I'm inclined to think you should run a Pi3
+with anything *except* rasbian as this is aimed at the entire hardware range :(
+
+On a brighter note I've has a complaint about a non 'bug' :)
+Someone siad that panning didn't work in the distortion effect, but didn't
+realise that the 'St' (stereo) box had to be checked, and it's off by default!
+
+Is that mention in the guide at all? Might be worth adding it if not.
+
+
+
+
+
+Date: Mon, 27 Mar 2017 23:14:47 +0100
+From: Will J Godfrey <WillGodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: V 1.5.1 on the brink!
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+Hi Chris,
+
+Just another small point. Soft loading also applies to patch sets, but not to
+individual instrument patches.
+
+As the instrument patches are per part, you don't want to silence the entire 
+synth, so for a silent change you need to do it when that particular part is
+not sounding. We turn off the part during the load, but don't do a fade. It
+would be counter productive to turn a 2mS load (typical for SubSynth) into a
+102mS one!
 
 

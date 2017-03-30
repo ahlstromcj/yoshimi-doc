@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom and Will Godfrey
 % \date        2015-06-15
-% \update      2017-03-05
+% \update      2017-03-29
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -108,6 +108,14 @@
 
    Before General MIDI, which standardized patches, MIDI vendors assigned
    patch numbers to their synthesizer products in an arbitrary manner.
+
+   Instrument patches are per part.  When changing patches, one can't
+   silence the entire synthesizer; a silent change requires being done
+   when that part is not sounding. \textsl{Yoshimi} turns off the part
+   during the patch load, and doesn't do a fade.
+   
+%  It would be counter productive to turn a 2mS load (typical for SubSynth)
+%  into a 102mS one!
 
 \subsubsection{Concepts / Terms / Patch Set}
 \label{subsubsec:concepts_terms_patch_set}
