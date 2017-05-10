@@ -643,7 +643,7 @@
             Bank Change (user selectable, does \textsl{not} force a program
             change) \\
          \textbf{1} & Modulation Wheel \\
-         \textbf{2} & Breath Control \\
+         \textbf{2} & Breath Control (Yoshimi only)\\
          \textbf{6} & Data MSB \\
          \textbf{7} & Volume \\
          \textbf{10} & Panning \\
@@ -691,11 +691,11 @@
          voices 128-160.  There is now an option to make Program Change enable
          a part if it's currently disabled.
       \item \textbf{Key pressure (aftertouch)}
-         is internally translated as CC 900.
+         is internally translated as CC 130.
       \item \textbf{Channel Pressure}
-         is internally translated as CC 901.
+         is internally translated as CC 129.
       \item \textbf{Pitch Bend}
-         is internally translated as CC 1000.
+         is internally translated as CC 128.
       \item \textbf{Modulation}
          The wheel only affects AddSynth and PadSynth, and then only the
          frequency LFO depth. Just to make it more confusing, it changes the
@@ -773,16 +773,15 @@
    When implementing CLI access, the decision was made to use the internal
    counting system which, like almost everything else in computer programming,
    starts at zero. This caused a few anomalies, as most of the GUI numbering is
-   from one.  This discordance is becoming much more of a problem, most
+   from one.  This discordance was becoming much more of a problem, most
    obviously with the Vector Control and MIDI learn windows.
    Now all the messages use the GUI number bases.
    This makes MIDI learn look more sensible; when sending
    reports to the console window there is no difference in numbering re the
    user-interface.
 
-   CLI entries are still zero-based, for now.
-   All standard CLI inputs, as well as the return message numbers,
-   should start from 1 with the following exceptions:
+   CLI entries have also been converted. All standard CLI inputs, as well as the
+   return message numbers, should start from 1 with the following exceptions:
 
    \begin{itemize}
       \item Bank roots
@@ -795,10 +794,10 @@
    One of our most prolific CLI users who, while prefering all zero as a base,
    appreciates the difficulties and can manage as long as things are consistent.
 
-   If this comes about, banks and bank roots will continue to start from zero -
-   this is what everyone expects from these as MIDI commands. Indeed, all MIDI
+   Banks and bank roots continue to start from zero - this is what everyone
+   expects from these as MIDI commands. Indeed, all MIDI
    CC numbers will do so. However, channel numbers, program change, part
-   numbers, engines etc will start from one. Effects are an outlier. They seem
+   numbers, engines, etc. start from one. Effects are an outlier. They seem
    to already start from one but that's because zero is the value for 'no
    effect'.
 

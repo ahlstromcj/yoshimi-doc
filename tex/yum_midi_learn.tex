@@ -132,7 +132,7 @@
    \textbf{Min} indicators that flickers when the associated CC or channel
    is received, provided the line is not muted, or blocked by an earlier one.
 
-   One can stack up message lines that have the same CC and channel, so tha ta
+   One can stack up message lines that have the same CC and channel, so that a
    single incoming can change a part volume and at the same time change the
    filter cutoff and with a third line change the panning of a
    \textsl{different} part.
@@ -233,10 +233,10 @@
    \itempar{Chan}{MIDI Learn!Chan}
    Chan.
    Incoming channel number.
-   Note that, in the \textbf{MIDI Learn} window, only the channel numbers start
-   from 1.  All the other numbers in that window start from 0.  This
-   follows the conventions of the \textsl{Yoshimi} command-line.
-   Also note that CC has no default values; the values are whatever the
+   Note that, in the \textbf{MIDI Learn} window, the channel numbers start
+   from 1,  as do all the other numbers in that window except controllers, which
+   start from 0, following MIDI convention.
+   Also note that the channel has no default values; the values are whatever the
    incoming learned values are.
 
    Values: \texttt{1 to 16, and All}
@@ -244,10 +244,11 @@
    \itempar{Min/Max}{MIDI Learn!Min/Max}
    Min and Max.
    Provides the minimum and maximum incoming values for the controller value.
+   Since V 1.5.2 this is shown as a percentage with a resolution of 0.5
    If \textbf{Min} is greater than \textbf{Max}, this reverses the control
    direction.
 
-   Values: \texttt{0 * (min) to 127 * (max)}
+   Values: \texttt{0 * (min) to 100 * (max)}
 
    \itempar{Limit}{MIDI Learn!Limit}
    Limit/Compression switch.
@@ -370,11 +371,11 @@
    see that the main volume control is now responding to the foot pedal.
 
    \textsl{However}, this means one is changing both the main volume
-   \textsl{and} the part 0 volume at the same time.  So now open the
+   \textsl{and} the part 1 volume at the same time.  So now open the
    \textbf{MIDI learn} window via the \textbf{Yoshimi} drop-down menu. One will
    see that it now has a line detailing the incoming CC and channel, along with
    other controls and the control function named \textbf{Main Volume}.  Click
-   on the \textbf{Block} check box, and one will see that the part 0 volume
+   on the \textbf{Block} check box, and one will see that the part 1 volume
    control no longer responds.
 
    Now the foot pedal will control \textsl{only} the master volume, not the

@@ -91,10 +91,10 @@
 
    \begin{verbatim}
       yoshimi part 4 > s ef ty re
-      yoshimi part 4 FX 0 rever-0 >
+      yoshimi part 4 FX 1 rever-1 >
    \end{verbatim}
 
-   This command \textbf{s}ets the part's \textbf{ef}fect 0 (implicit) to
+   This command \textbf{s}ets the part's \textbf{ef}fect 1 (implicit) to
    \textbf{ty}pe \textbf{re}verb.
 
    Note that many settings parameters are optional, and if you omit them,
@@ -104,11 +104,11 @@
    From here you can set a preset for this effect:
 
    \begin{verbatim}
-      yoshimi part 4 FX 0 rever > s pre 3
+      yoshimi part 4 FX 1 rever > s pre 3
    \end{verbatim}
 
-   Currently, the \textbf{pre}sets are not shown in the prompt, but one
-   will get a confirmation message.
+   Since V 1.5.0 the \textbf{pre}sets have been shown in the prompt, and one
+   will still get a confirmation message.
 
    Settings that follow in a direct command "path" through several levels
    can be made all at once, and one will be left at the appropriate level.
@@ -221,9 +221,9 @@ Ones that we're pretty sure will be added are:
    "set (n)" once you are at that level.  The level will, of course, be
    indicated by the text in the \textsl{Yoshimi} prompt.
 
-   For example, one can have 0 to 15 vector channels, so from the
+   For example, one can have 1 to 16 vector channels, so from the
    \textsl{Top} level, the following command
-   will return the default  (0 or the last-used number):
+   will return the default  (1 or the last-used number):
 
    \begin{verbatim}
       set vector
@@ -478,9 +478,8 @@ Ones that we're pretty sure will be added are:
    However, Yoshimi is quite pedantic, and if you type the command in full it
    must be exactly correct!
 
-   All number ranges start from zero. This is different from the GUI where most
-   (but not all) start from one. So CL part 0 is GUI part 1, but CL bank 0 is
-   GUI bank 0.
+   Since V 1.5.1 all number ranges start from one. This is for compatibility
+   with the GUI.
 
    More commands will be added, and the organisation of the commands
    may change slightly.
@@ -1035,14 +1034,14 @@ Ones that we're pretty sure will be added are:
 
    Only a few of these are independently declared so far, all the rest have the
    values: min = 0, max = 127, and def = 0.  \textbf{def} will return the
-   default * 100. This is so that fractional values can be resolved. 0.5 comes
+   default times 10. This is so that fractional values can be resolved. 0.5 comes
    up quite often. No default values are very large, but may be negative.
 
    A number of limits are now defined, and more will be forthcoming. There is
    now a specific variation for this. "direct", "lim", (control), (part), (kit)
-   etc.  These commands now report the full name of the control, and as well as
-   the limits, it gives the type (float/integer) and notes if it is MIDI
-   learnable.
+   etc.  These commands now give the corrected default value and report the full
+   name of the control, and as well as the limits, it gives the type (float/integer)
+   and notes if it is MIDI learnable.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex
