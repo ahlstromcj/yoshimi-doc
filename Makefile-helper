@@ -1,4 +1,18 @@
 #!/bin/bash
+##
+# \file       	Makefile-helper
+# \library    	Documents
+# \author     	Chris Ahlstrom
+# \date       	2015-11-01
+# \update     	2017-05-13
+# \version    	$Revision$
+# \license    	$XPC_SUITE_GPL_LICENSE$
+#
+# 		Makefile for the yoshimi-doc project.
+#
+# Note the new usage of gs (Ghostscript) to optimize the PDF.  Obviously, one
+# must have Ghostscript installed.  This optimization reduces the near 11 Mb
+# PDF down to about 4 Mb in size, with no significant reduction in quality.
 
 MKERROR="no"
 
@@ -11,6 +25,18 @@ if [ "$1" == "" ] ; then
    popd
    if [ "$MKERROR" == "no" ] ; then
       cp tex/*.pdf pdf
+		rm tex/*.pdf
+		pushd pdf
+		mv yoshimi-user-manual.pdf y-temp.pdf
+gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH \
+ -sOutputFile=yoshimi-user-manual.pdf y-temp.pdf
+ 		if [ $? == 0 ] ; then
+			rm y-temp.pdf
+		else
+			echo "? Could not reduce the size of the PDF"
+			mv y-temp.pdf yoshimi-user-manual.pdf
+		fi
+		popd
    fi
 elif [ "$1" == "clean" ] ; then
    pushd tex

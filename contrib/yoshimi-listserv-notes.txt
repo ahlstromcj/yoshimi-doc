@@ -4774,3 +4774,246 @@ would be counter productive to turn a 2mS load (typical for SubSynth) into a
 102mS one!
 
 
+======================================
+
+
+Date: Sun, 23 Apr 2017 22:32:53 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Just a bit of fun :)
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+[-- Attachment #1 --]
+[-- Type: text/plain; charset=US-ASCII, Encoding: 7bit, Size: 0.3K --]
+
+Attached is an instrument employing crossfade. It sounds very different
+as you work across the keyboard. Open up 'Kit Edit' to see how it's put
+together.
+
+It only works on Yoshimi 1.5.0 or later.
+
+
+
+
+Date: Wed, 3 May 2017 10:25:58 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: V1.5.2 - and a bit more
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+On Fri, 28 Apr 2017 20:42:49 +0100
+Will Godfrey <willgodfrey@musically.me.uk> wrote:
+
+> However, we still have a problem with state loads that include MIDI-learned
+> data. This is being looked at but if it's not fixed by then I'll drop it from
+> the release version (it will still be in 'master'). Yoshimi seems to have a
+> pretty good rep for stabilility and I won't jeopardise that with a known bug.
+
+Problem solved (but code not ideal and will be improved later)
+
+Also LV2 state now also includes learned data and is backward compatible with
+previously saved states.
+
+There's an interesting little extension to learnable controls too.
+
+You can now learn the enable/disable status of individual engines. A value
+of < 64 is off and >= 64 is on. This change is click-free and is 'next-note'.
+In kit mode that includes the individual kit engines and the mute status but
+not the entire kit line.
+
+This means you can make instant and silent note-by-note changes to the sound
+without re-loading an entire patch :)
+
+
+
+
+
+
+Date: Wed, 3 May 2017 22:47:33 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: V1.5.2 - Wow!
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+On Wed, 3 May 2017 10:25:58 +0100
+Will Godfrey <willgodfrey@musically.me.uk> wrote:
+
+> You can now learn the enable/disable status of individual engines. A value
+> of < 64 is off and >= 64 is on. This change is click-free and is 'next-note'.
+> In kit mode that includes the individual kit engines and the mute status but
+> not the entire kit line.
+>
+> This means you can make instant and silent note-by-note changes to the sound
+> without re-loading an entire patch :)
+
+Today I was playing with this when I should heve been doing more important
+things. It is such a tiny little thing, yet it positively *explodes* the options
+available.
+
+My first experiment was with Ghost Choir Ensemble. This is an easy one because
+it uses all three engines at the top, non-kit level. I've got a controller that
+has two rows of 8 switches so I just used three of them - one for each engine,
+and played with one hand while merrily switching combinations of the engines
+with the other - there are six of them :)
+
+Next I created a monster instrument kit of 8 kit items, and this time I
+allocated switches to the mutes for each kit item. Someone else can do the
+calculation as to the possible combinations, but I was grinning like the
+Cheshire cat.
+
+Now imagine if you had a switch pedalboard!
+
+Oh, and I've just found out that AddSynth voices will switch off and on
+silently - next-note again.
+
+Erm... as will the modulator switches, octave, LFO, filter and envelope
+switches. In fact I'm going to be very busy over the next few days :¬}
+
+P.S.
+128 MIDI-learn lines is not enough!
+
+
+
+
+
+
+
+Date: Fri, 5 May 2017 22:16:33 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: V1.5.2 - rc1
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+Yes we're getting there :)
+
+All I'll be doing for the next few days will be testing and expanding on
+switches and selectors that can be silently MIDI-learned.
+
+However, I've bit of a problem. There's no need to identify rotary controls and
+sliders, as almost all of them can be learned! This is unlikely to be true of
+switches. I did think of changing the 'internal' colour of these to the pale
+blue that the knob perimeters use, but this doesn't seem to be possible.
+
+For menus and sideways selectors, we could change the colours of the arrows,
+but that doesn't work for spin or check boxes. Anyone got any suggestions for
+a consistent alternative?
+
+I want to get this out there at least a couple of days before LAC.
+
+
+
+
+
+Date: Sun, 7 May 2017 17:34:10 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] It's 1.5.2 rc2 now
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+I found a way round identifying learnable switches.
+Learnable checkboxes have a 'control knob' blue surround.
+Selectors and menus have CNB arrows. How 'bout that?
+
+A note about learning menus. You have to actually select an item while holding
+down the Ctrl key.
+
+Also, I've found out *exactly* what was causing the odd Gui behaviour when
+loading big MIDI-learn sets, and cured it properly.
+
+
+
+
+
+
+Date: Tue, 9 May 2017 21:07:43 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: It's 1.5.2 rc2 now
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+On Tue, 9 May 2017 20:42:45 +0200
+Jesper Lloyd <jpl.lloyd@gmail.com> wrote:
+
+> Seems like a nice solution to me, as long as the distinction is documented
+> somewhere.
+
+It will be in the README file, and eventually in the user guide Chris tries to
+keep up-to-date.
+
+> However, I did notice that the modulator envelopes are bugged (controls
+> always disabled).
+
+Silly mistake on my part :( now fixed.
+
+> Editing formant filters in the context of DynFilter effects is also a bit
+> buggy, though functional
+> (freq/q/amp updated only on releasing dial + no response to mousewheel;
+> dials not corresponding to actual parameter values).
+
+This is a tough one. DynFilter is a really *really* weird effect, with highly
+convoluted code paths - and I've actually just discovered that at least two bugs
+in it goes back to zyn 2.2.1 :(
+
+I'll try and get as much sorted as I can, but I'll make an exception here, and
+continue with the next release later this week.
+
+
+
+
+
+Date: Sun, 7 May 2017 18:10:51 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: No peac e for the wicked!
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+Hi Chris,
+
+A bit more info for the soon to be released V 1.5.2
+
+MIDI-learned data is now stored in state saves.
+
+If you MIDI-learn and NRPN, there is now a checkbox so you can set it to
+respond to just the LSB as a 7 bit value. It seems there are a number of synths
+and controllers that will send these, even though it means you are handling
+four bytes instead of one! My guess is that they do this so that you can have a
+far greater number of controls without disturbing the 'normal' ones. However,
+why they restrict the range like this is a mystery!
+
+Some check-boxes, selectors and menus are learnable. These are identified by
+either a pale blue surround or pale blue arrows. Note that when learning a
+menu you have to actually make a choice while holding down the Ctrl key.
+
+We now support the fairly new LV2 StateChanged message, so that if anything is
+changed via Yoshimi's native Gui, the host is informed and can request a new
+state file. This has been tested with recent versions of Ardour, qtractor &
+Muse.
+
+Now I'm off out for a while. The sun as (belatedly) decided to appear!
+
+Will.
+
+
+
+
+
+
+
+Date: Thu, 11 May 2017 23:02:22 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Ts crossed, Is dotted.
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+Remaining 'easy' switches now learnable.
+
+That's LFO, Filter, Envelope enables in AddSynth Voice and Bandwith, Frequency
+envelopes and filter enable in SubSynth.
+
+Don't make the mistake I did for a while - forgetting to set 'Block' when using
+CCs that have other recognised functions :)
+
+
+
+
+
