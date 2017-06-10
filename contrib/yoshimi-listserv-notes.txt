@@ -4314,11 +4314,12 @@ and a distinctive patch set, then saved patch, scale and state.
 
 Imagine my surprise when the only thing that applied the tunings was state
 load! For the others you had to go into the Scales window and hit the 'Retune'
-button. Now both of these were old Zyn functions, and had never been changed.  The latest master has a fix for this, but only when working within the gui.
+button. Now both of these were old Zyn functions, and had never been changed.
+The latest master has a fix for this, but only when working within the gui.
 
 Trying to work out how to go directly from the XML to the tunings is proving to
-be a nightmare. The above systems load the file, then convert the data to a form
-for the window, then from there convert it to the actual tunings when that
+be a nightmare. The above systems load the file, then convert the data to a
+form for the window, then from there convert it to the actual tunings when that
 apply() function is called :(
 
 
