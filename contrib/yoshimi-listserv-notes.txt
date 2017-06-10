@@ -5017,3 +5017,185 @@ CCs that have other recognised functions :)
 
 
 
+Date: Fri, 26 May 2017 15:21:34 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Scales
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+I've started work on getting CLI access to this, and in the process uncovered a
+couple of ancient bugs - now fixed.
+
+Also there is a slight change with control of the 'A' note.
+
+The note frequency now pops up a [return] button when you change it, and the
+value is only set when you either hit the Return key of click this new button
+(which then disappears). This now does a range check and also means you don't
+send a stream of changes while editing the value.
+
+The note number has been changed to a spinbox, which means yuo can now enter a
+known value in directly. Again, this change means you don't have to run
+through sending a lot of changes when getting to a value.
+
+At some time I expect I'll also look at the First, Mid, and Last keymap values
+- I've changed the order and spacing of these for clarity.
+
+You need to hit the 'Retune' button if you change either the tunings or the
+mappings, and there are now extra tooltips to remind you of that. I'm thinking
+of somehow highlighting that button if a change has been made, as an extra
+reminder.
+
+Finally, although CLI access is only just started, for LV2 users, if you change
+any scale settings this now gets reported back so the host can be aware of the
+change.
+
+
+
+
+
+
+Date: Mon, 5 Jun 2017 21:59:15 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Scales - accuracy
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+Short version:
+
+Up to now conversions between text and numbers has left quite a bit to be
+desired. It's now considerably better.
+
+
+Long version:
+
+I start by importing the tunings from an .scl file fetched from the web:
+
+76.04900
+193.15686
+310.26471
+5/4
+503.42157
+579.47057
+696.57843
+25/16
+889.73529
+1006.84314
+1082.89214
+2/1
+
+I then save it in yoshimi's scale format and reload it.
+
+This is what it used to return:
+
+
+0076.037750
+0193.150588
+0310.251617
+5/4
+0503.420654
+0579.467407
+0696.568237
+25/16
+0889.734313
+1006.838745
+1082.886474
+2/1
+
+
+This is what we get back now:
+
+0076.048805
+0193.156688
+0310.264561
+5/4
+0503.421479
+0579.470549
+0696.578320
+25/16
+0889.735197
+1006.843119
+1082.892087
+2/1
+
+Every time you save and re-load there is further degredation, but at least it's
+far less than it was. Also note the ratio numbers are always correct. This is
+because they are stored as integers, so if designing your own scale try and
+find these if you can. We can now handle ratios of numbers up to maximum
+integer size. So for a tiny shift, 5/4 could be changed to 50000/40001.
+
+Ordinary floating point numbers are good enough for sounding notes - they are
+use-once-and-throw-away but stored values need to be much better and especially
+when doing conversions. I'll do some more work on this and try and improve
+things further.
+
+
+Very long version :)
+
+In the middle 1970s I decided I was going to design and build a digital
+electronic organ using nothing but TTL logic. It was to be 61 note, have 16
+note poliphony and pin matrix defined waveshapes and envelopes.
+
+To work on this I had to spend a lot of time at the public library reading up on
+tuning and the even-tempered scale (no Internet in those days). I also somewhat
+labourously built up and typed out a three octave scale. This was calculated to
+what I thought was the minimum accaptable accuracy. Amazingly this bit of paper
+survived until I re-entered it into LibreOffice a couple of years ago (now in
+the doc directory).
+
+Sadly, nothing actually got built. This is because I finally thought maybe I
+should cost it. The estimate came out at around 40000 uk pounds, which at that
+time was far more than the cost of a rather posh house. My salary (which was
+quite reasonable) was around 1300 p.a. A bit of a short-fall there!
+
+However, I did of necessity learn quite a bit about sound, pitch and human
+hearing. Including little snippets like the fact that most of us aren't very
+good a telling absolute pitch, but are pretty hot at relative pitch i.e.
+recognising intervals. Trained musicians are usually extremely good at
+detecting intervals that are even very slightly off.
+
+When I started crashing around in the scales code I was actually very surprised
+at how far out it was. I think I'd probably struggle to hear the errors, but
+I've a feeling a real professional would notice them straight away.
+
+So there you go. It's better, but still needs improvement.
+
+
+
+
+
+Date: Thu, 8 Jun 2017 19:37:19 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Scales - more stuff
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+Scale conversions are *much* improved now. Mostly because we don't repeat them
+when we don't have to :)
+
+When you save a scale it now includes lines consisting of the original text
+the tuning came from. This is true whether the scale came from a .scl file, or 
+whether you entered the values by hand.
+
+When you reload a scale it first looks for these text lines and if they exist,
+uses them to caculate the tuning. If it's an older file, it falls back to
+loading the tuning value, but still does that with better accuracy than before.
+
+The net result is that you can load, modify, save as many times as you like and
+there will be no progressive loss of accuracy at all.
+
+As we still save the tuning the new files are backward compatible. For older
+versions of Yoshimi there will still be some loss of accuracy, but not as much
+as before.
+
+
+I also discovered that at some point Yoshini developed amnesia regarding scale
+names and comments. That's been put right too :)
+
+There is still quite a lot of code tidying up needed but things are looking 
+much better, and as far as I can tell everything is quite stable. I'm also
+working through the direct access controls for scales - most of them are in
+place.
+
+Oh, almost forgot. I was able to throw out a couple more mutex locks :)
+
+

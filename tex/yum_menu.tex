@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2017-03-26
+% \update      2017-06-10
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -225,10 +225,8 @@
    \figureref{fig:yoshimi_main_settings_tab}.
 
    Some settings only take effect after restarting the synthesizer.
-   In Main settings, only items marked with an asterisk ('*')
+   In \textbf{Main settings}, only the two items marked with an asterisk ('*')
    need a restart. 
-   (This in now only the first two. Some of the other ones had
-   prevously been wrongly marked.)
 
    The settings dialogs are quite different between \textsl{ZynAddSubFX} and
    \textsl{Yoshimi}.  There are some differences even between
@@ -299,14 +297,16 @@
    \textsl{Yoshimi} will set it's internal buffer size to match,
    which always seems to be 1024.
 
-   Values: \texttt{64, 128, 256*, 512, 1024}
+   Values: \texttt{64, 128, 256*, 512, 1024, 2048, 4096}
 
 \begin{figure}[H]
    \centering 
    \includegraphics[scale=0.75]{menu/Yoshimi/main-internalsize.jpg}
-   \caption[Internal Size Values]{AddSynth Internal Buffer Size (samples)}
+   \caption[Internal Size Values]{AddSynth Internal Buffer Size (old)}
    \label{fig:yoshimi_internalsize_values}
 \end{figure}
+
+   Note that there are two more values, not shown in this old diagram.
 
    \itempar{PADsynth interpolation}{Main Settings!PADsynth Interpolation}
    See \figureref{fig:padsynth_interpolation}, shown below,
@@ -410,7 +410,7 @@
 \end{figure}
 
     Note that numbers all start from 1 now, although 'specials' (in the command
-    line) are still zero based (they are not seen, though,
+    line) are still zero-based (they are not seen, though,
     unless set at compile time).
 
    \index{reports!middle-click}
@@ -458,7 +458,8 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=0.75]{1.4.1/SettingsSwitches.png}
+%  \includegraphics[scale=0.75]{1.4.1/SettingsSwitches.png}
+   \includegraphics[scale=0.75]{1.5.0/SettingsSwitches.png}
    \caption{Yoshimi Switches Tab}
    \label{fig:yoshimi_settings_switches_tab}
 \end{figure}
@@ -471,6 +472,7 @@
       \item \textbf{Show Splash Screen}
       \item \textbf{Log Load times}
       \item \textbf{Log XML headers}
+      \item \textbf{Include disabled data in XML files}
       \item \textbf{Enable GUI}
       \item \textbf{Enable CLI}
    \end{enumber}
@@ -505,6 +507,10 @@
    (or \texttt{stderr}) so that
    one can then see what \textsl{ynAddSubFX}/\textsl{Yoshimi}
    version created the file.
+
+   \itempar{Include disabled data in XML files}{Main Settings!Include disabled data}
+   Allows disabled data to be stored in the XML file.
+   This makes it a lot easier to re-enable a setting later.
 
    \itempar{Enable GUI}{Switches!Enable GUI}
    If checked, the user-interface is enabled.  This setting is normally what you
@@ -798,6 +804,7 @@
    Values: \texttt{Off*, On}
 
    \itempar{Bank Root Change}{MIDI settings!bank root change}
+   Sets the control value to use for a bank-root change.
 
    Values: \texttt{0*, to 127}
 
@@ -811,6 +818,15 @@
    here because, at that point, it still hasn't actually been either set or
    abandoned. It remains available for when the user actually makes up his/her
    mind.
+   If the control number is already in use for
+   another purpose, one might get a warning like the following:
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=0.75]{1.5.0/SettingsInUse.png}
+   \caption[MIDI Setting In Use]{MIDI Setting In Use}
+   \label{fig:yoshimi_settings_in_use}
+\end{figure}
 
    \itempar{Bank Change}{MIDI settings!bank change}
    Bank Change.
@@ -1030,9 +1046,13 @@
 \label{subsec:menu_scales}
 
    \textsl{Yoshimi} is a microtonal synthesizer, and is capable of a wide
-   range of microtonal scales.
-
-   At present, we're not too experienced with this feature.
+   range of microtonal scales.  Many improvements have been made to the scales,
+   including the user-interface, performance, and accuracy of calculations,
+   in version 1.5.2.
+   \index{LV2!scales}
+   For users of the LV2 plugin, any changes in scale
+   settings are reported back so that the plugin host can be aware of the
+   change.
 
 \begin{figure}[H]
    \centering 
@@ -1054,7 +1074,8 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=0.75]{menu/Scales/scale-settings-microtonal.jpg}
+%  \includegraphics[scale=0.75]{menu/Scales/scale-settings-microtonal.jpg}
+   \includegraphics[scale=0.75]{1.5.0/scale-settings-microtonal.png}
    \caption{Yoshimi Menu, Scales Settings}
    \label{fig:yoshimi_menu_scales_settings}
 \end{figure}
@@ -1067,9 +1088,32 @@
    The last entry in the tunings list represents one octave.
    All other notes are deduced from these settings.
 
+   \begin{enumber}
+      \item \textbf{Enable Microtonal}
+      \item \textbf{"A" Freq.}
+      \item \textbf{"A" Note}
+      \item \textbf{Invert Keys}
+      \item \textbf{Center}
+      \item \textbf{Name}
+      \item \textbf{Shift}
+      \item \textbf{Comment}
+      \item \textbf{Tunings}
+      \item \textbf{Retune}
+      \item \textbf{Keyboard Mapping}
+      \item \textbf{ON}
+      \item \textbf{First note}
+      \item \textbf{Middle note}
+      \item \textbf{Last note}
+      \item \textbf{nts./oct.}
+      \item \textbf{Import .scl file}
+      \item \textbf{Map Size}
+      \item \textbf{Import .kbm file}
+      \item \textbf{Close}
+   \end{enumber}
+
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
-   \itempar{Microtonal}{Enable Microtonal}
+   \itempar{Enable Microtonal}{Enable Microtonal}
    Enable Microtonal Scales.
    When disabled, the synthesizer will use equal-temperament, 12 notes per
    octave.  Otherwise, one can input any scale one desires.
@@ -1133,16 +1177,23 @@
    The default is a series of values:
    \texttt{0100.0, 0200.0, ..., 1100.0, 2/1}.
 
+   \itempar{Keyboard Mapping}{keyboard}
+   The items related to the \textbf{Keyboard Mapping} are discussed
+   separately in the next section.
+
    \itempar{Retune}{retune}
    Retune button.
    This button retunes the synthesizer according to the settings of
    the \textbf{Tunings} and \textbf{Keyboard Mapping} lists.
-   All other changes operate immediately.
+   The \textbf{Retune} button is needed if one
+   changes any of the actual scale settings. However, it's not needed for key
+   mappings or any other controls, all of which operate immediately.
 
    \itempar{nts./oct}{Notes per Octave}
    Notes Per Octave.
+   This value is affected by changes to the \textbf{Tunings} mapping.
 
-   Values: \texttt{12*} (range not yet known)
+   Values: \texttt{12*}
 
    \itempar{Import .SCL file}{scale file}
    Import Scala files.
@@ -1171,7 +1222,7 @@
    \label{fig:yoshimi_menu_scales_import_file}
 \end{figure}
 
-   \itempar{Import .scl file}{scl file}
+%  \itempar{Import .scl file}{scl file}
    This item is a standard file dialog for reading
    a \texttt{*.scl} file.
 
@@ -1182,14 +1233,17 @@
    \label{fig:yoshimi_menu_scales_import_keyboard_map}
 \end{figure}
 
+   \itempar{Map Size}{scales!map size}
+   Map Size.
+   This value is affected by changes to the \textbf{Keyboard Mapping}.
+
+   Values: \texttt{12*}
+
    \itempar{Import .kbm file}{kbm file}
    This item is a standard file dialog for reading
    a \texttt{*.kbm} file.
 
    \itempar{Close, Scales Dialog}{close scales}
-
-   The items related to the \textbf{Keyboard Mapping} are discussed
-   separately in the next section.
 
 \paragraph{Keyboard Mapping}
 \label{paragraph:menu_scales_keyboard_mapping}
@@ -1202,7 +1256,7 @@
       \item \textbf{ON}
       \item \textbf{First Note}
       \item \textbf{Last Note}
-      \item \textbf{Midle Note}
+      \item \textbf{Middle Note}
       \item \textbf{Map}
       \item \textbf{Map Size}
    \end{enumber}
@@ -1210,25 +1264,28 @@
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{ON}{scales!on}
+   This item enables the \textbf{Keyboard Mapping} list.
 
    Values: \texttt{Off*, On}
 
    \itempar{First Note}{scales!first note}
    First MIDI Note Number.
-   Keys below this value are ignored.
+   Sets the MIDI note value to use for the first note of the scale.
+   MIDI notes below this value are ignored.
 
    Values: \texttt{0* to 127}
 
-   \itempar{Last Note}{scales!last note}
-   Last MIDI Note Number.
-   Keys above this value are ignored.
+   \itempar{Middle Note}{scales!middle note}
+   Sets the MIDI note value to use for the middle note of the scale.
+   This is the note where the scale-degree 0 setting is mapped;
+   the middle note represents the note where the formal octave starts.
 
    Values: \texttt{0 to 127*}
 
-   \itempar{Middle Note}{scales!middle note}
-   Middle note where scale-degree 0 is mapped to;
-   the middle note represents the note where the formal octave starts.
-   Note the misspelling of "middle".
+   \itempar{Last Note}{scales!last note}
+   Last MIDI Note Number.
+   Sets the MIDI note value to use for the last note of the scale.
+   Keys above this value are ignored.
 
    Values: \texttt{0 to 127*}
 
@@ -1273,6 +1330,9 @@
    \label{fig:yoshimi_menu_failed_to_load_scales}
 \end{figure}
 
+   Note that the loading and saving of scales is fully available in the
+   command-line as well.
+
 \subsubsection{Menu / Scales / Save}
 \label{subsec:menu_scales_save}
 
@@ -1281,6 +1341,13 @@
    If one has imported a scale from an \texttt{*.scl} file, and one
    wants direct access to it from the \textbf{Scales / Recent Scales} menu, one
    must first save the imported file as an \texttt{*.xsz} files.
+
+   Note that the loading and saving of scales is fully available in the
+   command-line as well.
+
+   In the past, every time one saved and reloaded a scale, there was a
+   degradation in the accuracy of the scales.  This issue has been fixed, since
+   people are very sensitive to pitch intervals.
 
 \subsubsection{Menu / Scales / Recent Scales...}
 \label{subsec:menu_scales_recent_scales}
