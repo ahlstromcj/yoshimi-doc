@@ -22,7 +22,6 @@ Date: Wed, 23 Mar 2016 02:14:17 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: On a bit of a roll now :)
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Vector load and save is now possible from the CLI. That's a complete vector
 set, with all mappings, instruments etc. You can independently decide which
@@ -43,7 +42,6 @@ Date: Wed, 23 Mar 2016 22:33:46 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: On a bit of a roll now :)
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Some more CLI goodness.
 
@@ -71,7 +69,6 @@ Date: Fri, 25 Mar 2016 14:20:36 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: On a bit of a roll now :)
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Oh dear, I really shouldn't do this sort of stuff when suffering heavily from a
 bad cold :(
@@ -168,7 +165,6 @@ Date: Sat, 26 Mar 2016 15:37:15 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: On a bit of a roll now :)
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 I was playing about yesterday evening with Rosegarden (and Yoshimi of course)
 but was getting frustrated with wrong volume and pan settings.
@@ -192,7 +188,6 @@ ate: Sun, 27 Mar 2016 15:22:42 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: On a bit of a roll now :)
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 On Sun, 27 Mar 2016 08:38:25 -0400
 Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
@@ -271,7 +266,6 @@ Date: Wed, 30 Mar 2016 23:44:07 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Re: correction!
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 On Mon, 28 Mar 2016 18:23:54 -0400
 Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
@@ -298,7 +292,6 @@ Date: Fri, 22 Apr 2016 22:13:54 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Yoshimi bits
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Hi Chris,
 
@@ -321,7 +314,6 @@ Date: Sat, 23 Apr 2016 21:15:37 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Re: Yoshimi bits
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Hi Chris,
 
@@ -360,7 +352,6 @@ Date: Sun, 24 Apr 2016 14:35:56 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Re: Yoshimi bits
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 [-- Attachment #1 --]
 [-- Type: text/plain, Encoding: 7bit, Size: 1.6K --]
@@ -388,7 +379,6 @@ Date: Tue, 26 Apr 2016 19:22:39 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Progress? A bit :)
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 In the current master, just about the whole of the history system has been
 refactored. It now uses a single file for all instances recording any
@@ -418,7 +408,6 @@ Date: Thu, 28 Apr 2016 20:47:03 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Progress? A bit :)
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 On Tue, 26 Apr 2016 15:01:14 -0500
 Jonathan Brickman <jeb@ponderworthy.com> wrote:
@@ -447,7 +436,6 @@ Date: Sun, 24 Apr 2016 09:56:19 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Key Shift and Octaves.
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 On Sun, 24 Apr 2016 07:58:59 +0100
 
@@ -475,7 +463,6 @@ Date: Sun, 1 May 2016 17:49:46 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Key Shift and Octaves - Done
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Gobal and Part Key shift is now +-36 semitones. The limits are defined in
 CMakeLists.txt and used throughout the code, so they can easily be changed at a
@@ -491,7 +478,6 @@ Date: Sun, 24 Apr 2016 11:03:52 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Smooth Instrument Transitions.
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 This is something I demonstrated on my miniLAC workshop, but in order to make
 it obvious exactly what was happening I spread the controls across the 'normal'
@@ -547,7 +533,6 @@ Date: Thu, 28 Apr 2016 22:11:13 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Yoshimi effects trial
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Hi Chris,
 
@@ -617,7 +602,6 @@ Date: Sat, 30 Apr 2016 18:11:37 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Right (click) Said Fred
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Something I've wanted to do for some time is now almost complete.
 
@@ -636,7 +620,6 @@ Date: Sun, 1 May 2016 17:52:58 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Right (click) Said Fred - complete
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 All nested windows are now (hopefully) correctly done. Right click on a close
 button will even correctly deal with whether the Resonance window was opened
@@ -649,7 +632,6 @@ Date: Sun, 1 May 2016 18:02:17 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Another small detail
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 At miniLAC2016 I was asked about whether it was possible to show the virtual
 keyboard on a first time start up to help new users get quick results.
@@ -664,7 +646,6 @@ Date: Mon, 2 May 2016 14:48:33 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Another small detail
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 On Mon, 2 May 2016 10:33:27 +0100
 "Tom" <dmarc-noreply@freelists.org> (Redacted sender "madtom1999" for DMARC)
@@ -687,7 +668,6 @@ Date: Mon, 2 May 2016 16:28:13 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Another small detail
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 On Mon, 2 May 2016 16:21:33 +0200
 Lorenzo Sutton <lorenzofsutton@gmail.com> wrote:
@@ -704,7 +684,6 @@ Date: Tue, 3 May 2016 20:05:53 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: (yet) Another small detail
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 As of now, the jack autoconnect status can be set in both the GUI and CLI
 It defaults to 'on'.
@@ -725,7 +704,6 @@ Date: Fri, 6 May 2016 22:43:48 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Yoshi 1.3.9 jack client names differ for audio and midi
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 On Sun, 20 Mar 2016 17:53:21 +0100
 Frank Kober <goemusic@yahoo.fr> wrote:
@@ -772,7 +750,6 @@ Date: Fri, 6 May 2016 23:03:11 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: More updates
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Hi Granddad :)
 
@@ -805,7 +782,6 @@ Date: Sat, 7 May 2016 18:10:09 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Standards - decisions made!
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 The work I'm doing right now (even though its still proof of concept at the
 moment) was getting a right pain, so C++11 it now is - much easier. As and when
@@ -834,7 +810,6 @@ Date: Sat, 7 May 2016 21:53:06 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Standards - decisions made!
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 On Sat, 7 May 2016 18:59:27 +0100
 "Tom" <dmarc-noreply@freelists.org> (Redacted sender "madtom1999" for DMARC)
@@ -866,7 +841,6 @@ Date: Thu, 12 May 2016 20:49:12 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Following On, and on
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 On Tue, 10 May 2016 23:21:24 +0100
 Will Godfrey <willgodfrey@musically.me.uk> wrote:
@@ -894,7 +868,6 @@ Date: Sat, 14 May 2016 23:03:43 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Following On, and on - rolls up sleeves.
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 *Warning*
 
@@ -942,7 +915,6 @@ Date: Sun, 15 May 2016 18:55:18 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Following On, and on
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 On Sun, 15 May 2016 08:19:49 -0400
 Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
@@ -977,7 +949,6 @@ Date: Sun, 15 May 2016 19:17:36 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Yoshimi - Resonance
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 While going through identifying all the various controls I re-discovered that
 'Interpolate peaks' in resonance has two different algorithms. These are
@@ -998,7 +969,6 @@ Date: Sun, 15 May 2016 23:38:57 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Yoshimi - Resonance
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 On Sun, 15 May 2016 17:19:30 -0400
 Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
@@ -1030,7 +1000,6 @@ Date: Mon, 16 May 2016 22:06:36 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Yoshimi - Resonance
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 To really see the difference, with a cleared graph click on the highest point,
 creating a spike, then try one of the buttons. Clear the graph, then do the
@@ -1041,7 +1010,6 @@ Date: Fri, 20 May 2016 19:47:25 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Progress
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 I've finally started identifying effects. I'd been putting that off till
 more-or-less last. I think it has more pointers that Clapham railway junction :(
@@ -1068,7 +1036,6 @@ From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Cc: Frank Kober <goemusic@yahoo.fr>
 Subject: [yoshimi] Re: Yoshi 1.3.9 jack client names - FIXED
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 This turned out to be remarkably easy - almost suspiciously, so I'd *really*
 like other people to test the current master.
@@ -1096,7 +1063,6 @@ Date: Sat, 21 May 2016 22:09:34 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: ... and there's more :)
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Hi Chris,
 
@@ -1116,7 +1082,6 @@ Date: Tue, 24 May 2016 00:00:02 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Yoshimi-doc
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Hi Chris,
 
@@ -1201,7 +1166,6 @@ Date: Thu, 26 May 2016 21:25:26 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Something for the poor downtrodden GUI users :)
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 NRPN-ers and CLI-ers have been able to manage...
 
@@ -1233,7 +1197,6 @@ Date: Fri, 27 May 2016 21:03:39 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Something for the poor downtrodden GUI users :)
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Vector loading and saving is now there. Recent history should also be OK. When
 a Vector file has been loaded a label appears at the bottom (alongside
@@ -1246,7 +1209,6 @@ Date: Fri, 27 May 2016 01:03:43 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: A slight change of focus.
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Hi Chris,
 
@@ -1271,7 +1233,6 @@ Date: Fri, 27 May 2016 16:51:59 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Re: A slight change of focus.
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 On Fri, 27 May 2016 05:38:08 -0400
 Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
@@ -1286,7 +1247,6 @@ Date: Tue, 31 May 2016 20:31:12 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Next release
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 I hope you guys are keeping up with me :)
 
@@ -1344,7 +1304,6 @@ Date: Wed, 1 Jun 2016 19:30:25 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Next release Yoshimi 1.4.0 rc1
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 The 'Diamond Dove' is getting ready to fly :)
 
@@ -1369,7 +1328,6 @@ Date: Thu, 2 Jun 2016 18:03:45 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Next release Yoshimi 1.4.0 rc2
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Damn!
 
@@ -1383,7 +1341,6 @@ Date: Sat, 4 Jun 2016 17:19:35 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Next release Yoshimi 1.4.0 rc3
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 ... and we have another one :)
 
@@ -1416,7 +1373,6 @@ Date: Tue, 31 May 2016 20:43:03 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Groveling apologies!
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Hi Chris,
 
@@ -1444,7 +1400,6 @@ Date: Sat, 4 Jun 2016 14:43:45 +0200
 From: Frank Neumann <beachnase@web.de>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Build errors on Mint 17, and a possible fix
-X-Mailer: Sylpheed 3.4.1 (GTK+ 2.24.23; x86_64-pc-linux-gnu)
 Organization: Disorganized, kind of.
 
 haven't been building Yoshimi from source for quite a while, I tried it again
@@ -1510,7 +1465,6 @@ Date: Sat, 4 Jun 2016 22:42:21 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Yoshimi 1.4.0 rc3
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 It's OK, you're safe now. No more GUI changes :)
 
@@ -1584,7 +1538,6 @@ Date: Sun, 5 Jun 2016 06:44:50 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Re: Yoshimi 1.4.0 rc3
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Mornin' Chris.
 
@@ -1609,7 +1562,6 @@ Date: Sun, 5 Jun 2016 07:26:34 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Re: Yoshimi 1.4.0 rc3
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 A quick recap on knobs.
 
@@ -1629,7 +1581,6 @@ Date: Mon, 6 Jun 2016 07:04:54 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Re: Ride With Yoshimi
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 http://www.musically.me.uk/music/Ride_With_Yoshimi.ogg
 
@@ -1642,7 +1593,6 @@ Date: Mon, 6 Jun 2016 21:49:55 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: The expected comments :)
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Small point - title still showing V 1.3.9
 
@@ -1680,7 +1630,6 @@ Date: Mon, 6 Jun 2016 20:43:06 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: A quick update.
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Hi Chris,
 
@@ -1701,7 +1650,6 @@ Date: Tue, 7 Jun 2016 22:38:16 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Next release Yoshimi 1.4.0 rc4
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 I don't think we've ever got to rc4 before :o
 
@@ -1741,7 +1689,6 @@ Date: Fri, 10 Jun 2016 09:55:57 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Bugs and omissions
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 That's what rc5 is all about.
 
@@ -1779,7 +1726,6 @@ Date: Mon, 13 Jun 2016 00:23:06 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Version 1.4.0 is out {phew!}
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Just to remind you...
 
@@ -1864,7 +1810,6 @@ Date: Thu, 23 Jun 2016 10:32:06 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Current version
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Just been on a distro tour. Every one I can find is now carrying V 1.4.0.1, so
 if you can't or don't want to self-build you can still get it.
@@ -1895,7 +1840,6 @@ Date: Wed, 29 Jun 2016 22:30:13 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: A slight change of plan :)
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 On Tue, 28 Jun 2016 07:27:16 +0200
 Kristian Amlie <kristian@amlie.name> wrote:
@@ -1927,7 +1871,6 @@ Date: Sat, 30 Jul 2016 21:28:51 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: More progress on direct access
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Well, we now have all effects accessible to direct control - with the exception
 of the actual filter in dynfilter. However, that will automatically pop into
@@ -1958,7 +1901,6 @@ Date: Fri, 12 Aug 2016 20:13:57 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: More progress on direct access
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 On Sat, 30 Jul 2016 21:28:51 +0100
 Will Godfrey <willgodfrey@musically.me.uk> wrote:
@@ -1977,7 +1919,6 @@ Date: Fri, 5 Aug 2016 17:24:47 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Another small diversion
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 I need these to retain sanity while wading through the direct access stuff :(
 
@@ -2020,7 +1961,6 @@ Date: Sat, 6 Aug 2016 21:24:45 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Another small diversion
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 This has actually been very instructive!
 
@@ -2044,7 +1984,6 @@ Date: Tue, 9 Aug 2016 22:19:31 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] A funny thing happened to me at the bank
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Instrument bank that is.
 
@@ -2087,7 +2026,6 @@ Date: Sat, 13 Aug 2016 23:14:40 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: A funny thing happened to me at the bank
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 This has turned up another oddity.
 
@@ -2124,7 +2062,6 @@ Date: Mon, 15 Aug 2016 22:58:52 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] A tweak, an nudge, a shove...
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 ... and we now have vector controls that are set on any and all channels
 stored in both patch sets and saved state :)
@@ -2136,7 +2073,6 @@ Date: Tue, 16 Aug 2016 23:42:02 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: A tweak, an nudge, a shove...
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 On Mon, 15 Aug 2016 18:34:46 -0400
 Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
@@ -2209,7 +2145,6 @@ Date: Thu, 18 Aug 2016 19:18:22 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: A tweak, a... wot?.
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Just discovered another little oddity.
 
@@ -2238,7 +2173,6 @@ Date: Mon, 22 Aug 2016 22:06:16 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: (another) tweak.
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 After much scanning of the 'net, I finally worked out how to get static
 variables in a class properly accessible externally.
@@ -2263,7 +2197,6 @@ Date: Tue, 23 Aug 2016 23:27:09 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: (another) tweak.
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 On Mon, 22 Aug 2016 17:58:05 -0500
 Jonathan Brickman <jeb@ponderworthy.com> wrote:
@@ -2319,7 +2252,6 @@ Date: Thu, 25 Aug 2016 19:12:36 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: (yet another) tweak.
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Current root and current bank settings have now been moved from 'banks' to the
 'config' and 'instance' files, so the banks file now consists *only* of the
@@ -2345,7 +2277,6 @@ Date: Fri, 26 Aug 2016 19:46:56 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: (yet another) tweak.
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Well, I found a bug :(
 Squashed in rc2 :)
@@ -2387,7 +2318,6 @@ Date: Mon, 29 Aug 2016 20:08:13 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: (yet another) tweak.
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Still not quite there yet.
 
@@ -2416,7 +2346,6 @@ Date: Sun, 4 Sep 2016 17:41:13 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: V 1.4.1 - tomorrow?
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Two more bugs fixed, although neither would have been show stoppers, and now
 both my DAW and office 'pooter have had many hours with Yoshimi continuously
@@ -2445,7 +2374,6 @@ Date: Wed, 7 Sep 2016 17:45:04 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: V 1.4.1 - tomorrow?
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 On Tue, 6 Sep 2016 22:02:13 +0200
 Kristian Amlie <kristian@amlie.name> wrote:
@@ -2478,7 +2406,6 @@ Date: Mon, 5 Sep 2016 00:28:40 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] V 1.4.1 - The Lyrebird is out of it's cage :)
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 I couldn't sleep (too much brain activity) so pushed this out now, rather than
 later today.
@@ -2518,7 +2445,6 @@ Date: Wed, 7 Sep 2016 21:39:27 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Fun
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Just thought I'd mention that yesterday I 'wasted' and entire evening playing
 with the new channel switch feature, running it in 'single row' mode.
@@ -2552,7 +2478,6 @@ Date: Sat, 10 Sep 2016 20:12:39 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Nose... grindstone, grindstone... nose.
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Direct access to Envelopes is now 99.999% done, which makes the whole of
 SubSynth 'feature complete' - just the precise settings when switching to
@@ -2693,7 +2618,6 @@ From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Fw: Re: [yoshimi-user] merging a patch set into parts
      17,18,19, how?
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 On Sun, 18 Sep 2016 15:40:35 +0200
 "Tony Travolta" <dj.ton.e@gmx.de> wrote:
@@ -2734,7 +2658,6 @@ Date: Tue, 20 Sep 2016 22:36:51 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: V 1.4.1 - The Lyrebird is out of it's cage :)
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 On Tue, 6 Sep 2016 18:19:20 +0100
 Will Godfrey <willgodfrey@musically.me.uk> wrote:
@@ -2768,7 +2691,6 @@ Date: Tue, 20 Sep 2016 22:41:09 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Nose... grindstone, grindstone... nose.
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 On Sat, 10 Sep 2016 20:12:39 +0100
 Will Godfrey <willgodfrey@musically.me.uk> wrote:
@@ -2802,7 +2724,6 @@ Date: Tue, 20 Sep 2016 23:17:06 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: A question
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 On Tue, 30 Aug 2016 21:52:02 +0100
 Will Godfrey <willgodfrey@musically.me.uk> wrote:
@@ -2845,7 +2766,6 @@ Date: Thu, 22 Sep 2016 11:03:01 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Aw: Re: A question
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Just to clarify.
 
@@ -2859,7 +2779,6 @@ Date: Thu, 22 Sep 2016 10:58:46 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: new instance for each patch set, a good idea?
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 On Wed, 21 Sep 2016 23:03:20 +0200
 "Tony Travolta" <dj.ton.e@gmx.de> wrote:
@@ -2930,7 +2849,6 @@ Date: Thu, 22 Sep 2016 19:44:56 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: how to save multiple instance yoshimi setup?
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 On Thu, 22 Sep 2016 13:09:18 +0200
 "Tony Travolta" <dj.ton.e@gmx.de> wrote:
@@ -2956,7 +2874,6 @@ Date: Wed, 5 Oct 2016 19:38:45 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Synthfest UK
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 I'm fairly well known now as 'Mr Yoshimi' and got a few enquiries as to how
 development was going. Also a couple of people commented very favourably on our
@@ -2974,7 +2891,6 @@ Date: Fri, 7 Oct 2016 16:01:08 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Yoshimi user guide
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Hi Chris,
 You've been very quiet lately :(
@@ -3004,7 +2920,6 @@ Date: Tue, 11 Oct 2016 19:13:01 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Boo! :¬)
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 One of the things about all this 'underground' work is that I have to get a
 much better understanding of how the whole of Yoshimi works. The latest
@@ -3048,7 +2963,6 @@ Date: Fri, 14 Oct 2016 22:59:27 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] More small changes
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 It might not seem like it, but I do try very hard to avoid changing the GUI.
 However, today I made two relatively benign ones to the current 'master'.
@@ -3105,7 +3019,6 @@ Date: Fri, 14 Oct 2016 23:07:41 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: screens
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 [-- Attachment #1 --]
 [-- Type: text/plain, Encoding: 7bit, Size: 0.5K --]
@@ -3132,7 +3045,6 @@ Date: Sun, 16 Oct 2016 10:24:02 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Re: screens
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 [-- Attachment #1 --]
 [-- Type: text/plain, Encoding: 7bit, Size: 2.0K --]
@@ -3192,7 +3104,6 @@ Date: Sat, 22 Oct 2016 20:49:41 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Solo Was: More small changes
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 
 Amongst all the low-level stuff in the current master I've added a small
 extension to this. As well as 'Row' and 'Column' modes you now have a variation
@@ -3207,7 +3118,6 @@ Date: Mon, 24 Oct 2016 21:27:35 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Info snippets.
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 
 By default Yoshimi doesn't assign a bank ID 0 (zero) in any root. This actually
 has an interesting benefit. Several sequencers insist on setting a bank with
@@ -3246,7 +3156,6 @@ Date: Mon, 24 Oct 2016 22:25:51 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Info
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 
 Hi Chris,
 
@@ -3266,7 +3175,6 @@ Date: Fri, 28 Oct 2016 23:57:36 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Well that was fun!
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 
 I lost internet access for over 24 hours, so (without my normal distractions)
 got my head down and did some needed code revisions. I also had a first serious
@@ -3283,7 +3191,6 @@ Date: Sun, 30 Oct 2016 16:16:25 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Info snippets.
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 
 On Mon, 24 Oct 2016 21:27:35 +0100
 Will Godfrey <willgodfrey@musically.me.uk> wrote:
@@ -3312,7 +3219,6 @@ Date: Wed, 16 Nov 2016 23:22:39 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Help imitating synth
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 
 I don't recommend trying to do that manually. It quickly gets tiring and is
 quite hard to keep steady timing, especially while trying to sing as well.
@@ -3338,7 +3244,6 @@ Date: Thu, 17 Nov 2016 00:47:00 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Fun times ahead
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 
 For some time I've been working on a system for creating lists of data blocks
 that are extendible, editable and quickly readable. It just so happens that the
@@ -3411,7 +3316,6 @@ Date: Fri, 18 Nov 2016 21:58:28 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Fun times ahead - MIDI learn
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 
 Quite a bit of progress on the current master :)
 
@@ -3450,7 +3354,6 @@ Date: Sun, 20 Nov 2016 02:27:50 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: MIDI learn - progress :)
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 
 In the current master there is now a Midi learn window accesed from the
 'Yoshimi' dropdown.
@@ -3472,7 +3375,6 @@ Date: Sun, 20 Nov 2016 22:40:00 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: MIDI learn - progress :)
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 
 Well, it seems I still have a roof over my head :)
 
@@ -3514,7 +3416,6 @@ Date: Thu, 24 Nov 2016 11:50:30 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: MIDI learn - 90% :)
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 
 Gui is now fully functional. All the line editor controls work. You can shuffle
 them around by CC and channel, change the ranges or even reverse them, as well
@@ -3536,7 +3437,6 @@ Date: Thu, 24 Nov 2016 19:15:53 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: MIDI learn - An again :)
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 
 On Thu, 24 Nov 2016 15:46:54 +0000
 Will Godfrey <willgodfrey@musically.me.uk> wrote:
@@ -3594,7 +3494,6 @@ Date: Thu, 24 Nov 2016 16:58:38 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Filter Frequency Key Tracking 100% value
-X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 
 
 127 is supposed to correspond to 100% on all controls, as they start out as
@@ -3615,7 +3514,6 @@ Date: Sun, 11 Dec 2016 10:55:32 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Xruns? Graphics? - The thot plickens!
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 
 Well, I've just confirmed that when running other programs using jack audio
 that dsp load increases a lot when moving *any* windows around.
@@ -3643,7 +3541,6 @@ Date: Tue, 13 Dec 2016 23:25:25 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Yoshimi 1.5 - raises hand nervously
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 
 [-- Attachment #1 --]
 [-- Type: text/plain, Encoding: 7bit, Size: 0.7K --]
@@ -3667,7 +3564,6 @@ Date: Sat, 17 Dec 2016 14:11:49 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Yoshimi 1.5.0 - The Robin
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 
 Still learning new songs and singing sweetly in the middle of winter.
 
@@ -3728,7 +3624,6 @@ ate: Sat, 17 Dec 2016 16:13:57 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: As requested
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 
 [-- Attachment #1 --]
 [-- Type: text/plain, Encoding: 7bit, Size: 2.8K --]
@@ -3750,7 +3645,6 @@ Date: Thu, 15 Dec 2016 21:32:57 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Countdown
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 
 On Thu, 15 Dec 2016 20:10:50 +0100
 Frank Neumann <beachnase@web.de> wrote:
@@ -3797,7 +3691,6 @@ Date: Sun, 18 Dec 2016 22:44:44 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] The road ahead
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 
 Hmmm, sounds like a song title :)
 
@@ -3876,7 +3769,6 @@ Date: Mon, 2 Jan 2017 18:14:15 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] (Yawn) 2017 already? Oh well a bit more done.
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 
 Something I forgot to do when preparing for V1.5.0 was to to improve the
 layout of the filter inserts. This is now done and hopefully the filter
@@ -3897,7 +3789,6 @@ Date: Tue, 3 Jan 2017 20:26:14 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] YES!
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 
 Sorry about that little outburst but a tiny, tiny change in the MIDI learn code
 means that for the first time ever Yoshimi can respond to aftertouch :)
@@ -3919,7 +3810,6 @@ Date: Wed, 4 Jan 2017 17:03:23 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] A little clarification
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 
 You might wonder why you'd want to MIDI learn modulation when there is already a
 dedicated CC for it - same for 'brightness'. Well, the answer is that there is
@@ -3931,7 +3821,6 @@ Date: Wed, 4 Jan 2017 19:25:12 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org, Jörn Eichler <joerneichler@gmx.net>
 Subject: [yoshimi] Tooltips
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 
 Hi Jörn,
 
@@ -3948,7 +3837,6 @@ Date: Thu, 5 Jan 2017 17:06:36 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Hysterical Raisins
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 
 A bit of ancient history has bubbled to the surface.
 
@@ -3998,7 +3886,6 @@ Date: Thu, 5 Jan 2017 23:40:38 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: A little clarification - done
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 
 On Wed, 4 Jan 2017 17:03:23 +0000
 Will Godfrey <willgodfrey@musically.me.uk> wrote:
@@ -4039,7 +3926,6 @@ Date: Mon, 16 Jan 2017 22:10:14 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Numbers
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 When we started implimenting CLI access, the decision was made to use the
 internal counting system which, like almost everything else computery, starts at
@@ -4081,7 +3967,6 @@ Date: Wed, 1 Feb 2017 17:08:58 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] MIDI learn on steroids
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 Some synths send a number of high resolution controllers as NRPNs. Well,
 Yoshimi master can now MIDI learn these :)
@@ -4157,7 +4042,6 @@ Date: Thu, 2 Feb 2017 18:47:54 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: MIDI learn on steroids - Portamento?
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 Currently none of the 'Controllers' window is learnable, but that's because I
 didn't think anyone would want to change them dynamically!
@@ -4194,7 +4078,6 @@ Date: Sat, 4 Feb 2017 11:53:02 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Another diversion
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 The recent extended access from MIDI-learn revealed that 'zipper' noise was
 quite bad when adjusting main volume, and not exactly ideal when adusting the
@@ -4228,7 +4111,6 @@ Date: Fri, 18 Mar 2016 14:25:15 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: The unkillable zombie -A leap into the dark
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.29; x86_64-pc-linux-gnu)
 
 On Sun, 13 Mar 2016 20:58:53 +0000
 Will Godfrey <willgodfrey@musically.me.uk> wrote:
@@ -4273,7 +4155,6 @@ Date: Sat, 19 Mar 2016 17:12:12 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] a little bit more
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 GUI start up is now slightly staggered so if you have a slower computer of a
 lot of roots and banks you see something sooner. roots and banks are read after
@@ -4289,7 +4170,6 @@ Date: Sun, 20 Mar 2016 19:45:19 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: a little bit more
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 On Sat, 19 Mar 2016 15:29:41 -0500
 "Jonathan E. Brickman" <jeb@ponderworthy.com> wrote:
@@ -4326,7 +4206,6 @@ Date: Sat, 19 Mar 2016 17:27:25 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: yoshimi CLI
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Hi Chris,
 
@@ -4354,7 +4233,6 @@ Date: Sun, 20 Mar 2016 19:17:24 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: yoshimi CLI
-X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 
 Ummm.
 
@@ -4365,7 +4243,6 @@ Date: Fri, 10 Feb 2017 14:22:28 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] A bit of polish
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 If Yoshimi was rather 'busy' and you hit the panic button there were occasions
 where you might get one whole Xrun! Not anymore :)
@@ -4390,7 +4267,6 @@ Date: Sat, 11 Feb 2017 20:33:59 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: A bit of polish - Postmortem
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 Yoshimi is positively awash with mutex locks, and there are three types that
 are used:
@@ -4424,7 +4300,6 @@ Date: Thu, 16 Feb 2017 23:12:21 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Numbers - in progress
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 I've spent much of the day on this (although I did have a nice walk in in the
 sunshine this morining) and now have all the messages using the GUI number
@@ -4442,7 +4317,6 @@ Date: Mon, 20 Feb 2017 22:20:19 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Numbers - done
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 Maybe :p
 
@@ -4485,7 +4359,6 @@ Date: Tue, 21 Feb 2017 19:54:16 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Starting to think about V 1.5.1
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 [-- Attachment #1 --]
 [-- Type: text/plain, Encoding: 7bit, Size: 1.3K --]
@@ -4519,7 +4392,6 @@ Date: Thu, 23 Feb 2017 16:21:17 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] LFOs
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 Thanks to the work of one of Yoshimi's little helpers these now respond
 instantly to changes in the current master :)
@@ -4541,7 +4413,6 @@ Date: Sun, 26 Feb 2017 22:27:23 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Re: Yoshimi Doc
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 On Sun, 26 Feb 2017 17:02:11 -0500
 Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
@@ -4574,7 +4445,6 @@ Date: Fri, 3 Mar 2017 19:04:59 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Another interesting snippet
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 While diving into the very bowels of Yoshimi {snerk} I made another discovery.
 
@@ -4591,7 +4461,6 @@ Date: Mon, 6 Mar 2017 16:59:18 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Well you did ask :)
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 page 14 X
  "path add" is now "add root"
@@ -4673,7 +4542,6 @@ Date: Fri, 10 Mar 2017 22:40:16 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] V1.5.1 iminent :)
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 Not a code freeze yet, so if any of Yoshimi's little helpers want to slip
 something in that's not too dramatic, please do so over the next week.
@@ -4702,7 +4570,6 @@ te: Sat, 18 Mar 2017 22:53:48 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Think I'm back now.
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 A sneaky little gotcha!
 
@@ -4727,7 +4594,6 @@ Date: Mon, 27 Mar 2017 19:20:24 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Re: V 1.5.1 on the brink!
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 Hi Chris,
 
@@ -4760,7 +4626,6 @@ Date: Mon, 27 Mar 2017 23:14:47 +0100
 From: Will J Godfrey <WillGodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Re: V 1.5.1 on the brink!
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 Hi Chris,
 
@@ -4781,7 +4646,6 @@ Date: Sun, 23 Apr 2017 22:32:53 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Just a bit of fun :)
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 [-- Attachment #1 --]
 [-- Type: text/plain; charset=US-ASCII, Encoding: 7bit, Size: 0.3K --]
@@ -4799,7 +4663,6 @@ Date: Wed, 3 May 2017 10:25:58 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: V1.5.2 - and a bit more
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 On Fri, 28 Apr 2017 20:42:49 +0100
 Will Godfrey <willgodfrey@musically.me.uk> wrote:
@@ -4833,7 +4696,6 @@ Date: Wed, 3 May 2017 22:47:33 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: V1.5.2 - Wow!
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 On Wed, 3 May 2017 10:25:58 +0100
 Will Godfrey <willgodfrey@musically.me.uk> wrote:
@@ -4882,7 +4744,6 @@ Date: Fri, 5 May 2017 22:16:33 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: V1.5.2 - rc1
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 Yes we're getting there :)
 
@@ -4908,7 +4769,6 @@ Date: Sun, 7 May 2017 17:34:10 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] It's 1.5.2 rc2 now
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 I found a way round identifying learnable switches.
 Learnable checkboxes have a 'control knob' blue surround.
@@ -4929,7 +4789,6 @@ Date: Tue, 9 May 2017 21:07:43 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: It's 1.5.2 rc2 now
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 On Tue, 9 May 2017 20:42:45 +0200
 Jesper Lloyd <jpl.lloyd@gmail.com> wrote:
@@ -4965,7 +4824,6 @@ Date: Sun, 7 May 2017 18:10:51 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: No peac e for the wicked!
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 Hi Chris,
 
@@ -5003,7 +4861,6 @@ Date: Thu, 11 May 2017 23:02:22 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Ts crossed, Is dotted.
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 Remaining 'easy' switches now learnable.
 
@@ -5014,6 +4871,27 @@ Don't make the mistake I did for a while - forgetting to set 'Block' when using
 CCs that have other recognised functions :)
 
 
+Date: Tue, 23 May 2017 21:16:22 +0100                                             
+From: Will Godfrey <willgodfrey@musically.me.uk>                                  
+To: yoshimi@freelists.org                                                         
+Subject: [yoshimi] Back Again                                                     
+
+Also the CLI/GUI/none issue has come up again.  Logically if you disable both
+there is no way to re-enable either without directly editing the config file,
+which is why I set it up so you always had one.                                                                              
+                                                                                  
+Only that's not quite true!  You would still be able to enable either from a
+CLI start with either:            
+
+    yoshimi -I                                                                    
+
+or:                                              
+
+    yoshimi -C                                                                    
+                                                                             
+So unless anyone objects I'll set this up, and if anyone tries to disable both
+they'll get a message detailing how to revert this, but won't be stopped.
+
 
 
 
@@ -5021,7 +4899,6 @@ Date: Fri, 26 May 2017 15:21:34 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Scales
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 I've started work on getting CLI access to this, and in the process uncovered a
 couple of ancient bugs - now fixed.
@@ -5058,7 +4935,6 @@ Date: Mon, 5 Jun 2017 21:59:15 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Scales - accuracy
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 Short version:
 
@@ -5161,13 +5037,10 @@ So there you go. It's better, but still needs improvement.
 
 
 
-
-
 Date: Thu, 8 Jun 2017 19:37:19 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Scales - more stuff
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 Scale conversions are *much* improved now. Mostly because we don't repeat them
 when we don't have to :)
@@ -5186,7 +5059,6 @@ there will be no progressive loss of accuracy at all.
 As we still save the tuning the new files are backward compatible. For older
 versions of Yoshimi there will still be some loss of accuracy, but not as much
 as before.
-
 
 I also discovered that at some point Yoshini developed amnesia regarding scale
 names and comments. That's been put right too :)

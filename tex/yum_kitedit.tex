@@ -29,10 +29,14 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Kit/instrument-kit-edit.jpg}
+%  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Kit/instrument-kit-edit.jpg}
+   \includegraphics[scale=1.0]{1.5.3/instrument-kit-edit.png}
    \caption{Kit Edit Dialog}
    \label{fig:kit_edit_dialog}
 \end{figure}
+
+   There have been some minor changes in
+   this figure in recent versions of \textsl{Yoshimi}.
 
    \begin{enumber}
       \item \textbf{Rows 1 to 16.}
@@ -40,14 +44,14 @@
          elements, in the order given:
          \begin{enumber}
             \item \textbf{No.}
-            \item \textbf{Enable}
-            \item \textbf{M.}
-            \item \textbf{Instrument Name}
-            \item \textbf{Min.k}
+            \item \textbf{Enable} (unlabelled checkbox)
+            \item \textbf{Mute} (was called "M")
+            \item \textbf{Name} (Instrument Name)
+            \item \textbf{Min key}
             \item \textbf{m} (set minimum note)
             \item \textbf{R} (reset default note range)
             \item \textbf{M} (set maximum note)
-            \item \textbf{Max.k}
+            \item \textbf{Max key}
             \item \textbf{ADsynth}
                \begin{enumber}
                   \item \textbf{Enable}
@@ -63,48 +67,34 @@
                   \item \textbf{Enable}
                   \item \textbf{edit}
                \end{enumber}
-            \item \textbf{FX.r}
+            \item \textbf{FX.r.}
          \end{enumber}
       \item \textbf{Mode}
       \item \textbf{Drum mode}
-      \item \textbf{Close Window}
-   \end{enumber}
-
-   Some items described in ZynAddSubFX that aren't seen in any diagrams:
-
-   \begin{enumber}
-      \item Kit Mode. Enable the kit mode.
-      \item Protect the kit. when loading an instrument, only item 0 will be
-      changed,
-      Other items will remain untouched. This allows one to combine more
-      instruments. If one wants to add more instruments to the kit, one must
-      copy the item 0 to another item, because the item 0 will be replaced. If
-      one loads master settings or clears the instrument/master setting,
-      the kit is cleared.
-      \item Swap/Copy. Swap two items or copy a item to other item.
+      \item \textbf{Close}
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{No}{kit!row number}
-   Kit Row Number.
-   Kit Item Number.
+   Kit Row Number, Kit Item Number.
    A simple label to indicate the instrument number in the kit.
 
    \itempar{Enable}{kit!enable}
-   Kit Row Enable.
+   Kit Row Enable.  This unlabelled checkbox enables or disables an instrument
+   in the kit.
 
    Value: \texttt{Off*, On}
 
-   \itempar{M}{kit!M.}
-   Kit Row "M".
+   \itempar{Mute}{kit!Mute}
+   Kit Row "M", now labelled as "Mute".
    Mute an item of the kit.
 
    \itempar{Instrument Name}{kit!name}
    Kit Instrument Name.
 
-   \itempar{Min.k}{kit!minimum key}
-   Kit Instrument Minimum Key.
+   \itempar{Min key}{kit!minimum key}
+   Kit Instrument Minimum Key, was formerly labelled "Min.k".
    Sets the minimum key of the item of the kit.
 
    \itempar{m}{kit!m}
@@ -118,8 +108,8 @@
    Sets the maximum note of this instrument to value of the last note
    pressed.
 
-   \itempar{Max.k}{kit!maximum key}
-   Kit Instrument Maximum Key.
+   \itempar{Max key}{kit!maximum key}
+   Kit Instrument Maximum Key, was formerly labelled "Max.k".
    Sets the maximum key of the item of the kit.
 
    \itempar{ADsynth}{kit!addsynth}
@@ -176,10 +166,10 @@
    items will sound from 41 to 60, and only Item 1 will sound from 61 to
    127.
 
-   Values: \texttt{OFF*, MULTI, SINGLE}.
+   Values: \texttt{Off*, Multi, Single, Crossfade}.
 
    \index{kit!mode crossfade}
-   The part's kit edit \textbf{Mode} menu has an extra entry
+   The part's kit edit \textbf{Mode} menu has an additional entry
    called \textbf{Crossfade}.
    When crossfade is set, one gets Multi behaviour with overlapping key
    ranges, but with a very smooth crossfade between sequential \textsl{pairs}
@@ -232,7 +222,7 @@
       direct 1 64 58 0
    \end{verbatim}
 
-   Kit item 0 is always enabled, although one can mute it and enable/disable the
+   Kit item 1 is always enabled, although one can mute it and enable/disable the
    individual engines.  To be clear, though, we'll enable kit item 3 and work
    with that; add 32 to the kit number to get 35:
 

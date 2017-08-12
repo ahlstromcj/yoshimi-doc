@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2016-12-22
-% \update      2017-03-11
+% \update      2017-08-12
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -67,11 +67,28 @@
    all "instant".
    The \textbf{Mod} wheel is seen as CC 130.
 
-   MIDI Learn sees aftertouch as CC 129 (via a sneaky conversion). This
-   has another nice result. If one does not have an aftertouch device currently
+   MIDI Learn sees aftertouch as CC 129 (via a sneaky conversion).
+   This has another nice result.
+   If one does not have an aftertouch device currently
    in hand, use any other controller; then, in the editing window, just change the
    controller number to 129. Save the learned set, and next time one
    \textsl{does} have such a device, just load the file and off you go!
+   MIDI Learn can emulate the MOD wheel, as it is an accessible control in the
+   little panel brought up when one right-clicks the \textbf{Controllers}
+   button in the bottom panel of the \textsl{Yoshimi} main window:
+
+\begin{figure}[H]
+   \centering 
+   \includegraphics[scale=1.0]{1.5.3/midi-controls-panel.png}
+   \caption{MIDI Controls Panel}
+   \label{fig:midi_controls_panel}
+\end{figure}
+
+   The emulated \index{MIDI controls} MIDI controls are:
+   \index{Modulation} \textbf{Modulation},
+   \index{Expression} \textbf{Expression},
+   \index{Filter Q} \textbf{Filter Q}, and
+   \index{Filter Cutoff} \textbf{Filter Cutoff}.
 
 \subsection{MIDI Learn / User Interface}
 \label{subsec:midi_learn_user_interface}

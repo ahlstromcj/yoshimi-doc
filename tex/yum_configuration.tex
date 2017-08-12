@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2016-03-07
-% \update      2017-03-09
+% \update      2017-08-12
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -22,6 +22,8 @@
    recent versions of \textsl{Yoshimi}.
    Understanding these configuration file makes it easier to 
    use \textsl{Yoshimi}.
+   Also note that all configuration settings are exposed to the command line
+   interface as well.
 
    As with most applications, \textsl{Yoshimi} and \textsl{ZynAddSubFX}
    allow for one to save one's work and reload it.
@@ -211,12 +213,12 @@
    sample rate -- file.  It is a single file that every instance can read, but
    only the first one can write.
    
-   \texttt{.config} hasn't yet been separated
-   from \texttt{.instance(n)} and all files are still per instance, as the
+   The \texttt{.config} file has been separated from \texttt{.instance(n)}.
+   It is saved only when the user explicitly calls for it to be saved.
+
+   All files are still per instance, as the
    \textsl{Yoshimi} team haven't had time to work out exactly how to manage
-   common files and memory locations for those that should be shared.  The
-   \texttt{.config} file is saved only when the user explicitly calls for it to
-   be saved.
+   common files and memory locations for those that should be shared.
    \textsl{Yoshimi} will still mention its absense:
 
    \begin{verbatim}
@@ -228,7 +230,7 @@
 
    The \texttt{.config} file will be readable by all instances of
    \textsl{Yoshimi}, but writeable only by the main instance. The relevant
-   controls will be greyed out in the other instances.  The \texttt{.config} and
+   controls will be hidden from the other instances.  The \texttt{.config} and
    \texttt{.banks} data now reside in separate configuration files.  The banks
    file is saved every time there is a normal exit, so the last-used root and
    bank IDs will always match what that instance thinks is there.  Conversely,

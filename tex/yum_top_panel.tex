@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-29
-% \update      2017-03-08
+% \update      2017-08-12
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -253,9 +253,9 @@
    note off release and the effects tail.
 
    \index{solo!row}
-   Row means that all of the first 16 channels will be set to channel 1, but with
-   only one active, and one's CC will dial up any of the parts, disabling the
-   others.
+   \textbf{Row} means that all of the first 16 channels will be set to channel
+   1, but with only one active, and one's CC will dial up any of the parts,
+   disabling the others.
    In \textbf{Row} mode the whole of the first 16 parts are ostensibly
    receiving on channel 1.  This mode is most useful if one wants to play live
    through a piece with multiple instrument changes while playing. It works
@@ -282,8 +282,9 @@
    in the set is active.
 
    \index{solo!loop}
-   Loop.  Loop is a variation on the Row mode.
-   With this mode, if one sends \textsl{any} value via the designated CC,
+   \textbf{Loop}.  Loop is a variation on the Row mode.
+   With this mode, if one sends \textsl{any} value (except zero)
+   via the designated CC,
    it will increment the active part by one, rolling round to 1 after 16.
    This should make even the dumbest foot controller usable.
 
@@ -485,10 +486,6 @@
 \end{figure}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
-
-   One question worth answering is if these controls, when changed, emit MIDI
-   messages to change the control, versus them simply affecting the current
-   playback.
 
    \itempar{Mod. Wheel}{controllers!modulation wheel}
    Sets the MIDI modulation value.  This control will

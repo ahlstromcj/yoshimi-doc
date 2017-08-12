@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-10-24
-% \update      2017-03-04
+% \update      2017-08-12
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -120,8 +120,7 @@
    (As an exercise, one can compare the various functions of the vector dialog
    to the command-line commands one can use to set up the vector
    functionality.)
-   The new \textbf{Yoshimi / Vectors} menu entry brings up the following
-   dialog:
+   The new \textbf{Vectors} button brings up the following dialog:
 
 \begin{figure}[H]
    \centering 
@@ -370,6 +369,12 @@
    it change the active status of the part, nor the number of parts available.
    This is because these settings may have been made independent of vector
    control. In short, vector setup will add things but not remove them.
+
+   \itempar{Vector Name}{Vectors!name}
+   From version 1.5.3 on, the vector name is now editable in the same way as an
+   instrument name is, and it is stored along with all the other data. This is
+   particularly relevant when it is saved in a patch set. When reloading, one
+   will know what the vector is called; previously, the name was lost.
 
 \subsection{Vector / Vector Control}
 \label{subsection:vector_control}
