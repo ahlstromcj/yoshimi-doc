@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-07
-% \update      2017-03-07
+% \update      2017-09-03
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -674,6 +674,12 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    Use as Base.
    Convert the oscillator output to a base function. Changing the Base
    function or its parameter will erase the converted base function. 
+
+%  We've cured a long-standing anomally, where setting up
+%  a complex waveshape, then clicking the \textbf{Use as Base} button
+%  do all the necessary conversions, but would leave the base function showing
+%  the original.  Now it shows 'User', which is normally hidden and is a
+%  non-selectable entry.
 
    \itempar{Clr}{padsynth!harm editor clr}
    Clear.

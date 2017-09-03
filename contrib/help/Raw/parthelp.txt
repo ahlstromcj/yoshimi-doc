@@ -1,0 +1,31 @@
+yoshimi> ? pa
+Commands:
+  ?  Help                     - show commands
+  STop                        - all sound off
+  RESet                       - return to start-up conditions (if 'y')
+  EXit                        - tidy up and close Yoshimi (if 'y')
+  ..                          - step back one level
+  /                           - step back to top level
+Part: [n1] = part number
+  ENable                      - enables the part
+  DIsable                     - disables the part
+  Volume <n2>                 - volume
+  Pan <n2>                    - panning
+  VElocity <n2>               - velocity sensing sensitivity
+  OFfset <n2>                 - velocity sense offset
+  POrtamento <s>              - portamento (Enable {other})
+  Mode <s>                    - key mode (Poly, Mono, Legato)
+  Note <n2>                   - note polyphony
+  SHift <n2>                  - key shift semitones (0 no shift)
+  MIn <n2>                    - minimum MIDI note value
+  MAx <n2>                    - maximum MIDI note value
+  EFfects [n2]                - enter effects context level
+    Type <s>                  - the effect type
+    PREset <n3>               - set numbered effect preset to n3
+    Send <n3> <n4>            - send part to system effect n3 at volume n4
+  PRogram <n2>                - loads instrument ID
+  NAme <s>                    - sets the display name the part can be saved with
+  Channel <n2>                - MIDI channel (> 32 disables, > 16 note off only)
+  Destination <s2>            - jack audio destination (Main, Part, Both)
+
+yoshimi>

@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2016-12-22
-% \update      2017-08-12
+% \update      2017-09-03
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -296,15 +296,15 @@
    Also, these lines default to having \textbf{Block} set.
    This is so that the NRPN is
    not passed on to \textsl{Yoshimi}, which would result in "go away" messages
-   or obscure actions. However, like ordinary CCs, they will stack and one can set
-   several lines with the same NRPN performing mutiple actions, and then unblock
-   all but the last one.
+   or obscure actions. However, like ordinary CCs, they will stack and one can
+   set several lines with the same NRPN performing mutiple actions, and then
+   unblock all but the last one.
 
    The way this fits in with the rest is that the incoming data values are
-   combined as a 14 bit number, then (as a floating point number) divided by 128
-   so the overall range is exactly the same as normal CCs.
-   However, when decoded for various controls *all* CCs are converted by a second
-   (hidden) set of limits to get the maximum possible resolution:
+   combined as a 14 bit number, then (as a floating point number) divided by
+   128 so the overall range is exactly the same as normal CCs.  However, when
+   decoded for various controls *all* CCs are converted by a second (hidden)
+   set of limits to get the maximum possible resolution:
 
    \begin{itemize}
       \item \textbf{Humanise}: 0 to 50

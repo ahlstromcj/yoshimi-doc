@@ -1,0 +1,21 @@
+
+Load:
+
+  Instrument <s>
+Loads an instrument to the current part from named file. Enables it of so configured.
+
+  SCale <s>
+Loads and activastes the scale settings from named file.
+
+  VEctor [n] <s>
+Loads and activates a vector set to the given channel from a named file. If no number is given it loads to the channel it was originally saved from.
+
+  Patchset <s>
+Loads an activates a complete set of instruments, scales and vectors from a named file.
+
+  MLearn <s>
+Loads a full set of MIDI-learned lines from a named file.
+
+  STate <s>
+Loads all configuration, system settings, patch sets and MIDI- learned lines from a named file.
+

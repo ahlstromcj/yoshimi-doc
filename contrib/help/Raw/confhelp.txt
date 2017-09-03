@@ -1,0 +1,42 @@
+yoshimi> ? con
+Commands:
+  ?  Help                     - show commands
+  STop                        - all sound off
+  RESet                       - return to start-up conditions (if 'y')
+  EXit                        - tidy up and close Yoshimi (if 'y')
+  ..                          - step back one level
+  /                           - step back to top level
+Config:
+  Oscillator <n>              - * Add/Pad size (power 2 256-16384)
+  BUffer <n>                  - * internal size (power 2 16-4096)
+  PAdsynth [s]                - interpolation type (Linear, other = cubic)
+  Virtual <n>                 - keyboard (0 = QWERTY, 1 = Dvorak, 2 = QWERTZ, 3 = AZERTY)
+  Xml <n>                     - compression (0-9)
+  REports [s]                 - destination (Stdout, other = console)
+  STate [s]                   - * autoload default at start (Enable {other})
+  Hide [s]                    - non-fatal errors (Enable {other})
+  Display [s]                 - GUI splash screen (Enable {other})
+  Time [s]                    - add to instrument load message (Enable {other})
+  Include [s]                 - XML headers on file load(Enable {other})
+  Keep [s]                    - include inactive data on all file saves (Enable {other})
+  Gui [s]                     - * Run with GUI (Enable, Disable)
+  Cli [s]                     - * Run with CLI (Enable, Disable)
+  MIdi <s>                    - * connection type (Jack, Alsa)
+  AUdio <s>                   - * connection type (Jack, Alsa)
+  ALsa Midi <s>               - * name of source
+  ALsa Audio <s>              - * name of hardware device
+  ALsa Sample <n>             - * rate (0 = 192000, 1 = 96000, 2 = 48000, 3 = 44100)
+  Jack Midi <s>               - * name of source
+  Jack Server <s>             - * name
+  Jack Auto <s>               - * connect jack on start (Enable {other})
+  ROot [n]                    - root CC (0 - 119, other disables)
+  BAnk [n]                    - bank CC (0, 32, other disables)
+  PRogram [s]                 - program change (Enable {other})
+  ACtivate [s]                - program change activates part (Enable {other})
+  Extended [s]                - extended program change (Enable {other})
+  Quiet [s]                   - ignore 'reset all controllers' (Enable {other})
+  Log [s]                     - incomming MIDI CCs (Enable {other})
+  SHow [s]                    - GUI MIDI learn editor (Enable {other})
+'*' entries need to be saved and Yoshimi restarted to activate
+
+yoshimi>

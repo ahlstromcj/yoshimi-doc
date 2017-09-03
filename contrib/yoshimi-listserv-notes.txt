@@ -4871,24 +4871,24 @@ Don't make the mistake I did for a while - forgetting to set 'Block' when using
 CCs that have other recognised functions :)
 
 
-Date: Tue, 23 May 2017 21:16:22 +0100                                             
-From: Will Godfrey <willgodfrey@musically.me.uk>                                  
-To: yoshimi@freelists.org                                                         
-Subject: [yoshimi] Back Again                                                     
+Date: Tue, 23 May 2017 21:16:22 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Back Again
 
 Also the CLI/GUI/none issue has come up again.  Logically if you disable both
 there is no way to re-enable either without directly editing the config file,
-which is why I set it up so you always had one.                                                                              
-                                                                                  
+which is why I set it up so you always had one.
+
 Only that's not quite true!  You would still be able to enable either from a
-CLI start with either:            
+CLI start with either:
 
-    yoshimi -I                                                                    
+    yoshimi -I
 
-or:                                              
+or:
 
-    yoshimi -C                                                                    
-                                                                             
+    yoshimi -C
+
 So unless anyone objects I'll set this up, and if anyone tries to disable both
 they'll get a message detailing how to revert this, but won't be stopped.
 
@@ -5069,5 +5069,341 @@ working through the direct access controls for scales - most of them are in
 place.
 
 Oh, almost forgot. I was able to throw out a couple more mutex locks :)
+
+
+
+
+te: Wed, 26 Jul 2017 19:48:41 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Formant filters
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+Jesper has made some nice improvements to the editing window for this. The
+formant filter is probably the most difficult to get your head round, so every
+little helps (as they say).
+
+If you open this window, you see a graph with the controls alongside.
+What you can now do is control some of these by placing your mouse pointer over
+the yellow lines representing each formant.
+
+Hold down the left or right mouse buttons and move it sideways and you'll change
+the formant's centre frequency.
+
+Left button down and moving vertically will change the amplitude.
+Right button down and moving vertically changes the formant's Q factor.
+
+
+Anywhere on the graph, the scroll wheel changes the octave range, and holding
+down Shift at the same time changes the centre frequency.
+
+So now you can control most of these one-handed, quickly, while also playing on
+the keyboard.
+
+If your mouse has the extra buttons on the sides (mine hasn't) you can also use
+these to switch between the formats instead of moving the mouse across to the
+next one.
+
+While making these changes you'll see the respective knobs/sliders moving too,
+and these are still full functional.
+
+
+A detail that some people haven't noticed is that, uniquely, there is no
+'default' value for formant frequency. This will be set quite randomly, but
+once saved, will be fixed like all the other controls.
+
+There are also some improvements in the tooltips for filters generally, and LFOs
+
+Finally, I must admit that the use I've made of the formant filter has been more
+by accident than design!
+
+
+
+
+
+
+Date: Fri, 28 Jul 2017 23:17:52 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Deep Diving - and more :)
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+Vectors now have 'internal' names which are editable in exactly the same way
+as instrument names are.
+
+When saving, if the name is still marked as "No Name {n}" then it will be
+changed to the leafname of the file you are saving to.
+
+When loading, whatever the filename, it will display the internal name. Older
+vectors which don't have an internal name will be displayed as the file
+leafname.
+
+The real benefit of this is with patch sets and state files. Previously the
+name was lost, as it wasn't being saved to a discrete file. Now you'll see the
+internal name. Bearing in mind that you can have several vectors installed and
+active, you can now identify them.
+
+
+
+
+
+
+
+Date: Sat, 5 Aug 2017 00:18:55 +0100
+From: Will J Godfrey <WillGodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: Yoshimi pending
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+[-- Attachment #1 --]
+[-- Type: text/plain, Encoding: 7bit, Size: 1.6K --]
+
+Hi Chris,
+
+A bit of an idea of what will be in the next release:
+
+We have revised the whole of Microtonal (scales) for better accuracy and fixing
+originally incorrect range limitations.
+
+This is now much closer to the Scala specification, although there seems to be
+an ambiguity when you have a keymap defined and have an inverted scale - which
+key is the pivot point?
+
+The GUI representation has been improved so you always see what you entered,
+not an approximation with strings of '9's!
+
+Microtonal settings are now fully accessible to the CLI.
+
+
+Vector control has had a makeover. Amongst other things, the name field is now
+editable and is stored when you save. This means it will be retained on patch
+sets and states as well, so when these are reloaded you will know what vectors
+are embedded.
+
+
+Further improvements to the CLI are full access to all configuration settings,
+and better organisation of command grouping and help lists.
+
+
+Some data was not ordinarily saved if features were disabled at the time of
+saving. We have added a switch to allow all data to be saved regardless. This
+makes for larger files of course, but does ensure that you can get an *exact*
+recovery if you need it.
+
+
+You can now directly interact with the formant filter graphic display in a way
+that is more intuitive and easier to use.
+
+The Console window now scrolls the right way! One of yoshimi's little helpers
+worked out how to scroll the window to keep the most recent line visible at the
+bottom.
+
+Other files attached :)
+
+Happy reading
+Will.
+
+
+
+
+
+Date: Fri, 18 Aug 2017 18:56:49 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: No peace for the wicked {sigh}
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+[-- Attachment #1 --]
+[-- Type: text/plain, Encoding: 7bit, Size: 1.0K --]
+
+OK, here we go.
+
+I've zipped up the files - yes I did find more anomalies while going through them
+:(
+
+'Raw' is just dumps of the lists in my current build (not yet pushed).
+
+''Full' is them prettied up with a bit more description. I've separated out the
+descriptions to a line below each command as I don't know how you want to
+format them, and thought this would be the easiest for you to manipulate.
+
+Please let me know if there's anything missing or confusing.
+
+
+I'm still on target for release on Monday, even though we've had another
+request. It looks practical, but would require too much work at this late stage.
+Apart from anything else, for a long time I've been wanting to implement user
+defined default paths for all the different file types, and that would
+fit into such a scheme rather well.
+
+Oh well. Keeps me busy I suppose ;)
+
+
+
+
+
+Date: Mon, 21 Aug 2017 17:44:53 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] V1.5.3 released :)
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+V 1.5.3 - Swift
+Small, streamlined and fast moving.
+
+We have revised the whole of Microtonal (scales) for better accuracy, and
+fixing originally incorrect range limitations. This is now much closer to the 
+Scala specification, although there seems to be an ambiguity when you have a
+keymap defined and have an inverted scale - which key is the pivot point?
+
+The GUI representation has been improved so you always see what you entered,
+not an approximation with strings of '9's!
+
+Microtonal settings are now fully accessible to the CLI.
+
+
+Vector control has had a makeover. Amongst other things, the name field is now
+editable and is stored when you save. This means it will be retained on patch
+sets and states as well, so when these are reloaded you will know what vectors
+are embedded.
+
+An entire state file can now be loaded silently in the same way as patch sets
+and vectors can.
+
+Further improvements to the CLI are full access to all configuration settings,
+and better organisation of command grouping and help lists.
+
+
+Some data was not ordinarily saved if features were disabled at the time of
+saving. We have added a switch to allow all data to be saved regardless. This
+makes for larger files of course, but does ensure that you can get an *exact*
+recovery if you need it.
+
+
+You can now directly interact with the formant filter graphic display in a way
+that is more intuitive and easier to use.
+
+The Console window now scrolls the right way! One of yoshimi's little helpers
+worked out how to scroll the window to keep the most recent line visible at the
+bottom.
+
+It is now possible to run Yoshimi stand-alone with both GUI and CLI input
+disabled, thus responsive only to MIDI input. In view of this we have added a
+new shortform NRPN that will shut it down cleanly. You simply send 68 on both
+NRPN CCs (99 and 98).
+
+
+Under the hood:
+
+As well as additional Gui controls transferred to the new lock-free system,
+some of the earlier implimentations of CLI controls have been transferred. One
+result is that much of the code is leaner, and easier to follow.
+
+Some needlessly dynamic memory allocations have now been changed to fixed ones.
+This gives a noticable reduction to DSP peaks.
+
+There are a few more old and new bugfixes. These days, there seem to be more
+new ones than old ones. In a sense this is actually good news.
+
+
+
+
+
+Date: Mon, 28 Aug 2017 21:17:19 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] The oscillator
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+Hmm, sounds like a spy thriller :)
+
+I've been a bit busy lately and have finally got enough in place to convert the
+Oscllator window to lock-free form.
+
+This is rather a biggie, and I've gone through it control-by-control, comparing
+the results with older Yoshi versions and with A.N.Other synth. I can neither
+see nor hear any discrepancies, but I'd be grateful if others would give it a
+bit of stress just in case I've missed something.
+
+I've also managed to cure a long-standing anomally. This was where you set up
+a complex waveshape then hit the 'use as base' button. This would do all the
+necessary conversions but would leave the base function showing the original.
+Well now it shows 'User' which is normally hidden and is a non-selectable entry.
+
+Now I'm going to have a bit of a play, then some serious Zs :)
+
+
+
+
+
+Date: Wed, 30 Aug 2017 14:59:45 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org, Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: State / MIDI learn.
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+Hi Chis,
+
+I'm not sure if you picked this deatil up - it was on the list a while ago.
+
+Just a point regarding states that might not be obvious.
+
+When saving states, if you have any MIDI learned lines these will also be saved,
+and when you re-load the state they will also be restored. However, If your
+state file *doesn't* have any MIDI learn data it won't clear any settings that
+are already there.
+
+Be aware that if you now re-save that state it will include such MIDI, and
+the next time you load it, you *will* overwrite any lines that are already
+there.
+
+Also, when you do a master reset, the MIDI learn data is the only thing that
+isn't cleared.
+
+This is all designed to give the best protection to what could take quite a
+long time to set up exactly as you want.  In my experiments, I've already
+discovered that I seem to use pretty much the same controls and actions, and
+the list of 'preferred' settings is slowly increasing. Our learn capability
+combined with the BCF2000's scene change ability is proving to be fascinating.
+
+So far, I've got up to just over 40 lines. We currently have a limit of 128.
+This is because I don't want to overload the messaging system used for the
+descriptions (the original test code was running at well over 1000.) If/when I
+get anywhere near that figure I suppose I'll have to implement some form of
+paging :(
+
+
+
+
+
+Date: Fri, 1 Sep 2017 13:11:07 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] All Hands On Deck!
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+I have been offered a place to demo Yoshimi at SynthfestUK in Sheffield on
+Saturday 7th October :)
+
+I will be taking a laptop, a 49 note keyboard and some minimal controller
+modules.
+
+My graphic capabilities are just about zero so I'm asking for some help.
+
+What I would very much like to take as well would be a handful of flyers.
+Ideally I would like images as A5 pairs on A4 size, representing a front and
+back. I would then print these both sides of the paper and cut them in half.
+
+The flyers should (as well as making yoshimi look exciting) show where it can
+be found with links to one or two demos.
+
+If several people come up with different images that's fine - it just means I
+can lay out a range of them :)
+
+I would also like a landscape A4 size image as something I can hang up.
+
+Well now, I'm just about bouncing up and down on my chair with
+excitement :) :) :)
+
 
 

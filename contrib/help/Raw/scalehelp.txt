@@ -1,0 +1,28 @@
+yoshimi> ? sc
+Commands:
+  ?  Help                     - show commands
+  STop                        - all sound off
+  RESet                       - return to start-up conditions (if 'y')
+  EXit                        - tidy up and close Yoshimi (if 'y')
+  ..                          - step back one level
+  /                           - step back to top level
+Scale:
+  FRequency <n>               - 'A' note actual frequency
+  NOte <n>                    - 'A' note number
+  Invert [s]                  - Invert entire scale (Enable, {other})
+  CEnter <n>                  - Note number of key center
+  SHift <n>                   - Shift entire scale up or down
+  SCale [s]                   - Activate microtonal scale (Enable, {other})
+  MApping [s]                 - Activate keyboard mapping (Enable, {other})
+  FIrst <n>                   - First note number to map
+  MIddle <n>                  - Middle note number to map
+  Last <n>                    - Last note number to map
+  Tuning <s> [s2]             - CSV tuning values (n1.n1 or n1/n1 ,  n2.n2 or n2/n2 , etc.)
+                              - s2 = 'IMPort' from named file
+  Keymap <s> [s2]             - CSV keymap (n1, n2, n3, etc.)
+                              - s2 = 'IMPort' from named file
+  NAme <s>                    - Internal name for this scale
+  DEscription <s>             - Description of this scale
+  CLEar                       - Clear all settings and revert to standard scale
+
+yoshimi>
