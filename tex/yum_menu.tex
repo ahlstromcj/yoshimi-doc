@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2017-06-10
+% \update      2017-09-03
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -39,7 +39,8 @@
 %  \includegraphics[scale=0.75]{menu/yoshimi-menu-yoshimi.jpg}
 %  \includegraphics[scale=1.0]{1.4.0/yoshimi-menu-yoshimi.png}
 %  \includegraphics[scale=1.0]{1.4.1/yoshimi-menu-yoshimi.png}
-   \includegraphics[scale=1.0]{1.5.0/yoshimi-menu-yoshimi.png}
+%  \includegraphics[scale=1.0]{1.5.0/yoshimi-menu-yoshimi.png}
+   \includegraphics[scale=1.0]{1.5.3/yoshimi-menu-yoshimi.png}
    \caption{Yoshimi Menu Items}
    \label{fig:yoshimi_menu_items}
 \end{figure}
@@ -49,7 +50,6 @@
    \begin{enumber}
       \item \textbf{About...}
       \item \textbf{New instance}
-      \item \textbf{New instance with id...}
       \item \textbf{Settings...}
       \item \textbf{MIDI Learn...}
       \item \textbf{Exit}
@@ -97,17 +97,27 @@
 \subsubsection{Menu / Yoshimi / New instance}
 \label{subsubsec:menu_yoshimi_new_instance}
 
-   Creates a new instance of \textsl{Yoshimi}.
+   The \textbf{New instance} menu entry creates a new instance of \textsl{Yoshimi}.
    If JACK is running,
    start a normal (JACK-using) instance of \textsl{Yoshimi}.
    Then use this menu entry.  \textsl{Yoshimi} will start another instance
-   of itself, with an ID of 1.
-   This instance can be verified by running a JACK session manager such as
-   QJackCtl.
+   of itself, with a prompt to accept the next available instance ID or to
+   change it.
+   The presence of this instance can be verified by running a JACK session
+   manager such as QJackCtl.
+
+   In a non-JACK setup it won't fail, but in the absence of any specific
+   setting, it will have null audio, but (probably) will still connect to ALSA
+   MIDI.  Not too useful, but we should test that sometime.
 
    It is important to note that each instance of \textsl{Yoshimi} has its
    own configuration file.  Each also has its own MIDI and audio ports.
    Thus, these instances are partly independent of each other.
+
+   The new instance tries to open a \textsl{Yoshimi} instance based on the
+   configuration found in the file
+   \texttt{\textasciitilde/.config/\-yoshimi/\-yoshimi.configXX}, where
+   \textsl{XX} is the ID one supplied.
 
    Opening a new instance creates a copy that has it's own dynamic memory for
    running storage. In the future, some data (such as recent history) will be
@@ -140,16 +150,16 @@
    instances of \textsl{Yoshimi}. This is more consistent, making
    \textsl{Yoshimi}'s configuration directory more tidy.
 
+\iffalse
+
+%  SECTION COMMENTED OUT
+
 \subsubsection{Menu / Yoshimi / New instance with id...}
 \label{subsubsec:menu_yoshimi_new_instance_with_id}
 
    Creates a new instance of \textsl{Yoshimi}
    with an ID that is a number.
    See \figureref{fig:yoshimi_instance_dialog}.
-   It tries to open a \textsl{Yoshimi} instance based on the configuration
-   found in the file
-   \texttt{\textasciitilde/.config/\-yoshimi/\-yoshimi.configXX}, where
-   \textsl{XX} is the ID one supplied.
 
 \begin{figure}[H]
    \centering 
@@ -166,9 +176,7 @@
    This instance can be verified by running a JACK session manager such as
    \textsl{QJackCtl}.
 
-   In a non-JACK setup it won't fail, but in the absence of any specific
-   setting, it will have null audio, but (probably) will still connect to ALSA
-   MIDI.  Not too useful, but we should test that sometime.
+\fi
 
 \subsubsection{Menu / Yoshimi / Settings...}
 \label{subsubsec:menu_yoshimi_settings}
@@ -1047,12 +1055,65 @@
 
    \textsl{Yoshimi} is a microtonal synthesizer, and is capable of a wide
    range of microtonal scales.  Many improvements have been made to the scales,
-   including the user-interface, performance, and accuracy of calculations,
-   in version 1.5.2.
+   including the user-interface, performance, accuracy of calculations,
+   and adherence to the Scala (\cite{scala}) specification.
+   in version 1.5.2 and above.
    \index{LV2!scales}
    For users of the LV2 plugin, any changes in scale
    settings are reported back so that the plugin host can be aware of the
    change.
+
+\subsubsection{Menu / Scales / Command Line}
+\label{subsec:menu_scales_command_line}
+
+	One can now fully control scales from the CLI.
+	For tunings, either ratios or floating point numbers can be entered.
+	Ratios are in the form
+	\texttt{n1/n2} to a maximum of normal integer range.
+   If just a numerator is set, it will be regarded as \texttt{n/1}.
+   Floating point numbers \textsl{must}
+   include the decimal point and at least one digit (or zero) on either side.
+   The numbers are padded out with leading and trailing zeros in the form
+   \texttt{nnnn.nnnnnn}.
+
+   \index{scales!non-sounding notes}
+   In keyboard maps, non-sounding notes should be entered as an 'x' instead of
+   the key number.
+
+   CLI tunings and keymaps are entered in CSV format.
+   Tuning:
+
+   \begin{verbatim}
+      0076.049000, 0193.156860, 0310.264710, 5/4, 0503.421570,
+      0579.470570, 0696.578430, 25/16, 0889.735290, 1006.843140,
+      1082.892140, 2/1
+   \end{verbatim}
+
+   Keymap:
+
+   \begin{verbatim}
+      0, 1, 2, 3, x, 5, 6, 7, x, 9, 10, 11
+   \end{verbatim}
+
+   The tuning/keymap sizes are generated internally by counting the number of
+   entries in the strings.
+
+   When saving scales, for floating point numbers, \textsl{Yoshimi} includes
+   the text it was derived from. This has accuracy benefits,
+   but also reassures less experienced users,
+   because the values they enter won't seem to change on
+   re-loading.  The stored value is still saved for backward compatibility with
+   older versions of \textsl{Yoshimi}.
+
+   \index{scales!shift}
+   Scale shift provides an offset to the scale start position, and only makes a
+   difference in uneven interval sizes.
+
+   Normally (for the even tempered scale) the scale starts on 'A', and, as the
+   intervals are all identical, changing the octave start will make no
+   difference. However, if one has (say) a 5-note pentatonic scale, the
+   intervals will be very different and the scale shift will effectively
+   determine the key of the scale.
 
 \begin{figure}[H]
    \centering 
@@ -1165,7 +1226,7 @@
    \itempar{Tunings}{tuning}
    Tunings.
    Here one can input a scale by entering all the tunings for one octave. 
-   One can enter the tunings in two ways: 
+One can enter the tunings in two ways:
 
    \begin{enumber}
       \item As the number of cents (1200 cents=1 octave) as a float number

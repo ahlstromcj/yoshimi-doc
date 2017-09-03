@@ -1,0 +1,118 @@
+
+Top Level Commands:
+
+  ?  Help
+Either of these will show all the commands on the current context level (see contexts)
+
+  STop
+This immediately silences Yoshimi, and does so without making any clicks.
+
+  RESet
+After asking for confirmation this will reset Yoshimi to the startup conditions. The only exception is that it doesn't clear any MIDI learn lines.
+
+  EXit
+After warning that any unsaved data will be lost and asking for confirmation, this performs a clean exit.
+
+  ..
+When placed at the start of any entry (or by itself) this will move up one context level before executing the following command. So, for example, from 'yoshimi part 1 efx 2 >' it would change to 'yoshimi part 1 >'.
+
+  /
+Again this can be placed before any other command or on its own line and would move the abaoce example right back to the top level, 'yoshimi >'
+
+
+All the above commands are available immedately at any context level. Most of the following are only accessible at the top level.
+
+  Part [n1]
+This switches to the part context level and makes all its commands accessible. If no number '[n1]' is entered it will be on the default part (1) or whatever the previous part that was used.
+
+  VEctor [n1]
+Similar to Part, this sets the vector level and command availablity.
+
+  SCale
+As above for all scale/ microtonal commands.
+
+  MLearn [n1]
+Again, sets the MIDI-learn level and command availability.
+
+  COnfig
+This switches to the configuration level and makes all its commands accessible.
+
+The following three don't change the context level.
+
+  LIst
+Shows what lists are available - a list of lists!
+
+  LOad
+Loads the named file to Instruments, Patch sets, State etc.
+
+  SAve
+Saves Patch sets, State etc. to a named file.
+
+
+  ADD                         - add paths and files
+    Root <s>                  - root path to list
+    Bank <s>                  - bank to current root
+  REMove                      - remove paths, files and entries
+    Root <n>                  - de-list root path ID
+    Bank <n>                  - delete bank ID (and all contents) from current root
+    MLearn <s> [n]            - delete midi learned 'ALL' whole list, or '@'(n) line
+
+  Set / Read
+This is the entry point for all of the following.
+
+    Part   (context level as above)
+    VEctor (context level as above)
+    SCale  (context level as above)
+    MLearn (context level as above)
+    COnfig (context level as above)
+
+    Root <n>
+This sets the current root path to the value given from the stored list.
+
+    Bank <n>
+Similar to roots, but sets the bank from those available in the current root.
+
+    SYStem effects [n]
+This enters the context level for the numbered system effect.
+
+      Type <s>
+Selects the effect type. Reverb, Echo etc.
+
+      PREset <n2>
+Sets the numbered preset in the currently defined effect.
+
+      SEnd <n2> <n3>          - send system effect to effect n2 at volume n3
+Detirmines the amount of the current effect gets passed on to effect n2. n2 will always be greater than the currnet effect (n1).
+
+    INSert effects [n1]
+Enters the context level for the numbered insertion effect.
+
+      Type <s>
+Selects the effect type. Reverb, Echo etc.
+
+      PREset <n2>
+Sets the numbered preset in the currently defined effect.
+
+      SEnd <s>/<n2>
+Detirmnes where this effect will be sent to. This could be the master output, off, or any numbered part.
+
+    AVailable <n>
+This sets the number of parts that are avaiable. It can be only 16, 32 or 64, and these are treated as rows of 16 in the mixer window.
+
+    Volume <n>
+Provdes control of Yoshimi's overall sound output volume.
+
+    SHift <n>
+Shifts the key of the entire synth up or dwon in semitones.
+
+    DEtune <n>
+This provides a fine detune so that Yoshimi can be exactly matches with other sound sources.
+
+    SOlo [s] [n]
+        CC <n>
+These two commands enable and set Yoshimi's 'Solo' feature whereby you can silent swich MIDI input to different parts. 'Row' and 'Loop' use the first 16, 'Column' can use all possibly 64 parts.
+This has to be decided before setting 'CC', which then detirmines which channel to listen to for perfoming the actual switch.
+
+
+
+

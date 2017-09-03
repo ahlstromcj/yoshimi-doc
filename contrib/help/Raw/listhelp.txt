@@ -1,0 +1,23 @@
+yoshimi> ? li
+Commands:
+  ?  Help                     - show commands
+  STop                        - all sound off
+  RESet                       - return to start-up conditions (if 'y')
+  EXit                        - tidy up and close Yoshimi (if 'y')
+  ..                          - step back one level
+  /                           - step back to top level
+List:
+  Roots                       - all available root paths
+  Banks [n]                   - banks in root ID or current
+  Instruments [n]             - instruments in bank ID or current
+  Parts                       - parts with instruments installed
+  Vectors                     - settings for all enabled vectors
+  Tuning                      - Microtonal scale tunings
+  Keymap                      - Microtonal scale keyboard map
+  Config                      - current configuration
+  MLearn [s <n>]              - midi learned controls ('@' n for full details on one line)
+  History [s]                 - recent files (Patchsets, SCales, STates, Vectors, MLearn)
+  Effects [s]                 - effect types ('all' include preset numbers and names)
+  PREsets                     - all the presets for the currently selected effect
+
+yoshimi>

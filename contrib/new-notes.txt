@@ -1,0 +1,174 @@
+ADDSYNTH OSCILLATORS:
+CONTROL NUMBERS:
+COOKBOOK:
+DIRECT CONTROL:
+FLANGE:
+FORMANT:
+MIDI LEARN:
+NUMBERING:
+SOLO:  CHANNEL SWITCHING
+
+
+
+To make it easier to position program change CCs in a MIDI file, there is a new
+option to report the time these take to load.
+
+
+COOKBOOK:
+
+We implemented a simpler way to perform channel switching so the 'current' MIDI
+instrument can seem to be changed instantly, but retaining the note tails of
+the previous one.
+
+When installed, full details are in either:
+    /usr/local/share/doc/yoshimi/Yoshimi_1.4.1-features.txt
+
+Since then I built an Arduino based controller with two foot switches,
+specially for this. It stores a part number internally, then depending on which
+switch I press, it increments or decrements the value and sends it via the
+appropriate CC.
+
+I used to (try to) play one of my compositions from a long time ago on a Yamaha
+SY22, switching between voices. The timing was really critical, and it never
+actually sounded good.
+
+Anyway, yesterday I was playing it on Yoshimi so much my wrists were aching -
+doing ten fast patch 'changes' totally seamlessly, with all proper note
+releases and reverb tails.
+
+Just messing about, at one point I was able to get all 10 of those parts
+showing release tails at the same time in the mixer panel, and had a good
+giggle!
+
+Now I'm practising double and triple tapping the switches so I can jump
+backwards or forwards across a full bank of 16 parts. It's just pure fun, and
+so liberating for this wannabe live musician!
+
+COOKBOOK?:
+
+At any time you can silently perform a standard MIDI program change to any
+non-sounding part. We have a demo vid on youtube that shows exactly this.
+
+https://www.youtube.com/watch?v=rDIvkfoYYss
+
+Also, on miniLAC2016 I demonstrated a much longer piece that was performing bank
+*and* program changes all the way through.
+Doing a program changed doesn't change the channel number the part is listening
+to.
+
+I'm fairly well known now as 'Mr Yoshimi' and got a few enquiries as to how
+development was going. Also a couple of people commented very favourably on our
+new demo:
+
+https://www.youtube.com/watch?v=kzBy5tnDoBw
+
+
+COOKBOOK:
+
+Date: Wed, 16 Nov 2016 23:22:39 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Help imitating synth
+X-Mailer: Claws Mail 3.14.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+
+I don't recommend trying to do that manually. It quickly gets tiring and is
+quite hard to keep steady timing, especially while trying to sing as well.
+
+If you start with SynthPiano/AnalogPiano3, once you have it loaded, click on the
+'Edit' button. Then in the new window 'Effects'.
+
+Click on the effect selector and from the dropdown list chose 'Echo'.
+
+Adjust the 'Delay' control until the repeats come at the speed you want (if you
+hold downs the ctrl key you get much finer control).
+The 'Fb' control will decide how may repeats you hear before it fades out.
+
+If you only want one repeat set it to zero.
+
+If you want exactly 3 repeats do the same for effect number 2 but double the
+delay time - might need to fiddle with this a bit.
+
+Of course, as soon as you have it the way you want SAVE IT!
+
+
+
+
+Finally, I haven't decided on the best format to save complete learn sets. It's
+unlikely that it would be compatible with zyn. Apart from anything else we
+provide a richer control set. I suppose someone could write some form of python
+conversion script if they were really interested.
+
+
+From: Jörn Eichler <joerneichler@gmx.net>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Filter Frequency Key Tracking 100% value
+User-Agent: KMail/4.13.3 (Linux/4.8.3-040803-generic; KDE/4.13.3; x86_64; ; )
+
+I've been playing around with Yoshimi for some time, and I noticed, that there
+seems to be no 100% setting for the filter cut-off frequency key tracking.
+I'm using a band pass filter with high resonance on a noise to create a whistle
+sound (like Tomita). But even setting the key tracking to maximum gives a
+quite noticable detuning for pitches further away from the reference note.
+
+127 is supposed to correspond to 100% on all controls, as they start out as
+chars, although I agree this sounds sightly out.
+
+Changing it creates a dilemma, as it changes peoples perception of the synth.
+While making additions I've been very careful to avid changing the original
+sounds. Rather than changing the existing controls I would be more inclined to
+add a tracking range switch somewhere - if there was enough demand for it.
+Maybe a *1.5 checkbox so you could maybe go beyond 100%
+
+Finally, though I used the same technique myself for such a whistle, I
+think you're actually better off using subsynth and fiddling the bandwidths.
+For example just increase the bandwidth of the fundamental and add reverb :)
+
+MIDI LEARN:
+
+Now that we can cancel a learn (should have done that right away) there is a
+extra button on the message window. It's also slightly larger and the message
+text is slightly smaller. Oh, and the title bar is correctly identified now.
+
+These new features are the first that actually change instrument files.
+However, they are backwards compatible in that older versions of Yoshimi simply
+ignore them.
+
+
+
+
+
+
+NUMBERING:
+
+????????????
+
+Subject: yoshimi CLI
+
+There is also state load and save from/to named file in there now :)
+
+
+NUMBERING:
+
+
+Oh, and loading vectors is now a 'soft' load like the others :)
+
+
+
+COOKBOOK:
+
+So here's a nice scenario that's possible for the first time.
+
+Select any AddSynth based 'wind' instrument.
+MIDI_learn the part's frequency LFO Freq. to an expression or volume controller
+(with 'block' on)
+
+MIDI_learn the same LFO depth to aftertouch.
+
+Set limits to taste.
+
+Dynamically play a wind controller :)
+
+
+
+
+

@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-10-24
-% \update      2017-03-04
+% \update      2017-09-03
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -120,8 +120,7 @@
    (As an exercise, one can compare the various functions of the vector dialog
    to the command-line commands one can use to set up the vector
    functionality.)
-   The new \textbf{Yoshimi / Vectors} menu entry brings up the following
-   dialog:
+   The new \textbf{Vectors} button brings up the following dialog:
 
 \begin{figure}[H]
    \centering 
@@ -205,7 +204,8 @@
          (extension \texttt{.xvy}) in an arbitrary directory, or select a
          "Favorites" directory in which to look for vector files.
          The base name of the file is then shown in the \textbf{Vector Name}
-         field.
+         field.  This field is also user-editable, and is stored when the
+         settings are saved.
       \item \textbf{Save}.
          Brings up a file dialog that let's one save an arbitary vector file
          (extension \texttt{.xvy}) in an arbitrary directory, or select a
@@ -370,6 +370,12 @@
    it change the active status of the part, nor the number of parts available.
    This is because these settings may have been made independent of vector
    control. In short, vector setup will add things but not remove them.
+
+   \itempar{Vector Name}{Vectors!name}
+   From version 1.5.3 on, the vector name is now editable in the same way as an
+   instrument name is, and it is stored along with all the other data. This is
+   particularly relevant when it is saved in a patch set. When reloading, one
+   will know what the vector is called; previously, the name was lost.
 
 \subsection{Vector / Vector Control}
 \label{subsection:vector_control}

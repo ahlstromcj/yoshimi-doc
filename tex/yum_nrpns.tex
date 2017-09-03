@@ -392,7 +392,6 @@
    necessarily in the no-GUI mode), all of the system settings that don't
    require a restart can now be viewed by sending the appropriate NRPN. Most
    of them can also be changed in this way.
-
    To access this functionality, set NRPN MSB (CC 99) to 64 and NRPN LSB (CC
    98) to 2 (8130).
 
@@ -440,6 +439,10 @@
 
       \end{tabular}
    \end{table}
+
+   \textsl{Yoshimi} can run with neither GUI nor CLI input access. Working
+   purely as a hidden MIDI device. To enable a tidy close, there is a new
+   short-form NRPN. Just send 68 to both MSB and LSB (CC 99 and CC 98).
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex

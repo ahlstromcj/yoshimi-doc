@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-15
-% \update      2017-03-08
+% \update      2017-09-03
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -18,13 +18,11 @@
 \section{Stock Settings Elements}
 \label{sec:stock_settings_elements}
 
-   This section collects all of the setting values and small user-interface
-   items that one will find for
-   audio parameters in the \textsl{Yoshimi} GUI.
-   Sometimes the labels and tool-tips
-   in the application are a bit too brief to understand. 
-   One will find their full meanings, their tricks, and usage notes
-   in this section.
+   This section collects all of the settings values and small user-interface
+   items that one will find for audio parameters in the \textsl{Yoshimi} GUI.
+   Sometimes the labels and tool-tips in the application are a bit too brief to
+   understand.  One will find their full meanings, their tricks, and usage
+   notes in this section.
 
    This section also covers the sub-panels that provide the settings.
    Many of these sub-panels are used in many places in \textsl{Yoshimi},
@@ -62,6 +60,10 @@
     The right mouse click is used for setting the default value of a control,
     where it acts like a "reset" button, and is also used to bring up the
     \textbf{MIDI Learn} dialog for controls that can be MIDI-learned.
+
+   When traversing window stacks, a right click will close one window as it
+   opens the next. Closing such a window with the right button will re-open its
+   parent.
    
 \subsubsection{Tooltips}
 \label{subsubsec:stock_settings_tooltips}
@@ -98,7 +100,7 @@
    status be restored, but ADDsynth and SUBsynth will be included, allowing a
    faster scan next time.
 
-\subsubsection{Rotary Knobs}
+\subsubsection{iotary Knobs}
 \label{subsubsec:stock_settings_elements_knobs}
 
    \index{knobs}
@@ -118,7 +120,7 @@
       \item \textbf{Fine Control}.
          \index{knobs!fine control}
          \index{knobs!right-drag}
-         When a knob is rotated using the right mouse button, the rotary knobs
+         When a knob is rotated using the middle mouse button, the rotary knobs
          give a finer control of the numerical settings of the knob.
 
       \item \textbf{Scroll Wheel}.
@@ -132,10 +134,14 @@
          \index{knobs!scroll-wheel}
          If the Ctrl key is held at the same time as the wheel is scrolled, the
          control is \textsl{extremely} fine.
-         \index{knobs!super-fine, middle}
-         \index{knobs!middle-drag}
-         If the middle button is dragged, the
-         control is \textsl{extremely} fine.
+%        \index{knobs!super-fine, middle}
+%        \index{knobs!middle-drag}
+%        If the middle button is dragged, the
+%        control is \textsl{extremely} fine.
+
+   Note that the right mouse button can be used for setting the default value of a
+   control or for the initiation of
+   MIDI learn.
 
 % Will:
 % For everything except effects, a drag also gives fine adjustment. One day I
@@ -1631,8 +1637,10 @@ These parameters are:
 \label{subsubsec:formant_filter_settings}
 
    This window allows one to change most of the parameters of the formant
-   filter.   It is reached by enabling a \textbf{FILTER} panel,
-   changing the \textbf{Category} value to \textsl{Formant}, and then clicking
+   filter.   It is reached by enabling a \textbf{FILTER} panel in an AddSynth
+   part,
+   changing the \textbf{Category} (top right in the \textbf{Filter Params}
+   sub-panel) value to \textsl{Formant}, and then clicking
    the \textbf{Edit} button that sits below the category drop-down list.
 
 \begin{figure}[H]
@@ -1646,6 +1654,7 @@ These parameters are:
    This editor dialog provides a lot of functionality:
 
    \begin{enumber}
+      \item \textbf{Graph Window}
       \item \textbf{Formants}
       \item \textbf{Fr.Sl.}
       \item \textbf{Vw.Cl.}
@@ -1665,6 +1674,41 @@ These parameters are:
 
 \paragraph{Formant Parameters}
 \label{paragraph:formant_parameters}
+
+   \itempar{Formants Graph Window}{formants!graph}
+   The graph window shows the formant frequency envelope in red,
+   and one or more vertical yellow lines at each formant's center frequency.
+   As the mouse pointer is moved over the graph, other format center
+   frequencies may appear, highlighted in yellow.
+   Various mouse actions will modify the formant graph in a manner that might
+   be more intuitive than frobbing the spin and knob controls.
+
+   \index{formants!mouse control}
+   One can control some of the parameters by placing the mouse pointer over
+   the yellow lines representing each formant.
+   \index{formants!center frequency}
+   Hold down the left or right mouse button and move the mouse sideways,
+   and this action will change the formant's center frequency.
+   \index{formants!amplitude control}
+   The Left button down, and moving vertically will change the amplitude.
+   \index{formants!Q control}
+   THe Right button down, and moving vertically changes the formant's Q factor.
+
+   \index{formants!range control}
+   Anywhere on the graph, the scroll wheel changes the octave range, and
+   holding down Shift at the same time changes the center frequency.
+
+   Thus, one can control most of the formant features one-handed, quickly,
+   while also playing on a keyboard.
+   If one's mouse has extra buttons on the sides (mine hasn't) you can also
+   use these to switch between the formats instead of moving the mouse across
+   to the next one. (TO DO:  how is the set up?)
+   While making these changes, one will see the respective knobs/sliders moving
+   too; these are still fully functional.
+
+   An important detail is the, uniquely, there is no 'default' value for
+   formant frequency. This value will be set randomly, but, once saved, will be
+   fixed like all the other controls.
 
    \itempar{Formants}{formants!number of}
    Number of Formants Used.

@@ -1,0 +1,92 @@
+
+Config:
+
+  Oscillator <n>
+This sets the size of the buffer used for both AddSynth and PadSynth oscillators, and is always a power of 2.
+
+  BUffer <n>
+This is the size of the audio buffer that Yoshimi uses.  For ALSA audio it will always be the same size as ALSAs buffering, but for JACK it can be the same, bigger os smaller. It also is always a power of 2.
+
+  PAdsynth [s]
+Sets the quality of the intepolation that PadSynth uses on its wavetables. 'Linear' is faster, but 'Cubic' is (potentially) very slightly better quality.
+
+  Virtual <n>
+This controls the layout of the virtual keyboard, and can match the commonest computer keyboards.
+
+  Xml <n>
+Sets the amount of compression used on all Yoshimi's data files. 9 is most compressed. 0 is no compression (so can be read in an ordinarytext editor).
+
+  REports [s]
+Detirmines where almost all information/error messages will be sent. A few will always go to stderr (such as ones reporting a GUI problem).
+
+  STate [s]
+Sets whether a pre-saved default state file will be loaded on start-up.
+
+  Hide [s]
+Ignores non-fatal system errors, or verbose messages.
+
+  Display [s]
+Enables Yoshimi's start-up splash screen (enabled at first time start).
+
+  Time [s]
+Attaches the time an instrument took to load and initialise to the loading message.
+
+  Include [s]
+Reports version information on al data failes.
+
+  Keep [s]
+Inlude all data on file saves including inactive and random  elements.
+
+  Gui [s]
+Run with the graphic interface enabled.
+
+  Cli [s]
+Run with the command line interface enabled.
+
+  MIdi <s>
+Set whether MIDI input comes from JACK or ALSA
+
+  AUdio <s>
+Sets whether audio is passed out to JACK or ALSA
+
+  ALsa Midi <s>
+Sets the name of an ALSA MIDI source that Yoshimi will try to connect to.
+
+  ALsa Audio <s>
+Sets the name of a hardware audio device that ALSA will try to connect to.
+
+  ALsa Sample <n>
+Sets the sample rate when using ALSA audio.
+
+  Jack Midi <s>
+Sets the name of a JACK MIDI source that Yoshimi will try to connect to
+
+  Jack Server <s>
+Sets the name of an audio server that JACK will try to connect to.
+
+  Jack Auto <s>
+Detirmines whether JACK will try to connect the main L=R audio outputs on start-up.
+
+  ROot [n]
+The MIDI CC that Yoshimi expects bank root changes to come from.
+
+  BAnk [n]
+The MIDI CC that Yoshimi expects bank changes to come from.
+
+  PRogram [s]
+Detirmines whether MIDI program changes are honoured.
+
+  ACtivate [s]
+Enables a part when it gets a MIDI program change message (if it was disabled).
+
+  Extended [s]
+Sets a MIDI CC for receiving program changes for the top 32 instruments in a bank.
+
+  Quiet [s]
+Ignores a MIDI 'reset all controllers' message.
+
+  Log [s]
+Displays the value of received MIDI CCs
+
+  SHow [s]                    - GUI MIDI learn editor (Enable {other})
+Automatically open the MIDI-learn editor window when a sucessful 'learn' has been made.

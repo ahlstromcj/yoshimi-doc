@@ -1,0 +1,23 @@
+
+Save:
+
+  Instrument <s>
+Saves the instrument on the current part to a named file.
+
+  SCale <s>
+Saves the current scale settings to a named file.
+
+  VEctor <n> <s>
+Saves the vector set on the given channel numnber to a named file.
+
+  Patchset <s>
+Saves the complete set of instruments, scales and vectors to a named file.
+
+  MLearn <s>
+Saves the current set of MIDI-learned lines to a named file.
+
+  STate <s>
+Saves all configuration, system settings, patch sets and MIDI-learned lines to a named file.
+
+  Config
+Saves the current configuration.
