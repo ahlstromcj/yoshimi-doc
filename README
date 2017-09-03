@@ -1,12 +1,13 @@
-Yoshimi User Manual Document v. 1.5.2
+Yoshimi User Manual Document v. 1.5.3
 Chris Ahlstrom
-2015-04-20 to 2017-06-10
+2015-04-20 to 2017-09-03
 
 This project provides two things:
 
-   1. A document, still in progress, to cover just about everything
-      to do with Yoshimi, with some material covering ZynAddSubFX as
-      well.  Tips, bug notes, and "to-do's" are also included.
+   1. A document, still in progress, but extremely complete,
+      to cover just about everything to do with Yoshimi, with some material
+      covering ZynAddSubFX as well.  Tips, bug notes, and "to-do's" are also
+      included.
 
    2. A safe place for notes, banks, presets, and other material I have
       discovered while using Yoshimi.  Some of this material has
@@ -41,6 +42,7 @@ To build the document, you need to install packages like the following:
         command.
     -   texlive-latex-base.
     -   pdflatex.
+    -   Ghostscript.  Used for optimizing the PDF to make it a lot smaller.
 
 This list might be incomplete, still working on it.
 
