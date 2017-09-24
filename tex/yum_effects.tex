@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-05
-% \update      2017-03-29
+% \update      2017-09-24
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -400,6 +400,22 @@
    The four controls in the middle of the middle panel
    (\textbf{Freq}, \textbf{Rnd}, \textbf{LFO Type}, and \textbf{St.df})
    control the LFO.
+
+   In \textbf{DynFilter}, the \textbf{Gain} control, and most of the formant
+   filter ones only operate as one \textsl{releases} the mouse button, and the
+   scroll wheel cannot be used at all.  Investigating, it was found that this
+   was specifically done because these controls create significant noise when
+   adjusted, and effects are real time, so that's a lot of noise. (When filters
+   are applied elsewhere, the result is next-note so one doesn't hear the
+   changes).
+
+   Which is more desirable:
+   (1) Noise when ever the control is moved, scroll wheel capability and fully
+   responsive GUI;
+   (2) Noise only when the control is released, no scroll wheel, filter graphs
+   only updated on control release.
+   To be determined.
+
    Let's start with the user-interface elements present in the
    System/Insertion variation of this effect.
 
@@ -1024,19 +1040,20 @@ This section details the value supported by the Chorus effect.
 \subsubsection{Effects / Echo / NRPN Values}
 \label{subsubsec:effects_edit_echo_nrpn}
 
-   An equalizer is a filter effect that applies different volume to different
-   frequencies of the input signal. This can, for example, be used to "filter
-   out" unwanted frequencies. ZynAddSubFX’s implementations follow the
-   "Cookbook formulae for audio EQ" by Robert Bristow-Johnson.
-   (NEED A REFERENCE)
-
    Effects can be controlled via "non-registered parameter numbers", or NRPNs.
    This section details the value supported by the Echo effect.  TODO.
 
 \subsection{Effects / EQ}
 \label{subsec:effects_edit_eq}
 
-   EQ is a parametric equalizer. On the equalizer graph there are 3 white
+   EQ is a parametric equalizer.
+   An equalizer is a filter effect that applies different volume to different
+   frequencies of the input signal. This can, for example, be used to "filter
+   out" unwanted frequencies. ZynAddSubFX’s implementations follow the
+   "Cookbook formulae for audio EQ" (\cite{cookbookeq})
+   by Robert Bristow-Johnson.
+
+   On the equalizer graph there are 3 white
    vertical bars for 100Hz, 1kHz, 10kHz.
 
 \subsubsection{Effects / EQ / Circuit}
@@ -1106,9 +1123,6 @@ This section details the value supported by the Chorus effect.
 
    Values: \texttt{Off*, Lp1, Hp1, Lp2, Hp2, Bp2, N2, Pk, Lsh, Hsh}
 
-   At some point, we need to show this dropdown and explain each of these
-   filter types.
-
    Note that, for certain values of the \textbf{B} parameter, some of the
    \textbf{T} values will not be available.
 
@@ -1118,9 +1132,11 @@ This section details the value supported by the Chorus effect.
    filters, this is called the "cutoff" frequency. Note, however, that a
    bandpass filter has two cutoff frequencies.
 
-   \itempar{Gain}{eq!filter gain}
+   \itempar{Gain (Filter)}{eq!filter gain}
    The gain of the filter.
-   Gain is only active for some filters and sets the amount of a special
+   Gain is only active for some filters
+   (\textbf{Pk}, \textbf{Lsh}, and \textbf{Hsh},
+   and it sets the amount of a special
    peak these filters have. Note that for those filters, using the
    predefined gain makes them effectless.
 

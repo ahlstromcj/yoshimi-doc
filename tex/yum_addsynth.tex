@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-07
-% \update      2017-03-08
+% \update      2017-09-24
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -444,10 +444,17 @@
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
-   \itempar{Minus}{voice par amp!invert vol control}
+   \itempar{Minus}{voice par amp!invert phase}
    ADDsynth Amplitude Minus.
-   This setting enables the inversion of the volume control action.
-   It enables negative values for the volume control of the voice.
+%  This setting enables the inversion of the volume control action.
+%  It enables negative values for the volume control of the voice.
+   When checked, this control inverts the phase of the waveform relative to all
+   the other voices.
+   With only one voice enabled, this control will seem to do nothing.
+   With two voices enabled with \textsl{identical} waveforms, the
+   \textbf{Minus} control will indeed seem to reverse the effect of the volume
+   control. But if the waveforms are different, then it can provide some
+   interesting harmonic change effects.
 
    Values: \texttt{Off*, On}
 

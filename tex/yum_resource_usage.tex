@@ -1,0 +1,71 @@
+%-------------------------------------------------------------------------------
+% yum_resource_usage
+%-------------------------------------------------------------------------------
+%
+% \file        yum_resource_usage.tex
+% \library     Documents
+% \author      Chris Ahlstrom
+% \date        2017-09-24
+% \update      2017-09-24
+% \version     $Revision$
+% \license     $XPC_GPL_LICENSE$
+%
+%     Provides a very incomplete description and discusson of Yoshimi
+%     resource usage.
+%
+%-------------------------------------------------------------------------------
+
+\section{Resource Usage}
+\label{sec:resource_usage}
+
+   This section discusses the resource usage (and hence, efficiency) of
+   \textsl{Yoshimi}.
+
+   In the meantime, we include some notes.
+
+   If \textsl{Yoshimi}'s internal buffer is \textsl{smaller} than the JACK
+   buffer, it sounds quite horrible. If it's the same or greater there's no
+   problem. The reason we didn't find this before is that it only affects
+   \textsl{Yoshimi} resource_usage.  Also it doesn't apply to any of the
+   released versions.  The cause of the problem is that the resource_usage code
+   doesn't have the same looping structure that was added to the standalone
+   routine to deal with exactly this situation (re-entering the audio
+   'construction' function until the JACK buffer is filled). We hope Andrew can
+   deal with this fairly soon as we don't understand the resource_usage code
+   very well.  There are valid reasons for wanting different sizes for these
+   buffers. The internal buffer size as well as affecting latency and CPU load
+   also alters the sound in quite subtle ways. It particularly affects the
+   behaviour of filters.  One day we may be able to stop this happening, but in
+   the mean time we have to live with it.  For our purposes, we find a buffer
+   size of 128 or 256 is best.
+
+   Anecdote from Will:
+
+   To get some idea of how memory was being allovated I loaded up 16 parts all
+   with 'Ghost Ensemble', then using Rosegarden created a file using all 16
+   parts at 5 notes each, starting the notes one at a time, then keeping all of
+   them on for about half a minute. This is the maximum number of notes at any
+   one time that Yoshimi supports.
+
+   The first thing I found was that I had to go up to 256 frames per period to
+   run this (I normally run at 32 these days). That wasn't really a surprise,
+   what \textsl{was} a surprise was a rather crude estimation of the memory
+   usage.
+
+   Going from an empty \textsl{Yoshimi} to this 16 part monster stole an astonishing
+   100M. Now to be fair, this patch adds all three engines, so that's 16 lots of
+   PADsynth samples along wiht 16 ADDsynth oscillators.
+
+   Actually playing these 80 notes only took another 2M. Now this difference
+   was quite consistent, even over reboots, although when the notes stop only
+   1M is given back. This isn't a memory leak as playing again only re-grabs
+   another 1M, so I'm guessing that the underlying OS memory management isn't
+   too fussy about garbage collection until it really needs it.
+
+   Now if we multiply that by 4 that's 8M for the default max for each part,
+   which is quite a lot (and much more than the current overall limit), but
+   probably quite do-able on all modern machines.
+
+%-------------------------------------------------------------------------------
+% vim: ts=3 sw=3 et ft=tex
+%-------------------------------------------------------------------------------

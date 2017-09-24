@@ -5407,4 +5407,191 @@ Well now, I'm just about bouncing up and down on my chair with
 excitement :) :) :)
 
 
+========================================================================
+
+
+Date: Sun, 3 Sep 2017 16:38:07 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: Yoshimi pending
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+On Sun, 3 Sep 2017 11:07:50 -0400
+Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
+
+>Hmmmm, never mind!  I had Groove Salad (SOMAfm channel) running in
+>the background via MPD (music player daemon) before I started Yoshimi.
+>So I stopped them both, then restarted Yoshimi, and now the editing
+>works.
+
+Very odd, sounds like something was interferring with the ring buffers. The
+oscillator updates go through those now.
+
+>I still can't see what you mean about "Use as Base" --> "User", though.
+
+Previously it would leave the supposed base 'name' as whatever shape you
+previously had, although the actual shape would now be dramatically different!
+Under certain circumstances (CLI) you can reselect that shape, at which point
+all your work is lost as you *will* then have that original shape.
+The entry 'User' is not selectable anywhere so the same mistake can't be made.
+
+>I wonder if Yoshimi does some kind of locking due to audio being blocked
+>by another application on my primitive setup?
+
+We do lock memory for the ring buffers to prevent them ever getting swapped out
+- would be pretty fatal otherwise.
+
+>Anyway, I hope I did not give you a heart attack!
+
+No just a couple more grey hairs :)
+
+
+
+
+Date: Sun, 3 Sep 2017 21:22:08 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Interesting little experiment.
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+To get some idea of how memory was being allovated I loaded up 16 parts all
+with 'Ghost Ensemble', then using Rosegarden created a file using all 16 parts
+at 5 notes each, starting the notes one at a time, then keeping all of them on
+for about half a minute. This is the maximum number of notes at any one time
+that Yoshimi supports.
+
+The first thing I found was that I had to go up to 256 frames per period to run
+this (I normally run at 32 these days). That wasn't really a surprise, what
+*was* a surprise was a rather crude estimation of the memory usage.
+
+Going from an 'empty' yoshimi to this 16 part monster stole an astonishing
+100M. Now to be fair,
+this patch ad all three engines, so that's 16 lots of PadSynth samples along
+wiht 16 AddSynth oscillators.
+
+Actually playing these 80 notes *only* took another 2M. Now this different was
+quite consistent, even over reboots, although when the notes stop only 1M is
+given back. This isn't a memory leak as playing again only re-grabs another 1M,
+so I'm guuessing that the underlying OS memory management is too fussed abut
+garbage collection till it really needs it.
+
+Now if we multiply that by 4 that's 8M for the default max for each part,
+which is quite a lot (and much more than the current overall limit), but
+probably quite do-able on all modern machines.
+
+Anyone guess what I'm thinking? :)
+
+
+
+
+te: Tue, 5 Sep 2017 19:33:26 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] What to do?
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+I fond some curious 'features' when tranferring Effects to the new lock-free
+system.
+
+The first was quite straightforwards so I went ahead and changed it.
+
+In the EQ effect, In the first two selections Lp1, Hp1 adjusting the 'Q'
+control does absolutely nothing, and (checking through the main effects code)
+this is because it's actually ignored. So now the control is deactivated for
+those two.
+
+The next is more questionable.
+In DynFilter, the Gain control, and most of the formant filter ones only operate
+as you *release* the mouse button, and the scroll wheel can't be used at all.
+Investigating again, I found that this was specifically done (and always had
+been), so I commented out the code to see what changed. Well, it's pretty
+obvious in fact! All these controls create significant noise when adjusted, and
+Effects are real time, so that's hyper-zipper noise. When filters are applied
+elsewhere, the result is next-note so you don't hear the changes at all.
+
+
+The question is, which is more desirable:
+
+1) Noise when ever the control is moved, scroll wheel capability and fully
+resposive GUI.
+
+2) Noise only when the control is released, no scroll wheel, filter graphs only
+updated on control release.
+
+
+
+
+
+
+Date: Mon, 11 Sep 2017 21:14:08 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Another wrinkle :)
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+The tooltip for AddSynth Voice 'minus' (top left of the volume control) was
+wronly saying it inverted the effect of the control. What it actually does is
+invert the *phase* relative to all the other voices.
+
+If you only have the one voice enabled it will seem to do nothing. If you have
+just two voices enabled with *identical* waveforms, then it will indeed seem to
+reverse the effect of the volume control, but if they are different then it can
+have some interesting harmonic change effects.
+
+The tooltip has now been corrected, and a number of background improvements
+made to the AddSynth Voice code generally.
+
+
+
+
+Date: Thu, 14 Sep 2017 09:07:34 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: More Bits for the User Manual
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+Hi Chris,
+
+I know I said I wouldn't be changing the GUI again... but... well, you know :)
+
+These are in the current build, and I'm hoping to make a 1.5.4 release early
+october - in time for my spot at SynthfestUK.
+
+1) AddSynth Voice 'minus'
+The tooltip (top left of the volume control) was wrongly saying it inverted the 
+effect of the control. What it actually does is invert the *phase* relative to
+all the other voices.
+
+If you only have the one voice enabled it will seem to do nothing. If you have
+just two voices enabled with *identical* waveforms, then it will indeed seem to
+reverse the effect of the volume control, but if they are different then it can
+have some interesting harmonic change effects.
+
+The tooltip has now been corrected, and a number of background improvements
+made to the AddSynth Voice code generally.
+
+2) Master Bandwidth
+This affects all engines in a part, and is real-time. It is also highly
+dependent on the harmonic structure, so is most effective on SubSynth sounds.
+Like all of these MIDI controls it is a part control not an instrument setting
+and is never saved.
+
+As of build 1130, This is available to the GUI ((MIDI controls window), the CLI
+and is learnable.
+
+This came about because by default my BCF2000 sends this on one of the
+switches, and at first I was mightly confused about what had happened. To make
+it even more confusing a master reset wasn't clearing it (it does now).
+
+Although it's listed in the docs, I'd never actually used this one before, but
+probably will now. It considerably 'expands' some instruments :)
+
+I'll probably take a look at some the other 'invisible' MIDI CCs, but I want to
+get on with some tidying up of Vectors first - we are getting close to an
+important milestone {shhh} :)
+
+
+
+
+
 

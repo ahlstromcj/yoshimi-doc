@@ -443,35 +443,61 @@
 \subsubsection{Bottom Panel / Controllers / MIDI Controls}
 \label{subsubsec:bottom_panel_controllers_midi_controls}
 
-   There is a new very small window, accessed by right clicking on
-   the 'controllers' button.
-
-   This has just 4 controls that are MIDI-learnable:
-
-   \begin{enumber}
-      \item Modulation
-      \item Expression
-      \item Filter Q
-      \item Filter Cutoff (Brightness)
-   \end{enumber}
+   There is a new, small window, accessed by right-clicking on
+   the \textbf{Controllers} button on the bottom panel.
+   This window has five controls that are MIDI-learnable.
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{1.5.0/MIDIcontrols.png}
+   \includegraphics[scale=1.0]{1.5.4/MIDIcontrols.png}
    \caption{MIDI Controls from Controllers Button}
    \label{fig:instrument_midi_controllers}
 \end{figure}
 
-   Will has one keyboard that sends aftertouch messages, and all of these work
-   correctly with it. An interesting effect was to have a sawtooth wave
-   set up in \textbf{AddSynth} and the frequency LFO level turned up.
-   Then Will learned \textbf{Modulation}, \textbf{Expression}, and
-   \textbf{Filter Cutoff}, all on aftertouch. He then reduced their
-   ranges in the MIDI learn window and the effect was very interesting.
+   \begin{enumber}
+      \item \textbf{Modulation}
+      \item \textbf{Expression}
+      \item \textbf{Filter Q}
+      \item \textbf{Filter Cutoff}
+      \item \textbf{Bandwidth}
+   \end{enumber}
 
-   Because of the way this is implemented, these controls are also accessible via
-   CLI direct access for both for read and write, and the knobs will respond to
-   this, as well as to learned controls.
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   Will has one keyboard that sends aftertouch messages, and all of these work
+   correctly with it. An interesting effect was to have a sawtooth wave set up
+   in \textbf{AddSynth} and the frequency LFO level turned up.  Then, he
+   learned \textbf{Modulation}, \textbf{Expression}, and \textbf{Filter
+   Cutoff}, all on aftertouch. He then reduced their ranges in the MIDI learn
+   window and the effect was very interesting.  Try it!
+
+   Because of the way this is implemented, these controls are also accessible
+   via CLI direct access for both for read and write, and the knobs will
+   respond to this, as well as to learned controls.
+
+   \itempar{Modulation}{controllers!modulation}
+   Affects the (amplitude) modulation of all engines in the part.
+
+   \itempar{Expression}{controllers!expression}
+   Affects the "expression" of all engines in the part.
+
+   \itempar{Filter Q}{controllers!filter Q}
+   Affects the sharpness of the filtering of all engines in the part.
+
+   \itempar{Filter Cutoff}{controllers!filter cutoff}
+   \index{brightness}
+   Affects the brightness of all engines in the part by increasing or reducing
+   the corner frequency.
+
+   \itempar{Bandwidth}{controllers!bandwidth}
+   \index{Master Bandwidth}
+   The master bandwidth control affects all engines in a part, and is
+   real-time. It is also highly dependent on the harmonic structure, so is most
+   effective on SubSynth sounds.  Like all of these MIDI controls, it is a part
+   control, not an instrument setting, and is never saved.
+   It is available in the window shown above, the command-line, 
+   and it is learnable.
+   It considerably "expands" some instruments.
 
 \subsubsection{Bottom Panel / Controllers / Resonance}
 \label{subsubsec:bottom_panel_controllers_resonance}
