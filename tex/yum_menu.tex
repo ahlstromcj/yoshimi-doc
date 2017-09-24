@@ -17,7 +17,7 @@
 \section{Menu}
 \label{sec:menu}
 
-   At last, we're now ready to describe the user-interface of \textsl{Yoshimi}!
+   We're now ready to describe the user-interface of \textsl{Yoshimi}!
    The \textsl{Yoshimi} menu, as seen at the top of
    \figureref{fig:yoshimi_main_screen},
    is fairly simple, but it is important to understand the
@@ -418,9 +418,15 @@
    \label{fig:console_window}
 \end{figure}
 
-    Note that numbers all start from 1 now, although 'specials' (in the command
-    line) are still zero-based (they are not seen, though,
-    unless set at compile time).
+   Note that numbers that are shown (such as part numbers) all start from 1,
+   not 0.
+
+   \begin{verbatim}
+		Loaded 65 "Hyper Arpeggio" to Part 1
+		Loaded 10 "Arpeggio11" to Part 2
+		Loaded 41 "Soft Arpeggio4" to Part 3
+		Loaded 67 "Glass Arpeggio1" to Part 4
+   \end{verbatim}
 
    \index{reports!middle-click}
    An interesting feature of the console window is that one can identify

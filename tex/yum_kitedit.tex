@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-07
-% \update      2017-03-07
+% \update      2017-09-24
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -24,7 +24,7 @@
    Within this window one can create drum kits, layered instruments, or one
    can combine more instruments into one instrument.  
 
-%  Item 0 is a special type: it cannot be disabled (but it can be muted), to
+%  Item 1 is a special type: it cannot be disabled (but it can be muted), to
 %  edit it one must use "ADs edit" or "SUBs edit" from the part window.
 
 \begin{figure}[H]
@@ -154,16 +154,16 @@
    \end{itemize}
 
    For example:
-   Item 0 has \textbf{Min.k} set to 0 and \textbf{Max.k} set to 60, and
-   Item 1 has \textbf{Min.k} set to 40 and \textbf{Max.k} set to 127.
+   Item 1 has \textbf{Min key} set to 0 and \textbf{Max key} set to 60, and
+   Item 2 has \textbf{Min key} set to 40 and \textbf{Max key} set to 127.
 
    \index{kit!mode single}
-   In \textbf{SINGLE mode}, only Item 0 will sound in the note range 0 to
-   60, and Item 1 will sound in the range 61 to 127.
+   In \textbf{Single mode}, only Item 1 will sound in the note range 0 to
+   60, and Item 2 will sound in the range 61 to 127.
 
    \index{kit!mode multi}
-   In \textbf{MULTI} mode, only Item 0 will sound in the range 0 to 40, both
-   items will sound from 41 to 60, and only Item 1 will sound from 61 to
+   In \textbf{Multi} mode, only Item 1 will sound in the range 0 to 40, both
+   items will sound from 41 to 60, and only Item 2 will sound from 61 to
    127.
 
    Values: \texttt{Off*, Multi, Single, Crossfade}.
@@ -171,16 +171,16 @@
    \index{kit!mode crossfade}
    The part's kit edit \textbf{Mode} menu has an additional entry
    called \textbf{Crossfade}.
-   When crossfade is set, one gets Multi behaviour with overlapping key
+   When crossfade is set, one gets \textbf{Multi} behaviour with overlapping key
    ranges, but with a very smooth crossfade between sequential \textsl{pairs}
    of kit items. This follows the pattern 1+2, 3+4, etc. Each pair will not
    affect any other kit items.
 
    It doesn't matter which of the pair has the lower range, as long as there is
    a range overlap. The code is semi-intelligent, and any that are not paired
-   will exhibit normal Multi behaviour. If one item in a pair is not enabled
-   then the other one will exhibit normal Multi behaviour and will not fade at
-   all.
+   will exhibit normal \textbf{Multi} behaviour. If one item in a pair is not
+   enabled then the other one will exhibit normal \textbf{Multi} behaviour and
+   will not fade at all.
 
    An interesting effect is that if one of the pair is enabled, but muted or
    has no engines enabled, then the other one still fades through the overlap
@@ -202,7 +202,7 @@
 
    This feature is backward-compatible, in that older versions of
    \textsl{Yoshimi} will
-   see it as an ordinary Multi -- it uses a new variable stored in the
+   see it as an ordinary \textbf{Multi} -- it uses a new variable stored in the
    instrument file that is simply ignored by earlier versions.
 
    \itempar{Drum mode}{kit!drum mode}

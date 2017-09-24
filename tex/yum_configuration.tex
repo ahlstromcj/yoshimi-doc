@@ -122,7 +122,8 @@
          \index{config!.xly}
          \index{MIDI Learn!.xly}
          A MIDI-Learn file for saving the MIDI-Learn settings in force at the
-         moment this file is saved.
+         moment this file is saved.  It is also included in the state file
+         (\texttt{.state}).
       \item \texttt{.xmz}
          \index{.xmz}
          \index{config!.xmz}
@@ -141,7 +142,8 @@
          \index{.xvy}
          \index{config!.xvz}
          Vector settings. The extension stands for "Xml Vector Yoshimi".
-         It will eventually be integrated with the saved states.
+         Vector settings are now included in both the patch sets
+         (\texttt{.xmz}) and state files (\texttt{.state}.
          For a good example, see \sectionref{subsection:vector_command_line}.
          Vector control settings are now also stored in patch set and state
          files.
@@ -472,10 +474,8 @@
    continuing in steps of 5. This makes it easier to re-arrange them to
    preference. We recommend that you don't use 0.
 
-   Note: loading an instrument doesn't update the \textbf{Kit} window, although
-   the kit is all there and sounds correctly.  Switch between parts back and
-   forth, and it magically reappears. If that instrument is part of a patch set
-   everything is hunky-dory.  This issue will be fixed at some point.
+   Loading an instrument now updates the \textbf{Kit} window;
+   the kit is all there and looks and sounds correctly.
 
    On first time start up, \textsl{Yoshimi}
    will look for \textsl{ZynAddSubFX} banks as well, in the usual locations.

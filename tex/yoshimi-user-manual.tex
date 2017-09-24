@@ -276,8 +276,9 @@
    to a set of banks fetched from elsewhere. This will be given the next free
    ID.
 
-   Once running, almost all dynamic setup (i.e. not requiring a restart) can
-   be done within the terminal window. There is also extensive control of
+   Once running, all setup can be done within the terminal window.
+   Some settings will require a restart.
+   There is also extensive control of
    roots, banks, parts and instruments including the ability to list and set
    all of these. One can do things like:
 
@@ -302,17 +303,17 @@
 \label{subsubsec:new_features_command_line}
 
    \textsl{Yoshimi} offers great control of one's working environment.
-   One can have just the
-   GUI, just a CLI or both, and these settings can be saved. If one tries to
-   disable both, one will get a polite warning and will be left with just the
-   CLI.
-
-   The CLI can access all top level controls, as well as the main
-   part controls, and can select any effect and effect preset.
-   It can be used to set up Vector
-   Control much more quickly and easily than using NRPNs.  The CLI is also
-   context sensitive, which, along with careful choice of command names and
-   abreviations, allows very fast access with minimal typing.
+   One can have just the graphical user interface, just a command-line
+   interface, or both, and these settings can be saved.  Actually, both
+   interfaces can be disabled, and then \textsl{Yoshimi} runs in a headless
+   mode, responding in the background to MIDI events.
+   
+   The command-line interface can access all top level controls, as well as the
+   main part controls, and can select any effect and effect preset.  It can be
+   used to set up Vector Control much more quickly and easily than using NRPNs.
+   The command-line is also context sensitive, which, along with careful choice
+   of command names and abreviations, allows very fast access with minimal
+   typing.
 
    \textsl{Yoshimi}'s parser is case-insensitive for commands (but not for
    filenames), and accepts the shortest unambiguous abbreviation. However it is
