@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-04-20
-% \update      2017-09-24
+% \update      2017-09-27
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -48,7 +48,7 @@
 
 \begin{document}
 
-\title{A Yoshimi User Manual, v 1.5.4}
+\title{Yoshimi Advanced User Manual, v 1.5.4}
 \author{Chris Ahlstrom \texttt{(ahlstromcj@gmail.com)} with Will J. Godfrey}
 \date{\today}
 \maketitle
@@ -87,13 +87,6 @@
 \subsection{Yoshimi And ZynAddSubFX}
 \label{subsec:introduction_yoshimi_vs_zyn}
 
-   This manual describes how to use \textsl{Yoshimi} \cite{yoshimi},
-   the software synthesizer derived from the great
-   \textsl{ZynAddSubFx} \cite{zynaddsubfx} software
-   synthesizer.  Because of their common origin, much of this manual also
-   applies to \textsl{ZynAddSubFx}, for versions less than 3.0,
-   and depends upon some \textsl{ZynAddSubFX} documentation and diagrams.
-
    \textsl{Yoshimi} is an algorithmic MIDI software synthesizer for Linux.
    It synthesizes in real time, can run polyphonic or monophonic, with multiple
    simultaneous patches on one or more MIDI channels, and has broad microtonal
@@ -101,34 +94,42 @@
    and pad synth capabilities which can be run simultaneously within the
    same patch.  It also has eight audio effects modules.
 
-   Originally based on the 2.4.0 version of \textsl{ZynAddSubFX} (Copyright
-   2002-2009 Nasca Octavian Paul), development of \textsl{Yoshimi} has
-   continued for quite a while in its own direction. These include
-   major optimizations for audio and MIDI performance,
-   progressive development of user-level and command-line access to all
-   controls, MIDI learn, and vector control.
-   At the same time, refinement continues, both visually and within the code.
+   This manual describes how to use \textsl{Yoshimi} \cite{yoshimi},
+   the software synthesizer derived from the great
+   \textsl{ZynAddSubFx} (version 2.4.0) \cite{zynaddsubfx} software
+   synthesizer (Copyright 2002-2009 Nasca Octavian Paul).
+   Because of their common origin, much of this manual also
+   applies to \textsl{ZynAddSubFx} for versions less than 3.0,
+   and uses some \textsl{ZynAddSubFX} documentation and diagrams.
 
-   What are the advantages of
-   \textsl{Yoshimi} versus \textsl{ZynAddSubFX}?
-   At one time \textsl{Yoshimi} had better JACK support
-   than \textsl{ZynAddSubFX}, but that is no longer true.
-   Both projects are in active development, and both are
-   progressing along their respective roadmaps.
-   \textsl{Yoshimi} currently has a considerably
-   revised graphical user-interface,
-   while \textsl{ZynAddSubFX} has a major user-interface upgrade planned.
-   Each project has some features and capabilities that the other lacks.
-   There may be internal differences of importance to
-   a developer, as well as features that aren't so easy to discover.  So,
-   really, ... use them both!
+%  continued for quite a while in its own direction. These include
+%  major optimizations for audio and MIDI performance,
+%  progressive development of user-level and command-line access to all
+%  controls, MIDI learn, and vector control.
+%  At the same time, refinement continues, both visually and within the code.
 
-   That being said, please note that the references to \textsl{ZynAddSubFx}
+%  What are the advantages of
+%  \textsl{Yoshimi} versus \textsl{ZynAddSubFX}?
+%  At one time \textsl{Yoshimi} had better JACK support
+%  than \textsl{ZynAddSubFX}, but that is no longer true.
+%  Both projects are in active development, and both are
+%  progressing along their respective roadmaps.
+%  \textsl{Yoshimi} currently has a considerably
+%  revised graphical user-interface,
+%  while \textsl{ZynAddSubFX} has a major user-interface upgrade planned.
+%  Each project has some features and capabilities that the other lacks.
+%  There may be internal differences of importance to
+%  a developer, as well as features that aren't so easy to discover.  So,
+%  really, ... use them both!
+
+   Please note that the references to \textsl{ZynAddSubFx}
    in this manual apply primarly to versions of \textsl{ZynAddSubFx}
-   prior to version 3.0 -- the \textsl{ZynAddSubFx} project is planning
-   a major user-interface change for version 3.0, and many of the file formats
-   will change as well.  Of course, one can still continue to use the old
-   "Zyn" as well.
+   prior to version 3.0
+
+%  -- the \textsl{ZynAddSubFx} project is planning
+%  a major user-interface change for version 3.0, and many of the file formats
+%  will change as well.  Of course, one can still continue to use the old
+%  "Zyn" as well.
 
 \subsection{New Features}
 \label{subsec:introduction_new_features}
@@ -253,9 +254,8 @@
 	\textsl{Yoshimi} splits out roots and banks from the main configuration
 	file, and creates a new "history" file. The separation means that the
 	different functions can be implemented, saved, and loaded at the most
-   appropriate time. These files have
-   "yoshimi" as the doc-type, as they are in no way relevant to
-   \textsl{ZynAddSubFX}.
+   appropriate time. These files have "yoshimi" as the doc-type, as they are in
+   not relevant to \textsl{ZynAddSubFX}.
    See the new Banks sections,
    \sectionref{sec:banks_and_roots}
    and
@@ -362,7 +362,7 @@
    The CLI prompt always
    shows what level one is on, and the help lists are also partly
    context-sensitive, so one doesn't see a lot of irrelevent clutter.
-   We've also ensured that \textsl{Yoshimi} instrument patches are still fully
+   \textsl{Yoshimi} instrument patches are still fully
    compatible with \textsl{ZynAddSubFX} patches, and have ported across
    new refinements with thanks.
 
@@ -742,15 +742,15 @@
 \label{sec:summary}
 
    In summary, we can say that you will absolutely love \textsl{Yoshimi}.
-   There are some topics that this document does not yet treat:
+%  There are some topics that this document does not yet treat:
 
-   \begin{itemize}
-      \item Changing the colors and style of the GUI, as seen in some
-         versions of \textsl{ZynAddSubFX}.  This does not yet seem possible,
-         because the synth part is not truly separate from the GUI, and the
-         \textsl{Yoshimi} developers have not found it easy to recode the
-         FLTK GUI.
-   \end{itemize}
+%  \begin{itemize}
+%     \item Changing the colors and style of the GUI, as seen in some
+%        versions of \textsl{ZynAddSubFX}.  This does not yet seem possible,
+%        because the synth part is not truly separate from the GUI, and the
+%        \textsl{Yoshimi} developers have not found it easy to recode the
+%        FLTK GUI.
+%  \end{itemize}
 
    \begin{quotation}
       A car analogy.
