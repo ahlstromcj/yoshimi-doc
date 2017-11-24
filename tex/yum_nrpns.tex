@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-26
-% \update      2016-05-22
+% \update      2017-11-11
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -337,8 +337,10 @@
       \item 7 - DynFilter
    \end{itemize}
 
-   For Insert effects, if the Data MSB bit 5 is set (32) then Data LSB sets
-   the destination part number. 127 is off and 126 is the Master Output.
+   For Insert effects, if the Data MSB bit 5 (32) is set
+   \textsl{and} Data MSB bit 6 (64) is set (i.e. a combined value of 96),
+   then Data LSB sets the destination part number.
+   127 is off and 126 is the Master Output.
    A complete example:
 
    \begin{itemize}
@@ -356,9 +358,9 @@
       \item 38 -  30 \textasciitilde value
    \end{itemize}
 
-   Notes (*): these repeats are not needed as far as \textsl{Yoshimi}
-   is concerned, but some sequencers get unhappy without them.
-   Change just a parameter on an exisiting system effect:
+   Notes (*): these repeats are not needed for \textsl{Yoshimi},
+   but some sequencers are unhappy without them.
+   Changing just a parameter on an existing system effect:
 
    \begin{itemize}
       \item 99 -   4 \textasciitilde system effects

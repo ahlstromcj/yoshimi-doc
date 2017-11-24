@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2016-03-07
-% \update      2017-09-03
+% \update      2017-11-24
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -51,8 +51,26 @@
    \textsl{patchset}).
    Sometimes one will see reference to a "session", but that term is too easy
    to confuse with the "session" in "JACK session manager".
-   Here are the file extensions used for saving the \textsl{Yoshimi}
-   patch-set data:
+%  Here are the file extensions used for saving the \textsl{Yoshimi}
+%  patch-set data:
+
+   The last-used file in any configuration section is always at the top of its
+   history list.  The main benefit of this new setup is that now all patch
+   sets, vectors, scales, MIDI Learn, and state - offer the most recent entry
+   when asked to load or save. On first-time use, when there is no history, one
+   is offered one's home directory as a location, regardless of where
+   \textsl{Yoshimi} was called from.  Presets are not yet included in this
+   process.
+
+   When saving these "managed" files, one won't be offered the previous
+   last-used configuration unless it was seen during that session, either by
+   being loaded, or saved by name.  This protects against accidental
+   overwrites: you've been working on 'foo' for a whole day, saving as you go,
+   then the following day you start up \textsl{Yoshimi}, and immediately have
+   a completely new idea 'bar', and start working on it. Without thinking you
+   save and hit Enter. Oops, you just wiped out 'foo'. Only now you haven't,
+   because while loading \textsl{Yoshimi} would see the older file, so the
+   save command just offers the home directory to put a new name in.
 
    Here is a summary of the files.  Please note that the names all start with
    \texttt{yoshimi}.  For example, \texttt{.banks} is really
@@ -87,6 +105,8 @@
          \index{.history}
          \index{config!.history}
          Recent patch sets are now stored in the \texttt{.history} file.
+         The last-used file in any section is always at the top of its history
+         list.
       \item \texttt{\textasciitilde/.yoshimi\_history}
          \index{\textasciitilde/.yoshimi\_history}
          Holds command-line history, which is then available on the next
@@ -241,7 +261,7 @@
    \texttt{.config} file is now a much reduced common settings -- interfaces,
    sample rate -- file.  It is a single file that every instance can read, but
    only the first one can write.
-   
+
    The \texttt{.config} file has been separated from \texttt{.instance(n)}.
    It is saved only when the user explicitly calls for it to be saved.
 
@@ -481,7 +501,7 @@
    will look for \textsl{ZynAddSubFX} banks as well, in the usual locations.
    It will not look for a \textsl{ZynAddSubFX} configuration file, as these
    are no longer relevant to \textsl{Yoshimi}.
-   
+  
    Banks are more thoroughly described in
    \sectionref{subsec:concepts_banks_and_roots}.
 
