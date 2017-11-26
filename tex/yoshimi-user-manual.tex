@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-04-20
-% \update      2017-09-27
+% \update      2017-11-26
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -208,11 +208,20 @@
    what \textsl{Yoshimi} actually sees (which may not be what was expected).
 
    \index{breath control}
-   \index{new!breath control}
+   \index{MIDI CC!breath control}
    At the request of one user, \textsl{Yoshimi} (and only \textsl{Yoshimi})
    has an implementation of CC 2, Breath Control.
    This feature combines volume with filter cutoff.
    See \sectionref{subsubsec:concepts_midi_messages}, for more information.
+
+   \index{legato}
+   \index{MIDI CC!legato}
+   \textsl{Yoshimi} now implements the "legato footswitch" control,
+   MIDI CC 68.
+   Send this command with a value of 64 and above, and it will    
+   switch to Legato mode. Send less than 64, and it will revert to whatever it
+   was before.  So, if the mode had been Poly, it goes back to that, and it it
+   already was Legato, it just stays a Legato.                       
 
 \subsubsection{Vectors}
 \label{subsubsec:new_features_vectors}

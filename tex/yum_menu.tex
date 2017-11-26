@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2017-11-24
+% \update      2017-11-26
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -781,7 +781,8 @@
 %  \includegraphics[scale=0.75]{1.3.8/yoshimi-settings-midi.png}
 %  \includegraphics[scale=0.75]{1.3.9/yoshimi-settings-ccs.jpg}
 %  \includegraphics[scale=0.75]{1.4.1/SettingsMidi.png}
-   \includegraphics[scale=0.75]{1.5.0/SettingsMidi.png}
+%  \includegraphics[scale=0.75]{1.5.0/SettingsMidi.png}
+   \includegraphics[scale=0.75]{1.5.4/SettingsMidi.png}
    \caption[MIDI Preferences]{MIDI Preferences Tab}
    \label{fig:yoshimi_settings_cc}
 \end{figure}
@@ -807,6 +808,7 @@
       \item \textbf{Enable Part On Program Change}
       \item \textbf{Enable Extended Program Change}
       \item \textbf{Extended Program Change}
+      \item \textbf{Enable Incoming NRPNs}
       \item \textbf{Ignore Reset all CCs}
       \item \textbf{Log Incoming CCs}
       \item \textbf{Show Learn Editor}
@@ -892,6 +894,14 @@
    to set the change.
 
    Values: \texttt{0-127, 110*}
+
+   \itempar{Enable Incoming NRPNs}{MIDI settings!enabable incoming NRPN}
+   Set by default, so one might not notice it at first.
+   Disabling incoming NPRNs stops rogue MIDI sources from screwing things up.
+   Disabling it also lets one use the NRPN CCs for other functions,
+   if you want to use a programmable hardware controller.
+
+   Values: \texttt{Off, On*}
 
    \itempar{Ignore Reset all CCs}{MIDI settings!Ignore Reset all CCs}
    Causes \textsl{Yoshimi} to ignore this message.
