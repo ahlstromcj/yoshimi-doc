@@ -5594,4 +5594,84 @@ important milestone {shhh} :)
 
 
 
+Date: Tue, 28 Nov 2017 23:09:29 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: Manual Update - again
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
+
+Hi Chris,
+More corrections :/
+
+
+3 Configuration Files
+bullet .instance[n] (future)
+
+No it's been in place for some time.
+
+
+3.8 Configuration Files / History
+Now, there is also another ”history” file apparently created by Yoshimi:
+~/.yoshimi history. This file seems to be a history of commands typed into the
+command-line interface of Yoshimi. TO BE DETERMINED.
+
+Yes, this is just a command line history and follows standard readline pratice.
+
+
+5.1.3.5
+9. Ignore Reset all CCs. Causes Yoshimi to ignore this message. For example,
+using Yoshimi’s fairly new CC monitor (see the next item), Will found that
+Rosegarden was sending CC 121 (reset all controllers) at the start of some song
+segments. Checking this option prevents unwanted resets.
+
+Rosegarden now behaves correctly, so maybe make that non-specific?
+
+
+5.6
+As the following figures show, state files are normally stored in the
+user’s .config/yoshimi/yoshimi.state file.
+
+This now offers the users home directory instead.
+
+
+8 Top Panel
+2. Reset. Resets Yoshimi to its default state (when no default configuration
+files exist). Or does it
+
+If there is a saved default state and 'start with default' is set then a reset
+will reload that file. For any other situation it will set the first-time
+defaults... As of right now :)
+
+
+8.1 Mixer Panel
+8. Main. Set Audio Destination. Sets the audio for this part to be routed to
+the main audio output, to the audio specified by the part setup, or to both
+outputs. This option requires that Yoshimi use JACK audio. If running ALSA,
+this option is disabled (greyed out). The part’s audio destination (JACK) is
+saved with the parameter sets
+
+Patch sets please :)
+
+
+8.2.3 Virtual Keyboard, Controllers.
+
+11. Res. c. freq. TODO. Not sure how this differs from Filter Freq.. Haven’t
+found a sound that exercises this control. Haven’t looked all that hard yet.
+12. Res. bw. TODO. Not sure how this differs from Bandwidth. Haven’t found a
+sound that exercises this control. Haven’t looked all that hard yet.
+
+These two refer to Resonance (available in AddSynth and PadSynth). They will do
+nothing if the part doesn't have any resonance set up.
+
+
+10.1 Bottom Panel Controls
+
+12 Pan Reset Button
+
+and next page...
+
+12. Pan (reset). Reset Pan to Middle (64).
+
+How did we both miss these? they've been gone a very long time :o
+
 

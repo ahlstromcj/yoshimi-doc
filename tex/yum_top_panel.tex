@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-29
-% \update      2017-11-11
+% \update      2017-11-29
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -48,10 +48,10 @@
    Useful when MIDI input suddenly stops due to a bug in the MIDI source.
 
    \itempar{Reset}{top panel!reset}
-   Resets \textsl{Yoshimi} to its default state (when no default configuration
-   files exist).  
-   Or does it reset to the default loaded state (which the user may have saved
-   earlier)?
+   Resets \textsl{Yoshimi} to its default state, when no default configuration
+   files exist.  If there is a saved default state and the \textbf{start with
+   default} option is set, then a reset will reload that file. For any other
+   situation it will set the first-time defaults.
 
    \itempar{Mixer Panel}{top panel!mixer panel}
    This button brings up a panel that shows a "mixer" view
@@ -211,7 +211,7 @@
    the audio specified by the part setup, or to both outputs.
    This option requires that \textsl{Yoshimi} use JACK audio.  If running
    ALSA, this option is disabled (greyed out).
-   The part's audio destination (JACK) is saved with the parameter sets, and
+   The part's audio destination (JACK) is saved with the patch sets, and
    so is the number of available parts.  (\textsl{ZynAddSubFX} will still
    load these files, but it ignores any settings it doesn't recognise. If
    one re-saves in \textsl{ZynAddSubFX}, the settings will be lost.)
@@ -529,17 +529,13 @@
    Haven't found a sound that exercises this control.
    Haven't looked all that hard yet.
 
-   \itempar{Res. c. freq}{controllers!resonant center frequency}
-   TODO.
-   Not sure how this differs from \textbf{Filter Freq.}.
-   Haven't found a sound that exercises this control.
-   Haven't looked all that hard yet.
+   \itempar{Res. c. freq}{controllers!resonance center frequency}
+   Resonance Center Frequency.
+   Applies only if the part has resonance set up.
 
-   \itempar{Res. bw}{controllers!resonant bandwidth}
-   TODO.
-   Not sure how this differs from \textbf{Bandwidth}.
-   Haven't found a sound that exercises this control.
-   Haven't looked all that hard yet.
+   \itempar{Res. bw}{controllers!resonance bandwidth}
+   Resonance Bandwidth.
+   Applies only if the part has resonance set up.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex

@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2017-11-26
+% \update      2017-11-29
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -857,8 +857,8 @@
    Defines which MIDI settings one wants to use.
    Note that MIDI Controller 0 = CC0 = Bank Select MSB, and MIDI Controller
    32 = CC32 = Bank Select LSB.
-   When combined, these Bank Select messages provide \[128*128 = 16384\]
-   banks.
+   When combined, these Bank Select messages provide
+   \texttt{128*128} = 16384 banks.
 
    But note that all a Bank Select does is selects the bank for the next
    Program Change event.  The program doesn't change after changing a bank,
@@ -906,8 +906,8 @@
    \itempar{Ignore Reset all CCs}{MIDI settings!Ignore Reset all CCs}
    Causes \textsl{Yoshimi} to ignore this message.
    \index{CC monitor}
-   For example, using \textsl{Yoshimi}'s fairly new CC monitor (see the next
-   item), Will found that \textsl{Rosegarden} was sending CC 121 (reset all
+   For example, using \textsl{Yoshimi}'s CC monitor (see the next
+   item), Will found that one software sequencer was sending CC 121 (reset all
    controllers) at the start of some song segments.  Checking this option
    prevents unwanted resets.
 
@@ -1118,8 +1118,9 @@
       \item \textbf{Recent States...}
    \end{enumber}
 
-   As the following figures show, state files are normally stored in the
-   user's \texttt{.config/yoshimi/yoshimi.state} file.
+   State files were normally stored in the
+   user's \texttt{.config/yoshimi/yoshimi.state} file, but
+   now \textsl{Yoshimi} offers the user's home directory instead.
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 

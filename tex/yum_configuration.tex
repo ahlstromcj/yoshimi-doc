@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2016-03-07
-% \update      2017-11-24
+% \update      2017-11-29
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -148,7 +148,7 @@
          \index{.xmz}
          \index{config!.xmz}
          A full \textsl{Yoshimi} configuration; everything.
-         This file is also called a \textsl{parameter set}.
+         This file is also called a \textsl{patch set}.
       \item \texttt{.xpz}
          \index{.xpz}
          \index{config!.xpz}
@@ -174,7 +174,7 @@
 
    \begin{itemize}
       \item \texttt{.config}
-      \item \texttt{.instance[n]} (future)
+      \item \texttt{.instance[n]}
       \item \texttt{.windows}
       \item \texttt{.history}
       \item \texttt{.banks} (this is currently per instance)
@@ -222,8 +222,6 @@
    either XML or compressed XML, as explained elsewhere.  The
    \textbf{Patch Sets / Save External...} menu entry saves files with
    the \texttt{.xmz} extension.
-   (This file used to be called \textsl{parameter
-   set}, but that name is no longer used in \textsl{Yoshimi}.)
 
    One of the simplest ways to save one's work is to save the entire
    \textsl{Yoshimi} configuration.
@@ -439,10 +437,11 @@
    even if one could it would simply mean that one very briefly waited for the
    other, which is not an issue as they are not in the realtime thread.
 
-   Now, there is also another "history" file apparently created by
+   Now, there is also another "history" file created by
    \textsl{Yoshimi}: \texttt{\textasciitilde/.yoshimi\_history}.
-   This file seems to be a history of commands typed into the command-line
-   interface of \textsl{Yoshimi}.  TO BE DETERMINED.
+   This file is a history of commands typed into the command-line
+   interface of \textsl{Yoshimi}; it follows standard
+   \texttt{readline} practice.
 
 \subsection{Configuration Files / Banks}
 \label{subsec:configuration_banks}
