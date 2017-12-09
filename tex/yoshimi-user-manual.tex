@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-04-20
-% \update      2017-11-26
+% \update      2017-12-09
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -48,7 +48,7 @@
 
 \begin{document}
 
-\title{Yoshimi Advanced User Manual, v 1.5.4}
+\title{Yoshimi Advanced User Manual, v 1.5.5}
 \author{Chris Ahlstrom \texttt{(ahlstromcj@gmail.com)} with Will J. Godfrey}
 \date{\today}
 \maketitle
@@ -461,15 +461,37 @@
    \textsl{Yoshimi}, but we don't know if it is practical to provide a compile
    time option to build a purely headless version.
 
+   Load and save dialogues intelligently recognise the history lists and offer
+   the appropriate first choice. External instrument loads and saves are now
+   also remembered.
+   For saves, on a fresh restart one is offered the home directory regardless
+   of where \textsl{Yoshimi} was launched, but in the case of saving
+   external instruments one is always offered the name of the instrument
+   in the currently selected part, prefixed with the home directory.
+
+   There is now a specific State menu item ("Save as Default") for saving
+   the current complete setup as the default. This file is always saved to
+   \textsl{Yoshimi}'s configuration directory,
+   and will not show in history lists.
+
+   If "Start With Default State" has been set, and a
+   default state has been saved, not only will a complete restart load this,
+   but a master reset will load this file, instead of doing a
+   first-time default reset.
+
+   A final detail with the history lists is that in each list type, the last
+   used item will be placed at the top of the list. This is especially useful
+   when you want to continually save/load an item you are currently working on.
+
 \subsection{Document Structure}
 \label{subsec:introduction_document_structure}
 
-   The structure of this manual is a struggle.  No matter which route is
-   taken, there's no way to avoid jumping all over theh place
-   adequately cover a topic.  Therefore, the sections are basically provided
+   The structure of this manual is a struggle.
+   There's no way to avoid jumping all over the place to
+   cover a topic.  Therefore, the sections are covered
    in the order their contents appear in the user interface of
    \textsl{Yoshimi}.  To help the reader jump around this manual, multiple
-   links and references are supplied.
+   links and an index are supplied.
 
    \index{tips!in document}
    Usage tips

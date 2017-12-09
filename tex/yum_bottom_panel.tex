@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-06
-% \update      2017-11-29
+% \update      2017-12-09
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -178,6 +178,16 @@
    In Monophonic mode, only one note is supported.
    In Legato mode, the sound flows smoothly from note to note without
    any breaks.  This mode is particularly effective with Portamento.
+
+	However, one cannot have legato mode and drum mode
+	(see \sectionref{sec:kit_edit})
+   at the same time. If drum mode is set when trying to set legato,
+   drum mode takes priority, and the "Legato" label will be shown in red.
+   Cancel drum mode makes legato valid, and the "Legato" label
+   will turn black again.
+   If using a legato MIDI pedal, \textsl{Yoshimi}'s part mode will show
+   the legato change, and will set the label red if an instrument in drum mode
+   is on in that part.
 
    Values: \texttt{Poly, Mono, Legato}
 

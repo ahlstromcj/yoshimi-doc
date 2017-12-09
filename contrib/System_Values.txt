@@ -1,0 +1,18 @@
+This is a means of exposing various controls to NRPNs.
+
+All of the commands produce log output in a manner designed to be compatible with both the GUI reports window and with a CLI readline environment.
+
+To access these, set NRPN MSB (CC 99) to 64 and NRPN LSB (CC 98) to 2 (8130). After that send the following Data values. The command with LSB x doesn’t actually use Data LSB, but you still needs to send it.
+
+
+Data MSB    Data LSB            Setting
+    2         key         Set master key shift, key-64 (-36 to +36)
+    7         volume      Set master Volume ’volume’
+ 64 to 79     key         Set channel (MSB-64) key shift, key-64 (-36 to +36)
+    80        root        Set CC to control Root path change (>119 disables)
+    81        bank        Set CC to control Bank change (>119 disables)
+    82        >63         Enable Program change otherwise disable
+    83        >63         Enable activation of part when program changed
+    84        extended    Set CC control Extended program change (>119 disables)
+    85        parts       Set number of available parts (16, 32 or 64)
+    86        x           Save all dynamic settings

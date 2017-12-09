@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2016-03-07
-% \update      2017-11-29
+% \update      2017-12-09
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -40,7 +40,7 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{1.5.0/ConfigWarn.png}
+   \includegraphics[scale=0.75]{1.5.0/ConfigWarn.png}
    \caption{Configuration Warning Dialog}
    \label{fig:config_warn_dialog}
 \end{figure}
@@ -136,7 +136,18 @@
       \item \texttt{.xiz}
          \index{.xiz}
          \index{config!.xiz}
-         An Instrument file.
+         An Instrument file.  This format is the "Legacy" or "Zyn"
+         file format.
+      \item \texttt{.xiy}
+         \index{.xiy}
+         \index{config!.xiy}
+         An Instrument file in the new \textsl{Yoshimi} file format.
+         This format includes all the        
+         controllers, the part mode status (Poly, Mono, Legato) and the
+         Humanise setting.
+         When loading files, \textsl{Yoshimi} will always look for
+         the \texttt{.xiy} version first, and,
+         if it can't find it, will then look for the \texttt{.xiz} version.
       \item \texttt{.xly}
          \index{.xly}
          \index{config!.xly}
@@ -304,12 +315,18 @@
    \texttt{\textasciitilde/.config/yoshimi/yoshimi.state}.
    This file is auto-loaded when \textsl{Yoshimi} starts, if it is present. If
    not present, then the normal settings are in place.
+
    The advantage of this is that once
    can set up a complete patch set of instruments one commonly uses, with
    all their settings, including audio destination.  Save it to the default
    state and it will be loaded, along with the system settings, every time one
-   starts \textsl{Yoshimi}.  To revert, simply uncheck the setting (and change
-   any other needed) and save settings.
+   starts \textsl{Yoshimi}, if the
+   \textbf{Yoshimi / Settings / Switches / Start With Default State}
+   setting is checked.
+   To revert the state, simply uncheck the
+   \textbf{Yoshimi / Settings / Switches / Start With Default State}
+   setting (and change any other needed), click the \textbf{Reset}
+   button on the main screen, and save the settings.
 
    The \textsl{Yoshimi} 'state' file consists of the entire setup, from basic
    configuration settings to currently-loaded instrument sets.

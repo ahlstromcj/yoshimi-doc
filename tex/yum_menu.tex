@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2017-11-29
+% \update      2017-12-09
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -29,13 +29,13 @@
    The \textsl{Yoshimi}
    menu entry contains the sub-items shown in
    \figureref{fig:yoshimi_menu_items}.
-   The next few sub-sections discuss the sub-items in the 
+   The next few sub-sections discuss the sub-items in the
    \textsl{Yoshimi} sub-menu.
    (Note that, in \textsl{ZynAddSubFX}, this menu is called the
    \textsl{File} menu.)
 
 \begin{figure}[H]
-   \centering 
+   \centering
 %  \includegraphics[scale=0.75]{menu/yoshimi-menu-yoshimi.jpg}
 %  \includegraphics[scale=1.0]{1.4.0/yoshimi-menu-yoshimi.png}
 %  \includegraphics[scale=1.0]{1.4.1/yoshimi-menu-yoshimi.png}
@@ -92,7 +92,7 @@
    \textsl{ZynAddSubFX} project.
 
 \begin{figure}[H]
-   \centering 
+   \centering
 %  \includegraphics[scale=1.0]{menu/Yoshimi/yoshimi-about.jpg}
 %  \includegraphics[scale=1.0]{1.3.8/yoshimi-about.jpg}
 %  \includegraphics[scale=1.0]{1.5.0/yoshimi-about.jpg}
@@ -169,7 +169,7 @@
    See \figureref{fig:yoshimi_instance_dialog}.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-instance-id.jpg}
    \caption{Yoshimi Menu, Instance Dialog}
    \label{fig:yoshimi_instance_dialog}
@@ -241,7 +241,7 @@
 
    Some settings only take effect after restarting the synthesizer.
    In \textbf{Main settings}, only the two items marked with an asterisk ('*')
-   need a restart. 
+   need a restart.
 
    The settings dialogs are quite different between \textsl{ZynAddSubFX} and
    \textsl{Yoshimi}.  There are some differences even between
@@ -249,10 +249,11 @@
    (currently 1.3.9).
 
 \begin{figure}[H]
-   \centering 
+   \centering
 %  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-main.jpg}
 %  \includegraphics[scale=0.75]{1.3.9/yoshimi-settings-main.png}
-   \includegraphics[scale=0.75]{1.4.1/SettingsMain.png}
+%  \includegraphics[scale=0.75]{1.4.1/SettingsMain.png}
+   \includegraphics[scale=0.75]{1.5.5/SettingsMain.png}
    \caption{Yoshimi Main Settings Tab}
    \label{fig:yoshimi_main_settings_tab}
 \end{figure}
@@ -266,6 +267,7 @@
       \item \textbf{Virtual Keyboard Layout}
       \item \textbf{XML compression level}
       \item \textbf{Send reports to}
+      \item \textbf{Saved instrument Format}
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
@@ -287,7 +289,7 @@
    Values: \texttt{256, 512*, 1024, 2048, 4096, 8192, 16384}
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{menu/Yoshimi/main-oscilsize.jpg}
    \caption[OscilSize Values]{AddSynth Oscillator Size (samples)}
    \label{fig:yoshimi_oscilsize_values}
@@ -306,7 +308,7 @@
    \textsl{Yoshimi} with the current default (smaller) buffer-size value, and
    many will do so at 64 frames (and even 16 frames!)
    without any special precautions.
-   
+
    Note that, for ALSA, if the audio destination is "default",
    then ALSA decides on the buffer size (among other settings), and
    \textsl{Yoshimi} will set it's internal buffer size to match,
@@ -315,7 +317,7 @@
    Values: \texttt{64, 128, 256*, 512, 1024, 2048, 4096}
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{menu/Yoshimi/main-internalsize.jpg}
    \caption[Internal Size Values]{AddSynth Internal Buffer Size (old)}
    \label{fig:yoshimi_internalsize_values}
@@ -332,7 +334,7 @@
    high-frequency content... and good hearing!
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{menu/Yoshimi/main-padsynth-interpolation.jpg}
    \caption[PADSynth Interpolation]{PADSynth Interpolation Values}
    \label{fig:padsynth_interpolation}
@@ -347,7 +349,7 @@
    to produce notes.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.45]{top-panel/ascii-virtual-keyboard.png}
    \caption{QWERTY Virtual Keyboard Layout}
    \label{fig:qwerty_virtual_keyboard}
@@ -358,7 +360,7 @@
    virtual keyboard.
    Three octaves (blue, green, and red) are available, with the dark keys of
    each color representing the "black" keys.
-   Note that this is a QWERTY layout.  
+   Note that this is a QWERTY layout.
    \textsl{Yoshimi} also supports other keyboard layouts.
    See \figureref{fig:virtual_kbd_layout},
    for the virtual keyboard layout settings drop-down.
@@ -366,10 +368,10 @@
    Values: \texttt{QWERTY*, Dvorak, QWERTZ, AZERTY}
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{menu/Yoshimi/main-virtual-kbd-layout.jpg}
    \caption[Virtual Keyboard Layout]{Virtual Keyboard Layout Values}
-   \label{fig:virtual_kbd_layout} 
+   \label{fig:virtual_kbd_layout}
 \end{figure}
 
    \itempar{XML compression level}{Main Settings!XML compression level}
@@ -394,7 +396,7 @@
 
    \itempar{Send reports to}{Main Settings!Send Reports Destination}
    Notices and error messages can be sent to the standard error log of
-   the terminal in which 
+   the terminal in which
    \textsl{Yoshimi} can be run, or, more usefully, to
    an output console window.
    Now these messages are pushed in reverse order, to avoid scrolling
@@ -405,7 +407,7 @@
    Values: \texttt{stderr*, Console Window}
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=1.0]{menu/Yoshimi/main-send-reports-to.jpg}
    \caption[Send Reports]{Send Reports To}
    \label{fig:send_reports_to}
@@ -417,7 +419,7 @@
    shown in \figureref{fig:console_window}.
 
 \begin{figure}[H]
-   \centering 
+   \centering
 %  \includegraphics[scale=1.0]{1.3.9/console-window.png}
 %  \includegraphics[scale=1.0]{1.5.0/console-window.png}
    \includegraphics[scale=1.0]{1.5.4/Console.png}
@@ -468,9 +470,31 @@
    The output can be selected, copied, and pasted to a script or archive text
    file for safe-keeping.
 
-%  \index{MIDI learn}
-%  Consider it a form of "MIDI learn" that will be developed in the future.
-%  And note that it applies to output to \texttt{stderr} as well.
+   \itempar{Saved instrument Format}{Main Settings!instrument file format}
+   This new (1.5.5) feature provides a choice between the old instrument format
+   and a new format.
+   The \textbf{Legacy} format has a file extension \texttt{.xiz}.
+   The \textbf{Yoshimi} format has a file extension \texttt{.xiy}.
+
+   Values: \texttt{Legacy (.xiz), Yoshimi (.xiy), Both (.xiz + .xiy)}
+
+	Some users wanted a way to store the \textbf{Controllers} settings
+   with an instrument, as they can make a dramatic difference to the
+   sound. There is now a superset of instruments that can be saved instead of,
+   or as well as, the standard ones. On loading, \textsl{Yoshimi}
+   will look for the extended version (\texttt{.xiy}) first.
+   This applies to instruments in banks, as well as
+   externally saved instrument.
+   If one has an extended type loaded, the instrument
+   name will be in a blue font, instead of black.
+   This also applies to the stored instruments in bank slots.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.75]{1.5.5/MainYoshiType-font.png}
+   \caption[Yoshimi Font for Extended File Format]{Extended File Format Font}
+   \label{fig:extended_file_format_font}
+\end{figure}
 
 \paragraph{Menu / Yoshimi / Settings / Switches}
 \label{paragraph:menu_yoshimi_settings_switches}
@@ -479,7 +503,7 @@
    clutter.
 
 \begin{figure}[H]
-   \centering 
+   \centering
 %  \includegraphics[scale=0.75]{1.4.1/SettingsSwitches.png}
    \includegraphics[scale=0.75]{1.5.0/SettingsSwitches.png}
    \caption{Yoshimi Switches Tab}
@@ -507,6 +531,10 @@
    initial state file that matches one's usual work setup.
    The default state file is named
    \texttt{\textasciitilde/.config/yoshimi/yoshimi.state}.
+
+   If the \textbf{Reset} button on the main screen is click, then this file is
+   loaded, instead of reverting to the first-run default state of
+   \textsl{Yoshimi}.
 
    \itempar{Hide Non Fatal Errors}{Main Settings!Hide Non-Fatal Errors}
    Especially when running from the command line (with reports going there
@@ -559,7 +587,7 @@
    System ones.
 
 \begin{figure}[H]
-   \centering 
+   \centering
 %  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-jack.jpg}
 %  \includegraphics[scale=0.75]{1.3.8/yoshimi-settings-jack.jpg}
 %  \includegraphics[scale=0.75]{1.3.9/yoshimi-settings-jack.png}
@@ -654,7 +682,7 @@
       K6
    \end{verbatim}
 
-   Go to the ALSA settings tab illustrated below, and in 
+   Go to the ALSA settings tab illustrated below, and in
    \textsl{Alsa Audio Device} enter, for example, "hw:PCH".
    This ensures one will always connect to this card at startup regardless of
    the order this and other ones.  Another benefit of using this hardware name
@@ -692,7 +720,7 @@
    most machines this seems to be 1024.
 
 \begin{figure}[H]
-   \centering 
+   \centering
 %  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-alsa.jpg}
 %  \includegraphics[scale=0.75]{1.3.8/yoshimi-settings-alsa.png}
    \includegraphics[scale=0.75]{1.4.1/SettingsAlsa.png}
@@ -755,11 +783,11 @@
    multiply the result by 1000 (256 / 44100 * 1000 = 5.8 ms).
 
    Note that, as of version 1.3.6, the \textbf{Period Size} field has been
-   removed from the \textbf{Alsa} tab, and is replaced by the 
+   removed from the \textbf{Alsa} tab, and is replaced by the
    \textbf{Internal Buffer Size} field in the \textbf{Main Settings} tab.
    Note that any of these setting changes require a restart of \textsl{Yoshimi}
    to take effect.
-   
+
 %  \textsl{ZynAddSubFX}: if one wants a sample-rate that
 %  is not in the list, select "Custom" and change the value from the right.
 %  Default is 44100.
@@ -776,7 +804,7 @@
    change settings, plus some new values.
 
 \begin{figure}[H]
-   \centering 
+   \centering
 %  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-ccs.jpg}
 %  \includegraphics[scale=0.75]{1.3.8/yoshimi-settings-midi.png}
 %  \includegraphics[scale=0.75]{1.3.9/yoshimi-settings-ccs.jpg}
@@ -792,7 +820,7 @@
    button saves that particular change.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{1.4.1/SettingsPending.png}
    \caption[MIDI Settings Pending]{MIDI Settings Pending}
    \label{fig:yoshimi_settings_pending}
@@ -846,7 +874,7 @@
    another purpose, one might get a warning like the following:
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{1.5.0/SettingsInUse.png}
    \caption[MIDI Setting In Use]{MIDI Setting In Use}
    \label{fig:yoshimi_settings_in_use}
@@ -943,7 +971,7 @@
 \label{subsubsec:menu_yoshimi_view_manual}
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{1.5.4/view_manual.png}
    \caption[Yoshimi Menu, Exit]{Yoshimi Menu, View Manual}
    \label{fig:yoshimi_view_manual}
@@ -964,7 +992,7 @@
    Better safe than sorry!
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-menu-exit-parameters-changed.jpg}
    \caption[Yoshimi Menu, Exit]{Yoshimi Menu, Exit}
    \label{fig:yoshimi_change_exit}
@@ -1010,7 +1038,7 @@
       /usr/share/yoshimi/presets
       /usr/local/share/yoshimi/presets
    \end{verbatim}
-   
+
    The user can provide additional directories for the presets, up to a limit
    of 128 directories (the same limit as for roots and banks).
    These directories are useful for containing copies of the system
@@ -1029,7 +1057,7 @@
    \end{enumber}
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-presets-dirs.jpg}
    \caption[Preset Dirs Tab]{Yoshimi Preset Dirs Dialog}
    \label{fig:yoshimi_presets_dirs_tab}
@@ -1041,7 +1069,7 @@
    This interface element contains a list of preset directories.
    By default, the only directory present is the installed preset directory.
    For example, \texttt{/usr/share/yoshimi/presets}.
-   
+
    \textbf{Tip:}
    \index{tip!preset directory}
    If there is no directory in this dialog, then one must
@@ -1062,7 +1090,7 @@
    following dialog.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{menu/Yoshimi/presets-add-a-preset-directory.jpg}
    \caption[Add Preset Directory]{Add a Preset Directory}
    \label{fig:presets_add_a_preset_directory}
@@ -1128,7 +1156,7 @@
    Provides a way to load a previously-saved \textsl{Yoshimi} state file.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{menu/State/load-state-file.jpg}
    \caption{Yoshimi Menu, State Load}
    \label{fig:yoshimi_menu_state_load}
@@ -1142,7 +1170,7 @@
    Provides a way to save a new or modified \textsl{Yoshimi} state file.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{menu/State/save-state-file.jpg}
    \caption{Yoshimi Menu, State Save}
    \label{fig:yoshimi_menu_state_save}
