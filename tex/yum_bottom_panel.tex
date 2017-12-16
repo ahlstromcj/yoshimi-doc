@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-06
-% \update      2017-12-09
+% \update      2017-12-16
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -333,7 +333,8 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{bottom-panel/controllers-dialog.jpg}
+%  \includegraphics[scale=1.0]{bottom-panel/controllers-dialog.jpg}
+   \includegraphics[scale=1.0]{1.5.6/Controllers.png}
    \caption{Controllers Dialog}
    \label{fig:controllers_dialog}
 \end{figure}
@@ -349,6 +350,7 @@
       \item \textbf{Vol Rng}
       \item \textbf{PWheelB.Rng}
       \item \textbf{Expr}
+      \item \textbf{Breath} (1.5.6)
       \item \textbf{FMamp}
       \item \textbf{Vol}
       \item \textbf{Sustain}
@@ -417,6 +419,17 @@
    \itempar{Expr}{controllers!expression}
    Expression Enable.
    Enable/disable expression.
+
+   Values: \texttt{Off, On*}
+
+   \itempar{Breath}{controllers!breath}
+   Breath.
+
+   Breath control was once a "per part" setting, but now it is a
+   "per instrument" setting.  By default, this setting is enabled.
+   This new switch is visible from version 1.5.6 on, and it is saved only in
+   new \texttt{.xiy} format.
+   See \sectionref{sec:configuration} for details on the new format.
 
    Values: \texttt{Off, On*}
 

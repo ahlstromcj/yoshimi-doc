@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2016-12-22
-% \update      2017-09-03
+% \update      2017-12-16
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -74,7 +74,7 @@
    is seen as CC 130.
 
 \begin{figure}[H]
-   \centering 
+   \centering
 %  \includegraphics[scale=1.0]{1.5.3/midi-controls-panel.png}
    \includegraphics[scale=1.0]{1.5.4/MIDIcontrols.png}
    \caption{MIDI Controls Panel}
@@ -85,7 +85,7 @@
    \index{Modulation} \textbf{Modulation},
    \index{Expression} \textbf{Expression},
    \index{Filter Q} \textbf{Filter Q},
-   \index{Filter Cutoff} \textbf{Filter Cutoff}, and 
+   \index{Filter Cutoff} \textbf{Filter Cutoff}, and
    \index{Master Bandwidth} \textbf{Master Bandwidth}.
 
 \subsection{MIDI Learn / User Interface}
@@ -99,7 +99,7 @@
    (if active).
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{1.5.0/Learning-30amp.png}
    \caption{MIDI Learn Prompt Example 1}
    \label{fig:midi_learn_ex_1}
@@ -108,7 +108,7 @@
    Here is another example:
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{1.5.0/Learning-Mods.png}
    \caption{MIDI Learn Prompt Example 2}
    \label{fig:midi_learn_ex_2}
@@ -119,17 +119,23 @@
    learnable:
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{1.5.0/Learning-No.png}
    \caption{MIDI Learn Prompt Unsupported Example}
    \label{fig:midi_learn_unsupported}
 \end{figure}
 
+   \index{midi!learn, slider quirk}
+   Note that the majority of controls, including the sliders, are MIDI
+   learnable.  However, note that, for sliders to be learned, one must
+   click on the \textsl{track} of the slider, not the \textsl{thumb} of the
+   slider.
+
    If the \textsl{Yoshimi / MIDI Learn...} option is selected, and there are no
    MIDI-learn entries available yet, then the following empty dialog appears:
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.50]{1.5.0/MidiLearn-empty.png}
    \caption{Empty MIDI Learn Dialog}
    \label{fig:empty_midi_learn_dialog}
@@ -162,7 +168,7 @@
    \begin{verbatim}
       $ aconnect -i -o
    \end{verbatim}
-   
+
    We see that we have (among other ports) client 24:0 is the nanoKEY2 MIDI
    keyboard, and \textsl{Yoshimi} at client 129:0.
    We connect it to \textsl{Yoshimi} using
@@ -185,7 +191,7 @@
    action.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{1.5.0/MidiLearn.png}
    \caption{MIDI Learn Dialog}
    \label{fig:midi_learn_dialog}
@@ -262,6 +268,29 @@
    Since V 1.5.2 this is shown as a percentage with a resolution of 0.5
    If \textbf{Min} is greater than \textbf{Max}, this reverses the control
    direction.
+   If \textbf{Min} is equal to \textbf{Max}, it becomes a threshold setting.
+   Any value lower than this threshold will be passed on as 0, and any
+   value higher will be passed on as 127.
+   These values will then be translated to the 
+   \textbf{Min} and \textbf{Max} of whatever
+   controller has been linked. Thus, for a simple switch those values
+   will be 0 (off) and 1 (on). For most controls it will be 0 and 127.
+   For an Addsynth modulator it will be OFF and PWM.
+
+   Bear in mind that \textbf{Min} and \textbf{Max} are percentage values, not
+   0-to-127 MIDI values.  Divide the incoming MIDI value by 1.27 to get the
+   percentage value.  The resolution is to the nearest 0.5.
+   To summarize:
+
+   \begin{enumerate}
+      \item In MIDI Learn, set both \textbf{Min} and \textbf{Max} to the same
+         percentage value.  Call it "M\%".
+      \item Multiply \texttt{M\%} by 1.27, and increase the result up to the
+         next integer value.
+   \end{enumerate}
+
+   For example, if \texttt{M\% = 90.0}, any MIDI value $\leq$ 115 will turn a
+   switch off, and any value $>$ 115 will turn it on.
 
    Values: \texttt{0 * (min) to 100 * (max)}
 
@@ -272,7 +301,7 @@
    Set to \textbf{limit}, the \textbf{Min} and \textbf{Max} will be hard cutoffs.
    For example, if \textbf{Min} is 20 and the incoming value is 5, then the
    result is 20.
-   
+
    Set to \textbf{compress}, the incoming value will be converted to fit
    the range. For example, if \textbf{Min} is 32, \textbf{Max} is 95, then
    an incoming value of 0 will be 32, an incoming value of 2
@@ -337,13 +366,13 @@
    changed while another part is having an effect level changed.
    This is done by selecting one part, and making a setting with the desired
    controller, and then selecting another part, and making a setting with the
-   same controller.  
+   same controller.
    This single controller will then affect both parts at once.
 
    \itempar{Load}{MIDI Learn!Load}
    Load.
    Loads a set of MIDI Learn values from a file.
-   The extension of the file is ...?
+   The extension of the file is \texttt{.xly}.
    If a loaded set refers to \texttt{Yoshimi}
    controls that are disabled, or don't exist, those controls will be ignored.
    However the Block feature will still be active, unless the line is muted.

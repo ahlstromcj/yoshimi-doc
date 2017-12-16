@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-09-06
-% \update      2017-09-03
+% \update      2017-12-16
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -1701,7 +1701,7 @@ A few more detailed descriptions occur in the following sections.
       Patchset [s]               Complete set of instruments from named file.
       STate [s]                  All system settings and patch sets from named file.
       SCale [s]                  Scale settings from named file.
-      VEctor [{Channel}n] [s]    Vector on channel n from named file.
+      VEctor [n] [s]             Vector on channel n from named file.
       MLearn [s]                 MIDI learned list from named file.
 \end{verbatim}
 
@@ -1766,10 +1766,10 @@ A few more detailed descriptions occur in the following sections.
         PRogram [n2]             loads instrument ID
         NAme [s]                 Sets the display name the part can be saved with
         Channel [n2]             MIDI channel (> 31 disables, > 15 note off only)
-        Destination [s2]>         JACK audio destination (Main, Part, Both)
+        Destination [s2]         JACK audio destination (Main, Part, Both)
 \end{verbatim}
 
-   Commands to set and read vectors.
+   Commands to set or read vectors.
 
 \begin{verbatim}
       VEctor [n1]                Vector CHANNEL, operations
@@ -1781,7 +1781,7 @@ A few more detailed descriptions occur in the following sections.
         Off                      Disable vector for CHANNEL
 \end{verbatim}
 
-   Commands to set and read effects and presets.
+   Commands to set or read effects and presets.
 
 \begin{verbatim}
       SYStem effects [n]         System effects for editing
@@ -1793,7 +1793,7 @@ A few more detailed descriptions occur in the following sections.
       PREset [n2]                Set numbered effect preset to n2
 \end{verbatim}
 
-   Commands to set and read programs and more.
+   Commands to set or read programs and more.
 
 \begin{verbatim}
       PRogram [n]                MIDI program change enabled (0 off, other on)
