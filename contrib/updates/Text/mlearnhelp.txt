@@ -1,0 +1,19 @@
+yoshimi> ? ml
+Commands:
+  ?  Help                     - show commands
+  STop                        - all sound off
+  RESet                       - return to start-up conditions (if 'y')
+  EXit                        - tidy up and close Yoshimi (if 'y')
+  ..                          - step back one level
+  /                           - step back to top level
+Mlearn: [n1] = line number
+  MUte <s>                    - Enable/Disable this line (Enable, {other})
+  7Bit                        - Set incoming NRPNs as 7 bit (Enable, {other})
+  CC <n2>                     - Set incoming controler value
+  CHan <n2>                   - Set incoming channel number
+  MIn <n2>                    - Set minimm percentage
+  MAx <n2>                    - set maximum percentage
+  LImit <s>                   - Limit instead of compress (Enable, {other})
+  BLock <s>                   - Inhibit others on this CC/Chan pair (Enable, {other})
+
+yoshimi>

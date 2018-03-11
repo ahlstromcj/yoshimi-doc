@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-06
-% \update      2017-12-16
+% \update      2018-03-11
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -619,7 +619,8 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{1.3.9/edit-instrument.png}
+%  \includegraphics[scale=1.0]{1.3.9/edit-instrument.png}
+   \includegraphics[scale=1.0]{1.5.7/edit-instrument.png}
    \caption{Part Edit (Instrument) Dialog}
    \label{fig:instrument_edit_dialog}
 \end{figure}
@@ -632,6 +633,7 @@
    \begin{enumber}
       \item \textbf{Type}
       \item \textbf{Author and Copyright}
+      \item \textbf{Default}
       \item \textbf{Comments}
       \item \textbf{ADDsynth}
       \begin{enumber}
@@ -684,6 +686,19 @@
    \itempar{Author and Copyright}{edit!author/copyright}
    This field provides space for identifying the author, copyright, and
    license for the part.
+
+   \itempar{Default}{edit!default}
+   In the main part \textbf{Instrument Edit} window there is a new
+   \textbf{Default} button at top right.
+   We hope this encourages people
+   to fill in the Author and Copyright information.
+   To set it up, fill in the text field as normal,
+   then, while holding down the Ctrl key, click on the button
+   (left or middle mouse click) . This text will now be stored in
+   one's \textsl{Yoshimi} configuration directory,
+   and whenever one creates a new instrument, just
+   click on the \textbf{Default} button, and the saved text will be
+   filled in.
 
    \itempar{Comments}{edit!comments}
    Allows free-form comments and notes to be entered.

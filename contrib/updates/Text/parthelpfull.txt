@@ -1,0 +1,62 @@
+
+Part: [n1] (part number)
+  ENable
+This activates the part and enabled MIDI and virtual keyboard access.
+
+  DIsable
+Disables the part
+
+  Volume <n2>
+Sets the part's volume to the given value.
+
+  Pan <n2>
+Sets the part's L/R panning to the givem value (centre = 64).
+
+  VElocity <n2>
+Sets the sensitivity to velocity to the given value.
+y
+  OFfset <n2>
+Sets the start point for velocity sensing to the given value.
+
+  POrtamento <s>
+Enables portamento on this part.
+
+  Mode <s>
+Sets the keying mode to Polyphonic, Monophonic or Legato.
+
+  Note <n2>
+Sets the maximum number of notes available to this part.
+
+  SHift <n2>
+Sets the part's key shift in semitones (0 gives no shift).
+
+  MIn <n2>
+Fixes the minimum MIDI note number accepted.
+
+  MAx <n2>
+Fixes the maximum MIDI note number accepted.
+
+  EFfects [n2]
+This sets the effect number (if given) and enters the effects context level.
+
+    Type <s>
+This sets the effect type (Reverb, Echo, etc.)
+
+    PREset <n3>
+Sets the effect preset to the given number.
+
+    Send <n3> <n4>
+Sends this part to the numbered system effect at the given volume.
+
+  PRogram <n2>
+Loads an instrument in the current bank using its ID number.
+
+  NAme <s>
+This sets the display name the part can be saved with, either in a bank or externally.
+
+  Channel <n2>
+Sets the incomming MIDI channel the part recognises. If it is set greater than 32 all messages will be ignored. If it is set greater than 16 only note-off messages will be recognised.
+
+  Destination <s2>
+For JACK audio only, this sets where this part's will be sent. It can be the main output pair, the part's output pair or both.
+

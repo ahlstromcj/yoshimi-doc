@@ -1,0 +1,24 @@
+
+Vector: [n1] (base channel)
+
+  [X/Y] CC <n2>
+This sets the incomming CC that will be recognised for control of the X or Y axis. X CC must be set before everything else. YCC must be set before any other Y controls.
+
+
+  [X/Y] Features <n2> [s]
+This sets the features for this axis and whether they are reversed.
+
+  [X] PRogram <l/r> <n2>
+This sets the X axis instruments from the current bank for LH or RH parts.
+
+  [Y] PRogram <d/u> <n2>
+This sets the Y axis instruments from the current bank for Down or Up parts.
+
+  [X/Y] Control <n2> <n3>     - sets n3 CC to use for X or Y feature n2 (2-4)
+This allows a change of the actual CC associated with features 2 to 4. They can be any CC that Yoshimi recognises.
+
+  Off
+This disables vector control for this channel without changing the actual parts.
+
+  Name <s>
+Ths sets the internal name for this complete vector

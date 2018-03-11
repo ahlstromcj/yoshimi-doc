@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2016-02-27
-% \update      2017-11-29
+% \update      2018-03-11
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -40,10 +40,14 @@
 \subsubsection{Menu / Patch Sets / Show Patch Banks...}
 \label{subsubsec:menu_patch_sets_show_patch_banks}
 
+   The \textbf{Banks} window has had some button shuffling, and one can
+   import and export banks as well.
+
 \begin{figure}[H]
    \centering 
 %  \includegraphics[scale=0.75]{menu/Instrument/show-banks-roots.jpg}
-   \includegraphics[scale=0.75]{1.3.9/patch_sets_show_patch_banks.png}
+%  \includegraphics[scale=0.75]{1.3.9/patch_sets_show_patch_banks.png}
+   \includegraphics[scale=0.75]{1.5.7/Bank.png}
    \caption[Show Patch Banks]{Show Patch Banks}
    \label{fig:show_patch_banks}
 \end{figure}
@@ -60,6 +64,8 @@
       \item \textbf{SAVE}
       \item \textbf{DELETE}
       \item \textbf{SWAP}
+      \item \textbf{IMPORT}
+      \item \textbf{EXPORT}
       \item \textbf{Close}
    \end{enumber}
 
@@ -92,7 +98,47 @@
    Right-clicking on a bank in the dialog brings up the Instruments window for
    that bank, but also closes the banks window, to reduce clutter.
 
-   The rest of the buttons \textbf{SELECT}, \textbf{RENAME}, \textbf{SAVE},
+   \itempar{IMPORT}{banks!IMPORT}
+   There are a number of benefits to using the IMPORT/EXPORT buttons
+   rather than dealing with the directories externally.
+   One has far greater control where things go when
+   importing, and it's much easier to identify the bank to export.
+
+   When importing or exporting,
+   \textsl{Yoshimi} refuses to overwrite exisiting banks or
+   directories. That is a flat refusal for exporting, but for importing it will
+   add a numeric suffix to the name.
+
+   Importing will copy \textsl{only} in files that
+   \textsl{Yoshimi} understands, but will notify
+   if there were other unrecognised types in there.
+   Exporting just dumps out the entire bank contents.
+
+   There are a number of banks in the wild that contain all sorts of extraneous
+   stuff, usually copyright notices; one should use only the instrument
+   text fields, provided for exactly that purpose.
+   Oh, and one bank Will found had subdirectories with pictures,
+   and they weren't small!
+
+   In the main part \textbf{Instrument Edit} window there is a new
+   \textbf{Default} button top right.
+   See \sectionref{subsec:bottom_panel_instrument_edit}.
+
+   We hope this encourages people
+   to fill in the Author and Copyright information.
+   To set it up, fill in the text field as normal,
+   then, while holding down the Ctrl key, click on the button
+   (left or middle mouse click) . This text will now be stored in
+   one's
+   \textsl{Yoshimi} configurionat directory,
+   and whenever one creates a new instrument, just
+   click on the \textbf{Default} button, and the saved text will be
+   filled in.
+
+   \itempar{EXPORT}{banks!EXPORT}
+   Export of banks is described in the previous section.
+
+   The buttons \textbf{SELECT}, \textbf{RENAME}, \textbf{SAVE},
    \textbf{DELETE}, and \textbf{SWAP} behave similarly to the same buttons in
    the Instruments window, as
    described in the discussion at

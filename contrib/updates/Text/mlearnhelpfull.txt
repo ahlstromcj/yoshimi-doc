@@ -1,0 +1,26 @@
+
+Mlearn: [n1] (line number)
+
+  MUte <s>
+Completely disables this line.
+
+  7Bit
+For learned NRPNs, this sets it as a 7 bit value.
+
+  CC <n2>
+Sets the incoming controller that will be recognised. This may re-order the list.
+
+  CHan <n2>
+Sets incoming channel number that will be recognised. This may re-order the list.
+
+  MIn <n2>
+Sets the conversion for the incoming value to a minimm percentage.
+
+  MAx <n2>                    - set maximum percentage
+Sets the conversion for the incoming value to a maximum percentage.
+
+  LImit <s>
+Changes the conversion to min/max Limits instead of compression.
+
+  BLock <s>
+Prevents this CC/Chan pair being passed on to any other lines, or system controls. It has no effect if the line has been disabled.

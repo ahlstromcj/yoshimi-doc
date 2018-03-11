@@ -1,0 +1,17 @@
+yoshimi> ? lo
+Commands:
+  ?  Help                     - show commands
+  STop                        - all sound off
+  RESet                       - return to start-up conditions (if 'y')
+  EXit                        - tidy up and close Yoshimi (if 'y')
+  ..                          - step back one level
+  /                           - step back to top level
+Load:
+  Instrument <s>              - instrument to current part from named file
+  SCale <s>                   - scale settings from named file
+  VEctor [n] <s>              - vector to channel n (or saved) from named file
+  Patchset <s>                - complete set of instruments from named file
+  MLearn <s>                  - midi learned list from named file
+  STate <s>                   - all system settings and patch sets from named file
+
+yoshimi>

@@ -1,0 +1,48 @@
+
+Scale:
+
+  FRequency <n>
+Sets the reference 'A' note actual frequency (usually 440Hz).
+
+  NOte <n>
+Sets the MIDI note number for 'A'
+
+  Invert [s]
+Inverts entire scale.
+
+  CEnter <n>
+Sets the note number of the key that an invertd scale pivots on.
+
+  SHift <n>
+Shifts the entire scale up or down by note numbers.
+
+  SCale [s]
+Activates microtonal scale operation.
+
+  MApping [s]
+Activates keyboard mapping for the scale.
+
+  FIrst <n>
+Setst the first note number to map.
+
+  MIddle <n>
+Sets the middle note number to map.
+
+  Last <n>
+Sets the last note number to map
+
+  Tuning <s> [s2]
+Either sets the scale tuning values as a comma separated list, or imports a .scl file from a named file (s2).
+
+
+  Keymap <s> [s2]
+Either sets the keyboard mapping values as a comma separated list, or imports a .kbm file from a named file (s2).
+
+  NAme <s>
+Sets the internal name for this scale.
+
+  DEscription <s>
+Sets the description of this scale.
+
+  CLEar
+  Clears all settings and reverts to the standard scale.

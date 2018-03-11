@@ -1,0 +1,38 @@
+
+List:
+
+  Roots
+Show all available bank root paths
+
+  Banks [n]
+Show all the banks in either the numbered bank root or the current one if no number given.
+
+  Instruments [n]
+Show all the instruments in either the numbered bank or the current one if no number given.
+
+  Parts
+Identify and detail all the parts with instruments installed.
+
+  Vectors
+Identify and detail settings for all enabled vectors.
+
+  Tuning
+Show the current microtonal scale tunings.
+
+  Keymap
+Show the current microtonal scale keyboard map
+
+  Config
+Show the current configuration.
+
+  MLearn [s <n>]
+Show midi learned controls. Use '@' n for full details on any line.
+
+  History [s]
+Show recent histories. Patchsets, SCales, STates, Vectors, MLearn. No suffix shows all of them.
+
+  Effects [s]
+Show effect types. 'All' includes the presets, and if called from the effects level you only get the name of the current effect and number of presets.
+
+  PREsets
+Show all the presets for the currently selected effect

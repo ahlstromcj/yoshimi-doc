@@ -5078,7 +5078,6 @@ te: Wed, 26 Jul 2017 19:48:41 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Formant filters
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 Jesper has made some nice improvements to the editing window for this. The
 formant filter is probably the most difficult to get your head round, so every
@@ -5121,13 +5120,10 @@ by accident than design!
 
 
 
-
-
 Date: Fri, 28 Jul 2017 23:17:52 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Re: Deep Diving - and more :)
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 Vectors now have 'internal' names which are editable in exactly the same way
 as instrument names are.
@@ -5147,17 +5143,10 @@ active, you can now identify them.
 
 
 
-
-
-
 Date: Sat, 5 Aug 2017 00:18:55 +0100
 From: Will J Godfrey <WillGodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Re: Yoshimi pending
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
-
-[-- Attachment #1 --]
-[-- Type: text/plain, Encoding: 7bit, Size: 1.6K --]
 
 Hi Chris,
 
@@ -5212,10 +5201,6 @@ Date: Fri, 18 Aug 2017 18:56:49 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Re: No peace for the wicked {sigh}
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
-
-[-- Attachment #1 --]
-[-- Type: text/plain, Encoding: 7bit, Size: 1.0K --]
 
 OK, here we go.
 
@@ -5247,7 +5232,6 @@ Date: Mon, 21 Aug 2017 17:44:53 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] V1.5.3 released :)
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 V 1.5.3 - Swift
 Small, streamlined and fast moving.
@@ -5314,7 +5298,6 @@ Date: Mon, 28 Aug 2017 21:17:19 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] The oscillator
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 Hmm, sounds like a spy thriller :)
 
@@ -5341,7 +5324,6 @@ Date: Wed, 30 Aug 2017 14:59:45 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org, Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: State / MIDI learn.
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 Hi Chis,
 
@@ -5381,7 +5363,6 @@ Date: Fri, 1 Sep 2017 13:11:07 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] All Hands On Deck!
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 I have been offered a place to demo Yoshimi at SynthfestUK in Sheffield on
 Saturday 7th October :)
@@ -5414,7 +5395,6 @@ Date: Sun, 3 Sep 2017 16:38:07 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Re: Yoshimi pending
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 On Sun, 3 Sep 2017 11:07:50 -0400
 Chris Ahlstrom <ahlstromcj@gmail.com> wrote:
@@ -5452,7 +5432,6 @@ Date: Sun, 3 Sep 2017 21:22:08 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Interesting little experiment.
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 To get some idea of how memory was being allovated I loaded up 16 parts all
 with 'Ghost Ensemble', then using Rosegarden created a file using all 16 parts
@@ -5488,7 +5467,6 @@ te: Tue, 5 Sep 2017 19:33:26 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] What to do?
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 I fond some curious 'features' when tranferring Effects to the new lock-free
 system.
@@ -5527,7 +5505,6 @@ Date: Mon, 11 Sep 2017 21:14:08 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: yoshimi@freelists.org
 Subject: [yoshimi] Another wrinkle :)
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 The tooltip for AddSynth Voice 'minus' (top left of the volume control) was
 wronly saying it inverted the effect of the control. What it actually does is
@@ -5548,7 +5525,6 @@ Date: Thu, 14 Sep 2017 09:07:34 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: More Bits for the User Manual
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 Hi Chris,
 
@@ -5598,7 +5574,6 @@ Date: Tue, 28 Nov 2017 23:09:29 +0000
 From: Will Godfrey <willgodfrey@musically.me.uk>
 To: Chris Ahlstrom <ahlstromcj@gmail.com>
 Subject: Re: Manual Update - again
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-unknown-linux-gnu)
 
 Hi Chris,
 More corrections :/
@@ -5673,5 +5648,352 @@ and next page...
 12. Pan (reset). Reset Pan to Middle (64).
 
 How did we both miss these? they've been gone a very long time :o
+
+
+Date: Wed, 21 Feb 2018 18:13:51 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+                                                                                  [-- Attachment #1 --]
+[-- Type: text/plain, Encoding: 7bit, Size: 0.6K --]
+In order to be sure Yoshimi isn't doing anything weird with note-on and           note-off I've implemented a test routine in the current build.
+The details are attached.
+                                                                                  So far I've checked it out on two quite different machines, while deliberately
+pshing the in to Xruns. I'm pleased to say Yoshimi gave every indication of
+doing exactly what it was told.
+                                                                                  If anyone has any doubts grab the code and compile it, and if you *do* see any
+problems please let us know!
+This is a new test facility for checking note on and note off behaviour. It is
+disabled by default and enabled at compile time in ccmake as "ReportNotes".
+
+When enabled it continually checks that all notes at their entry to Yoshimi are   passed on the the actual note on/off code and reports any differences to the
+reports console or stdio (whichever is selected).
+When working entirely within jack (including LV2) there should be no messages at  all, but if using ALSA for either MIDI or audio there will sometimes be a few
+different depending on the complexity due to the buffering action.
+At any time hitting the GUI stop button will report the totals, but bear in mind
+this report is done *before* the stop cleanup so will show any notes that were    still hanging at the time stop was hit.
+
+When you stop playing or a MIDI file has finished is the best time to check. You
+will then see the totals and there should be none shown as hanging.
+The master reset will zero all of these figures.
+
+Yoshimi's virtual keyboard is not supported by this system and will actually
+produce negative numbers!
+
+
+Date: Sat, 24 Feb 2018 21:31:45 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Addsynth Oscillator and Internal Buffer Sizes, reprise
+        please?
+
+
+Oscillator size affects the sound quality. The bigger it is the more
+mathematically 'correct' the waveform is, but this then can really chew into
+the CPU availability. It has no effect on latency.
+
+If you are working as an LV2 plugin, internal buffer size is ignored (it's not
+even visible in settings).
+
+Otherwise in an all-jack environment Jack detirmines the latency. There are very
+few occasions you might want the internal buffer smaller than the Jack size and
+none where you'd need it bigger. If it is bigger the extra space will (to a
+small degree) represent wasted processor use.
+
+If something else in the jack graph is slow enough to need a large buffer
+size, but is not directly related to Yoshimi, then having a smaller internal
+buffer size will enable Yoshimi to interlace incoming MIDI messages more
+accurately.
+
+If working Alsa MIDI/Jack audio, a smaller buffer size will again allow
+incoming MIDI to be better placed - MIDI is then buffered and it will read the
+buffer every time it loops round. Keep in mind that this is at the cost of CPU
+availability.
+
+Working Jack MIDI/Alsa audio - seriously? - There's no benefit having the two
+different.
+
+If entirely Alsa. Yoshimi *defines* the buffer size and hence latency. However,
+there is a quirk that if you accidentally go all Alsa (forget to start jack)
+then Alsa sets the buffer size - usually a massive 1024 frames.
+
+
+
+
+ate: Sun, 25 Feb 2018 18:32:39 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Effects Interpolation
+
+The current master now supports this thanks to work from Kristian.
+
+This means that if you MIDI-learn the controls, you can now automate them
+smoothly instead of the somewhat gritty previous behaviour. I'm not seeing any
+detectable change in processor demand when running at 64 frames.
+
+I find that this upgrade is especially effective on 'saw' sounds with the
+frequency control on the EQ low pass filter.
+
+As an aside, I've also changed the instrument name font, as mentioned elsewhere.
+
+
+
+
+Date: Sun, 25 Feb 2018 20:26:20 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Raspberry Pi Part eleventy
+
+On Sun, 25 Feb 2018 10:56:05 -0000
+"Kevin Hainsworth" <dmarc-noreply@freelists.org> (Redacted sender
+"kevin.hainsworth" for DMARC) wrote:
+
+>I got Yoshimi working on the Raspberry Pi by following this tutorial for the
+Pimoroni PianoHat
+>http://sandyjmacdonald.github.io/2015/08/10/piano-hat/
+>Kevin
+
+Very pleased to see this :)
+
+I wonder what version of Yoshimi you are using. For some time now you haven't
+needed the -K and -a as these can be configured in 'Yoshimi->Settings...'
+
+Also, if you are not using any other audio software on the PI, it seems you can
+get slightly better performance by working entirely ALSA.
+
+Finally, you can tell Yoshimi to look for a specific named MIDI source, and a
+named audio device.
+
+
+
+Date: Wed, 28 Feb 2018 21:19:18 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] The good thing about bad weather
+
+I've been pretty much snowed in the last couple of days, so rather than
+twiddling my thumps I did a bit more on Yoshimi's usability.
+
+There a few shortcuts in place now :)
+
+In the main window, if you hold down the 'A' key then left click the edit
+button you go directly to the AddSynth editor - if it is enabled. However, if
+you use the right mouse button you will enable it and then open it :)
+
+The same is true with 'S' for SubSynth and 'P' for PadSynth.
+
+On the other hand holding down the 'K' key then clicking will open the kit
+editor, and the 'E' key opens the part's effects window.
+
+This probably needs a bit of refinement. It occasionally misses and opens the
+main edit window instead. I suspect there is some event stealing going on when
+that happens :(
+
+Eventually, I want to do the same with the numbers 1 to 8 opening the AddSynth
+voice windows, and also possibly make this all available from the Mixer panel.
+
+
+If you look in the main edit window you will see there is a new button top
+right. I'm hoping this will encourage people to fill in the copyright info.
+
+To set it up. Fill in the field, then while holding down the Ctrl key, click on
+the button (left or middle button) . This will now be stored in your Yoshimi
+config directory, and whenever you create a new instrument just click on this
+and the text will be filled in for you.
+
+
+
+
+
+Date: Sat, 3 Mar 2018 19:36:56 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Yoshimi V 1.5.7 pending
+
+[-- Attachment #1 --]
+[-- Type: text/plain, Encoding: 7bit, Size: 0.7K --]
+
+Hi Chris,
+
+I had hoped to have this out by now, but there have been 'issues'. We're still
+not entirely out of the wood, but I think the remaining problems are edge cases
+that shouldn't hold us up any more.
+
+I've attached a text file covering the changes since V1.5.6, although some
+info overlaps or extends what is already in the manual.
+
+If there is anything you still find confusing give me a shout. Also, as soon as
+I can I'll send you a fresh set of images for the windows that ahve changed.
+
+Happy editing :p
+
+
+
+
+
+
+Date: Sun, 4 Mar 2018 21:19:29 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Changed screens
+
+[-- Attachment #1 --]
+[-- Type: text/plain, Encoding: 7bit, Size: 1.0K --]
+
+As promised.
+Some of the changes are quite subtle.
+A long standing irritation with Add and Pad has been put right. The 'Change'
+Button now proudly says 'Waveform' :)
+
+Instrument window now shows one new format instrument, as do the Mixer ones.
+
+Two new entries in Settings Midi
+
+Console window showing entries the right way round.
+
+MIDI-learnable switches now shown with blue surrounds in several windows.
+
+Forgot to mention before. The splash screen now always displays for 3 seconds. 
+
+Also, using CLI direct access to show limits has changed. It returns a single
+value dependent on the initial text and parameters
+
+So:
+direct limit max 0 0 (control number for volume, part number)
+will return:
+Max 127.000000
+
+direct limit  def 1 0 (panning)
+Default 64.000000
+
+and:
+direct limit min 32 240 (keyshift, top level controls)
+min -36.000000
+
+
+
+
+
+
+Date: Mon, 5 Mar 2018 19:01:42 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: Changed screens - Oops :(
+
+
+>>direct limit min 35 240 (keyshift, top level controls)
+>>min -36.000000
+
+Dunno why I wrote 32 :(
+
+... and yet more I forgot to mention!
+
+From the command line you can now read the VU levels :)
+
+direct 0 0 200 240 {part number}
+will show the numbered part's peak level. It will be negative if the part is not
+enabled.
+
+direct 0 0 201 240 0
+gives the main output LH peak.
+
+direct 0 0 201 240 1
+gives the main output RH peak.
+
+direct 0 0 202 240 0
+gives the main output LH RMS.
+
+direct 0 0 202 240 1
+gives the main output RH RMS.
+
+Obviously, these are fluctuating values but will give you an idea of what is
+happening.
+
+Those zeros at the start are needed, and the commands are exactly what the GUI
+requests these days when updating the displays.
+
+ate: Wed, 7 Mar 2018 17:34:35 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Can't save new instrument from blank slate
+
+On Wed, 07 Mar 2018 18:08:48 +0100
+lechp <lechp@onet.pl> wrote:
+
+>This one's an odd one because there are obvious workarounds (e.g.: just save an
+existing instrument in a new slot)
+>but it's partly a matter of principle for me. Occasionally I would just like to
+start with a guarantee that ALL the sliders and settings are in the default
+positions, and create some new sounds from the ground up.
+>So I go to "Instruments | clear" and then adjust some sliders, but when comes to 
+saving, Yoshimi complains that it can't save with the default name (Simple Sound),
+and in a catch 22 the instruments can only be RE-named after they've already been 
+saved. :p
+>
+>Regards,
+>Lech Papierski
+
+Click on the instrument name field with the right hand mouse button and it will
+open an editor for the name. You only need to change one character to make it
+savable. However this identifies an oversight. If you go into the editor and
+change engine controls 'Simple Sound' gets changed to 'No Title', and this can
+be saved. I guess we should make that the same for top level controls.
+
+Blocking the saving of 'Simple Sound' was done for two related reasons.
+Initially there was no name at all by default, and people were saving them like
+that. The problem then was once re-loaded you had no idea what was there, or
+even if there was anything at all except the basic sound.
+
+Also, to save time and space, when saving patch set or state files, no 'empty'
+instruments are included, and we use that name as a quick way to identify such
+an instrument - the alternative would be to compare every single element of the
+instrument against it's default setting :(
+
+
+
+
+ate: Fri, 9 Mar 2018 20:12:06 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] V 1.5.7
+
+I'm still waiting to hear from the BSD people as to whether the new bank
+import/export works correctly for them (the code is very slightly different).
+I've got an enquiry out about that issue with the 'official' fedora build.
+So not quite ready yet, but will definitely go out this month. If people don't
+get back we'll just have to see what happens.
+
+There were also a few unpleasant surprises that turned up - now resolved, but
+I'll do some more tests before pushing out a release candidate.
+
+
+
+
+Date: Sat, 10 Mar 2018 18:15:21 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: V 1.5.7 rc1
+
+On Sat, 10 Mar 2018 20:06:19 +0800
+blubee blubeeme <gurenchan@gmail.com> wrote:
+
+>I can confirm that everything builds as expected.
+>
+>Thanks for the fast turn around.
+>
+>Best,
+>Owen
+
+Glad it's sorted.
+
+... and now we have a release candidate, complete with a display feature that's
+been on my to-do list for years :o
+
+The gui correctly displays part kit status, number and name on *every* window
+where it's relevant. You are never in doubt as to what you're editing.
+It was a curious feeling though, I was pulling out some of my earliest work
+on Yoshimi, to do it properly - for some undefined value of 'properly'!
+
+Now I'm going annoy Chris by sending him a fresh batch of image files :)
+
 
 
