@@ -1868,10 +1868,10 @@ A few more detailed descriptions occur in the following sections.
       \item Envelopes
    \end{itemize}
 
-   The remaining sections display as if written to, but don't
-   change anything.
+   The remaining sections display as if written to, but don't change anything.
 
-   The official direct access numbering system is zero based (and will remain so).
+   The official direct access numbering system is zero based (and will remain
+   so).
 
 %  This matches the results from using the middle mouse button in the GUI
 %  (assuming it was enabled at build time). Commands that are purely within
@@ -1933,9 +1933,69 @@ A few more detailed descriptions occur in the following sections.
 
    A number of limits are now defined, and more will be forthcoming. There is
    now a specific variation for this. "direct", "lim", (control), (part), (kit)
-   etc.  These commands now give the corrected default value and report the full
-   name of the control, and as well as the limits, it gives the type (float/integer)
-   and notes if it is MIDI learnable.
+   etc.  These commands now give the corrected default value and report the
+   full name of the control, and as well as the limits, it gives the type
+   (float/integer) and notes if it is MIDI learnable.
+
+   CLI direct access to show limits returns a single value dependent on the
+   initial text and parameters.  Some examples:
+   The control number for volume, part number, will return:
+
+   \begin{verbatim}
+      direct limit max 0 0
+      Max 127.000000
+   \end{verbatim}
+
+   For panning:
+
+   \begin{verbatim}
+      direct limit  def 1 0
+      Default 64.000000
+   \end{verbatim}
+
+   For keyshift, top level controls:
+
+   \begin{verbatim}
+      direct limit min 35 240
+      min -36.000000
+   \end{verbatim}
+
+	From the command line you can now read the VU levels:
+
+   \begin{verbatim}
+		direct 0 0 200 240 {part number}
+   \end{verbatim}
+
+	will show the numbered part's peak level.
+ 	It will be negative if the part is not enabled.
+
+   \begin{verbatim}
+      direct 0 0 201 240 0
+   \end{verbatim}
+
+gives the main output LH peak.
+
+   \begin{verbatim}
+      direct 0 0 201 240 1
+   \end{verbatim}
+
+gives the main output RH peak.
+
+   \begin{verbatim}
+      direct 0 0 202 240 0
+   \end{verbatim}
+
+gives the main output LH RMS.
+
+   \begin{verbatim}
+      direct 0 0 202 240 1
+   \end{verbatim}
+
+gives the main output RH RMS.
+
+   Obviously, these are fluctuating values, but give an idea of what is
+   happening.  Those zeros at the start are necessary; and the commands are
+   exactly what the GUI requests when updating the displays.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex

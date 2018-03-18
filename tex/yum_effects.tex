@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-05
-% \update      2017-09-24
+% \update      2018-03-17
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -33,6 +33,15 @@
    input.  This mix is made at the effects output. If an effect is wet, it
    means that nothing of the input signal is bypassing the effect. If it is
    dry, then the effect has no effect.
+
+   \textsl{Interpolation}
+   means that, if one MIDI-learns the controls, one can now automate them
+   smoothly instead of the somewhat gritty previous behaviour.
+   This does not change processor demand when running at 64 frames, a short
+   number of frames.
+   This interpolation is especially effective on "saw" sounds with the
+   frequency control on the EQ low pass filter.
+
 
    The \textbf{Effects} panel is shown in
    \figureref{fig:yoshimi_main_screen}.

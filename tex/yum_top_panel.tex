@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-29
-% \update      2017-11-29
+% \update      2018-03-18
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -48,10 +48,16 @@
    Useful when MIDI input suddenly stops due to a bug in the MIDI source.
 
    \itempar{Reset}{top panel!reset}
+   \index{master reset}
+   Master Reset.
    Resets \textsl{Yoshimi} to its default state, when no default configuration
    files exist.  If there is a saved default state and the \textbf{start with
    default} option is set, then a reset will reload that file. For any other
    situation it will set the first-time defaults.
+
+   \index{master reset, ctrl}
+   If the Ctrl key is held down while doing a master reset, then
+   MIDI Learn will also be cleared.
 
    \itempar{Mixer Panel}{top panel!mixer panel}
    This button brings up a panel that shows a "mixer" view
@@ -162,14 +168,16 @@
    \centering 
 %  \includegraphics[scale=0.75]{top-panel/yoshimi-panel-2x8.jpg}
 %  \includegraphics[scale=0.75]{top-panel/yoshimi-panel-2x8-1_5.jpg}
-   \includegraphics[scale=0.75]{1.5.0/Mixer8.png}
+%  \includegraphics[scale=0.75]{1.5.0/Mixer8.png}
+%  \includegraphics[scale=0.75]{1.5.7/Mixer8.png}
+   \includegraphics[scale=0.75]{1.5.7/MixerSwitch8.png}
    \caption[Yoshimi Mixer Panel]{Yoshimi Mixer Panel, 2x8 View}
    \label{fig:yoshimi_part_panel_2x8}
 \end{figure}
 
    Note that there is also a 1x16 version of this dialog (not shown).
    This dialog has been updated recently; there is now a \textbf{Solo}
-   control, described below.
+   control, shown in the figure above and described below.
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
@@ -536,6 +544,15 @@
    \itempar{Res. bw}{controllers!resonance bandwidth}
    Resonance Bandwidth.
    Applies only if the part has resonance set up.
+
+   From the main window there are shortcuts to go directly to the Add, Sub,
+   and Pad editors (in kit mode this only applies to item 1).  Holding down
+   'A', 'S', 'P', for Add, Sub, and Pad respectively will open their editors if
+   they are enabled, otherwise it will be ignored. However, using the right
+   mouse button will enable the engine and then open the editor.
+   'D' can be used as an alternative to 'P', which is nice for QWERTY keyboards.
+   This is not perfect, and if your timing is a bit too quick it will miss, and
+   just open the normal part selection window.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex

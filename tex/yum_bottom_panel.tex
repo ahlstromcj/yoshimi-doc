@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-06
-% \update      2018-03-11
+% \update      2018-03-17
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -148,6 +148,19 @@
    Instrument Name.
    Left-click to open the Bank window.
    Right-click to change the name of the current instrument.
+   One needs to change only one character to make the instrument name
+   savable. If one goes into the instrument editor and
+   changes engine controls, then 'Simple Sound' gets changed to 'No Title',
+   and this change can be saved.
+   Blocking the saving of 'Simple Sound' was done for two reasons.
+   Initially there was no name at all by default, and people were saving them
+   like that. The problem then was once re-loaded you had no idea what was
+   there, or even if there was anything at all except the basic sound.
+   Also, to save time and space, when saving patch set or state files, no
+   'empty' instruments are included, and that name is a quick way to
+   identify such an instrument; the alternative would be to compare every
+   single element of the instrument against it's default setting.
+
    If one changes the name of the instrument, be sure to select
    \textbf{Menu / Instrument / Save Instrument} to preserve that change.
 
@@ -166,6 +179,20 @@
    This dialog is explained in detail in
    \sectionref{subsec:bottom_panel_instrument_edit}.
 
+   \index{Edit!keys}
+   There are some additional tricks to this button.
+   If one holds down the \texttt{A} key, then left-clicks the
+   \textbf{Edit} button, this brings up directly the ADDSynth editor,
+   if it is enabled.
+   However, if one uses the right mouse button, that will enable it and then
+   open it.
+   The same is true with \texttt{S} for SUBSynth and \texttt{P} for PADSynth.
+
+   On the other hand, holding down the \texttt{K}
+   key then clicking will open the Kit
+   editor.
+   The \texttt{E} key opens the part's Effects window.
+
    \itempar{Midi}{bottom panel!MIDI channel}
    MIDI Channel.
 
@@ -178,12 +205,16 @@
    In Monophonic mode, only one note is supported.
    In Legato mode, the sound flows smoothly from note to note without
    any breaks.  This mode is particularly effective with Portamento.
+   If one uses the foot-pedal CC to enable it, the text in the
+   \textbf{Mode} icon will show this status, and then will drop back to
+   whatever it was previously when the pedal is released.
 
 	However, one cannot have legato mode and drum mode
 	(see \sectionref{sec:kit_edit})
-   at the same time. If drum mode is set when trying to set legato,
+   at the same time.
+   If drum mode is set when trying to enable legato,
    drum mode takes priority, and the "Legato" label will be shown in red.
-   Cancel drum mode makes legato valid, and the "Legato" label
+   Cancelling drum mode makes legato valid, and the "Legato" label
    will turn black again.
    If using a legato MIDI pedal, \textsl{Yoshimi}'s part mode will show
    the legato change, and will set the label red if an instrument in drum mode
@@ -685,7 +716,8 @@
 
    \itempar{Author and Copyright}{edit!author/copyright}
    This field provides space for identifying the author, copyright, and
-   license for the part.
+   license for the part.  Starting text can be saved by using the
+   \textbf{Default} button, described in the next section.
 
    \itempar{Default}{edit!default}
    In the main part \textbf{Instrument Edit} window there is a new
@@ -699,6 +731,9 @@
    and whenever one creates a new instrument, just
    click on the \textbf{Default} button, and the saved text will be
    filled in.
+
+   This button was added to discourage users from adding supplementary
+   information directly into the XML file.
 
    \itempar{Comments}{edit!comments}
    Allows free-form comments and notes to be entered.

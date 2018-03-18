@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2016-03-07
-% \update      2017-12-09
+% \update      2018-03-18
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -201,12 +201,14 @@
    replaced. This is actually true of almost all file saves, and has been for
    quite some time now.
 
-   For vectors (in common with external instruments and patch sets), it's up to
-   the user as to where to save. The file filter generally defaults to the
-   either the user home directory, or if \textsl{Yoshimi} was launched from
-   userland, it's the directory it launched from. Then it's the normal
-   file browser selection.  Once saved,
-   \textbf{Vectors / Options / Recent} is your friend.
+   For vectors (in common with external instruments and patch sets),
+   the configuration is saved to the user's home directory.
+%  it's up to the user as to where to save.
+%  The file filter generally defaults to the
+%  either the user home directory, or if \textsl{Yoshimi} was launched from
+%  userland, it's the directory it launched from. Then it's the normal
+%  file browser selection.
+   Once saved, \textbf{Vectors / Options / Recent} is your friend.
 
    \textsl{Yoshimi} can set up critical configuration settings to be writable
    only by the main instance, but readable (and used) by any others. In the
@@ -235,7 +237,7 @@
    the \texttt{.xmz} extension.
 
    One of the simplest ways to save one's work is to save the entire
-   \textsl{Yoshimi} configuration.
+   dynamic settings \textsl{Yoshimi} configuration.
    This saving can be done through the \textbf{Patch Sets} menu
    (the \textbf{File} menu in \textsl{ZynAddSubFX}),
    and will result in the creation of

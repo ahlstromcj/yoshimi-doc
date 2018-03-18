@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2017-12-09
+% \update      2018-03-18
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -34,15 +34,22 @@
    (Note that, in \textsl{ZynAddSubFX}, this menu is called the
    \textsl{File} menu.)
 
-\begin{figure}[H]
-   \centering
+% \begin{figure}[H]
+%  \centering
 %  \includegraphics[scale=0.75]{menu/yoshimi-menu-yoshimi.jpg}
 %  \includegraphics[scale=1.0]{1.4.0/yoshimi-menu-yoshimi.png}
 %  \includegraphics[scale=1.0]{1.4.1/yoshimi-menu-yoshimi.png}
 %  \includegraphics[scale=1.0]{1.5.0/yoshimi-menu-yoshimi.png}
-   \includegraphics[scale=1.0]{1.5.3/yoshimi-menu-yoshimi.png}
-   \caption{Yoshimi Menu Items}
-   \label{fig:yoshimi_menu_items}
+%  \includegraphics[scale=1.0]{1.5.3/yoshimi-menu-yoshimi.png}
+%  \caption{Yoshimi Menu Items}
+%  \label{fig:yoshimi_menu_items}
+% \end{figure}
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.75]{1.5.4/view_manual.png}
+   \caption[Yoshimi Menu, Exit]{Yoshimi Menu}
+   \label{fig:yoshimi_view_manual}
 \end{figure}
 
    The items it contains are:
@@ -52,7 +59,7 @@
       \item \textbf{New instance}
       \item \textbf{Settings...}
       \item \textbf{MIDI Learn...}
-      \item \textbf{View Manual...} (not shown in the figure above)
+      \item \textbf{View Manual...}
       \item \textbf{Exit}
    \end{enumber}
 
@@ -239,15 +246,11 @@
    follow, which apply to all patches/instruments.
    The main settings are shown in
    \figureref{fig:yoshimi_main_settings_tab}.
-
    Some settings only take effect after restarting the synthesizer.
-   In \textbf{Main settings}, only the two items marked with an asterisk ('*')
+   In \textbf{Main settings}, only the items marked with an asterisk ('*')
    need a restart.
-
-   The settings dialogs are quite different between \textsl{ZynAddSubFX} and
-   \textsl{Yoshimi}.  There are some differences even between
-   \textsl{Yoshimi} versions earlier than 1.3.5, and the current version
-   (currently 1.3.9).
+   The settings dialogs have changed gradually as
+   \textsl{Yoshimi} has progressed.
 
 \begin{figure}[H]
    \centering
@@ -276,8 +279,15 @@
    \itempar{AddSynth Oscillator Size}{Main Settings!oscillator size}
    ADDsynth Oscillator Size (in samples).  This item used to be called
    "OscilSize".  Sets the number of the points of the ADDsynth oscillator.
-   Bigger is better, but it takes more CPU time on the start of any note, and
-   it may add latency to some processes.
+   Bigger is better, as it results in a more mathematically-correct waveform,
+   but it takes more CPU, though it has no effect on latency.
+   In an all-JACK environment, JACK determines the latency.  There are very few
+   occasions where one might want the internal buffer smaller than the JACK
+   size, and none where it should be bigger. If it is bigger, the extra space
+   will (to a small degree) represent wasted processor use.
+
+   See \sectionref{sec:resource_usage_jack_alsa_buffer_sizes}, which
+   goes into performance-related details.
 
    The default value for \textsl{Yoshimi} is shown marked with an asterisk,
    and the default value for \textsl{ZynAddSubFX} is 512.
@@ -649,9 +659,9 @@
 
    \itempar{Autoconnect audio}{JACK!autoconnect audio}
    Sets \textsl{Yoshimi} to connect automatically to the JACK server, just like
-   the \texttt{-K} command-line option does.  (However, note that the
-   command-line has no way to disable this feature it the configuration has been
-   saved.)
+   the \texttt{-K} command-line option does.
+   (However, note that the command-line has no way to disable this feature it
+   the configuration has been saved.)
 
 \paragraph{Menu / Yoshimi / Settings / Alsa}
 \label{paragraph:menu_yoshimi_settings_alsa_tab}
@@ -811,7 +821,8 @@
 %  \includegraphics[scale=0.75]{1.3.9/yoshimi-settings-ccs.jpg}
 %  \includegraphics[scale=0.75]{1.4.1/SettingsMidi.png}
 %  \includegraphics[scale=0.75]{1.5.0/SettingsMidi.png}
-   \includegraphics[scale=0.75]{1.5.4/SettingsMidi.png}
+%  \includegraphics[scale=0.75]{1.5.4/SettingsMidi.png}
+   \includegraphics[scale=0.75]{1.5.7/SettingsMidi.png}
    \caption[MIDI Preferences]{MIDI Preferences Tab}
    \label{fig:yoshimi_settings_cc}
 \end{figure}
@@ -970,13 +981,6 @@
 
 \subsubsection{Menu / Yoshimi / View Manual...}
 \label{subsubsec:menu_yoshimi_view_manual}
-
-\begin{figure}[H]
-   \centering
-   \includegraphics[scale=0.75]{1.5.4/view_manual.png}
-   \caption[Yoshimi Menu, Exit]{Yoshimi Menu, View Manual}
-   \label{fig:yoshimi_view_manual}
-\end{figure}
 
    This menu entry brings up the most recent version of this manual, which is
    now include as part of a \textsl{Yoshimi} installation.

@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2017-09-24
-% \update      2017-09-24
+% \update      2018-03-17
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -22,6 +22,9 @@
    \textsl{Yoshimi}.
 
    In the meantime, we include some notes.
+
+\subsection{Resource Usage / JACK Buffer}
+\label{sec:resource_usage_jack_buffer}
 
    If \textsl{Yoshimi}'s internal buffer is \textsl{smaller} than the JACK
    buffer, it sounds quite horrible. If it's the same or greater there's no
@@ -52,9 +55,9 @@
    what \textsl{was} a surprise was a rather crude estimation of the memory
    usage.
 
-   Going from an empty \textsl{Yoshimi} to this 16 part monster stole an astonishing
-   100M. Now to be fair, this patch adds all three engines, so that's 16 lots of
-   PADsynth samples along wiht 16 ADDsynth oscillators.
+   Going from an empty \textsl{Yoshimi} to this 16 part monster stole an
+   astonishing 100M. Now to be fair, this patch adds all three engines, so
+   that's 16 lots of PADsynth samples along wiht 16 ADDsynth oscillators.
 
    Actually playing these 80 notes only took another 2M. Now this difference
    was quite consistent, even over reboots, although when the notes stop only
@@ -65,6 +68,35 @@
    Now if we multiply that by 4 that's 8M for the default max for each part,
    which is quite a lot (and much more than the current overall limit), but
    probably quite do-able on all modern machines.
+
+\subsection{Resource Usage / JACK and ALSA Buffer Sizes}
+\label{sec:resource_usage_jack_alsa_buffer_sizes}
+
+   This section elaborates on
+   \sectionref{paragraph:menu_yoshimi_settings_main_settings}.
+
+   If something in the JACK connection
+   graph is slow enough to need a large buffer
+   size, but is not directly related to \textsl{Yoshimi},
+   then having a smaller internal
+   buffer size will enable \textsl{Yoshimi}
+   to interlace incoming MIDI messages more accurately.
+
+   If working ALSA MIDI with JACK Audio, a smaller buffer size will allow
+   incoming MIDI to be better placed; MIDI is then buffered and it will read
+   the buffer every time it loops round. This is at the cost of CPU
+   availability.
+
+   If working JACK MIDI with ALSA audio? There's no benefit having the
+   two buffer sizes different.
+
+   If entirely ALSA, \textsl{Yoshimi} \textsl{defines}
+   the buffer size, and hence the latency.
+   However, there is a quirk... if one accidentally sets all ALSA
+   (i.e. forgets to start JACK),
+   then ALSA sets the buffer size, usually a massive 1024 frames.
+
+   In an LV2 plug-in, internal buffer size is ignored.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex

@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-07
-% \update      2018-03-11
+% \update      2018-03-18
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -48,9 +48,9 @@
    voice (that voice must be enabled), or the oscillator from the lower-numbered
    voice itself.
 
-   In the voice window, the \textbf{External Mod} gives the choice of previous
-   modulation oscillator and the \textbf{Mod Oscillator} gives you the choice of
-   previous voice oscillators.
+   In the voice window, the \textbf{Oscillator Source} gives the choice of
+   previous modulation oscillator and the \textbf{Mod Oscillator} gives you the
+   choice of previous voice oscillators.
 
    The sum of the voices are passed through filters and amplification to
    produce the final sound. This could lead one to think that ADDsynth is just
@@ -352,14 +352,19 @@
 %  \includegraphics[scale=0.75]{1.3.9/ADDsynth-voice-parameters.png}
 %  \includegraphics[scale=0.75]{1.4.0/ADDsynth-voice-parameters.png}
 %  \includegraphics[scale=0.75]{1.5.0/AddVoice.png}
-   \includegraphics[scale=0.75]{1.5.7/AddVoice.png}
+%  \includegraphics[scale=0.75]{1.5.7/AddVoice.png}
+   \includegraphics[scale=0.75]{1.5.7/AddVoice-DocuVoice.png}
    \caption{ADDsynth Voice Parameters Dialog}
    \label{fig:addsynth_voice_parameters_dialog}
 \end{figure}
 
-   Again, note that the small \textbf{\textcolor{red}{Red}}
-   reset button next to the \textbf{Pan} knob is no longer present,
-   replaced a right-click on this knob to reset it.
+   Note the 8 \textbf{VOICE} tabs at the top of the window.
+   These make it easy to switch to another voice, and without opening up yet
+   another editing window.
+
+   Also note that there is no longer a \textbf{\textcolor{red}{Red}}
+   reset button next to the \textbf{Pan} knob;
+   use a right-click on this knob to reset it.
 
    This dialog consists of a few extra settings, plus a number of
    stock dialog sections.  Take some time to compare
@@ -542,7 +547,7 @@
 
    \begin{enumber}
       \item \textbf{Type:}
-      \item \textbf{External Mod.}
+      \item \textbf{Oscillator Source}
       \item \textbf{Mod AMPLITUDE}
       \item \textbf{Mod FREQUENCY}
       \item \textbf{Mod Oscillator}
@@ -595,26 +600,28 @@
          The (frequency modulation) morph modulator works by modulator the
          frequency.  Examples can be heard in the "Ethereal" and "Steel Wire"
          instruments.
-      \item \textbf{PITCH}
-         \index{PITCH}
-         \index{pitch modulator}
-         \index{modulator!pitch}
-         The pitch modulator works by...
-         we're not sure... is this pitch shifting?
+      \item \textbf{PWM}
+         \index{PWM}
+         \index{PWM modulator}
+         \index{modulator!PWM}
+         The pitch modulator works by pulse-width modulation.
    \end{enumber}
 
-   Values: \texttt{OFF, MORPH, RING, PM, FM, PITCH}
+   Values: \texttt{OFF, MORPH, RING, PM, FM, PWM}
 
-   \itempar{External Mod}{modulator!external}
-
-   \textbf{External Oscillator}.
+   \itempar{Mod Oscillator Use}{modulator!external}
+   Mod Oscillator.
    \index{oscillator!external}
    This feature allows one of the voices (of the up to 8 allowed in a single
    ADDsynth instrument) to be used as a modulator or external oscillator for
    another voice in the instrument.
-   This option specifies to use the oscillator of another voice, or
-   -1 for the \textsl{internal} oscillator.
+   Note that the voice must be one with a number \textsl{below} the current
+   voice.
+   It's important to understand that oscillators always exist even if not
+   used.
    \index{oscillator!internal}
+   This option specifies to use the oscillator of another voice or
+   the \textsl{internal} oscillator.
 
    The parameters must be lower than the voice index; one cannot use the
    oscillator from a voice with a bigger index (e.g. one can't use the
@@ -624,20 +631,40 @@
    parameter of this oscillator, all voices using this oscillator will be
    affected.
 
-   \textbf{External Modulator}.
-   \index{modulator!external}
+   If one sets up voice 2 as a square wave, and voice 1 as a triangle wave,
+   then sets voice 3 to voice 2, voice 3 will get a square wave.
+
+   If one then sets voice 2 to voice 1, voice 2 will get a triangle wave but
+   voice 3 will still get a square wave.
+
+   Voice 3 can use the oscillator from voice 1,
+   \textsl{even if voice 1 is switched off}.
+
+   Modulator 3 can use the oscillator from modulator 1, even if modulator 1 is
+   switched off, but modulator 3 can't directly use voice 1 if voice 1 is
+   switched off.
+
+   However, if voice 2 is using the oscillator from voice 1, and modulator 3 is
+   using voice 2, it will actually get voice 1 oscillator, even if voice 1 is
+   switched off.
+
+   When a voice or modulator is pointed to another voice/modulator, the
+   oscillator window will show the waveform of the actual source, and all the
+   controls will seem to do nothing. However they are still changing the
+   internal oscillator, and if one switches back to that, one will immediately
+   see and hear the changes.
+
+   \textbf{Internal}.
+   Uses the internal oscillator as the modulator of another voice.
+
+   Values: \texttt{Internal*, Other voice numbers}
+
+   \textbf{Oscillator Source}.
+   \index{modulator!source}
    Use another voice as a modulator instead of the modulator of the internal
-   voice. One can make a modulation "stack". The modulator of the voice is
-   disabled. 
-
-   \textbf{External}.
-   Uses the oscillator as the modulator of another voice. It
-   behaves like \textbf{Ext. Oscil}, except that it works on the
-   \textsl{modulator}. Please
-   notice the difference between this parameter and \textbf{Ext. Mod}. 
-   See below.
-
-   Values: \texttt{OFF*, Other voice numbers?}
+   voice. One can make a modulation "stack". The modulator of the voice itself
+   is disabled.
+   One can only select Internal/Local, or one from a lower numbered voice.
 
    \itempar{Mod AMPLITUDE}{modulator!amplitude}
    Modulator Amplitude.
@@ -687,7 +714,7 @@
    The word "oscillator" is mispelled in the application.
 
    \begin{enumber}
-      \item \textbf{Change}
+      \item \textbf{Waveform}
          ADDsynth Oscillator Editor.
       \item \textbf{Use}
          Oscillator to Use.
@@ -728,7 +755,7 @@
          \textbf{Show Voice Parameters}.
       \item For \textbf{Type}, select the \textbf{RING} value.  This
          selection will activate the \textbf{Mod Oscillator}.
-      \item In the \textbf{Mod Oscillator}, click on \textbf{Change} to open
+      \item In the \textbf{Mod Oscillator}, click on \textbf{Waveform} to open
          the \textbf{ADDsynth Oscillator Editor}.
       \item Set the wave-shape to \textbf{Triangle}.
       \item Switch to voice number 2 and enable it.
@@ -871,7 +898,7 @@
       \item \textbf{Phase}
       \item \textbf{Use}
       \item \textbf{Waveform graph}
-      \item \textbf{Change}
+      \item \textbf{Waveform} (was Change, need screen-shot update)
       \item \textbf{Sound}
       \item \textbf{Unison}
       \item \textbf{Current Voice}
@@ -902,10 +929,11 @@
    Waveform Graph.
    Shows a period of the currently configured oscillator.
 
-   \itempar{Change}{voice oscillator!Change}
-   ADDSynth Voice Oscillator Change.
+   \itempar{Waveform}{voice oscillator!Waveform}
+   ADDSynth Voice Oscillator Waveform.
    This button brings up the ADDsynth Oscillator Editor dialog.
-   This dialog is described elsewhere.
+   This dialog is described elsewhere; it used to be called
+   \textbf{Change}.
 
    \itempar{Sound}{voice oscillator!sound}
    ADDSynth Oscillator Type (sound/noise).
@@ -1037,8 +1065,8 @@
 \begin{figure}[H]
    \centering 
 %  \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/ADDsynth-voices-list.jpg}
-   \includegraphics[scale=0.75]{1.5.0/AddSynthVoiceList.png}
-%  \includegraphics[scale=0.75]{1.5.7/AddSynthVoiceList.png}
+%  \includegraphics[scale=0.75]{1.5.0/AddSynthVoiceList.png}
+   \includegraphics[scale=0.75]{1.5.7/AddSynthVoiceList.png}
    \caption{ADDsynth Voices List}
    \label{fig:addsynth_voices_list}
 \end{figure}
@@ -1121,7 +1149,7 @@
 \subsection{ADDsynth / Oscillator}
 \label{subsec:addsynth_oscillator}
 
-   Pressing the ambiguously-named \textbf{Change} button in the ADDsynth
+   Pressing the \textbf{Waveform} button in the ADDsynth
    voice-editor dialog brings up a very complex dialog for modifying the
    harmonics of the voice.
 

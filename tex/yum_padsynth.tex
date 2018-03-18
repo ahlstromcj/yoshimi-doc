@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-07
-% \update      2017-09-03
+% \update      2018-03-18
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -26,6 +26,12 @@
    \textbf{Harmonic Structure} and \textbf{EnvelopesLFOs}.
    Each of these tabs is complex, so the discussion
    will break the tabs down by sub-sections.
+
+   There is extra protection for a really huge PadSynth engine
+   (that can potentially take tens of seconds to complete).
+   For that time, any attempt to alter the part that contains the one
+   that's updating will not accept any other changes,
+   and will give the warning: \texttt{Part \textsl{n} busy}.
 
 \subsection{PADsynth / Algorithm}
 \label{subsec:padsynth_algorithm}
@@ -187,7 +193,8 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/PAD/PADsynth-parameters-harmonic-structure.jpg}
+%  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/PAD/PADsynth-parameters-harmonic-structure.jpg}
+   \includegraphics[scale=1.0]{1.5.7/PadSynth.png}
    \caption{PADsynth Edit Dialog}
    \label{fig:padsynth_edit_dialog}
 \end{figure}
@@ -200,7 +207,7 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
       \item \textbf{Basics} (section)
       \item \textbf{Harmonic} (section)
       \item \textbf{Resonance} (section)
-      \item \textbf{Change} (section)
+      \item \textbf{Waveform} (section)
       \item \textbf{Bandwidth and Position} (section)
       \item \textbf{Export} (section)
       \item \textbf{C}
@@ -958,7 +965,8 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    \centering 
 %  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/PAD/PADsynth-parameters-envelopes-LFOs.jpg}
 %  \includegraphics[scale=1.0]{1.4.0/PADsynth-parameters-envelopes-LFOs.png}
-   \includegraphics[scale=1.0]{1.5.0/PadSynthEnvelopes.png}
+%  \includegraphics[scale=1.0]{1.5.0/PadSynthEnvelopes.png}
+   \includegraphics[scale=1.0]{1.5.7/PadSynthEnvelopes.png}
    \caption{PADSynth Parameters, Envelopes and LFOs}
    \label{fig:padsynth_parameters_envelopes_and_lfos}
 \end{figure}

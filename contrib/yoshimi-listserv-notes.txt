@@ -4633,7 +4633,7 @@ Hi Chris,
 Just another small point. Soft loading also applies to patch sets, but not to
 individual instrument patches.
 
-As the instrument patches are per part, you don't want to silence the entire 
+As the instrument patches are per part, you don't want to silence the entire
 synth, so for a silent change you need to do it when that particular part is
 not sounding. We turn off the part during the load, but don't do a fade. It
 would be counter productive to turn a 2mS load (typical for SubSynth) into a
@@ -5047,7 +5047,7 @@ Scale conversions are *much* improved now. Mostly because we don't repeat them
 when we don't have to :)
 
 When you save a scale it now includes lines consisting of the original text
-the tuning came from. This is true whether the scale came from a .scl file, or 
+the tuning came from. This is true whether the scale came from a .scl file, or
 whether you entered the values by hand.
 
 When you reload a scale it first looks for these text lines and if they exist,
@@ -5064,7 +5064,7 @@ as before.
 I also discovered that at some point Yoshini developed amnesia regarding scale
 names and comments. That's been put right too :)
 
-There is still quite a lot of code tidying up needed but things are looking 
+There is still quite a lot of code tidying up needed but things are looking
 much better, and as far as I can tell everything is quite stable. I'm also
 working through the direct access controls for scales - most of them are in
 place.
@@ -5237,7 +5237,7 @@ V 1.5.3 - Swift
 Small, streamlined and fast moving.
 
 We have revised the whole of Microtonal (scales) for better accuracy, and
-fixing originally incorrect range limitations. This is now much closer to the 
+fixing originally incorrect range limitations. This is now much closer to the
 Scala specification, although there seems to be an ambiguity when you have a
 keymap defined and have an inverted scale - which key is the pivot point?
 
@@ -5534,7 +5534,7 @@ These are in the current build, and I'm hoping to make a 1.5.4 release early
 october - in time for my spot at SynthfestUK.
 
 1) AddSynth Voice 'minus'
-The tooltip (top left of the volume control) was wrongly saying it inverted the 
+The tooltip (top left of the volume control) was wrongly saying it inverted the
 effect of the control. What it actually does is invert the *phase* relative to
 all the other voices.
 
@@ -5852,7 +5852,7 @@ Console window showing entries the right way round.
 
 MIDI-learnable switches now shown with blue surrounds in several windows.
 
-Forgot to mention before. The splash screen now always displays for 3 seconds. 
+Forgot to mention before. The splash screen now always displays for 3 seconds.
 
 Also, using CLI direct access to show limits has changed. It returns a single
 value dependent on the initial text and parameters
@@ -5924,9 +5924,9 @@ existing instrument in a new slot)
 >but it's partly a matter of principle for me. Occasionally I would just like to
 start with a guarantee that ALL the sliders and settings are in the default
 positions, and create some new sounds from the ground up.
->So I go to "Instruments | clear" and then adjust some sliders, but when comes to 
+>So I go to "Instruments | clear" and then adjust some sliders, but when comes to
 saving, Yoshimi complains that it can't save with the default name (Simple Sound),
-and in a catch 22 the instruments can only be RE-named after they've already been 
+and in a catch 22 the instruments can only be RE-named after they've already been
 saved. :p
 >
 >Regards,
@@ -5996,4 +5996,211 @@ on Yoshimi, to do it properly - for some undefined value of 'properly'!
 Now I'm going annoy Chris by sending him a fresh batch of image files :)
 
 
+
+Date: Sun, 11 Mar 2018 16:36:22 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Sorry!
+
+Another new image, only in a way it's especially good news :)
+At last, after all these years I finally understand AddSynth Voice!
+Details for the manual attached.
+
+Date: Sun, 11 Mar 2018 16:45:37 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: V 1.5.7 rc2
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.32; x86_64-unknown-linux-gnu)
+
+AddSynth Voice AAARRRRGGGHHHH!!!
+OK, I feel better now.
+We have a bugfix, The modulator selection had stopped working. The good news
+is things are a lot easier to follow with this commit ...
+
+The AddSynth voices and modulators have extremely complex relationships, and
+it's only now that I fully understand them!
+
+The names of the voice and modulator oscillator selections have been changed,
+as previously they were very confusing. Also the oscillator selectors for
+voice/modulator 1 have all been greyed out, as they don't do anything. You can
+only ever select Internal/Local, or one from a lower numbered voice.
+
+The modulator numbers are syncronised to the voice numbers, so Mod. 3 will be
+defined by the settings in Voice 3 modulation editor.
+
+It's important to understand that oscillators always exist even if they aren't
+used!
+
+If you set up voice 2 as a square wave, and voice 1 as a triangle wave then set
+voice 3 to voice 2, voice 3 will get a square wave.
+
+If you then set voice 2 to voice 1, voice 2 will get a triangle wave but voice
+3 will still get a square wave. Thnk about that one :)
+
+Voice 3 can use the oscillator from voice one, even if voice 1 is switched off.
+
+Modulator 3 can use the oscillator from modulator 1 even if modulator 1 is
+switched off, but modulator 3 can't directly use voice 1 if voice 1 is switched
+off.
+
+However, if voice 2 is using the oscillator from voice 1, and modulator 3 is
+using voice 2, it will actually get voice 1 oscillator, even if voice 1 is
+switched off! Got that?
+
+When a voice or modulator is pointed to another voice/modulator, the oscillator
+window will show the waveform of the actual source, and all the controls will
+seem to do nothing. However they are still changing the internal oscillator,
+and if you switch back to that you will immediately see and hear the changes.
+
+Confused?
+You will be!
+
+
+Date: Wed, 14 Mar 2018 18:12:44 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Some more proofreading
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.32; x86_64-unknown-linux-gnu)
+
+Hi Chris,
+If possible, I'd like to get version 1.5.7 finalised over the weekend. Any
+chance of looking at the following issues?
+
+
+
+3 Configuration Files
+"For vectors (in common with external instruments and patch sets), it’s up to
+the"
+
+This is now wrong, as previously mentioned it will always be the users home
+directory unless a previous one is found.
+
+3.1
+"One of the simplest ways to save one’s work is to save the entire Yoshimi
+configuration. This saving can be done through the Patch Sets menu (the File
+menu in ZynAddSubFX), and will result in the"
+
+This is a bit confusing. It's not the *whole* configuration it's the current
+dynamic settings - haven't yet thought of a clear and simple way to highlight
+the difference :(
+
+5.1
+Can Fig 7 be swapped out for Fig 24 (5.1.5) and the text below then corrected?
+
+5.1.3.1
+"The settings dialogs are quite different between ZynAddSubFX and Yoshimi.
+There are some differences even between Yoshimi versions earlier than 1.3.5,
+There are some differences even between Yoshimi versions earlier than 1.3.5,
+and the current version (currently 1.3.9)."
+
+Ummm, slightly out of date :)
+
+5.2.6
+"This also reveals that loading an instrument doesn’t update the kit window,
+although the kit is all there and sounds correctly. Do the usual dance of
+switching part back and forth and it magically reappears. However, if that
+instrument is part of a patch set, everything is hunky-dory."
+
+I thought we'd got rid of this. It's been quite wrong for some time :(
+
+7.1.3
+"one is editing. Some title bars now also include the kit entry number if that
+part has a kit enabled; this feature needs more work to get all of them."
+
+Since V 1.5.7 *all* kit mode subwindows show the kit number and it's name (if
+it has one).
+
+11.5
+Fig 123 Old image, current one shows kit number and name.
+This is strange. The correct file is in in the Images directory but doen't seem
+to be picked up :?
+
+An error on my part waas that I forgot to update the Modulators 'Change'. This
+is now done, and I think I sent you that file - let me know if not. The new
+image also shows both of these pointing to what was previously just "Ext. {n}".
+Might be worth pointing out that another source of confusion has been removed at
+the top of the window with what is now "Oscillator Source".
+
+I think I also sent you a detailed explanation of the Voice/Modulator
+interactions - any chance of including that somewhere (delete the last
+paragraph though -it's quite wrong!)
+
+11.6
+"Pressing the ambiguously-named Change button in the ADDsynth voice-editor
+dialog"
+
+This is now named "Waveform". A slight improvement I think :)
+
+12
+Both PadSynth Images also are wrong, although the correct ones are in the
+Images directory :(
+
+Happy hunting,
+
+Will.
+
+
+
+
+Date: Wed, 14 Mar 2018 22:18:04 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: Some more proofreading
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.32; x86_64-unknown-linux-gnu)
+
+Hi Chris,
+
+Two more things I forgot to mention.
+
+Legato:
+If you use the foot pedal CC to enable it, the text in the Mode icon will show
+this, and will drop back to whatever it was previously when you release
+the pedal.
+
+If you try to enable it while the part is in drum mode (kit window), the text
+will be in red indicating that you have called for it, but it is disabled
+because drum mode takes priority. Clear drum mode and it will turn black
+again. This applies to the foot pedal as well as the GUI setting.
+
+Editors:
+From the main window there are now shortcuts to go directly to the Add, Sub, and
+Pad editors (in kit mode this only applies to item 1).
+Holding down 'A', 'S', 'P', for Add, Sub, and Pad respectively will open their
+editors if they are enabled, otherwise it will be ignored. However, using the RH
+mouse button will enable the engine and then open the editor.
+
+'D' can be used as an alternative to 'P', which is nice for QWERTY keyboards.
+
+This is not perfect, and if your timing is a bit too quick it will miss, and
+just open the normal part selection window.
+
+
+
+
+Date: Thu, 15 Mar 2018 12:45:17 +0000
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: Re: Some more proofreading - keep forgetting bits :(
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.32; x86_64-unknown-linux-gnu)
+
+Hi Chris,
+
+You know, I hadn't realised just how much has changed since V1.5.6 :o
+
+Editors again:
+From the main window there are now shortcuts to go directly to the Add, Sub, and
+Pad editors (in kit mode this only applies to item 1).
+Holding down 'K' opens the kit edit window and 'E' opens the effects.
+All of these are of course for the currently selected part.
+
+
+I don't think I've mentioned these.
+
+When you do a master reset, if you hold down CTRL when doing a master reset
+MIDI-learn will also be cleared.
+
+There is extra protection for when you have a really huge PadSynth engine (that
+can potentially take tens of seconds to complete). For that time, any attempt to
+alter the part that contains the one that's updating will not accept any other
+changes and will give the warning: "Part {n} busy".
 
