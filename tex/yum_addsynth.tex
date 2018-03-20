@@ -361,6 +361,8 @@
    Note the 8 \textbf{VOICE} tabs at the top of the window.
    These make it easy to switch to another voice, and without opening up yet
    another editing window.
+   Non-active voices are shown with an inactive tab/number appearance.
+   This is all in synchrony with the \textbf{Kit Edit} window.
 
    Also note that there is no longer a \textbf{\textcolor{red}{Red}}
    reset button next to the \textbf{Pan} knob;
@@ -662,9 +664,11 @@
    \textbf{Oscillator Source}.
    \index{modulator!source}
    Use another voice as a modulator instead of the modulator of the internal
-   voice. One can make a modulation "stack". The modulator of the voice itself
+   voice. One can make a "modulation stack". The modulator of the voice itself
    is disabled.
-   One can only select Internal/Local, or one from a lower numbered voice.
+   One can only select Local (i.e. Internal), or one from a lower numbered voice.
+
+   Values: \texttt{Local*, "Mod n"}
 
    \itempar{Mod AMPLITUDE}{modulator!amplitude}
    Modulator Amplitude.
@@ -708,10 +712,12 @@
 
    \itempar{Mod Oscillator}{modulator!oscillator}
    Modulator Oscillator.
+   Provides the modulator for the oscillator.
+   This value must indicate a voice with a number less than the current voice.
+   Entries are greyed out for Voice 1, as there is no lower-numbered voice
+   available for modulation.
 
-   \textbf{Bug:}
-   \index{bugs!mod oscillator name mispelled}
-   The word "oscillator" is mispelled in the application.
+   Values: \texttt{Internal*, "Mod n"}
 
    \begin{enumber}
       \item \textbf{Waveform}
@@ -919,11 +925,12 @@
    If the \textbf{Current Voice} is set to a value greater than 1, meaning
    that one is editing additional voices, then this dropdown item also
    includes the values of all oscillators less then this one, marked as
-   "External".  For example, if one is currently editing current voice 3,
-   then the dropdown list includes \textbf{Internal}, \textbf{Ext. 1}, and
-   \textbf{Ext. 2}.
+   "Mod n", where "n" is the coice number.
+   For example, if one is currently editing current voice 3,
+   then the dropdown list includes \textbf{Internal}, \textbf{Voice 1}, and
+   \textbf{Voice 2}.
 
-   Values: \texttt{Internal*, Other oscillators}
+   Values: \texttt{Internal*, Other oscillators ("Voice n")}
 
    \itempar{Waveform graph}{voice oscillator!waveform}
    Waveform Graph.

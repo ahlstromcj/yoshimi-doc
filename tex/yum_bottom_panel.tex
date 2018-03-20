@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-06
-% \update      2018-03-17
+% \update      2018-03-18
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -181,17 +181,27 @@
 
    \index{Edit!keys}
    There are some additional tricks to this button.
-   If one holds down the \texttt{A} key, then left-clicks the
-   \textbf{Edit} button, this brings up directly the ADDSynth editor,
-   if it is enabled.
-   However, if one uses the right mouse button, that will enable it and then
-   open it.
-   The same is true with \texttt{S} for SUBSynth and \texttt{P} for PADSynth.
+   From the main window there are shortcuts to go directly to the Add, Sub, and
+   Pad editors (in kit mode this only applies to item 1).  Holding down
+   \texttt{A},
+   \texttt{S}, 
+   \texttt{P}, for AddSynth, SubSynth, and PadSynth, respectively,
+   while left-clicking the
+   \textbf{Edit} button, will open their respective editors, but only if the
+   desired engine is \textsl{enabled}; otherwise, the keystroke will be
+   ignored, but the normal part-edit window will come up.
 
-   On the other hand, holding down the \texttt{K}
-   key then clicking will open the Kit
-   editor.
-   The \texttt{E} key opens the part's Effects window.
+   Using the right mouse button to click will enable the engine and then open
+   the editor.  The same is true with \texttt{S} for SUBSynth and \texttt{P}
+   for PADSynth.
+
+   \texttt{D} can be used as an alternative to 
+   \texttt{P}, which is nice for
+   QWERTY keyboards.  This is not perfect, and if one's timing is a bit quick
+   it might miss, and just open the normal part selection window.
+
+   Holding down the \texttt{K} key then clicking will open
+   the Kit editor.  The \texttt{E} key opens the part's Effects window.
 
    \itempar{Midi}{bottom panel!MIDI channel}
    MIDI Channel.
