@@ -49,8 +49,8 @@
    voice itself.
 
    In the voice window, the \textbf{Oscillator Source} gives the choice of
-   previous modulation oscillator and the \textbf{Mod Oscillator} gives you the
-   choice of previous voice oscillators.
+   previous voice oscillators and the \textbf{Local Oscillator} gives you the
+   choice of previous modulation oscillators and the current (internal) oscillator.
 
    The sum of the voices are passed through filters and amplification to
    produce the final sound. This could lead one to think that ADDsynth is just
@@ -58,7 +58,7 @@
    generation is hidden.
 
 \begin{figure}[H]
-   \centering 
+   \centering
 %  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/ADDsynth-edit.jpg}
 %  \includegraphics[scale=1.0]{1.4.0/ADDsynth-edit.png}
 %  \includegraphics[scale=1.0]{1.5.0/AddSynth.png}
@@ -136,7 +136,7 @@
    Values: \texttt{1 to 127, 64*}
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.25]{zyn/velocity_sensing_function_velf.png}
    \caption{Velocity Sensing Function}
    \label{fig:velocity_sensing_function}
@@ -198,7 +198,7 @@
    \itempar{P.Stc}{addsynth!punch stretch}
    ADDsynth Punch Stretch.
    Sets the punch effect stretch according to frequency. On lower-frequency
-   notes, punch stretch makes the punch effect last longer. 
+   notes, punch stretch makes the punch effect last longer.
 
    Values: \texttt{0 to 127, 64*}
 
@@ -264,7 +264,7 @@
    frequency slider described below.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/frequency-detune-type.jpg}
    \caption{ADDsynth Frequency Detune Type}
    \label{fig:addsynth_freq_detune_type}
@@ -347,13 +347,13 @@
    detail.  By default, an ADDsynth instrument consists of one voice, voice 1.
 
 \begin{figure}[H]
-   \centering 
+   \centering
 %  \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/ADDsynth-voice-parameters.jpg}
 %  \includegraphics[scale=0.75]{1.3.9/ADDsynth-voice-parameters.png}
 %  \includegraphics[scale=0.75]{1.4.0/ADDsynth-voice-parameters.png}
 %  \includegraphics[scale=0.75]{1.5.0/AddVoice.png}
 %  \includegraphics[scale=0.75]{1.5.7/AddVoice.png}
-   \includegraphics[scale=0.75]{1.5.7/AddVoice-DocuVoice.png}
+   \includegraphics[scale=0.75]{1.5.7/AddVoice.png}
    \caption{ADDsynth Voice Parameters Dialog}
    \label{fig:addsynth_voice_parameters_dialog}
 \end{figure}
@@ -362,7 +362,7 @@
    These make it easy to switch to another voice, and without opening up yet
    another editing window.
    Non-active voices are shown with an inactive tab/number appearance.
-   This is all in synchrony with the \textbf{Kit Edit} window.
+   This is all in synchrony with the \textbf{Voice List} window.
 
    Also note that there is no longer a \textbf{\textcolor{red}{Red}}
    reset button next to the \textbf{Pan} knob;
@@ -371,7 +371,7 @@
    This dialog consists of a few extra settings, plus a number of
    stock dialog sections.  Take some time to compare
    \figureref{fig:addsynth_edit_dialog},
-   which covers the overall instrument, with 
+   which covers the overall instrument, with
    \figureref{fig:addsynth_voice_parameters_dialog},
    which covers each of the voices.
    The stock sections in the former cover the whole instrument as one,
@@ -387,10 +387,10 @@
    than that voice.
 
    \begin{enumber}
-      \item \textbf{Voice Number}
+      \item \textbf{Voice Number Tab}
       \item \textbf{On}
       \item \textbf{Delay}
-      \item \textbf{R.}
+      \item \textbf{Resonance}
       \item \textbf{AMPLITUDE} (see the stock-panel section below)
       \item \textbf{FILTER} (see the stock-panel section below)
       \item \textbf{MODULATOR} (see the stock-panel section below)
@@ -405,7 +405,7 @@
    in this dialog.  Each \textsl{Yoshimi} part/instrument can consist of up
    to eight voices.
    The voice being worked on can be selected using the
-   \textbf{Current Voice} selector.
+   \textbf{Current Voice} tab.
 
    Values: \texttt{1* to 8}
 
@@ -417,16 +417,11 @@
 
    \itempar{Delay}{voice!delay}
    ADDsynth Voice Delay.
-   \index{todo!voice delay units}
-   We still need to determine what the units of the delay are.
+   \index{todo!voice delay units (milliseconds/seconds)}
 
-   \textbf{Bug:}
-   \index{bugs!ADDsynth voice delay tooltip}
-   The tooltip for this setting says "Volume".
+   Values: \texttt{0* to 4.90}
 
-   Values: \texttt{0* to 127}
-
-   \itempar{R}{voice!resonance}
+   \itempar{Resonance}{voice!resonance}
    ADDsynth Voice Resonance On/Off.
    The rest of the GUI elements
    (AMPLITUDE, FILTER, MODULATOR, FREQUENCY, and Voice Oscillator)
@@ -471,7 +466,7 @@
    ADDsynth Voice Volume.
    Sets the (relative) volume of this voice in the part/instrument.
 
-   Values: \texttt{0 to 127, 90?}
+   Values: \texttt{0 to 127, 100}
 
    \itempar{Vel Sens}{voice par amp!vel sens}
    ADDsynth Voice velocity-sensing function; setting to rightmost/max
@@ -544,262 +539,6 @@
    \itempar{Filter LFO, Stock + Enable}{voice par filter!lfo}
    See \sectionref{subsubsec:filter_lfo_sub_panel}.
 
-\subsubsection{ADDsynth / Voice Parameters / MODULATOR}
-\label{subsubsec:addsynth_voice_parameters_modulator}
-
-   \begin{enumber}
-      \item \textbf{Type:}
-      \item \textbf{Oscillator Source}
-      \item \textbf{Mod AMPLITUDE}
-      \item \textbf{Mod FREQUENCY}
-      \item \textbf{Mod Oscillator}
-   \end{enumber}
-
-   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
-
-   \itempar{Type:}{modulator!type}
-   ADDsynth Modulator Type.
-
-\begin{figure}[H]
-   \centering 
-   \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/modulator-type.jpg}
-   \caption{Voice Modulator Type}
-   \label{fig:voice_modulator_type}
-\end{figure}
-
-   \begin{enumber}
-      \item \textbf{OFF}.
-         This setting turns off the modulator.
-      \item \textbf{MORPH}
-         \index{MORPH}
-         \index{morph modulator}
-         \index{modulator!morph}
-         The morph modulator works by combining the output of two oscillators
-         into one, with the amplitude envelope translating between one waveform
-         and the other.
-      \item \textbf{RING}
-         \index{RING}
-         \index{ring modulator}
-         \index{modulator!ring}
-         The ring modulator is useful for making bell-like sounds and some
-         weird effects.  The ring modulator works by multiplying two
-         waveforms together, producing a signal that possesses the sum and
-         difference of the frequencies present in the waveforms.  The
-         ins-and-outs of the ring modulator are explained in detail in
-         \paragraphref{paragraph:tips_using_the_ring_modulator}.
-      \item \textbf{PM}
-         \index{PM}
-         \index{pulse modulator}
-         \index{modulator!pulse}
-         The PM (pulse modulation) modulator works by using a modulator
-         envelope to change the pulse width of a pulse waveform.
-         Generally, set \textbf{F.Damp} to zero, so that the modulation amount
-         doesn't depend on the note number.
-      \item \textbf{FM}
-         \index{FM}
-         \index{frequency modulator}
-         \index{modulator!frequency}
-         The (frequency modulation) morph modulator works by modulator the
-         frequency.  Examples can be heard in the "Ethereal" and "Steel Wire"
-         instruments.
-      \item \textbf{PWM}
-         \index{PWM}
-         \index{PWM modulator}
-         \index{modulator!PWM}
-         The pitch modulator works by pulse-width modulation.
-   \end{enumber}
-
-   Values: \texttt{OFF, MORPH, RING, PM, FM, PWM}
-
-   \itempar{Mod Oscillator Use}{modulator!external}
-   Mod Oscillator.
-   \index{oscillator!external}
-   This feature allows one of the voices (of the up to 8 allowed in a single
-   ADDsynth instrument) to be used as a modulator or external oscillator for
-   another voice in the instrument.
-   Note that the voice must be one with a number \textsl{below} the current
-   voice.
-   It's important to understand that oscillators always exist even if not
-   used.
-   \index{oscillator!internal}
-   This option specifies to use the oscillator of another voice or
-   the \textsl{internal} oscillator.
-
-   The parameters must be lower than the voice index; one cannot use the
-   oscillator from a voice with a bigger index (e.g. one can't use the
-   oscillator of voice 8 for voice 4). This is very useful because, if
-   one uses many voices with the same oscillator settings, one can use only
-   one oscillator and select other voices to use this, and if one changes a
-   parameter of this oscillator, all voices using this oscillator will be
-   affected.
-
-   If one sets up voice 2 as a square wave, and voice 1 as a triangle wave,
-   then sets voice 3 to voice 2, voice 3 will get a square wave.
-
-   If one then sets voice 2 to voice 1, voice 2 will get a triangle wave but
-   voice 3 will still get a square wave.
-
-   Voice 3 can use the oscillator from voice 1,
-   \textsl{even if voice 1 is switched off}.
-
-   Modulator 3 can use the oscillator from modulator 1, even if modulator 1 is
-   switched off, but modulator 3 can't directly use voice 1 if voice 1 is
-   switched off.
-
-   However, if voice 2 is using the oscillator from voice 1, and modulator 3 is
-   using voice 2, it will actually get voice 1 oscillator, even if voice 1 is
-   switched off.
-
-   When a voice or modulator is pointed to another voice/modulator, the
-   oscillator window will show the waveform of the actual source, and all the
-   controls will seem to do nothing. However they are still changing the
-   internal oscillator, and if one switches back to that, one will immediately
-   see and hear the changes.
-
-   \textbf{Internal}.
-   Uses the internal oscillator as the modulator of another voice.
-
-   Values: \texttt{Internal*, Other voice numbers}
-
-   \textbf{Oscillator Source}.
-   \index{modulator!source}
-   Use another voice as a modulator instead of the modulator of the internal
-   voice. One can make a "modulation stack". The modulator of the voice itself
-   is disabled.
-   One can only select Local (i.e. Internal), or one from a lower numbered voice.
-
-   Values: \texttt{Local*, "Mod n"}
-
-   \itempar{Mod AMPLITUDE}{modulator!amplitude}
-   Modulator Amplitude.
-
-   \begin{enumber}
-      \item \textbf{Vol}
-         Volume.
-         Values: \texttt{0 to 127, 90*}
-      \item \textbf{V.Sns}
-         Velocity Sensing Function; set to rightmost/max to disable.
-         Values: \texttt{0 to 127, 64*}
-      \item \textbf{F.Damp}
-         Modulator Damp at higher frequency.
-         How the modulator intensity is lowered according to lower/higher
-         note frequencies. 
-         Values: \texttt{0 to 127, 90*}
-      \item \textbf{Amplitude Env, Stock + Enable}
-         See \sectionref{subsubsec:amplitude_envelope_subpanel}.
-   \end{enumber}
-
-   \itempar{Mod FREQUENCY}{modulator!frequency}
-   Modulator Frequency.
-
-   \begin{enumber}
-      \item \textbf{Detune slider}
-         Fine Detune (cents).
-         Values: \texttt{-35.00 to 35.00, 0*}
-      \item \textbf{Detune Type}
-         Fine Detune (cents).
-         Values: \texttt{L35cents, L10cents, E100cents, E1200cents}
-         See \figureref{fig:addsynth_freq_detune_type}.
-      \item \textbf{Octave}
-         Octave.
-         Values: \texttt{-8 to 7, 0*}
-      \item \textbf{Coarse Det.}
-         Coarse Detune.
-         Values: \texttt{-64 to 63, 0*}
-      \item \textbf{Filter Env, Stock + Enable}
-         See \sectionref{subsubsec:envelope_settings_for_filter}.
-   \end{enumber}
-
-   \itempar{Mod Oscillator}{modulator!oscillator}
-   Modulator Oscillator.
-   Provides the modulator for the oscillator.
-   This value must indicate a voice with a number less than the current voice.
-   Entries are greyed out for Voice 1, as there is no lower-numbered voice
-   available for modulation.
-
-   Values: \texttt{Internal*, "Mod n"}
-
-   \begin{enumber}
-      \item \textbf{Waveform}
-         ADDsynth Oscillator Editor.
-      \item \textbf{Use}
-         Oscillator to Use.
-         See the paragraph below.
-         Values: \texttt{Internal*, Other oscillators?}
-      \item \textbf{Phase}
-         Oscillator Phase.
-         Values: \texttt{0 to 360 (0 to 2PI)}
-      \item \textbf{Waveform graph}
-         Waveform graph.
-   \end{enumber}
-
-   As far as we can tell, one has the choice between \textbf{Internal},
-   which in this case means a completely independent modulator oscillator
-   per voice (extra change button), or \textbf{External}, which refers to
-   the modulation oscillators one has already defined for the voices with a
-   lower index.
-   The voice of lower index must be enabled in order to be used as a
-   modulator.
-   This means one can make one modulation oscillator for voice 1, and reuse it
-   in voices 2 and 3.  This is the same system used for the normal
-   oscillators.
-
-\paragraph{Tip: Using the Ring Modulator}
-\label{paragraph:tips_using_the_ring_modulator}
-\index{tips!ring modulator}
-\index{tips!internal modulator}
-
-   This section is derived from one of the short text files in the
-   \textsl{Yoshimi} source-code bundle (\cite{yoshimi} or \cite{yoshimi2}).
-   It notes that "Some people have
-   been confused about how to use an 'external' Mod Oscillator", and
-   provides usage notes that we will elaborate on here.  Here is the way to
-   use the ring modulator:
-
-   \begin{enumber}
-      \item Open the ADDsynth editing window.  Then open
-         \textbf{Show Voice Parameters}.
-      \item For \textbf{Type}, select the \textbf{RING} value.  This
-         selection will activate the \textbf{Mod Oscillator}.
-      \item In the \textbf{Mod Oscillator}, click on \textbf{Waveform} to open
-         the \textbf{ADDsynth Oscillator Editor}.
-      \item Set the wave-shape to \textbf{Triangle}.
-      \item Switch to voice number 2 and enable it.
-      \item Again, for \textbf{Type}, select the \textbf{RING} value.
-         However, feel free to select one of the other modulators, if one
-         wishes.
-      \item One can now use \textbf{Internal} for voice 2, or select
-         \textbf{ext.m} 1, to use the first voice as in internal modulator.
-      \item Change the internal voice to, for example, \textbf{Square}.
-      \item Do the same setup for voice 3.
-         One will find that one can use its \textbf{Internal} or
-         either of the two previous ones.
-   \end{enumber}
-
-   Now the joker in the pack is that one can disable both the previous
-   voices but \textsl{still} use their Mod Oscillators.
-
-   In a newsgroup (\cite{ringmodulator}, the following note is found.
-
-   \begin{quotation}
-      Say I want the A tone ring-modulated by 880Hz. A is 440 Hz, the ring
-      modulation setting lets me choose the modulation frequency relative
-      to the frequency of the tone. So I choose octave 1 and let the
-      detune at zero. If I move the detune, it'll shift the modulation
-      frequency a bit, which will make a disharmonic effect.
-
-      Wet/dry setting is controlled by volume in "modulation amplitude".
-      The modulation frequency can further be multiplied or several
-      modulations can be simulated by changing the oscillator waveform.
-
-      One huge letdown is that it is only available for Adsynth. PadSynth
-      does not seem to have ring modulation option, so the coolest sounds
-      stay out of question for massive lead tones. :-(
-   \end{quotation}
-
-   We have provided a more useful "tutorial" on using the ring modulator in the
-   \textsl{Yoshimi Cookbook} \cite{cookbook} document.
-
 \subsubsection{ADDsynth / Voice Parameters / FREQUENCY}
 \label{subsubsec:addsynth_voice_parameters_frequency}
 
@@ -848,7 +587,7 @@
    \itempar{Eq.T}{voice parameters!eq type}
    Equal Temperament?
    This item is enabled only if the \textbf{440Hz} check-box is enabled.
-   It determines how the frequency varies according to the 
+   It determines how the frequency varies according to the
    keyboard.  If set to its leftmost (0) value, then the frequency is fixed.
 
    Values: \texttt{0 to 127?}
@@ -867,7 +606,7 @@
    Detune Type.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/frequency-detune-type.jpg}
    \caption{Frequency Detune Type}
    \label{fig:frequency_detune_tYpe}
@@ -894,101 +633,13 @@
    Voice Parameters Oscillator.
    See the next section.
 
-\subsubsection{ADDsynth / Voice Parameters / Voice Oscillator}
-\label{subsubsec:addsynth_voice_parameters_oscillator}
-
-   The ADDsynth Voice Oscillator panel is tucked in the lower left side of the
-   ADDSynth Voice Parameters editor.
-
-   \begin{enumber}
-      \item \textbf{Phase}
-      \item \textbf{Use}
-      \item \textbf{Waveform graph}
-      \item \textbf{Waveform} (was Change, need screen-shot update)
-      \item \textbf{Sound}
-      \item \textbf{Unison}
-      \item \textbf{Current Voice}
-      \item \textbf{C}
-      \item \textbf{P}
-      \item \textbf{Close Window}
-   \end{enumber}
-
-   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
-
-   \itempar{Phase}{voice oscillator!phase}
-   Voice Oscillator Phase.
-
-   Values: \texttt{0 to 360 (0 to 2*pi)}
-
-   \itempar{Use Oscil}{voice oscillator!use}
-   Use Oscillator.
-   If the \textbf{Current Voice} is set to a value greater than 1, meaning
-   that one is editing additional voices, then this dropdown item also
-   includes the values of all oscillators less then this one, marked as
-   "Mod n", where "n" is the coice number.
-   For example, if one is currently editing current voice 3,
-   then the dropdown list includes \textbf{Internal}, \textbf{Voice 1}, and
-   \textbf{Voice 2}.
-
-   Values: \texttt{Internal*, Other oscillators ("Voice n")}
-
-   \itempar{Waveform graph}{voice oscillator!waveform}
-   Waveform Graph.
-   Shows a period of the currently configured oscillator.
-
-   \itempar{Waveform}{voice oscillator!Waveform}
-   ADDSynth Voice Oscillator Waveform.
-   This button brings up the ADDsynth Oscillator Editor dialog.
-   This dialog is described elsewhere; it used to be called
-   \textbf{Change}.
-
-   \itempar{Sound}{voice oscillator!sound}
-   ADDSynth Oscillator Type (sound/noise).
-   Sound/Noise choice.
-   Select the mode of the oscillator (sound versus white noise).
-
-\begin{figure}[H]
-   \centering 
-   \includegraphics[scale=1.0]{1.3.9/voice-oscillator-sound-dropdown.png}
-   \caption{Voice Oscillator Choices}
-   \label{fig:voice_oscillator_choices}
-\end{figure}
-
-   Values: \texttt{Sound*, Noise (white), Noise (pink)}
-
-   If white \textbf{Noise} is selected, then the waveform graph simply announces
-   "White Noise".  Also, the \textbf{Unison} control is
-   disabled.
-
-\begin{figure}[H]
-   \centering 
-   \includegraphics[scale=0.75]{1.3.9/white_noise_banner.png}
-   \caption{White Noise in ADDSynth Voice}
-   \label{fig:voice_oscillator_white_noise}
-\end{figure}
-
-   If white \textbf{Noise} is selected, then the waveform graph simply announces
-   "Pink Noise".  Also, the \textbf{Unison} control is
-   disabled.
-
-\begin{figure}[H]
-   \centering 
-   \includegraphics[scale=0.75]{1.3.9/pink_noise_banner.png}
-   \caption{Pink Noise in ADDSynth Voice}
-   \label{fig:voice_oscillator_pink_noise}
-\end{figure}
-
-   \itempar{Unison}{voice oscillator!Unison}
-   Unison is useful in creating the chorus like sound of many simultaneous
-   oscillators.
-
-   Values: \texttt{Off*, On}
-
+\subsubsection{ADDsynth / Voice Parameters / UNISON}
+\label{subsubsec:addsynth_voice_parameters_unison}
    Enabling this item causes the Unison-related items to become
-   enabled (they are discussed next, starting with \textbf{Size}
-   and \textbf{Frequency Spread}.
+   activated.
 
    \begin{enumber}
+      \item \textbf{Enable (unmarked button)}
       \item \textbf{Size}
       \item \textbf{Frequency Spread}
       \item \textbf{Ph.rnd}
@@ -999,6 +650,11 @@
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Enable}{unison!enable}
+   Enables or disables unison.
+
+   Values: \texttt{Off*, On}
 
    \itempar{Unison Size}{unison!size}
    Sets the number of unison sub-voices.
@@ -1035,21 +691,364 @@
    Values: \texttt{None*, Random, 50\%, 33\%, 25\%, 20\%}
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/voice-oscillator-phase-invert-dropdown.jpg}
    \caption{Unison Phase Invert Dropdown}
    \label{fig:phase_invert_dropdown}
 \end{figure}
 
-   Finally, at the bottom of the ADDsynth Voice Part dialog, we find the
-   last few controls.
+
+\subsubsection{ADDsynth / Voice Parameters / Voice Oscillator}
+\label{subsubsec:addsynth_voice_parameters_oscillator}
+
+   The ADDsynth Voice Oscillator panel is tucked in the lower left side of the
+   ADDSynth Voice Parameters editor.
+
+   \begin{enumber}
+      \item \textbf{Sound}
+      \item \textbf{Waveform graph}
+      \item \textbf{Use}
+      \item \textbf{Waveform} (was Change, need screen-shot update)
+      \item \textbf{Phase}
+      \item \textbf{C}
+      \item \textbf{P}
+      \item \textbf{Close Window}
+   \end{enumber}
+
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
-   \itempar{Current Voice}{voice oscillator!current voice}
-   Current Voice.
+   \itempar{Sound}{voice oscillator!sound}
+   ADDSynth Oscillator Type (sound/noise).
+   Sound/Noise choice.
+   Select the mode of the oscillator (sound versus white noise).
 
-   Values: \texttt{1* to 8}
+   Values: \texttt{Sound*, Noise (white), Noise (pink)}
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=1.0]{1.3.9/voice-oscillator-sound-dropdown.png}
+   \caption{Voice Oscillator Choices}
+   \label{fig:voice_oscillator_choices}
+\end{figure}
+
+   \itempar{Waveform graph}{voice oscillator!waveform}
+   Waveform Graph.
+   Shows a period of the currently configured oscillator.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.75]{1.5.7/sound_banner.png}
+   \caption{Oscillator in ADDSynth Voice}
+   \label{fig:voice_oscillator_oscillator}
+\end{figure}
+
+   If white \textbf{Noise} is selected, then the waveform graph simply announces
+   "White Noise".  Also, the \textbf{Unison} control is
+   disabled.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.75]{1.5.7/white_noise_banner.png}
+   \caption{White Noise in ADDSynth Voice}
+   \label{fig:voice_oscillator_white_noise}
+\end{figure}
+
+   If pink \textbf{Noise} is selected, then the waveform graph simply announces
+   "Pink Noise".  Also, the \textbf{Unison} control is
+   disabled.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.75]{1.5.7/pink_noise_banner.png}
+   \caption{Pink Noise in ADDSynth Voice}
+   \label{fig:voice_oscillator_pink_noise}
+\end{figure}
+
+   \itempar{Use (oscillator)}{voice oscillator!use}
+   Use Oscillator.
+   If the \textbf{Current Voice} is set to a value greater than 1, meaning
+   that one is editing additional voices, then this dropdown item also
+   includes the values of all oscillators less then this one, marked as
+   "Voice n", where "n" is the voice number.
+   For example, if one is currently editing current voice 3,
+   then the dropdown list includes \textbf{Internal}, \textbf{Voice 1}, and
+   \textbf{Voice 2}.
+
+   Values: \texttt{Internal*, Other oscillators ("Voice n")}
+
+   \itempar{Waveform}{voice oscillator!Waveform}
+   ADDSynth Voice Oscillator Waveform.
+   This button brings up the ADDsynth Oscillator Editor dialog.
+   This dialog is described elsewhere; it used to be called
+   \textbf{Change}.
+
+   \itempar{Phase}{voice oscillator!phase}
+   Voice Oscillator Phase.
+
+   Values: \texttt{0 to 360 (0 to 2*pi)}
+
+
+
+
+
+
+
+\subsubsection{ADDsynth / Voice Parameters / MODULATOR}
+\label{subsubsec:addsynth_voice_parameters_modulator}
+
+   \begin{enumber}
+      \item \textbf{Type:}
+      \item \textbf{Oscillator Source}
+      \item \textbf{Mod AMPLITUDE}
+      \item \textbf{Mod FREQUENCY}
+      \item \textbf{Local Oscillator}
+   \end{enumber}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Type:}{modulator!type}
+   ADDsynth Modulator Type.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/modulator-type.jpg}
+   \caption{Voice Modulator Type}
+   \label{fig:voice_modulator_type}
+\end{figure}
+
+   \begin{enumber}
+      \item \textbf{OFF}.
+         This setting turns off the modulator.
+      \item \textbf{MORPH}
+         \index{MORPH}
+         \index{morph modulator}
+         \index{modulator!morph}
+         The morph modulator works by combining the output of two oscillators
+         into one, with the amplitude envelope translating between one waveform
+         and the other.
+      \item \textbf{RING}
+         \index{RING}
+         \index{ring modulator}
+         \index{modulator!ring}
+         The ring modulator is useful for making bell-like sounds and some
+         weird effects.  The ring modulator works by multiplying two
+         waveforms together, producing a signal that possesses the sum and
+         difference of the frequencies present in the waveforms.  The
+         ins-and-outs of the ring modulator are explained in detail in
+         \paragraphref{paragraph:tips_using_the_ring_modulator}.
+      \item \textbf{PM}
+         \index{PM}
+         \index{pulse modulator}
+         \index{modulator!pulse}
+         The PM (pulse modulation) modulator works by using a modulator
+         envelope to change the pulse width of a pulse waveform.
+         Generally, set \textbf{F.Damp} to zero, so that the modulation amount
+         doesn't depend on the note number.
+      \item \textbf{FM}
+         \index{FM}
+         \index{frequency modulator}
+         \index{modulator!frequency}
+         The (frequency modulation) morph modulator works by modulating the
+         frequency.  Examples can be heard in the "Ethereal" and "Steel Wire"
+         instruments.
+      \item \textbf{PWM}
+         \index{PWM}
+         \index{PWM modulator}
+         \index{modulator!PWM}
+         The pitch modulator works by pulse-width modulation.
+   \end{enumber}
+
+   Values: \texttt{OFF, MORPH, RING, PM, FM, PWM}
+
+   \itempar{Modulator Source}{modulator!external}
+   AddSynth Modulator Source.
+   \index{oscillator!external}
+   This feature allows one of the voices (of the up to 8 allowed in a single
+   ADDsynth instrument) to be used as a modulator or external oscillator for
+   another voice in the instrument.
+   Note that the voice must be one with a number \textsl{below} the current
+   voice.
+   It's important to understand that oscillators always exist even if not
+   used.
+   \index{oscillator!local}
+   This option specifies to use the oscillator of another voice or
+   the \textsl{local} oscillator.
+
+   The parameters must be lower than the voice index; one cannot use the
+   oscillator from a voice with a bigger index (e.g. one can't use the
+   oscillator of voice 8 for voice 4). This is very useful because, if
+   one uses many voices with the same oscillator settings, one can use only
+   one oscillator and select other voices to use this, and if one changes a
+   parameter of this oscillator, all voices using this oscillator will be
+   affected.
+
+   If one sets up voice 2 as a square wave, and voice 1 as a triangle wave,
+   then sets voice 3 to voice 2, voice 3 will get a square wave.
+
+   If one then sets voice 2 to voice 1, voice 2 will get a triangle wave but
+   voice 3 will still get a square wave.
+
+   Voice 3 can use the oscillator from voice 1,
+   \textsl{even if voice 1 is switched off}.
+
+   Modulator 3 can use the oscillator from modulator 1, even if modulator 1 is
+   switched off, but modulator 3 can't use voice 1 if voice 1 is
+   switched off.
+
+   However, if voice 2 is using the oscillator from voice 1, and modulator 3 is
+   using voice 2, it will still get voice 2 oscillator.
+
+   When a voice or modulator is pointed to another voice/modulator, the
+   oscillator window will show the waveform of the actual source, and all the
+   controls will change this, not the internal oscillator.
+
+   \textbf{Local}.
+   Uses the local (internal) oscillator as the modulator of another voice.
+
+   Values: \texttt{Local*, Other voice numbers}
+
+   \textbf{Oscillator Source}.
+   \index{modulator!source}
+   Use another voice as a modulator instead of the modulator of the internal
+   voice. One can make a "modulation stack". The modulator of the voice itself
+   is disabled.
+   One can only select Local (i.e. Internal), or one from a lower numbered voice.
+
+   Values: \texttt{Local*, "Mod n"}
+
+   \itempar{Mod AMPLITUDE}{modulator!amplitude}
+   Modulator Amplitude.
+
+   \begin{enumber}
+      \item \textbf{Vol}
+         Volume.
+         Values: \texttt{0 to 127, 90*}
+      \item \textbf{V.Sns}
+         Velocity Sensing Function; set to rightmost/max to disable.
+         Values: \texttt{0 to 127, 64*}
+      \item \textbf{F.Damp}
+         Modulator Damp at higher frequency.
+         How the modulator intensity is lowered according to lower/higher
+         note frequencies.
+         Values: \texttt{0 to 127, 90*}
+      \item \textbf{Amplitude Env, Stock + Enable}
+         See \sectionref{subsubsec:amplitude_envelope_subpanel}.
+   \end{enumber}
+
+   \itempar{Mod FREQUENCY}{modulator!frequency}
+   Modulator Frequency.
+
+   \begin{enumber}
+      \item \textbf{Detune slider}
+         Fine Detune (cents).
+         Values: \texttt{-35.00 to 35.00, 0*}
+      \item \textbf{Detune Type}
+         Fine Detune (cents).
+         Values: \texttt{L35cents, L10cents, E100cents, E1200cents}
+         See \figureref{fig:addsynth_freq_detune_type}.
+      \item \textbf{Octave}
+         Octave.
+         Values: \texttt{-8 to 7, 0*}
+      \item \textbf{Coarse Det.}
+         Coarse Detune.
+         Values: \texttt{-64 to 63, 0*}
+      \item \textbf{Filter Env, Stock + Enable}
+         See \sectionref{subsubsec:envelope_settings_for_filter}.
+   \end{enumber}
+
+   \itempar{Local Oscillator}{modulator!oscillator}
+   Local Oscillator.
+   Provides the modulator for the oscillator.
+   This value must indicate a modulator from a voice with a number less than
+   the current voice. Entries are greyed out for Voice 1, as there is no
+   lower-numbered voice available for modulation.
+
+   Values: \texttt{Internal*, "Mod n"}
+
+   \begin{enumber}
+      \item \textbf{Waveform}
+         ADDsynth Oscillator Editor.
+      \item \textbf{Use}
+         Oscillator to Use.
+         See the paragraph below.
+         Values: \texttt{Internal*, Other oscillators?}
+      \item \textbf{Phase}
+         Oscillator Phase.
+         Values: \texttt{0 to 360 (0 to 2PI)}
+      \item \textbf{Waveform graph}
+         Waveform graph.
+   \end{enumber}
+
+   One has the choice between \textbf{Internal}, which in this case means a
+   completely independent modulator oscillator per voice (extra waveform button),
+   or \textbf{Mod. (n)}, which refers to the modulation oscillators one has
+   already defined for the voices with a lower index.
+   The voice of lower index doesn't need to be enabled in order to be used as a
+   modulator. This means one can make one modulation oscillator for voice 1, and
+   reuse it in voices 2 and 3.  This is the same system used for the normal
+   oscillators.
+
+\paragraph{Tip: Using the Ring Modulator}
+\label{paragraph:tips_using_the_ring_modulator}
+\index{tips!ring modulator}
+\index{tips!internal modulator}
+
+   This section is derived from one of the short text files in the
+   \textsl{Yoshimi} source-code bundle (\cite{yoshimi} or \cite{yoshimi2}).
+   It notes that "Some people have
+   been confused about how to use an 'external' Mod Oscillator", and
+   provides usage notes that we will elaborate on here.  Here is the way to
+   use the ring modulator:
+
+   \begin{enumber}
+      \item Open the ADDsynth editing window.  Then open
+         \textbf{Show Voice Parameters}.
+      \item For \textbf{Type}, select the \textbf{RING} value.  This
+         selection will activate the \textbf{Mod Oscillator}.
+      \item In the \textbf{Local Oscillator}, click on \textbf{Waveform} to open
+         the \textbf{ADDsynth Oscillator Editor}.
+      \item Set the wave-shape to \textbf{Triangle}.
+      \item Switch to voice number 2 and enable it.
+      \item Again, for \textbf{Type}, select the \textbf{RING} value.
+         However, feel free to select one of the other modulators, if one
+         wishes.
+      \item One can now use \textbf{Internal} for voice 2, or select
+         \textbf{Voice} 1, to use the first voice as in internal modulator.
+      \item Change the internal voice to, for example, \textbf{Square}.
+      \item Do the same setup for voice 3.
+         One will find that one can use its \textbf{Internal} or
+         either of the two previous ones.
+   \end{enumber}
+
+   Now the joker in the pack is that one can disable both the previous
+   voices but \textsl{still} use their Mod Oscillators.
+
+   In a newsgroup (\cite{ringmodulator}, the following note is found.
+
+   \begin{quotation}
+      Say I want the A tone ring-modulated by 880Hz. A is 440 Hz, the ring
+      modulation setting lets me choose the modulation frequency relative
+      to the frequency of the tone. So I choose octave 1 and let the
+      detune at zero. If I move the detune, it'll shift the modulation
+      frequency a bit, which will make a disharmonic effect.
+
+      Wet/dry setting is controlled by volume in "modulation amplitude".
+      The modulation frequency can further be multiplied or several
+      modulations can be simulated by changing the oscillator waveform.
+
+      One huge letdown is that it is only available for Adsynth. PadSynth
+      does not seem to have ring modulation option, so the coolest sounds
+      stay out of question for massive lead tones. :-(
+   \end{quotation}
+
+   We have provided a more useful "tutorial" on using the ring modulator in the
+   \textsl{Yoshimi Cookbook} \cite{cookbook} document.
+
+   Finally, at the bottom of the ADDsynth Voice Part dialog, (under the Modulator
+   section, we find the last few controls.
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{C}{voice oscillator!copy}
    Copy D note parameters ("DnoteParameters").
@@ -1059,6 +1058,7 @@
 
    \itempar{Close Window}{voice oscillator!close}
    Close.
+
 
 \subsection{ADDsynth / Voice List}
 \label{subsec:addsynth_voice_list}
@@ -1070,7 +1070,7 @@
    It is fully in sync with the voice windows.
 
 \begin{figure}[H]
-   \centering 
+   \centering
 %  \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/ADDsynth-voices-list.jpg}
 %  \includegraphics[scale=0.75]{1.5.0/AddSynthVoiceList.png}
    \includegraphics[scale=0.75]{1.5.7/AddSynthVoiceList.png}
@@ -1145,7 +1145,7 @@
    \itempar{Vib. Depth}{voice list!vibrato depth}
    Frequency LFO Amount/Depth.
    This setting can be very useful because, with the detune settings, one can
-   create very good sounding instruments. 
+   create very good sounding instruments.
 
    Values: \texttt{0 to 127, 40*}
 
@@ -1161,7 +1161,7 @@
    harmonics of the voice.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/ADDsynth-oscillator-editor.jpg}
    \caption{ADDsynth Oscillator Editor}
    \label{fig:addsynth_oscillator_editor}
@@ -1221,7 +1221,7 @@
    Not sure how this works, so, for now, experiment!
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/ADDsynth-hrnd.png}
    \caption{ADDsynth Oscillator Harmonic Randomness Selections}
    \label{fig:addsynth_hrnd}
