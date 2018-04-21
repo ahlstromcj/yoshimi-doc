@@ -45,8 +45,8 @@
    or link to the oscillator of any lower-numbered voice.  For the modulation
    oscillator one can have a locally defined one (internal) or one can have
    two alternatives: either the modulation oscillator from a lower-numbered
-   voice (that voice must be enabled), or the oscillator from the lower-numbered
-   voice itself.
+   voice, or the oscillator from the lower-numbered voice itself (that voice
+   must be enabled).
 
    In the voice window, the \textbf{Oscillator Source} gives the choice of
    previous voice oscillators and the \textbf{Local Oscillator} gives you the
@@ -98,7 +98,6 @@
       \item \textbf{Vel Sens}
       \item \textbf{Pan}
       \item \textbf{Rand}
-      \item \textbf{Reset (panning)} (red button)
       \item \textbf{Amplitude Env}
          The Amplitude Env panel is described in detail in
          \sectionref{subsubsec:amplitude_envelope_subpanel}.
@@ -154,10 +153,6 @@
    A red fill-in color provides an indicator for the activation of random
    panning in this control.
    Also, clicking on this small control will enable random panning.
-
-   \itempar{Reset (panning)}{addsynth!reset pan}
-   ADDsynth Reset Panning (red button).
-   Clicking this red button changes the panning value to 64 (centered).
 
    Next, we skip the \textbf{Amplitude Env} and \textbf{Amplitude LFO}
    panels, which are described elsewhere, as noted above.
@@ -399,13 +394,11 @@
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
-   \itempar{Voice Number}{voice!number}
+   \itempar{Voice Number Tab}{voice!number}
    ADDsynth Voice Number.
-   This display element shows the voice number represented by the settings
-   in this dialog.  Each \textsl{Yoshimi} part/instrument can consist of up
-   to eight voices.
-   The voice being worked on can be selected using the
-   \textbf{Current Voice} tab.
+   When highlighted this indicates the voice currently being viewed.  Each
+   \textsl{Yoshimi} part/instrument can consist of up to eight voices. The
+   voice being worked on can be selected using the \textbf{Current Voice} tab.
 
    Values: \texttt{1* to 8}
 
@@ -1081,12 +1074,12 @@
    \begin{enumber}
       \item \textbf{No. (1 to 8)}
       \item \textbf{Edit}
-      \item \textbf{Waveform}
+      \item \textbf{Wave}
       \item \textbf{Vol}
       \item \textbf{Pan}
-      \item \textbf{R.}
+      \item \textbf{Res}
       \item \textbf{Detune}
-      \item \textbf{Vib. Depth}
+      \item \textbf{Vibrato Depth}
       \item \textbf{Hide Voice List}
    \end{enumber}
 
@@ -1103,11 +1096,11 @@
    This button brings up the appropriate ADDSynth Voice dialog so that the
    waveform can be easily brought up for modification.
 
-   \itempar{Waveform Icon}{voice list!waveform icon}
+   \itempar{Wave Icon}{voice list!waveform icon}
    Waveform Icon.
    The waveform icon shows a rough rendering of the actual shape of the
    voice waveform, or the letter \textbf{N} is the voice is constructed from
-   white noise.  Note that this picture isn't updated, if the voice is
+   white noise.  Note that this picture isn't updated if the voice is
    edited, until the voice list is closed and reopened.
 
    \itempar{Vol}{voice list!volume}
@@ -1123,7 +1116,7 @@
 
    Values: \texttt{0 to 127, 64*}
 
-   \itempar{R}{voice list!resonance}
+   \itempar{Res}{voice list!resonance}
    Resonance On/Off.
    Enable/disable the resonance effect of a voice.
    Note that the resonance is configured in by the Resonance dialog brought
@@ -1142,7 +1135,7 @@
 
    Values: \texttt{-35 to 35, 0*}
 
-   \itempar{Vib. Depth}{voice list!vibrato depth}
+   \itempar{Vibrato Depth}{voice list!vibrato depth}
    Frequency LFO Amount/Depth.
    This setting can be very useful because, with the detune settings, one can
    create very good sounding instruments.
