@@ -135,9 +135,9 @@
    \textsl{XX} is the ID one supplied.
 
    Opening a new instance creates a copy that has it's own dynamic memory for
-   running storage. In the future, some data (such as recent history) will be
-   shared between instances. This will be done only where instances actually
-   need to be in sync.
+   running storage. Some data (such as recent history) is shared between
+   instances. This is done only where instances actually need to be in sync.
+   The bank structure should be synchronised, but currently isn't.
 
    Each instance has it's own file-store in \textsl{Yoshimi}'s configuration
    directory. The means that if one opens a numbered instance, one will get
@@ -399,8 +399,10 @@
    one's system is tight on disk space, higher levels of compression can be
    specified.  Using XML compression can also save file access time which may
    be beneficial if one's computer is borderline on latency.  This setting
-   should stay at 3 if one is going to save large patchsets that will later be
-   loaded while running. Uncompressing is \textsl{much} faster than file
+   should stay at 3 if one is going make instruments publicly available, as
+   some older versions of Yoshimi and ZynAddSubFX don't recognise uncompressed
+   files. This also applies if one is going to save large patchsets that will
+   later be loaded while running. Uncompressing is \textsl{much} faster than file
    loading.
 
    Values: \texttt{0 to 9, 3*}
@@ -410,8 +412,11 @@
    the terminal in which
    \textsl{Yoshimi} can be run, or, more usefully, to
    an output console window.
-   Now these messages are pushed in reverse order, to avoid scrolling
-   and to make the most recent statuses easily visible.
+   In some versions of Yoshimi these messages were pushed in reverse order, to
+   avoid manually scrolling and to make the most recent statuses easily visible.
+   However, a method has now been found to auto-scroll and keep the most recent
+   entry visible, so new entries are in normal reading order.
+
    See \figureref{fig:send_reports_to}.
    It provides a depiction of the selection drop-down.
 
@@ -580,8 +585,10 @@
 
    \itempar{Enable CLI}{Switches!Enable CLI}
    If checked, the command-line interface is enabled.
-   Note that one cannot disable both the user-interface and the command line
-   at the same time.
+   Note as of V 1.5.6 it has been possible to disable both the user-interface and
+   the command line at the same time. This means that Yoshimi can only be closed by
+   sending a special MIDI message (CC 99, 68, CC 98, 68). Alternatively one could
+   send a system shutdown message.
 
 \paragraph{Menu / Yoshimi / Settings / Jack}
 \label{paragraph:menu_yoshimi_settings_jack}
