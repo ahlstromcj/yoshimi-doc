@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2016-03-07
-% \update      2018-03-18
+% \update      2018-05-26
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -135,11 +135,14 @@
          \textsl{Yoshimi} exits.
       \item \texttt{.xiz}
          \index{.xiz}
+         \index{.xiz!Legacy format}
          \index{config!.xiz}
-         An Instrument file.  This format is the "Legacy" or "Zyn"
-         file format.
+         An Instrument file.  This format is the \textbf{Legacy} or \textbf{Zyn}
+         file format.  This format will be supported forever, although some
+         backward-compatible refinements might be made as time goes on.
       \item \texttt{.xiy}
          \index{.xiy}
+         \index{.xiy!Yoshimi format}
          \index{config!.xiy}
          An Instrument file in the new \textsl{Yoshimi} file format.
          This format includes all the        
@@ -480,7 +483,7 @@
    deleted. To see the physical location of the \texttt{.xiz} file, one
    should check the
    \textbf{Yoshimi / Settings / Banks / Root Dirs}
-   (\textsl{File→Settings→Bank\_Root\_Dirs}) window to see the paths for
+   (\textsl{File / Settings / Bank\_Root\_Dirs}) window to see the paths for
    banks.
 
    At startup, after all the configuration is complete, the banks are loaded and

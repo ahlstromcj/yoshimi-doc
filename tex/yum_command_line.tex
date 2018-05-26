@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-09-06
-% \update      2017-12-16
+% \update      2018-05-26
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -162,6 +162,8 @@
    non-duplicated loads or save.  Thus, provided one makes a normal
    command-line exit, the last commands will be available on the next run of
    \textsl{Yoshimi}.
+   The command-line now has formal methods of opening, selecting and closing
+   additional instances.
 
    When loading external files from the command line, there is an alternative
    to entering the full name if \textsl{Yoshimi} has already seen this file and
@@ -798,8 +800,33 @@ A few more detailed descriptions occur in the following sections.
 \label{paragraph:command_line_list_history}
 
    Show the recent history of the following items [s]:
-   Patchsets, SCales, STates, Vectors, and MLearn).
+   Instruments, Patchsets, SCales, STates, Vectors, and MLearn).
    If no parameter is provided, show them all.
+
+   The last-used file in any section is now always at the top of its history list,
+   so it's easier to pick up where one left off.
+   Instruments, patch sets, vectors, scales, MIDI-learn and state all offer the
+   most recent entry whenever one wants to load or save.  On first-time use (when
+   there is no history) the home directory will be offered as a location,
+   regardless of where \textsl{Yoshimi} was called from.
+
+   In the specific case of instruments, when \textsl{saving},
+   one is offered the instrument in the currently-selected part to the home
+   directory, otherwise, when saving these 'managed' files,
+   one won't be offered the previous last-used entry unless it was seen on that
+   session, either by being loaded, or saved by name. This is to give some
+   protection against accidental overwrites.
+
+   For example:
+   You have been working on the 'foo' instrument
+   for a whole day, saving the whole patch set as you
+   go. Then, the following day, you start up \textsl{Yoshimi}
+   and immediately have a completely
+   new idea 'bar' and start working on it. Without thinking, you save and hit
+   Enter. Oops, your just wiped out 'foo'.
+   Only now you haven't, because while loading \textsl{Yoshimi}
+   would see the older file, so that saving
+   will offers your home directory to put a new name in.
 
 \paragraph{List / Effects [s]}
 \label{paragraph:command_line_list_effects}

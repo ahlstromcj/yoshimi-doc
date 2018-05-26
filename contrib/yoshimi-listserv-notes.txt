@@ -6204,3 +6204,520 @@ can potentially take tens of seconds to complete). For that time, any attempt to
 alter the part that contains the one that's updating will not accept any other
 changes and will give the warning: "Part {n} busy".
 
+
+
+
+te: Sun, 8 Apr 2018 20:06:38 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] A few tweaks
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.32; x86_64-unknown-linux-gnu)
+
+Over the last few days I've been working on a couple of tunes, and getting
+increasingly frustrated with the mixer panel window, so I've made a few changes
+in the current master.
+
+The first is that if you enable a part via the mixer, it now makes it the
+current part. Previously you could enable it, then try to fetch an instrument
+from a bank, only to find it went to a different part - the current one!
+
+The second change I've made is that clicking on the 'Edit' button always opens
+the part editor - previously it just made it the current one. Well, apart from
+loading instruments I can't think of any reason you'd want to make one current
+without wanting to edit it. it doesn't need to be current for the volume slider
+and pan knob to work, nor the audio destination or MIDI channel number.
+
+So, the Edit button now exactly mirrors the action of the main window Edit. I'm
+thinking it might be an idea to make the name button also identiacal to the
+main window, in that a right click would enable you to edit the name.
+
+None of this is fixed in stone of course, so if anyone violently objects, do say
+so.
+
+
+
+
+Date: Wed, 18 Apr 2018 00:38:14 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Instances
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.32; x86_64-unknown-linux-gnu)
+
+Some time ago somebody asked about being able to load several instances at
+once when starting Yoshimi. In the current master this is now in place as a
+trial.
+
+The way this works is that when closing the main instance (0) it first scans
+through to see if any others are open, and saves the result to its config file
+before closing everything down.
+
+Next time you start Yoshimi it creates a list of active instances from the
+config file and once the main instance is up and running it scans this list and
+restarts the same instances.
+
+If you had no other instances open, or had already closed them before shutting
+down, then none will be re-started, so you always get back the last state.
+
+Following on from this, if you start yoshimi with a state file, then it will
+re-start what ever instances were running when that state file was created.
+So, one state file could re-start instance 1, 4 and 7, while a different state
+file might open instances 3, 5, 7 and 10.
+
+As I said, this is a trial and the feature is 'always on'. I don't know if this
+should be switchable or not. It is fully backwards compatible, older Yoshimi
+versions will simply ignore the extra data in the config file, and loading old
+configs will simply start just the main instance as before.
+
+An oddity I discovered when doing this is that there seems to be no limit to
+the number of instances that can be spawned, which seems a bit dangerous. Also,
+you can have any IDs you like and they don't have to be consecutive.
+However, this system will only recognise ones with IDs 1 to 31.
+
+
+
+
+
+Date: Tue, 24 Apr 2018 22:11:34 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Instances
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.32; x86_64-unknown-linux-gnu)
+
+Well after a little wobble (temporarily killed LV2) we're back on track -
+sort of. There is now a checkbox in settings->switches that enables the feature
+(off by default).
+
+e.g. I had the main instance correctly auto loading instances 1, 2 & 5 and
+apply default settings if they existed.
+
+The command line correctly tracks the instances that are set to report to it
+(rather than the console) and reads and writes to the one selected - the CLI
+can close instances, but not yet open them. However it currently tracks the
+instance *position* in the list, not its reported ID, so in the example above,
+'5' would be '3' to the CLI.
+
+Hidden CLI instance commands are:
+  read yoshimi
+  set yoshimi [n]
+'yoshimi' must be typed in full
+
+Next step, if it's possible is to allow saving the main default instance to also
+save the default state of all other open instances.
+
+Finally, rinse and repeat for any main instance state.
+
+--
+
+
+
+Date: Sat, 28 Apr 2018 16:41:19 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Instances
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.32; x86_64-unknown-linux-gnu)
+
+Some tidying up on this.
+
+The CLI can now formally add, and swap instances, and they will be correctly
+numbered. They can't yet be deleted.
+
+Although in theory LV2 still has no limit on instances, for stand-alone I've
+restricted both the CLI and GUI to 32 (0 - 31), although the user IDs can be
+whatever you like. I think it will be avery long time before anyone will have a
+computer that can realistically handle more!
+
+There are still some oddities with instance start-ups and defaults which need
+cleaning up, but as far as I can tell, nothing dangerous.
+
+
+
+
+Date: Tue, 24 Apr 2018 23:25:55 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Change keyboard mapping middle note via MIDI for just
+        intonation
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.32; x86_64-unknown-linux-gnu)
+
+On Tue, 24 Apr 2018 21:31:02 +0100
+"Nick Stephens" <dmarc-noreply@freelists.org> (Redacted sender
+"nick_stephens24" for DMARC) wrote:
+
+>Hi,
+>
+>I am a new user of Yoshimi and I think it is an excellent soft synth. I
+>have recently been interested in its microtonal capabilities for custom
+>scales.
+
+Wecome aboard :)
+
+>I am not sure if this feature already exists, but is there a way to
+>change the middle note in the keyboard mapping section of the scales
+>dialog (or even every control in the scales dialog) via MIDI messages? I
+>have tried midi learn, but this does not work as the control is
+>unlearnable. This way, it would be possible to write music in just
+>intonation and modulate to different keys by changing the tuning on the
+>fly. I was thinking of using the very bottom set of 12 notes on the
+>keyboard (midi notes 0-12) to change the key centre the tuning is
+>referenced to.
+>
+>Any help would be greatly appreciated.
+>
+>Thanks,
+>
+>Nick
+
+
+Well that's certainly different! We've got several people here using
+microtonal scales, but nobody has mentioned that idea before. Currently it
+isn't possible.
+
+On first sight it would seem that the following could all be made learnable
+without too much trouble:
+
+Enable Microtonal
+"A" Note
+Invert keys
+Center
+
+Keyboard Mapping ON
+First note
+Middle note
+Last note
+
+
+With some difficulty it might be possible to set "A" Freq in steps of cents via
+an NRPN with a range of something like +- 7 octaves, or for 0.1 cent steps
+you'd get a little under +- 3/4 octave. Trying to make that MIDI-learnable would
+be 'interesting'!
+
+Tunings and Keyboard mapping would be very difficult indeed, partly because of
+the variable way they are created. An added complication is that tunings can be
+defined either as cents, or ratios as extreme as 156375/92991
+
+All these controls are 'next note'. There would be no way of applying them to
+already sounding ones.
+
+Does anyone else have any interest in this?
+
+
+
+
+
+Date: Wed, 25 Apr 2018 23:56:04 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Change keyboard mapping middle note via MIDI for just
+        intonation
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.32; x86_64-unknown-linux-gnu)
+
+In the current master, all the following are now MIDI-learnable:
+
+        Enable Microtonal
+        "A" Note
+        Invert keys
+        Center
+        Shift
+
+        Keyboard Mapping ON
+        First note
+        Middle note
+        Last note
+
+It actually took more time smartening up the GUI and doing the highlights than
+adjusting the code :o
+
+I don't know how useful this will be, but it's there now for anyone to play
+with.
+
+Spinboxes are a bit odd. To learn them you must click on one of the arrows, but
+it's not possibly to highlight them, so the best i can do is make a little box
+behind them.
+
+
+
+
+
+Date: Wed, 25 Apr 2018 15:28:37 +0200
+From: lechp <lechp@onet.pl>
+To: "yoshimi@freelists.org" <yoshimi@freelists.org>
+Subject: [yoshimi] Re: Change keyboard mapping middle note via MIDI for just
+        intonation
+X-Mailer: onet.poczta
+
+>>Does anyone else have any interest in this?
+
+I'm a big fan of custom scales myself so it certainly sounds interesting. I wonder
+if there isn't some workaround that would functionally achieve the same thing,
+e.g.: 12 instruments, each set to a different MIDI channel. However,
+per-instrument tuning would be a nightmare using the current set of tools, AFAIK
+(e.g.: setting up the instruments as drum kits and manually tuning 100s of notes).
+
+Allowing the global tuning parameters to be overridden locally within instruments
+could be one way to go. Some instruments already have microtonal tuning, but it
+seems to be based on smattering of other features that are mostly aimed at chorus
+or drum effects.
+
+Another thing that might be possible could be to outsource the tuning altogether
+to an external module, perhaps in Pure Data or something similar. Develop a
+prototype controller there first, and then think about incorporating it into
+Yoshimi. Since we're already on the subject, I can imagine lots of possibilities:
+-Choirs can sometimes adjust their harmony to achieve consonance. But how do they
+do it? And what's the logic behind it? If 3 singers sing a C-E-G chord, which
+starts off a bit foul and they want to bend it to achieve perfect harmony, who
+controls the tuning? Does the E go flatter? Or maybe the C goes sharper? Maybe the
+previous notes leading up to that chord suggest that it's currently in F-maj, so
+that would also affect the desired tuning?
+--Use the pitchbend (or another controller) as a subtle quantizer or detuning
+agent, a bit like the "ForceH" controller in the pad synth, but in real-time, and
+adjusting the base frequencies of multiple notes.
+--Creating some guitar-like instruments where the tuning module tries to mimic a  real fretboard.
+
+The big question is how? I'm not sure if Yoshimi currently supports that kind of
+external control, or how easy/hard it would be to set up.
+
+Regards,
+
+Lech Papierski
+
+
+
+
+
+Date: Wed, 25 Apr 2018 18:22:15 +0200
+From: Ichthyostega <prg@ichthyostega.de>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Change keyboard mapping middle note via MIDI for just
+        intonation
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+        Thunderbird/52.7.0
+
+On 25.04.2018 15:28, lechp wrote:
+> -Choirs can sometimes adjust their harmony to achieve consonance. But how do
+> they do it? And what's the logic behind it? If 3 singers sing a C-E-G chord,
+> which starts off a bit foul and they want to bend it to achieve perfect
+> harmony, who controls the tuning? Does the E go flatter? Or maybe the C goes
+> sharper? Maybe the previous notes leading up to that chord suggest that it's
+> currently in F-maj, so that would also affect the desired tuning?
+
+Sorry for being so frank, but you are approaching the topic from a totally
+systemic and logic view angle. Unfortunately this is not the way music works.
+Singers or musicians are not machines, which process and manipulate sound.
+
+To start with the tuning itself, a singer's voice does not have an absolutely
+well defined (in a mathematical sense) frequency. There is an interconnection
+between the texture or character of a voice and its perceived pitch. It also
+very much depends on the room. Some singers' voices tend to sound somewhat
+flat and others singers' voice tends to sound somewhat sharp, when used
+in a reverberant room (or in a dry room, or in a boomy room and so on).
+The point of reference here is what the singer hears herself/himself. This
+is set off to what can be heard at some distance, in a given type of room.
+It is part of the process of becoming a trained singer just to learn in which
+way to set off with respect to what you yourself perceive. This is mostly
+a process of sharpening and training one's own hearing capabilities. The
+singer (or instrument player likewise, for all non-keyboard instruments9
+learns to listen to the room response while singing or playing. And this
+is not an intellectual, analytical kind of hearing, rather it is a perception     of proportions. After some training, you get the perception how your sound
+"sits" within the given environment. Based on that perception, you change
+some kind of "tension" or attitude preceding the forming of each note.
+
+Another thing to consider is the fact that the musician or singer not just
+presses some virtual button to produce the sound. It is really non-trivial to
+get /any acceptable/ note to sound (even while, as a musician, you just get
+accustomed to that non-triviality and constant threat to fall off limits).
+The essence is, that you "get" each note; your voice, or your instrument
+playing kind of "falls" into each note. Once you're in, you can not
+change it, without the whole texture breaking down. At least, any attempt
+to /bend or correct/ a note would immediately put it entirely off limits,
+and that would be very noticeable to the listener. For that reason, a
+professional player or singer learns some special tricks, how to fix a note
+that happened to go wrong, without that bugfix becoming outright obvious.
+
+Bottom line is: getting a note is very comparable to the aiming when throwing
+a ball, or when shooting an arrow: you build some attitude beforehand, and then
+you commence the movement and that is what you get, no way to fix it afterwards.
+
+Another important thing regarding chorus or any kind of ensemble: it is one of
+the most fundamental experiences, that your own sounding and voicing is
+fundamentally transformed within the ensemble. This is an absolutely
+mind-blowing experience, which you just can not imagine: Your instrument (or
+your voice) just acts and behaves different when joined into the ensemble.
+To a huge extent, the notes just happen to you and often they happen contrary
+to what you, as an individual, just meant to do. When an ensemble (orchestra
+or chorus) produces a chord, it does not "make" individual notes and then
+"combines" them into the chord. Rather, the chord is formed *as a single entity*
+in one shot. And it is just one minor part of forming a chord, that it is formed
+such as to avoid any unsuitable beating. Thus the "tuning" in physical sense is
+for the musician in practice just one aspect of getting a chord, and getting it
+with the right character (volume, colour, expression). When you watch a choir or  orchestra in rehearsal, you'd notice that most of the time this process does not
+work all right. That is the very reason they have to practice (and in a
+professional setting it is assumed that the individual musician has already
+practised and mastered all the technical aspects of the piece beforehand). To
+get all that right, and consistently so, is what makes a great ensemble.
+
+
+The whole topic of tuning systems and temperatures really only occurs and is
+relevant in the context of keyboard instruments. Any ensemble of musicians
+which have to form their notes, literally never play "Well-Tempered".
+Rather they produce chords with a musically sound beating. (pun intended)
+
+-- Ichthyo
+
+
+
+
+
+Date: Wed, 25 Apr 2018 22:34:35 +0200
+From: lechp <lechp@onet.pl>
+To: "yoshimi@freelists.org" <yoshimi@freelists.org>
+Subject: [yoshimi] Re: Change keyboard mapping middle note via MIDI for just
+        intonation
+X-Mailer: onet.poczta
+
+Thanks for that. My intention was to give a simplified example to give food for
+thought in the context of gaining more fine-grained access to Yoshimi's tuning
+capabilities. I think it's more about creating new opportunities for musical ideas
+to take hold, rather than faithfully recreating something that already exists.
+
+The kind of thing I'm curious about is the idea of a tuning system that
+automatically adjusts itself while you play on a keyboard. Even if a singer isn't
+aware of any behind-the-scenes logic, an experimenter might still want to turn
+theories into code in order to try things out.
+
+For instance, a parser could continuously scan the notes being played and try to
+guess the current key, based on a set of predefined chord ratios. Various rules
+could be added, for instance so that recently played notes carry more weight than
+older notes, so that arpeggios or other melodic progressions can also help
+determine the key. Or perhaps a rule that a high note is more likely to be heard
+as a harmonic of a lower note, not the other way round.
+
+...Or you could have 12 buttons, each of which sends a different MIDI event to
+Yoshimi, telling it to retune.
+Or: a small standalone app that captures MIDI input, assumes equal temperament and
+adds pitchbend or some suitable "per note" controller data to retune, and sends
+the output to Yoshimi. I don't even know if the MIDI standard is up to it. There
+comes a point when there's only so much that can be packed into Yoshimi directly,
+and the "next level" would be access via a network protocol?
+
+Regards,
+
+
+
+
+Date: Fri, 4 May 2018 21:24:03 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Some more tweaks
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.32; x86_64-unknown-linux-gnu)
+
+Following on from issues I had at last year's LAC, Solo 'Loop' mode now has as
+250mS de-bounce timer. I had been using a fairly cheap foot switch and a couple
+of times got two steps instead of one.
+
+There is also a new mode called 'Recoil'. I'm not really happy with that name
+but can't think of a better one. This is also de-bounced. It is similar to
+loop mode, in that an input value of zero is ignored, but values 1 to 63 step
+downwards and loop back to part 16, while 64 to 127 still step upwards and loop
+back to 0.
+
+On my BCF2000 there are two foot switch inputs, and they can be set to the same
+CC but with different ranges, so now, not only is there no risk of a double
+step, but I can step quickly either way to any of the parts 1 to 16 :)
+
+P.S. if anyone can think of a better name before the next release - it's in!
+
+Oh, and the de-bounce timer is very simple, and a bit variable.
+It also has a known defect.
+
+There is a possibility of it missing a valid input...
+But only if Yoshimi is running continuously...
+And in a 250mS time frame...
+Just once every 5 days...
+From the last Solo change :)
+
+The de-bounce is not implemented for Row and Column modes. In the first place
+you are sending direct part numbers, and also these modes are really intended
+for automation, where you might want to do fast note-by-note part changes, such
+as a complex arpeggio.
+
+
+On the downside I've uncovered two old bugs that I don't yet know what to do
+about.
+
+The first is serious. If you select an instrument for swapping, then try to
+select a different bank Yoshi crashes. This goes back to when we first
+implimented the bank structure :(
+
+		(FIXED)
+
+The second is just a bit annoying. If you run multi-instance in jack, stand
+alone, when you close the main instance you get a series of 'broken pipe'
+messages. One for each instance. It doesn't seem to produce any Xruns though.
+It also doesn't occur when running as an LV2 plugin. This goes back to when we
+first implemented multiple instances.
+
+More tea Vicar?
+
+
+
+
+
+Date: Fri, 18 May 2018 19:35:31 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Yoshimi V 1.5.8 rc1
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.32; x86_64-unknown-linux-gnu)
+
+This is now up there. I want to ensure this is stable for use at this year's
+LAC.
+
+As a result I've temporarily disabed auto-instance loading. I'm not entirely
+happy with its stability, and think the whole of the 'state' code is a bit of a
+mess.
+
+On the bright side, universal bank and instrument swaps are looking rock solid.
+There is just one partial failure mode when swapping banks. This is where you
+try to swap with a write protected location, and are left with one of the banks
+you want to swap renamed as 'tmp'. However, it is still in the directory that it
+came from so it's not lost.
+
+I've renamed 'Recoil' to 'TwoWay'. It's still not wonderful but better
+describes the action. Also I've shortened the debounce time to about 60mS.
+Previously it was possible to physically switch too fast :(
+
+
+
+
+
+Date: Fri, 25 May 2018 14:17:19 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Yoshimi V 1.5.8 rc5
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.32; x86_64-unknown-linux-gnu)
+
+On Thu, 24 May 2018 13:48:32 +0100
+Will Godfrey <willgodfrey@musically.me.uk> wrote:
+
+>Yes it's moved on a bit :)
+>This is the current 'master' on both github and sourceforge.
+>
+>I've been going through just about everything I can test to shake out bugs, and
+>the latest group were in the setup files. It's the old story of patches on top
+>of patches. Well it's cleaned out now, and not only does it work correctly for
+>all combinations I can think of, but it looks like the problem with autoloading
+>instances was due to this.
+>
+>Autoloading isn't in this commit, but I'll do more testing and it might just
+>squeak in before I freeze the code :)
+
+OK, as of now it's in.
+So at least two people on here will be happy :)
+
+It would be helpful if our BSD people could give this all a run over the
+weekend, especially swapping banks and instruments across roots to make sure
+the file operations work correctly.
+
+
+
+
+

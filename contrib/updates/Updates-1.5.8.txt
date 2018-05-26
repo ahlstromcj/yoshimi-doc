@@ -1,0 +1,61 @@
+Since V 1.5.7
+
+MIDI LEARN
+{got overlooked}
+
+Maximim MIDI-learned lines is now 200.
+
+
+NEW INSTRUMENT FORMAT
+{this needs some clarification}
+
+This is part of the rationale of the new instrument format. We will *never* make any changes to the standard ones, and one will always be able to load and save them. However we will slowly be adding improvements and refinements to the new format, with (where appropriate) compatible adjustments for the standard ones.
+
+There is a caveat when handling instruments in banks. If one sets for only Legacy or only Yoshimi but have previously set for both, saving to such a dual entry will erase the one that wasn't selected. Currently, it is not known why that happens (banks are 'interesting').
+
+
+HISTORY LISTS
+{this needs some clarification}
+
+The last used file in any section is now always at the top of it's history list, so it's easier to pick up where one left off.
+
+Also, now all of these - instruments, patch sets, vectors, scales, midilearn and state - offer the most recent entry whenever one wants to load or save. On first time use (when there is no history) the home directory will be offered as a location, regardless of where Yoshimi was called from.
+
+In the specific case of instruments, when *saving* one will be offered the one in the currently selected part to the home directory, otherwise when saving these 'managed' files one won't be offered the previous last-used unless it was seen on that session, either by being loaded, or saved by name. This is to give some protection against accidental overwrites.
+
+e.g.
+You have been working on 'foo' for a whole day saving the whole patch set as you go, then the following day you start up yoshimi and immediately have completely new idea 'bar' and start working on it. Without thinking you save and hit 'Return'. Oops, your just wiped out 'foo'.
+
+Only now you haven't, because while loading would see the older file, saving just offers your home directory to put a new name in.
+
+
+DEFAULT STATE
+{a bit more info}
+
+There is a 'gotcha' with this, in that when saving the default state one must *already* have set the 'Start With Default State' switch, otherwise reloading the default state works *once*, but upon re-opening yoshimi, the switch will be unchecked - i.e. quite correctly in it's previous saved state!
+
+
+Since V 1.5.8
+
+BANK/INSTRUMENT
+It has always been possible to swap and move instruments within a bank, and since V 1.3.5 it was possible to swap banks within a bank root, but now one can swap/move instruments across any banks and any bank roots. One can also move whole banks across bank roots.
+
+These extensions use exactly the same controls as before. However, it isn't just a case of changing IDs. Files are actually moved, so additional protections and warnings are put in place.
+
+Instrument and bank swapping controls are now also available to the CLI with specific IMport and EXPort controls.
+
+SOLO
+{this section needs updating a bit with the inclusion of Loop and TwoWay. Row is now only recommended for automation}
+
+At the 2017 Linux Audio Conference it became obvious there was a possible problem with the Solo 'Loop' feature. This was due to 'bounce' of a cheap footswitch that would then send two changes instead of one. This has now been resolved by adding a debounce timer of about 60mS so that a second pulse inside that time will be ignored.
+
+A further development suggested at that time has now also been implemented. This is the addition of a 'TwoWay' option. This works in a similar way to 'Loop' but a value between 1 and 63 will step down instead of up, so if one does make a mistake it can quickly be rectified.
+
+With a reasonable MIDI controller one can usually set a couple of foot switches to report the same CC but with different values. Alternatively stick to their native values and pass them through something like QmidiRoute to do the translation.
+
+
+CONFIG
+Non relevant GUI settings now deactivated for LV2
+
+The CLI now has formal methods of opening, selecting and closing additional instances.
+

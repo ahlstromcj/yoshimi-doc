@@ -1,0 +1,174 @@
+MIDI LEARN
+
+If the Min and Max values in the editing window are the same then instead of a
+range limit this becomes a switch threshold. If it's less than the value it is
+regarded as Min, otherwise it's Max. To relate the theshold point to incoming
+MIDI values, multiply it by 1.27
+
+The actual Min or Max will be the minimum and maximim values of the selected
+Yoshimi control. So for simple switches it will be 0 or 1, for 'ordinary'
+controls it will be 0 or 127, and for multiple position switches it will be 0
+or the highest numbered switch postion.
+
+Maximim MIDI-learned lines is now 200.
+
+
+NEW INSTRUMENT FORMAT
+
+By default you have 'standard' .xiz loads and saves from/to all sources.
+
+In Yoshimi->Settings...->Main settings there is a new entry 'Saved Instrument
+Format'. This can be set for Legacy (.xiz) Yoshimi (.xiy) or both. The new
+format has the Yoshi doctype instead of the Zyn one. Zyn will not recognise it
+at all.
+
+Exactly what you select will be saved. The Yoshimi format includes all the
+controllers, The part Mode status (Poly Mono, Legato) and the Humanise setting.
+
+When loading files Yoshimi will always look for .xiy ones first, and if it
+can't find them will then look for .xiz ones. Parts loaded from .xiy files will
+have mid-blue text. The colour seems to show up well
+
+This is part of the rationale of the new instrument format. We will *never*
+make any changes to the standard ones, and you will always be able to load and
+save them. However we will slowly be adding improvements and refinements to the
+new format, with (where appropriate) compatible adjustments to the standard
+ones.
+
+There is a caveat when handling instruments in banks. If you set for only
+Legacy or only Yoshimi but have previously set for both, saving to such a dual
+entry will erase the one you haven't selected. I don't know why that happens at
+the moment (banks are 'interesting').
+
+
+LEGATO COLOURS
+
+It is not obvious that legato interacts with the drum mode switch in the kit
+editor, and this latter takes priority. Therefore if drum mode is set legato
+does nothing but still shows in the mode selector. This has now been
+highlighted and it now shows in red text. Cancel drum mode and it becomes
+active and the text turns black again.
+
+A further refinement is that if you use the remote legato switch (CC68) and
+Yoshimi had been set to poly, or mono, the text will change to legato,
+returning as it was when the pedal is released. Again, it will be red if drum
+mode is set.
+
+
+HISTORY LISTS
+
+The last used file in any section is now always at the top of it's history
+list, so it's easier to pick up where you left off.
+
+Also, now all of these - instruments, patch sets, vectors, scales, midilearn
+and state - offer the most recent entry whenever you want to load or save. On
+first time use (when there is no history) you will be offered your home
+directory as a location, regardless of where Yoshimi was called from.
+
+In the specific case of instruments, when *saving* you will be offered the one
+in the currently selected part in your home directory, otherwise when saving
+these 'managed' files you won't be offered the previous last-used unless it was
+seen on that session, either by being loaded, or saved by name. This is to
+protect against accidental overwrites.
+
+e.g.  You've been working on 'foo' for a whole day saving the whole patch set
+as you go, then the following day you start up yoshimi and immediately have
+completely new idea 'bar' and start working on it. Without thinking you save
+and hit 'Return'. Oops, your just wiped out 'foo'.
+
+Only now you haven't, because while loading would see the older file, saving
+just offers your home directory to put a new name in.
+
+
+DEFAULT STATE
+
+The State menu now has a new option 'Save as default' which will save whatever
+you have set up as the default state. This is only effective if you also have
+the 'Start With Default State' option checked in settings. This is also
+exceptional is it will *not* appear in the history list, so will not be offered
+as a normal load.
+
+There is a 'gotcha' with this, in that when you save the default state you must
+*already* have set the 'Start With Default State' switch, otherwise reloading
+the default state works *once*, but upon re-opening yoshimi, the switch will be
+unchecked - i.e. quite correctly in it's previous saved state!
+
+
+VU IMPROVEMENT
+
+Previously it was possible for the metering to miss a very sharp attack. That's
+been sorted, and yet the overall behaviour is smoother.
+
+
+PADSYNTH PROTECTION
+
+Previously, if you were in the middle of setting up a huge pad instrument it
+was still possible to try to edit kit items while this was in progress... and
+Boom!
+
+This is now blocked, and any attempt to modify the PadSynth engine during an
+'apply' will return the message "Part [n] is busy". Working on other parts, or
+the rest of the synth is not affected.
+
+
+EFFECTS INTERPOLATION
+
+This means that if you MIDI-learn the controls, you can now automate them
+smoothly instead of the somewhat gritty previous behaviour. There seems to be
+no detectable change in processor demand when running as low as 64 frames per
+period.
+
+This upgrade is especially effective on 'saw' sounds with the frequency control
+on the EQ low pass filter.
+
+
+BANK IMPORT - EXPORT
+
+The Banks window has had some button re-shuffling, and you can import and
+export banks as well.
+
+There are a number of benefits to using these rather than messing about with
+the directories externally. You have far greater control where things go when
+importing, and it's much easier to identify the bank you want to export.
+
+When importing or exporting, Yoshimi refuses to overwrite exisiting banks or
+directories. That's a flat refusal for exporting, but for importing it will add
+a numeric suffix to the name - I was quite pleased with the way that worked
+out.
+
+Importing will *only* copy in files that Yoshimi understands, but will notify
+you if there were other unrecognised types in there. Exporting just dumps out
+the entire bank contents.
+
+There are a number of banks in the wild that contain all sorts of extraneous
+stuff. This usually seems to be copyright notices, but I don't know why people
+don't use the instrument text fields provided for exactly that purpose. Oh, and
+one bank I found even had subdirectories with pictures - and they weren't small
+ones!
+
+Also, if you look in the main part edit window you will see there is a new
+button top right. I'm hoping this will encourage people to fill in the
+copyright info.
+
+To set it up, fill in the field as normal, then while holding down the Ctrl
+key, click on the button (left or middle mouse) . This will now be stored in
+your Yoshimi config directory, and whenever you create a new instrument just
+click on this and the text will be filled in for you.
+
+
+SHORTCUTS
+
+In the main window, if you hold down the 'A' key then left click the edit
+button you go directly to the AddSynth editor - if it is enabled. However, if
+you use the right mouse button you will enable it and then open it.
+
+The same is true with 'S' for SubSynth and 'P' for PadSynth.
+
+On the other hand holding down the 'K' key then clicking will open the kit
+editor, and the 'E' key opens the part's effects window.
+
+This probably needs a bit of refinement. It occasionally misses and opens the
+main edit window instead. I suspect there is some event stealing going on when
+that happens.
+
+

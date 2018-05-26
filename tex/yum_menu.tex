@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2018-03-18
+% \update      2018-05-26
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -104,7 +104,8 @@
 %  \includegraphics[scale=1.0]{menu/Yoshimi/yoshimi-about.jpg}
 %  \includegraphics[scale=1.0]{1.3.8/yoshimi-about.jpg}
 %  \includegraphics[scale=1.0]{1.5.0/yoshimi-about.jpg}
-   \includegraphics[scale=1.0]{1.5.0/About_1-5-1.png}
+%  \includegraphics[scale=1.0]{1.5.0/About_1-5-1.png}
+   \includegraphics[scale=1.0]{1.5.8/About.png}
    \caption{Yoshimi Menu, About Dialog}
    \label{fig:yoshimi_about_dialog}
 \end{figure}
@@ -512,6 +513,17 @@
    \label{fig:extended_file_format_font}
 \end{figure}
 
+   This is part of the rationale of the new instrument format: We will
+   \textsl{never} make any changes to the standard instruments, and one will always
+   be able to load and save them. However, we will incrementally add improvements
+   and refinements to the new format, with compatible
+   adjustments for the standard-format instruments, where appropriate.
+
+   There is a caveat when handling instruments in banks. If one sets for only
+   \textbf{Legacy} or only \textbf{Yoshimi}, but have previously set for both,
+   saving to such a dual entry will erase the one that wasn't selected. Currently,
+   it is not known why that happens (banks are 'interesting').
+
 \paragraph{Menu / Yoshimi / Settings / Switches}
 \label{paragraph:menu_yoshimi_settings_switches}
 
@@ -521,7 +533,8 @@
 \begin{figure}[H]
    \centering
 %  \includegraphics[scale=0.75]{1.4.1/SettingsSwitches.png}
-   \includegraphics[scale=0.75]{1.5.0/SettingsSwitches.png}
+%  \includegraphics[scale=0.75]{1.5.0/SettingsSwitches.png}
+   \includegraphics[scale=0.75]{1.5.8/SettingsSwitches.png}
    \caption{Yoshimi Switches Tab}
    \label{fig:yoshimi_settings_switches_tab}
 \end{figure}
@@ -537,6 +550,7 @@
       \item \textbf{Include disabled data in XML files}
       \item \textbf{Enable GUI}
       \item \textbf{Enable CLI}
+      \item \textbf{Enable Auto Instance}
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
@@ -589,6 +603,20 @@
    the command line at the same time. This means that Yoshimi can only be closed by
    sending a special MIDI message (CC 99, 68, CC 98, 68). Alternatively one could
    send a system shutdown message.
+
+   \itempar{Enable Auto Instance}{Switches!Enable Auto Instance}
+	If checked, then, if any other instances were open at the time you close the
+	main instance, then these other instances
+   will be re-opened next time one runs \textsl{Yoshimi}.
+
+   If these instances each have their own
+   \textbf{Start with Default State} switch checked, and if
+   there is a valid default state for them, then these instances will also have
+   their default state loaded.
+   Therefore, just by starting the main instance, one can have a
+   highly-detailed multi-instance setup installed.
+   This setup will include such things as JACK/ALSA audio
+   and MIDI, and a complete patch set, etc.
 
 \paragraph{Menu / Yoshimi / Settings / Jack}
 \label{paragraph:menu_yoshimi_settings_jack}

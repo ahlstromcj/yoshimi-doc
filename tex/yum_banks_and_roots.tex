@@ -65,7 +65,8 @@
       reliably use these ID numbers to select roots, banks and (already
       available) instruments. That Rosegarden or Muse file one saves today will
       be just as valid in the future, unless one makes the deliberate choice to
-      change some IDs. Indeed, one can now start with an 'empty' Yoshimi, and
+      change some IDs. Indeed, one can now start with an 'empty'
+      \textsl{Yoshimi}, and
       via MIDI, set roots, banks and load instruments into parts (enabling the
       parts as one does so) swapping banks and roots as necessary. While the
       MIDI file runs it can silently pull instruments from any root/bank into
@@ -113,6 +114,16 @@
       can set them in any convenient channel then perform individual program
       changes on the desired channels.
    \end{quotation}
+
+   It has always been possible to swap and move instruments within a bank, and
+   since V 1.3.5 it was possible to swap banks within a bank root, but now one can
+   swap/move instruments across any banks and any bank roots. One can also move
+   whole banks across bank roots.  These extensions use exactly the same controls
+   as before. However, it isn't just a case of changing IDs. Files are actually
+   moved, so additional protections and warnings are put in place.
+
+   Instrument and bank swapping controls are now also available to the CLI with
+   specific IMport and EXPort controls.
 
    A "CC" is a MIDI "continuous controller".
    A MIDI bank change is usually a CC\#0 value of 0, followed by a CC\#32

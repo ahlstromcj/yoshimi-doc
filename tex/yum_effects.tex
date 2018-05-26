@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-05
-% \update      2018-03-17
+% \update      2018-05-26
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -552,13 +552,14 @@
    by an LFO. A bit easified, Paul Nasca has stated the formula (for
    i2 = -1 and R \textless 1) as
 
-   \[fb=R*(cos(α)+i*sin(α))\]
+   \[fb=R*(cos(a)+i*sin(a))\]
 
-   \[yn=yn-delay*R*(cos(α)+i*sin(α))+xn*(1-R).\]
+   \[yn=yn-delay*R*(cos(a)+i*sin(a))+xn*(1-R).\]
 
    The input xn has the real part of the samples from the wavefile and the
-   imaginary part is zero. The output of this effect is the real part of yn.
-   α is the phase.
+   imaginary part is zero. The output of this effect is the real part of
+   \texttt{yn}.
+   \texttt{a} is the phase.
 
 \subsubsection{Effects / AlienWah / User Interface}
 \label{subsubsec:effects_edit_alienwah_ui}
@@ -595,7 +596,8 @@
 
    \itempar{Phase}{alienwah!phase}
    The phase of the AlienWah.
-   See α in the above formula. This lets one set where the vocal is between
+   See \texttt{a} in the above formula.
+   This lets one set where the vocal is between
    "Ahhhhh" and "Eeeeee".
 
    \itempar{Vol}{alienwah!volume}
@@ -984,15 +986,15 @@ This section details the value supported by the Chorus effect.
    The exact formula in the source code for the dampening effect is as
    follows:
 
-   \[Y(t)=(1-d)⋅X(t)+d⋅Y(t-1)\]
+   \[Y(t)=(1-d)*X(t)+d*Y(t-1)\]
 
    where t be the time index for the input buffer, d be the dampening amount
    and X,Y be the input, respective the output of the dampening. This solves
    to
 
-   \[Y(z)=Z(Y(t))=(1-d)⋅X(z)+d⋅Y(z)⋅z-1 ⇔ H(z)=Y(z)X(z)=1-d1-d⋅z-1\]
+   \[Y(z)=Z(Y(t))=(1-d)*X(z)+d*Y(z)*z-1 <==> H(z)=Y(z)X(z)=1-d1-d*z-1\]
 
-   which is used in \(Y(z)=H(z)⋅X(z)\). So H(z) is indeed a filter, and by
+   which is used in \(Y(z)=H(z)*X(z)\). So H(z) is indeed a filter, and by
    looking at it, we see that it is an LP1. Note that infinite looping for
    d=1 is impossible.
 

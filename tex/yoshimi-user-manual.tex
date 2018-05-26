@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-04-20
-% \update      2018-03-18
+% \update      2018-05-26
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -50,7 +50,7 @@
 
 \begin{document}
 
-\title{Yoshimi Advanced User Manual, v 1.5.7}
+\title{Yoshimi Advanced User Manual, v 1.5.8}
 \author{Chris Ahlstrom \texttt{(ahlstromcj@gmail.com)} with Will J. Godfrey}
 \date{\today}
 \maketitle
@@ -476,10 +476,17 @@
    \textsl{Yoshimi}'s configuration directory,
    and will not show in history lists.
 
-   If "Start With Default State" has been set, and a
+   If \textbf{Start With Default State} has been set, and a
    default state has been saved, not only will a complete restart load this,
    but a master reset will load this file, instead of doing a
    first-time default reset.
+
+   There is a "gotcha" with this, in that when saving the default state,
+   one must \textsl{already} have set the \textbf{Start With Default State}
+   switch, otherwise reloading
+   the default state works \textsl{once}, but upon re-opening
+   \textsl{Yoshimi}, the switch will be
+   unchecked \textemdash that is, quite correctly in its previously saved state!
 
    A final detail with the history lists is that in each list type, the last
    used item will be placed at the top of the list. This is especially useful

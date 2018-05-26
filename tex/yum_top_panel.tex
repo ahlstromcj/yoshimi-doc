@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-29
-% \update      2018-03-18
+% \update      2018-05-26
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -246,7 +246,7 @@
    feature.  The \textbf{Solo} settings are saved in patch sets, which saves a
    little frustration when loading one's current favorite patch set.
 
-   Values: \texttt{Off*, Row, Col, Loop}
+   Values: \texttt{Off*, Row, Col, Loop, TwoWay}
 
    For these modes, if one has a programmable MIDI controller, one can set it
    up to activate a specific part, or to increment/decrement which part in the
@@ -275,6 +275,8 @@
    channels. Also, if one has \textbf{vector control} set up, \textbf{Solo}
    intelligently recognises this fact, and, for each vector it finds, it will
    switch in/out the whole vector column appropriately.
+
+   Note that \textbf{Row} is recommended only for automation.
 
    \index{solo!column}
    For running \textbf{Solo} in \textbf{Column} mode, one needs to have 32 or
@@ -305,6 +307,26 @@
    a footswitch to do the channel changes. The device holds a channel
    number (starting with zero) and increments/decrements it depending on which
    switch is pressed, then sends the resulting CC.
+
+   At the \textsl{2017 Linux Audio Conference},
+   it became obvious there was a possible problem with the \textbf{Loop}
+   feature. This issue arose from the 'bounce' of a cheap footswitch that would
+   then send two changes instead of one. It is now resolved by adding a
+   debounce timer of about 60ms so that a second pulse inside that time will be
+   ignored.
+
+   \index{solo!TwoWay}
+   \textbf{TwoWay}.
+   A further development suggested at that time has now also been implemented. This
+   is the addition of a \textbf{TwoWay} option.
+   This option works in a similar way to \textbf{Loop}, but
+   a value between 1 and 63 will step down instead of up, so that if one does make
+   a mistake it can quickly be rectified.
+
+   With a reasonable MIDI controller one can usually set a couple of foot switches
+   to report the same CC but with different values. Alternatively stick to their
+   native values and pass them through something like \textsl{QmidiRoute} to do the
+   translation.
 
    \itempar{Parts Layout}{parts!change layout}
    \index{parts!2x8}
