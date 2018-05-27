@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-09-06
-% \update      2018-05-26
+% \update      2018-05-27
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -394,6 +394,10 @@ Ones that we're pretty sure will be added are:
    Add a root path [s] to the root list. \\
 \texttt{ADD Bank [s]} &
    Add a bank [s] to the current root. \\
+\texttt{IMport [s [n1]] [n2] [s]} &
+   Imports a bank. \\
+\texttt{EXport [s [n1]] [n2] [s]} &
+   Exports a bank. \\
 \texttt{REMove} &
    Remove paths, files, and entries. \\
 \texttt{REMove Root [n]} &
@@ -1757,7 +1761,47 @@ A few more detailed descriptions occur in the following sections.
       MLearn [s] [n]             Delete MIDI learned 'ALL' whole list, or '@'(n) line.
 \end{verbatim}
 
-   Commands to set and read some items.  ARE ANY OF THESE STILL ACTIVE?
+   The command line now has two commands to provide access to the new bank
+   export and import controls. These are top level controls and are used as
+   below.
+
+\begin{verbatim}
+   EXport [s <n1>] <n2> <s>
+\end{verbatim}
+
+   The command above is used to export a bank. The square bracket term is
+   optional, and enables one to select a different root to export from and
+   would be in the form:
+
+\begin{verbatim}
+   EXport Root (root ID number) (bank ID number) (full path name to export to)
+\end{verbatim}
+
+   If one is happy to export from the currently selected root, then this
+   simplifes to:
+
+\begin{verbatim}
+   EXport (bank ID number) (full path name to export to)
+\end{verbatim}
+
+   Import of a bank uses identical syntax.
+
+\begin{verbatim}
+   IMport [s <n1>] <n2> <s>
+\end{verbatim}
+
+   A full example using the normal abbeviations is:
+
+\begin{verbatim}
+   im r 5 25 /home/will/downloads/some new bank
+\end{verbatim}
+
+   This will look for the directory "some new bank" (spaces are accepted) in
+   the download directory of user "will". It will then copy it into bank number
+   25 of root number 5. It first checks to ensure that the new named bank
+   exists, root 5 exists, and bank 25 is empty.
+
+   Commands to set and read some items.
 
 \begin{verbatim}
    Set / Read                    Set or read all main parameters
