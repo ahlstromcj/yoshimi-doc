@@ -172,7 +172,7 @@
 
    \begin{verbatim}
       yoshimi> l h v
-       
+
       Recent Vectors:
       1  /home/will/another.xvy
       2  /home/will/Subtle.xvy
@@ -197,7 +197,7 @@
    ask one to run \textsl{Yoshimi} and type the "?" command.
 
    Commands with "*" in the description need the setup to be saved,
-   and \textsl{Yoshimi} restarted to be activated. 
+   and \textsl{Yoshimi} restarted to be activated.
 
    Note that \textsl{Yoshimi}'s command-line can also load and save states,
    patchsets, and scales, and can list recent histories.
@@ -211,7 +211,7 @@
    It will eventually be integrated with the saved states.
 
    Another small detail is that all of the minimum command-line
-   abbreviations are now \textbf{C}apitalised in the help list.     
+   abbreviations are now \textbf{C}apitalised in the help list.
 
    More features will be added, and the organisation of them may be changed
    slightly.  If any configuration settings are changed, either at the
@@ -268,7 +268,7 @@ Ones that we're pretty sure will be added are:
    Given this level (the \textsl{Vector} level), the following commands...
 
    \begin{verbatim}
-      set 5 
+      set 5
       s 5
    \end{verbatim}
 
@@ -394,6 +394,8 @@ Ones that we're pretty sure will be added are:
    Add a root path [s] to the root list. \\
 \texttt{ADD Bank [s]} &
    Add a bank [s] to the current root. \\
+\texttt{ADD YOshimi [n]} &
+   Start a new instance. \\
 \texttt{IMport [s [n1]] [n2] [s]} &
    Imports a bank. \\
 \texttt{EXport [s [n1]] [n2] [s]} &
@@ -404,6 +406,8 @@ Ones that we're pretty sure will be added are:
    De-list root path ID [n]. \\
 \texttt{REMove Bank [n]} &
    Delete bank ID [n] (and all its contents) from the current root. \\
+\texttt{REMove YOshimi [n]} &
+   Close an instance. \\
 \texttt{REMove MLearn [s] [n]} &
    Delete MIDI learned values: 'ALL' removes whole list, or select line [n]. \\
 \texttt{Set / Read} &
@@ -412,6 +416,8 @@ Ones that we're pretty sure will be added are:
    Read the current root path or set it to ID [n]. \\
 \texttt{Set/read Bank [n]} &
    Read the current bank or set the current bank to ID [n]. \\
+\texttt{Set/read YOshimi [n]}&
+   Switch to instance [n] for further control. \\
 \texttt{Set/read MLearn [n] [s]} &
    MIDI learned line number [n] control.  See below. \\
 \texttt{SYStem effects [n]} &
@@ -658,7 +664,7 @@ Ones that we're pretty sure will be added are:
    It seems to indicate a feature range of 1 to 4, not 2 to 4.
 
    The \textbf{X/Y Control [n2] [n3]} command
-   sets the [n3] CC to use for the X or Y feature [n2] = 2 to 4. 
+   sets the [n3] CC to use for the X or Y feature [n2] = 2 to 4.
    This allows a change of the actual CC associated with features 2 through 4.
    They can be any CC that \textsl{Yoshimi} recognises.
 
@@ -1985,28 +1991,17 @@ A few more detailed descriptions occur in the following sections.
       \item \texttt{par2} is an offset for some parameters.
    \end{itemize}
 
-   A variation of the above is when you set flt\_max as the \texttt{value}.
-   This value will
-   be interpeted as requesting the min, max, and default values for the
-   command and using the same 'CommandBlock' struct will return them as short
-   integers in the form:
+   A variation of the above is when one wishes to find the limits of controls.
+   While it is possible to do this with the above method, it is complex and
+   error-prone so the following options have been implemented:
 
    \begin{verbatim}
-      limits.min
-      limits.max
-      limits.def
+      direct limits min
+      direct limits max
+      direct limits def
    \end{verbatim}
 
-   Only a few of these are independently declared so far, all the rest have the
-   values: min = 0, max = 127, and def = 0.  \textbf{def} will return the
-   default times 10. This is so that fractional values can be resolved. 0.5 comes
-   up quite often. No default values are very large, but may be negative.
-
-   A number of limits are now defined, and more will be forthcoming. There is
-   now a specific variation for this. "direct", "lim", (control), (part), (kit)
-   etc.  These commands now give the corrected default value and report the
-   full name of the control, and as well as the limits, it gives the type
-   (float/integer) and notes if it is MIDI learnable.
+   These are followed by the usual (control) (part) etc.  Most of these are independently declared. The remainder have the values: min = 0, max = 127, and def = 0.
 
    CLI direct access to show limits returns a single value dependent on the
    initial text and parameters.  Some examples:
@@ -2017,28 +2012,28 @@ A few more detailed descriptions occur in the following sections.
       Max 127.000000
    \end{verbatim}
 
-   For panning:
+For panning:
 
    \begin{verbatim}
       direct limit  def 1 0
       Default 64.000000
    \end{verbatim}
 
-   For keyshift, top level controls:
+For keyshift, top level controls:
 
    \begin{verbatim}
       direct limit min 35 240
       min -36.000000
    \end{verbatim}
 
-	From the command line you can now read the VU levels:
+From the command line you can now read the VU levels:
 
    \begin{verbatim}
-		direct 0 0 200 240 {part number}
+      direct 0 0 200 240 {part number}
    \end{verbatim}
 
-	will show the numbered part's peak level.
- 	It will be negative if the part is not enabled.
+will show the numbered part's peak level.
+It will be negative if the part is not enabled.
 
    \begin{verbatim}
       direct 0 0 201 240 0

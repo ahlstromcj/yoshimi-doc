@@ -56,7 +56,7 @@
 \maketitle
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=1.00]{1.4.1/Front.png}
 \end{figure}
 
@@ -175,7 +175,7 @@
 
    Already well underway, controls automation support is a part of a common
    controls interface.  There are significant extensions to the NRPNs that
-   \textsl{Yoshimi} handles.  
+   \textsl{Yoshimi} handles.
 
    Sensitivity to MIDI volume change (CC \#7) is variable in
    \textbf{Controllers} in the same way as pan width, etc. The numeric range is
@@ -222,16 +222,16 @@
    \index{MIDI CC!legato}
    \textsl{Yoshimi} now implements the "legato footswitch" control,
    MIDI CC 68.
-   Send this command with a value of 64 and above, and it will    
+   Send this command with a value of 64 and above, and it will
    switch to Legato mode. Send less than 64, and it will revert to whatever it
    was before.  So, if the mode had been Poly, it goes back to that, and it it
-   already was Legato, it just stays a Legato.                       
+   already was Legato, it just stays a Legato.
 
 \subsubsection{Vectors}
 \label{subsubsec:new_features_vectors}
 
    It's probably best to more clearly separate the concept of
-   \textsl{parts} versus \textsl{channels} these days. 
+   \textsl{parts} versus \textsl{channels} these days.
    \textsl{Yoshimi} can provide up to 64 parts, in blocks of 16. One can
    decide how many one wants to have available using the spin-box alongside
    the channel number.  One can have 16, 32 or 64 parts.  By default, all the
@@ -311,7 +311,7 @@
    offered a lot of suggestions, and very much likes vector control.  So
    accessibility \index{accessibility} is an important feature of
    \textsl{Yoshimi}.  See the section that follows.
-   
+
 \subsubsection{Command Line}
 \label{subsubsec:new_features_command_line}
 
@@ -320,13 +320,14 @@
    interface, or both, and these settings can be saved.  Actually, both
    interfaces can be disabled, and then \textsl{Yoshimi} runs in a headless
    mode, responding in the background to MIDI events.
-   
+
    The command-line interface can access all top level controls, as well as the
    main part controls, and can select any effect and effect preset.  It can be
    used to set up Vector Control much more quickly and easily than using NRPNs.
    The command-line is also context sensitive, which, along with careful choice
    of command names and abreviations, allows very fast access with minimal
-   typing.
+   typing. Since version 1.5.8 it has been possible to start, stop and select
+   different instances for further control.
 
    \textsl{Yoshimi}'s parser is case-insensitive for commands (but not for
    filenames), and accepts the shortest unambiguous abbreviation. However it is
@@ -371,7 +372,7 @@
 	\end{itemize}
 
    These follow standard MIDI practice (and do the same in the GUI).
-   
+
    The CLI prompt always
    shows what level one is on, and the help lists are also partly
    context-sensitive, so one doesn't see a lot of irrelevent clutter.
@@ -433,7 +434,7 @@
    This feature is duplicated in the current part, the mixer panel for the
    currently loaded instruments, and in the Instrument Edit window.
    The same colors highlight the engine names when they are enabled with the
-   check boxes. 
+   check boxes.
 
    \textsl{Yoshimi} remembers where major windows were last placed (per
    instance), and if any were left open at shutdown, they will be reopened at
@@ -533,7 +534,7 @@
    site.  See reference \cite{yoshiminewsarchive}.
 
    Subscribe to the \textsl{Yoshimi} mailing list with an e-mail to:
-   \url{yoshimi-request@freelists.org} or by visiting 
+   \url{yoshimi-request@freelists.org} or by visiting
    \url{http://www.freelists.org/list/yoshimi}.
 
    To post to the list, send an email to: \url{yoshimi@freelists.org}.
@@ -618,7 +619,7 @@
    If JACK is available, it will be used.  Otherwise ALSA will be used.
 
 \begin{figure}[H]
-   \centering 
+   \centering
 %  \includegraphics[scale=0.75]{Yosh-splash-OTW-1.png}
    \includegraphics[scale=0.75]{1.5.0/Splash-1-5-1.png}
    \caption{Yoshimi Splash Screen!}
@@ -635,7 +636,7 @@
    and it persists, of course:
 
 \begin{figure}[H]
-   \centering 
+   \centering
 %  \includegraphics[scale=1.0]{1.3.8/yoshimi-first-screen.jpg}
 %  \caption{Yoshimi Main Screen, 1.3.8 and Above}
 %  \includegraphics[scale=1.0]{1.4.0/yoshimi-first-screen.png}
@@ -649,7 +650,7 @@
    appears:
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{1.5.0/main_window_spacebar.png}
    \caption{Space Bar Prompt}
    \label{fig:yoshimi_main_spacebar_prompt}

@@ -20,7 +20,7 @@
 
    Let's cover the configuration files, which have expanded in utility in
    recent versions of \textsl{Yoshimi}.
-   Understanding these configuration file makes it easier to 
+   Understanding these configuration file makes it easier to
    use \textsl{Yoshimi}.
    Also note that all configuration settings are exposed to the command line
    interface as well.
@@ -39,7 +39,7 @@
    following warning will occur if that is the case:
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{1.5.0/ConfigWarn.png}
    \caption{Configuration Warning Dialog}
    \label{fig:config_warn_dialog}
@@ -145,7 +145,7 @@
          \index{.xiy!Yoshimi format}
          \index{config!.xiy}
          An Instrument file in the new \textsl{Yoshimi} file format.
-         This format includes all the        
+         This format includes all the
          controllers, the part mode status (Poly, Mono, Legato) and the
          Humanise setting.
          When loading files, \textsl{Yoshimi} will always look for
@@ -293,7 +293,8 @@
 
    The \texttt{.config} file will be readable by all instances of
    \textsl{Yoshimi}, but writeable only by the main instance. The relevant
-   controls will be hidden from the other instances.  The \texttt{.config} and
+   controls will be hidden from the other instances.  Also, those controls not
+   relevant to LV2 are disabled in that mode.  The \texttt{.config} and
    \texttt{.banks} data now reside in separate configuration files.  The banks
    file is saved every time there is a normal exit, so the last-used root and
    bank IDs will always match what that instance thinks is there.  Conversely,
@@ -522,7 +523,7 @@
    will look for \textsl{ZynAddSubFX} banks as well, in the usual locations.
    It will not look for a \textsl{ZynAddSubFX} configuration file, as these
    are no longer relevant to \textsl{Yoshimi}.
-  
+
    Banks are more thoroughly described in
    \sectionref{subsec:concepts_banks_and_roots}.
 
@@ -621,7 +622,7 @@
 
    \index{.xly}
    \index{config!.xly}
-   The MIDI-Learn data is stored in files with an extension of 
+   The MIDI-Learn data is stored in files with an extension of
    \texttt{.xly} ("XML Learn Yoshimi").
    If compression is turned off
    (\textbf{Yoshimi / Settings / Main Settings / XML Compression Level} set to
