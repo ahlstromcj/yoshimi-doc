@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-09-06
-% \update      2018-05-27
+% \update      2018-05-28
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -20,7 +20,7 @@
    \index{CLI}
    \index{cmd}
    \index{command line}
-   \textsl{Yoshimi} provides a "no GUI" or "command-line" mode of operation
+   \textsl{Yoshimi} provides a command-line (no GUI) mode of operation
    where many aspects of the application can be controlled via text commands.
    This mode is useful for blind people and for programmers, for example.  To
    access this mode, add the \texttt{-i} or \texttt{--no-gui} command-line
@@ -1426,12 +1426,43 @@ A few more detailed descriptions occur in the following sections.
       Define a new bank, \textsl{s}, where \textsl{s} is a bank name,
       and add it to the current root.
 
-   \itempar{add root [s]}{cmd!add root}
-      Define a new root path, \textsl{s}, and add it to the list of root paths.
-
    \itempar{remove bank [s]}{cmd!remove bank}
       Delete the bank named \textsl{s}, and all its contents,
       from the current root path.
+
+   \itempar{export bank [s [n1]] [n2] [s]}{cmd!export bank}
+      The command line now has two commands to provide access to the new bank
+      export and import controls. These are top level controls and are used as
+      below.  The command above is used to export a bank. The square bracket term
+      is optional, and enables one to select a different root to export from and
+      would be in the form:
+
+\begin{verbatim}
+   EXport Root (root ID number) (bank ID number) (full path name to export to)
+\end{verbatim}
+
+   If one is happy to export from the currently selected root, then this
+   simplifes to:
+
+\begin{verbatim}
+   EXport (bank ID number) (full path name to export to)
+\end{verbatim}
+
+   \itempar{import bank [s [n1]] [n2] [s]}{cmd!import bank}
+      Import of a bank uses the identical syntax of the export command.
+      A full example using the normal abbeviations is:
+
+\begin{verbatim}
+   im r 5 25 /home/will/downloads/some new bank
+\end{verbatim}
+
+      This will look for the directory "some new bank" (spaces are accepted) in
+      the download directory of user "will". It will then copy it into bank number
+      25 of root number 5. It first checks to ensure that the new named bank
+      exists, root 5 exists, and bank 25 is empty.
+
+   \itempar{add root [s]}{cmd!add root}
+      Define a new root path, \textsl{s}, and add it to the list of root paths.
 
    \itempar{remove root [s]}{cmd!remove root}
       De-list the root path named \textsl{s}.
@@ -1767,6 +1798,11 @@ A few more detailed descriptions occur in the following sections.
       MLearn [s] [n]             Delete MIDI learned 'ALL' whole list, or '@'(n) line.
 \end{verbatim}
 
+\begin{verbatim}
+   IMport [s <n1>] <n2> <s>      Import a bank.
+   EXport [s <n1>] <n2> <s>      Import  bank.
+\end{verbatim}
+
    Commands to set and read some items.
 
 \begin{verbatim}
@@ -1865,46 +1901,6 @@ A few more detailed descriptions occur in the following sections.
 %  ------------------------------------------------------------------------
 %     END OF REDUNDANT SECTION
 %  ------------------------------------------------------------------------
-
-   The command line now has two commands to provide access to the new bank
-   export and import controls. These are top level controls and are used as
-   below.
-
-\begin{verbatim}
-   EXport [s <n1>] <n2> <s>
-\end{verbatim}
-
-   The command above is used to export a bank. The square bracket term is
-   optional, and enables one to select a different root to export from and
-   would be in the form:
-
-\begin{verbatim}
-   EXport Root (root ID number) (bank ID number) (full path name to export to)
-\end{verbatim}
-
-   If one is happy to export from the currently selected root, then this
-   simplifes to:
-
-\begin{verbatim}
-   EXport (bank ID number) (full path name to export to)
-\end{verbatim}
-
-   Import of a bank uses identical syntax.
-
-\begin{verbatim}
-   IMport [s <n1>] <n2> <s>
-\end{verbatim}
-
-   A full example using the normal abbeviations is:
-
-\begin{verbatim}
-   im r 5 25 /home/will/downloads/some new bank
-\end{verbatim}
-
-   This will look for the directory "some new bank" (spaces are accepted) in
-   the download directory of user "will". It will then copy it into bank number
-   25 of root number 5. It first checks to ensure that the new named bank
-   exists, root 5 exists, and bank 25 is empty.
 
 \subsection{Direct Access}
 \label{subsec:command_line_direct_access}
