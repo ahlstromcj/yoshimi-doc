@@ -192,13 +192,13 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{1.5.0/MidiLearn.png}
+   \includegraphics[scale=0.75]{1.5.8/MidiLearn.png}
    \caption{MIDI Learn Dialog}
    \label{fig:midi_learn_dialog}
 \end{figure}
 
    If the controller learned was an NRPN, this dialog will show a hexadecimal
-   number in the CC field, and this item will not be editable.
+   number in the CC field, and this item will not be editable. Notice that a small indented button will appear between the mute status and the NRPN value. If this it clicked on it will turn red indicating that it is now a 7 bit value. This is type of range is sent by some hardware synths and controllers.
 
    Adding or deleting rows in this dialog, or changing the CC or channel
    number, will cause the rows to be sorted again.
@@ -272,7 +272,7 @@
    If \textbf{Min} is equal to \textbf{Max}, it becomes a threshold setting.
    Any value lower than this threshold will be passed on as 0, and any
    value higher will be passed on as 127.
-   These values will then be translated to the 
+   These values will then be translated to the
    \textbf{Min} and \textbf{Max} of whatever
    controller has been linked. Thus, for a simple switch those values
    will be 0 (off) and 1 (on). For most controls it will be 0 and 127.
