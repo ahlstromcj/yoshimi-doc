@@ -6688,6 +6688,43 @@ Previously it was possible to physically switch too fast :(
 
 
 
+ate: Thu, 24 May 2018 21:04:43 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: Chris Ahlstrom <ahlstromcj@gmail.com>
+Subject: A little extra
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.32; x86_64-unknown-linux-gnu)
+
+[-- Attachment #1 --]
+[-- Type: text/plain, Encoding: quoted-printable, Size: 0.9K --]
+
+Hi Chris,
+Unless something dramatic turns up, autoloading instances will be in V1.5.8 :)
+
+I've attached an image of the new 'switches' tab.
+
+The way this works is as follows.
+
+If you have this switch checked, then if any other instances were open at
+the time you close the main instance then these will be re-opened next time you
+run Yoshimi.
+
+If these instances have their own 'Start with default' switches checked and 
+there is a valid default state for them, then they will also have these loaded.
+Therefor, just by starting the maininstance you hcan have a highly detailed
+multi-instance setup installed. This will include such things as jack/alsa
+audio and MIDI, and a complete patch set etc.
+
+
+P·S.
+
+I've also added a new 'About' image. The other one was geting a bit long in the
+tooth.
+
+
+
+
+
+
 
 Date: Fri, 25 May 2018 14:17:19 +0100
 From: Will Godfrey <willgodfrey@musically.me.uk>
@@ -6717,6 +6754,67 @@ It would be helpful if our BSD people could give this all a run over the
 weekend, especially swapping banks and instruments across roots to make sure
 the file operations work correctly.
 
+
+
+
+Date: Mon, 28 May 2018 10:40:13 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Yoshimi V 1.5.8 released!
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.32; x86_64-unknown-linux-gnu)
+
+V 1.5.8 - Kingfisher
+Bright flash of colour.
+
+The most significant changes in this release are all usability ones.
+
+At the request of one user (and agreement of several others) some of the
+microtonal settings are now MIDI-learnable, and appropriately highlighted.
+
+The CLI can now open and close instances, and switch between them.
+
+There is a new 'Solo' type 'TwoWay' this works in a similar way to 'Loop', but
+(apart from zero) values less than 64 step from right to left, instead of the
+other way round. The highlighting is also a bit better. Both 'Loop' and
+'TwoWay' also have debounce protection of approximately 60mS.
+
+The CLI can now clear a part's instrument. A fairly obvious option that somehow
+got missed.
+
+In the Banks windows Instruments can now be swapped between banks and bank
+roots. Banks can also be swapped between roots. This is an extension using
+exactly the same controls as those already available for in-bank swaps.
+
+The latest feature is autoloading instances. With this enabled, any instance
+that was open when the main one is closed will be re-opened on the next run. If
+these instances were set for starting with their default state, then all those
+settings will be performed. Therefore, a very comprehensive and detailed
+session can be started with a single command!
+
+
+A lot of the documentation supplied with Yoshimi has been updated, including
+the Advanced User Manual.
+
+
+
+Date: Mon, 28 May 2018 19:36:18 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: DEB-Packages -- Re: Yoshimi V 1.5.8 released!
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.32; x86_64-unknown-linux-gnu)
+
+On Mon, 28 May 2018 20:07:48 +0200
+Ichthyostega <prg@ichthyostega.de> wrote:
+
+>On 28.05.2018 11:40, Will Godfrey wrote:
+>> V 1.5.8 - Kingfisher
+>> Bright flash of colour.
+>
+>https://launchpad.net/~ichthyo/+archive/ubuntu/music
+>
+>A DEB for Debian/Stable can be found here
+
+Thanks for doing this (and the ubuntu ones).
 
 
 

@@ -64,7 +64,7 @@
    When traversing window stacks, a right click will close one window as it
    opens the next. Closing such a window with the right button will re-open its
    parent.
-   
+
 \subsubsection{Tooltips}
 \label{subsubsec:stock_settings_tooltips}
 
@@ -313,10 +313,10 @@
    line. The state variable filters should look quite similar.
 
 \begin{figure}[H]          % keep figure closer, requires the 'float' package
-   \centering 
+   \centering
    \includegraphics[scale=0.5]{zyn/zyn_filter_types_filter0.png}
    \caption[Basic Filter Types]{Filter Types, Yoshimi/ZynAddSubFX}
-   \label{fig:basic_filter_types} 
+   \label{fig:basic_filter_types}
 \end{figure}
 
    \begin{enumber}
@@ -355,10 +355,10 @@
    usually sufficient to get a good sound.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.5]{zyn/low_q_high_q_filter1.png}
    \caption[Low Q vs. High Q]{The Effect of the Q Value}
-   \label{fig:low_q_vs_high_q} 
+   \label{fig:low_q_vs_high_q}
 \end{figure}
 
 \subsubsection{Filter Stages}
@@ -373,7 +373,7 @@
    filter calculation.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.5]{zyn/2_pole_8_pole_filter2.png}
    \caption[2 Pole vs. 8 Pole Filter]{The Effect of the Order of a Filter}
    \label{fig:2_pole_vs_8_pole_filter}
@@ -406,11 +406,11 @@
 \label{subsubsec:filter_parameters_user_interface}
 
 \begin{figure}[H]
-   \centering 
+   \centering
 %  \includegraphics[scale=1.0]{subpanels/Filter_Params.png}
    \includegraphics[scale=1.0]{1.5.0/Filter_Params.png}
    \caption[Filter Parameters Sub-panel]{Stock Filter Parameters Sub-Panel}
-   \label{fig:filter_parameters_subpanel} 
+   \label{fig:filter_parameters_subpanel}
 \end{figure}
 
    The user interface for filter parameters is a small stock sub-panel that
@@ -421,10 +421,10 @@
 %  \figureref{fig:filter_parameters_subpanel}.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/filter-category.jpg}
    \caption[Filter Categories Dropdown]{Filter Categories, Dropdown Box}
-   \label{fig:filter_categories_dropdown} 
+   \label{fig:filter_categories_dropdown}
 \end{figure}
 
    \begin{enumber}
@@ -467,6 +467,14 @@
    are a bit like human voices.  For a description of how formants work,
    see \sectionref{subsubsec:concepts_basics_formants}.
 
+   Using formant filters can be rather like pulling teeth.  Although Paul gave
+   a pretty good description of how the vowels and formants interact and are
+   laid out, there is an extremely important bit of information missing!  The
+   filter lays out the sequence (or sequences if there are multiple vowels) but
+   it is the filter \textsl{envelope} that set the rate and degree to which
+   these are traversed. Also, the richer the original harmonic content the more
+   pronounced the effect will be (quite useless on sine wave).
+
    See \sectionref{paragraph:formant_parameters} for the format parameters,
    which may have slightly different names from what Paul used.
 
@@ -487,10 +495,10 @@
    See the dropdown element in \figureref{fig:filter_type_dropdown}.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/filter-filtertype.jpg}
    \caption[Filter Type Dropdown]{Type of Filter Passband, Dropdown Box}
-   \label{fig:filter_type_dropdown} 
+   \label{fig:filter_type_dropdown}
 \end{figure}
 
    Values: \texttt{LPF1, HPF1, LPF2*, HPF2, BPF2, NF2, PkF2, LSh2, HSh2}
@@ -498,7 +506,7 @@
    \itempar{C.freq}{cutoff frequency}
    \index{center frequency}
    Cutoff frequency or center frequency.
-   This items has various definitions in the literature. 
+   This items has various definitions in the literature.
    Usually it refers to the frequency at which the level
    drops to 3 Db below the maximum level.
    In various dialogs, this value is the
@@ -508,7 +516,7 @@
    Values: \texttt{0 to 127, 90*}
 
    \itempar{Q}{resonance level}
-   The level of resonance for the filter. 
+   The level of resonance for the filter.
    It indicates a measure of the sharpness of a filter.
    The higher the Q, the sharper the filter.
    Generally, a higher Q value leads to a louder, more tonal
@@ -559,10 +567,10 @@
    filter.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/filter-stages.jpg}
    \caption[Filter Stage Dropdown]{Filter Stage Dropdown}
-   \label{fig:filter_stage_dropdown} 
+   \label{fig:filter_stage_dropdown}
 \end{figure}
 
    \itempar{0/+}{filter!0/+}
@@ -597,16 +605,16 @@
    global part editors.
 
    The resonance effect acts as a "resonance box" or a filter with arbitrary
-   frequency response. This produces very realistic sounds. 
+   frequency response. This produces very realistic sounds.
    The cursor location is shown below the graph (the frequency, kHz, and
-   the amplitude, dB). 
+   the amplitude, dB).
 
    Paul Nasca has a video on YouTube that includes a demonstration of how
    the resonance dialog works and affects the sound, if one cares to look for
    it.
 
 \begin{figure}[H]
-   \centering 
+   \centering
 %  \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/ADDsynth-resonance.jpg}
 %  \includegraphics[scale=0.75]{1.3.9/ADDsynth-resonance.png}
    \includegraphics[scale=0.75]{1.4.1/Resonance.png}
@@ -649,7 +657,7 @@
    \itempar{Max dB (wheel)}{resonance!max db}
    The Maximum Amplitude (dB) wheel.
    Sets the amount of resonance: lower values have little effect. Use the
-   roller below to set it. 
+   roller below to set it.
 
    Values: \texttt{1 to 90, 20*}
 
@@ -694,21 +702,21 @@
    which shows \textsl{smooth interpolation}.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{1.3.9/ADDsynth-resonance-interpolated.png}
    \caption{ADDsynth/PADsynth Resonance Interpolated}
    \label{fig:addsynth_resonance_interpolated}
 \end{figure}
-   
+
 %  Obsolete:
 %  If one presses the
 %  \textbf{InterpPk} with the right mouse button, the interpolation will be
 %  linear, and if one uses the left button, the interpolation will be
-%  smooth. 
+%  smooth.
 
    Please do not confuse this "smoothing" with the processing done using the
    \textbf{Smooth} button discussed below.
-   
+
    Also note that one can clear a part of the graph
    by dragging with the right mouse button. In fact, the \textbf{interpPk}
    functionality interpolates between non-zero values.
@@ -732,13 +740,13 @@
    Smooth the resonance function.
    Smooth the graph.
    This button causes each jagged portion of the graph to be smoothed.
-   This smooth does not interpolate between the peaks, unlike the 
+   This smooth does not interpolate between the peaks, unlike the
    \textbf{InterpPk} functionality described earlier.  Compare the
    interpolation shown in \figureref{fig:addsynth_resonance_interpolated},
    and the smoothing shown in \figureref{fig:addsynth_resonance_smoothed}.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{1.3.9/ADDsynth-resonance-smoothed.png}
    \caption{ADDsynth/PADsynth Resonance Smoothed}
    \label{fig:addsynth_resonance_smoothed}
@@ -786,10 +794,10 @@
 \label{subsubsec:lfo_basic_parameters}
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.65]{zyn/basic_parameters_lfo0.png}
    \caption[Basic LFO Parameters]{Basic LFO Parameters}
-   \label{fig:basic_parameters_lfo} 
+   \label{fig:basic_parameters_lfo}
 \end{figure}
 
    \begin{enumber}
@@ -836,7 +844,7 @@
    \figureref{fig:types_of_lfo}.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.65]{zyn/types_of_lfo1.png}
    \caption[LFO Functions]{LFO Types, Shapes, or Functions}
    \label{fig:types_of_lfo}
@@ -846,7 +854,7 @@
 \label{subsubsec:lfo_randomness}
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{zyn/randomness_in_lfo2.png}
    \caption[LFO Randomization]{LFO Randomization}
    \label{fig:randomness_in_lfo}
@@ -884,7 +892,7 @@
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=1.0]{subpanels/Amplitude_LFO.png}
    \caption[Amplitude LFO Sub-Panel]{Amplitude LFO Sub-Panel}
    \label{fig:amplitude_lfo}
@@ -971,7 +979,7 @@ These parameters are:
    Values: \texttt{SINE*, TRI, SQR, R.up, R.dn, E1dn, E2dn}
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/lfo-function-type.jpg}
    \caption[LFO Type Drop-down]{LFO Function Type Drop-down}
    \label{fig:lfo_function_type_dropdown}
@@ -1001,7 +1009,7 @@ These parameters are:
    % Obtain sub-items from checklist
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=1.0]{subpanels/Filter_LFO.png}
    \caption[Filter LFO Sub-Panel]{Filter LFO Sub-Panel}
    \label{fig:filter_lfo}
@@ -1071,7 +1079,7 @@ These parameters are:
    LFO Type.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/lfo-function-type.jpg}
    \caption[LFO Function Types]{LFO Function Type Dropdown}
    \label{fig:frequency_lfo_dropdown}
@@ -1089,7 +1097,7 @@ These parameters are:
 \label{subsubsec:frequency_lfo_sub_panel}
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=1.0]{subpanels/Frequency_LFO.png}
    \caption[Frequency LFO Sub-Panel]{Frequency LFO Sub-Panel}
    \label{fig:frequency_lfo_subpanel}
@@ -1111,7 +1119,7 @@ These parameters are:
          \label{ref:attack}
          \index{attack}
          \index{envelope!attack}
-         The attack is the initial envelope response. 
+         The attack is the initial envelope response.
          It begins when the key for the note is first held down
          (at Note On).
          The volume starts at 0, and rises fast or slowly until a peak value.
@@ -1138,13 +1146,13 @@ These parameters are:
          until it is off (the volume is 0).
    \end{enumber}
 
-   Together, these values are called "ADSR".  
+   Together, these values are called "ADSR".
    The ADSR envelope generally controls the amplitude of the sound.
    In \textsl{Yoshimi},
    amplitude envelopes can be \textsl{linear} or \textsl{logarithmic}.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.65]{zyn/ADSR_envelope1.png}
    \caption{ADSR Envelope (Amplitude)}
    \label{fig:adsr_envelope_depiction}
@@ -1155,7 +1163,7 @@ These parameters are:
    The ADSR is mostly applied to amplitude envelopes.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.65]{zyn/ASR_frequency_envelope2.png}
    \caption{ASR Envelope, Frequency}
    \label{fig:asr_envelope_depiction}
@@ -1171,7 +1179,7 @@ These parameters are:
    The frequency envelopes are divided into 3 stages:
 
    \begin{enumber}
-      \item \textbf{Attack}. 
+      \item \textbf{Attack}.
       It begins at the Note On. The frequency starts from a certain value and
       glides to the real frequency of the note.
       \item \textbf{Sustain}.
@@ -1185,7 +1193,7 @@ These parameters are:
 \label{subsubsec:amplitude_envelope_subpanel}
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=1.0]{subpanels/Amplitude_Env.png}
    \caption[Amplitude Envelope Sub-Panel]{Amplitude Envelope Sub-Panel}
    \label{fig:amplitude_env}
@@ -1277,7 +1285,7 @@ These parameters are:
    This section describes the \textbf{Amplitude Envelope Editing} window.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/amplitude-envelope.jpg}
    \caption{Amplitude/Filter/Frequency Envelope Editor}
    \label{fig:amplitude_envelope_editor}
@@ -1323,7 +1331,7 @@ These parameters are:
    Freemode enabled.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/amplitude-envelope-freemode.jpg}
    \caption{Amplitude/Filter/Frequency Envelope Freemode Editor}
    \label{fig:amplitude_envelope_freemode}
@@ -1365,7 +1373,7 @@ These parameters are:
    envelope} changes its duration.
    As the point is dragged, the text on the right shows the duration of
    the line before it. Otherwise, the text shows the total duration of the
-   envelope. 
+   envelope.
 
    If the envelope doesn't have the FreeMode mode enabled, it doesn't allow
    one to move the points; the envelope window is then useful only to see
@@ -1460,12 +1468,12 @@ These parameters are:
    and
    release (see \ref{ref:release}).
 
-   One question to answer is:  
+   One question to answer is:
    can the attack and release go in the opposite directions, or do the knob
    ranges prohibit this?
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=1.0]{subpanels/Frequency_Env.png}
    \caption[Frequency Envelope Sub-Panel]{Frequency Envelope Sub-Panel}
    \label{fig:frequency_env}
@@ -1554,7 +1562,7 @@ These parameters are:
    \end{enumber}
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=1.0]{subpanels/Filter_Env.png}
    \caption[Filter Envelope Sub-Panel]{Filter Envelope Sub-Panel}
    \label{fig:filter_env}
@@ -1643,7 +1651,7 @@ These parameters are:
    the \textbf{Edit} button that sits below the category drop-down list.
 
 \begin{figure}[H]
-   \centering 
+   \centering
 %  \includegraphics[scale=0.75]{zyn/formant_filter.png}
    \includegraphics[scale=1.0]{subpanels/addsynth_voice_formant_filter.png}
    \caption[Formant Filter Editor]{Formant Filter Editor Dialog}
@@ -1764,7 +1772,7 @@ These parameters are:
    \itempar{freq}{formants!frequency}
    Formant Frequency.
    The frequency of the current formant.
-   This knob changes the frequency of the formant peak selected by the 
+   This knob changes the frequency of the formant peak selected by the
    Formant Number control.
 
    Values:  \texttt{0 to 127}
@@ -1789,7 +1797,7 @@ These parameters are:
    The sequence represents what vowel is selected to sound according to the
    input from the filter envelopes and LFO's.
    We need to learn a bit about how this setup actually works.
- 
+
    \itempar{Seq Size}{formants!seq size}
    Sequence Size.
    The number of vowels in the sequence.
@@ -1826,7 +1834,7 @@ These parameters are:
 
    In many of the settings panels, there are buttons
    labelled \textbf{C}, \textbf{P}, and \textbf{E},
-   \textbf{E} is the editor window, discussed in 
+   \textbf{E} is the editor window, discussed in
    section \ref{subsubsec:freemode_envelope_settings}
    \textbf{C} and \textbf{P} are the clipboard/preset copy and paste
    dialogs, respectively.
@@ -1859,10 +1867,10 @@ These parameters are:
    shows an example of the copying dialog for the clipboard.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/copy-to-clipboard-preset.jpg}
    \caption[Copy to Clipboard]{Copy to Clipboard/Presets}
-   \label{fig:copy_to_clipboard} 
+   \label{fig:copy_to_clipboard}
 \end{figure}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
@@ -1923,10 +1931,10 @@ These parameters are:
    It shows an example of the pasting dialog for the clipboard.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/paste-from-clipboard-preset.jpg}
    \caption[Paste from Clipboard]{Paste from Clipboard/Presets}
-   \label{fig:paste_to_clipboard} 
+   \label{fig:paste_to_clipboard}
 \end{figure}
 
    \begin{enumber}
@@ -1940,7 +1948,7 @@ These parameters are:
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{Type}{clipboard!paste type}
-   Clipboard type for pasting.  
+   Clipboard type for pasting.
    This field indicates the context (e.g h. "envamplitude") or name of the
    clipboard to which the data will be copied.
 

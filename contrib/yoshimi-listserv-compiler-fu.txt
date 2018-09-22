@@ -1,0 +1,640 @@
+
+Date: Sun, 27 May 2018 19:09:29 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: Problem with User Configuration (possibly a Bug)
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.32; x86_64-unknown-linux-gnu)
+
+On Sun, 27 May 2018 17:18:14 +0200
+Ichthyostega <prg@ichthyostega.de> wrote:
+
+>Hello Will,
+>
+>the topic of default/user configuration and startup was something I always found 
+>quite confusing and annoying. I just didn't seem to "get" it. Today I took the
+>time to investigate it more thoroughly. What I found out, surprised me: yoshimi
+>seems "randomly to forget" my setup and configuration. In part, this was covered 
+>up, since I basically always start from a Jack session, which injects the most
+>relevant parts.
+
+Hopefully with this resolved the structure will make more sense!
+
+<snip>
+
+>Well, I guess, using a symlink for the home directory itself is maybe not so
+>common, but there is no reason why it should not work. It is more common to
+>have /home on a separate partition alltogether.
+
+I was totally unware of this and this bit of code predates me by some years! It
+has always worked for me, but then I never thought of using a symlink. I'm quite
+happy with the change and it'll be in the release.
+
+>On that occasion, I also noted a minor clean-up in Config.cpp
+>See the attached patches
+
+Thanks also for the cleanup. That was my work, but one of my very earliest
+bits :o
+
+>Cheers,
+>Hermann
+
+
+
+te: Sun, 27 May 2018 22:46:05 +0200
+From: Ichthyostega <prg@ichthyostega.de>
+To: yoshimi@freelists.org
+Subject: [yoshimi] insidious rounding problem
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+        Thunderbird/52.8.0
+
+
+Hello Will,
+
+the LAC and the new release motivated me to dig into a problem I'm aware of
+since some time. Up to now I dealt with it the "pragmatic way". But what I found
+now makes me feel somewhat queasy ;-)
+
+Some time ago, I worked on a string-like voice. Rather by accident, I found some
+LFO, which gave the voice a specific warm yet tangy quality, which I imeediately
+fell in love with. After some (a lot more tweaking), this specific flavor seemed
+to have vanished. First, I put that off as an effect of self-suggestion, but
+somehow I couldn't forget about it.
+
+Now I happen to check in everything into Git. I am a Git addict (as most
+developers are). So I went back and looked at my tweaks, and found, that the
+LFO-Frequency had a runaway. It became a tiny little bit smaller on each save.
+
+So for example:
+ - Original Parameter: 0.64   (note: can not be represented in binary float!!)
+ - after 1st save:     0.639999
+ - after 2nd save:     0.639998
+ - after 2nd save:     0.639997
+
+and so on. You see: after saving maybe 20 times, we get into a region where
+the change becomes audible, at least for a trained ear.
+
+My pragmatic takaway from this "close encounter" was just never to trust
+Yoshimi, and explicitly look at each tweak and revert anything I know I hadn't
+done myself.
+
+
+Well. With the new 1.5.x fileformat, we got the problem somewhat under control,
+since there is now the exact bitstring for each float parameter saved. Anyway,
+today I wanted to know what's the reason all of this, and especially I wanted
+to know, if I run any risk when converting an Instrument written with 1.4.x
+with Yoshimi 1.5.x
+
+
+To make a long story short, my findings are:
+(1) the runaway error happens on the conversion float -> string
+    This means, Yoshimi 1.5.x reads old files in and gets the same float values
+    in memory as an old instance got. Which means, they sound the same
+
+(2) When saving, the correct bitstring is saved. However the human-readable
+    decimal value is still off by the same amount as previously
+    (Delta=-5.96046e-08)
+
+(3) The reason is a very old addition in the Config() ctor
+    by Cal from Changeset 387c6ece (19.03.2011)
+
+    // We need lrintf() to round toward zero. Special thanks go to
+    // Lars Luthman for this one!!
+    fesetround(FE_TOWARDZERO);
+
+(4) Today, this global setting *not* in effect for LV2.
+    The code today reads as follows:
+
+
+   if (synth->getIsLV2Plugin())
+    {
+        rtprio = 4; // To force internal threads below LV2 host
+    }
+    else
+        fesetround(FE_TOWARDZERO); // Special thanks to Lars Luthman for conquerin
+g
+                               // the heffalump. We need lrintf() to round
+                               // toward zero.
+    //^^^^^^^^^^^^^^^ This call is not needed aymore (at least for lv2 plugin)
+    //as all calls to lrintf() are replaced with (int)truncf()
+    //which befaves exactly the same when flag FE_TOWARDZERO is set
+ 
+
+
+
+
+
+Date: Sun, 27 May 2018 22:52:43 +0200
+From: Ichthyostega <prg@ichthyostega.de>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: insidious rounding problem
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+        Thunderbird/52.8.0
+
+
+...it just occured, you might be curious how to diagnose that.
+
+Basically I used the following function:
+
+
+#include <sstream>
+#include <string>
+#include <fenv.h>
+
+using std::string;
+using std::ostringstream;
+using std::istringstream;
+
+/////////////////////////////////TODO Ichthyo-Debug
+void detectRunaway()
+{
+   ostringstream oss;
+   float n = 0.6f;
+//   oss.precision(9);
+//   oss.width(9);
+   oss << n;
+   string s = oss.str();
+   istringstream machine(s);
+   float fval;
+   machine >> fval;
+
+
+   if (n == fval)
+     cout << "#...OK.."<<endl;
+   else
+     cout << "#...FAIL Delta="<<fval-n<<endl;
+}
+/////////////////////////////////TODO Ichthyo-Debug
+
+
+
+...Then I inserted this function at various places to narrow down the point
+where the behaviour changes. Basically you can observe it easily as follows:
+
+
+int main(int, char**)
+{
+    cout << "Float-MESS..."<<endl;
+    detectRunaway();
+
+    int prevRoundMode = fegetround();
+    cout << "fegetround()="<<prevRoundMode<<endl;
+
+    fesetround(FE_TOWARDZERO);
+    detectRunaway();
+
+    fesetround(prevRoundMode);
+    detectRunaway();
+
+    return 0;
+}
+
+
+
+NOTE: the change `oss.precision(9);` (somewhere towards 1.5.x) did NOT change
+the effective delta, since 6 places after the digit are typically enough to
+capture float precision. Of course, some additional decimal digits won't hurt
+
+Cheers,
+Hermann
+
+
+
+
+
+Date: Sun, 27 May 2018 22:58:56 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: insidious rounding problem
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.32; x86_64-unknown-linux-gnu)
+
+Is this a can of worms I see before me :(
+
+I know of the change Andrew made for LV2 and didn't fully understand it but I
+gathered it was taken care of by the host. I really don't understand LV2 (and
+never use it) so left it alone.
+
+A further complication is that I don't know what internal storage methods
+various hosts use, so have no idea what errors they may (or may not) introduce.
+I frequently do fairly basic tests with Ardour, Muse and Qtractor (never been
+able to get Carla to work) and have occasionally thought Yoshimi in Ardour
+sounded subtly different to the others and to stand-alone, but nothing I could
+be confident of as I couldn't think of a way to make effective blind tests.
+
+Also, the change of precision was made by me very specifically for scales, where
+at one point we do a string conversion to a double not a float. In that case, as
+a belt-and-braces measure we also store the originating text so we can always
+re-create exactly the same value in an editable form.
+
+All floats that are stored in instruments now have the full bit pattern storage,
+so a conversion from older file formats possibly risks one loss of precision,
+but after that there should be no degradation.
+
+Finally, there are several places where Yoshimi now uses floats internally,
+but storage is still as chars. As time permits, I want to convert them all (for
+the .xiy form) to float storage as above, while maintaining backward
+compatibility.
+
+
+
+
+
+te: Mon, 28 May 2018 13:30:01 +0200
+From: Ichthyostega <prg@ichthyostega.de>
+To: yoshimi@freelists.org
+Subject: [yoshimi] How to deal with that problem?
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+        Thunderbird/52.8.0
+
+
+Hello Will and the others,
+
+sorry for the long mail....
+
+It seems this problem is just the tip of the iceberg and indicates something
+we maybe should reconsider (after the release of course). Can anyone recall
+any additional details why these global changes in the float rounding behaviour
+where introduced?
+
+
+After some poking around, I've found the following pieces:
+
+Release-Notes to yoshimi-0.060.7-1 (early in 2011)
+
+> Still basically just 0.058.1 plus Paul's unison amd reverb enhancements, and
+> jack session support. The 0.060.X series have been plagued by a strange issue
+> affecting some but not all 32 bit builds. On some 32 bit systems, ADnotes were
+> incorrectly pitched. Lars Luthman has identified the problem and the fix.
+> 0.060.7-1 includes just that fix, so with some further testing, maybe we can
+> all move on :-). All hail Lars Luthman!
+
+
+Judging from the Git history, Cal started to investigate that problem
+starting with 47972f877 (17.12.10). In one of the changesets, I found a note
+that he himself did not see the problem on his own machine, but seemingly others
+did.
+
+During the next few months, Cal did a lot of clean-up and quite some changes
+which give me the impression of someone fishing in the dark. E.g. he added
+"f" suffixes to various constants all over the code base. Some of these
+where real errors, like in the microtuning code, others did just change
+the calculations from double -> float, which means to move the rounding
+from the end of the calculation (when re-assigning back into a float)
+into the middle of the calculation (e.g. within a division).
+
+Moreover, during that period, Cal introduced the function float2int,
+at that time written as:
+
+// For rational, see <http://www.mega-nerd.com/FPcast/>
+inline const int Float2Int::float2int(const float val) const
+    { return ((val > 0.0f) ? lrintf(val) : lrintf((val - 1.0f))); }
+
+
+Actually, something similar was already used inline at some of the
+locations touched by this debugging, while other locations used a naive
+cast to int. Thus, on the bright side, we have now one single function
+to reason about.
+
+However, I came across his kind of functions and the accompanying mega-nerd tip
+several times in those past years  -- and it always turns on all red warning
+lights for me. There are two subtle problems with such functions: for one
+the non-obvious dependency on the fp rounding mode, and, also quite often
+people are not aware of introducing an asymmetry in the value domain.
+
+
+Back to topic!
+Release 0.060.7-0 came on 19.3.2011
+
+And the /very next commit/, on evening of 19.3.2011 introduced the                global change of the rounding mode in the constructor of Config(),
+which causes the runaway problem with float parameters in XML files.
+
+
+== Fast-Forward to Today ==
+
+Meanwhile the conversion function has been changed to truncate towards Zero:
+
+
+inline int Float2Int::float2int(const float val) const
+    { return (int)((isgreater(val, 0.0f)) ? (int)truncf(val)
+                                          : (int)truncf((val - 1.0f))); }
+    // for rationale, see <http://www.mega-nerd.com/FPcast/>
+
+
+
+...which means, just for *that* function, we would not need the changed rounding
+mode anymore. It just truncates, and it is asymmetric at Zero, which causes a
+problem with the Vowel sequences in the Formant filter, if I understand correct
+(I hoped to be able to discuss that in detail with you, Will, at LAC in Berlin).
+
+However, a quick grep shows that we still do use lrintf() at various places,
+most in the GUI, but I see a hit at least in SynthEngine.cpp and Reverb.cpp
+
+
+But one further concern bogged me: We have now this split in Config(),
+where the LV2 plugin uses a different rounding mode than the standalone Yoshimi.
+This change was introduced with
+
+35b2e9f7
+> Andrew Deryabin<andrew@audioplugins.org> 15.01.15 18:25
+
+> 2015-1-15 Andrew
+> Don't change floating point rules in case of lv2 plugin. Hosts should do it.
+
+
+There is that interesting comment by Andrew Deryabin in Config.cpp
+
+
+fesetround(FE_TOWARDZERO);
+
+//^^^^^^^^^^^^^^^ This call is not needed aymore (at least for lv2 plugin)
+    //as all calls to lrintf() are replaced with (int)truncf()
+    //which befaves exactly the same when flag FE_TOWARDZERO is set
+
+
+
+
+For my gut feeling, this looks like a typical anti pattern I've encountered
+in various code reviews. Andrew was knowledgeable regarding the LV2 plug-in
+and felt confident to judge this half of the picture. However, he probably
+shunned to do the change globally, since he didn't understand possible
+interferences with the GUI.
+
+But the net result is quite messy: now we have an *Engine*, which does its
+*calculations* differently when used as LV2 plugin. This is totally wrong.
+Because the one-and-only thing I really expect from a plug-in is, that
+it uses the very same engine than the stand-alone executable does.
+
+So my conclusion and *proposal* is:
+
+(a) either we revert the change of Andrew, and use the FE_TOWARDZERO for the
+    LV2-Plugin as well, where it should (according to Andrew's reasoning)
+    make no difference (--> and review Reverb.cpp and SynthEngine.cpp)
+
+(b) or we follow up with Andrew's reasoning and get rid of the FE_TOWARDZERO
+    altogether, in the whole code base. Which means, to round towards the
+    closest next grid value (which is the default). This would mean to judge
+    the ramifications for parameter value display in the GUI.
+
+
+
+
+
+te: Mon, 28 May 2018 18:47:46 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: How to deal with that problem?
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.32; x86_64-unknown-linux-gnu)
+
+On Mon, 28 May 2018 13:30:01 +0200
+Ichthyostega <prg@ichthyostega.de> wrote:
+
+<snipped, see above>
+
+
+Just got back from a nice long walk after getting that release out (it's
+surprising how much 'housework' is needed for it).
+
+Anyway some extra info.
+
+The original problem that had so worried Cal only seemed to show up with Intel
+Atom N270 processors, this is why hardly any of us could reproduce it. It
+apparently resulted in a weird note pitch error.
+
+I agree that having (potentially) different rounding behaviour is dangerous. I
+never was happy about the LV2/standalone split, but didn't feel I knew enough
+about it to make changes. I am concerned about handing what we to *internally*
+over to an external program. As I said before, I got the feeling Ardour was
+doing something different to everyone else. I'm not saying that wrong -
+I don't know. It may be that we are making assumptions we're not entitled to.
+
+There has always been a mixture of float management. I personally believe
+adjustments should go to the nearest, on the basis that hopefully over time
+errors would average out - however I still don't know enough to be confident on
+this.
+
+In the GUI there has been a mixture of int() and lrint() float conversions.
+I've been changing them all to lrint() as I come up against them. My reasoning
+is that if that turns out to be wrong it's only one type that has to be           modified.
+
+In particular where on/off switches were involved, I got so confused about all
+the potential errors I ended doing a little dance of:
+
+bool {someswitch} = {somefloat} > 0.5f;
+
+I fully accept that may be overkill!
+
+It appears a lot of FLTK returns are floats even when quite unnecessary.
+
+
+
+
+
+Date: Mon, 28 May 2018 04:31:56 +0500
+From: Nikita Zlobin <dmarc-noreply@freelists.org>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: faster or safer optimization options
+X-Mailer: Claws Mail 3.16.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+
+In Mon, 28 May 2018 04:27:57 +0500
+Nikita Zlobin <cook60020tmp@mail.ru> wrote:
+
+> I'm traversing through installed proaudio packages to find those,
+> where stronger than default safe optimization options are defaulted.
+> By safe default i mean something like "-O2 -match=native
+> -fomit-frame-pointer -Wno-error". As far as i understand, processing
+> and synth software is more like to have options like -O3 -ffast-math.
+>
+> Current installed version of yoshimi is 1.5.1.1, where i see these
+> defaults in basic opts: -O3 -ffast-math. Would -Ofast be same as these
+> two, besides that it adds yet two fortran-specific options?
+> Also i found, that -ffast-math involves several other options, among
+> which is -fno-math-errno. Is is already checked, or needs to be?
+>
+> I have several zita packages built with -O3 this way, but some have
+> -O2 -ffast-math (thinking about to try just -Ofast for them too).
+> Mentioning just because they got in one task for me.
+
+Just noticed, zyn also has -ffast-math.
+
+
+
+
+
+Date: Mon, 28 May 2018 11:30:59 +0200
+From: Ichthyostega <prg@ichthyostega.de>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: faster or safer optimization options
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+        Thunderbird/52.8.0
+
+On 28.05.2018 01:27, Nikita Zlobin (Redacted sender cook60020tmp for DMARC) wrote:
+> Current installed version of yoshimi is 1.5.1.1, where i see these
+> defaults in basic opts: -O3 -ffast-math. Would -Ofast be same as these
+> two, besides that it adds yet two fortran-specific options?
+> Also i found, that -ffast-math involves several other options, among
+> which is -fno-math-errno. Is is already checked, or needs to be?
+
+by coincidence, I also happened to have a look into package building
+and build options these last days. If you use the current Debian Packaging
+plus the current CMake-Buildfile, you get yoshimi with
+ -O3 -ffast-math  -fomit-frame-pointer -fstack-protector-strong
+
+Funny enough, the more platform optimised variants preconfigured in the
+CMake-Build would be
+
+ -march=athlon64 -m64 -O3 -msse -msse2 -mfpmath=sse
+   -ffast-math -fno-finite-math-only -fomit-frame-pointer
+
+rsp.
+
+ -march=core2    -m64 -O3 -msse -msse2 -mfpmath=sse
+   -ffast-math -fno-finite-math-only -fomit-frame-pointer
+
+
+If I recall correct, the -fno-math-errno, which automatically is selected
+by -ffast-math is known to be the biggest reason for an performance gain
+on average, since it allows the optimiser to skip checks and the overhead         for the thread-local error variable.
+
+This brings up another interesting question: Why does the CMake-Builfile
+add -fno-finite-math-only to the "better optimised" setups, but leaves
+it out from the fallback case, which is
+
+set (BuildOptionsBasic
+    "-O3 -ffast-math -fomit-frame-pointer"
+    CACHE STRING "basic compilier options"
+)
+
+This seems totally counter intuitive for me, since -ffast-math implies
+-ffinite-math-only, which means, any checks for infinity and NaN values
+can be skipped. An -fno-finite-math-only does *remove* that additional
+optimisation. So why to we add an aggressive optimisation in the
+fallback/default case, yet explicitly switch it off in the more
+specifically optimised cases?
+
+
+At this point, there should be the standard reminder: we are entering
+an extremely slippery ground here. Just adding some optimisation flags
+guided by gut feeling comes close to charlatanry.
+We all know that the only sensible approach is a rational one, which
+means to conduct a measurement series with a selection of the most
+common hardwares setups in common practical use. And since in practice
+almost no one is in the position to conduct such research, IMHO we
+should confine ourselves to setting very generic flags, like -Ofast
+
+Correctness and usability are more important than a superficial
+performance gain of 20% (which might even introduce subtle bugs elsewehre)
+
+
+
+
+
+Date: Mon, 28 May 2018 19:26:16 +0500
+From: Nikita Zlobin <dmarc-noreply@freelists.org>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: faster or safer optimization options
+X-Mailer: Claws Mail 3.16.0 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+
+В Mon, 28 May 2018 11:30:59 +0200
+Ichthyostega <prg@ichthyostega.de> пишет:
+
+<snipped, see above>
+
+No, I use gentoo-based distro (calculate) :)
+I worried about -fno-math-errno, because gcc man says, that it breaks
+behavior for apps, relying to exact conformance to some iso standards.
+
+Btw, imho, cpu-specific cflags don't need to have cpu instruction
+flags, which are included automatically by correct -march. Or is it
+really?
+(at least, this is from gentoo articles about system cflags).
+
+What if there would be separate cmake file, dedicated to contain
+options for different cpu configurations... might be useful in case of
+different compilers/platforms.
+
+
+
+
+
+
+Date: Mon, 28 May 2018 17:40:36 +0200
+From: Ichthyostega <prg@ichthyostega.de>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: faster or safer optimization options
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+        Thunderbird/52.8.0
+
+On 28.05.2018 16:26, Nikita Zlobin (Redacted sender cook60020tmp for DMARC)
+> Btw, imho, cpu-specific cflags don't need to have cpu instruction
+> flags, which are included automatically by correct -march. Or is it
+> really?
+
+Good point.
+This was also my understanding, that /with today's compilers/, in such
+a general and average case, it should be sufficient to use the correct -march
+Especially -march=native is your friend, and often does better than some
+"hand optimisation" -- unless you /really/ know what you're doing.
+
+However, I recall that in the 90ties, adding some specific instruction
+flags often could work wonders. And probably from this experience
+stems the habit to set such flags. This kind of settings can be
+surprisingly long-lived and last for 20 years and longer, simply
+because no-one takes a close look.
+
+> I worried about -fno-math-errno, because gcc man says, that it breaks
+> behavior for apps, relying to exact conformance to some iso standards.
+
+A quick grep for "ftestexcept" or "FE_" shows that this codebase does
+nothing specific in that respect.
+
+The whole point with -fast-math and thus with -Ofast is that we can
+just ignore some tiny error here and there. With complex enough
+instruments, you can well drive yoshimi beyond the real-time
+limit, so that you have to resort to rendering a prepared MIDI,
+with Jack free-wheeling mode.
+
+
+Date: Mon, 28 May 2018 19:18:51 +0100
+From: Will Godfrey <willgodfrey@musically.me.uk>
+To: yoshimi@freelists.org
+Subject: [yoshimi] Re: faster or safer optimization options
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.32; x86_64-unknown-linux-gnu)
+
+On Mon, 28 May 2018 11:30:59 +0200
+Ichthyostega <prg@ichthyostega.de> wrote:
+
+>Correctness and usability are more important than a superficial
+>performance gain of 20% (which might even introduce subtle bugs elsewehre)
+>
+>-- Ichthyo
+
+Absloutely agree with this.
+
+>PS: Link to the GCC-Onlinedocs
+>
+>https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html
+>https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html
+>Yoshimi source code is available from either:
+https://sourceforge.net/projects/yoshimi
+>Or: https://github.com/Yoshimi/yoshimi
+>Our list archive is at: https://www.freelists.org/archive/yoshimi
+>To post, email to yoshimi@freelists.org
+
+From Nikia
+> This brings up another interesting question: Why does the
+> CMake-Builfile add -fno-finite-math-only to the "better optimised"
+> setups, but leaves it out from the fallback case, which is
+
+I was specifically asked to do that by one of the distro maintainers, and also
+take the sse options out. Following on from that, I'm a bit concerned that the
+debian people seem to have ignored V1.5.7 :(
+
+Now if we really can reduce most of this to -march=native I'd be very happy,
+although again the distro pakagers would want to disable that for multi-arch
+work.
+
+Finally, as I've said before, I'm very cautious about making changes here -
+there always seem to be unitended consequences :(
+
+
+
+
