@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-09-06
-% \update      2018-09-22
+% \update      2018-09-23
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -230,8 +230,8 @@
 \subsection{Command Level}
 \label{subsec:command_line_command_level}
 
-   \index {cli!command level}
-   \index {cli!context level}
+   \index{cli!command level}
+   \index{cli!context level}
    A command level (also known as a "context level")
    is simply a position in the hierarchy of commands that cover
    some aspect of \textsl{Yoshimi} functionality.
@@ -386,36 +386,24 @@
 
    These forms are exactly the same as the graphical controls,
    and can be set once in the part context.
-   Starting at the part level prompt:
+   Starting at the part level prompt, this command will return the setting on
+   the line after the command,
+   and show a new context level prompt:
 
    \begin{verbatim}
       yoshimi Part 1+> set kmode multi
-   \end{verbatim}
-
-   Will return:
-
-   \begin{verbatim}
       Part 1 Kit Mode multi
-   \end{verbatim}
-
-   And show a new context level prompt:
-
-   \begin{verbatim}
       yoshimi Part 1+, kit 1+, multi>
    \end{verbatim}
 
    This setting is at the kit item 1 (which is always enabled).
-   Let's change to kit item 4:
+   Let's change to kit item 4, and, since
+   kit item 4 hasn't yet been enabled, let's enable it and turn on the
+   SubSynth engine so that it will sound:
 
    \begin{verbatim}
       yoshimi Part 1+, kit 1+, multi> set kitem 4
       yoshimi Part 1+, kit 4, multi>
-   \end{verbatim}
-
-   Kit item 4 hasn't yet been enabled so let's enable it and turn on the
-   SubSynth engine so that it will sound:
-
-   \begin{verbatim}
       yoshimi Part 1+, kit 4, multi> set on
       yoshimi Part 1+, kit 4+, multi> set sub on
       yoshimi P1+, K4+, M, Sub+>
@@ -424,10 +412,9 @@
    Note how the prompt line is more compact, and indicates via the
    plus-signs that the part, kit, and subsynth are all on.
 
-   These new controls are show in the part context help list.
+   These new controls are shown in the part context help list.
    The synth engines, AddSynth, Voice, SubSynth and PadSynth also have their
    own contexts with appropriate help lists.
-
    There is also a new help list which doesn't show directly in any context,
    but has to be called explicitly.
    It is:

@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom and Will Godfrey
 % \date        2015-06-15
-% \update      2018-05-26
+% \update      2018-09-23
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -262,7 +262,7 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=0.55]{zyn/zyn-diagram1.png}
+   \includegraphics[scale=0.50]{zyn/zyn-diagram1.png}
    \caption{ZynAddSubFX/Yoshimi Main Structure}
    \label{fig:zynaddsubfx_main_structure}
 \end{figure}
@@ -314,7 +314,7 @@
 
 \begin{figure}[H]
    \centering 
-   \includegraphics[scale=0.4]{zyn/zyn-adnote-diagram2.png}
+   \includegraphics[scale=0.35]{zyn/zyn-adnote-diagram2.png}
    \caption{ZynAddSubFX/Yoshimi Note Generation}
    \label{fig:zynaddsubfx_note_generation}
 \end{figure}
@@ -596,14 +596,19 @@
       If you define a second formant (you set \textbf{Num formants}) to 2, each
       vowel will get another formant.  The sound is processed using the first
       formant (like in the above example) and is added to the sound processed
-      using the second formant. The formants are bandpass filter in parallel as
-      you've guessed.
+      using the second formant. The formants are bandpass-filtered in parallel
+      as you've guessed.
 
       I preferred for a vowel to have several formants (than the other way
       around) because I've arranged the data according to the high level of
       abstraction (that the vowel contains several formants) instead of how it
       was implemented.
    \end{quotation}
+
+   It is the filter \textsl{envelope} that set the rate and degree to which
+   formats are traversed.
+   Also, the richer the original harmonic content (e.g. a square wave), the more
+   pronounced the effect will be.
 
 \subsection{Concepts / MIDI}
 \label{subsec:concepts_midi}
@@ -764,7 +769,6 @@
 \label{subsec:concepts_lv2_plugin}
 
    \textsl{Yoshimi} now runs as an LV2 plugin.
-
    TODO: Describe LV2 at a high-level.
 
 \subsection{Concepts / Numbering}
@@ -790,8 +794,7 @@
    \end{itemize}
 
    These items follow standard MIDI practice (and do the same in the GUI).
-
-   One of our most prolific CLI users who, while prefering all zero as a base,
+   One of our most prolific CLI users who, while preferring all zero as a base,
    appreciates the difficulties and can manage as long as things are consistent.
 
    Banks and bank roots continue to start from zero - this is what everyone

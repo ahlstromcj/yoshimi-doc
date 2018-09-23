@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-04-20
-% \update      2018-09-22
+% \update      2018-09-23
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -50,7 +50,7 @@
 
 \begin{document}
 
-\title{Yoshimi Advanced User Manual, v 1.5.8}
+\title{Yoshimi Advanced User Manual, v 1.5.9}
 \author{Chris Ahlstrom \texttt{(ahlstromcj@gmail.com)} with Will J. Godfrey}
 \date{\today}
 \maketitle
@@ -104,14 +104,17 @@
    synthesizer (Copyright 2002-2009 Nasca Octavian Paul).
    Because of their common origin, much of this manual also
    applies to \textsl{ZynAddSubFx} for versions less than 3.0,
-   and uses some \textsl{ZynAddSubFX} documentation and diagrams.
+   and uses some earlier \textsl{ZynAddSubFX} documentation and diagrams.
+   Please note that the references to \textsl{ZynAddSubFx}
+   in this manual apply primarly to versions of \textsl{ZynAddSubFx}
+   prior to version 3.0.
 
 %  continued for quite a while in its own direction. These include
 %  major optimizations for audio and MIDI performance,
 %  progressive development of user-level and command-line access to all
 %  controls, MIDI learn, and vector control.
 %  At the same time, refinement continues, both visually and within the code.
-
+%
 %  What are the advantages of
 %  \textsl{Yoshimi} versus \textsl{ZynAddSubFX}?
 %  At one time \textsl{Yoshimi} had better JACK support
@@ -125,11 +128,7 @@
 %  There may be internal differences of importance to
 %  a developer, as well as features that aren't so easy to discover.  So,
 %  really, ... use them both!
-
-   Please note that the references to \textsl{ZynAddSubFx}
-   in this manual apply primarly to versions of \textsl{ZynAddSubFx}
-   prior to version 3.0
-
+%
 %  -- the \textsl{ZynAddSubFx} project is planning
 %  a major user-interface change for version 3.0, and many of the file formats
 %  will change as well.  Of course, one can still continue to use the old
@@ -173,10 +172,9 @@
 \subsubsection{Control Automation}
 \label{subsubsec:new_features_control_automation}
 
-   Already well underway, controls automation support is a part of a common
+   Controls automation support is a part of a common
    controls interface.  There are significant extensions to the NRPNs that
    \textsl{Yoshimi} handles.
-
    Sensitivity to MIDI volume change (CC \#7) is variable in
    \textbf{Controllers} in the same way as pan width, etc. The numeric range is
    64 to 127; the default at 96 gives the same sensitivity as before at -12dB
@@ -188,9 +186,7 @@
    can send MIDI CCs.  NRPNs aren't special. They are simply a specific pattern
    of CCs.  \textsl{Yoshimi}'s implementation is very forgiving, doesn't mind
    if one stops halfway through (will just get on with other things while it
-   waits) and will report exactly what it is doing.  See the new NRPN
-   sections.
-
+   waits) and will report exactly what it is doing.
    See \sectionref{sec:nrpns}, for more information, as well as the sections
    noted below.
 
@@ -220,7 +216,7 @@
 
    \index{legato}
    \index{MIDI CC!legato}
-   \textsl{Yoshimi} now implements the "legato footswitch" control,
+   \textsl{Yoshimi} implements the "legato footswitch" control,
    MIDI CC 68.
    Send this command with a value of 64 and above, and it will
    switch to Legato mode. Send less than 64, and it will revert to whatever it
@@ -240,7 +236,6 @@
    receive independent note or control messages. However, vector control will
    intelligently work with however many are set, as will all the NRPN direct
    part controls.
-
    See \sectionref{sec:vector}, for more information.
 
 \subsubsection{Bank Support}
@@ -250,7 +245,6 @@
    the user in the GUI. This is also made available for selecting over MIDI.
    MIDI only sees banks in the \textsl{current}
    \textbf{root} directory, but all banks are accessible to the GUI.
-
    One can set up a new bank root path when starting from the
    command line. This takes the form:
 
@@ -258,7 +252,7 @@
       $ yoshimi -D /home/(username)/(directory)/(subdirectory)/bank
    \end{verbatim}
 
-   \textsl{Yoshimi} will then immediately scan this path for new banks, but
+   \textsl{Yoshimi} will scan this path for new banks, but
    won't make the root (or any of its banks) current. The final directory
    doesn't have to be \texttt{banks}, but that is tradition.
    When running from the command line there is access to many
@@ -279,7 +273,7 @@
 \label{subsubsec:new_features_accessibility}
 
    One of the main features of recent releases of \textsl{Yoshimi} is improved
-   accessibility. The effectiveness (and indeed usefulness) of this will help
+   accessibility. The effectiveness and usefulness of accessibility will
    shape future complementary interfaces. A number of first-time defaults
    have been changed to make this easier.
 
@@ -288,7 +282,6 @@
    line, an argument can be included for a new root path to be defined to point
    to a set of banks fetched from elsewhere. This will be given the next free
    ID.
-
    Once running, all setup can be done within the terminal window.
    Some settings will require a restart.
    There is also extensive control of
@@ -324,6 +317,7 @@
    The command-line interface can access all top level controls, as well as the
    main part controls, and can select any effect and effect preset.  It can be
    used to set up Vector Control much more quickly and easily than using NRPNs.
+   It allows setting to be made to the various synthesis engines.
    The command-line is also context sensitive, which, along with careful choice
    of command names and abreviations, allows very fast access with minimal
    typing. Since version 1.5.8 it has been possible to start, stop and select
@@ -334,15 +328,14 @@
    quite pedantic, and expects spelling to be correct regardless of length.
    Apart from the \texttt{back} commands, it is word-based, so spaces are
    significant.
-
    Some examples:
 
    "\texttt{s p 4 pr 6}" ("set part 4 program 6"):
    This command sets part 4 to the instrument with ID 6 from the current bank.
    It also then leaves one at the part context level and pointed to part 4.
    Additionally, it will activate that part if it was off (and the
-   configuration setting is checked). In most cases the words \textbf{program} and
-   \textbf{instrument} are interchangable.
+   configuration setting is checked). In most cases the words \textbf{program}
+   and \textbf{instrument} are interchangable.
 
    "\texttt{s ef 1 ty rev}" ("set effect 1 type reverb"):
    This command moves one up to part effects context level and sets that part's
@@ -379,7 +372,6 @@
    \textsl{Yoshimi} instrument patches are still fully
    compatible with \textsl{ZynAddSubFX} patches, and have ported across
    new refinements with thanks.
-
    See \sectionref{sec:command_line}, for more information.
 
 \subsubsection{Audio Support}
