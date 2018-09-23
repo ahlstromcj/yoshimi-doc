@@ -6,7 +6,7 @@
 # \library    	Documents
 # \author     	Chris Ahlstrom
 # \date       	2015-04-20
-# \update     	2015-07-05
+# \update     	2018-09-23
 # \version    	$Revision$
 # \license    	$XPC_SUITE_GPL_LICENSE$
 #
@@ -27,7 +27,7 @@ all: user
 # Both are essentially options of pdflatex.
 
 user: tex-stamp
-	latexmk -silent -pdf yoshimi-user-manual
+	latexmk -g -silent -pdf yoshimi-user-manual
 
 # No longer needed.
 #

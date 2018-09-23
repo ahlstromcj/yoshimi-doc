@@ -965,18 +965,26 @@ Filter types (s parameter, LFO oscillator shape):
    Note that there are a number of commands common to all command levels.
    We describe them here.
 
-   \begin{table}[H]
-      \centering
-      \caption{Yoshimi Common Commands}
-      \label{table:yoshimi_text_common_commands}
-      \begin{tabular}{l l}
+%  \begin{table}[H]
+%     \centering
+%     \caption{Yoshimi Common Commands}
+%     \label{table:yoshimi_text_common_commands}
+%     \begin{tabular}{l l}
+
+\begin{center}
+% \begin{longtable}{l l}
+\begin{longtable}{p{2cm} p{10cm}}
+\caption[Yoshimi Common Commands]{Yoshimi Common Commands} \\
 
 \texttt{?,  Help} &
    Show commands.  Also note specialized versions such as \textbf{? list}. \\
 \texttt{STop} &
    All sound off.  Stop!  Panic! \\
 \texttt{RESet} &
-   Return to start-up conditions (if answering 'y' to the prompt). \\
+   Return to start-up conditions (if answering 'y' to the prompt).
+   The \textbf{RESet} command asks for confirmation, and, if allowed, will
+   reset \textsl{Yoshimi} to startup conditions.
+   However, this will \textsl{not} clear any MIDI-learned lines. \\
 \texttt{EXit} &
    Tidy up and close Yoshimi (if 'y' to the prompt). \\
 \texttt{..} &
@@ -984,14 +992,17 @@ Filter types (s parameter, LFO oscillator shape):
 \texttt{/} &
    Step up to the top command level. \\
 
-      \end{tabular}
-   \end{table}
+\end{longtable}
+\end{center}
 
-   The \textbf{RESet} command asks for confirmation, and, if allowed, will
-   reset \textsl{Yoshimi} to startup conditions.
-   However, note that this will \textsl{not} clear any MIDI-learned lines.
-   The \textbf{EXit} command will ask for confirmation, and, if allowed, will
-   perform a clean exit.
+%     \end{tabular}
+%  \end{table}
+
+%  The \textbf{RESet} command asks for confirmation, and, if allowed, will
+%  reset \textsl{Yoshimi} to startup conditions.
+%  However, note that this will \textsl{not} clear any MIDI-learned lines.
+%  The \textbf{EXit} command will ask for confirmation, and, if allowed, will
+%  perform a clean exit.
 
    \begin{table}[H]
       \centering
@@ -1081,7 +1092,7 @@ Filter types (s parameter, LFO oscillator shape):
 \paragraph{SOlo}
 \label{paragraph:command_line_solo}
 
-   The \textbf{SOlo [s] [n]} and \textbf{CC [n]}
+   The \textbf{SOlo [s] [n]} and \textbf{SCC [n]}
    commands enable and set \textsl{Yoshimi}'s 'Solo' feature,
    whereby one can silently switch MIDI input to different parts.
    The [n] parameter can be 0 = off, 1 = row, 2 = col, and 3 = loop).

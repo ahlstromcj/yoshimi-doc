@@ -4,7 +4,7 @@
 # \library    	Documents
 # \author     	Chris Ahlstrom
 # \date       	2015-11-01
-# \update     	2017-05-13
+# \update     	2017-09-23
 # \version    	$Revision$
 # \license    	$XPC_SUITE_GPL_LICENSE$
 #
@@ -16,32 +16,43 @@
 
 MKERROR="no"
 
-if [ "$1" == "" ] ; then
+if [ "$1" == "clean" ] ; then
+
+   pushd tex
+   make clean
+   popd
+
+else
+
+	echo "Building PDF using latexmk..."
    pushd tex
    make
    if [ $? != 0 ] ; then
       MKERROR="yes"
+		echo "FATAL ERROR in processing TeX files!"
+	else
+		cp yoshimi-user-manual.pdf ../pdf/
+		cp yoshimi-user-manual.pdf ../pdf/yoshimi-user-manual-unoptimized.pdf 
    fi
    popd
-   if [ "$MKERROR" == "no" ] ; then
-      cp tex/*.pdf pdf
-		rm tex/*.pdf
-		pushd pdf
-		mv yoshimi-user-manual.pdf y-temp.pdf
-gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH \
- -sOutputFile=yoshimi-user-manual.pdf y-temp.pdf
- 		if [ $? == 0 ] ; then
-			rm y-temp.pdf
-		else
-			echo "? Could not reduce the size of the PDF"
-			mv y-temp.pdf yoshimi-user-manual.pdf
+
+	if [ "$MKERROR" == "no" ] ; then
+		if [ "$1" == "optimize" ] ; then
+#			cp tex/*.pdf pdf
+#			rm tex/*.pdf
+			pushd pdf
+			mv yoshimi-user-manual.pdf y-temp.pdf
+	gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH \
+	 -sOutputFile=yoshimi-user-manual.pdf y-temp.pdf
+			if [ $? == 0 ] ; then
+				rm y-temp.pdf
+			else
+				echo "? Could not reduce the size of the PDF"
+				mv y-temp.pdf yoshimi-user-manual.pdf
+			fi
+			popd
 		fi
-		popd
-   fi
-elif [ "$1" == "clean" ] ; then
-   pushd tex
-   make clean
-   popd
+	fi
 fi
 
 #******************************************************************************
