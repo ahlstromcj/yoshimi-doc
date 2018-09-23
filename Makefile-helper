@@ -38,8 +38,6 @@ else
 
 	if [ "$MKERROR" == "no" ] ; then
 		if [ "$1" == "optimize" ] ; then
-#			cp tex/*.pdf pdf
-#			rm tex/*.pdf
 			pushd pdf
 			mv yoshimi-user-manual.pdf y-temp.pdf
 	gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH \

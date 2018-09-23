@@ -58,7 +58,6 @@
    Once running, almost all configuration can be done within the terminal
    window.  There is also extensive control of roots, banks, parts and
    instruments including the ability to list and set all of these.
-
    Additional controls that are frequently taken for granted in the GUI, but
    otherwise get forgotten, are \textsl{master key shift} and \textsl{master
    volume}.
@@ -111,10 +110,9 @@
    This command \textbf{s}ets the part's \textbf{ef}fect 1 (implicit) to
    \textbf{ty}pe \textbf{re}verb.
 
-   Note that many settings parameters are optional, and if you omit them,
+   Note that many settings parameters are optional, and if omitted,
    either a default or last-used value will be assumed. Also, names are
    truncated to 5 characters so the prompt line doesn't get unmanageably long.
-
    From here you can set a preset for this effect:
 
    \begin{verbatim}
@@ -195,10 +193,11 @@
    relative to one's \textsl{Yoshimi} home directory.  However, saving an
    external instrument from the command-line still requires a full pathname.
 
+   The 'recent history' lists can load MIDI-learned files, patchsets, or
+   vector files numerically from the associated list,
+   instead of having to type the names out.
    \index{cmd!at-sign}
-   The 'recent history' lists can now load MIDI-learned files, patchsets, or
-   vector files numerically from the associated list instead of having to type
-   the names out.  This uses the '@' (list number) operator.
+   This uses the '@' (list number) operator.
 
    Originally this section described the currently implemented commands,
    but as the command set is very much a moving target, it is simpler to just
@@ -259,25 +258,18 @@
    Any level that has direct numerical content can be changed with
    "set (n)" once at that level.  The level is
    indicated by the text in the \textsl{Yoshimi} prompt.
-   For example, one can set 1 to 16 vector channels, so from the
+   For example, one can set 1 to 16 vector channels, so, from the
    \textsl{Top} level, the following command
-   will set the default  (1, or the last-used number):
+   will set the default (1, or the last-used number).
+   The second command will, given this level (the \textsl{Vector} level),
+   switch to vector channel 5.
+   However, at the start, one could have gone straight to 5 with the third
+   command.
 
    \begin{verbatim}
-      set vector                          # or "s ve"
-   \end{verbatim}
-
-   Given this level (the \textsl{Vector} level), the following command
-   will switch to vector channel 5.
-
-   \begin{verbatim}
+      set vector                          # or "s ve"; sets the context
       set 5                               # or "s 5"
-   \end{verbatim}
-
-   However, at the start, one could have gone straight to 5 with:
-
-   \begin{verbatim}
-      set vector 5                        # or "s ve 5"
+      set vector 5                        # or "s ve 5"; quicker!
    \end{verbatim}
 
    A detailed discussion of command-line vector control is presented in
@@ -450,11 +442,15 @@
 \subsubsection{Part Common Commands}
 \label{subsec:command_line_part_common_commands}
 
-   \begin{table}[H]
-      \centering
-      \caption{Part Common Commands}
-      \label{table:yoshimi_part_common_commands}
-      \begin{tabular}{l l}
+%  \begin{table}[H]
+%     \centering
+%     \caption{Part Common Commands}
+%     \label{table:yoshimi_part_common_commands}
+%     \begin{tabular}{l l}
+
+\begin{center}
+\begin{longtable}{p{4cm} p{10cm}}
+\caption[Part Common Commands]{Part Common Commands} \\
 
 \texttt{ON @} &
    Enables the part/kit item/engine/insert etc. \\
@@ -513,10 +509,13 @@
 \texttt{ENVelope ... *} &
    Enter Envelope insert context.   \\
 
-      \end{tabular}
-   \end{table}
+\end{longtable}
+\end{center}
 
-Notes:
+%     \end{tabular}
+%  \end{table}
+
+Notes.  These markings are used above to qualify the descriptions:
 
    \begin{enumerate}
       \item \texttt{@} Exists in all part contexts.
@@ -545,7 +544,7 @@ Overtone Position s, Relationship to fundamental, values:
 \subsubsection{Part Commands}
 \label{subsec:command_line_part_commands}
 
-   Note that n1 is the part number in the table that follows.
+   Note that [n1] is the part number in the table that follows.
 
    \begin{table}[H]
       \centering
@@ -553,43 +552,43 @@ Overtone Position s, Relationship to fundamental, values:
       \label{table:yoshimi_part_commands}
       \begin{tabular}{l l}
 
-\texttt{OFfset n2} &
+\texttt{OFfset [n2]} &
    Sense offset.  \\
-\texttt{Breath s} &
+\texttt{Breath [s]} &
    Control (ON, {other}).  \\
-\texttt{POrtamento s} &
+\texttt{POrtamento [s]} &
    (ON, other).   \\
-\texttt{Mode s} &
+\texttt{Mode [s]} &
    Mode (Poly, Mono, Legato). \\
-\texttt{Note n2} &
+\texttt{Note [n2]} &
    Polyphony.  \\
-\texttt{SHift n2} &
+\texttt{SHift [n2]} &
    Shift semitones (0 no shift). \\
 \texttt{EFfects [n2]} &
    Effects context level.  \\
- \texttt{(effect) Type s} &
+ \texttt{(effect) Type [s]} &
    Effect type.   \\
- \texttt{(effect) PREset n3} &
+ \texttt{(effect) PREset [n3]} &
    Numbered effect preset to n3. \\
- \texttt{(effect) Send n3 n4} &
+ \texttt{(effect) Send [n3] [n4]} &
    Part to system effect n3 at volume n4. \\
-\texttt{KMode s} &
+\texttt{KMode [s]} &
    Part to kit mode (MUlti, SIngle, CRoss, OFf).   \\
- \texttt{(kmode) KItem n} &
+ \texttt{(kmode) KItem [n]} &
    Kit item number (1-16). \\
-   \texttt{(kitem) MUte s} &
+   \texttt{(kitem) MUte [s]} &
       This item (ON, {other}).   \\
-   \texttt{(kitem) KEffect n} &
+   \texttt{(kitem) KEffect [n]} &
       Effect for this item (0-none, 1-3). \\
- \texttt{DRum s} &
+ \texttt{DRum [s]} &
    Kit to drum mode (ON, {other}).  \\
-\texttt{PRogram n2/s} &
+\texttt{PRogram [n2]/[s]} &
    Instrument ID / CLear sets default. \\
-\texttt{NAme s} &
+\texttt{NAme [s]} &
    The display name the part can be saved with. \\
-\texttt{Channel n2} &
-   Channel ( 32 disables,  16 note off only).   \\
-\texttt{Destination s2} &
+\texttt{Channel [n2]} &
+   Channel (32 disables, 16 note off only).   \\
+\texttt{Destination [s2]} &
    Audio destination (Main, Part, Both).  \\
 \texttt{ADDsynth ...} &
    Enter AddSynth context. \\
@@ -627,20 +626,20 @@ Overtone Position s, Relationship to fundamental, values:
       \label{table:yoshimi_part_subsynth_commands}
       \begin{tabular}{l l}
 
-\texttt{HArmonic n1 Amp n2} &
+\texttt{HArmonic [n1] Amp [n2]} &
    Set harmonic n1 to n2 intensity. \\
-\texttt{HArmonic n1 Band n2} &
+\texttt{HArmonic [n1] Band [n2]} &
    Set harmonic n1 to n2 width. \\
 \texttt{HArmonic Stages n} &
    Number of stages. \\
-\texttt{HArmonic Mag n} &
+\texttt{HArmonic Mag [n]} &
    Harmonics filtering type. \\
-\texttt{HArmonic Position n} &
+\texttt{HArmonic Position [n]} &
    Start position. \\
-\texttt{BAnd Width n} &
+\texttt{BAnd Width [n]} &
    Common bandwidth. \\
-\texttt{BAnd Scale n} &
-   Bandwidth slope v frequency. \\
+\texttt{BAnd Scale [n]} &
+   Bandwidth slope versus frequency. \\
 
       \end{tabular}
    \end{table}
@@ -654,13 +653,13 @@ Overtone Position s, Relationship to fundamental, values:
       \label{table:yoshimi_part_waveform_commands}
       \begin{tabular}{l l}
 
-   \texttt{HArmonic n1 Amp n2} &
+   \texttt{HArmonic [n1] Amp [n2]} &
       Set harmonic n1 to n2 intensity. \\
-   \texttt{HArmonic n1 Phase n2} &
+   \texttt{HArmonic [n1] Phase [n2]} &
       Set harmonic n1 to n2 phase. \\
    \texttt{CLear} &
       Clear harmonic settings. \\
-   \texttt{SHape s} &
+   \texttt{SHape [s]} &
       Set the shape of the basic waveform. \\
    \texttt{APply} &
       Fix settings (only for PadSynth). \\
@@ -716,13 +715,13 @@ Overtone Position s, Relationship to fundamental, values:
       \label{table:yoshimi_engine_envelopes_controls}
       \begin{tabular}{l l}
 
-\texttt{Expand n} &
+\texttt{Expand [n]} &
    Overall envelope time. \\
-\texttt{Force s} &
+\texttt{Force [s]} &
    Force release (ON, other). \\
-\texttt{Linear s} &
+\texttt{Linear [s]} &
    Linear slopes (ON, other). \\
-\texttt{FMode s} &
+\texttt{FMode [s]} &
    Set as Freemode (ON, other). \\
 
       \end{tabular}
@@ -734,27 +733,26 @@ Overtone Position s, Relationship to fundamental, values:
       \label{table:yoshimi_engine_envelopes_fixed}
       \begin{tabular}{l l}
 
-\texttt{Attack Level n} &
+\texttt{Attack Level [n]} &
    Initial attack level. \\
-\texttt{Attack Time n} &
+\texttt{Attack Time [n]} &
    Time before decay point. \\
-\texttt{Decay Level n} &
+\texttt{Decay Level [n]} &
    Initial decay level. \\
-\texttt{Decay Time n} &
+\texttt{Decay Time [n]} &
    Time before sustain point. \\
-\texttt{Sustain n} &
+\texttt{Sustain [n]} &
    Sustain level. \\
-\texttt{Release Time n} &
+\texttt{Release Time [n]} &
    Time to actual release. \\
-\texttt{Release Level n} &
+\texttt{Release Level [n]} &
    Level at envelope end. \\
 
       \end{tabular}
    \end{table}
 
 Example: "S FR D T 40" is "set frequency decay time 40".
-
-Note: Some envelopes have limited controls.
+Some envelopes have limited controls.
 
    \begin{table}[H]
       \centering
@@ -764,14 +762,14 @@ Note: Some envelopes have limited controls.
 
 \texttt{Points} &
    Number of defined points (read only). \\
-\texttt{Sustain n} &
+\texttt{Sustain [n]} &
    Point number where sustain starts. \\
-\texttt{Insert n1 n2 n3} &
-   Insert point at 'n1' with X increment 'n1', Y value 'n2'. \\
-\texttt{Delete n} &
-   Remove point 'n'. \\
-\texttt{Change n1 n2 n3} &
-   Change point 'n1' to X increment 'n1', Y value 'n2'. \\
+\texttt{Insert [n1] [n2] [n3]} &
+   Insert point at n1 with X increment n2, Y value n3. \\
+\texttt{Delete [n]} &
+   Remove point n. \\
+\texttt{Change [n1] [n2] [n3]} &
+   Change point n1 to X increment n2, Y value n3. \\
 
       \end{tabular}
    \end{table}
@@ -785,26 +783,26 @@ Note: Some envelopes have limited controls.
       \label{table:yoshimi_engine_filters}
       \begin{tabular}{l l}
 
-\texttt{CEnter n} &
+\texttt{CEnter [n]} &
    Center frequency. \\
-\texttt{Q n} &
+\texttt{Q [n]} &
    Q factor.   \\
-\texttt{Velocity n} &
+\texttt{Velocity [n]} &
    Velocity sensitivity.   \\
-\texttt{SLope n} &
+\texttt{SLope [n]} &
    Velocity curve.   \\
-\texttt{Gain n} &
+\texttt{Gain [n]} &
    Overall amplitude.   \\
-\texttt{TRacking n} &
+\texttt{TRacking [n]} &
    Frequency tracking.  \\
-\texttt{Range s} &
+\texttt{Range [s]} &
    Extended tracking (ON, {other}). \\
-\texttt{CAtegory s} &
+\texttt{CAtegory [s]} &
    Analog, Formant, State variable. \\
-\texttt{STages n} &
+\texttt{STages [n]} &
    filter stages (1 to 5). \\
-\texttt{TYpe s} &
-   Category dependent, and not formant filters.  See types below.   \\
+\texttt{TYpe [s]} &
+   Category dependent, and not formant filters.  See the filter types below.   \\
 
       \end{tabular}
    \end{table}
@@ -839,25 +837,25 @@ Note: Some envelopes have limited controls.
       \label{table:yoshimi_engine_filters_formant_editor}
       \begin{tabular}{l l}
 
-\texttt{Direct n} &
+\texttt{Direct [n]} &
    Bypass LFOs, envelopes. \\
-\texttt{FCenter n} &
+\texttt{FCenter [n]} &
    Center frequency of sequence. \\
-\texttt{FRange n} &
+\texttt{FRange [n]} &
    Octave range of formants. \\
-\texttt{Expand n} &
+\texttt{Expand [n]} &
    Stretch overal sequence time. \\
-\texttt{Lucidity n} &
+\texttt{Lucidity [n]} &
    Clarity of vowels. \\
-\texttt{Morph n} &
+\texttt{Morph [n]} &
    Speed of change between formants. \\
-\texttt{SIze n} &
+\texttt{SIze [n]} &
    Number of vowels in sequence. \\
-\texttt{COunt n} &
+\texttt{COunt [n]} &
    Number of formants in vowels. \\
-\texttt{VOwel n} &
+\texttt{VOwel [n]} &
    Vowel being processed. \\
-\texttt{Point n1 n2} &
+\texttt{Point [n1] [n2]} &
    Vowel n1 at sequence position n2. \\
 
       \end{tabular}
@@ -878,28 +876,27 @@ Note: Some envelopes have limited controls.
    Frequency type. \\
 \texttt{FIlter} &
    Filter type. \\
-\texttt{Rate n} &
+\texttt{Rate [n]} &
    Frequency. \\
-\texttt{Start n} &
+\texttt{Start [n]} &
    Start position in cycle. \\
-\texttt{Delay n} &
+\texttt{Delay [n]} &
    Time before effect. \\
-\texttt{Expand n} &
+\texttt{Expand [n]} &
    Overall LFO time. \\
-\texttt{Continuous s} &
+\texttt{Continuous [s]} &
    ON, other. \\
-\texttt{Type s} &
-   LFO oscillator shape. \\
-\texttt{AR n} &
+\texttt{Type [s]} &
+   LFO oscillator shape. See the list below. \\
+\texttt{AR [n]} &
    Amplitude randomness. \\
-\texttt{FR n} &
+\texttt{FR [n]} &
    Frequency randomness. \\
 
       \end{tabular}
    \end{table}
 
-  e.g. S FI T RU              set filter type ramp up
-
+Example: "S FI T RU" sets the filter type, ramp up.
 Filter types (s parameter, LFO oscillator shape):
 
    \begin{itemize}
@@ -972,7 +969,6 @@ Filter types (s parameter, LFO oscillator shape):
 %     \begin{tabular}{l l}
 
 \begin{center}
-% \begin{longtable}{l l}
 \begin{longtable}{p{2cm} p{10cm}}
 \caption[Yoshimi Common Commands]{Yoshimi Common Commands} \\
 
@@ -1004,11 +1000,15 @@ Filter types (s parameter, LFO oscillator shape):
 %  The \textbf{EXit} command will ask for confirmation, and, if allowed, will
 %  perform a clean exit.
 
-   \begin{table}[H]
-      \centering
-      \caption{Yoshimi Top-Level Commands}
-      \label{table:yoshimi_text_toplevel_commands}
-      \begin{tabular}{l l}
+%  \begin{table}[H]
+%     \centering
+%     \caption{Yoshimi Top-Level Commands}
+%     \label{table:yoshimi_text_toplevel_commands}
+%     \begin{tabular}{l l}
+
+\begin{center}
+\begin{longtable}{p{6cm} p{10cm}}
+\caption[Yoshimi Top-Level Commands]{Yoshimi Top-Level Commands} \\
 
 \texttt{Part [n1] ...} &
    Start part operations.  See below. \\
@@ -1046,8 +1046,8 @@ Filter types (s parameter, LFO oscillator shape):
    Close an instance. \\
 \texttt{REMove MLearn [s] [n]} &
    Delete MIDI learned values: 'ALL' removes whole list, or select line [n]. \\
-\texttt{Set / Read} &
-   Set or read all main parameters. See below for context levels. \\
+\texttt{Set/Read} &
+   Set or read all main parameters. See below for the context levels. \\
 \texttt{Set/read Root [n]} &
    Read the current root path or set it to ID [n]. \\
 \texttt{Set/read Bank [n]} &
@@ -1086,8 +1086,14 @@ Filter types (s parameter, LFO oscillator shape):
 \texttt{'...'} &
    Help sub-menu. \\
 
-      \end{tabular}
-   \end{table}
+\end{longtable}
+\end{center}
+
+%     \end{tabular}
+%  \end{table}
+
+   Some of the commands in the table above have more extensive descriptions in
+   the sections that follow.
 
 \paragraph{SOlo}
 \label{paragraph:command_line_solo}
@@ -1101,7 +1107,6 @@ Filter types (s parameter, LFO oscillator shape):
 
    This setting has to be decided before setting 'CC', which then determines
    which channel to listen to for performing the actual switch.
-
    See \sectionref{subsec:mixer_panel_window}; it goes into more details about
    this setting, at a user-interface level.
 
@@ -1120,7 +1125,7 @@ Filter types (s parameter, LFO oscillator shape):
       \item \texttt{SCale}. Enter context level for scale (microtonal) operations.
       \item \texttt{MLearn}. Enter context level for MIDI Learn operations.
       \item \texttt{COnfig}. Enter context level for configuration settings.
-      \item \texttt{SYStem effects [n]}. Enter effects context level.
+      \item \texttt{SYStem effects [n]}. Enter the effects context level.
       \begin{itemize}
          \item \texttt{Type [s]}.  Set the effect type.
          \item \texttt{PREset [n2]}. Set the numbered effect preset to n2.
@@ -1199,41 +1204,41 @@ Filter types (s parameter, LFO oscillator shape):
 \texttt{DIsable} &
    Disables the part. \\
 \texttt{Volume [n2]} &
-   Set the part's volume to [n2]. \\
+   Set the part's volume to n2. \\
 \texttt{Pan [n2]} &
-   Set part's L/R panning to [n2]. 64 = center. \\
+   Set part's L/R panning to n2. 64 = center. \\
 \texttt{VElocity [n2]} &
-   Set part velocity sensing sensitivity to [n2]. \\
+   Set part velocity sensing sensitivity to n2. \\
 \texttt{OFfset [n2]} &
-   Set velocity sense offset (start point) to [n2]. \\
+   Set velocity sense offset (start point) to n2. \\
 \texttt{POrtamento [s]} &
-   Set portamento. ([s] = Enable, other values disable it). \\
+   Set portamento. (s = "Enable", other values disable it). \\
 \texttt{Mode [s]} &
-   Set keying mode ([s] = Poly, Mono, Legato). \\
+   Set keying mode (s = "Poly", "Mono", "Legato"). \\
 \texttt{Note [n2]} &
-   Set maximum note polyphony value to [n2]. \\
+   Set maximum note polyphony value to n2. \\
 \texttt{SHift [n2]} &
-   Set key shift semitones to [n2] (0 = no shift). \\
+   Set key shift semitones to n2 (0 = no shift). \\
 \texttt{MIn [n2]} &
-   Set the minimum MIDI note value accepted to [n2]. \\
+   Set the minimum MIDI note value accepted to n2. \\
 \texttt{MAx [n2]} &
-   Set the maximum MIDI note value accepted to [n2]. \\
+   Set the maximum MIDI note value accepted to n2. \\
 \texttt{EFfects [n2]} &
-   Enter Effects command level, and set effects number to [n2], if given. \\
+   Enter Effects command level, and set effects number to n2, if given. \\
 \texttt{Effects Type [s]} &
-   Set the effect type to [s]. \\
+   Set the effect type to s. \\
 \texttt{Effects PREset [n3]} &
-   Set the numbered effect preset to [n3]. \\
+   Set the numbered effect preset to n3. \\
 \texttt{Effects Send [n3] [n4]} &
-   Send part to system effect [n3] at volume [n4]. \\
+   Send part to system effect n3 at volume n4. \\
 \texttt{PRogram [n2]} &
-   Loads instrument ID [n2] in the current bank. \\
+   Loads instrument ID n2 in the current bank. \\
 \texttt{NAme [s]} &
-   Sets the display name the part can be saved with to [s]. \\
+   Sets the display name the part can be saved with to s. \\
 \texttt{Channel [n2]} &
-   Set part's MIDI channel ([n2] > 32 disables, [n2] > 16 note-off only). \\
+   Set part's MIDI channel (n2 > 32 disables, n2 > 16 note-off only). \\
 \texttt{Destination [s2]>} &
-   JACK audio destination ([s2] = Main, Part, Both) \\
+   JACK audio destination (s2 = "Main", "Part", "Both") \\
 
       \end{tabular}
    \end{table}
@@ -1265,7 +1270,7 @@ Filter types (s parameter, LFO oscillator shape):
    above in the first table
    (see \sectionref{subsec:command_line_top_command_list}).
 
-   Note that for vector, [n1] = base channel.
+   Note that for vector, n1 is the base channel.
 
    \begin{table}[H]
       \centering
@@ -1274,21 +1279,21 @@ Filter types (s parameter, LFO oscillator shape):
       \begin{tabular}{l l}
 
 \texttt{VEctor [n1]} &
-   Vector channel operations. \\
+   Vector channel operations on vector n1. \\
 \texttt{[X/Y] CC [n2]} &
-   CC [n2] is used for theX or Y axis sweep. \\
+   CC n2 is used for theX or Y axis sweep. \\
 \texttt{[X/Y] Features [n] [s]} &
-   Sets X or Y features [n] = 1 to 4 ([s] = Enable, Reverse, other = off).  \\
+   Sets X or Y features n = 1 to 4 (s = "Enable", "Reverse", other = off).  \\
 \texttt{[X] PRogram [l/r] [n2]} &
-   Sets X program change ID [n2] for left or right part. \\
+   Sets X program change ID n2 for left or right part. \\
 \texttt{[Y] PRogram [d/u] [n2]} &
-   Sets Y program change ID [n2] forL DOWN or UP part. \\
+   Sets Y program change ID n2 forL DOWN or UP part. \\
 \texttt{[X/Y] Control [n2] [n3]} &
-   Sets [n3] CC to use for X or Y feature [n2] = 2 to 4. \\
+   Sets n3 CC to use for X or Y feature n2 = 2 to 4. \\
 \texttt{Off} &
    Disables vector control for this channel.  Parts are unchanged. \\
 \texttt{Name [s]} &
-   Sets the internal name for this complete vector.  \\
+   Sets the internal name to s for this complete vector.  \\
 
       \end{tabular}
    \end{table}
@@ -1300,7 +1305,7 @@ Filter types (s parameter, LFO oscillator shape):
    It seems to indicate a feature range of 1 to 4, not 2 to 4.
 
    The \textbf{X/Y Control [n2] [n3]} command
-   sets the [n3] CC to use for the X or Y feature [n2] = 2 to 4.
+   sets the n3 CC to use for the X or Y feature n2 = 2 to 4.
    This allows a change of the actual CC associated with features 2 through 4.
    They can be any CC that \textsl{Yoshimi} recognises.
 
@@ -1319,64 +1324,81 @@ Filter types (s parameter, LFO oscillator shape):
    \textbf{?}, \textbf{Help}, \textbf{STop}, \textbf{RESet},
    \textbf{EXit}, \textbf{..}, and \textbf{/}.
 
-   \begin{table}[H]
-      \centering
-      \caption{Yoshimi Scales Commands}
-      \label{table:yoshimi_text_scales_commands}
-      \begin{tabular}{l l}
+%  \begin{table}[H]
+%     \centering
+%     \caption{Yoshimi Scales Commands}
+%     \label{table:yoshimi_text_scales_commands}
+%     \begin{tabular}{l l}
+
+\begin{center}
+\begin{longtable}{p{4cm} p{10cm}}
+\caption[Yoshimi Scales Commands]{Yoshimi Scales Commands} \\
 
 \texttt{FRequency [n]} &
-   Set the 'A' note's actual frequency to [n], usually 440 Hz. \\
+   Set the 'A' note's actual frequency to n, usually 440 Hz. \\
 \texttt{NOte [n]} &
-   Set the 'A' note's number to [n]. \\
+   Set the 'A' note's number to n. \\
 \texttt{Invert [s]} &
-   Invert the entire scale ([s] = enable, other values = off) \\
+   Invert the entire scale (s = "enable", other values = off) \\
 \texttt{CEnter [n]} &
-   Set the note number of the key's center to [n]. \\
+   Set the note number of the key's center to n. \\
 \texttt{SHift [n]} &
-   Shift the entire scale up or down by [n]. \\
+   Shift the entire scale up or down by n. \\
 \texttt{SCale [s]} &
-   Activate microtonal scale ([s] = enable, other values = off). \\
+   Activate microtonal scale (s = "enable", other values = off). \\
 \texttt{MApping [s]} &
-   Activate keyboard mapping ([s] = enable, other values = off). \\
+   Activate keyboard mapping (s = "enable", other values = off). \\
 \texttt{FIrst [n]} &
-   Set the first note number to be mapped to [n]. \\
+   Set the first note number to be mapped to n. \\
 \texttt{MIddle [n]} &
-   Set the middle note number to be mapped to [n]. \\
+   Set the middle note number to be mapped to n. \\
 \texttt{Last [n]} &
-   Set the last note number to be mapped to [n]. \\
+   Set the last note number to be mapped to n. \\
 \texttt{Tuning [s] [s2]} &
-   Set the CSV tuning values (see below). \\
+   Set the CSV tuning values.
+   Tuning sets the CSV tuning values, which are decimal numbers or ratios
+   (n1.n1 or n1/n1, n2.n2 or n2/n2, etc.).
+   The s2 parameter requests an 'IMPort' from a named file, which is
+   \index{.scl}
+   \index{config!.scl}
+   a \texttt{.scl} file. \\
 \texttt{Keymap [s] [s2]} &
-   Set the CSV keymap (n1, n2, n3, etc.); s2 = 'IMPort' from named file. \\
+   Set the CSV keymap (n1, n2, n3, etc.); s2 = 'IMPort' from named file.
+   Keymap either sets the keyboard mapping values as a comma separated list, or
+   imports a
+   \index{.kbm}
+   \index{config!.kbm}
+   \texttt{.kbm} file from a named file [s2]. \\
 \texttt{NAme [s]} &
    Set the internal name for this scale. \\
 \texttt{DEscription [s]} &
    Sets the description of this scale. \\
 \texttt{CLEar} &
    Clear all settings and revert to the standard scale. \\
+\end{longtable}
+\end{center}
 
-      \end{tabular}
-   \end{table}
+%     \end{tabular}
+%  \end{table}
 
-\paragraph{Scales / Tuning [s] [s2]}
-\label{paragraph:command_line_tuning}
-
-   Tuning sets the CSV tuning values, which are decimal numbers or ratios
-   (n1.n1 or n1/n1, n2.n2 or n2/n2, etc.).
-   The [s2] parameter requests an 'IMPort' from a named file, which is
-   \index{.scl}
-   \index{config!.scl}
-   a \texttt{.scl} file.
-
-\paragraph{Scales / Keymap [s] [s2]}
-\label{paragraph:command_line_keymap}
-
-   Keymap either sets the keyboard mapping values as a comma separated list, or
-   imports a
-   \index{.kbm}
-   \index{config!.kbm}
-   \texttt{.kbm} file from a named file [s2].
+% \paragraph{Scales / Tuning [s] [s2]}
+% \label{paragraph:command_line_tuning}
+% 
+%    Tuning sets the CSV tuning values, which are decimal numbers or ratios
+%    (n1.n1 or n1/n1, n2.n2 or n2/n2, etc.).
+%    The s2 parameter requests an 'IMPort' from a named file, which is
+%    \index{.scl}
+%    \index{config!.scl}
+%    a \texttt{.scl} file.
+%
+% \paragraph{Scales / Keymap [s] [s2]}
+% \label{paragraph:command_line_keymap}
+% 
+%    Keymap either sets the keyboard mapping values as a comma separated list, or
+%    imports a
+%    \index{.kbm}
+%    \index{config!.kbm}
+%    \texttt{.kbm} file from a named file [s2].
 
 \subsubsection{Help List}
 \label{subsec:command_line_help_list}
@@ -1392,18 +1414,26 @@ Filter types (s parameter, LFO oscillator shape):
    In the table that follow, we leave off commands noted above
    (see \sectionref{subsec:command_line_top_command_list}).
 
-   \begin{table}[H]
-      \centering
-      \caption{Yoshimi Help Commands}
-      \label{table:yoshimi_text_help_commands}
-      \begin{tabular}{l l}
+%  \begin{table}[H]
+%     \centering
+%     \caption{Yoshimi Help Commands}
+%     \label{table:yoshimi_text_help_commands}
+%     \begin{tabular}{l l}
+
+\begin{center}
+\begin{longtable}{p{4cm} p{10cm}}
+\caption[Yoshimi Help Commands]{Yoshimi Help Commands} \\
 
 \texttt{Roots} &
    List all available root paths. \\
 \texttt{Banks [n]} &
-   List the banks in root ID [n] or the current root.  See below. \\
+   List the banks in root ID [n] or the current root.
+   This command shows all of the banks present in either the numbered ([n])
+   bank root, or in the current one (if no number is provided).  \\
 \texttt{Instruments [n]} &
-   List instruments in bank ID [n] or current bank. See below.  \\
+   List instruments in bank ID [n] or current bank.
+   This command shows all of the instruments present in either the numbered
+   (n) bank root, or in the current one (if no number is provided).  \\
 \texttt{Parts} &
    List parts with instruments installed. \\
 \texttt{Vectors} &
@@ -1419,28 +1449,34 @@ Filter types (s parameter, LFO oscillator shape):
 \texttt{MLearn [s[n]]} &
    MIDI learned controls ('@n' for full details on one line). \\
 \texttt{History [s]} &
-   Show recent files. See below. \\
+   Show recent files. See the extensive description below. \\
 \texttt{Effects [s]} &
-   Show effect types ([s] = 'all' includes preset numbers and names). \\
+   List the effect types ([s] = 'all' includes preset numbers and names).
+   If this command is called from the Effects level, then one see only the name
+   of the current effect and the number of presets. \\
 \texttt{PREsets} &
    Show all the presets for the currently selected effect. \\
 
-      \end{tabular}
-   \end{table}
+\end{longtable}
+\end{center}
 
-A few more detailed descriptions occur in the following sections.
+%     \end{tabular}
+%  \end{table}
 
-\paragraph{List / Banks [n]}
-\label{paragraph:command_line_list_banks}
+A few more detailed descriptions occur in the following sections, where there
+is not enough room in the table above.
 
-   This command shows all of the banks present in either the numbered ([n])
-   bank root, or in the current one (if no number is provided).
-
-\paragraph{List / Instruments [n]}
-\label{paragraph:command_line_list_instruments}
-
-   This command shows all of the instruments present in either the numbered
-   ([n]) bank root, or in the current one (if no number is provided).
+% \paragraph{List / Banks [n]}
+% \label{paragraph:command_line_list_banks}
+% 
+%    This command shows all of the banks present in either the numbered ([n])
+%    bank root, or in the current one (if no number is provided).
+% 
+% \paragraph{List / Instruments [n]}
+% \label{paragraph:command_line_list_instruments}
+% 
+%    This command shows all of the instruments present in either the numbered
+%    ([n]) bank root, or in the current one (if no number is provided).
 
 \paragraph{List / History [s]}
 \label{paragraph:command_line_list_history}
@@ -1474,13 +1510,13 @@ A few more detailed descriptions occur in the following sections.
    would see the older file, so that saving
    will offers your home directory to put a new name in.
 
-\paragraph{List / Effects [s]}
-\label{paragraph:command_line_list_effects}
-
-   Show the effect types.
-   [s] = 'All' includes preset numbers and names.
-   If this command is called from the Effects level, then one see only the name
-   of the current effect and the number of presets.
+% \paragraph{List / Effects [s]}
+% \label{paragraph:command_line_list_effects}
+% 
+%    Show the effect types.
+%    [s] = 'All' includes preset numbers and names.
+%    If this command is called from the Effects level, then one see only the name
+%    of the current effect and the number of presets.
 
 \subsubsection{Load/Save List}
 \label{subsec:command_line_loadsave_list}
@@ -1564,251 +1600,315 @@ A few more detailed descriptions occur in the following sections.
    (see \sectionref{subsec:command_line_top_command_list}).  Also
    note that more complete descriptions follow this table.
 
-   \begin{table}[H]
-      \centering
-      \caption{Yoshimi Config Commands}
-      \label{table:yoshimi_text_config_commands}
-      \begin{tabular}{l l}
+%  \begin{table}[H]
+%     \centering
+%     \caption{Yoshimi Config Commands}
+%     \label{table:yoshimi_text_config_commands}
+%     \begin{tabular}{l l}
+
+\begin{center}
+\begin{longtable}{p{4cm} p{10cm}}
+\caption[Yoshimi Config Commands]{Yoshimi Config Commands} \\
 
 \texttt{Oscillator [n]} &
-   * Add/Pad size (power 2 256-16384). \\
+   * Add/Pad size (power 2 256-16384).
+   This sets the size of the buffer used for both AddSynth and PadSynth
+   oscillators, and is always a power of 2.  \\
 \texttt{BUffer [n]} &
-   * Internal size (power 2 16-4096). \\
+   * Internal size (power 2 16-4096).
+   This is the size of the audio buffer that \textsl{Yoshimi} uses.  For ALSA
+   audio, it will always be the same size as ALSA's buffering, but for JACK it
+   can be the same, bigger, or smaller. It is always a power of 2. \\
 \texttt{PAdsynth [s]} &
-   Interpolation type (Linear, other = cubic). \\
+   Interpolation type (Linear, other = cubic).
+   Sets the quality of the intepolation that PadSynth uses on its wavetables.
+   'Linear' is faster, but 'Cubic' is (potentially) very slightly better
+   quality. \\
 \texttt{Virtual [n]} &
-   Keyboard layout (0 = QWERTY, 1 = Dvorak, 2 = QWERTZ, 3 = AZERTY). \\
+   Keyboard layout (0 = QWERTY, 1 = Dvorak, 2 = QWERTZ, 3 = AZERTY).
+   This setting controls the layout of the virtual keyboard, and can match the
+   commonest computer keyboards. \\
 \texttt{Xml [n]} &
-   Set the XML compression level to [n] (0-9). \\
+   Set the XML compression level to [n] (0-9).
+   This is the amount of compression used on all
+   \textsl{Yoshimi}'s data files. 9 is the most-compressed setting.
+   0 is no compression, so that the configuration file
+   can be read in an ordinary text editor. \\
 \texttt{REports [s]} &
-   Destination for reporting (Stdout, other = console). \\
+   Destination for reporting (Stdout, other = console).
+   Determines where almost all information and error messages will be sent. A
+   few will always go to \texttt{stderr} (such as the ones reporting a GUI
+   problem). \\
 \texttt{STate [s]} &
-   * Autoload default at start (Enable; other = disable). \\
+   * Autoload default at start (Enable; other = disable).
+   Sets whether a pre-saved default state file will be loaded on start-up. \\
 \texttt{Hide [s]} &
-   Hide non-fatal errors (Enable; other = disable). \\
+   Hide non-fatal errors (Enable; other = disable).
+   Sets to ignore non-fatal system errors, or verbose messages. \\
 \texttt{Display [s]} &
-   GUI splash screen (Enable; other = disable). \\
+   GUI splash screen (Enable; other = disable).
+   Enables \textsl{Yoshimi}'s start-up splash screen (which is
+   enabled at first time start). \\
 \texttt{Time [s]} &
-   Add to instrument load message (Enable; other = disable). \\
+   Add to instrument load message (Enable; other = disable).
+   Attaches the time an instrument took to load and initialize to the loading
+   message. \\
 \texttt{Include [s]} &
    Include XML headers on file load (Enable; other = disable). \\
 \texttt{Keep [s]} &
-   Include inactive data on all file saves (Enable; other = disable). \\
+   Include inactive data on all file saves (Enable; other = disable).
+   Sets up to include all data on file saves, including data for
+   inactive and random elements. \\
 \texttt{Gui [s]} &
-   * Run with GUI (Enable, Disable). \\
+   * Run with GUI (Enable, Disable).
+   Run with the command-line interface enabled or disabled.  \\
 \texttt{Cli [s]} &
-   * Run with CLI (Enable, Disable). \\
+   * Run with CLI (Enable, Disable).
+   Run with the command-line interface enabled. \\
 \texttt{MIdi [s]} &
-   * Connection type (Jack, Alsa). \\
+   * Connection type (Jack, Alsa).
+   Sets whether MIDI input comes from JACK or from ALSA.
+   If not specified, JACK is the default, if it is present.  Otherwise,
+   \textsl{Yoshimi} falls back to ALSA. \\
 \texttt{AUdio [s]} &
-   * Connection type (Jack, Alsa). \\
+   * Connection type (Jack, Alsa).
+   Sets whether audio is passed out to JACK or ALSA.  Again, JACK is the
+   default, and ALSA is the fall-back.  \\
 \texttt{ALsa Midi [s]} &
-   * Name of ALSA MIDI source. \\
+   * Name of ALSA MIDI source.
+   Sets the name of an ALSA MIDI source to which
+   \textsl{Yoshim}i will try to connect.  \\
 \texttt{ALsa Audio [s]} &
-   * Name of ALSA audio hardware device. \\
+   * Name of ALSA audio hardware device.
+   Sets the name of a hardware (or software)
+   audio device to which ALSA will try to connect.  \\
 \texttt{ALsa Sample [n]} &
-   * ALSA sampling rate (0 = 192000, 1 = 96000, 2 = 48000, 3 = 44100). \\
+   * ALSA sampling rate (0 = 192000, 1 = 96000, 2 = 48000, 3 = 44100).
+   Sets the sampling rate when using ALSA audio. \\
 \texttt{Jack Midi [s]} &
-   * Name of JACK MIDI source. \\
+   * Name of JACK MIDI source.
+   Sets the name of a JACK MIDI source to which
+   \textsl{Yoshimi} will try to connect.  \\
 \texttt{Jack Server [s]} &
-   * Name of JACK server. \\
+   * Name of JACK server.
+   Sets the name of an audio server to which JACK will try to connect. \\
 \texttt{Jack Auto [s]} &
-   * Connect JACK on start (Enable; other = disable). \\
+   * Connect JACK on start (Enable; other = disable).
+   Determines whether JACK will try to connect the main L=R audio outputs at
+   start-up time. \\
 \texttt{ROot [n]} &
-   Root CC (0 - 119, other disables). \\
+   Root CC (0 - 119, other disables).
+   Provides the MIDI CC that \textsl{Yoshimi} expects bank root changes to come
+   from.  \\
 \texttt{BAnk [n]} &
-   Bank CC (0, 32, other disables). \\
+   Bank CC (0, 32, other disables).
+   Provides the MIDI CC that \textsl{Yoshimi} expects
+   bank changes to come from.  \\
 \texttt{PRogram [s]} &
-   MIDI program change enabling (0 is disable, other is enable). \\
+   MIDI program change enabling (0 is disable, other is enable).
+   Determines whether MIDI program changes are honored or ignored.  \\
 \texttt{ACtivate [s]} &
-   MIDI program change activates part (0 is off, other is on). \\
+   MIDI program change activates part (0 is off, other is on).
+   Enables a part when it gets a MIDI program change message,
+   if it was disabled.  \\
 \texttt{EXtended [s]} &
-   Extended program change (0 is off, other is enable). \\
+   Extended program change (0 is off, other is enable).
+   Sets a MIDI CC for receiving program changes for the top (extra)
+   32 instruments in a bank.  \\
 \texttt{Quiet [s]} &
-   Ignore 'reset all controllers' (Enable other). \\
+   Ignore 'reset all controllers' (Enable other).
+   Sets up to ignore MIDI 'reset all controllers' messages. \\
 \texttt{Log [s]} &
-   Log incoming MIDI CCs (Enable other). \\
+   Log incoming MIDI CCs (Enable other).
+   Displays the value of received MIDI CCs. \\
 \texttt{SHow [s]} &
-   GUI MIDI learn editor (Enable other). \\
+   GUI MIDI learn editor (Enable other).
+   A setting for the GUI MIDI learn editor, where s is "Enable", or some
+   other token to disable the feature.
+   This setting indicates to automatically open the MIDI-learn editor window
+   when a successful "learn" has been made.  \\
 
-      \end{tabular}
-   \end{table}
+\end{longtable}
+\end{center}
+
+%     \end{tabular}
+%  \end{table}
 
    '*' marks entries that need to be saved, and \textsl{Yoshimi}
    restarted, to activate them.
 
-\paragraph{Config / Oscillator [n]}
-\label{paragraph:command_line_config_oscillator}
-
-   This sets the size of the buffer used for both AddSynth and PadSynth
-   oscillators, and is always a power of 2.
-
-\paragraph{Config / BUffer [n]}
-\label{paragraph:command_line_config_buffer}
-
-   This is the size of the audio buffer that \textsl{Yoshimi} uses.  For ALSA
-   audio, it will always be the same size as ALSA's buffering, but for JACK it
-   can be the same, bigger, or smaller. It also is always a power of 2.
-
-\paragraph{Config / PAdsynth [n]}
-\label{paragraph:command_line_config_padsynth}
-
-   Sets the quality of the intepolation that PadSynth uses on its wavetables.
-   'Linear' is faster, but 'Cubic' is (potentially) very slightly better
-   quality.
-
-\paragraph{Config / Virtual [n]}
-\label{paragraph:command_line_config_virtual}
-
-   This setting controls the layout of the virtual keyboard, and can match the
-   commonest computer keyboards.
-
-\paragraph{Config / Xml [n]}
-\label{paragraph:command_line_config_xml}
-
-   Sets the amount of compression used on all
-   \textsl{Yoshimi}'s data files. 9 is the most-compressed setting.
-   0 is no compression, so that the configuration file
-   can be read in an ordinary text editor.
-
-\paragraph{Config / REports [s]}
-\label{paragraph:command_line_config_reports}
-
-   Determines where almost all information and error messages will be sent. A
-   few will always go to \texttt{stderr} (such as the ones reporting a GUI
-   problem).
-
-\paragraph{Config / STate [s]}
-\label{paragraph:command_line_config_state}
-
-   Sets whether a pre-saved default state file will be loaded on start-up.
-
-\paragraph{Config / Hide [n]}
-\label{paragraph:command_line_config_hide}
-
-   Sets to ignore non-fatal system errors, or verbose messages.
-
-\paragraph{Config / Display [s]}
-\label{paragraph:command_line_config_display}
-
-   Enables \textsl{Yoshimi}'s start-up splash screen (which is
-   enabled at first time start).
-
-\paragraph{Config / Time [s]}
-\label{paragraph:command_line_config_time}
-
-   Attaches the time an instrument took to load and initialize to the loading
-   message.
-
-\paragraph{Config / Include [s]}
-\label{paragraph:command_line_config_include}
-
-   Reports version information on all data failures.
-
-\paragraph{Config / Keep [s]}
-\label{paragraph:command_line_config_keep}
-
-   Sets up to innclude all data on file saves, including data for
-   inactive and random elements.
-
-\paragraph{Config / Gui [s]}
-\label{paragraph:command_line_config_gui}
-
-   Run with the graphic user interface enabled.
-
-\paragraph{Config / Cli [s]}
-\label{paragraph:command_line_config_cli}
-
-   Run with the command-line interface enabled.
-
-\paragraph{Config / MIdi [s]}
-\label{paragraph:command_line_config_midi}
-
-   Sets whether MIDI input comes from JACK or from ALSA.
-
-\paragraph{Config / AUdio [s]}
-\label{paragraph:command_line_config_audio}
-
-   Sets whether audio is passed out to JACK or ALSA.
-
-\paragraph{Config / ALsa Midi [s]}
-\label{paragraph:command_line_config_alsa_midi}
-
-   Sets the name of an ALSA MIDI source to which
-   \textsl{Yoshim}i will try to connect.
-
-\paragraph{Config / ALsa Audio [s]}
-\label{paragraph:command_line_config_alsa_audio}
-
-   Sets the name of a hardware audio device to which ALSA will try to connect.
-
-\paragraph{Config / ALsa Sample [n]}
-\label{paragraph:command_line_config_alsa_sample}
-
-   Sets the sampling rate when using ALSA audio.
-
-\paragraph{Config / Jack Midi [s]}
-\label{paragraph:command_line_config_jack_midi}
-
-   Sets the name of a JACK MIDI source to which
-   \textsl{Yoshimi} will try to connect.
-
-\paragraph{Config / Jack Server [s]}
-\label{paragraph:command_line_config_jack_server}
-
-   Sets the name of an audio server to which JACK will try to connect.
-
-\paragraph{Config / Jack Auto [s]}
-\label{paragraph:command_line_config_jack_auto}
-
-   Determines whether JACK will try to connect the main L=R audio outputs at
-   start-up time.
-
-\paragraph{Config / ROot [n]}
-\label{paragraph:command_line_config_root}
-
-   Provides the MIDI CC that \textsl{Yoshimi} expects bank root changes to come
-   from.
-
-\paragraph{Config / BAnk [n]}
-\label{paragraph:command_line_config_bank}
-
-   Provides the MIDI CC that \textsl{Yoshimi} expects bank changes to come from.
-
-\paragraph{Config / PRogram [s]}
-\label{paragraph:command_line_config_program}
-
-   Determines whether MIDI program changes are honored or ignored.
-
-\paragraph{Config / ACtivate [s]}
-\label{paragraph:command_line_config_activate}
-
-   Enables a part when it gets a MIDI program change message,
-   if it was disabled.
-
-\paragraph{Config / Extended [s]}
-\label{paragraph:command_line_config_extended}
-
-   Sets a MIDI CC for receiving program changes for the top (extra)
-   32 instruments in a bank.
-
-\paragraph{Config / Quiet [s]}
-\label{paragraph:command_line_config_quiet}
-
-   Sets up to ignore a MIDI 'reset all controllers' message.
-
-\paragraph{Config / Log [s]}
-\label{paragraph:command_line_config_log}
-
-   Displays the value of received MIDI CCs.
-
-\paragraph{Config / SHow [s]}
-\label{paragraph:command_line_config_show}
-
-   A setting for the GUI MIDI learn editor, where [s] is 'Enable', or some
-   other token to disable the feature.
-   This setting indicates to automatically open the MIDI-learn editor window
-   when a sucessful 'learn' has been made.
+% \paragraph{Config / Oscillator [n]}
+% \label{paragraph:command_line_config_oscillator}
+% 
+%    This sets the size of the buffer used for both AddSynth and PadSynth
+%    oscillators, and is always a power of 2.
+%
+% \paragraph{Config / BUffer [n]}
+% \label{paragraph:command_line_config_buffer}
+% 
+%    This is the size of the audio buffer that \textsl{Yoshimi} uses.  For ALSA
+%    audio, it will always be the same size as ALSA's buffering, but for JACK it
+%    can be the same, bigger, or smaller. It also is always a power of 2.
+%
+% \paragraph{Config / PAdsynth [n]}
+% \label{paragraph:command_line_config_padsynth}
+% 
+%    Sets the quality of the intepolation that PadSynth uses on its wavetables.
+%    'Linear' is faster, but 'Cubic' is (potentially) very slightly better
+%    quality.
+%
+% \paragraph{Config / Virtual [n]}
+% \label{paragraph:command_line_config_virtual}
+% 
+%    This setting controls the layout of the virtual keyboard, and can match the
+%    commonest computer keyboards.
+% 
+% \paragraph{Config / Xml [n]}
+% \label{paragraph:command_line_config_xml}
+% 
+%    Sets the amount of compression used on all
+%    \textsl{Yoshimi}'s data files. 9 is the most-compressed setting.
+%    0 is no compression, so that the configuration file
+%    can be read in an ordinary text editor.
+%
+% \paragraph{Config / REports [s]}
+% \label{paragraph:command_line_config_reports}
+% 
+%    Determines where almost all information and error messages will be sent. A
+%    few will always go to \texttt{stderr} (such as the ones reporting a GUI
+%    problem).
+% 
+% \paragraph{Config / STate [s]}
+% \label{paragraph:command_line_config_state}
+% 
+%    Sets whether a pre-saved default state file will be loaded on start-up.
+% 
+% \paragraph{Config / Hide [n]}
+% \label{paragraph:command_line_config_hide}
+% 
+%    Sets to ignore non-fatal system errors, or verbose messages.
+% 
+% \paragraph{Config / Display [s]}
+% \label{paragraph:command_line_config_display}
+% 
+%    Enables \textsl{Yoshimi}'s start-up splash screen (which is
+%    enabled at first time start).
+%
+% \paragraph{Config / Time [s]}
+% \label{paragraph:command_line_config_time}
+% 
+%    Attaches the time an instrument took to load and initialize to the loading
+%    message.
+%
+% \paragraph{Config / Include [s]}
+% \label{paragraph:command_line_config_include}
+% 
+%    Reports version information on all data failures.
+%
+% \paragraph{Config / Keep [s]}
+% \label{paragraph:command_line_config_keep}
+% 
+%    Sets up to innclude all data on file saves, including data for
+%    inactive and random elements.
+%
+% \paragraph{Config / Gui [s]}
+% \label{paragraph:command_line_config_gui}
+% 
+%    Run with the graphic user interface enabled.
+%
+% \paragraph{Config / Cli [s]}
+% \label{paragraph:command_line_config_cli}
+% 
+%    Run with the command-line interface enabled.
+% 
+% \paragraph{Config / MIdi [s]}
+% \label{paragraph:command_line_config_midi}
+% 
+%    Sets whether MIDI input comes from JACK or from ALSA.
+%
+% \paragraph{Config / AUdio [s]}
+% \label{paragraph:command_line_config_audio}
+% 
+%    Sets whether audio is passed out to JACK or ALSA.
+% 
+% \paragraph{Config / ALsa Midi [s]}
+% \label{paragraph:command_line_config_alsa_midi}
+% 
+%    Sets the name of an ALSA MIDI source to which
+%    \textsl{Yoshim}i will try to connect.
+% 
+% \paragraph{Config / ALsa Audio [s]}
+% \label{paragraph:command_line_config_alsa_audio}
+% 
+%    Sets the name of a hardware audio device to which ALSA will try to connect.
+% 
+% \paragraph{Config / ALsa Sample [n]}
+% \label{paragraph:command_line_config_alsa_sample}
+% 
+%    Sets the sampling rate when using ALSA audio.
+% 
+% \paragraph{Config / Jack Midi [s]}
+% \label{paragraph:command_line_config_jack_midi}
+% 
+%    Sets the name of a JACK MIDI source to which
+%    \textsl{Yoshimi} will try to connect.
+% 
+% \paragraph{Config / Jack Server [s]}
+% \label{paragraph:command_line_config_jack_server}
+% 
+%    Sets the name of an audio server to which JACK will try to connect.
+% 
+% \paragraph{Config / Jack Auto [s]}
+% \label{paragraph:command_line_config_jack_auto}
+% 
+%    Determines whether JACK will try to connect the main L=R audio outputs at
+%    start-up time.
+% 
+% \paragraph{Config / ROot [n]}
+% \label{paragraph:command_line_config_root}
+% 
+%    Provides the MIDI CC that \textsl{Yoshimi} expects bank root changes to come
+%    from.
+% 
+% \paragraph{Config / BAnk [n]}
+% \label{paragraph:command_line_config_bank}
+% 
+%    Provides the MIDI CC that \textsl{Yoshimi} expects bank changes to come from.
+% 
+% \paragraph{Config / PRogram [s]}
+% \label{paragraph:command_line_config_program}
+% 
+%    Determines whether MIDI program changes are honored or ignored.
+% 
+% \paragraph{Config / ACtivate [s]}
+% \label{paragraph:command_line_config_activate}
+% 
+%    Enables a part when it gets a MIDI program change message,
+%    if it was disabled.
+% 
+% \paragraph{Config / Extended [s]}
+% \label{paragraph:command_line_config_extended}
+% 
+%    Sets a MIDI CC for receiving program changes for the top (extra)
+%    32 instruments in a bank.
+% 
+% \paragraph{Config / Quiet [s]}
+% \label{paragraph:command_line_config_quiet}
+% 
+%    Sets up to ignore a MIDI 'reset all controllers' message.
+%
+% \paragraph{Config / Log [s]}
+% \label{paragraph:command_line_config_log}
+% 
+%    Displays the value of received MIDI CCs.
+% 
+% \paragraph{Config / SHow [s]}
+% \label{paragraph:command_line_config_show}
+% 
+%    A setting for the GUI MIDI learn editor, where [s] is 'Enable', or some
+%    other token to disable the feature.
+%    This setting indicates to automatically open the MIDI-learn editor window
+%    when a sucessful 'learn' has been made.
 
 \subsection{Command Descriptions}
 \label{subsec:command_line_command_descriptions}
@@ -1820,17 +1920,21 @@ A few more detailed descriptions occur in the following sections.
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
-   \itempar{..}{cmd!up one level}
+   \itempar{".."}{cmd!up one level}
       \index{cmd!..}
       Step back up one command context level.
       This command can immediately precede another command, so that the second
       command takes places at the context above the current context.
+      Note that it is like the OS's "cd .." command to change to the parent
+      directory.
 
    \itempar{/}{cmd!to top level}
       \index{cmd!/}
       Step back up to the top command context level.
       This command can immediately precede another command, so that the second
       command takes places at the top context.
+      Note that it is like the OS's "cd /" command to change to the root
+      directory.
 
    \itempar{add bank [s]}{cmd!add bank}
       Define a new bank, \textsl{s}, where \textsl{s} is a bank name,
