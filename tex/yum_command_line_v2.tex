@@ -25,7 +25,7 @@
    This mode is useful for blind people and for programmers, for example.
    These text commands can be put into a script file, and that script can then
    be run.
-   
+
    To access the command-line mode,
    add the \texttt{-i} or \texttt{--no-gui} command-line
    option when starting \textsl{Yoshimi} on the command-line.  But note that,
@@ -291,17 +291,25 @@
    To avoid confusion, the script routine first sets the context to the
    top level, then performs all the commands, and returns to the original
    level. If there is a fault in the script, it will be reported along with the
-   number of the line where the error occurred.
+   number of the line where the error occurred. Due to the buffering used, the script will return before many of the actions have actually taken place. Therefore an error report is likely to be some way up the responses. Typically it will be something like:
+
+   \begin{verbatim}
+    *** Error: Which Operation? @ line 13 ***
+   \end{verbatim}
+
    Here is a simple example:
 
    \begin{verbatim}
+      # A script test
       set part on
-      set add voice on
+          # These two lines are spaced in a bit
+          set add on
+      set voice on
       set volume 45
    \end{verbatim}
 
-   This script makes sure the part is on, that the relative addsynth voice
-   is on, and finally sets its volume to 45.
+   This script makes sure the part is on, that the relative addsynth and voice
+   are on, and finally sets its volume to 45.
 
    Although this process starts from the top level, it will use the parameters
    that were last set.
@@ -312,7 +320,8 @@
 
    The script routine honors any normal abbreviations.
    Blank lines are ignored.
-   There is no comment facility; this feature may be added later.
+   A '#' at the start of a line marks it as a comment so will also be ignored.
+   Both of these will be in the line count if an error is reported.
 
 \subsection{Command Depth}
 \label{subsec:command_line_command_depth}
@@ -339,7 +348,7 @@
    There is a new command in the "config" context that controls where this is
    displayed, or whether it is shown at all.
    This command is:
-   
+
    \begin{verbatim}
       EXPose {OFf, ON, PRompt}
    \end{verbatim}
@@ -369,7 +378,7 @@
    For the new commands, first of all there is the part kit structure.
    There are three modes that the kits (i.e. settings)
    of the engines can take:
-   
+
    \begin{enumerate}
       \item Multi
       \item Single
@@ -410,11 +419,11 @@
    There is also a new help list which doesn't show directly in any context,
    but has to be called explicitly.
    It is:
-   
+
    \begin{verbatim}
       ? COMmon
    \end{verbatim}
-   
+
    and lists all the commands that are
    applicable from the part level through the new engine contexts.
    A typical example is "Volume" which is a context-sensitive control for part,
@@ -716,7 +725,7 @@ Overtone Position s, Relationship to fundamental, values:
       \begin{tabular}{l l}
 
 \texttt{Expand [n]} &
-   Overall envelope time. \\
+   Envelope time on lower notes. \\
 \texttt{Force [s]} &
    Force release (ON, other). \\
 \texttt{Linear [s]} &
@@ -837,8 +846,8 @@ Some envelopes have limited controls.
       \label{table:yoshimi_engine_filters_formant_editor}
       \begin{tabular}{l l}
 
-\texttt{Direct [n]} &
-   Bypass LFOs, envelopes. \\
+\texttt{Invert [s]} &
+   Invert effect of LFOs, envelopes (ON, OFf). \\
 \texttt{FCenter [n]} &
    Center frequency of sequence. \\
 \texttt{FRange [n]} &
@@ -883,7 +892,7 @@ Some envelopes have limited controls.
 \texttt{Delay [n]} &
    Time before effect. \\
 \texttt{Expand [n]} &
-   Overall LFO time. \\
+   Rate / note pitch. \\
 \texttt{Continuous [s]} &
    ON, other. \\
 \texttt{Type [s]} &
@@ -1046,8 +1055,8 @@ Filter types (s parameter, LFO oscillator shape):
    Close an instance. \\
 \texttt{REMove MLearn [s] [n]} &
    Delete MIDI learned values: 'ALL' removes whole list, or select line [n]. \\
-\texttt{Set/Read} &
-   Set or read all main parameters. See below for the context levels. \\
+\texttt{Set/Read/MLearn} &
+   Set, read or learn all main parameters. See below for the context levels. \\
 \texttt{Set/read Root [n]} &
    Read the current root path or set it to ID [n]. \\
 \texttt{Set/read Bank [n]} &
@@ -1110,10 +1119,10 @@ Filter types (s parameter, LFO oscillator shape):
    See \sectionref{subsec:mixer_panel_window}; it goes into more details about
    this setting, at a user-interface level.
 
-\paragraph{Set / Read Context Levels}
+\paragraph{Set / Read / MLearn Context Levels}
 \label{paragraph:command_line_context_levels}
 
-   The Set / Read commands set or read all main parameters.  There are a few
+   The Set / Read commands set or read all main parameters and the MLearn one initiates a MIDI learn with exactly the same parameters.  There are a few
    commands that set the context or command level, where additional commands
    peculiar to the "context" are provided.  Here are the command/context levels
    (also see \sectionref{subsec:command_line_command_level}.)
@@ -1123,7 +1132,7 @@ Filter types (s parameter, LFO oscillator shape):
       \item \texttt{Part}. Enter context level for part operations.
       \item \texttt{VEctor}. Enter context level for vector operations.
       \item \texttt{SCale}. Enter context level for scale (microtonal) operations.
-      \item \texttt{MLearn}. Enter context level for MIDI Learn operations.
+      \item \texttt{MLearn}. Enter context level for MIDI Learn line editing.
       \item \texttt{COnfig}. Enter context level for configuration settings.
       \item \texttt{SYStem effects [n]}. Enter the effects context level.
       \begin{itemize}
@@ -1152,13 +1161,14 @@ Filter types (s parameter, LFO oscillator shape):
 
 \paragraph{MLearn}
 \label{paragraph:command_line_mlearn}
-
-   The commands for MLearn are the following values for the [s] parameter:
+   There are actually two entry points for MLearn. The first takes the same form as set/read and initiates the MIDI learning process for a given control.
+   The second is within 'set' and is for editing current lines.
+   The commands for the second form are the following values for the [s] parameter:
 
    \begin{itemize}
       \item \texttt{MUte}, which Enables or, for any other provide token
          disables this line.
-      \item \texttt{7Bit} will Enable incoming (learned) NRPNs as a 7-bit value.
+      \item \texttt{seven} will Enable incoming (learned) NRPNs as a 7-bit value.
       \item \texttt{CC [n2]} will set the incoming controller value that will
          be recognized.  This command can re-order the list.
       \item \texttt{CHan [n2]} will set the incoming channel number that will
@@ -1383,7 +1393,7 @@ Filter types (s parameter, LFO oscillator shape):
 
 % \paragraph{Scales / Tuning [s] [s2]}
 % \label{paragraph:command_line_tuning}
-% 
+%
 %    Tuning sets the CSV tuning values, which are decimal numbers or ratios
 %    (n1.n1 or n1/n1, n2.n2 or n2/n2, etc.).
 %    The s2 parameter requests an 'IMPort' from a named file, which is
@@ -1393,7 +1403,7 @@ Filter types (s parameter, LFO oscillator shape):
 %
 % \paragraph{Scales / Keymap [s] [s2]}
 % \label{paragraph:command_line_keymap}
-% 
+%
 %    Keymap either sets the keyboard mapping values as a comma separated list, or
 %    imports a
 %    \index{.kbm}
@@ -1468,13 +1478,13 @@ is not enough room in the table above.
 
 % \paragraph{List / Banks [n]}
 % \label{paragraph:command_line_list_banks}
-% 
+%
 %    This command shows all of the banks present in either the numbered ([n])
 %    bank root, or in the current one (if no number is provided).
-% 
+%
 % \paragraph{List / Instruments [n]}
 % \label{paragraph:command_line_list_instruments}
-% 
+%
 %    This command shows all of the instruments present in either the numbered
 %    ([n]) bank root, or in the current one (if no number is provided).
 
@@ -1512,7 +1522,7 @@ is not enough room in the table above.
 
 % \paragraph{List / Effects [s]}
 % \label{paragraph:command_line_list_effects}
-% 
+%
 %    Show the effect types.
 %    [s] = 'All' includes preset numbers and names.
 %    If this command is called from the Effects level, then one see only the name
@@ -1739,33 +1749,33 @@ is not enough room in the table above.
 
 % \paragraph{Config / Oscillator [n]}
 % \label{paragraph:command_line_config_oscillator}
-% 
+%
 %    This sets the size of the buffer used for both AddSynth and PadSynth
 %    oscillators, and is always a power of 2.
 %
 % \paragraph{Config / BUffer [n]}
 % \label{paragraph:command_line_config_buffer}
-% 
+%
 %    This is the size of the audio buffer that \textsl{Yoshimi} uses.  For ALSA
 %    audio, it will always be the same size as ALSA's buffering, but for JACK it
 %    can be the same, bigger, or smaller. It also is always a power of 2.
 %
 % \paragraph{Config / PAdsynth [n]}
 % \label{paragraph:command_line_config_padsynth}
-% 
+%
 %    Sets the quality of the intepolation that PadSynth uses on its wavetables.
 %    'Linear' is faster, but 'Cubic' is (potentially) very slightly better
 %    quality.
 %
 % \paragraph{Config / Virtual [n]}
 % \label{paragraph:command_line_config_virtual}
-% 
+%
 %    This setting controls the layout of the virtual keyboard, and can match the
 %    commonest computer keyboards.
-% 
+%
 % \paragraph{Config / Xml [n]}
 % \label{paragraph:command_line_config_xml}
-% 
+%
 %    Sets the amount of compression used on all
 %    \textsl{Yoshimi}'s data files. 9 is the most-compressed setting.
 %    0 is no compression, so that the configuration file
@@ -1773,138 +1783,138 @@ is not enough room in the table above.
 %
 % \paragraph{Config / REports [s]}
 % \label{paragraph:command_line_config_reports}
-% 
+%
 %    Determines where almost all information and error messages will be sent. A
 %    few will always go to \texttt{stderr} (such as the ones reporting a GUI
 %    problem).
-% 
+%
 % \paragraph{Config / STate [s]}
 % \label{paragraph:command_line_config_state}
-% 
+%
 %    Sets whether a pre-saved default state file will be loaded on start-up.
-% 
+%
 % \paragraph{Config / Hide [n]}
 % \label{paragraph:command_line_config_hide}
-% 
+%
 %    Sets to ignore non-fatal system errors, or verbose messages.
-% 
+%
 % \paragraph{Config / Display [s]}
 % \label{paragraph:command_line_config_display}
-% 
+%
 %    Enables \textsl{Yoshimi}'s start-up splash screen (which is
 %    enabled at first time start).
 %
 % \paragraph{Config / Time [s]}
 % \label{paragraph:command_line_config_time}
-% 
+%
 %    Attaches the time an instrument took to load and initialize to the loading
 %    message.
 %
 % \paragraph{Config / Include [s]}
 % \label{paragraph:command_line_config_include}
-% 
+%
 %    Reports version information on all data failures.
 %
 % \paragraph{Config / Keep [s]}
 % \label{paragraph:command_line_config_keep}
-% 
+%
 %    Sets up to innclude all data on file saves, including data for
 %    inactive and random elements.
 %
 % \paragraph{Config / Gui [s]}
 % \label{paragraph:command_line_config_gui}
-% 
+%
 %    Run with the graphic user interface enabled.
 %
 % \paragraph{Config / Cli [s]}
 % \label{paragraph:command_line_config_cli}
-% 
+%
 %    Run with the command-line interface enabled.
-% 
+%
 % \paragraph{Config / MIdi [s]}
 % \label{paragraph:command_line_config_midi}
-% 
+%
 %    Sets whether MIDI input comes from JACK or from ALSA.
 %
 % \paragraph{Config / AUdio [s]}
 % \label{paragraph:command_line_config_audio}
-% 
+%
 %    Sets whether audio is passed out to JACK or ALSA.
-% 
+%
 % \paragraph{Config / ALsa Midi [s]}
 % \label{paragraph:command_line_config_alsa_midi}
-% 
+%
 %    Sets the name of an ALSA MIDI source to which
 %    \textsl{Yoshim}i will try to connect.
-% 
+%
 % \paragraph{Config / ALsa Audio [s]}
 % \label{paragraph:command_line_config_alsa_audio}
-% 
+%
 %    Sets the name of a hardware audio device to which ALSA will try to connect.
-% 
+%
 % \paragraph{Config / ALsa Sample [n]}
 % \label{paragraph:command_line_config_alsa_sample}
-% 
+%
 %    Sets the sampling rate when using ALSA audio.
-% 
+%
 % \paragraph{Config / Jack Midi [s]}
 % \label{paragraph:command_line_config_jack_midi}
-% 
+%
 %    Sets the name of a JACK MIDI source to which
 %    \textsl{Yoshimi} will try to connect.
-% 
+%
 % \paragraph{Config / Jack Server [s]}
 % \label{paragraph:command_line_config_jack_server}
-% 
+%
 %    Sets the name of an audio server to which JACK will try to connect.
-% 
+%
 % \paragraph{Config / Jack Auto [s]}
 % \label{paragraph:command_line_config_jack_auto}
-% 
+%
 %    Determines whether JACK will try to connect the main L=R audio outputs at
 %    start-up time.
-% 
+%
 % \paragraph{Config / ROot [n]}
 % \label{paragraph:command_line_config_root}
-% 
+%
 %    Provides the MIDI CC that \textsl{Yoshimi} expects bank root changes to come
 %    from.
-% 
+%
 % \paragraph{Config / BAnk [n]}
 % \label{paragraph:command_line_config_bank}
-% 
+%
 %    Provides the MIDI CC that \textsl{Yoshimi} expects bank changes to come from.
-% 
+%
 % \paragraph{Config / PRogram [s]}
 % \label{paragraph:command_line_config_program}
-% 
+%
 %    Determines whether MIDI program changes are honored or ignored.
-% 
+%
 % \paragraph{Config / ACtivate [s]}
 % \label{paragraph:command_line_config_activate}
-% 
+%
 %    Enables a part when it gets a MIDI program change message,
 %    if it was disabled.
-% 
+%
 % \paragraph{Config / Extended [s]}
 % \label{paragraph:command_line_config_extended}
-% 
+%
 %    Sets a MIDI CC for receiving program changes for the top (extra)
 %    32 instruments in a bank.
-% 
+%
 % \paragraph{Config / Quiet [s]}
 % \label{paragraph:command_line_config_quiet}
-% 
+%
 %    Sets up to ignore a MIDI 'reset all controllers' message.
 %
 % \paragraph{Config / Log [s]}
 % \label{paragraph:command_line_config_log}
-% 
+%
 %    Displays the value of received MIDI CCs.
-% 
+%
 % \paragraph{Config / SHow [s]}
 % \label{paragraph:command_line_config_show}
-% 
+%
 %    A setting for the GUI MIDI learn editor, where [s] is 'Enable', or some
 %    other token to disable the feature.
 %    This setting indicates to automatically open the MIDI-learn editor window
