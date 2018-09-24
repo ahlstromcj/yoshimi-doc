@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-09-06
-% \update      2018-09-23
+% \update      2018-09-24
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -291,8 +291,8 @@
    To avoid confusion, the script routine first sets the context to the
    top level, then performs all the commands, and returns to the original
    level. If there is a fault in the script, it will be reported along with the
-   number of the line where the error occurred. Due to the buffering used,
-   the script will return before many of the actions have actually taken place.
+   number of the line where the error occurred. Due to the buffering used, the
+   script will return before many of the actions have actually taken place.
    Therefore an error report is likely to be some way up the responses.
    Typically it will be something like:
 
@@ -322,8 +322,9 @@
    then apply them to any part, engine, etc.
 
    The script routine honors any normal abbreviations.
-   Blank lines are ignored and '\#' at the start of a line marks it
-   as a comment so will also be ignored. However, both of these will
+   Blank lines are ignored. A '\#' at the start of a line marks it
+   as a comment so will also be ignored. However, both of these kinds
+   of lines will
    be in the line count if an error is reported.
 
 \subsection{Command Depth}
@@ -1135,8 +1136,9 @@ Filter types (s parameter, LFO oscillator shape):
    \item \texttt{DEFault}. Show the default value of a command.
    \end{itemize}
 
-   There are a few commands that set the context or command level, where additional commands
-   peculiar to the "context" are provided.  Here are the command/context levels
+   There are a few commands that set the context or command level, where
+   additional commands peculiar to the "context" are provided.  Here are the
+   command/context levels
    (also see \sectionref{subsec:command_line_command_level}.)
    Note that we also list commands for the effects levels.
 
@@ -1176,7 +1178,8 @@ Filter types (s parameter, LFO oscillator shape):
    There are actually two entry points for MLearn. The first takes the same form
    as set/read and initiates the MIDI learning process for a given control.
    The second is within 'set' and is for editing current lines.
-   The commands for the second form are the following values for the [s] parameter:
+   The commands for the second form are the following values for the [s]
+   parameter:
 
    \begin{itemize}
       \item \texttt{MUte}, which Enables or, for any other provide token
