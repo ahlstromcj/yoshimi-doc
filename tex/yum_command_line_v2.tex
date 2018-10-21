@@ -619,13 +619,20 @@ Overtone Position s, Relationship to fundamental, values:
    synth engines:
 
    \begin{itemize}
-      \item \textbf{Part AddSynth}:
-        VOice ... Enter Addsynth voice context.
+      \item \textbf{Part AddSynth}
+      \begin{itemize}
+         \item GRoup [s]. Disables harmonic amplitude randomness of voices with a
+              common oscillator (ON, {other}).
+         \item BAndwidth [n]. Modifes relative fine detune of voices.
+         \item REsonance ... Enter the AddSynth resonance context.
+         \item VOice ... Enter Addsynth voice context.
+      \end{itemize}
       \item \textbf{Part AddVoice}:
         WAveform ... Enter the oscillator waveform context.
       \item \textbf{Part PadSynth}:
       \begin{itemize}
          \item APply. Puts the latest changes into the wavetable.
+         \item REsonance ... Enter the PadSynth resonance context.
          \item WAveform ... Enter the oscillator waveform context.
       \end{itemize}
    \end{itemize}
@@ -643,7 +650,7 @@ Overtone Position s, Relationship to fundamental, values:
    Set harmonic n1 to n2 intensity. \\
 \texttt{HArmonic [n1] Band [n2]} &
    Set harmonic n1 to n2 width. \\
-\texttt{HArmonic Stages n} &
+\texttt{HArmonic Stages [n]} &
    Number of stages. \\
 \texttt{HArmonic Mag [n]} &
    Harmonics filtering type. \\
@@ -653,6 +660,37 @@ Overtone Position s, Relationship to fundamental, values:
    Common bandwidth. \\
 \texttt{BAnd Scale [n]} &
    Bandwidth slope versus frequency. \\
+
+      \end{tabular}
+   \end{table}
+
+\paragraph{Resonance Commands}
+\label{paragraph:command_line_resonance_commands}
+
+   \begin{table}[H]
+      \centering
+      \caption{Resonance Commands}
+      \label{table:resonance_commands}
+      \begin{tabular}{l l}
+
+   \texttt{PRotect [s]} &
+      Leave fundamental unchanged (ON, other). \\
+   \texttt{Maxdb [n]} &
+      Set the maximum attenuation of points. \\
+   \texttt{Random [s]} &
+      Set a random distribution (Coarse, Medium, Fine). \\
+   \texttt{CEnter [n]} &
+      Set the center frequency of the resonance range. \\
+   \texttt{Octaves [n]} &
+      The number of octaves covered. \\
+   \texttt{Interpolate [s]} &
+      Turn isolated peaks into lines or curves (Linear, Smooth). \\
+   \texttt{Smooth} &
+      Reduce range and sharpness of peaks. \\
+   \texttt{CLear} &
+      Set all points to the mid level. \\
+   \texttt{POints [[n1] [n2]]} &
+      Show all or read n1 or set n1 to n2 \\
 
       \end{tabular}
    \end{table}
@@ -851,7 +889,7 @@ Some envelopes have limited controls.
       \begin{tabular}{l l}
 
 \texttt{Invert [s]} &
-   Invert effect of LFOs, envelopes (ON, OFf). \\
+   Invert effect of LFOs, envelopes (ON, OFF). \\
 \texttt{FCenter [n]} &
    Center frequency of sequence. \\
 \texttt{FRange [n]} &
@@ -1184,7 +1222,7 @@ Filter types (s parameter, LFO oscillator shape):
    \begin{itemize}
       \item \texttt{MUte}, which Enables or, for any other provide token
          disables this line.
-      \item \texttt{seven} will Enable incoming (learned) NRPNs as a 7-bit value.
+      \item \texttt{SEven} will Enable incoming (learned) NRPNs as a 7-bit value.
       \item \texttt{CC [n2]} will set the incoming controller value that will
          be recognized.  This command can re-order the list.
       \item \texttt{CHan [n2]} will set the incoming channel number that will
@@ -1282,7 +1320,7 @@ Filter types (s parameter, LFO oscillator shape):
 \subsubsection{Vector Commands}
 \label{subsec:command_line_vector_command_list}
 
-   The vector list is called from the part level with '? ve'.
+   Although \textbf{Vector} is a top-level control, the list can be called from any level with '? ve'.
 
    \begin{verbatim}
       yoshimi part 1 on> ? ve

@@ -21,7 +21,7 @@
    \textsl{Yoshimi} requires the user to understand many concepts and terms.
    Understanding them makes it easier to configure \textsl{Yoshimi}
    and to drive it from a sequencer application.
-   
+
    Significant portions of this section are shamelessly copied (and tweaked)
    from Paul Nasca's original \textsl{ZynAddSubFX}
    manual \cite{zynodt} or \cite{zynpdf}.
@@ -113,7 +113,7 @@
    silence the entire synthesizer; a silent change requires being done
    when that part is not sounding. \textsl{Yoshimi} turns off the part
    during the patch load, and doesn't do a fade.
-   
+
 %  It would be counter productive to turn a 2mS load (typical for SubSynth)
 %  into a 102mS one!
 
@@ -235,7 +235,7 @@
    command-line.
    Note that there are other file categories, such as presets, that are located
    via paths.
-   
+
    Another important concept in \textsl{Yoshimi} is \textsl{banks}.
    Instruments can be stored in banks. These are loaded and saved
    automatically by the program.  On program start, the last used bank is
@@ -261,7 +261,7 @@
    outlined below.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.50]{zyn/zyn-diagram1.png}
    \caption{ZynAddSubFX/Yoshimi Main Structure}
    \label{fig:zynaddsubfx_main_structure}
@@ -275,7 +275,7 @@
    effects (if any) are then applied.  The result is the final output of the
    synthesizer.
 
-   The synthesizer has three major types of parameters: 
+   The synthesizer has three major types of parameters:
 
    \begin{enumber}
       \item \textbf{Master settings/parameters}.
@@ -313,12 +313,12 @@
    the same.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.35]{zyn/zyn-adnote-diagram2.png}
    \caption{ZynAddSubFX/Yoshimi Note Generation}
    \label{fig:zynaddsubfx_note_generation}
 \end{figure}
-   
+
    The figure represents the synthesizer module components. The continuous
    lines are the signal routing, and the dotted lines are frequency
    controlling signals (they control the frequency of something).  The
@@ -342,7 +342,7 @@
    frequency "spread" of each harmonic. This is the most important principle
    of making instruments that sound good. Unfortunately there is very little
    documentation about it.
-    
+
    Often it is believed that the pitched sounds (like piano, organ, choir,
    etc.) for a single note have a frequency, but it's actually
    harmonics and nothing more. Many people try to synthesize a sound using an
@@ -369,7 +369,7 @@
    does not increase the bandwidth according the frequency, the resulting
    instrument will (usually) sound too 'artificial' or 'ugly'.  There
    are at least three methods of making good sounds with the above
-   considerations: 
+   considerations:
 
    \begin{enumber}
       \item \textbf{Detuning}.
@@ -397,22 +397,22 @@
    is not enough energy to spread to higher harmonics. On artificial
    synthesis one can do this by using a low-pass filter that lowers the
    cutoff frequency on notes with low velocities or, if one uses FM
-   (frequency modulation), by lowering the modulator index. 
+   (frequency modulation), by lowering the modulator index.
    The spectrum of the sound should be almost the same according to
    the frequencies and not the harmonics.
 
    This means that, for example, the higher the pitch is, the smaller the
    number of harmonics it will contain. This happens in a natural instrument
-   because of the resonance. 
+   because of the resonance.
    In this case there are many instruments that don't obey this, but sound
-   quite good (example: synth organ). 
+   quite good (example: synth organ).
    If one records the C-2 note from a piano and one plays it at a very high
    speed (8 times), the result will not sound like the C-5 key from the
    piano. The pitch is C-5, but the timbre is very different. This is because
    the harmonic content is preserved (the n-th harmonic will have the
    same amplitude in both cases) and not the spectrum (eg. the
    amplitudes of the harmonics around 1000 Hz are too different from
-   one case to another). 
+   one case to another).
 
    In artificial synthesis one can use filters to add resonance or FM
    synthesis that varies the index according to the frequency.  In
@@ -678,13 +678,13 @@
 
    \begin{itemize}
       \item \textbf{Bandwidth} control (75) increases or decreases the bandwidth
-      of instruments. The default value of this parameter is 64. 
+      of instruments. The default value of this parameter is 64.
       \item \textbf{Modulation amplitude} (76) decreases the amplitude of
-      modulators on ADDsynth. The default value of this parameter is 127. 
+      modulators on ADDsynth. The default value of this parameter is 127.
       \item \textbf{Resonance Center Frequency} control (77) changes the center
-      frequency of the resonance. 
+      frequency of the resonance.
       \item \textbf{Resonance Bandwidth} control (78) changes the bandwidth of the
-      resonance. 
+      resonance.
    \end{itemize}
 
    Some standard MIDI messages are handled a bit differently by
@@ -733,7 +733,7 @@
 
    Vector control is a way to control more than one part with the
    controllers.
-   Vector control is only possible if one has 32 or 64 parts active 
+   Vector control is only possible if one has 32 or 64 parts active
    in \textsl{Yoshimi}.
    In vector mode, parts will still play together but the vector controls can
    change their volume, pan, filter cutoff in pairs, controlled by user
@@ -750,6 +750,65 @@
 
    Effects control is described in greater detail in section
    \sectionref{subsection:nrpns_midi_nrpn_effects_control}.
+
+\subsection{Concepts / Instances}
+\label{subsec:concepts_instances}
+   Like many programs, it is possible to run multiple copies - instances -
+   of Yoshimi. However the risk of doing so is that these can't communicate
+   with each other so can readily write to the same files. Yoshimi regards these
+   as external instances. It also supports internal ones. These are started within
+   the running main instance and will have separate files for most settings.
+   A description of how this can be used follows.
+
+   \begin{quotation}
+       Internal instances are created from the Yoshimi drop-down menu, and
+       Yoshimi can keep track of them, also numbering the title bars so one knows
+       which one is being dealt with (applies to all their sub-windows too). Exernal
+       instances are where Yoshimi is restarted from the desktop or some other system
+       such as a session manager. Although jack/alsa will give them independent IDs
+       the yoshim versions themselves don't know about these, which can cause a lot of
+       confusion when saving/loading and especially when changing config settings or
+       root/bank/instrument.\\
+\\
+       So, two external instances will save \textbf{default} state files to the same
+       location, and the actual saved default will be the one last saved. Two internal ones
+       will save to their own numberered defaults. \\
+\\
+       Previously states were not being re-loaded. Under the new system they are. Currently
+       internal instance \textbf{bank} saves can still get out of step. This is an issue that
+       will eventually be put right. This kind of synchronisation would be impossible with
+       external instances as they can't directly communicate with each other.\\
+
+       The beauty of having per-instance independent, re-loadable default states is
+       that they can have quite different setups, audio destinations, learned MIDI, and
+       patch sets.\\
+\\
+        e.g.\\
+        \textbf{Simple user:}
+          Only has the main instance, and sets the default state to always set Ch10 as
+          separate parts only, for mixing with other percussion stuff. It also does a
+          master keyshift so that C sounds as Bb, as it's used mostly working with brass
+          players.\\
+\\
+        \textbf{Power user:}
+          The main instance (0) gets MIDI via Alsa from an external keyboard that it
+          specifically looks for at startup. It has learned MIDI for the controls this
+          keyboard can send. It also gets other channels from Rosegarden. It sends it's
+          audio to Jack.\\
+\\
+          Instance 1 is all Jack and has a MIDI sequencer and arpegiator connected. It is
+          also configured for separate part outputs only, for further processing.\\
+\\
+          Instance 2 is all Alsa, has it's MIDI from a different keyboard, which it is
+          set to recognise. it has it's own learned MIDI setup and and a pattern generator.
+          It's audio is connected to a second sound card, which is then mixed in the analog
+          domain.\\
+\\
+       Finally, internal instances have a slightly smaller memory footprint, and marginally
+       lighter processor load.
+   \end{quotation}
+   Now that Yoshimi can be configured to auto-load last seen instances when it starts, this all
+   becomes even more useful.
 
 \subsection{Concepts / Command Line}
 \label{subsec:concepts_command_line}
