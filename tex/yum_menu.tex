@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2018-09-23
+% \update      2018-10-26
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -119,14 +119,12 @@
 \subsubsection{Menu / Yoshimi / New instance}
 \label{subsubsec:menu_yoshimi_new_instance}
 
-   The \textbf{New instance} menu entry creates a new instance of \textsl{Yoshimi}.
-   If JACK is running,
-   start a normal (JACK-using) instance of \textsl{Yoshimi}.
-   Then use this menu entry.  \textsl{Yoshimi} will start another instance
-   of itself, with a prompt to accept the next available instance ID or to
-   change it.
-   The presence of this instance can be verified by running a JACK session
-   manager such as QJackCtl.
+   The \textbf{New instance} menu entry creates a new instance of
+   \textsl{Yoshimi}.  If JACK is running, start a normal (JACK-using) instance
+   of \textsl{Yoshimi}.  Then use this menu entry.  \textsl{Yoshimi} will start
+   another instance of itself, with a prompt to accept the next available
+   instance ID or to change it.  The presence of this instance can be verified
+   by running a JACK session manager such as QJackCtl.
 
    In a non-JACK setup it won't fail, but in the absence of any specific
    setting, it will have null audio, but (probably) will still connect to ALSA
@@ -154,8 +152,8 @@
    try to find another route to a soundcard. Failing to find one,
    they will revert to null audio, but will nonetheless start cleanly.
 
-   The list of hidden "base parameters" that are set only by the main instance is
-   now:
+   The list of hidden "base parameters" that are set only by the main instance
+   is now:
 
    \begin{itemize}
       \item ALSA Sample Rate
@@ -332,7 +330,7 @@
    \textsl{Yoshimi} will set it's internal buffer size to match,
    which always seems to be 1024.
 
-   Values: \texttt{64, 128, 256*, 512, 1024, 2048, 4096}
+   Values: \texttt{64, 128, 256*, 512, 1024, 2048, 4096, 8192}
 
 \begin{figure}[H]
    \centering

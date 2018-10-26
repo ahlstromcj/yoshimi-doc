@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2016-03-07
-% \update      2018-05-26
+% \update      2018-10-26
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -120,8 +120,8 @@
       \item \texttt{.state}
          \index{.state}
          \index{config!.state}
-         Contains the state information needed to
-         duplicate a \textsl{Yoshimi} session that was saved.
+         Contains the information needed to duplicate a complete \textsl{Yoshimi}
+         session that was saved.
       \item \texttt{.windows}
          \index{.windows}
          \index{config!.windows}
@@ -161,8 +161,8 @@
       \item \texttt{.xmz}
          \index{.xmz}
          \index{config!.xmz}
-         A full \textsl{Yoshimi} configuration; everything.
-         This file is also called a \textsl{patch set}.
+         All \textsl{Yoshimi} active data; everything except MIDI-Learn.
+         This file is called a \textsl{patch set}.
       \item \texttt{.xpz}
          \index{.xpz}
          \index{config!.xpz}
@@ -191,7 +191,7 @@
       \item \texttt{.instance[n]}
       \item \texttt{.windows}
       \item \texttt{.history}
-      \item \texttt{.banks} (this is currently per instance)
+      \item \texttt{.banks}
    \end{itemize}
 
    The \texttt{.windows} file is specific to the GUI, so doesn't figure in this
@@ -239,8 +239,8 @@
    \textbf{Patch Sets / Save External...} menu entry saves files with
    the \texttt{.xmz} extension.
 
-   One of the simplest ways to save one's work is to save the entire
-   dynamic settings \textsl{Yoshimi} configuration.
+   One of the simplest ways to save one's work is to save the bulk of the
+\textsl{Yoshimi} dynamic settings.
    This saving can be done through the \textbf{Patch Sets} menu
    (the \textbf{File} menu in \textsl{ZynAddSubFX}),
    and will result in the creation of
@@ -622,7 +622,8 @@
 
    \index{.xly}
    \index{config!.xly}
-   The MIDI-Learn data is stored in files with an extension of
+   The MIDI-Learn data crosses the border between static configuration and
+   dynamic settings. It is stored in files with an extension of
    \texttt{.xly} ("XML Learn Yoshimi").
    If compression is turned off
    (\textbf{Yoshimi / Settings / Main Settings / XML Compression Level} set to
