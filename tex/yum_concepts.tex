@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom and Will Godfrey
 % \date        2015-06-15
-% \update      2018-09-23
+% \update      2018-10-26
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -754,61 +754,67 @@
 \subsection{Concepts / Instances}
 \label{subsec:concepts_instances}
    Like many programs, it is possible to run multiple copies - instances -
-   of Yoshimi. However the risk of doing so is that these can't communicate
-   with each other so can readily write to the same files. Yoshimi regards these
-   as external instances. It also supports internal ones. These are started within
-   the running main instance and will have separate files for most settings.
+   of \textsl{Yoshimi}.
+   However, the risk of doing so is that these instances cannot communicate
+   with each other, and so can readily write to the same files.
+   \textsl{Yoshimi} regards these as external instances.
+   It also supports internal instances, which are started within
+   the running main instance, and will have separate files for most settings.
    A description of how this can be used follows.
 
    \begin{quotation}
        Internal instances are created from the Yoshimi drop-down menu, and
-       Yoshimi can keep track of them, also numbering the title bars so one knows
-       which one is being dealt with (applies to all their sub-windows too). Exernal
-       instances are where Yoshimi is restarted from the desktop or some other system
-       such as a session manager. Although jack/alsa will give them independent IDs
-       the yoshim versions themselves don't know about these, which can cause a lot of
-       confusion when saving/loading and especially when changing config settings or
-       root/bank/instrument.\\
-\\
-       So, two external instances will save \textbf{default} state files to the same
-       location, and the actual saved default will be the one last saved. Two internal ones
-       will save to their own numberered defaults. \\
-\\
-       Previously states were not being re-loaded. Under the new system they are. Currently
-       internal instance \textbf{bank} saves can still get out of step. This is an issue that
-       will eventually be put right. This kind of synchronisation would be impossible with
-       external instances as they can't directly communicate with each other.\\
+       Yoshimi can keep track of them, also numbering the title bars so one
+       knows which one is being dealt with (applies to all their sub-windows,
+       too). Exernal instances are where Yoshimi is restarted from the desktop
+       or some other system such as a session manager. Although JACK/ALSA will
+       give them independent IDs the Yoshimi instances themselves don't know
+       about these IDs, which can cause a lot of confusion when saving/loading
+       and especially when changing configuration
+       settings or root/bank/instrument.
 
-       The beauty of having per-instance independent, re-loadable default states is
-       that they can have quite different setups, audio destinations, learned MIDI, and
-       patch sets.\\
-\\
-        e.g.\\
-        \textbf{Simple user:}
-          Only has the main instance, and sets the default state to always set Ch10 as
-          separate parts only, for mixing with other percussion stuff. It also does a
-          master keyshift so that C sounds as Bb, as it's used mostly working with brass
-          players.\\
-\\
-        \textbf{Power user:}
-          The main instance (0) gets MIDI via Alsa from an external keyboard that it
-          specifically looks for at startup. It has learned MIDI for the controls this
-          keyboard can send. It also gets other channels from Rosegarden. It sends it's
-          audio to Jack.\\
-\\
-          Instance 1 is all Jack and has a MIDI sequencer and arpegiator connected. It is
-          also configured for separate part outputs only, for further processing.\\
-\\
-          Instance 2 is all Alsa, has it's MIDI from a different keyboard, which it is
-          set to recognise. it has it's own learned MIDI setup and and a pattern generator.
-          It's audio is connected to a second sound card, which is then mixed in the analog
-          domain.\\
-\\
-       Finally, internal instances have a slightly smaller memory footprint, and marginally
-       lighter processor load.
+       So, two external instances will save \textbf{default} state files to the
+       same location, and the actual saved default will be the one last saved.
+       Two internal ones will save to their own numberered defaults.
+
+       Previously, states were not being re-loaded. Under the new system, they
+       are. Currently internal-instance \textbf{bank} saves can still get out
+       of step. This is an issue that will eventually be put right. This kind
+       of synchronisation would be impossible with external instances as they
+       can't directly communicate with each other.
+
+       The beauty of having per-instance independent, re-loadable default
+       states is that they can have quite different setups, audio destinations,
+       learned MIDI, and patch sets.  For example:
+
+       \textbf{Simple user:}
+          Only has the main instance, and sets the default state to always set
+          Ch10 as separate parts only, for mixing with other percussion stuff.
+          It also does a master keyshift so that \textbf{C} sounds
+          as \textbf{Bb}, as it's used mostly working with brass players.
+
+       \textbf{Power user:}
+          The main instance (0) gets MIDI via ALSA from an external keyboard
+          that it specifically looks for at startup. It has learned MIDI for
+          the controls this keyboard can send. It also gets other channels from
+          Rosegarden. It sends it's audio to JACK.
+
+          Instance 1 is all JACK and has a MIDI sequencer and arpeggiator
+          connected. It is also configured for separate part outputs only, for
+          further processing.
+
+          Instance 2 is all ALSA, has its MIDI from a different keyboard,
+          which it is set to recognise. it has its own learned MIDI setup and
+          and a pattern generator.  Its audio is connected to a second sound
+          card, which is then mixed in the analog domain.
+
+       Finally, internal instances have a slightly smaller memory footprint,
+       and marginally lighter processor load.
    \end{quotation}
-   Now that Yoshimi can be configured to auto-load last seen instances when it starts, this all
-   becomes even more useful.
+
+   Now that \textsl{Yoshimi}
+   can be configured to auto-load last-seen instances when it
+   starts, this all becomes even more useful.
 
 \subsection{Concepts / Command Line}
 \label{subsec:concepts_command_line}

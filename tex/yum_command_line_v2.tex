@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-09-06
-% \update      2018-09-24
+% \update      2018-10-26
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -1033,7 +1033,7 @@ Filter types (s parameter, LFO oscillator shape):
    reset \textsl{Yoshimi} to startup conditions.
    However, this will \textsl{not} clear any MIDI-learned lines. \\
 \texttt{EXit} &
-   Tidy up and close Yoshimi (if 'y' to the prompt). \\
+   Tidy up and close \textsl{Yoshimi} (if 'y' to the prompt). \\
 \texttt{..} &
    Step up one command level. \\
 \texttt{/} &
@@ -2171,11 +2171,11 @@ is not enough room in the table above.
       What are the possible values of \textsl{n}?
 
    \itempar{set jack midi [s]}{cmd!set jack midi}
-      Sets the name of the JACK MIDI source for Yoshimi.
+      Sets the name of the JACK MIDI source for \textsl{Yoshimi}.
       Requires a restart of \textsl{Yoshimi}.
 
    \itempar{set jack server [s]}{cmd!set jack server}
-      Sets the name of the JACK server Yoshimi tries to connect to.
+      Sets the name of the JACK server \textsl{Yoshimi} tries to connect to.
       Requires a restart of \textsl{Yoshimi}.
 
    \itempar{set part [n1] program [n2]}{cmd!set part program}
@@ -2295,7 +2295,7 @@ is not enough room in the table above.
       abbrevations are capitalised in the help listing.
 
    \itempar{exit}{cmd!exit}
-         Tidy up and close Yoshimi down.
+         Tidy up and close \textsl{Yoshimi} down.
 
 \subsection{Direct Access}
 \label{subsec:command_line_direct_access}
@@ -2306,10 +2306,10 @@ is not enough room in the table above.
    controls in \textsl{Yoshimi} control.
    It is a test feature accessible only from the command line.
    There are virtually no error checks on direct-access, so one can easily
-   crash Yoshimi with out of range values.
+   crash \textsl{Yoshimi} with out of range values.
    It mostly updates the GUI too.
-   Refer to the \texttt{Yoshimi Control Numbers.ods} file that ships with the
-   source-code
+   Refer to the \texttt{Yoshimi Control Numbers.ods}
+   file that ships with the source-code
    for control numbers, actions, and \texttt{GUI\_Interpretations.txt}
    further explanations.
    Also, see \texttt{Effect\_Inserts.txt} for the actual effect controllers and
