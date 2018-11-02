@@ -37,7 +37,7 @@
    is improved non-GUI accessibility.  In fact,
    \textsl{Yoshimi} can run with neither GUI nor CLI input access. Working
    purely as a hidden MIDI device, a daemon of sorts. To enable a tidy close,
-   there is a new short-form NRPN. Just send 68 to both MSB and LSB (CC 99 and
+   there is a new short-form NRPN. Just send 68 to both MSB and LSB (CC99 and
    CC98).
 
    In a command line environment, almost all the 'running' commands are
@@ -289,8 +289,8 @@
    \end{verbatim}
 
    To avoid confusion, the script routine first sets the context to the
-   top level, then performs all the commands, and returns to the original
-   level. If there is a fault in the script, it will be reported along with the
+   top level, then performs all the commands, following context level changes.
+   If there is a fault in the script, it will be reported along with the
    number of the line where the error occurred. Due to the buffering used, the
    script will return before many of the actions have actually taken place.
    Therefore an error report is likely to be some way up the responses.
@@ -324,8 +324,31 @@
    The script routine honors any normal abbreviations.
    Blank lines are ignored. A '\#' at the start of a line marks it
    as a comment so will also be ignored. However, both of these kinds
-   of lines will
-   be in the line count if an error is reported.
+   of lines will be in the line count if an error is reported.
+
+   Buffering can also cause commands to go out of sequence if a buffered one is
+   immediately followed by a related direct one. For this reason there is an
+   extra command specific to scripts:
+
+   \begin{verbatim}
+      WAIT [n]
+   \end{verbatim}
+
+   The command must be entered in full, and the range is 1 to 1000 milliseconds.
+   In the example below, switching the kit mode is buffered but setting a kit
+   item isn't, so without a delay the setting would be attempted before it was
+   available. A 20ms wait seems to be enough of a delay in this case.
+   \begin{verbatim}
+      # Using delays
+      s p 1 on
+      s add off
+      ..
+      s km mul
+      wait 20
+      s ki 5
+      s on
+      s sub on
+   \end{verbatim}
 
 \subsection{Command Depth}
 \label{subsec:command_line_command_depth}
@@ -467,7 +490,7 @@
 
 \texttt{ON @} &
    Enables the part/kit item/engine/insert etc. \\
-\texttt{OFf @} &
+\texttt{OFF @} &
    Disables as above.   \\
 \texttt{Volume n @} &
    Volume.  \\
@@ -564,7 +587,7 @@ Overtone Position s, Relationship to fundamental, values:
       \caption{Part Commands}
       \label{table:yoshimi_part_commands}
       \begin{tabular}{l l}
-
+\texttt{Common controls plus:} & \\
 \texttt{OFfset [n2]} &
    Sense offset.  \\
 \texttt{Breath [s]} &
@@ -593,6 +616,8 @@ Overtone Position s, Relationship to fundamental, values:
       This item (ON, {other}).   \\
    \texttt{(kitem) KEffect [n]} &
       Effect for this item (0-none, 1-3). \\
+   \texttt{(kitem) KName [s]} &
+      The name of this item. \\
  \texttt{DRum [s]} &
    Kit to drum mode (ON, {other}).  \\
 \texttt{PRogram [n2]/[s]} &
@@ -618,23 +643,171 @@ Overtone Position s, Relationship to fundamental, values:
    The following commands enter context for the various types of
    synth engines:
 
+%   \begin{itemize}
+%      \item \textbf{Part AddSynth}
+%      \begin{itemize}
+%         \item GRoup [s]. Disables harmonic amplitude randomness of voices with a
+%              common oscillator (ON, {other}).
+%         \item BAndwidth [n]. Modifes relative fine detune of voices.
+%         \item REsonance ... Enter the AddSynth resonance context.
+%         \item VOice ... Enter Addsynth voice context.
+%      \end{itemize}
+%      \item \textbf{Part AddVoice}:
+%        WAveform ... Enter the oscillator waveform context.
+%   \end{itemize}
+
+\paragraph{Part AddSynth Commands}
+\label{paragraph:command_line_part_addsynth_commands}
+
+   \begin{table}[H]
+      \centering
+      \caption{Part AddSynth Commands}
+      \label{table:yoshimi_part_addsynth_commands}
+      \begin{tabular}{l l}
+
+\texttt{Common controls plus:} & \\
+\texttt{GRoup [s]} &
+   Disables harmonic amplitude randomness of voices \\
+\texttt{ } &
+             with a common oscillator (ON, other). \\
+\texttt{Bandwidth [n]} &
+   Modifes the relative fine detune of voices. \\
+\texttt{VOice ...} &
+   Enter the Addsynth voice context. \\
+\texttt{REsonance ...} &
+   Enter the AddSynth resonance context. \\
+      \end{tabular}
+   \end{table}
+
+   \begin{table}[H]
+      \caption{AddSynth Voice Commands}
+      \label{table:yoshimi_part_addsynth_voice_commands}
+      \begin{tabular}{l l}
+\texttt{Common controls plus:} & \\
+\texttt{Type [s]} &
+   Sound type (oscillator, White noise, Pink noise). \\
+\texttt{Source [n]} &
+   Oscillator voice number (-1 for self). \\
+\texttt{Phase [n]} &
+   Relative voice phase. \\
+\texttt{Minus [s]} &
+   Invert entire voice (ON, other). \\
+\texttt{DELay [n]} &
+   Delay before this voice starts. \\
+\texttt{Resonanace [s]} &
+   Enable resonance for this voice (ON, other). \\
+\texttt{Bypass [s]} &
+   Bypass global filter for this voice (ON, {other}). \\
+\texttt{Unison [s]} &
+   (ON, OFF). \\
+\texttt{Unison Size[n]} &
+   Number of unison elements. \\
+\texttt{Unison Frequency[n]} &
+   Frequency spread of elements. \\
+\texttt{Unison Phase[n]} &
+   Phase randomness of elements. \\
+\texttt{Unison Width[n]} &
+   Stereo width. \\
+\texttt{Unison Vibrato[n]} &
+   Vibrato depth. \\
+\texttt{Unison Rate[n]} &
+   Vibrato speed. \\
+\texttt{Unison Invert [s]} &
+   Phase inversion type (None, Random, Half, Third, Quarter, Fifth). \\
+\texttt{MOdulator} &
+   Enter the modulator context. \\
+\texttt{WAveform ...} &
+   Enter the oscillator waveform context. \\
+      \end{tabular}
+   \end{table}
+
+\begin{table}[H]
+      \caption{Voice Modulator Commands}
+      \label{table:yoshimi_part_addsynth_voice_modulator_commands}
+      \begin{tabular}{l l}
+
+\texttt{Common controls plus:} & \\
+\texttt{Type [s]} &
+   Modulator type (OFF, Morph, Ring, Phase, Frequency, Pulse width). \\
+\texttt{Source [[s]/[n]]} &
+   Oscillator source (Local, voice number). \\
+\texttt{Damping [n]} &
+   Higher frequency relative damping. \\
+\texttt{Local [[s]/[n]]} &
+   Modulation oscillator(Internal, modulator number). \\
+\texttt{PHase [n]} &
+   Oscillator relative phase. \\
+      \end{tabular}
+   \end{table}
+
+\paragraph{Part PadSynth Commands}
+\label{paragraph:command_line_part_padsynth_commands}
+
+   \begin{table}[H]
+      \centering
+      \caption{Part PadSynth Commands}
+      \label{table:yoshimi_part_padsynth_commands}
+      \begin{tabular}{l l}
+
+\texttt{Common controls plus:} & \\
+\texttt{PRofile [s]} &
+   The shape of harmonic profile (Gauss, Square Double exponent). \\
+\texttt{WIdth [n]} &
+   Width of the harmonic profile. \\
+\texttt{COunt [n]} &
+   Number of profile repetitions. \\
+\texttt{EXpand [n]} &
+   Adds harmonics and changes the distribution. \\
+\texttt{FRequency [n]} &
+   Further modifies distribution (dependent on stretch). \\
+\texttt{SIze [n]} &
+   Changes harmonic width while retaining shape. \\
+\texttt{CRoss [s]} &
+   Cross section of profile (Full, Upper, Lower). \\
+\texttt{MUltiplier [s]} &
+   amplitude multiplier (Off, Gauss, Sine, Flat). \\
+\texttt{MOde [s]} &
+   Amplitude mode (Sum, Mult, D1, D2). \\
+\texttt{CEnter [n]} &
+   Changes the central harmonic component width. \\
+\texttt{RELative [n]} &
+   Changes central component relative amplitude. \\
+\texttt{AUto [s]} &
+   Autoscaling (ON, other). \\
+\texttt{BASe [s]} &
+   Base profile distribution (C2, G2, C3, G3, C4, G4, C5, G5, G6). \\
+\texttt{SAmples [n]} &
+   Samples per octave (0.5, 1, 2, 3, 4, 6, 12). \\
+\texttt{RAnge [n]} &
+   Number of octaves (1 to 8). \\
+\texttt{LEngth [n]} &
+   Length of one sample in k (16, 32, 64, 128, 256, 512, 1024). \\
+\texttt{BAndwidth [n]} &
+   Overall bandwidth. \\
+\texttt{SCale [s]} &
+   Bandwidth scale. \\
+\texttt{SPectrum [s]} &
+   Spectrum mode (Bandwidth, Discrete, Continuous). \\
+\texttt{APply} &
+   Puts the latest changes into the wavetable. \\
+\texttt{REsonance ...} &
+   Enter the PadSynth resonance context. \\
+\texttt{WAveform ...} &
+   Enter the oscillator waveform context. \\
+      \end{tabular}
+   \end{table}
+
+   The list of bandwidth scale options.
+
    \begin{itemize}
-      \item \textbf{Part AddSynth}
-      \begin{itemize}
-         \item GRoup [s]. Disables harmonic amplitude randomness of voices with a
-              common oscillator (ON, {other}).
-         \item BAndwidth [n]. Modifes relative fine detune of voices.
-         \item REsonance ... Enter the AddSynth resonance context.
-         \item VOice ... Enter Addsynth voice context.
-      \end{itemize}
-      \item \textbf{Part AddVoice}:
-        WAveform ... Enter the oscillator waveform context.
-      \item \textbf{Part PadSynth}:
-      \begin{itemize}
-         \item APply. Puts the latest changes into the wavetable.
-         \item REsonance ... Enter the PadSynth resonance context.
-         \item WAveform ... Enter the oscillator waveform context.
-      \end{itemize}
+      \item Normal
+      \item Equalhz
+      \item Quarter
+      \item Half
+      \item Threequarter
+      \item One and a half
+      \item Double
+      \item Inversehalf
    \end{itemize}
 
 \paragraph{Part SubSynth Commands}
@@ -646,6 +819,7 @@ Overtone Position s, Relationship to fundamental, values:
       \label{table:yoshimi_part_subsynth_commands}
       \begin{tabular}{l l}
 
+\texttt{Common controls plus:} & \\
 \texttt{HArmonic [n1] Amp [n2]} &
    Set harmonic n1 to n2 intensity. \\
 \texttt{HArmonic [n1] Band [n2]} &
@@ -1034,6 +1208,9 @@ Filter types (s parameter, LFO oscillator shape):
    However, this will \textsl{not} clear any MIDI-learned lines. \\
 \texttt{EXit} &
    Tidy up and close \textsl{Yoshimi} (if 'y' to the prompt). \\
+\texttt{RUN [s]} &
+   Execute a simple named script file.
+   This script can also include time delays with a WAIT command.\\
 \texttt{..} &
    Step up one command level. \\
 \texttt{/} &
