@@ -270,7 +270,7 @@
    frequency.  The default is 35 cents.  The 1200-cents setting provides a
    whole octave of detuning in either direction.
 
-   The "L" probably stands for "linear", and the "E" for "exponential", to
+   The "L" stands for "linear", and the "E" for "exponential", to
    describe how the detune slider acts.
 
    Values: \texttt{Default*, L35cents, L10cents, E100cents, E1200cents}
@@ -474,10 +474,7 @@
    \itempar{Pan randomness indicator}{voice par amp!random pan}
    ADDsynth Voice random panning On/Off.
    Fills in red to indicate that random panning is in force.
-
-   \itempar{Pan reset (red button)}{voice par amp!center pan}
-   ADDsynth Center Panning.
-   Clicking this small red button resets the panning to center.
+   Clicking on it will also set random panning.
 
    \itempar{Amplitude Env, Stock + Enable}{voice par amp!amp env}
    ADDsynth Amplitude Envelope Sub-panel.
@@ -816,9 +813,11 @@
          \index{MORPH}
          \index{morph modulator}
          \index{modulator!morph}
-         The morph modulator works by combining the output of two oscillators
-         into one, with the amplitude envelope translating between one waveform
-         and the other.
+         The morph modulator works by combining the output of the voice oscillator
+         and the modulator opscillator into one sonud, with the amplitude envelope
+         translating between one waveform and the other. It is important that the
+         amplitude envelope is enabled, otherwise no change will take place.
+
       \item \textbf{RING}
          \index{RING}
          \index{ring modulator}
@@ -831,10 +830,11 @@
          \paragraphref{paragraph:tips_using_the_ring_modulator}.
       \item \textbf{PM}
          \index{PM}
-         \index{pulse modulator}
-         \index{modulator!pulse}
-         The PM (pulse modulation) modulator works by using a modulator
-         envelope to change the pulse width of a pulse waveform.
+         \index{phase modulator}
+         \index{modulator!phase}
+         The PM (phase modulation) modulator works by using a modulator
+         envelope to change the pulse of the voice oscillator. It produces a
+         similar effect to frequency modulation.
          Generally, set \textbf{F.Damp} to zero, so that the modulation amount
          doesn't depend on the note number.
       \item \textbf{FM}
@@ -848,7 +848,7 @@
          \index{PWM}
          \index{PWM modulator}
          \index{modulator!PWM}
-         The pitch modulator works by pulse-width modulation.
+         The pulse width modulator works by pulse-width modulation.
    \end{enumber}
 
    Values: \texttt{OFF, MORPH, RING, PM, FM, PWM}
@@ -978,7 +978,7 @@
    already defined for the voices with a lower index.
    The voice of lower index doesn't need to be enabled in order to be used as a
    modulator. This means one can make one modulation oscillator for voice 1, and
-   reuse it in voices 2 and 3.  This is the same system used for the normal
+   reuse it in voices 2 and 3.  This is the same system used for the normal (voice)
    oscillators.
 
 \paragraph{Tip: Using the Ring Modulator}
