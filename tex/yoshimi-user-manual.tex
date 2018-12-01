@@ -315,7 +315,7 @@
    mode, responding in the background to MIDI events.
 
    The command-line interface can access all top level controls, as well as the
-   main part controls, and can select any effect and effect preset.  It can be
+   part editing controls, and can select any effect and effect preset.  It can be
    used to set up Vector Control much more quickly and easily than using NRPNs.
    It allows setting to be made to the various synthesis engines.
    The command-line is also context sensitive, which, along with careful choice
@@ -346,8 +346,8 @@
    repeat the effect type).
 
    "\texttt{..s 6 v 80}" ("up one level, set part 6 volume 80"):
-   This command drops one back up to part level, switches one to part 6, and
-   sets its volume to 80 (but doesn't actually enable it).
+   This command drops one back up to part level, switches one to part 6 (but doesn't actually enable it), and
+   sets its volume to 80.
 
    "\texttt{/s ve cc 93}" ("to top level, set vector control cc 93"):
    This command drops back up to the top level, and sets vector control for
@@ -367,7 +367,7 @@
    These follow standard MIDI practice (and do the same in the GUI).
 
    The CLI prompt always
-   shows what level one is on, and the help lists are also partly
+   shows what level one is on, and the help lists are also mostly
    context-sensitive, so one doesn't see a lot of irrelevent clutter.
    \textsl{Yoshimi} instrument patches are still fully
    compatible with \textsl{ZynAddSubFX} patches, and have ported across
@@ -387,7 +387,7 @@
    order: JACK, ALSA, and null. This enables one to then change the settings
    and try again.
 
-   A significant improvement is the handling of ALSA audio, which is still very
+   A significant improvement is the handling of ALSA audio, which is very
    important for some people.  \textsl{Yoshimi} can handle 2-channel 16-bit
    format. Tests have shown that virtually all motherboard sound chipsets will
    handle this setting, but many external ones don't.  So \textsl{Yoshimi}
