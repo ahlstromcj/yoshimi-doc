@@ -6,7 +6,7 @@
 # \library    	Documents
 # \author     	Chris Ahlstrom
 # \date       	2015-07-05
-# \update     	2018-09-23
+# \update     	2018-12-28
 # \version    	$Revision$
 # \license    	$XPC_SUITE_GPL_LICENSE$
 #
@@ -22,8 +22,14 @@ all:
 clean:
 	./Makefile-helper clean
 
+debug:
+	./Makefile-helper debug
+
 optimize:
 	./Makefile-helper optimize
+
+opt:
+	./Makefile-helper opt
 
 #******************************************************************************
 # vim: ts=3 sw=3 noet ft=automake

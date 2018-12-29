@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-04-20
-% \update      2018-09-23
+% \update      2018-12-28
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -50,7 +50,7 @@
 
 \begin{document}
 
-\title{Yoshimi Advanced User Manual, v 1.5.9}
+\title{Yoshimi Advanced User Manual, v 1.5.10}
 \author{Chris Ahlstrom \texttt{(ahlstromcj@gmail.com)} with Will J. Godfrey}
 \date{\today}
 \maketitle
@@ -78,9 +78,9 @@
 \section{Introduction}
 \label{sec:introduction}
 
-   This manual was inspired by finding a wiki version of a
+   This manual was inspired by a wiki version of a
    \textsl{ZynAddSubFX} manual (see reference \cite{zynwiki}).  That wiki
-   (also in Open Document Format) shows many screen shots and a
+   shows screen shots and a
    detailed survey of the settings and parameters of \textsl{ZynAddSubFX}.  It
    inspired us to thoroughly document \textsl{Yoshimi}, with the help of
    Will Godfrey, who continues to improve \textsl{Yoshimi} at great pace.
@@ -461,9 +461,9 @@
    Load and save dialogues intelligently recognise the history lists and offer
    the appropriate first choice. External instrument loads and saves are now
    also remembered.
-   For saves, on a fresh restart one is offered the home directory regardless
+   For saves, on a restart, one is offered the home directory regardless
    of where \textsl{Yoshimi} was launched, but in the case of saving
-   external instruments one is always offered the name of the instrument
+   external instruments, one is always offered the name of the instrument
    in the currently selected part, prefixed with the home directory.
 
    There is now a specific State menu item ("Save as Default") for saving
@@ -490,10 +490,10 @@
 \subsection{Document Structure}
 \label{subsec:introduction_document_structure}
 
-   The structure of this manual is a struggle.
+   The structure of any manual is a struggle.
    There's no way to avoid jumping all over the place to
-   cover a topic.  Therefore, the sections are covered
-   in the order their contents appear in the user interface of
+   cover a topic.  The sections are covered roughly
+   in the order of the user interface of
    \textsl{Yoshimi}.  To help the reader jump around this manual, multiple
    links and an index are supplied.
 
@@ -504,17 +504,14 @@
    Each tip occurs in a section beginning with "Tip:".
    Each tip is provided with an entry in the Index, under the
    main topic "tips".
-
    \index{bugs!in document}
-   Bug notes for some of the oddities found in \textsl{Yoshimi} are also to be
-   found.  Each bug occurs in a sentence beginning with "Bug:".  Each bug is
+   Bug notes may also be found.
+   Each bug occurs in a sentence beginning with "Bug:".  Each bug is
    provided with an entry in the Index, under the main topic "bugs".
-
    \index{new!in document}
    New features
    since the last version are flagged with "New:"  We cannot pretend to have
    marked all new developments, as \textsl{Yoshimi} is advancing fast.
-
    \index{todo!in document}
    To-do items are also present, in the same vein.
 
@@ -536,8 +533,6 @@
 
 \subsection{Yoshimi Licensing}
 \label{subsec:introduction_yoshimi_licensing}
-
-   Before we get started, one more thing.
 
    \begin{quotation}
       Software licenses are are something I \textsl{really}
@@ -687,11 +682,10 @@
    along with a number of texts files with information that might not yet be
    present in the long manual.
 
+   One last thing to note is that there is a list of important concepts in
+   \sectionref{sec:concepts}, which one should consult if a term is puzzling.
+
 \rhead{\rightmark}         % shows section number and section name
-
-% Important Concepts
-
-\input{yum_concepts}
 
 % Configuration Files
 
@@ -769,6 +763,10 @@
 % Man page
 
 \input{yum_manpage}
+
+% Important Concepts
+
+\input{yum_concepts}
 
 % Building and debugging Yoshimi
 

@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-04-20
-% \update      2017-03-05
+% \update      2018-12-29
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -142,18 +142,34 @@
 % number.  Very useful if you have a hard-copy of the document to deal with.
 
 \newcommand{\figureref}[1] {
-   figure~\ref{#1}
+   Figure~\ref{#1}
    "\nameref{#1}"
    on page~\pageref{#1}\ignorespaces
+}
+
+% Make a shorter reference to a figure using its number, and its name.
+% Very useful if you have a hard-copy of the document to deal with.
+
+\newcommand{\figref}[1] {
+   Figure~\ref{#1}
+   "\nameref{#1}"\ignorespaces
 }
 
 % Make a full reference to a section using its number, its name, and its page
 % number.  Very useful if you have a hard-copy of the document to deal with.
 
 \newcommand{\sectionref}[1] {%
-   section~\ref{#1}
+   Section~\ref{#1}
    "\nameref{#1}"
    on page~\pageref{#1}\ignorespaces
+}
+
+% Make a partial reference to a section using its number and its name.
+% Very useful if you have a hard-copy of the document to deal with.
+
+\newcommand{\sectref}[1] {%
+   Section~\ref{#1}
+   "\nameref{#1}"\ignorespaces
 }
 
 % Make a full reference to a "paragraph"  using its number, its name, and
@@ -170,7 +186,7 @@
 % number.  Very useful if you have a hard-copy of the document to deal with.
 
 \newcommand{\tableref}[1] {%
-   table~\ref{#1}
+   Table~\ref{#1}
    "\nameref{#1}"
    on page~\pageref{#1}\ignorespaces
 }

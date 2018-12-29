@@ -6,7 +6,7 @@
 # \library    	Documents
 # \author     	Chris Ahlstrom
 # \date       	2015-04-20
-# \update     	2018-09-23
+# \update     	2018-12-28
 # \version    	$Revision$
 # \license    	$XPC_SUITE_GPL_LICENSE$
 #
@@ -21,18 +21,11 @@
 
 all: user
 
-# -auxdir=aux to direct .log, .aux, ... files to a separate directory.
-# -outdir=out to direct output files to a separate directory.
-#
-# Both are essentially options of pdflatex.
-
 user: tex-stamp
 	latexmk -g -silent -pdf yoshimi-user-manual
 
-# No longer needed.
-#
-# outline:
-#	latexmk -silent -pdf contrib/yoshimi-outline
+debug:
+	latexmk -g -pdf yoshimi-user-manual &> ../make.log
 
 tex-stamp:
 	touch tex-stamp

@@ -4,7 +4,7 @@
 # \library    	Documents
 # \author     	Chris Ahlstrom
 # \date       	2015-11-01
-# \update     	2017-09-23
+# \update     	2018-12-28
 # \version    	$Revision$
 # \license    	$XPC_SUITE_GPL_LICENSE$
 #
@@ -13,8 +13,14 @@
 # Note the new usage of gs (Ghostscript) to optimize the PDF.  Obviously, one
 # must have Ghostscript installed.  This optimization reduces the near 11 Mb
 # PDF down to about 4 Mb in size, with no significant reduction in quality.
+#
+# However, lately it has started disabling the hyperlinks.  So using "optimize"
+# or "opt" is no longer the default.
 
 MKERROR="no"
+MKDEBUG=""
+GSFLAGS="-dCompatibilityLevel=1.5 -dNOPAUSE -dQUIET -dBATCH \
+ -dPDFSETTINGS=/prepress"
 
 if [ "$1" == "clean" ] ; then
 
@@ -24,9 +30,13 @@ if [ "$1" == "clean" ] ; then
 
 else
 
+	if [ "$1" == "debug" ] ; then
+		MKDEBUG="debug"
+	fi
+
 	echo "Building PDF using latexmk..."
    pushd tex
-   make
+   make $MKDEBUG
    if [ $? != 0 ] ; then
       MKERROR="yes"
 		echo "FATAL ERROR in processing TeX files!"
@@ -38,10 +48,24 @@ else
 
 	if [ "$MKERROR" == "no" ] ; then
 		if [ "$1" == "optimize" ] ; then
+			echo "Optimizing PDF using ghostscript pdfwrite device..."
 			pushd pdf
 			mv yoshimi-user-manual.pdf y-temp.pdf
-	gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH \
-	 -sOutputFile=yoshimi-user-manual.pdf y-temp.pdf
+	gs -sDEVICE=pdfwrite $GSFLAGS -sOutputFile=yoshimi-user-manual.pdf y-temp.pdf
+			if [ $? == 0 ] ; then
+				rm y-temp.pdf
+			else
+				echo "? Could not reduce the size of the PDF"
+				mv y-temp.pdf yoshimi-user-manual.pdf
+			fi
+			popd
+		fi
+		if [ "$1" == "opt" ] ; then
+			echo "Optimizing PDF using ps2pdf ..."
+			pushd pdf
+			mv yoshimi-user-manual.pdf y-temp.pdf
+#		pdf2ps y-temp.pdf y-temp.ps
+			ps2pdf -dPDFSETTINGS=/ebook y-temp.pdf yoshimi-user-manual.pdf
 			if [ $? == 0 ] ; then
 				rm y-temp.pdf
 			else

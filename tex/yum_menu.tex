@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2018-10-26
+% \update      2018-12-27
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -102,7 +102,7 @@
 %  \includegraphics[scale=1.0]{1.3.8/yoshimi-about.jpg}
 %  \includegraphics[scale=1.0]{1.5.0/yoshimi-about.jpg}
 %  \includegraphics[scale=1.0]{1.5.0/About_1-5-1.png}
-   \includegraphics[scale=1.0]{1.5.9/About.png}
+   \includegraphics[scale=0.75]{1.5.9/About.png}
    \caption{Yoshimi Menu, About Dialog}
    \label{fig:yoshimi_about_dialog}
 \end{figure}
@@ -111,7 +111,7 @@
     has been enough to pave the way for extensive improvements.
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=1.0]{1.5.9/Contributors.png}
+   \includegraphics[scale=0.75]{1.5.9/Contributors.png}
    \caption{Yoshimi Menu, Contributors}
    \label{fig:yoshimi_contributors}
 \end{figure}
@@ -124,8 +124,7 @@
    of \textsl{Yoshimi}.  Then use this menu entry.  \textsl{Yoshimi} will start
    another instance of itself, with a prompt to accept the next available
    instance ID or to change it.  The presence of this instance can be verified
-   by running a JACK session manager such as QJackCtl.
-
+   by running a JACK session manager such as \textsl{QJackCtl}.
    In a non-JACK setup it won't fail, but in the absence of any specific
    setting, it will have null audio, but (probably) will still connect to ALSA
    MIDI.  Not too useful, but we should test that sometime.
@@ -133,7 +132,6 @@
    It is important to note that each instance of \textsl{Yoshimi} has its
    own configuration file.  Each also has its own MIDI and audio ports.
    Thus, these instances are partly independent of each other.
-
    The new instance tries to open a \textsl{Yoshimi} instance based on the
    configuration found in the file
    \texttt{\textasciitilde/.config/\-yoshimi/\-yoshimi.configXX}, where
@@ -144,13 +142,13 @@
    instances. This is done only where instances actually need to be in sync.
    The bank structure should be synchronised, but currently isn't.
 
-   Each instance has it's own file-store in \textsl{Yoshimi}'s configuration
-   directory. The means that if one opens a numbered instance, one will get
-   back all the settings that were previously used for that instance.
+%  Each instance has it's own file-store in \textsl{Yoshimi}'s configuration
+%  directory. The means that if one opens a numbered instance, one will get
+%  back all the settings that were previously used for that instance.
 
-   Instances no longer fight for access to JACK/ALSA audio; they will simply
+   Instances no longer fight for access to JACK/ALSA audio; they simply
    try to find another route to a soundcard. Failing to find one,
-   they will revert to null audio, but will nonetheless start cleanly.
+   they revert to null audio, but nonetheless start cleanly.
 
    The list of hidden "base parameters" that are set only by the main instance
    is now:
@@ -351,7 +349,7 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{menu/Yoshimi/main-padsynth-interpolation.jpg}
+   \includegraphics[scale=1.0]{menu/Yoshimi/main-padsynth-interpolation.jpg}
    \caption[PADSynth Interpolation]{PADSynth Interpolation Values}
    \label{fig:padsynth_interpolation}
 \end{figure}
@@ -371,7 +369,7 @@
    \label{fig:qwerty_virtual_keyboard}
 \end{figure}
 
-   See \figureref{fig:qwerty_virtual_keyboard},
+   See \figref{fig:qwerty_virtual_keyboard},
    for the mapping of the computer keyboard to the
    virtual keyboard.
    Three octaves (blue, green, and red) are available, with the dark keys of
@@ -397,17 +395,17 @@
    are preserved in XML files.
    The value of 0 indicates that the XML file is uncompressed.
 
-   In general, 0 is probably the best setting for debugging only.  Setting this
+   In general, 0 is a setting for debugging only.  Setting this
    option makes the XML files a bit larger, perhaps larger by a factor of more
    than 10, making a 10K file into a 180K file.  For a little "wasted" space
-   and time, one can view the XML file in a text/programmer's editor.  But, if
+   and time, one can view the XML file in a text editor.  If
    one's system is tight on disk space, higher levels of compression can be
    specified.  Using XML compression can also save file access time which may
    be beneficial if one's computer is borderline on latency.  This setting
    should stay at 3 if one is going make instruments publicly available, as
    some older versions of Yoshimi and ZynAddSubFX don't recognise uncompressed
    files. This also applies if one is going to save large patchsets that will
-   later be loaded while running. Uncompressing is \textsl{much} faster than file
+   be loaded while running. Uncompressing is \textsl{much} faster than file
    loading.
 
    Values: \texttt{0 to 9, 3*}
@@ -429,7 +427,7 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=1.0]{menu/Yoshimi/main-send-reports-to.jpg}
+   \includegraphics[scale=0.75]{menu/Yoshimi/main-send-reports-to.jpg}
    \caption[Send Reports]{Send Reports To}
    \label{fig:send_reports_to}
 \end{figure}
@@ -938,11 +936,9 @@
    32 = CC32 = Bank Select LSB.
    When combined, these Bank Select messages provide
    \texttt{128*128} = 16384 banks.
-
-   But note that all a Bank Select does is selects the bank for the next
+   Note that all a Bank Select does is select the bank for the next
    Program Change event.  The program doesn't change after changing a bank,
    until a Program Change is sent.
-
    Bank changes can be completely disabled; some hardware
    synthesizers don't play nice with banks.
 
@@ -1064,17 +1060,16 @@
    the Presets directories.  It contains the following items:
 
    \begin{enumber}
-      \item \textbf{Bank Root Dirs...}
-      \item \textbf{Preset Dirs...}
+      \item \textbf{Bank Root Dirs...}.
+         The Paths Bank Root Dirs dialog is described in
+         \sectionref{subsubsec:menu_patch_sets_patch_bank_roots},
+         which shows
+         \figureref{fig:bank_root_paths}, and describes this dialog in full.
+      \item \textbf{Preset Dirs...}.
+         The \textsl{Yoshimi} preset directories are the locations where
+         presets can be found.  See below for details.
    \end{enumber}
 
-   \paragraph{Bank Root Dirs...}
-   The Paths Bank Root Dirs dialog is described in
-   \sectionref{subsubsec:menu_patch_sets_patch_bank_roots},
-   which shows
-   \figureref{fig:bank_root_paths}, and describes this dialog in full.
-
-   \paragraph{Preset Dirs...}
    The \textsl{Yoshimi} preset directories are the locations where
    presets can be found.  When first installed, the system
    preset directory is one of the following, depending on whether

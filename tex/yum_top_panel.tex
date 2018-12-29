@@ -123,9 +123,8 @@
 \label{subsec:mixer_panel_window}
 \index{Panel}
 
-   The \textsl{Mixer Panel} button opens the mixer panel window, sometimes
-   called the "Mixer" window.
-   The mixer panel window provides a global view of the most important
+   The \textsl{Mixer Panel} button opens the "Mixer" window.
+   The mixer provides a global view of the most important
    adjustable parameters of all of the defined parts.
    There are two views, a 2x8 view and a 2x16 view.
    See \figureref{fig:yoshimi_part_panel_2x8}, which
@@ -253,7 +252,6 @@
    set is active.  The \textbf{Solo} drop-down list enables the feature for
    either \textbf{Row} or \textbf{Col}umn mode, and also makes the CC spin-box
    visible.
-
    One uses this spin-box to set which incoming CC changes the part that gets
    new notes.
    The \textsl{value} this CC sends performs the actual change, instantly and
@@ -346,15 +344,13 @@
    The virtual keyboard lets one play notes using the keyboard/mouse. There is
    no MIDI requirement. 
     
-   Using the computer keyboard: The keyboard is split into two "octaves" (in
-   fact it is more than 1 octave). It may happen that the keys will not trigger
-   any note-on. This is because another widget than the keyboard itself is
-   selected.  In order to continue playing using the keyboard, click with the
-   mouse on some keys on the virtual keyboard, to give it computer keyboard
-   focus.
+   Using the computer keyboard: The keyboard is split into three octaves.
+   It may happen that the keys will not trigger a note-on;
+   this happens when another widget has the keyboard focus.
+   To play using the computer keyboard, click on the virtual keyboard.
    
-   Using the mouse: One can use the mouse too, to play.  If one presses the
-   shift key while pressing the mouse button, the keys will be not released
+   Using the mouse: One can use the mouse to play.  If one presses the
+   Shift key while pressing the mouse button, the keys will be not released
    when the mouse button is released.  If one presses the \textbf{Stop!} or
    "panic" button from the \textsl{ZynAddSubFX}/\textsl{Yoshimi} main window,
    all keys are released. 
@@ -471,11 +467,10 @@
    The range of the keys on the "zxcvb..." row is C3 to E4.
    The range of the keys on the "qwert..." row is C4 to A5.
    These octave ranges can be adjusted.
-
    The computer keyboard will produce notes only when the virtual keyboard
-   is active.
-   Also note that we replaced the monopoly symbol with the monopolist
-   symbol.  On X11 systems, this key is known as the "Super" key.
+   has focus.
+%  Also note that we replaced the monopoly symbol with the monopolist
+%  symbol.  On X11 systems, this key is known as the "Super" key.
 
 \subsubsection{Virtual Keyboard, Controllers}
 \label{subsubsec:virtual_keyboard_controllers}
