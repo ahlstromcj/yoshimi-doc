@@ -49,15 +49,14 @@
 \makeindex
 
 \begin{document}
-
-\title{Yoshimi Advanced User Manual, v 1.5.10}
+\title{Yoshimi Advanced User Manual, v 1.5.11}
 \author{Chris Ahlstrom \texttt{(ahlstromcj@gmail.com)} with Will J. Godfrey}
 \date{\today}
 \maketitle
-
+(provisional)
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=1.00]{1.4.1/Front.png}
+   \includegraphics[scale=1.00]{1.5.11/Front.png}
 \end{figure}
 
 \clearpage                             % moves Contents to next page
@@ -258,9 +257,9 @@
    When running from the command line there is access to many
    of the system and root, bank, and other settings.
 
-	\textsl{Yoshimi} splits out roots and banks from the main configuration
-	file, and creates a new "history" file. The separation means that the
-	different functions can be implemented, saved, and loaded at the most
+   \textsl{Yoshimi} splits out roots and banks from the main configuration
+   file, and creates a new "history" file. The separation means that the
+   different functions can be implemented, saved, and loaded at the most
    appropriate time. These files have "yoshimi" as the doc-type, as they are in
    not relevant to \textsl{ZynAddSubFX}.
    See the new Banks sections,
@@ -277,11 +276,14 @@
    shape future complementary interfaces. A number of first-time defaults
    have been changed to make this easier.
 
-   It has always been possible to run \textsl{Yoshimi} headless, but now real
-   control is available. In the first place, when starting from the command
-   line, an argument can be included for a new root path to be defined to point
-   to a set of banks fetched from elsewhere. This will be given the next free
-   ID.
+   It has always been possible to run \textsl{Yoshimi} headless. Since V 1.5.11
+   it possible to actually \textsl{compile} a headless version with no need for
+   any graphical components to be installed.
+   Also, now real control is available. In the first place, when starting from
+   the command line, an argument can be included for a new root path to be defined
+   to point to a set of banks fetched from elsewhere. This will be given the next
+   free ID.
+
    Once running, all setup can be done within the terminal window.
    Some settings will require a restart.
    There is also extensive control of
@@ -394,6 +396,20 @@
    initially requests 32-bit 2-channel, then works towards a compromise with the
    hardware.
    See \sectionref{paragraph:menu_yoshimi_settings_alsa_tab}, for details.
+
+\subsubsection{User Feedback}
+\label{subsubsec:new_features_user_feedback}
+   With any complex software it is important that the user is kept informed
+   as to exactly what the current status is, and over time \textsl{Yoshimi}
+   has had extensive development of tooltips, warnings and action reports.
+
+   For example, since V 1.5.11 one is now warned if an effect is a modified
+   version of a preset and not it's default. This is in the form of changing
+   the background color of the preset button to a bright blue.
+
+   When editing an AddSynth voice that is taking it's waveform from anther one
+   the 'Waveform' there is a new warning when actually entering
+   the waveform window.
 
 \subsubsection{Miscellany}
 \label{subsubsec:new_features_miscellany}
@@ -629,7 +645,7 @@
 %  \includegraphics[scale=1.0]{1.3.8/yoshimi-first-screen.jpg}
 %  \caption{Yoshimi Main Screen, 1.3.8 and Above}
 %  \includegraphics[scale=1.0]{1.4.0/yoshimi-first-screen.png}
-   \includegraphics[scale=1.0]{1.4.1/Front.png}
+   \includegraphics[scale=1.0]{1.5.11/Front.png}
    \caption{Yoshimi Main Screen}
    \label{fig:yoshimi_main_screen}
 \end{figure}
@@ -713,7 +729,7 @@
 
 % Middle Panel Effects User-Interface items
 
-\input{yum_effects}
+\input{yum_effects_v2}
 
 % Bottom Panel User-Interface items
 
@@ -754,7 +770,7 @@
 % Command-line mode
 
 % \input{yum_command_line}
-\input{yum_command_line_v3}
+\input{yum_command_line_v4}
 
 % Yoshimi as an LV2 plugin
 

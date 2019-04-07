@@ -1212,6 +1212,26 @@
 
    Values: \texttt{0 to 127, 64*}
 
+\subsection{ADDsynth / Voice Warning}
+\label{subsec:addsynth_voice-warning}
+   As of V 1.5.11 there is a warning about editing waveforms.
+
+   When editing an AddSynth voice that is taking it's waveform from anther one
+   the 'Waveform' text turns blue as a warning. However when actually entering
+   the waveform window, until now there was no indication that one was likely
+   to change a shared oscillator. This is put right since V 1.5.11 and it also
+   applies to modulator waveforms.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.75]{1.5.11/oscillator_warning.png}
+   \caption{Warning in ADDSynth Oscillator}
+   \label{fig:voice_oscillator_warning}
+\end{figure}
+
+   As can be seen, not only does one see the warning, but also exactly which
+   voice (or modulator) is being edited.
+
 \subsection{ADDsynth / Resonance}
 \label{subsec:addsynth_resonance}
 

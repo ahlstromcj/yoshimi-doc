@@ -29,6 +29,12 @@
    The \textsl{Yoshimi}
    menu entry contains the sub-items shown in
    \figureref{fig:yoshimi_menu_items}.
+   \begin{figure}[H]
+   \centering
+   \includegraphics[scale=1]{1.5.11/Menu.png}
+   \caption[Yoshimi Menu, Exit]{Yoshimi Menu}
+   \label{fig:yoshimi_menu_items}
+\end{figure}
    The next few sub-sections discuss the sub-items in the
    \textsl{Yoshimi} sub-menu.
    (Note that, in \textsl{ZynAddSubFX}, this menu is called the
@@ -47,7 +53,7 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{1.5.4/view_manual.png}
+   \includegraphics[scale=0.75]{1.5.11/view_manual.png}
    \caption[Yoshimi Menu, Exit]{Yoshimi Menu}
    \label{fig:yoshimi_view_manual}
 \end{figure}
@@ -287,8 +293,9 @@
    In an all-JACK environment, JACK determines the latency.  There are very few
    occasions where one might want the internal buffer smaller than the JACK
    size, and none where it should be bigger. If it is bigger, the extra space
-   will (to a small degree) represent wasted processor use.
+   will (to a small degree) represent wasted memory and processor use.
 
+% This link fails for some reason.
    See \sectionref{sec:resource_usage_jack_alsa_buffer_sizes}, which
    goes into performance-related details.
 
@@ -814,6 +821,9 @@
 
    Values: \texttt{default*}
 
+   Note, that if it is left as "default" then all aspects will be at their
+   default settings. This includes sample rate and buffer size.
+
    \itempar{Set as preferred audio}{ALSA!Set as preferred audio}
    Set as preferred audio for ALSA.
    This setting determines which audio connections a particular instance will
@@ -859,7 +869,7 @@
 %  \includegraphics[scale=0.75]{1.4.1/SettingsMidi.png}
 %  \includegraphics[scale=0.75]{1.5.0/SettingsMidi.png}
 %  \includegraphics[scale=0.75]{1.5.4/SettingsMidi.png}
-   \includegraphics[scale=0.75]{1.5.7/SettingsMidi.png}
+   \includegraphics[scale=0.75]{1.5.11/Settings_Midi.png}
    \caption[MIDI Preferences]{MIDI Preferences Tab}
    \label{fig:yoshimi_settings_cc}
 \end{figure}
@@ -870,7 +880,7 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{1.4.1/SettingsPending.png}
+   \includegraphics[scale=0.75]{1.5.11/Settings_Pending.png}
    \caption[MIDI Settings Pending]{MIDI Settings Pending}
    \label{fig:yoshimi_settings_pending}
 \end{figure}
@@ -878,7 +888,6 @@
    The following items are provided by the MIDI settings tab:
 
    \begin{enumber}
-      \item \textbf{Enable Bank Root Change}
       \item \textbf{Bank Root Change}
       \item \textbf{Bank Change}
       \item \textbf{Enable Program Change}
@@ -899,28 +908,9 @@
    controlled by MIDI messages, thereby making \textsl{Yoshimi} able to
    implement MIDI automation.
 
-   \itempar{Enable Bank Root Change}{MIDI settings!enable bank root change}
-   Enable Bank Root Change.
-
-   Values: \texttt{Off*, On}
-
-   \itempar{Bank Root Change}{MIDI settings!bank root change}
-   Sets the control value to use for a bank-root change.
-
-   Values: \texttt{0*, to 127}
-
-   If enabled, a new reddish button, \textbf{Pending}, appears.
-   Once the change has been made in the scroll list, click this button
-   to set the change.
-   \textbf{Warning:}
-   The \textbf{Save and Close} button will not result in the removal of the
-   \textbf{Pending} button.
-   This result seems counter-intuitive, but the pending button is not removed
-   here because, at that point, it still hasn't actually been either set or
-   abandoned. It remains available for when the user actually makes up his/her
-   mind.
-   If the control number is already in use for
-   another purpose, one might get a warning like the following:
+   For many of the controls in this section, if the control number is
+   already in use for another purpose, one might get a warning like the
+   following:
 
 \begin{figure}[H]
    \centering
@@ -929,20 +919,29 @@
    \label{fig:yoshimi_settings_in_use}
 \end{figure}
 
-   \itempar{Bank Change}{MIDI settings!bank change}
-   Bank Change.
-   Defines which MIDI settings one wants to use.
-   Note that MIDI Controller 0 = CC0 = Bank Select MSB, and MIDI Controller
-   32 = CC32 = Bank Select LSB.
-   When combined, these Bank Select messages provide
-   \texttt{128*128} = 16384 banks.
-   Note that all a Bank Select does is select the bank for the next
-   Program Change event.  The program doesn't change after changing a bank,
-   until a Program Change is sent.
-   Bank changes can be completely disabled; some hardware
-   synthesizers don't play nice with banks.
+   \itempar{Bank Root Change}{MIDI settings!bank root change}
+   Bank Root Change.
+   Defines which MIDI controller one wants to use.
 
    Values: \texttt{LSB, MSB*, Off}
+
+   \itempar{Bank Change}{MIDI settings!bank change}
+   Bank Change.
+   Defines which MIDI controller one wants to use. This has been changed in
+   V 1.5.11 so that it is consistent with Bank Change
+
+   Values: \texttt{LSB, MSB*, Off}
+
+   When combined, these Bank Select messages provide
+   \texttt{128*128} = 16384 banks.
+
+   Note that normally MIDI Controller 0 = CC0 = Bank Select MSB, and MIDI
+   Controller 32 = CC32 = Bank Select LSB. Also a Bank (and Bank Root)
+   selection simply makes these available for the next Program Change event.
+   The program doesn't change after changing a bank, until an actual Program
+   Change is sent.
+   Bank/Root changes can be completely disabled; some hardware synthesizers
+   don't play nice with banks.
 
    \itempar{Enable Program Change}{MIDI settings!enable program change}
 
@@ -967,6 +966,13 @@
    If enabled, a new reddish button, \textbf{Pending}, appears.
    Once the change has been made in the scroll list, click this button
    to set the change.
+   \textbf{Warning:}
+   The \textbf{Save and Close} button will not result in the removal of the
+   \textbf{Pending} button.
+   This result seems counter-intuitive, but the pending button is not removed
+   here because, at that point, it still hasn't actually been either set or
+   abandoned. It remains available for when the user actually makes up their
+   mind.
 
    Values: \texttt{0-127, 110*}
 
@@ -998,7 +1004,7 @@
    \itempar{Show Learn Editor}{MIDI settings!Show Learn Editor}
    Sets whether the MIDI Learn editor window is to be opened when learning a
    new control. One might find that when learning a new control one
-   usually wants to change the \textbf{Min} and \textbf{Max} settings.
+   wants to change the \textbf{Min} and \textbf{Max} settings.
 
    Values: \texttt{Off, On*}
 

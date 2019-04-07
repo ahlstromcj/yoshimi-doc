@@ -33,7 +33,8 @@
       \item \textbf{Virtual Keybd}
       \item \textbf{Vectors}
       \item \textbf{Reports}
-      \item \textbf{Key Shift}
+      \item \textbf{S}
+      \item \textbf{Shift}
       \item \textbf{Detune}
 %     \item \textbf{Reset Detune}
       \item \textbf{Volume}
@@ -69,7 +70,7 @@
 
    \itempar{Virtual Keybd}{top panel!virtual keyboard}
    This button brings up the virtual keyboard, which is a way to enter
-   MIDI information without a real MIDI keyboard. 
+   MIDI information without a real MIDI keyboard.
    It also provides a way to use the computer keyboard for faster
    playing.  See \sectionref{subsec:virtual_keyboard}.
 
@@ -86,7 +87,14 @@
    item.)
    When pressed, the \textsl{Yoshimi} console window is opened.
 
-   \itempar{Key Shift}{top panel!key shift}
+   \itempar{S}{top panel!stereo}
+   Stereo Button.
+   This toggles the main audio output between stereo and mono, but doesn't
+   affect individual part ones.
+   It is useful for checking balance between the two on the fly while playing.
+   This is new from V 1.5.11.
+
+   \itempar{Shift}{top panel!key shift}
    Master Key Shift.
    This is the key-shift (transpose) that applies to all parts, in units of
    semitones.
@@ -96,7 +104,7 @@
 
    Values: \texttt{-36 to 36, 0*}
 
-   Also see the \textbf{Key Shift} item in 
+   Also see the \textbf{Key Shift} item in
    \sectionref{sec:bottom_panel} for more information.
 
    \itempar{Detune}{top panel!detune}
@@ -108,7 +116,7 @@
 
 %  \itempar{Reset, Detune}{top panel!detune reset}
 %  Reset detune.
-%  Resets the overall detuning functionality of 
+%  Resets the overall detuning functionality of
 %  \textsl{Yoshimi} off.
 %  Resets the global fine detune to 0.
 
@@ -164,7 +172,7 @@
    re-instated when next loaded.
 
 \begin{figure}[H]
-   \centering 
+   \centering
 %  \includegraphics[scale=0.75]{top-panel/yoshimi-panel-2x8.jpg}
 %  \includegraphics[scale=0.75]{top-panel/yoshimi-panel-2x8-1_5.jpg}
 %  \includegraphics[scale=0.75]{1.5.0/Mixer8.png}
@@ -342,21 +350,21 @@
    This section describes the detailed usage of the
    \textsl{Yoshimi} virtual keyboard.
    The virtual keyboard lets one play notes using the keyboard/mouse. There is
-   no MIDI requirement. 
-    
+   no MIDI requirement.
+
    Using the computer keyboard: The keyboard is split into three octaves.
    It may happen that the keys will not trigger a note-on;
    this happens when another widget has the keyboard focus.
    To play using the computer keyboard, click on the virtual keyboard.
-   
+
    Using the mouse: One can use the mouse to play.  If one presses the
    Shift key while pressing the mouse button, the keys will be not released
    when the mouse button is released.  If one presses the \textbf{Stop!} or
    "panic" button from the \textsl{ZynAddSubFX}/\textsl{Yoshimi} main window,
-   all keys are released. 
+   all keys are released.
 
 \begin{figure}[H]
-   \centering 
+   \centering
 %  \includegraphics[scale=1.0]{top-panel/yoshimi-virtual-keyboard.jpg}
    \includegraphics[scale=1.0]{1.5.0/Keyboard.png}
    \caption{Yoshimi Virtual Keyboard}
@@ -497,7 +505,7 @@
       values, each preceded by its MIDI control number, re 1.
 
 \begin{figure}[H]
-   \centering 
+   \centering
 %  \includegraphics[scale=0.75]{menu/Instrument/virtual-keyboard-controllers.jpg}
    \includegraphics[scale=0.75]{top-panel/virtual-keyboard-controller.png}
    \caption{Virtual Keyboard Controllers}
