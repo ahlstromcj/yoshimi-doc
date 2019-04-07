@@ -8,7 +8,7 @@
 # \library    	yoshimi-doc
 # \author     	Chris Ahlstrom
 # \date       	2014-05-21
-# \update     	2014-07-03
+# \update     	2019-04-07
 # \version    	$Revision$
 # \license    	$XPC_SUITE_GPL_LICENSE$
 #
@@ -44,29 +44,28 @@ fi
 
 if [ "$1" == "--help" ] || [ "$1" == "help" ] ; then
 
-   echo
-   echo "yoshimi-doc pack 0.1 edited on 2015-05-03"
-   echo
-   echo "Usage:  ./pack [--dry-run] [--no-clean] [tag]"
-   echo
-   echo "where tag is alternate information you want to include in the"
-   echo "name of the tarball; it replaces the current date."
-   echo
-   echo "This script packs the contents of the current directory into a"
-   echo "tarball that has the name of the directory and other information"
-   echo "as part of the filename."
-   echo
-   echo "This script packs the entire current directory ('$WORKINGDIR') into"
-   echo "a file named like the following (using no tag as an example):"
-   echo
-   echo "   $WORKINGDIR-master-$TAGSTRING-my-code.tar.xz"
-   echo "   $WORKINGDIR-$TAGSTRING-my-code.tar.xz"
-   echo
-   echo "Excluded from the tarball are derived products."
-   echo
-   echo "This script also detects the presence of a git branch, and incorporates"
-   echo "the branch name into the name of the tarball."
-   echo
+   cat << E_O_F
+
+yoshimi-doc pack 0.2 edited on 2019-04-07
+
+Usage:  ./pack [--dry-run] [--no-clean] [tag]
+
+where tag is alternate information you want to include in the name of the
+tarball; it replaces the current date.
+
+This script packs the contents of the current directory into a tarball that has
+the name of the directory and other information as part of the filename.
+
+This script packs the entire current directory ('$WORKINGDIR') into a file named
+like the following (using no tag as an example):
+
+   $WORKINGDIR-master-$TAGSTRING-my-code.tar.xz
+   $WORKINGDIR-$TAGSTRING-my-code.tar.xz
+
+Excluded from the tarball are derived products.  This script also detects the
+presence of a git branch, and incorporates the branch name into the name of the
+tarball.
+E_O_F
 
 else
 
@@ -97,9 +96,7 @@ else
             ;;
 
       esac
-
       shift
-
    done
 
    if [ "$ISGITBRANCH" == "yes" ] ; then
@@ -126,37 +123,37 @@ else
    pushd ..
    if [ -d $WORKINGDIR ] ; then
 
-   tar cJf $TARBALLNAME $WORKINGDIR/ \
-  --exclude-vcs         \
-  --exclude="tex-stamp" \
-  --exclude="out.*"     \
-  --exclude="*.aux"     \
-  --exclude="*.bak"     \
-  --exclude="*.fdb_latexmk" \
-  --exclude="*.fls"     \
-  --exclude="*.idx"     \
-  --exclude="*.ilg"     \
-  --exclude="*.ind"     \
-  --exclude="*.lof"     \
-  --exclude="*.log"     \
-  --exclude="*.lot"     \
-  --exclude="*.out"     \
-  --exclude="*.toc"     \
-  --exclude="*.bak"     \
-  --exclude=".*.swp"    \
-  --exclude="*.t"       \
-  --exclude="*.tmp"
+#  tar cJf $TARBALLNAME $WORKINGDIR/ \
+
+ tar cJf $TARBALLNAME \
+ --exclude-vcs         \
+ --exclude=".git"         \
+ --exclude="tex-stamp" \
+ --exclude="out.*"     \
+ --exclude="*.aux"     \
+ --exclude="*.bak"     \
+ --exclude="*.fdb_latexmk" \
+ --exclude="*.fls"     \
+ --exclude="*.idx"     \
+ --exclude="*.ilg"     \
+ --exclude="*.ind"     \
+ --exclude="*.lof"     \
+ --exclude="*.log"     \
+ --exclude="*.lot"     \
+ --exclude="*.out"     \
+ --exclude="*.toc"     \
+ --exclude="*.bak"     \
+ --exclude=".*.swp"    \
+ --exclude="*.t"       \
+ --exclude="*.tmp"     \
+ $WORKINGDIR
 
       echo
-
    else
-
       echo "? Working directory $WORKINGDIR does not exist above this directory."
       echo "  Are you running pack.sh from the proper directory?"
       echo "  That is what you must do.  See './pack --help'."
-
    fi
-
    popd
 
 fi
