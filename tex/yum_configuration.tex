@@ -475,9 +475,13 @@
    \index{file!banks}
    A new feature of the \textsl{Yoshimi} configuration.  Currently each
    \textsl{Yoshimi} instance takes its own copy of the actual files as it starts
-   up.  However, they can all save, delete, or rename the actual files without
-   talking to the other instances, so one can move a file in one instance, and
+   up.  Previously, they could all save, delete, or rename the actual files without
+   talking to the other instances, so one could move a file in one instance, and
    then try (and fail) to access it from another.
+
+   Since V 1.5.10 this issue has been partially resolved by only alowing the main instance to make actual file changes (the related icons no longer exist in the
+   other instances). Currently these other instances are not notified of any
+   such changes, but this will eventually be completely resolved.
 
    With the \textbf{Banks} menu, one can assign a patch to a given slot with
    a bank.  This instrument will remain in that slot for future use until it is

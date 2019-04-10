@@ -121,7 +121,7 @@
    The default setting is \textbf{ON}.
 
    At the CLI prompt, when effects are being managed, the preset number is also
-   shown on the prompt so you'll typically see something like:
+   shown on the prompt so one typically sees something like:
 
    \begin{verbatim}
       yoshimi p2+ eff 1 reverb-1 >
@@ -167,7 +167,7 @@
    Note that many settings parameters are optional, and if omitted,
    either a default or last-used value will be assumed. Also, names are
    truncated to 6 characters so the prompt line doesn't get unmanageably long.
-   From here you can set a preset for this effect:
+   From here one can set a preset for this effect:
 
    \begin{verbatim}
       yoshimi 4+ eff 1 reverb > s pre 3
@@ -228,7 +228,7 @@
 
    When loading external files from the command line, there is an alternative
    to entering the full name if \textsl{Yoshimi} has already seen this file and
-   it is in the history list. In this situation you enter '@' followed by the
+   it is in the history list. In this situation one enters '@' followed by the
    list number.
 
    \begin{verbatim}
@@ -266,16 +266,16 @@
    can actually build up a vector set in
    (say) channel 3, then later decide to use it in channel 7.
    It has the extension \texttt{.xvy}, standing for "Xml/Vector/Yoshimi".
-   It will eventually be integrated with the saved states.
+   Since V 1.5.9 this has also been integrated with the saved states.
 
    Another small detail is that all of the minimum command-line
    abbreviations are now \textbf{C}apitalised in the help lists.
 
-   A few more features will be added, and the organisation of them may be
-   adjusted slightly.  If any configuration settings are changed, either at the
-   command-line or in the graphical user-interface, one will be given a warning
-   when exiting, with the option to continue running so one can save the
-   changes.
+   The organisation of these features may be adjusted slightly, based on
+   comments from users.  If any configuration settings are changed, either
+   at the command-line or in the graphical user-interface, one will be given
+   a warning when exiting, with the option to continue running so one can
+   save the changes.
 
 \subsection{Command Level}
 \label{subsec:command_line_command_level}
@@ -1443,8 +1443,8 @@ Filter types (s parameter, LFO oscillator shape):
       list mlearn
    \end{verbatim}
    This will show all the current learned lines with their list numbers.
-   In the same way as for the other numbered contexts, you can set the number
-   of the line you want to edit directly.
+   In the same way as for the other numbered contexts, one can set the number
+   of the line directly to edit it.
 
    The available commands are:
 
@@ -1477,11 +1477,40 @@ Filter types (s parameter, LFO oscillator shape):
    System effects where it behaves as a volume control, without changing the
    'through' content.
 
-   While part effects are 'immediate' in that you hear the results as soon as
-   you select an effect type, System effects need the part's \textbf{send} level
+   While part effects are 'immediate', in that one hears the results as soon as
+   an effect type is selected, System effects need the part's \textbf{send} level
    to be increased, as it defaults to zero. Insertion effects however, need to
    have a \textbf{send} route selected as well as the effect type.
 
+   There is some extra information given in V 1.5.11.
+   When one choses a new effect the first preset is always selected, which can
+   then be edited to taste. Up to now, there was no indication that it had
+   been altered apart from checking each control against it's default. One
+   could easily forget having edited this - especially if saving everything and
+   comming back to it some days later.
+
+   In the latest master there is now a '?' on the end of the line if any of the
+   controls on that preset are not the default values.
+   So:
+   \begin{verbatim}
+      yoshimi> s sys 2 rev
+      yoshimi Sys eff 2 REverb-1> s pre 4
+      yoshimi Sys eff 2 REverb-4> s pan 36
+   \end{verbatim}
+   This has now changed the preset.
+   \begin{verbatim}
+      yoshimi Sys eff 2 REverb-4?> s pre 4
+      yoshimi Sys eff 2 REverb-4>
+   \end{verbatim}
+   Notice how even re-selecting the same preset will return it to its default
+   settings, and would be an easy mistake if there was no warning.
+
+   Just leaving the effects to work on another part of \textsl{Yoshimi}, then
+   returning to them won't change anything of course, and will again correctly
+   show whether the current one has been altered.
+
+\subsubsection{Effects List}
+\label{subsubsec:command_line_effects_list}
    Below is the list of the effects themselves:
    \begin{itemize}
       \item OFF
@@ -1817,7 +1846,7 @@ DynFilter presets:
    \item vocal morph 2
    \end{enumerate}
 
-   \subsubsection{Vector Commands}
+\subsection{Vector Commands}
 \label{subsec:command_line_vector_command_list}
 
    Although \textbf{Vector} is a top-level control, the list can be called
@@ -1880,7 +1909,7 @@ DynFilter presets:
    Feature 1 is always fixed as Volume, and cannot be reversed. It is arranged
    try to maintian a constant overall level.
 
-\subsubsection{Scales Commands}
+\subsection{Scales Commands}
 \label{subsec:command_line_scales_command_list}
 
    A fairly new one is the scales list:
@@ -1944,7 +1973,7 @@ DynFilter presets:
 \end{center}
 
 
-\subsubsection{Help List}
+\subsection{Help List}
 \label{subsec:command_line_help_list}
 
    One can now clearly see which items can be listed with:
@@ -2048,7 +2077,7 @@ is not enough room in the table above.
    new idea 'bar' and start working on it. Without thinking, you save and hit
    Enter. Oops, you just wiped out 'foo'.
    Only now you haven't, because loading \textsl{Yoshimi}
-   afresh would not have seen the older file, so that saving
+   afresh would not have seen the older file, so now, saving
    will offer the home directory to put a new name in.
 
 % \paragraph{List / Effects [s]}
@@ -2069,7 +2098,7 @@ is not enough room in the table above.
       yoshimi> ? sa
    \end{verbatim}
 
-   In the table that follow, we leave off the commands noted above
+   In the tables that follow, we leave off the commands noted above
    (see \sectionref{subsec:command_line_top_command_list}).
 
    \begin{table}[H]

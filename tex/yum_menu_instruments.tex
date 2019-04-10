@@ -21,9 +21,6 @@
 
    The \textsl{Yoshimi} Instruments menu lets one select instruments and work
    with banks of instruments.
-   \textsl{Yoshimi} stamps instrument XML files with its own major and minor
-   version numbers so it is possible to tell which version created the files,
-   or whether they were created by \textsl{ZynAddSubFX}.
 
    While the \textbf{Instrument Menu} allows for the management of parts, the
    \textbf{Part Edit} dialog, described in
@@ -55,18 +52,18 @@
          \textbf{\textcolor{green}{PAD}}.
    \end{itemize}
 
-   If the instruments are kits they scanned to find out if 
+   If the instruments are kits they scanned to find out if
    \textsl{any} member of the kit contains each engine.
    This scanning is duplicated in the current part, the mixer panel for the
    currently loaded instruments, and in the Instrument Edit window the same
    colors highlight the engine names when they are enabled with the check
-   boxes. 
+   boxes.
 
    The following sub-menus are provided, as shown in
    \figureref{fig:yoshimi_instrument_menu}.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.9]{1.3.8/yoshimi-menu-instrument.jpg}
    \caption{Yoshimi Menu, Instruments}
    \label{fig:yoshimi_instrument_menu}
@@ -103,9 +100,9 @@
    When the \textbf{Show Stored...} button is selected, a dialog comes
    up that shows all of the instruments present in the currently-selected
    bank.
-   
+
 \begin{figure}[H]
-   \centering 
+   \centering
 %  \includegraphics[scale=0.75]{1.3.9/instruments_show_stored.png}
    \includegraphics[scale=0.75]{1.4.1/Instrument.png}
    \caption[Show Stored Instruments]{Instruments Stored in Current Banks}
@@ -137,7 +134,7 @@
    Also note how the numbers at the beginning of the filenames are used as
    an "instrument" or "program" number.  These numbers can be used in MIDI
    Program Change commands.
-   
+
    All of the instrument files (such as \texttt{0001-Arpeggio1.xiz})
    with filenames starting with numbers (no matter how many digits)
    will be
@@ -195,7 +192,7 @@
    default banks provided by the basic \textsl{Yoshimi} installation.
 
 \begin{figure}[H]
-   \centering 
+   \centering
 %  \includegraphics[scale=0.75]{menu/Instrument/bank-list.jpg}
    \includegraphics[scale=0.75]{1.3.9/instruments_bank_list.png}
    \caption[A Sample Bank List]{A Sample Bank List}
@@ -219,7 +216,7 @@
       Guitar             The_Mysterious_Bank
       Misc               Will_Godfrey_Collection
       Noises             Will_Godfrey_Companion
-      Organ              
+      Organ
    \end{verbatim}
 
    The directories (banks) shown above come from the default \textbf{root}
@@ -260,7 +257,7 @@
    order, so one can group them sensibly and permanently.
    However, at first-time creation \textsl{Yoshimi} sets the IDs in
    alphabetical order and tries to space them evenly over the range to
-   provide some wiggle room.                                        
+   provide some wiggle room.
    Selecting one of the items in this drop-down list selects the bank and
    loads it into the Banks dialog.
 
@@ -386,15 +383,15 @@
 %  Here is a more conventional view of instruments, supplied with
 %  \textsl{Yoshimi}, shown in
 %  \figureref{fig:show_pads_bank}.
-% 
+%
 % \begin{figure}[H]
-%    \centering 
+%    \centering
 % %  \includegraphics[scale=0.75]{menu/Instrument/show-pads-bank.jpg}
 %    \includegraphics[scale=0.75]{1.3.6/show_pads_bank.png}
 %    \caption[Show Pads Instruments]{Show Pads Instruments}
 %    \label{fig:show_pads_bank}
 % \end{figure}
-% 
+%
 %    Note that many of these Pads instruments also use the Add and Sub
 %    components as well.
 
@@ -406,7 +403,7 @@
    (\texttt{*.xiz}), and load it into the current Part.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{1.3.9/instruments_load_external.png}
    \caption{Instruments, Load External}
    \label{fig:instruments_load_external}
@@ -459,11 +456,11 @@
 
    \itempar{Favorites}{Load External!favorites}
    Favorite directories.
-   Provides a list of options and favorite directories in which to find 
+   Provides a list of options and favorite directories in which to find
    instrument files.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{menu/Instrument/favorites-dropdown.jpg}
    \caption{Manage Favorites Drop-Down List}
    \label{fig:open_instrument_favorites}
@@ -494,7 +491,7 @@
    to do that.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{menu/Instrument/manage-favorites.png}
    \caption{Manage Favorites Dialog}
    \label{fig:manage_instrument_favorites}
@@ -559,7 +556,7 @@
    to a solitary instrument file (\texttt{*.xiz}).
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{1.3.9/instruments_save_external.png}
    \caption{Instruments, Save External}
    \label{fig:instruments_save_external}
@@ -584,13 +581,13 @@
 \label{subsubsec:menu_instrument_clear}
 
    This menu entry simply clears the instrument that is loaded into the current
-   Part.  This converts the instrument to a 
+   Part.  This converts the instrument to a
    \textsl{Simple Sound} patch.
    This menu entry brings up a prompt to clear the parameters of the
    instrument that is currently loaded in the current part.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{menu/Instrument/clear-instrument.jpg}
    \caption{Clear Instrument Dialog}
    \label{fig:clear_instrument_dialog}
