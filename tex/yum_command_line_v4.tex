@@ -546,7 +546,7 @@
 \texttt{SHift [n]} &
    Master key shift in semitones [n] (0 no shift). \\
 \texttt{MONo [s]} &
-   Switches the main audio output to mono (On / other). \\
+   Switches the main audio output to mono (ON / other). \\
 \texttt{DEtune [n]} &
    Master fine detune to [n] to match other sound sources. \\
 \texttt{SOlo [s]} &
@@ -554,7 +554,7 @@
 \texttt{SOlo CC [n]} &
    Set incoming 'solo' channel number to [n]. \\
 \texttt{TIMes [s]} &
-   Display time taken to load instrument (On / other). \\
+   Display time taken to load instrument (ON / other). \\
 
 \end{longtable}
 \end{center}
@@ -671,149 +671,61 @@
    plus-signs that the part, kit, and subsynth are all on.
 
    These new controls are shown in the part context help list.
-   The synth engines, AddSynth, Voice, SubSynth and PadSynth also have their
-   own contexts with appropriate help lists.
-   There is also a new help list which doesn't show directly in any context,
-   but has to be called explicitly.
-   It is:
-
-   \begin{verbatim}
-      ? COMmon
-   \end{verbatim}
-
-   and lists all the commands that are
-   applicable from the part level through the new engine contexts.
-   A typical example is "Volume" which is a context-sensitive control for part,
-   AddSynth, Voice, SubSynth, and PadSynth.
-   LFO, Filter, and Envelope have their own contexts above
-   whichever engine they are sitting on, and again have their own help lists.
+   The synth engines, AddSynth, Voice, SubSynth and PadSynth also have
+   their own contexts with appropriate help lists.
+   Also, LFO, Filter, Envelope and resonance have their own contexts
+   above whichever engine they are sitting on, so again have their own
+   help lists.
    A fairly deep context is:
 
    \begin{verbatim}
-      yoshimi P1+, M4+, A+, V5+, LFO freq>
+      yoshimi P1+, M4+, A+, Voice 5+> set lfo frequency on
    \end{verbatim}
 
-   From the voice context, this command would set the context shown above,
-   and the need for compression is obvious.
+   From the voice context, this command would set the context shown below.
 
    \begin{verbatim}
-      yoshimi P1+, M4+, A+, Voice 5+> set lfo frequency
+      yoshimi P1+, M4+, A+, V5+, LFO freq+>
    \end{verbatim}
 
-   Once at that level, the \texttt{?} command will list the LFO controls.
+   The need for compression is obvious, and once at this level, the \texttt{?} command will list the LFO controls.
 
 \subsubsection{Part Common Commands}
 \label{subsec:command_line_part_common_commands}
-
-\begin{center}
-\begin{longtable}{p{4cm} p{10cm}}
-\caption[Part Common Commands]{Part Common Commands} \\
-
-\texttt{ON @} &
-   Enables the part/kit item/engine/insert etc. \\
-\texttt{OFF @} &
-   Disables as above.   \\
-\texttt{Volume [n] @} &
-   Volume.  \\
-\texttt{Pan [n] @} &
-   Panning. \\
-\texttt{VElocity n @} &
-   Velocity sensing sensitivity. \\
-\texttt{MIn [[s][n]] +} &
-   Minimum MIDI Last seen or note value.   \\
-\texttt{MAx [[s][n]] +} &
-   Maximum MIDI Last seen or note value.   \\
-\texttt{DETune Fine n *} &
-   Fine frequency.   \\
-\texttt{DETune Coarse n *} &
-   Coarse stepped frequency.  \\
-\texttt{DETune Type n *} &
-   Type of coarse stepping.   \\
-\texttt{OCTave n *} &
-   Shift octaves up or down.  \\
-\texttt{FIXed s *-add} &
-   Set base frequency to 440Hz (On / other).  \\
-\texttt{EQUal n *-add} &
-   Equal temper variation. \\
-\texttt{BENd Adjust n  *-add} &
-   Pitch bend range. \\
-\texttt{BENd Offset n  *-add} &
-   Pitch bend shift. \\
-\texttt{STEreo s *-voice} &
-   ON, (other).   \\
-\texttt{DEPop n \&} &
-   Initial attack slope.   \\
-\texttt{PUnch Power n} \& &
-   Attack boost amplitude. \\
-\texttt{PUnch Duration n \&} &
-   Attack boost time.   \\
-\texttt{PUnch Stretch n \&} &
-   Attack boost extend. \\
-\texttt{PUnch Velocity n \&} &
-   Attack boost velocity sensitivity.  \\
-\texttt{OVertone Position s \# } &
-   Relationship to fundamental, see below. \\
-\texttt{OVertone First n \#} &
-   Degree of first parameter. \\
-\texttt{OVertone Second n \#} &
-   Degree of second parameter.   \\
-\texttt{OVertone Harmonic n \# } &
-   Amount harmonics are forced.  \\
-\texttt{LFO ... *-sub} &
-   Enter LFO insert context.  \\
-\texttt{FILter ... *} &
-   Enter Filter insert context.  \\
-\texttt{ENVelope ... *} &
-   Enter Envelope insert context.   \\
-
-\end{longtable}
-\end{center}
-
-Notes.  These markings are used above to qualify the descriptions:
-
-   \begin{enumerate}
-      \item \texttt{@} Exists in all part contexts.
-      \item \texttt{+} Part and kit mode controls.
-      \item \texttt{*} Add, Sub, Pad and AddVoice controls.
-      \item \texttt{*-add} Not AddSynth.
-      \item \texttt{*-sub} Not SubSynth.
-      \item \texttt{*-voice} Not AddVoice.
-      \item \texttt{\&} AddSynth \& PadSynth only.
-      \item \texttt{\#} SubSynth \& PadSynth only.
-   \end{enumerate}
-
-Overtone Position s, Relationship to fundamental, values:
-
-   \begin{itemize}
-      \item HArmonic
-      \item SIne
-      \item POwer
-      \item SHift
-      \item UShift
-      \item LShift
-      \item UPower
-      \item LPower
-   \end{itemize}
+The idea of having a list of common comands is now deprecated. This is
+because although originally intended to keep the individual command lists to manageable proportions, it actually made it more confusing when trying
+to see what controls were available in each context.
 
 \subsubsection{Part Commands}
 \label{subsec:command_line_part_commands}
 
-   Note that the table below assumes a part number has already been set.
+   Note that the table below assumes one is already at part level.
 
    \begin{table}[H]
       \centering
       \caption{Part Commands}
       \label{table:yoshimi_part_commands}
       \begin{tabular}{l l}
-\texttt{Common controls plus:} & \\
 \texttt{(part) [n]} &
    Change part number.  \\
+\texttt{ON / OFF} &
+   Enables / Disables the part. \\
+\texttt{Volume [n]} &
+   Volume.  \\
+\texttt{Pan [n]} &
+   Panning.\\
+\texttt{VElocity [n]} &
+   Velocity sensing sensitivity. \\
 \texttt{LEvel [n]} &
-   Sense offset level.  \\
+   Velocity sense offset level.  \\
+\texttt{MIn [[s][n]]} &
+   Minimum MIDI last seen, or note value.   \\
+\texttt{MAx [[s][n]]} &
+   Maximum MIDI last seen, or note value.   \\
 \texttt{Breath [s]} &
    Control (ON, {other}).  \\
 \texttt{POrtamento [s]} &
-   (On / other).   \\
+   (ON / other).   \\
 \texttt{Mode [s]} &
    Mode (Poly, Mono, Legato). \\
 \texttt{Note [n]} &
@@ -848,8 +760,14 @@ Overtone Position s, Relationship to fundamental, values:
    Disable kit mode. \\
    \texttt{(kit mode) [n]} &
       Kit item number (1-16). \\
+   \texttt{ON / OFF} &
+      Enables / Disables the kit item. \\
    \texttt{QUiet [s]} &
       This item (ON, {other}). \\
+   \texttt{(kit item) MIn [[s][n]]} &
+      Minimum MIDI last seen, or note value   \\
+   \texttt{(kit item) MAx [[s][n]]} &
+      Maximum MIDI last seen, or note value.   \\
    \texttt{(kit item) EFfect [n]} &
       Effect for this item (0-none, 1-3). \\
    \texttt{(kit item) NAme [s]} &
@@ -862,9 +780,6 @@ Overtone Position s, Relationship to fundamental, values:
    Enter SubSynth context. \\
 \texttt{PADsynth ...} &
    Enter PadSynth context. \\
-\texttt{? COMmon} &
-   Controls common to most part contexts. \\
-
       \end{tabular}
    \end{table}
 
@@ -892,22 +807,53 @@ Overtone Position s, Relationship to fundamental, values:
 
 \paragraph{Part AddSynth Commands}
 \label{paragraph:command_line_part_addsynth_commands}
-
    \begin{table}[H]
       \centering
       \caption{Part AddSynth Commands}
       \label{table:yoshimi_part_addsynth_commands}
       \begin{tabular}{l l}
-
-\texttt{Common controls plus:} & \\
+\texttt{ON / OFF} &
+   Enables / Disables the AddSynth engine. \\
+\texttt{Volume [n]} &
+   AddSynth Volume.  \\
+\texttt{Pan [n]} &
+   Panning (zero gives random panning).\\
+\texttt{VElocity [n]} &
+   Velocity sensing sensitivity. \\
+\texttt{STEreo [n]} &
+   Sets this engine as stereo or mono (ON / other). \\
+\texttt{DEPop [n]} &
+   Initial attack slope.   \\
+\texttt{PUnch Power [n]} &
+   Attack boost amplitude. \\
+\texttt{PUnch Duration [n]} &
+   Attack boost time.   \\
+\texttt{PUnch Stretch [n]} &
+   Attack boost extend. \\
+\texttt{PUnch Velocity [n]} &
+   Attack boost velocity sensitivity.  \\
+\texttt{DETune Fine [n]} &
+   Fine frequency.   \\
+\texttt{DETune Coarse [n]} &
+   Coarse stepped frequency.  \\
+\texttt{DETune Type [n]} &
+   Type of coarse stepping.   \\
+\texttt{OCTave [n]} &
+   Shift octaves up or down.  \\
 \texttt{GRoup [s]} &
    Disables harmonic amplitude randomness of voices \\
 \texttt{ } &
-             with a common oscillator (On / other). \\
+             with a common oscillator (ON / other). \\
 \texttt{Bandwidth [n]} &
    Modifes the relative fine detune of voices. \\
 \texttt{VOice ...} &
    Enter the Addsynth voice context. \\
+\texttt{LFO ...} &
+   Enter LFO insert context.  \\
+\texttt{FILter ...} &
+   Enter Filter insert context.  \\
+\texttt{ENVelope ...} &
+   Enter Envelope insert context.   \\
 \texttt{REsonance ...} &
    Enter the AddSynth resonance context. \\
       \end{tabular}
@@ -917,7 +863,32 @@ Overtone Position s, Relationship to fundamental, values:
       \caption{AddSynth Voice Commands}
       \label{table:yoshimi_part_addsynth_voice_commands}
       \begin{tabular}{l l}
-\texttt{Common controls plus:} & \\
+\texttt{(voice) [n]} &
+   Change voice number.  \\
+\texttt{ON / OFF} &
+   Enables / Disables the Voice. \\
+\texttt{Volume [n]} &
+   Voice Volume.  \\
+\texttt{Pan [n]} &
+   Panning (zero gives random panning).\\
+\texttt{VElocity [n]} &
+   Velocity sensing sensitivity. \\
+\texttt{BENd Adjust [n]} &
+   Pitch bend range. \\
+\texttt{BENd Offset [n]} &
+   Pitch bend shift. \\
+\texttt{DETune Fine [n]} &
+   Fine frequency.   \\
+\texttt{DETune Coarse [n]} &
+   Coarse stepped frequency.  \\
+\texttt{DETune Type [n]} &
+   Type of coarse stepping.   \\
+\texttt{OCTave [n]} &
+   Shift octaves up or down.  \\
+\texttt{FIXed [s]} &
+   Set base frequency to 440Hz (ON / other).  \\
+\texttt{EQUal [n]} &
+   Equal temper variation. \\
 \texttt{Type [s]} &
    Sound type (Oscillator, White noise, Pink noise). \\
 \texttt{Source [n]} &
@@ -925,11 +896,11 @@ Overtone Position s, Relationship to fundamental, values:
 \texttt{Phase [n]} &
    Relative voice phase. \\
 \texttt{Minus [s]} &
-   Invert entire voice (On / other). \\
+   Invert entire voice (ON / other). \\
 \texttt{DELay [n]} &
    Delay before this voice starts. \\
 \texttt{Resonanace [s]} &
-   Enable resonance for this voice (On / other). \\
+   Enable resonance for this voice (ON / other). \\
 \texttt{Bypass [s]} &
    Bypass global filter for this voice (ON, {other}). \\
 \texttt{Unison [s]} &
@@ -948,29 +919,40 @@ Overtone Position s, Relationship to fundamental, values:
    Vibrato speed. \\
 \texttt{Unison Invert [s]} &
    Phase inversion type (None, Random, Half, Third, Quarter, Fifth). \\
-\texttt{MOdulator} &
+\texttt{MOdulator ...} &
    Enter the modulator context. \\
 \texttt{WAveform ...} &
    Enter the oscillator waveform context. \\
+\texttt{LFO ...} &
+   Enter LFO insert context.  \\
+\texttt{FILter ...} &
+   Enter Filter insert context.  \\
+\texttt{ENVelope ...} &
+   Enter Envelope insert context.   \\
       \end{tabular}
    \end{table}
 
-\begin{table}[H]
+   \begin{table}[H]
       \caption{Voice Modulator Commands}
       \label{table:yoshimi_part_addsynth_voice_modulator_commands}
       \begin{tabular}{l l}
 
-\texttt{Common controls plus:} & \\
 \texttt{[s]} &
    Directly set the type (OFF, Morph, Ring, Phase, Frequency, Pulse width). \\
 \texttt{Source [[s]/[n]]} &
    Oscillator source (Local, voice number). \\
+\texttt{Volume [n]} &
+   Modulator depth.  \\
+\texttt{VElocity [n]} &
+   Velocity sensing sensitivity. \\
 \texttt{Damping [n]} &
    Higher frequency relative damping. \\
 \texttt{Local [[s]/[n]]} &
    Modulation oscillator (Internal, modulator number). \\
 \texttt{PHase [n]} &
    Oscillator relative phase. \\
+\texttt{WAveform ...} &
+   Enter the modulator waveform context. \\
       \end{tabular}
    \end{table}
 
@@ -982,8 +964,42 @@ Overtone Position s, Relationship to fundamental, values:
       \caption{Part PadSynth Commands}
       \label{table:yoshimi_part_padsynth_commands}
       \begin{tabular}{l l}
-
-\texttt{Common controls plus:} & \\
+\texttt{ON / OFF} &
+   Enables / Disables the PadSynth engine. \\
+\texttt{Volume [n]} &
+   PadSynth Volume. \\
+\texttt{Pan [n]} &
+   Panning (zero gives random panning).\\
+\texttt{VElocity [n]} &
+   Velocity sensing sensitivity. \\
+\texttt{STEreo [n]} &
+   Sets this engine as stereo or mono (ON / other). \\
+\texttt{DEPop [n]} &
+   Initial attack slope.   \\
+\texttt{PUnch Power [n]} &
+   Attack boost amplitude. \\
+\texttt{PUnch Duration [n]} &
+   Attack boost time. \\
+\texttt{PUnch Stretch [n]} &
+   Attack boost extend. \\
+\texttt{PUnch Velocity [n]} &
+   Attack boost velocity sensitivity. \\
+\texttt{BENd Adjust [n]} &
+   Pitch bend range. \\
+\texttt{BENd Offset [n]} &
+   Pitch bend shift. \\
+\texttt{DETune Fine [n]} &
+   Fine frequency. \\
+\texttt{DETune Coarse [n]} &
+   Coarse stepped frequency. \\
+\texttt{DETune Type [n]} &
+   Type of coarse stepping. \\
+\texttt{OCTave [n]} &
+   Shift octaves up or down. \\
+\texttt{FIXed [s]} &
+   Set base frequency to 440Hz (ON / other). \\
+\texttt{EQUal [n]} &
+   Equal temper variation. \\
 \texttt{PRofile [s]} &
    The shape of harmonic profile (Gauss, Square Double exponent). \\
 \texttt{WIdth [n]} &
@@ -1007,7 +1023,7 @@ Overtone Position s, Relationship to fundamental, values:
 \texttt{RELative [n]} &
    Changes central component relative amplitude. \\
 \texttt{AUto [s]} &
-   Autoscaling (On / other). \\
+   Autoscaling (ON / other). \\
 \texttt{BASe [s]} &
    Base profile distribution (C2, G2, C3, G3, C4, G4, C5, G5, G6). \\
 \texttt{SAmples [n]} &
@@ -1019,30 +1035,40 @@ Overtone Position s, Relationship to fundamental, values:
 \texttt{BAndwidth [n]} &
    Overall bandwidth. \\
 \texttt{SCale [s]} &
-   Bandwidth scale. \\
+   Bandwidth scale. (Normal, Equalhz, Quarter, Half, Three Quarter,\\
+\texttt{} &
+   One and a half, Double, Inverse Half).\\
 \texttt{SPectrum [s]} &
    Spectrum mode (Bandwidth, Discrete, Continuous). \\
+\texttt{OVertone Position [s]} &
+   Relationship to fundamental (HArmonic, SIne,\\
+\texttt{} &
+   POwer, SHift, UShift, LShift, UPower, LPower).\\
+\texttt{OVertone First [n]} &
+   Degree of first parameter. \\
+\texttt{OVertone Second [n]} &
+   Degree of second parameter.   \\
+\texttt{OVertone Harmonic [n]} &
+   Amount harmonics are forced.  \\
+      \end{tabular}
+   \end{table}
+   \begin{table}
+      \begin{tabular}{l l}
 \texttt{APply} &
    Puts the latest changes into the wavetable. \\
-\texttt{REsonance ...} &
-   Enter the PadSynth resonance context. \\
 \texttt{WAveform ...} &
    Enter the oscillator waveform context. \\
+\texttt{LFO ...} &
+   Enter LFO insert context.  \\
+\texttt{FILter ...} &
+   Enter Filter insert context.  \\
+\texttt{ENVelope ...} &
+   Enter Envelope insert context.   \\
+\texttt{REsonance ...} &
+   Enter the PadSynth resonance context. \\
       \end{tabular}
    \end{table}
 
-   The list of bandwidth scale options.
-
-   \begin{itemize}
-      \item Normal
-      \item Equalhz
-      \item Quarter
-      \item Half
-      \item Threequarter
-      \item One and a half
-      \item Double
-      \item Inversehalf
-   \end{itemize}
 
 \paragraph{Part SubSynth Commands}
 \label{paragraph:command_line_part_subsynth_commands}
@@ -1053,7 +1079,32 @@ Overtone Position s, Relationship to fundamental, values:
       \label{table:yoshimi_part_subsynth_commands}
       \begin{tabular}{l l}
 
-\texttt{Common controls plus:} & \\
+\texttt{ON / OFF} &
+   Enables / Disables the SubSynth engine. \\
+\texttt{Volume [n]} &
+   SubSynth Volume.  \\
+\texttt{Pan [n]} &
+   Panning (zero gives random panning).\\
+\texttt{VElocity [n]} &
+   Velocity sensing sensitivity. \\
+\texttt{STEreo [n]} &
+   Sets this engine as stereo or mono (ON / other). \\
+\texttt{BENd Adjust [n]} &
+   Pitch bend range. \\
+\texttt{BENd Offset [n]} &
+   Pitch bend shift. \\
+\texttt{DETune Fine [n]} &
+   Fine frequency.   \\
+\texttt{DETune Coarse [n]} &
+   Coarse stepped frequency.  \\
+\texttt{DETune Type [n]} &
+   Type of coarse stepping.   \\
+\texttt{OCTave [n]} &
+   Shift octaves up or down.  \\
+\texttt{FIXed [s]} &
+   Set base frequency to 440Hz (ON / other).  \\
+\texttt{EQUal [n]} &
+   Equal temper variation. \\
 \texttt{HArmonic [n1] Amp [n2]} &
    Set harmonic n1 to n2 intensity. \\
 \texttt{HArmonic [n1] Band [n2]} &
@@ -1068,6 +1119,20 @@ Overtone Position s, Relationship to fundamental, values:
    Common bandwidth. \\
 \texttt{BAnd Scale [n]} &
    Bandwidth slope versus frequency. \\
+\texttt{OVertone Position [s]} &
+   Relationship to fundamental (HArmonic, SIne,\\
+\texttt{} &
+   POwer, SHift, UShift, LShift, UPower, LPower).\\
+\texttt{OVertone First [n]} &
+   Degree of first parameter. \\
+\texttt{OVertone Second [n]} &
+   Degree of second parameter.   \\
+\texttt{OVertone Harmonic [n]} &
+   Amount harmonics are forced.  \\
+\texttt{FILter ...} &
+   Enter Filter insert context.  \\
+\texttt{ENVelope ...} &
+   Enter Envelope insert context.   \\
 
       \end{tabular}
    \end{table}
@@ -1082,7 +1147,7 @@ Overtone Position s, Relationship to fundamental, values:
       \begin{tabular}{l l}
 
    \texttt{PRotect [s]} &
-      Leave fundamental unchanged (On / other). \\
+      Leave fundamental unchanged (ON / other). \\
    \texttt{Maxdb [n]} &
       Set the maximum attenuation of points. \\
    \texttt{Random [s]} &
@@ -1226,11 +1291,11 @@ Overtone Position s, Relationship to fundamental, values:
 \texttt{Expand [n]} &
    Envelope time on lower notes. \\
 \texttt{Force [s]} &
-   Force release (On / other). \\
+   Force release (ON / other). \\
 \texttt{Linear [s]} &
-   Linear slopes (On / other). \\
+   Linear slopes (ON / other). \\
 \texttt{FMode [s]} &
-   Set as Freemode (On / other). \\
+   Set as Freemode (ON / other). \\
 
       \end{tabular}
    \end{table}
@@ -1634,7 +1699,7 @@ Echo presets:
 \texttt{CROssover [n]} &
    Left-right routing. \\
 \texttt{SUBtract [s]} &
-   Invert output (On / other). \\
+   Invert output (ON / other). \\
 \texttt{PREset [n]} &
    Select numbered preset (sets all above controls). \\
       \end{tabular}
@@ -1679,13 +1744,13 @@ Chorus presets:
 \texttt{CROssover [n]} &
    Left-right routing. \\
 \texttt{SUBtract [s]} &
-   Invert output (On / other). \\
+   Invert output (ON / other). \\
 \texttt{HYPer [s]} &
-   Hyper ?   (On / other). \\
+   Hyper ?   (ON / other). \\
 \texttt{OVErdrive [n]} &
    Distortion. \\
 \texttt{ANAlog [s]} &
-   Analog emulation  (On / other). \\
+   Analog emulation  (ON / other). \\
 \texttt{PREset [n]} &
    Select numbered preset (sets all above controls). \\
       \end{tabular}
@@ -1763,15 +1828,15 @@ AlienWah presets:
 \texttt{ } &
     ZIGzag, LMT, ULMt, LLMt, ILMt, CLIp, AS2, PO2, SGM) \\
 \texttt{INvert [s]} &
-   Invert ?  (On / other). \\
+   Invert ?  (ON / other). \\
 \texttt{LOW [n]} &
    Low pass filter. \\
 \texttt{HIGh [n]} &
    High pass filter. \\
 \texttt{STEreo [s]} &
-   Stereo (On / other). \\
+   Stereo (ON / other). \\
 \texttt{FILter [s]} &
-   Filter before distortion (On / other). \\
+   Filter before distortion (ON / other). \\
 \texttt{PREset [n]} &
    Select numbered preset (sets all above controls). \\
       \end{tabular}
@@ -1829,7 +1894,7 @@ EQ has no presets.
 \texttt{DEPth [n]} &
    LFO depth. \\
 \texttt{INVert [s]} &
-   Reverse effect of sensitivity (On / other). \\
+   Reverse effect of sensitivity (ON / other). \\
 \texttt{RATe [n]} &
    Speed of filter change with amplitude. \\
 \texttt{FILter ...} &
