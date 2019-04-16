@@ -688,12 +688,14 @@
       yoshimi P1+, M4+, A+, V5+, LFO freq+>
    \end{verbatim}
 
-   The need for compression is obvious, and once at this level, the \texttt{?} command will list the LFO controls.
+   The need for compression is obvious, and once at this level, the \texttt{?}
+   command will list the LFO controls.
 
 \subsubsection{Part Common Commands}
 \label{subsec:command_line_part_common_commands}
 The idea of having a list of common comands is now deprecated. This is
-because although originally intended to keep the individual command lists to manageable proportions, it actually made it more confusing when trying
+because although originally intended to keep the individual command lists to
+manageable proportions, it actually made it more confusing when trying
 to see what controls were available in each context.
 
 \subsubsection{Part Commands}
@@ -708,7 +710,7 @@ to see what controls were available in each context.
       \begin{tabular}{l l}
 \texttt{(part) [n]} &
    Change part number.  \\
-\texttt{ON / OFF} &
+\texttt{[ON/OFF]} &
    Enables / Disables the part. \\
 \texttt{Volume [n]} &
    Volume.  \\
@@ -760,7 +762,7 @@ to see what controls were available in each context.
    Disable kit mode. \\
    \texttt{(kit mode) [n]} &
       Kit item number (1-16). \\
-   \texttt{ON / OFF} &
+   \texttt{[ON/OFF]} &
       Enables / Disables the kit item. \\
    \texttt{QUiet [s]} &
       This item (ON, {other}). \\
@@ -783,10 +785,10 @@ to see what controls were available in each context.
       \end{tabular}
    \end{table}
 
-   Kit mode is an unusual form of context level as it either modifies some part level
-   controls or adds new ones. At the same time it still allows all the other part
-   controls. The examples below show how kit mode interracts with part, and how one is
-   informed of the exact status.
+   Kit mode is an unusual form of context level as it either modifies some
+   part level controls or adds new ones. At the same time it still allows
+   all the other part controls. The examples below show how kit mode
+   interracts with part, and how one is informed of the exact status.
 
    \begin{verbatim}
       yoshimi Part 1+> set multi
@@ -798,12 +800,98 @@ to see what controls were available in each context.
       yoshimi Part 1+, Multi 1+>
    \end{verbatim}
 
-   Note how the kit mode is shown in parenthesis when not actually in the kit editing
-   context. Also, to disable kit mode the specific \textbf{DI}sable command must be
-   used, as the normal \textbf{ON/OFF} commands refer to individual kit items.
+   Note how the kit mode is shown in parenthesis when not actually in the kit
+   editing context. Also, to disable kit mode the specific \textbf{DI}sable
+   command must be used, as the normal \textbf{ON/OFF} commands refer to
+   individual kit items.
 
-   The following commands are available once in the context for the various types of
-   synth engines:
+\paragraph{Part MIDI Commands}
+\label{paragraph:command_line_part_midi_commands}
+   \begin{table}[H]
+      \centering
+      \caption{Part MIDI Commands}
+      \label{table:yoshimi_part_midi_commands}
+      \begin{tabular}{l l}
+\texttt{VOlume [ON/OFF]} &
+   enables/disables volume control (on). \\
+\texttt{VOlume [n]} &
+   volume range. \\
+\texttt{PAn [n]} &
+   Panning width. \\
+\texttt{MOdwheel [ON/OFF]} &
+   enables/disables exponential modulation (on). \\
+\texttt{MOdwheel [n]} &
+   modulation control range. \\
+\texttt{EXpression [ON/OFF]} &
+   enables/disables volume control (on). \\
+\texttt{SUstain [ON/OFF]} &
+   enables/disables sustain control (on). \\
+\texttt{PWheel [n]} &
+   pitch wheel range. \\
+\texttt{BReath [ON/OFF]} &
+   enables/disables breath control (on). \\
+\texttt{FCutoff [n]} &
+   filter cutoff depth. \\
+\texttt{FQ [n]} &
+   filter Q depth. \\
+\texttt{BAndwidth [ON/OFF]} &
+   enables/disables exponential bandwidth (off). \\
+\texttt{BAndwidth [n]} &
+   bandwidth control range. \\
+\texttt{FMamplitude [ON/OFF]} &
+   enables/disables FM amplitude control (on). \\
+\texttt{RCenter [n]} &
+   resonance center frequency. \\
+\texttt{RBand [n]} &
+   resonance bandwidth. \\
+\texttt{POrtamento [ON/OFF]} &
+   enables/disables portamento control (on). \\
+\texttt{PDifference [n]} &
+   maximim note distance for portamento. \\
+\texttt{PInvert [ON/OFF]} &
+   change to minimum not distance (on). \\
+\texttt{PSweep [n]} &
+   portamento sweep speed. \\
+\texttt{PRatio [n]} &
+   portamento up/down speed ratio. \\
+\texttt{PProportional <ON/OFF} &
+   enables/disables proportional portamento (off). \\
+\texttt{PExtent [n]} &
+   distance to double change. \\
+\texttt{POffset [n]} &
+   difference from non proportional. \\
+\texttt{CLear} &
+   set all controllers to defaults. \\
+      \end{tabular}
+   \end{table}
+
+   It is also possible to emulate the action of some incoming MIDI CCs. This
+   was initially needed so that they can be MIDI-learned, but also provides
+   a means of checking and modifying these settings directly.
+
+   \begin{table}[H]
+      \centering
+      \caption{MIDI Emulators}
+      \label{table:yoshimi_part_midi_emolators}
+      \begin{tabular}{l l}
+\texttt{MOEmulate [n]} &
+   emulate modulation controller. \\
+\texttt{BREmulate [n]} &
+   emulate breath controller (CLI only). \\
+\texttt{EXEmulate [n]} &
+   emulate expression controller. \\
+\texttt{FCEmulate [n]} &
+   emulate filter cutoff controller. \\
+\texttt{FQEmulate [n]} &
+   emulate filter Q controller. \\
+\texttt{BAEmulate [n]} &
+   emulate bandwidth controller. \\
+      \end{tabular}
+   \end{table}
+
+   The following commands are available once in the context for the various
+   types of synth engines:
+
 
 \paragraph{Part AddSynth Commands}
 \label{paragraph:command_line_part_addsynth_commands}
@@ -812,7 +900,7 @@ to see what controls were available in each context.
       \caption{Part AddSynth Commands}
       \label{table:yoshimi_part_addsynth_commands}
       \begin{tabular}{l l}
-\texttt{ON / OFF} &
+\texttt{[ON/OFF]} &
    Enables / Disables the AddSynth engine. \\
 \texttt{Volume [n]} &
    AddSynth Volume.  \\
@@ -865,7 +953,7 @@ to see what controls were available in each context.
       \begin{tabular}{l l}
 \texttt{(voice) [n]} &
    Change voice number.  \\
-\texttt{ON / OFF} &
+\texttt{[ON/OFF]} &
    Enables / Disables the Voice. \\
 \texttt{Volume [n]} &
    Voice Volume.  \\
@@ -964,7 +1052,7 @@ to see what controls were available in each context.
       \caption{Part PadSynth Commands}
       \label{table:yoshimi_part_padsynth_commands}
       \begin{tabular}{l l}
-\texttt{ON / OFF} &
+\texttt{[ON/OFF]} &
    Enables / Disables the PadSynth engine. \\
 \texttt{Volume [n]} &
    PadSynth Volume. \\
@@ -1079,7 +1167,7 @@ to see what controls were available in each context.
       \label{table:yoshimi_part_subsynth_commands}
       \begin{tabular}{l l}
 
-\texttt{ON / OFF} &
+\texttt{[ON/OFF]} &
    Enables / Disables the SubSynth engine. \\
 \texttt{Volume [n]} &
    SubSynth Volume.  \\
@@ -1137,13 +1225,13 @@ to see what controls were available in each context.
       \end{tabular}
    \end{table}
 
-\paragraph{Resonance Commands}
-\label{paragraph:command_line_resonance_commands}
+\paragraph{Part Resonance Commands}
+\label{paragraph:command_line_part_resonance_commands}
 
    \begin{table}[H]
       \centering
       \caption{Resonance Commands}
-      \label{table:resonance_commands}
+      \label{table:part_resonance_commands}
       \begin{tabular}{l l}
 
    \texttt{PRotect [s]} &
@@ -1516,7 +1604,7 @@ Filter types (s parameter, LFO oscillator shape):
    \begin{itemize}
       \item \texttt{MUte [s]}, Set to ON disables or, for any other provided token
          restores this line.
-      \item \texttt{SEven} will interpret a learned NRPNs as a 7-bit value.
+      \item \texttt{SEven} will interpret a learned NRPN as a 7-bit value.
       \item \texttt{CC [n]} will set the incoming controller value that will
          be recognized.  This command can re-order the list.
       \item \texttt{CHan [n]} will set the incoming channel number that will
