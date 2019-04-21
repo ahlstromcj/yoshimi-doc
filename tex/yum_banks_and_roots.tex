@@ -73,11 +73,11 @@
       any non-sounding part without disturbing the playing ones.
 
       In Yoshimi / Settings / MIDI one can enable or disable all these features,
-      and can define which CCs one wants to use. Bank can be either MSB or LSB
-      (as before). Root can be any non-reserved CC but including the one not in
-      use for Bank. Also, Extended Program Change now has the same restrictions
-      as Root, and these three are all cross-checked against each other. As an
-      example, one might set Bank to LSB amd Root to 0 (MSB), effectively
+      and can define which CCs one wants to use. Bank can be Off, MSB or LSB
+      (as before). Since V1.5.11 Root can also be Off, MSB or LSB.
+      Also, Extended Program Change now has the restriction of not being any
+      reserved CC. These three are all cross-checked against each other.
+      As an example, one might set Bank to LSB amd Root to MSB, effectively
       giving one extended bank control compatible with all sequencers.
 
       Also, different instances have their own config files so that one can

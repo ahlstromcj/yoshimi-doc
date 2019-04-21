@@ -150,7 +150,7 @@
    Frequency of the "A" Note.
    Sets the frequency of the "A" key. The standard is 440.0 Hz.
 
-   Values: \texttt{440*}
+   Values: \texttt{329 to 660, 440*}
 
    \itempar{"A" Note}{"A" MIDI}
    Sets the MIDI Value of the "A" Note.
@@ -306,7 +306,7 @@ One can enter the tunings in two ways:
    This is the note where the scale-degree 0 setting is mapped;
    the middle note represents the note where the formal octave starts.
 
-   Values: \texttt{0 to 127*}
+   Values: \texttt{0 to 127, 60*}
 
    \itempar{Last Note}{scales!last note}
    Last MIDI Note Number.
@@ -393,6 +393,31 @@ One can enter the tunings in two ways:
 
    This menu entry simply resets the \textsl{Yoshimi} scale back to it default,
    the twelve-tone equally-tempered scale.
+
+\subsection{Scales / Reference Pitch...}
+\label{subsec:scales_reference_pitch}
+   A note about relationships between the 'A' note frequency, note number and
+   key shifts.
+
+   The 'A' note frequency should be regarded as an absolute value, with the
+   note number being specifically a MIDI representation.
+   Master keyshift, and Part keyshifts are relative values that modify this for
+   convenience.
+
+   As an example, some very old wood-framed pianos were tuned with C4=256 cycles
+   per second (Hz). This can't be changed as the frame couldn't withstand the
+   extra stress, so to play alongside such a piano one would have to set the
+   absolute value 'A' frequency at 430.581Hz.
+
+   A singer might then say they couldn't sing at that pitch, so one would then use
+   the Master Keyshift to change to a key they were more comfortable with.
+
+   When playing \textsl{Yoshimi} in a band where there is a minor pitch
+   discreapancy it would be best to use the Master Detune to match, rather than
+   altering the 'A' frequency.
+
+   Since V 1.5.11 'A' frequency range has been limited to 329Hz-660Hz, which just
+   includes E4 and E5
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex
