@@ -139,21 +139,20 @@
    shows the 2x8 view.
 
    The Panel Window allows one to edit some important part parameters
-   (instrument/volume/panning/etc.) and it acts like a mixer. Also, this
-   window shows VU-meters for each part.  To make a part the current part,
-   left-click on its \textbf{Edit} button. To edit an instrument, right-click
-   on the \textbf{Edit} button for that instrument.
+   (instrument/volume/panning/etc.) and it acts like a mixer. Also, since
+   V 1.5.11 this window shows VU-meters for each part.
+   To make a part the current part, left-click on its \textbf{Edit} button.
+   To edit an instrument, right-click on the \textbf{Edit} button for that
+   instrument.
 
    When using the JACK audio backend, parts can be individually routed or sent
    to the main L/R outputs, either by themselves, or working with the main Left
    and Right outputs at the same time.  This is controlled from the panel
    window, and the settings are saved with all the other parameters.
 
-   The individual part outputs will have the part effects, and any
+   The individual \textsl{Direct Part} outputs will have the part effects, and any
    \textbf{Insertion} effects that are linked to them, but not the
    \textbf{System} effects.
-   Direct part outputs carry the part and insertion effects, but not system
-   ones.
 
    \textsl{Yoshimi} used to register all parts with JACK by default, but that
    is a bit much now that 64 parts are available, so now \textsl{Yoshimi}
@@ -177,14 +176,15 @@
 %  \includegraphics[scale=0.75]{top-panel/yoshimi-panel-2x8-1_5.jpg}
 %  \includegraphics[scale=0.75]{1.5.0/Mixer8.png}
 %  \includegraphics[scale=0.75]{1.5.7/Mixer8.png}
-   \includegraphics[scale=0.75]{1.5.7/MixerSwitch8.png}
+   \includegraphics[scale=0.75]{1.5.11/Mixer8.png}
    \caption[Yoshimi Mixer Panel]{Yoshimi Mixer Panel, 2x8 View}
    \label{fig:yoshimi_part_panel_2x8}
 \end{figure}
 
    Note that there is also a 1x16 version of this dialog (not shown).
-   This dialog has been updated recently; there is now a \textbf{Solo}
-   control, shown in the figure above and described below.
+   This dialog has been further updated; as well as the \textbf{Solo}
+   control, (described below) it now presents separate left and right
+   VU meter bars.
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
@@ -247,10 +247,15 @@
    \textsl{Yoshimi} responds to incoming MIDI,
    so that only one of a group of instruments will see note-on events, but all
    of the group will see note-off ones. These commands
-   are both in the \textbf{Mixer Panel}.
-
-   They are referred as a \textsl{Solo} feature or a \textsl{Channel Mixer}
-   feature.  The \textbf{Solo} settings are saved in patch sets, which saves a
+   are both in the \textbf{Mixer Panel}, as shown below.
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.75]{1.5.11/MixerSwitch8.png}
+   \caption[Yoshimi Mixer Panel]{Yoshimi Mixer Panel, Solo}
+   \label{fig:yoshimi_part_panel_solo}
+\end{figure}
+   They are referred as a \textsl{Solo} feature.
+   The \textbf{Solo} settings are saved in patch sets, which saves a
    little frustration when loading one's current favorite patch set.
 
    Values: \texttt{Off*, Row, Col, Loop, TwoWay}

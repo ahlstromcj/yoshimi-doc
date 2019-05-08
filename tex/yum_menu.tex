@@ -146,7 +146,7 @@
    Opening a new instance creates a copy that has it's own dynamic memory for
    running storage. Some data (such as recent history) is shared between
    instances. This is done only where instances actually need to be in sync.
-   The bank structure should be synchronised, but currently isn't.
+   The bank structure is partially synchronised, but needs more work.
 
 %  Each instance has it's own file-store in \textsl{Yoshimi}'s configuration
 %  directory. The means that if one opens a numbered instance, one will get
@@ -296,7 +296,7 @@
    will (to a small degree) represent wasted memory and processor use.
 
 % This link fails for some reason.
-   See \sectionref{sec:resource_usage_jack_alsa_buffer_sizes}, which
+   See \sectionref{sec:resource_usage_buffer_sizes}, which
    goes into performance-related details.
 
    The default value for \textsl{Yoshimi} is shown marked with an asterisk,
@@ -1230,7 +1230,7 @@
    \textsl{Yoshimi}.
    This item is effective only if the \textbf{Start With Default State}
    option is checked in \textbf{Yoshimi / Settings}. This item is also
-   exceptional is it will \textsl{not} appear in the history list, and so
+   exceptional as it will \textsl{not} appear in the history list, and so
    will not be offered as a normal load.
 
    \itempar{Recent States}{State!Recent}
