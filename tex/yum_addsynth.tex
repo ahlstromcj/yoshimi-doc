@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-07
-% \update      2018-10-26
+% \update      2019-05-11
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -336,7 +336,11 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{1.6.0/AddVoice.png}
+   \includegraphics[scale=0.75]{1.5.10/AddVoice.png}
+
+% TODO FOR 1.6.0:  REPLACE THE ABOVE WITH THIS LINE IN Version 1.6.0
+%
+%  \includegraphics[scale=0.75]{1.6.0/AddVoice.png}
    \caption{ADDsynth Voice Parameters Dialog}
    \label{fig:addsynth_voice_parameters_dialog}
 \end{figure}
@@ -361,8 +365,14 @@
    Each voice can be amplitude-controlled, filter-controlled, and
    frequency-controlled.  Each voice can also be modulated by a
    modulator.
-   Another property of the voice is that one can tell \textsl{Yoshimi} to import
-   a given lower-numbered voice, either as an oscillator, or as a modulator.
+
+% TODO FOR 1.6.0:  REPLACEMENT TEXT FOR VERSION 1.6.0
+%
+%  Another property of the voice is that one can tell \textsl{Yoshimi} to import
+%  a given lower-numbered voice, either as an oscillator, or as a modulator.
+
+   Another property of the voice is that one can tell \textsl{Yoshimi} to
+   modulate a given voice with a lower-numbered voice.
 
    \begin{enumber}
       \item \textbf{Voice Number Tab}
@@ -677,8 +687,10 @@
    The ADDsynth Voice Oscillator panel is tucked in the lower left side of the
    ADDSynth Voice Parameters editor.
 
+% TODO FOR 1.6.0: Uncomment the commented bullet.
+
    \begin{enumber}
-      \item \textbf{Voice}
+%     \item \textbf{Voice}
       \item \textbf{Sound}
       \item \textbf{Waveform graph}
       \item \textbf{Use}
@@ -692,8 +704,14 @@
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
-   \itempar{Source}{voice oscillator!Source}
-   ADDSynth Voice Import. Selects whether to import a lower-numbered voice as oscillator for this voice, or to generate a local voice. All parameters from the imported voice remain in effect, except for volume, panning, base frequency and pitch bend scaling factor. The voice is also converted to mono. Parameters in the current voice will then tweak the signal further.
+% TODO FOR 1.6.0: Uncomment the commented text.
+
+%  \itempar{Source}{voice oscillator!Source}
+%  ADDSynth Voice Import. Selects whether to import a lower-numbered voice as
+%  oscillator for this voice, or to generate a local voice. All parameters from
+%  the imported voice remain in effect, except for volume, panning, base
+%  frequency and pitch bend scaling factor. The voice is also converted to mono.
+%  Parameters in the current voice will then tweak the signal further.
 
    \itempar{Sound}{voice oscillator!sound}
    ADDSynth Oscillator Type (sound/noise).
@@ -750,8 +768,12 @@
    "Voice n", where "n" is the voice number.
    For example, if one is currently editing current voice 3,
    then the dropdown list includes \textbf{Internal}, \textbf{Voice 1}, and
-   \textbf{Voice 2}. Unlike Source, using an oscillator from a different voice
-   only imports the waveform, not any other parameters.
+   \textbf{Voice 2}.
+
+% TODO FOR 1.6.0: Uncomment the commented text.
+
+%  Unlike Source, using an oscillator from a different voice
+%  only imports the waveform, not any other parameters.
 
    Values: \texttt{Internal*, Other oscillators ("Voice n")}
 
@@ -767,17 +789,12 @@
    Values: \texttt{0 to 360 (0 to 2*pi)}
 
 
-
-
-
-
-
 \subsubsection{ADDsynth / Voice Parameters / MODULATOR}
 \label{subsubsec:addsynth_voice_parameters_modulator}
 
    \begin{enumber}
       \item \textbf{Type:}
-      \item \textbf{Source}
+      \item \textbf{Modulator Source}
       \item \textbf{Mod AMPLITUDE}
       \item \textbf{Mod FREQUENCY}
       \item \textbf{Local Oscillator}
@@ -842,16 +859,17 @@
 
    Values: \texttt{OFF, MORPH, RING, PM, FM, PWM}
 
-   \textbf{Modulator Source}.
-   \index{modulator!source}
-   Use another voice as a modulator instead of the modulator of the internal
-   voice. One can make a "modulation stack". All parameters from the imported
-   voice remain in effect, except for volume, panning, base frequency and pitch
-   bend scaling factor. The voice is also converted to mono. Parameters in the
-   current voice will then tweak the modulator further.
-   One can only select Local (i.e. Internal), or one from a lower numbered voice.
+% TODO FOR 1.6.0:  Replace the paragraph with the commented text.
 
-   Values: \texttt{Local*, "Mod n"}
+%  \itempar{Modulator Source}.
+%  AddSynth Modulator Source.
+%  \index{modulator!source}
+%  Use another voice as a modulator instead of the modulator of the internal
+%  voice. One can make a "modulation stack". All parameters from the imported
+%  voice remain in effect, except for volume, panning, base frequency and pitch
+%  bend scaling factor. The voice is also converted to mono. Parameters in the
+%  current voice will then tweak the modulator further.
+%  One can only select Local (i.e. Internal), or one from a lower numbered voice.
 
    \itempar{Modulator Source}{modulator!external}
    AddSynth Modulator Source.
@@ -866,6 +884,8 @@
    \index{oscillator!local}
    This option specifies to use the oscillator of another voice or
    the \textsl{local} oscillator.
+
+   Values: \texttt{Local*, "Mod n"}
 
    The parameters must be lower than the voice index; one cannot use the
    oscillator from a voice with a bigger index (e.g. one can't use the
@@ -922,13 +942,15 @@
    \itempar{Mod FREQUENCY}{modulator!frequency}
    Modulator Frequency.
 
+% TODO FOR 1.6.0:  Uncomment the commented text.
+
    \begin{enumber}
-      \item \textbf{Follow voice}
-         Applies all detuning in the main voice oscillator to the modulator as
-         well. If turned off, the modulator will be completely unaffected by all
-         detuning in the main voice oscillator, including detuned unison voices.
-      \item \textbf{440Hz}
-         Use 440Hz as base frequency for the modulator.
+%     \item \textbf{Follow voice}
+%        Applies all detuning in the main voice oscillator to the modulator as
+%        well. If turned off, the modulator will be completely unaffected by all
+%        detuning in the main voice oscillator, including detuned unison voices.
+%     \item \textbf{440Hz}
+%        Use 440Hz as base frequency for the modulator.
       \item \textbf{Detune slider}
          Fine Detune (cents).
          Values: \texttt{-35.00 to 35.00, 0*}
@@ -1102,14 +1124,16 @@
    Note that this picture isn't updated if the voice is edited, until the voice
    list is closed and reopened.
 
-   \itempar{Modulation Icon}{voice list!modulation icon}
-   Modulation Icon.
-   The modulation icon shows a rough rendering of the actual shape of the voice
-   modulation, or the letters \textbf{M} or \textbf{V} followed by a number if
-   the voice is using an external modulator oscillator or voice input,
-   respectively.
-   Note that this picture isn't updated if the voice is edited, until the voice
-   list is closed and reopened.
+% TODO FOR 1.6.0:  Uncomment the commented text.
+
+%  \itempar{Modulation Icon}{voice list!modulation icon}
+%  Modulation Icon.
+%  The modulation icon shows a rough rendering of the actual shape of the voice
+%  modulation, or the letters \textbf{M} or \textbf{V} followed by a number if
+%  the voice is using an external modulator oscillator or voice input,
+%  respectively.
+%  Note that this picture isn't updated if the voice is edited, until the voice
+%  list is closed and reopened.
 
    \itempar{Vol}{voice list!volume}
    Voice Volume.
