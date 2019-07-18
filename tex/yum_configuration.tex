@@ -65,7 +65,9 @@
    When saving these "managed" files, one won't be offered the previous
    last-used configuration unless it was seen during that session, either by
    being loaded, or saved by name.  This protects against accidental
-   overwrites: you've been working on 'foo' for a whole day, saving as you go,
+   overwrites.
+
+   e.g. you've been working on 'foo' for a whole day, saving as you go,
    then the following day you start up \textsl{Yoshimi}, and immediately have
    a completely new idea 'bar', and start working on it. Without thinking you
    save and hit Enter. Oops, you just wiped out 'foo'. Only now you haven't,
@@ -128,11 +130,28 @@
          Contains the current layout of windows for reinstantiation at the next
          startup of \textsl{Yoshimi}.
          If there is no such file
-         (\texttt{\textasciitilde/.config/yoshimi/yoshimi.window}) at
-         \textsl{Yoshimi}, then the keyboard is also opened, alongside the main
-         window, as a help to those new to \textsl{Yoshimi}.
+         (\texttt{\textasciitilde/.config/yoshimi/yoshimi.window}) at then the
+         keyboard is also opened, alongside the main window, as a help to those
+         new to \textsl{Yoshimi}.
          And of course that state will be saved, if present, when
          \textsl{Yoshimi} exits.
+         This file is specific to the GUI, so doesn't really figure in this
+         scheme, but it is created or saved when one exits \textsl{Yoshimi}.
+   \end{itemize}
+   The entire config set should then be (ignoring the prepended
+   \texttt{yoshimi}):
+
+   \begin{itemize}
+      \item \texttt{.config}
+      \item \texttt{.instance[n]}
+      \item \texttt{.windows}
+      \item \texttt{.history}
+      \item \texttt{.banks}
+   \end{itemize}
+
+   Other \textsl{Yoshimi} specific files are:
+
+   \begin{itemize}
       \item \texttt{.xiz}
          \index{.xiz}
          \index{.xiz!Legacy format}
@@ -167,7 +186,8 @@
          \index{.xpz}
          \index{config!.xpz}
          Presets.
-         A preset is a \textsl{Yoshimi} sub-setting file.
+         A preset is a \textsl{Yoshimi} section of data stored by of the copy
+         (C) controls. This may be an effect, part of an instrument etc.
       \item \texttt{.xsz}
          \index{.xsz}
          \index{config!.xsz}
@@ -179,24 +199,7 @@
          Vector settings are now included in both the patch sets
          (\texttt{.xmz}) and state files (\texttt{.state}.
          For a good example, see \sectionref{subsection:vector_command_line}.
-         Vector control settings are now also stored in patch set and state
-         files.
    \end{itemize}
-
-   The entire config set should then be (ignoring the prepended
-   \texttt{yoshimi}):
-
-   \begin{itemize}
-      \item \texttt{.config}
-      \item \texttt{.instance[n]}
-      \item \texttt{.windows}
-      \item \texttt{.history}
-      \item \texttt{.banks}
-   \end{itemize}
-
-   The \texttt{.windows} file is specific to the GUI, so doesn't figure in this
-   scheme at all, but it is created or saved when one exits
-   \textsl{Yoshimi}.
 
    In the file-save dialogs, the file extension is determined by the type of
    file being saved, and it doesn't matter if one enters the extension
@@ -518,7 +521,7 @@
    attempt to set an invalid bank root will also be ignored.  On a
    first-time startup, discovered roots will be given ID numbers starting from 5,
    continuing in steps of 5. This makes it easier to re-arrange them to
-   preference. We recommend that you don't use 0.
+   preference. We recommend not using 0.
 
    Loading an instrument now updates the \textbf{Kit} window;
    the kit is all there and looks and sounds correctly.
@@ -557,17 +560,18 @@
    \texttt{.bankdir} file that is useful -- when one creates a new bank, this
    file contains a string with the \textsl{Yoshimi} version number it was
    created with, and to add icing to the cake, every time one saves an
-   instrument file in a bank, this file is created if it wasn't there, and
-   will have the current \textsl{Yoshimi} version number.
+   instrument file in a bank, this file is updated and will have the current
+   \textsl{Yoshimi} version number. Also, it will be created if it wasn't
+   already there.
 
    So now it is be possible to tell how recently a bank was changed, which may
    have implications if running modern instruments on older \textsl{Yoshimi}'s or
-   on \textsl{ZynAddSubFX}. Also, the distro will be happier because the
-   \texttt{.bankdir} file won't be empty.
+   on \textsl{ZynAddSubFX}. Also, the complaining distro will be happier because
+   the \texttt{.bankdir} file won't be empty.
 
    For the "Collection" bank, the version number is 0.0.0; all its instruments
    were created with \textsl{Yoshimi}, sometime before version 1.3.0.  "Drums" is
-   set to 1.3.0; "Companion" is set to 1.5.10.
+   set to 1.3.0; "Companion" is currently set to 1.5.11.
 
 \subsection{Configuration Files / Windows}
 \label{subsec:configuration_windows}
@@ -644,13 +648,14 @@
    it \textsl{will} overwrite any lines that are already there.
 
    Also note that, during a master reset, the MIDI learn data is the only thing
-   that \textsl{is not} cleared.
+   that \textsl{is not} cleared (unless the CTRL key is held down at the same
+   time).
 
    These features are designed to give the best protection to a setup
-   that could have taken quite a
-   long time to set up exactly as desired.  In our experiments, we have
-   discovered that we seem to use pretty much the same controls and actions,
-   and the list of our 'preferred' settings is slowly increasing.
+   that could have taken quite a long time to set up exactly as desired.
+   In our experiments, we have discovered that we seem to use pretty much the
+   same controls and actions, and the list of our 'preferred' settings is
+   slowly increasing.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex

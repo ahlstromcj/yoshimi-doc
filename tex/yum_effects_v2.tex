@@ -78,7 +78,7 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{effects-panel/system-effects.jpg}
+   \includegraphics[scale=0.75]{1.6.0/system_effects.png}
    \caption{System Effects Dialog}
    \label{fig:system_effects_dialog}
 \end{figure}
@@ -87,6 +87,7 @@
       \item \textbf{System Effects Tab}
       \item \textbf{Effect Number}
       \item \textbf{Effect Name}
+      \item \textbf{On}
       \item \textbf{Send to}
       \item \textbf{C}
       \item \textbf{P}
@@ -118,12 +119,16 @@
    \label{fig:effects_names}
 \end{figure}
 
+\itempar{Effect On}{effects!on-off}
+   Effect enable checkbox. Used to temporarily disable a particular system
+   effect without altering the settings. New in \textsl{Yoshimi} V1.6.0
+
+   Values: \texttt{On*, Off}
+
    \itempar{Send to}{effects!send to}
    Effects Send To.
    Each knob controls how much of the system effect indicated by the left
    number is sent to the system effect indicated by the right number.
-   This user-interface drop-down is shown only in the
-   \textbf{Part / Edit / Effects} version of the effects panel.
 
    Values: \texttt{Next Effect, Part Out, Dry Out}
 
@@ -136,7 +141,6 @@
 
    \itempar{C}{effects!copy dialog}
    Copy-to-clipboard Dialog.
-   We need to learn more about how this dialog gets populated.
 
 \begin{figure}[H]
    \centering
@@ -150,7 +154,6 @@
 
    \itempar{P}{effects!paste dialog}
    Paste-from-clipboard Dialog.
-   We need to learn more about how this dialog gets populated.
 
 \begin{figure}[H]
    \centering
@@ -169,15 +172,16 @@
    in the \ref{subsubsec:effects_paneltypes_insertion}
    sub-section.
 
-   \itempar{Reports}{effects!reports}
-   Effects Reports.
+%   VVVV How did this get here? It's quite out of place!
+%   \itempar{Reports}{effects!reports}
+%   Effects Reports.
 
-\begin{figure}[H]
-   \centering
-   \includegraphics[scale=1.0]{effects-panel/reports.jpg}
-   \caption{Effects / Reports}
-   \label{fig:effects_reports}
-\end{figure}
+%\begin{figure}[H]
+%   \centering
+%   \includegraphics[scale=1.0]{effects-panel/reports.jpg}
+%   \caption{Effects / Reports}
+%   \label{fig:effects_reports}
+%\end{figure}
 
    The next sub-sections show the variations on the effects panels, using the
    DynFilter effect as the subject effects panel.
@@ -186,22 +190,24 @@
 \label{subsubsec:effects_paneltypes_system}
 
    The first variation
-   appears when you enable an effect in the
+   appears when one enables an effect in the
    \textbf{System Effects}
    panel of the main \textsl{Yoshimi} dialog.  It contains the standard
-   controls for the given effect, plus the following interface items.
+   controls for the given effect, plus the following interface items
+   (as previously described).
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/system-effects-panel.png}
+   \includegraphics[scale=1.0]{1.6.0/system_effect_example.png}
    \caption{Sample System Effects Dialog}
    \label{fig:sample_system_effects_dialog}
 \end{figure}
 
    \begin{enumber}
       \item \textbf{Effect number}
-      \item \textbf{Effect selection}
-      \item \textbf{Effect Filter}
+      \item \textbf{Effect name}
+      \item \textbf{On}
+      \item \textbf{Send To}
       \item \textbf{C}
       \item \textbf{P}
    \end{enumber}
@@ -210,7 +216,7 @@
 \label{subsubsec:effects_paneltypes_insertion}
 
    The second effects variation
-   appears when you enable an effect in the
+   appears when one enables an effect in the
    \textbf{Insertion Effects}
    panel of the main \textsl{Yoshimi} dialog.
    It contains the standard
@@ -218,7 +224,7 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/insertion-effects-panel.png}
+   \includegraphics[scale=1.0]{1.6.0/insertion_effect_example.png}
    \caption{Sample Insertions Effects Dialog}
    \label{fig:sample_insertion_effects_dialog}
 \end{figure}
@@ -236,15 +242,7 @@
    than one insertion effect for one part or the master output.
    If using more than one effect, the
    effects with smaller indexes will be applied first (first, insertion
-   effect 0 occurs, then effect 1, and so on).
-   If the part selected for insertion
-   effect is \texttt{-1} then the effect will be \textsl{disabled};
-   \index{insertion effect!-1}
-   \index{insertion effect!disable}
-   if the part is \texttt{-2} the
-   effect will be applied to Master Out.
-   \index{insertion effect!-2}
-   \index{insertion effect!master out}
+   effect 1 occurs, then effect 2, and so on).
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
@@ -257,6 +255,11 @@
    \caption{Part Selection Dropdown}
    \label{fig:sample_part_selection_dropdown}
 \end{figure}
+   The first option sends the effect to the main L/R outputs rather than
+   just one part.
+   \index{insertion effect!master out}
+   Note that if \textsl{Yoshimi} is set for 32 or 64 parts, the dropdown list
+   will be extended to include them.
 
 \subsubsection{Effects / Panel Types / Instrument }
 \label{subsubsec:effects_paneltypes_instrument}
@@ -281,7 +284,13 @@
       \item \textbf{Close}
    \end{enumber}
 
-   "To" Values: \texttt{Master Out, Off, Part 1, Part 2, ..., Part 16}
+   "To" Values: \texttt{Next Effect* , Part Out, Dry Out}\\
+   \\
+   The default is to pass each effect on to the next, forming a daisy chain
+   of effects.\\
+   If it is set to Part Out, it breaks the chain and blocks any higher numbered effects.\\
+   If it is set to Dry Out, it takes \textsl{itself} out of the chain and
+   goes straight to the point where all the part effects are added together.
 
 \begin{figure}[H]
    \centering
@@ -317,7 +326,7 @@
    \label{fig:effects_warning}
 \end{figure}
 
-   This change will take place if you alter any of the controls after a preset has been
+   This change will take place if one alters any of the controls after a preset has been
    selected. The rationale here is that one can make such changes, then save the
    Instrument/Patchset that this effect is in.
    When re-loading, one would be quite likely to forget that changes have been made and

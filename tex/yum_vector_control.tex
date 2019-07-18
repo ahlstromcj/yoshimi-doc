@@ -19,7 +19,7 @@
 
    This section comes from the source-code documentation file
    \texttt{doc/Vector\_Control.txt}.
-   Also see 
+   Also see
    \sectionref{subsubsec:stock_settings_elements_automation}, for a discussion
    of vector automation, and
    \sectionref{subsec:vector_dialogs}, for a discusson of the vector
@@ -32,7 +32,7 @@
    (say) channel 3, then later decide to use it in channel 7.
    The vector settings file
    \index{vector! settings file}
-   has the extension \texttt{.xvy} standing for 
+   has the extension \texttt{.xvy} standing for
    \textsl{Xml / Vector / Yoshimi}.
 
    Vector controls can be set on any and all channels,
@@ -85,7 +85,7 @@
    (i.e.  click on them to open the instrument selection window).  There are
    tooltips for these items, along with the base channel and controller.
 
-   The features are pretty self descriptive as soon and you click on them. They
+   The features are pretty self descriptive as soon as clicking on them. They
    apply inversely to the \textsl{pair} of instruments on each axis.  One could
    have all four if One wanted to, but it would probably sound messmessy
 
@@ -123,7 +123,7 @@
    The new \textbf{Vectors} button brings up the following dialog:
 
 \begin{figure}[H]
-   \centering 
+   \centering
 %  \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-dialog.png}
    \includegraphics[scale=0.75]{1.4.1/Vectors.png}
    \caption{Yoshimi Vectors Dialog}
@@ -190,7 +190,7 @@
    Values: \texttt{1 to 127, 64*}
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-options.png}
    \caption{Yoshimi Vectors Options}
    \label{fig:yoshimi_vectors_options}
@@ -224,7 +224,7 @@
    \index{soft load}
    Note that loading vectors is a 'soft' load. It first runs down the overall
    volume (over about 100 ms), then mutes the whole synth before performing
-   the load operation. Only when that is complete does it unmute the synth. 
+   the load operation. Only when that is complete does it unmute the synth.
    (Note that soft loading also applies to patch sets, but not to instrument
    patches.)
 
@@ -267,7 +267,7 @@
    volume, and vice versa.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-feature-1.png}
    \caption{Yoshimi Vectors, Feature 1}
    \label{fig:yoshimi_vectors_feature_1}
@@ -287,7 +287,7 @@
    When reversed, it pans from right to left as the data value increases.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-feature-2.png}
    \caption{Yoshimi Vectors, Feature 2}
    \label{fig:yoshimi_vectors_feature_2}
@@ -306,7 +306,7 @@
    value increases.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-feature-3.png}
    \caption{Yoshimi Vectors, Feature 3}
    \label{fig:yoshimi_vectors_feature_3}
@@ -325,7 +325,7 @@
    value increases.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-feature-4.png}
    \caption{Yoshimi Vectors, Feature 4}
    \label{fig:yoshimi_vectors_feature_4}
@@ -345,7 +345,7 @@
    \textbf{X} vector.
 
 \begin{figure}[H]
-   \centering 
+   \centering
    \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-saved.png}
    \caption{Yoshimi Vectors Saved as "My First Vector"}
    \label{fig:yoshimi_vectors_saved}
@@ -355,7 +355,7 @@
    select the base channel (1 to 16) to set the vector on. Next,
    use the \textbf{X} and \textbf{Y} \textbf{Controller}
    spin-boxes to select the incoming CC.
-   If you set an invalid one strange things may happen, though it won't
+   If setting an invalid one strange things may happen, though it won't
    actually do any harm.
 
    The instrument buttons bring up the instrument list window in exactly the same
@@ -441,11 +441,11 @@
       \item 12 = set CC for Y feature 4
       \item 13 = set CC for Y feature 8
    \end{itemize}
-              
+
    The IDs are for instruments in the current bank.
    Any data MSB value outside the above list disables vector control.
    Sweep CCs and feature CCs are sanity-checked.
-    
+
    An Example. From channel 1, send the following CCs:
 
    \begin{verbatim}

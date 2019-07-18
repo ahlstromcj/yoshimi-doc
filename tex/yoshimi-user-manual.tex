@@ -49,16 +49,16 @@
 \makeindex
 
 \begin{document}
-\title{Yoshimi Advanced User Manual, v 1.5.11}
+\title{Yoshimi Advanced User Manual, v 1.6.0}
 \author{Chris Ahlstrom \texttt{(ahlstromcj@gmail.com)} with Will J. Godfrey}
 \date{\today}
 \maketitle
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=1.00]{1.5.11/Front.png}
+   \includegraphics[scale=1.00]{1.6.0/Front.png}
 \end{figure}
-
+provisional
 \clearpage                             % moves Contents to next page
 
 \tableofcontents
@@ -454,8 +454,8 @@
 
    Thanks to the \textsl{ZynAddSubFX} developers, \textsl{Yoshimi} has pink
    as well as white noise available on Addsynth voices. Pink noise sounds
-   softer.  With the latest "depop" port from \textsl{ZynAddSubFX},
-   \textsl{Yoshimi} is fully compatibly with all instrument files.
+   softer.  In \textsl{Yoshimi} version 1.6.0 we added spot noise, which has a
+   sort of 'gritty' sound.
 
    The \textbf{Humanise} feature has had more interest so it's been upgraded.
    It's now a slider, and it's setting can be saved in patch sets. It provides
@@ -472,9 +472,8 @@
    We have tested \textsl{Yoshimi} in recovery mode, logged in as root, with
    no X server. Using the command \texttt{/usr/share/bin/yoshimi -A -i}
    worked perfectly and auto-connected the keyboard so we could prove
-   everything worked.  We still need the X11 libraries to compile
-   \textsl{Yoshimi}, but we don't know if it is practical to provide a compile
-   time option to build a purely headless version.
+   everything worked.  Since version 1.5.11 it has been practical to provide
+   a compile time option to build a purely headless version.
 
    Load and save dialogues intelligently recognise the history lists and offer
    the appropriate first choice. External instrument loads and saves are now
@@ -503,7 +502,9 @@
 
    A final detail with the history lists is that in each list type, the last
    used item will be placed at the top of the list. This is especially useful
-   when you want to continually save/load an item you are currently working on.
+   when wanting to continually save/load an item currently being worked on.
+   However, since version 1.6.0 it has been possible to freeze these lists, so
+   benefiting the (also new) MIDI NRPN control to load settings from these lists.
 
 \subsection{Document Structure}
 \label{subsec:introduction_document_structure}
@@ -599,15 +600,13 @@
       the work currently being done on Yoshimi.
 
       Any source code I add will be GPL V2 or later.
+      \end{quotation}
 
-      Update.
-
-      The original change discussion has now been located and the license for
-      both Zyn and Yoshi is confirmed as GPL V2 or later.
-
-      Anyone wanting to confirm this should look at the Zyn user list archives
+      \textbf{Update:} The original change discussion has been located and the
+      license for both Zyn and Yoshi is confirmed as GPL V2 or later. Anyone
+      wanting to confirm this should look at the Zyn user list archives
       August 2007 and September 2007.
-   \end{quotation}
+
 
 \subsection{Let's Get Started with Yoshimi!}
 \label{subsec:introduction_lets_get_started}
@@ -647,7 +646,7 @@
 %  \includegraphics[scale=1.0]{1.3.8/yoshimi-first-screen.jpg}
 %  \caption{Yoshimi Main Screen, 1.3.8 and Above}
 %  \includegraphics[scale=1.0]{1.4.0/yoshimi-first-screen.png}
-   \includegraphics[scale=1.0]{1.5.11/Front.png}
+   \includegraphics[scale=1.0]{1.6.0/Front.png}
    \caption{Yoshimi Main Screen}
    \label{fig:yoshimi_main_screen}
 \end{figure}

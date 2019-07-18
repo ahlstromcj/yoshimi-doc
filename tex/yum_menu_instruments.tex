@@ -64,7 +64,7 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.9]{1.3.8/yoshimi-menu-instrument.jpg}
+   \includegraphics[scale=0.9]{1.6.0/menu_instrument.png}
    \caption{Yoshimi Menu, Instruments}
    \label{fig:yoshimi_instrument_menu}
 \end{figure}
@@ -79,7 +79,7 @@
       \item \textbf{Show Stored...}
       \item \textbf{Load External...}
       \item \textbf{Save External...}
-      \item \textbf{Recent Instruments...} (not shown in figure)
+      \item \textbf{Recent Instruments...}
       \item \textbf{Clear}
    \end{enumber}
 
@@ -413,11 +413,11 @@
    operation allows access to instruments that are not located in a bank.
 
    \begin{itemize}
-      \item If you load an external instrument file with no internal name,
-         you'll be shown the file leafname.
-      \item If you load an external instrument file with the name
-         \textsl{Simple Sound}, you'll be given the name \textsl{No Title}.
-      \item If you load a patch set that has unnamed instruments, or ones with
+      \item If loading an external instrument file with no internal name,
+         the file leafname will be shown.
+      \item If loading an external instrument file with the name
+         \textsl{Simple Sound}, the name \textsl{No Title} will be given.
+      \item If loading a patch set that has unnamed instruments, or ones with
          the name \textsl{Simple Sound}, those will be given the name \textsl{No
          Title}.
    \end{itemize}
@@ -603,9 +603,9 @@
    in banks, and means that, once loaded, one does not know what instruments
    one has. So now, if the internal name is missing, \textsl{Yoshimi} will use
    the leaf-name of the file.  When one saves an instrument to a bank slot, it
-   will get a filename with the internal name as the leaf-name.  When one saves
-   an instrument to an external file, you will first be offered the internal
-   name and in the current directory, but you can change it if you wish.
+   will get a filename with the internal name as the leaf-name.  When saving
+   an instrument to an external file, the first offered will be the internal
+   name and in the current directory, but this can be changed if desired.
 
    The part and mixer name fields will always show the (possibly adjusted)
    internal name regardless of the external filename, which could easily have

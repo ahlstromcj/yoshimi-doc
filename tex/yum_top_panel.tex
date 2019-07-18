@@ -30,9 +30,9 @@
 %     \item \textbf{Panel}
       \item \textbf{Mixer Panel}
 %     \item \textbf{VirKbd}
-      \item \textbf{Virtual Keybd}
+      \item \textbf{Virtual Keyboard}
       \item \textbf{Vectors}
-      \item \textbf{Reports}
+      \item \textbf{Midi Learn}
       \item \textbf{S}
       \item \textbf{Shift}
       \item \textbf{Detune}
@@ -68,24 +68,21 @@
    For the details of this panel,
    see \sectionref{subsec:mixer_panel_window}.
 
-   \itempar{Virtual Keybd}{top panel!virtual keyboard}
+   \itempar{Virtual Keyboard}{top panel!virtual keyboard}
    This button brings up the virtual keyboard, which is a way to enter
    MIDI information without a real MIDI keyboard.
    It also provides a way to use the computer keyboard for faster
    playing.  See \sectionref{subsec:virtual_keyboard}.
 
    \itempar{Vectors}{top panel!vectors}
-   Provides the recent new feature of vector control.  This has been moved moved
+   Provides the recent new feature of vector control.  This has been moved
    to this button from the \textbf{Yoshimi} menu.  See
    \sectionref{subsec:vector_dialogs}.
 
-   \itempar{Reports}{top panel!reports}
-   This button is active only if reports are not going to
-   \texttt{stdout}, by setting \textbf{Yoshimi / Settings / Main Settings / Send
-   reports to:} to \textsl{Console Window}
-   (see \sectionref{paragraph:menu_yoshimi_settings_main_settings} for this
-   item.)
-   When pressed, the \textsl{Yoshimi} console window is opened.
+   \itempar{Midi Learn}{top panel!midilearn}
+   When pressed, the \textsl{Yoshimi} Midi Learn editing window is opened.
+   This button used to be for opening the \textsl{Yoshimi} Reports window,
+   but that is seldom changed so they've been swapped.
 
    \itempar{S}{top panel!stereo}
    Stereo Button.
@@ -100,12 +97,12 @@
    semitones.
    In recent versions of \textsl{Yoshimi}, this range has been extended.
    Also note that the master key shift can be set via the user-interface, the
-   command-line, or (we suspect) by MIDI NRPN commands.
+   command-line, or by MIDI NRPN commands.
 
    Values: \texttt{-36 to 36, 0*}
 
    Also see the \textbf{Key Shift} item in
-   \sectionref{sec:bottom_panel} for more information.
+   \sectionref{sec:bottom_panel} \hspace{6 pt}for more information.
 
    \itempar{Detune}{top panel!detune}
    Detune.  Provides a global fine detune functionality.
@@ -293,7 +290,7 @@
    For running \textbf{Solo} in \textbf{Column} mode, one needs to have 32 or
    (preferably) 64 parts set; with this setup, one can have up to 4 parts
    switched per channel, and independently of each other. However, this works
-   more like vector control in that you have to switch in groups of 16. For
+   more like vector control in that switching has to be in groups of 16. For
    example, to control the channel 4 column one would send 4, 20, 36, 52 to
    select the wanted part. This usage is more appropriate for post recording
    MIDI automation.

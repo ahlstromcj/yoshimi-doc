@@ -53,9 +53,9 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{1.5.11/view_manual.png}
+   \includegraphics[scale=0.75]{1.6.0/view_yoshimi.png}
    \caption[Yoshimi Menu, Exit]{Yoshimi Menu}
-   \label{fig:yoshimi_view_manual}
+   \label{fig:yoshimi_view_yoshimi}
 \end{figure}
 
    The items it contains are:
@@ -64,7 +64,7 @@
       \item \textbf{About...}
       \item \textbf{New instance}
       \item \textbf{Settings...}
-      \item \textbf{MIDI Learn...}
+      \item \textbf{Reports...}
       \item \textbf{View Manual...}
       \item \textbf{Exit}
    \end{enumber}
@@ -75,9 +75,14 @@
    \sectionref{subsec:vector_dialogs}, which presents this dialog and
    describes it.
 
-   \index{new!MIDI Learn}
-   \textsl{MIDI Learn} is a new feature of \textsl{Yoshimi}, and is described
-   below.
+   \index{new!Reports}
+   \textbf{Reports} This opens the \textsl{Yoshimi} console window.
+   It has been swapped with MIDI-learn, which now has the button on the main window.
+   Note that this will only show any messages if reports are not going to
+   \texttt{stdout}. This can be changed by setting \textbf{Yoshimi / Settings
+   / Main Settings / Send reports to:} to \textsl{Console Window}
+   (for this item see
+   \sectionref{paragraph:menu_yoshimi_settings_main_settings}.)
 
 % Now fixed!
 %
@@ -87,8 +92,8 @@
 %  (Alt-Y, Alt-I, Alt-P, and Alt-S) do not work (Yoshimi 1.3.5).
 
    \index{new!View Manual}
-   \textsl{View Manual} is a new feature of \textsl{Yoshimi}.  It
-   currently requires that a PDF viewer be installed.
+   \textbf{View Manual} This currently requires that a PDF viewer
+   be installed.
    Note that some viewers might not work properly
    (e.g. \texttt{apvlv} (\cite{apvlv}).
 
@@ -108,12 +113,12 @@
 %  \includegraphics[scale=1.0]{1.3.8/yoshimi-about.jpg}
 %  \includegraphics[scale=1.0]{1.5.0/yoshimi-about.jpg}
 %  \includegraphics[scale=1.0]{1.5.0/About_1-5-1.png}
-   \includegraphics[scale=0.75]{1.5.9/About.png}
+   \includegraphics[scale=0.75]{1.6.0/About.png}
    \caption{Yoshimi Menu, About Dialog}
    \label{fig:yoshimi_about_dialog}
 \end{figure}
     This has a new 'more' button that changes the window to an alphabetic list of
-    all those who have helped Yoshimi. Somtimes just a hint from these friends
+    all those who have helped Yoshimi. Sometimes just a hint from these friends
     has been enough to pave the way for extensive improvements.
 \begin{figure}[H]
    \centering
@@ -299,8 +304,7 @@
    See \sectionref{sec:resource_usage_buffer_sizes}, which
    goes into performance-related details.
 
-   The default value for \textsl{Yoshimi} is shown marked with an asterisk,
-   and the default value for \textsl{ZynAddSubFX} is 512.
+   The default value for \textsl{Yoshimi} is shown marked with an asterisk.
    \index{asterisk}
    \index{default!asterisk}
    This asterisk/plus-sign convention is used throughout this manual.
@@ -317,7 +321,7 @@
 \end{figure}
 
    \itempar{Internal Buffer Size}{Main Settings!buffer size}
-   This is a new item for version 1.3.6.  It is actually the old
+   This item was updated with version 1.3.6.  It is actually the old
    \textbf{Period Size} field from the \textbf{Alsa} tab.
    It sets the granularity of the sound generation.
    To find out the internal delay in milliseconds, divide the
@@ -448,7 +452,7 @@
    \centering
 %  \includegraphics[scale=1.0]{1.3.9/console-window.png}
 %  \includegraphics[scale=1.0]{1.5.0/console-window.png}
-   \includegraphics[scale=1.0]{1.5.9/Console.png}
+   \includegraphics[scale=1.0]{1.6.0/Console.png}
    \caption[Yoshimi Console Window]{Console Window}
    \label{fig:console_window}
 \end{figure}
@@ -463,12 +467,13 @@
 		Loaded 67 "Glass Arpeggio1" to Part 4
    \end{verbatim}
 
-   \index{reports!middle-click}
-   An interesting feature of the console window is that one can identify
-   user-interface elements of the \textsl{Yoshimi} configuration in this window
-   by a middle-click on the user-interface element.
-   (Unfortunately, those new single-button touchpads make it impossible to
-   provide a middle-click, so one would need a mouse!)
+   % VVV not since V 1.5.6!
+%   \index{reports!middle-click}
+%   An interesting feature of the console window is that one can identify
+%   user-interface elements of the \textsl{Yoshimi} configuration in this window
+%   by a middle-click on the user-interface element.
+%   (Unfortunately, those new single-button touchpads make it impossible to
+%   provide a middle-click, so one would need a mouse!)
 
 %  The console window figure shows the results of middle-clicking on the
 %  following bottom-panel knobs in order:
@@ -480,21 +485,21 @@
 %     \item Volume
 %  \end{enumerate}
 
-   \index{reports!middle-click}
-   Information about each knob middle-clicked is pushed to the top of the
-   windows in reverse order.
-   \index{reports!left-click}
-   \index{reports!right-click}
-   Information about an earlier left-click is shown at the bottom of the figure.
-   Each left-click ("Button 1") will increase the parameter represented by the
-   knob, and each right-click ("Button3") will decrease the parameter
-   represented by the knob, and each change is reported in the console window.
-   And, of course, each middle-click changes nothing, but reports the current
-   value in the console window.
-   This feature lets one gather the information needed to
-   control the parameter from the command-line.
-   The output can be selected, copied, and pasted to a script or archive text
-   file for safe-keeping.
+%   \index{reports!middle-click}
+%   Information about each knob middle-clicked is pushed to the top of the
+%   windows in reverse order.
+%   \index{reports!left-click}
+%   \index{reports!right-click}
+%   Information about an earlier left-click is shown at the bottom of the figure.
+%%   Each left-click ("Button 1") will increase the parameter represented by the
+%   knob, and each right-click ("Button3") will decrease the parameter
+%   represented by the knob, and each change is reported in the console window.
+%   And, of course, each middle-click changes nothing, but reports the current
+%   value in the console window.
+%   This feature lets one gather the information needed to
+%   control the parameter from the command-line.
+%   The output can be selected, copied, and pasted to a script or archive text
+%   file for safe-keeping.
 
    \itempar{Saved instrument Format}{Main Settings!instrument file format}
    This new (1.5.5) feature provides a choice between the old instrument format
@@ -543,7 +548,7 @@
    \centering
 %  \includegraphics[scale=0.75]{1.4.1/SettingsSwitches.png}
 %  \includegraphics[scale=0.75]{1.5.0/SettingsSwitches.png}
-   \includegraphics[scale=0.75]{1.5.8/SettingsSwitches.png}
+   \includegraphics[scale=0.75]{1.6.0/Settings_Switches.png}
    \caption{Yoshimi Switches Tab}
    \label{fig:yoshimi_settings_switches_tab}
 \end{figure}
@@ -560,6 +565,7 @@
       \item \textbf{Enable GUI}
       \item \textbf{Enable CLI}
       \item \textbf{Enable Auto Instance}
+      \item \textbf{Enable Single Master}
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
@@ -602,21 +608,21 @@
    This makes it a lot easier to re-enable a setting later.
 
    \itempar{Enable GUI}{Switches!Enable GUI}
-   If checked, the user-interface is enabled.  This setting is normally what you
-   want.  If one unchecks it, it warns that disabling the GUI
+   If checked, the user-interface is enabled.  This setting is normally what one
+   wants.  If one unchecks it, it warns that disabling the GUI
    can only be reversed from the command line.
 
    \itempar{Enable CLI}{Switches!Enable CLI}
    If checked, the command-line interface is enabled.
    Note as of V 1.5.6 it has been possible to disable both the user-interface and
-   the command line at the same time. This means that Yoshimi can only be closed by
-   sending a special MIDI message (CC 99, 68, CC 98, 68). Alternatively one could
-   send a system shutdown message.
+   the command line at the same time. This means that Yoshimi can only be closed
+   by sending a special MIDI message (CC 99, 68, CC 98, 68). Alternatively one
+   could send a system shutdown message.
 
    \itempar{Enable Auto Instance}{Switches!Enable Auto Instance}
-	If checked, then, if any other instances were open at the time you close the
-	main instance, then these other instances
-   will be re-opened next time one runs \textsl{Yoshimi}.
+      If checked, then, if any other instances were open at the time one closes
+      the main instance, then these other instances will be re-opened next time
+      one runs \textsl{Yoshimi}.
 
    If these instances each have their own
    \textbf{Start with Default State} switch checked, and if
@@ -626,6 +632,42 @@
    highly-detailed multi-instance setup installed.
    This setup will include such things as JACK/ALSA audio
    and MIDI, and a complete patch set, etc.
+
+   \itempar{Enable Single Master}{Switches!Enable Single Master}
+      If checked, then once running, trying to start a new instance from the
+      desktop ( or command line) will instead get the next available instance in
+      the currently running one. This is both more efficient use of resources,
+      and ensures consistency. Top-level instances cannot communicate independently
+      changed configuration settings. (new from V 1.6.0)
+
+   \paragraph{Menu / Yoshimi / Settings / Switches / History Locks}
+   \label{paragraph:menu_yoshimi_settings_historylocks}
+   \index{new!History Locks}
+   New in \textsl{Yoshimi} V 1.6.0 there is a sub-panel \textsl{History Locks}
+
+   This is a set of config switches so that one can independently lock each of
+   the history lists against change. In the locked state loading or saving new
+   files will not update the associated history list at all. At any time, these
+   lists can of course be unlocked again. This is especially useful when changing
+   these settings via MIDI NRPNs (also new).
+
+   \begin{enumber}
+      \item \textbf{Instrument}
+      \item \textbf{Patch Set}
+      \item \textbf{Scale}
+      \item \textbf{State}
+      \item \textbf{Vector}
+      \item \textbf{Midi Learn}
+   \end{enumber}
+
+   The default state is 'unlocked' as shown in the image above, retaining
+   compatibility with older versions of \textsl{Yoshimi}.
+
+   Finally, the history file is unique in that it is entirely internally
+   generated, and the file is common across all instances. Although treated as
+   a config setting, the new switch settings are actually embedded in the
+   history file itself, which ensures consistency.
+
 
 \paragraph{Menu / Yoshimi / Settings / Jack}
 \label{paragraph:menu_yoshimi_settings_jack}
@@ -980,7 +1022,7 @@
    Set by default, so one might not notice it at first.
    Disabling incoming NPRNs stops rogue MIDI sources from screwing things up.
    Disabling it also lets one use the NRPN CCs for other functions,
-   if you want to use a programmable hardware controller.
+   if wanting to use a programmable hardware controller.
 
    Values: \texttt{Off, On*}
 
