@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom and Will Godfrey
 % \date        2015-06-15
-% \update      2018-12-29
+% \update      2019-07-21
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -752,10 +752,10 @@
 
 \subsection{Concepts / Instances}
 \label{subsec:concepts_instances}
-   Like many programs, it is possible to run multiple copies - instances -
+   Like many programs, it is possible to run multiple copies ("instances")
    of \textsl{Yoshimi}.
-   However, the risk of doing so is that these instances cannot communicate
-   with each other, and so can readily write to the same files.
+   However, the risk of doing so is that these instances cannot always
+   communicate with each other, and so can readily write to the same files.
    \textsl{Yoshimi} regards these as external instances.
    It also supports internal instances, which are started within
    the running main instance, and will have separate files for most settings.
@@ -814,6 +814,9 @@
    Now that \textsl{Yoshimi}
    can be configured to auto-load last-seen instances when it
    starts, this all becomes even more useful.
+
+   One other note... copy-and-paste will work across instances.  One can copy
+   from the main instance's AddSynth part 3 to instance 3's kite item 6 AddSynth.
 
 \subsection{Concepts / Command Line}
 \label{subsec:concepts_command_line}

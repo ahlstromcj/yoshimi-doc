@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2018-12-27
+% \update      2019-07-21
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -138,19 +138,22 @@
    by running a JACK session manager such as \textsl{QJackCtl}.
    In a non-JACK setup it won't fail, but in the absence of any specific
    setting, it will have null audio, but (probably) will still connect to ALSA
-   MIDI.  Not too useful, but we should test that sometime.
+   MIDI.
+%  Not too useful, but we should test that sometime.
 
    It is important to note that each instance of \textsl{Yoshimi} has its
    own configuration file.  Each also has its own MIDI and audio ports.
    Thus, these instances are partly independent of each other.
+   (They can share some information, such as copy/paste.)
    The new instance tries to open a \textsl{Yoshimi} instance based on the
    configuration found in the file
    \texttt{\textasciitilde/.config/\-yoshimi/\-yoshimi.configXX}, where
    \textsl{XX} is the ID one supplied.
 
    Opening a new instance creates a copy that has it's own dynamic memory for
-   running storage. Some data (such as recent history) is shared between
-   instances. This is done only where instances actually need to be in sync.
+   running storage. Some data (such as recent history and copy/paste buffers) is
+   shared between instances.
+%  This is done only where instances actually need to be in sync.
    The bank structure is partially synchronised, but needs more work.
 
 %  Each instance has it's own file-store in \textsl{Yoshimi}'s configuration

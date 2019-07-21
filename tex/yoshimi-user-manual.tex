@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-04-20
-% \update      2018-12-28
+% \update      2019-07-21
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -271,18 +271,20 @@ provisional
 \subsubsection{Accessibility}
 \label{subsubsec:new_features_accessibility}
 
-   One of the main features of recent releases of \textsl{Yoshimi} is improved
+   An important feature of recent releases of \textsl{Yoshimi} is improved
    accessibility. The effectiveness and usefulness of accessibility will
    shape future complementary interfaces. A number of first-time defaults
-   have been changed to make this easier.
+   have been changed to make accessibility easier.
 
    It has always been possible to run \textsl{Yoshimi} headless. Since V 1.5.11
-   it possible to actually \textsl{compile} a headless version with no need for
+   it possible to \textsl{compile} a headless version with no need for
    any graphical components to be installed.
-   Also, now real control is available. In the first place, when starting from
-   the command line, an argument can be included for a new root path to be defined
-   to point to a set of banks fetched from elsewhere. This will be given the next
-   free ID.
+   Real accessible control is available.
+
+%  When starting from
+%  the command line, an argument can be included for a new root path to be defined
+%  to point to a set of banks fetched from elsewhere. This will be given the next
+%  free ID.
 
    Once running, all setup can be done within the terminal window.
    Some settings will require a restart.
@@ -296,13 +298,13 @@ provisional
    \end{verbatim}
 
    Additional controls that are taken for granted in the GUI but
-   otherwise get forgotten are master key shift and master volume.  The
+   otherwise forgotten are master key shift and master volume.  The
    most important parts of vector control are exposed to the command line.
    For all of this there is extensive error checking and feedback, which can be
-   rendered aurally using text-to-speech software.
+   rendered in voice using text-to-speech software.
 
-   There is one partially-sighted persion we occasionally hear from. There
-   is also a totally blind person (working with a Braille reader/writer) who has
+   There is a partially-sighted person we hear from, and
+   a totally blind person (working with a Braille reader/writer) who has
    offered a lot of suggestions, and very much likes vector control.  So
    accessibility \index{accessibility} is an important feature of
    \textsl{Yoshimi}.  See the section that follows.
@@ -311,36 +313,37 @@ provisional
 \label{subsubsec:new_features_command_line}
 
    \textsl{Yoshimi} offers great control of one's working environment.
-   One can have just the graphical user interface, just a command-line
-   interface, or both, and these settings can be saved.  Actually, both
-   interfaces can be disabled, and then \textsl{Yoshimi} runs in a headless
+   One can have the graphical user interface, a command-line
+   interface, or both, and these settings can be saved.  And both
+   interfaces can be disabled, so \textsl{Yoshimi} runs in a headless
    mode, responding in the background to MIDI events.
 
    The command-line interface can access all top level controls, as well as the
    part editing controls, and can select any effect and effect preset.  It can be
    used to set up Vector Control much more quickly and easily than using NRPNs.
    It allows setting to be made to the various synthesis engines.
-   The command-line is also context sensitive, which, along with careful choice
-   of command names and abreviations, allows very fast access with minimal
-   typing. Since version 1.5.8 it has been possible to start, stop and select
+   The command-line is also context-sensitive, which, with careful choice
+   of command names and abreviations, allows fast access with minimal
+   typing.
+   
+   Since version 1.5.8 it has been possible to start, stop and select
    different instances for further control.
 
    \textsl{Yoshimi}'s parser is case-insensitive for commands (but not for
-   filenames), and accepts the shortest unambiguous abbreviation. However it is
+   filenames), and accepts the shortest unambiguous abbreviation. It is
    quite pedantic, and expects spelling to be correct regardless of length.
    Apart from the \texttt{back} commands, it is word-based, so spaces are
-   significant.
-   Some examples:
+   significant.  Some examples:
 
    "\texttt{s p 4 pr 6}" ("set part 4 program 6"):
    This command sets part 4 to the instrument with ID 6 from the current bank.
-   It also then leaves one at the part context level and pointed to part 4.
+   It also leaves one at the part context level and pointed to part 4.
    Additionally, it will activate that part if it was off (and the
    configuration setting is checked). In most cases the words \textbf{program}
    and \textbf{instrument} are interchangable.
 
    "\texttt{s ef 1 rev}" ("set effect 1 reverb"):
-   This command moves one up to part effects context level and sets that part's
+   This command moves one to the effects context level and sets that part's
    effect number 1 to effect type \textbf{reverb}.
 
    "\texttt{s pre 2}" ("set preset 2"):
@@ -348,17 +351,17 @@ provisional
    repeat the effect type).
 
    "\texttt{..s 6 v 80}" ("up one level, set part 6 volume 80"):
-   This command drops one back up to part level, switches one to part 6 (but doesn't actually enable it), and
-   sets its volume to 80.
+   This command drops one back to part level, switches one to part 6 (but doesn't
+   enable it), and sets its volume to 80.
 
    "\texttt{/s ve cc 93}" ("to top level, set vector control cc 93"):
-   This command drops back up to the top level, and sets vector control for
+   This command drops up to the top level, and sets vector control for
    channel 1, X axis to respond to CC 93 leaving one in the vector context.
 
    Whenever intermediate values are omitted, the default or last-used value
    will be assumed.
-       All \textsl{standard} CLI inputs, as well as the return message numbers
-       should start from 1 with the following exceptions:
+   All \textsl{standard} CLI inputs, and the return message numbers,
+   should start from 1 with the following exceptions:
 
     \begin{itemize}
        \item Bank roots
@@ -366,14 +369,14 @@ provisional
        \item CCs
        \end{itemize}
 
-   These follow standard MIDI practice (and do the same in the GUI).
+   These follow standard MIDI practice in the CLI and in the GUI.
 
    The CLI prompt always
-   shows what level one is on, and the help lists are also mostly
+   shows what level one is on, and the help-lists are also
    context-sensitive, so one doesn't see a lot of irrelevent clutter.
-   \textsl{Yoshimi} instrument patches are still fully
-   compatible with \textsl{ZynAddSubFX} patches, and have ported across
-   new refinements with thanks.
+   \textsl{Yoshimi} instrument patches are fully
+   compatible with \textsl{ZynAddSubFX} patches, and we have ported across
+   new refinements with thanks to the Zyn authors.
    See \sectionref{sec:command_line}, for more information.
 
 \subsubsection{Audio Support}
@@ -429,9 +432,10 @@ provisional
    down the Ctrl key gives access to finer adjustment.  Also, horizontal as
    well as vertical mouse movement will adjust the knob.
 
-   Including the Mixer Panel, all the rotary controls and sliders will return
-   to their home positions if right-clicked anywhere in the control. In the case
-   of sliders not the peg itself. As of version 1.5.8 switches, buttons and
+   All rotary controls and sliders will return
+   to their home positions if right-clicked anywhere in the control.
+%  In the case of sliders not the peg itself.
+   As of version 1.5.8 switches, buttons and
    selectors will also home with a right-click.
 
    Part-editing windows carry the part number and voice name in the title bar.
@@ -454,7 +458,7 @@ provisional
 
    Thanks to the \textsl{ZynAddSubFX} developers, \textsl{Yoshimi} has pink
    as well as white noise available on Addsynth voices. Pink noise sounds
-   softer.  In \textsl{Yoshimi} version 1.6.0 we added spot noise, which has a
+   softer.  In \textsl{Yoshimi} version 1.6.0 we add spot noise, which has a
    sort of 'gritty' sound.
 
    The \textbf{Humanise} feature has had more interest so it's been upgraded.
@@ -462,37 +466,36 @@ provisional
    a tiny per-note random detune to an \textsl{entire} part (all engines in all
    kits), but only for that part.
 
-   Audio and MIDI preferences have been improved. If one sets (say) ALSA MIDI
-   and JACK audio, either from the GUI or the command line, the setting can be
+   Audio and MIDI preferences have been improved. If one sets ALSA MIDI
+   and JACK audio from the GUI or the command line, the setting can be
    saved and will be reinstated on the next run. These settings are
    per-instance, so if one has multiple sound cards, one can make full use of
    them.  Barring major system failures, there are no circumstances where
-   Yoshimi will fail to start.
+   \textsl{Yoshimi} will fail to start.
 
-   We have tested \textsl{Yoshimi} in recovery mode, logged in as root, with
-   no X server. Using the command \texttt{/usr/share/bin/yoshimi -A -i}
-   worked perfectly and auto-connected the keyboard so we could prove
-   everything worked.  Since version 1.5.11 it has been practical to provide
-   a compile time option to build a purely headless version.
+   We've tested \textsl{Yoshimi} in recovery mode, logged in as root, with
+   no X server. The command \texttt{/usr/share/bin/yoshimi -A -i}
+   worked perfect.y and auto-connected the keyboard.
+   Since version 1.5.11 it one can provide
+   a compile-time option to build a purely headless version.
 
-   Load and save dialogues intelligently recognise the history lists and offer
-   the appropriate first choice. External instrument loads and saves are now
+   Load and Save dialogues recognise the history lists and offer
+   the appropriate first choice. External instrument loads and saves are
    also remembered.
    For saves, on a restart, one is offered the home directory regardless
    of where \textsl{Yoshimi} was launched, but in the case of saving
    external instruments, one is always offered the name of the instrument
    in the currently selected part, prefixed with the home directory.
 
-   There is now a specific State menu item ("Save as Default") for saving
-   the current complete setup as the default. This file is always saved to
-   \textsl{Yoshimi}'s configuration directory,
+   There is a specific \textsl{State} menu item ("Save as Default") to save
+   the current complete setup as the default. The configuration file is always
+   saved to \textsl{Yoshimi}'s configuration directory,
    and will not show in history lists.
 
    If \textbf{Start With Default State} has been set, and a
-   default state has been saved, not only will a complete restart load this,
-   but a master reset will load this file, instead of doing a
+   default state has been saved, a complete restart will load this state,
+   and a master reset will load this file, instead of doing a
    first-time default reset.
-
    There is a "gotcha" with this, in that when saving the default state,
    one must \textsl{already} have set the \textbf{Start With Default State}
    switch, otherwise reloading
