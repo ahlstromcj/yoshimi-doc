@@ -37,7 +37,7 @@
    change the flanger's LFO frequency.
 %  One can disable the NRPN receiving by deselecting the "NRPN" checkbox
 %  from the main window (near "Master Keyshift" counter).
-   The controls can be sent on any MIDI channel 
+   The controls can be sent on any MIDI channel
    (the MIDI channels numbers are ignored).
 
    The parameters are:
@@ -148,7 +148,7 @@
    Here are the basic formats:
 
    \begin{enumerate}
-      \item Send NRPN: 
+      \item Send NRPN:
       \begin{itemize}
          \item MSB = 64 (same as for vectors)
          \item LSB = 0
@@ -412,11 +412,11 @@
   2 & LSB key       & Set master key shift, 52\textless=key\textless=76 (-36 to +36) \\
   7 & LSB volume    & Set master Volume 'volume' \\
   64-79 & LSB key   & Set channel-based (MSB-64) key shift, key-64 (-36 to +36) \\
-  80    & root      & Set CC to control Root path change (>119 disables) \\
-  81    & bank      & Set CC to control Bank change (>119 disables) \\
-  82    & >63       & Enable Program change otherwise disable \\
-  83    & >63       & Enable activation of part when program changed \\
-  84    & extended  & Set CC control Extended program change (>119 disables) \\
+  80    & root      & Set CC to control Root path change (\textgreater119 disables) \\
+  81    & bank      & Set CC to control Bank change (\textgreater119 disables) \\
+  82    & \textgreater63       & Enable Program change otherwise disable \\
+  83    & \textgreater63       & Enable activation of part when program changed \\
+  84    & extended  & Set CC control Extended program change (\textgreater119 disables) \\
   85    & parts     & Set number of available parts (16, 32 or 64) \\
   86    & x         & Save all dynamic settings \\
 
@@ -448,6 +448,41 @@
 
       \end{tabular}
    \end{table}
+
+\subsection{NRPN / Load From History Index}
+\label{subsection:nrpns_load_from_history_index}
+\index{new!NRPN History Loading}
+In \textsl{Yoshimi} V 1.6.0 there is now a method of loading external instruments,
+patch sets, etc. from their history lists. This is only practical if the relative history has been locked in settings.
+
+For all of these the NRPN MSB is 64 (0x40), and the LSB detirmines which list type
+is to be handled.
+
+   \begin{table}[H]
+      \centering
+      \caption{History Load Commands}
+      \label{table:history_load_commands}
+      \begin{tabular}{r r c l l l}
+\textbf{NRPN LSB} & \textbf{DATA MSB} & \textbf{DATA LSB} & \textbf{Type} & \textbf{Settings} \\
+        0 & part & index     & Instrument &  0 to 63 & 0 to 24 \\
+        1 & 0 & index        & Patch Set  & 0        & 0 to 24 \\
+        2 & 0 & index        & Scale      & 0        & 0 to 24 \\
+        3 & 0 & index        & State      & 0        & 0 to 24 \\
+        4 & channel & index   & Vector    & 0 to 15  & 0 to 24 \\
+        5 & 0 & index        & Midi Learn & 0        & 0 to 24 \\
+      \end{tabular}
+   \end{table}
+
+   The absolute maximum size of these lists is 24, but if an index is given that is
+   greater than the current list size an error will be reported.
+
+   If an instrument part number is greater than 63 then it will be loaded to any part
+   previously seen by the NRPN system, but if none was seen then the entire command
+   will be ignored, on the basis that no action is better than wrong action.
+
+   If a vector channel value is greater than 15 then \textsl{Yoshimi} will load this
+   to the channel that the vector was originally saved from.
+
 
    \textsl{Yoshimi} can run with neither GUI nor CLI input access. Working
    purely as a hidden MIDI device. To enable a tidy close, there is a new

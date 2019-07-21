@@ -1705,8 +1705,8 @@ These parameters are:
 
    Thus, one can control most of the formant features one-handed, quickly,
    while also playing on a keyboard.
-   If one's mouse has extra buttons on the sides (mine hasn't) you can also
-   use these to switch between the formats instead of moving the mouse across
+   If one's mouse has extra buttons on the sides (many haven't) these can
+   be used to switch between the formats instead of moving the mouse across
    to the next one.
    While making changes, one sees the respective knobs/sliders moving
    too; these are still fully functional.
@@ -1831,13 +1831,31 @@ These parameters are:
 \label{subsec:clipboard_presets}
 
    In many of the settings panels, there are buttons
-   labelled \textbf{C}, \textbf{P}, and \textbf{E}.
-   \textbf{E} is the editor window, discussed in
-   section \ref{subsubsec:freemode_envelope_settings}
+   labelled \textbf{C}, \textbf{P}.
+
+%   VVV doesn't make sense to me (will)
+%    , and \textbf{E}.
+%    \textbf{E} is the editor window, discussed in
+%   section \ref{subsubsec:freemode_envelope_settings}
+
    \textbf{C} and \textbf{P} are the clipboard/preset copy and paste
    dialogs, respectively.
    These buttons allow cut-and-paste for shorter sections of the XML
    configuration.
+
+   The first thing to be aware of is that one will only ever see items of a type
+   relevent to the section one is copy/pasting. Also, in the \textsl{clipboard}
+   there can only be one of each type (so making a fresh copy will overwrite any
+   previous one). However, the clipboard can hold many \textsl{different} types at
+   once. Once held here an entry can be pasted multiple times in any section that
+   has a matching type.
+
+   For example: one can copy an effect from system effects, then go to (say) part 4
+   effects and paste it there. Alternatively it is possible to copy the whole of
+   AddSynth from part 1 then paste it to AddSynth in part 6 kit item 4.
+
+   However, one can't copy an amplitude envelope then paste it to a filter one as
+   they are different types of envelopes.
 
    \index{preset!dialog}
    The preset dialog also provides a way
@@ -1845,7 +1863,7 @@ These parameters are:
    to save a preset to a preset file.
    The naming convention for a preset file is
    \texttt{presetname.presettype.xpz}, where
-   \textsl{presename} is the name one types into the \textbf{Copy to Preset}
+   \textsl{presetname} is the name one types into the \textbf{Copy to Preset}
    name field, \textsl{presettype} is the name that appears in the
    \textbf{Type} field, and \textsl{xpz} is the file-extension for compressed
    XML preset files.
@@ -1861,33 +1879,35 @@ These parameters are:
 \label{subsubsec:clipboard_copy}
 \index{subsubsec:clipboard!copy}
 
-   Note that \figureref{fig:copy_to_clipboard}
-   shows an example of the copying dialog for the clipboard.
+   Note that \figureref{fig:copy_to_clipboard/presets}\hspace {6 pt}shows an example of the copying
+   dialog for the clipboard and presets.
 
 \begin{figure}[H]
    \centering
    \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/copy-to-clipboard-preset.jpg}
-   \caption[Copy to Clipboard]{Copy to Clipboard/Presets}
-   \label{fig:copy_to_clipboard}
+   \caption[Copy to Clipboard/Presets]{Copy to Clipboard/Presets}
+   \label{fig:copy_to_clipboard/presets}
 \end{figure}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{Type}{clipboard!copy type}
-   Clipboard type for copying.
-   This field indicates the context (e.g h. "envamplitude") or name of the
-   clipboard to which the data will be copied.
-   If the preset is saved/copied to a file, this
-   field becomes the second part of the preset's file-name.
+   Section type for copying.
+   This field indicates the context (e.g "envfilter" - a filter envelope), also the
+   name of the section from which the data will be copied.
+   If the preset is saved/copied to a file, this field becomes the second part of
+   the preset's file-name.
 
-   \itempar{Clipboard list}{clipboard!list}
-   Clipboard list.
+   \itempar{Preset list}{preset!list}
+   Preset list.
    \index{preset!list}
-   This itemm is actually a list of preset files available to be selected for
-   this block of \textsl{Yoshimi} settings.
+   This item is actually a list of preset files available to be selected for
+   this block of \textsl{Yoshimi} settings. Some of these may be duplicates as we
+   have not yet found a way to separate different file locations in the way we
+   did for bank roots.
 
    \itempar{Copy to Preset}{preset!copy}
-   Clipboard to preset.
+   Copy to preset.
    Provides a way to specify the preset (and, indirectly, the preset file)
    to which this data should be copied.
 
@@ -1918,7 +1938,7 @@ These parameters are:
 
    \itempar{Copy to Clipboard}{clipboard!copy}
    \index{preset!copy}
-   Copies the preset to the clipboard.
+   Copies the section to the clipboard.
 
 \subsubsection{Clipboard/Preset Paste}
 \label{subsubsec:clipboard_paste}
@@ -1926,19 +1946,19 @@ These parameters are:
    \index{clipboard!paste}
    \index{preset!paste}
    Observe \figureref{fig:paste_to_clipboard}.
-   It shows an example of the pasting dialog for the clipboard.
+   It shows an example of the pasting dialog for presets immediately prior to making
+   the actual selection.
 
 \begin{figure}[H]
    \centering
    \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/paste-from-clipboard-preset.jpg}
-   \caption[Paste from Clipboard]{Paste from Clipboard/Presets}
+   \caption[Paste from Preset]{Paste from Preset}
    \label{fig:paste_to_clipboard}
 \end{figure}
 
    \begin{enumber}
-      \item \textbf{Add point}
       \item \textbf{Type}
-      \item \textbf{Clipboard list}
+      \item \textbf{Preset list}
       \item \textbf{Paste from Preset}
       \item \textbf{Paste from Clipboard}
    \end{enumber}
@@ -1946,20 +1966,21 @@ These parameters are:
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{Type}{clipboard!paste type}
-   Clipboard type for pasting.
-   This field indicates the context (e.g h. "envamplitude") or name of the
-   clipboard to which the data will be copied.
+   Clipboard/Preset type for pasting.
+   This field indicates the context (e.g "envfrequency") or name of the
+   section to which the data will be copied.
 
-   \itempar{Clipboard list}{clipboard!list}
-   Clipboard list.
+   \itempar{Preset list}{preset!list}
+   Preset list.
 
    \itempar{Paste from Preset}{preset!paste}
    Paste from preset.
-   Provides a way to specify the preset to which this data should be
-   copied.
+   Provides a way to specify the preset from which this data should be copied.
+   This remains deactivated until a selection has been made from the list.
 
    \itempar{Paste from Clipboard}{clipboard!paste}
-   Clipboard to preset.
+   Clipboard to section. Note, this is also shown deactivated but this is due to there
+   being no data in the clipboard for this type.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex

@@ -48,7 +48,7 @@
 
    In the voice window, each of the two oscillators has a \textbf{Source} and a
    \textbf{Local Oscillator}. The \textbf{Source} gives the choice of previous
-   voices as oscillators and the \textbf{Local Oscillator} gives you the choice
+   voices as oscillators and the \textbf{Local Oscillator} gives the choice
    of previously defined oscillators and the current (internal) oscillator.
 
    The sum of the voices are passed through filters and amplification to
@@ -336,11 +336,11 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{1.5.10/AddVoice.png}
+%   \includegraphics[scale=0.75]{1.5.10/AddVoice.png}
 
 % TODO FOR 1.6.0:  REPLACE THE ABOVE WITH THIS LINE IN Version 1.6.0
-%
-%  \includegraphics[scale=0.75]{1.6.0/AddVoice.png}
+
+  \includegraphics[scale=0.75]{1.6.0/AddVoice.png}
    \caption{ADDsynth Voice Parameters Dialog}
    \label{fig:addsynth_voice_parameters_dialog}
 \end{figure}
@@ -368,11 +368,11 @@
 
 % TODO FOR 1.6.0:  REPLACEMENT TEXT FOR VERSION 1.6.0
 %
-%  Another property of the voice is that one can tell \textsl{Yoshimi} to import
-%  a given lower-numbered voice, either as an oscillator, or as a modulator.
+  Another property of the voice is that one can tell \textsl{Yoshimi} to import
+  a given lower-numbered voice, either as an oscillator, or as a modulator.
 
-   Another property of the voice is that one can tell \textsl{Yoshimi} to
-   modulate a given voice with a lower-numbered voice.
+%   Another property of the voice is that one can tell \textsl{Yoshimi} to
+%   modulate a given voice with a lower-numbered voice.
 
    \begin{enumber}
       \item \textbf{Voice Number Tab}
@@ -690,7 +690,7 @@
 % TODO FOR 1.6.0: Uncomment the commented bullet.
 
    \begin{enumber}
-%     \item \textbf{Voice}
+     \item \textbf{Voice}
       \item \textbf{Sound}
       \item \textbf{Waveform graph}
       \item \textbf{Use}
@@ -706,23 +706,23 @@
 
 % TODO FOR 1.6.0: Uncomment the commented text.
 
-%  \itempar{Source}{voice oscillator!Source}
-%  ADDSynth Voice Import. Selects whether to import a lower-numbered voice as
-%  oscillator for this voice, or to generate a local voice. All parameters from
-%  the imported voice remain in effect, except for volume, panning, base
-%  frequency and pitch bend scaling factor. The voice is also converted to mono.
-%  Parameters in the current voice will then tweak the signal further.
+  \itempar{Source}{voice oscillator!Source}
+  ADDSynth Voice Import. Selects whether to import a lower-numbered voice as
+  oscillator for this voice, or to generate a local voice. All parameters from
+  the imported voice remain in effect, except for volume, panning, base
+  frequency and pitch bend scaling factor. The voice is also converted to mono.
+  Parameters in the current voice will then tweak the signal further.
 
    \itempar{Sound}{voice oscillator!sound}
    ADDSynth Oscillator Type (sound/noise).
    Sound/Noise choice.
    Select the mode of the oscillator (sound versus white noise).
 
-   Values: \texttt{Sound*, Noise (white), Noise (pink)}
+   Values: \texttt{Sound*, Noise (white), Noise (pink), Noise (spot)}
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=1.0]{1.3.9/voice-oscillator-sound-dropdown.png}
+   \includegraphics[scale=1.0]{1.6.0/voice_oscillator_sound_dropdown.png}
    \caption{Voice Oscillator Choices}
    \label{fig:voice_oscillator_choices}
 \end{figure}
@@ -739,8 +739,8 @@
 \end{figure}
 
    If white \textbf{Noise} is selected, then the waveform graph simply announces
-   "White Noise".  Also, the \textbf{Unison} control is
-   disabled.
+   "White Noise".  Also, the \textbf{Unison, Frequency, Modulator} controls are
+   all disabled.
 
 \begin{figure}[H]
    \centering
@@ -750,14 +750,27 @@
 \end{figure}
 
    If pink \textbf{Noise} is selected, then the waveform graph simply announces
-   "Pink Noise".  Also, the \textbf{Unison} control is
-   disabled.
+   "Pink Noise".  Also, the \textbf{Unison, Frequency, Modulator} controls are
+   all disabled.
 
 \begin{figure}[H]
    \centering
    \includegraphics[scale=0.75]{1.5.7/pink_noise_banner.png}
    \caption{Pink Noise in ADDSynth Voice}
    \label{fig:voice_oscillator_pink_noise}
+\end{figure}
+
+\index{new!spot noise}
+   If spot \textbf{Noise} is selected, then the waveform graph simply announces
+   "Spot Noise".  Also, the \textbf{Unison, Frequency, Modulator} controls are
+   all disabled.
+   Spot noise is based on white noise but has a very broken 'gritty' sound.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.75]{1.6.0/spot_noise_banner.png}
+   \caption{Spot Noise in ADDSynth Voice}
+   \label{fig:voice_oscillator_spot_noise}
 \end{figure}
 
    \itempar{Use (oscillator)}{voice oscillator!use}
@@ -772,8 +785,8 @@
 
 % TODO FOR 1.6.0: Uncomment the commented text.
 
-%  Unlike Source, using an oscillator from a different voice
-%  only imports the waveform, not any other parameters.
+  Unlike Source, using an oscillator from a different voice
+  only imports the waveform, not any other parameters.
 
    Values: \texttt{Internal*, Other oscillators ("Voice n")}
 
@@ -861,19 +874,19 @@
 
 % TODO FOR 1.6.0:  Replace the paragraph with the commented text.
 
-%  \itempar{Modulator Source}.
-%  AddSynth Modulator Source.
-%  \index{modulator!source}
-%  Use another voice as a modulator instead of the modulator of the internal
-%  voice. One can make a "modulation stack". All parameters from the imported
-%  voice remain in effect, except for volume, panning, base frequency and pitch
-%  bend scaling factor. The voice is also converted to mono. Parameters in the
-%  current voice will then tweak the modulator further.
-%  One can only select Local (i.e. Internal), or one from a lower numbered voice.
+  \itempar{Modulator Source}.
+  AddSynth Modulator Source.
+  \index{modulator!source}
+  Use another voice as a modulator instead of the modulator of the internal
+  voice. One can make a "modulation stack". All parameters from the imported
+  voice remain in effect, except for volume, panning, base frequency and pitch
+  bend scaling factor. The voice is also converted to mono. Parameters in the
+  current voice will then tweak the modulator further.
+  One can only select Local (i.e. Internal), or one from a lower numbered voice.
 
-   \itempar{Modulator Source}{modulator!external}
-   AddSynth Modulator Source.
-   \index{oscillator!external}
+%   \itempar{Modulator Source}{modulator!external}
+%   AddSynth Modulator Source.
+%   \index{oscillator!external}
    This feature allows one of the voices (of the up to 8 allowed in a single
    ADDsynth instrument) to be used as a modulator or external oscillator for
    another voice in the instrument.
@@ -945,12 +958,12 @@
 % TODO FOR 1.6.0:  Uncomment the commented text.
 
    \begin{enumber}
-%     \item \textbf{Follow voice}
-%        Applies all detuning in the main voice oscillator to the modulator as
-%        well. If turned off, the modulator will be completely unaffected by all
-%        detuning in the main voice oscillator, including detuned unison voices.
-%     \item \textbf{440Hz}
-%        Use 440Hz as base frequency for the modulator.
+     \item \textbf{Follow voice}
+        Applies all detuning in the main voice oscillator to the modulator as
+        well. If turned off, the modulator will be completely unaffected by all
+        detuning in the main voice oscillator, including detuned unison voices.
+     \item \textbf{440Hz}
+        Use 440Hz as base frequency for the modulator.
       \item \textbf{Detune slider}
          Fine Detune (cents).
          Values: \texttt{-35.00 to 35.00, 0*}
@@ -1126,14 +1139,14 @@
 
 % TODO FOR 1.6.0:  Uncomment the commented text.
 
-%  \itempar{Modulation Icon}{voice list!modulation icon}
-%  Modulation Icon.
-%  The modulation icon shows a rough rendering of the actual shape of the voice
-%  modulation, or the letters \textbf{M} or \textbf{V} followed by a number if
-%  the voice is using an external modulator oscillator or voice input,
-%  respectively.
-%  Note that this picture isn't updated if the voice is edited, until the voice
-%  list is closed and reopened.
+  \itempar{Modulation Icon}{voice list!modulation icon}
+  Modulation Icon.
+  The modulation icon shows a rough rendering of the actual shape of the voice
+  modulation, or the letters \textbf{M} or \textbf{V} followed by a number if
+  the voice is using an external modulator oscillator or voice input,
+  respectively.
+  Note that this picture isn't updated if the voice is edited, until the voice
+  list is closed and reopened.
 
    \itempar{Vol}{voice list!volume}
    Voice Volume.

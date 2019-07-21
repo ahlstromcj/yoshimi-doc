@@ -28,11 +28,11 @@
 \subsection{MIDI Learn / Basics}
 \label{subsec:midi_learn_basics}
 
-   In \textsl{Yoshimi}'s direct-access system, MIDI Learn is available, to
-   the extent that it can handle controls that have a range of 0 to 127.
+%   In \textsl{Yoshimi}'s direct-access system, MIDI Learn is available, to
+%   the extent that it can handle controls that have a range of 0 to 127.
 
    One can have multiple controls on the same CC.  But, although they all work,
-   only the last one updates the user inteface.  They are channel specific. So
+   only the last one updates the user interface.  They are channel specific. So
    if one is rich enough to have two MIDI keyboards, one can set them up to do
    quite different jobs.
    Some of the controls, like volume and pan, are immediate, but most are "next
@@ -127,17 +127,17 @@
 
    \index{midi!learn, slider quirk}
    Note that the majority of controls, including the sliders, are MIDI
-   learnable.  However, note that, for sliders to be learned, one must
+   learnable.  However, also note that, for sliders to be learned, one must
    click on the \textsl{track} of the slider, not the \textsl{thumb} of the
    slider.
 
-   If the \textsl{Yoshimi / MIDI Learn...} option is selected, and there are no
+   If the \textsl{Yoshimi / Midi Learn} button is pressed, and there are no
    MIDI-learn entries available yet, then the following empty dialog appears:
 
 \begin{figure}[H]
    \centering
    \includegraphics[scale=0.50]{1.5.0/MidiLearn-empty.png}
-   \caption{Empty MIDI Learn Dialog}
+   \caption{Empty Midi Learn Dialog}
    \label{fig:empty_midi_learn_dialog}
 \end{figure}
 
@@ -185,7 +185,7 @@
    movement in \textsl{Yoshimi}'s \textbf{Velocity Sense} knob.
 
    Once entries have been added, a fully-fleshed list of learned items is
-   presented if one then uses the \textsl{MIDI Learn} menu entry; one will
+   presented if one then uses the \textsl{Midi Learn} button; one will
    see a new window displaying the recently-learned controller. Along with a
    number of settings, one sees text with precise details of this complete
    action.
@@ -203,7 +203,7 @@
    Adding or deleting rows in this dialog, or changing the CC or channel
    number, will cause the rows to be sorted again.
    \index{MIDI Learn!200 lines}
-   The maximum number of MIDI-Learned lines is 200.
+   The maximum number of MIDI-Learned lines per session is 200.
 
    The major items of this dialog are the editor settings available:
 
@@ -222,11 +222,9 @@
       \item \textbf{Clear}
    \end{enumber}
 
-   Now use the \texttt{Yoshimi} drop-down menu
-   and click on \texttt{Midi Learn}, to see a new window displaying the
-   recently-learned controller. Along with a number of settings, it shows text
-   with precise details of this complete
-   action.
+   Now click on the \texttt{Midi Learn} button, to see a new window displaying
+   the recently-learned controller. Along with a number of settings, it shows
+   text with precise details of this complete action.
 
    Also shown is an \texttt{activity} LED that flickers when the associated
    CC/channel is received.
@@ -244,8 +242,8 @@
    CC.
    Incoming CC.
    Provides the value of the controller that is learned.
-   For example, a value of 7 indicates that the control value affects the main
-   volume of \texttt{Yoshimi}.
+   For example, a value of 7 indicates the control value that would normally
+   affect the main volume of \texttt{Yoshimi}.
    Note that NRPNs are \textsl{not included}.
    Also note that CC has no default values; the values are whatever the
    incoming learned values are.
@@ -417,7 +415,7 @@
 
    \textsl{However}, this means one is changing both the main volume
    \textsl{and} the part 1 volume at the same time.  So now open the
-   \textbf{MIDI learn} window via the \textbf{Yoshimi} drop-down menu. One will
+   \textbf{MIDI learn} window via the \textbf{Yoshimi} button. One will
    see that it now has a line detailing the incoming CC and channel, along with
    other controls and the control function named \textbf{Main Volume}.  Click
    on the \textbf{Block} check box, and one will see that the part 1 volume
@@ -445,13 +443,13 @@
    A point that is not obvious is that although incoming CCs are per-channel,
    the actions are per-\textsl{part}, so if one sets controller 94 for part 1
    volume and then set it again for part 2 volume, one gets \textsl{two} lines,
-   each controlling just one part but \textsl{acting together}.  Change the
+   each controlling a different part but \textsl{acting together}.  Change the
    \textbf{Min} and \textbf{Max} of one of them to 127 and 0 respectively and
    one will increase in volume while the other reduces.
 
    Volume, pan, and most of the effects are \textsl{immediate}, while most of
-   the other controls start on the \textsl{next note}.  Eventually I want to
-   get LFOs, filters etc. to be immediate, but that's for another release!
+   the other controls start on the \textsl{next note}.  Eventually it would be
+   nice to get filters etc. to be immediate, but that's for another release!
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex
