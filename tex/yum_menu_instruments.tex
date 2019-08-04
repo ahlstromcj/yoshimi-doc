@@ -104,7 +104,7 @@
 \begin{figure}[H]
    \centering
 %  \includegraphics[scale=0.75]{1.3.9/instruments_show_stored.png}
-   \includegraphics[scale=0.75]{1.4.1/Instrument.png}
+   \includegraphics[scale=0.75]{1.6.0/Instrument.png}
    \caption[Show Stored Instruments]{Instruments Stored in Current Banks}
    \label{fig:instruments_show_stored}
 \end{figure}
@@ -112,7 +112,7 @@
    As \figureref{fig:instruments_show_stored},
    shows, this is a very complex dialog with a lot of options.
    The figure shows a default setup, with the first bank of instruments,
-   \textbf{32. Cormi\_Sound}, listed.
+   \textbf{5. Arpeggios}, listed.
    If one drops this list down (shown later), one also observes that the banks
    are numbered in increments of 5, to make it easier for a user to insert his
    or her own bank(s) of instruments.
@@ -167,6 +167,7 @@
 
    \begin{enumber}
       \item \textbf{Bank Names}
+      \item \textbf{Search}
       \item \textbf{Roots}
       \item \textbf{Banks}
       \item \textbf{Instrument and Bank Matrix}
@@ -205,10 +206,9 @@
    two columns to save space):
 
    \begin{verbatim}
-      Arpeggios          Pads
-      Bass               Plucked
-      Brass              Reed_and_Wind
-      chip               Rhodes
+      Arpeggios          Plucked
+      Bass               Reed_and_Wind
+      Brass              Rhodes
       Choir_and_Voice    Splited
       Drums              Strings
       Dual               Synth
@@ -216,7 +216,8 @@
       Guitar             The_Mysterious_Bank
       Misc               Will_Godfrey_Collection
       Noises             Will_Godfrey_Companion
-      Organ
+      Organ              chip
+      Pads               Cormi_Sound
    \end{verbatim}
 
    The directories (banks) shown above come from the default \textbf{root}
@@ -265,6 +266,25 @@
    Right-clicking or left-clicking on a bank in the drop-down list
    causes the instrument list of the previous bank to be replaced by the
    instrument list of the newly-selected bank.
+
+   \itempar{Search}{instruments!search}
+   Instruments Search Button.
+   This feature arrived with \textsl{Yoshimi} V 1.6.0 and provides a
+   way of finding instruments of a given type right across all known banks and bank roots.
+
+
+\begin{figure}[H]
+   \centering
+%  \includegraphics[scale=0.75]{menu/Instrument/bank-list.jpg}
+   \includegraphics[scale=0.75]{1.6.0/Bank_Search.png}
+   \caption[A search list List]{A search list}
+   \label{fig:bank_list}
+\end{figure}
+   The top field is a drop-down menu that gives all the types \textsl{Yoshimi} recognises, and below this is the list of those
+   most recently found. As well as the names of the instruments
+   one sees the bank root ID, bank ID and instrument number. All of these are the values that will be recognised by MIDI.
+
+   Clicking on any entry will immediately load the instrument into the current part.
 
    \itempar{Roots}{instruments!roots}
    Instruments Roots Button.
@@ -376,6 +396,8 @@
    \itempar{Show synth engines}{instruments!show engines}
    If enabled, then the usage of each of the \textsl{Yoshimi} synthesis
    engines is indicated by color coding, as shown in the figure above.
+
+   \textbf{Note} This also affects the new search feature, as at startup there is a scan of all banks checking for the instrument engines and type.
 
    \itempar{Close}{instruments!Close}
    Closes the window.

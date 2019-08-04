@@ -201,8 +201,7 @@
    settings for any of the components which support copy/paste operations.
    This is done with preset files (\texttt{.xpz}), which get stored in the
    folders indicated by \textbf{Paths / Preset Dirs...}.
-   Note that the number of preset directories that can be set is limited to 128
-   (the same as for roots and banks).
+   Note that the number of preset directories that can be set is limited to 1000 (unlike roots and banks).
 
 \subsubsection{Automation}
 \label{subsubsec:stock_settings_elements_automation}
@@ -1884,7 +1883,7 @@ These parameters are:
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/copy-to-clipboard-preset.jpg}
+   \includegraphics[scale=0.75]{1.6.0/Filter_Copy.png}
    \caption[Copy to Clipboard/Presets]{Copy to Clipboard/Presets}
    \label{fig:copy_to_clipboard/presets}
 \end{figure}
@@ -1902,9 +1901,9 @@ These parameters are:
    Preset list.
    \index{preset!list}
    This item is actually a list of preset files available to be selected for
-   this block of \textsl{Yoshimi} settings. Some of these may be duplicates as we
-   have not yet found a way to separate different file locations in the way we
-   did for bank roots.
+   this block of \textsl{Yoshimi} settings. Since \textsl{Yoshimi} V 1.6.0 the
+   different preset root locations have been made selectable in a similar style
+   as bank roots.
 
    \itempar{Copy to Preset}{preset!copy}
    Copy to preset.
@@ -1913,16 +1912,16 @@ These parameters are:
 
    To save to a preset, type the desired name of the setting.  This entry
    will enable this button.  When the button is pressed, the preset will
-   be saved to the default preset directory.
-   Be sure to set up a default present directory where ordinary users have write
-   permissions!
+   be saved to the current preset directory.
+   Be sure to set up a current preset directory where ordinary users have
+   write permissions!
    A good choice for a preset directory is
    \texttt{\textasciitilde/.config/yoshimi/presets}.
    \index{preset files!.ADnoteParameters.xpz}
    The file-name of the of the preset will be a non-hidden file such as
 
    \begin{verbatim}
-      my_preset.ADnoteParameters.xpz
+      my_preset.Paddsyth.xpz
    \end{verbatim}
 
    The middle part of this name is shown near the top of the preset dialog, as
@@ -1932,6 +1931,15 @@ These parameters are:
    file-name to distinguish it from other versions of the preset.
    Only the type-name will ever be visible in the \textsl{Yoshimi}
    presets \textbf{Type} field.
+
+   There is also a legacy type for some engine presets, an example would be.
+   \begin{verbatim}
+      Crash.ADnoteparameters.xpz
+   \end{verbatim}
+   But from \textsl{Yoshimi}V 1.6.0 while one can still load this, it would be saved as
+   \begin{verbatim}
+      Crash.Paddsyth.xpz
+   \end{verbatim}
 
    Note that \textsl{Yoshimi} ships with a number of non-hidden \texttt{.xpz}
    files.
@@ -1951,7 +1959,7 @@ These parameters are:
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/paste-from-clipboard-preset.jpg}
+   \includegraphics[scale=0.75]{1.6.0/Frequency_Paste.png}
    \caption[Paste from Preset]{Paste from Preset}
    \label{fig:paste_to_clipboard}
 \end{figure}
