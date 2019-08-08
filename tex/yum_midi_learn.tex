@@ -297,7 +297,8 @@
    Limit/Compression switch.
    Limiter versus compression.
    The Min/Max range can either be in the style of a limiter or a compression.
-   Set to \textbf{limit}, the \textbf{Min} and \textbf{Max} will be hard cutoffs.
+   Set to \textbf{limit}, the \textbf{Min} and \textbf{Max} will be hard
+   cutoffs.
    For example, if \textbf{Min} is 20 and the incoming value is 5, then the
    result is 20.
 
@@ -318,13 +319,11 @@
 
    Values: \texttt{Checked, Unchecked}
 
-   For devices that send high resolution controllers as NRPNs.
-   Also, these lines default to having \textbf{Block} set.
-   This is so that the NRPN is
-   not passed on to \textsl{Yoshimi}, which would result in "go away" messages
-   or obscure actions. However, like ordinary CCs, they will stack and one can
-   set several lines with the same NRPN performing mutiple actions, and then
-   unblock all but the last one.
+   Also, for devices that send high resolution controllers as NRPNs, the lines default to having \textbf{Block} set. This is so that the NRPN is not passed
+   on to \textsl{Yoshimi}, which would result in "go away" messages or obscure
+   actions. However, like ordinary CCs, they will stack and one can set several
+   lines with the same NRPN performing mutiple actions, and then unblock all
+   but the last one.
 
    The way this fits in with the rest is that the incoming data values are
    combined as a 14 bit number, then (as a floating point number) divided by
