@@ -20,8 +20,8 @@
    \index{CLI}
    \index{cmd}
    \index{command line}
-   \textsl{Yoshimi} provides a command-line mode of operation where most
-   aspects of the application can be controlled via text commands.
+   \textsl{Yoshimi} provides a command-line mode of operation where almost
+   all aspects of the application can be controlled via text commands.
    This mode is useful for blind people, those with motor control problems
    and for programmers, for example.
    These text commands can be put into a script file, and that script can then
@@ -170,12 +170,14 @@
    From here one can set a preset for this effect:
 
    \begin{verbatim}
-      yoshimi 4+ eff 1 reverb > s pre 3
+      yoshimi 4+ eff 1 reverb-1 > s pre 3
    \end{verbatim}
 
    Since V 1.5.0 the \textbf{pre}sets have been shown in the prompt, and one
    will still get a confirmation message. Also, it used to be necessary to
    enter \textbf{ty}pe for an effect but since V 1.5.10 the name is entered directly.
+   Note that when entering effects, there will always be a preset. It will be number 1
+   unless it is changed.
 
    Settings that follow in a direct command "path" through several levels
    can be made all at once, and one will be left at the appropriate level.
@@ -183,8 +185,17 @@
 
    \begin{verbatim}
       yoshimi part 4+ > s ef 2 re
-      yoshimi p4+ eff 2 reverb >
+      yoshimi p4+ eff 2 reverb-1>
    \end{verbatim}
+
+   A new feature in \textsl{Yoshimi} V 1.6.0 is a warning when an effect doesn't have the default
+   settings for the given preset. This is in the form of a question mark on the end of the line.
+   \begin{verbatim}
+      yoshimi p4+ eff 2 reverb-1? >
+   \end{verbatim}
+   This warning will be there as soon as one changes any of the effect controls until either
+   another preset or effect is selected. It will also show if a patchset or instrument is loaded
+   that was previously saved with altered effects controls.
 
    One cannot combine \texttt{type} and \texttt{preset} as they
    are both at the same level.
@@ -192,7 +203,7 @@
    To go back one level, use the ".." command (reminiscent of the \texttt{cd ..} operation in an OS command shell):
 
    \begin{verbatim}
-      yoshimi p4+ eff 2 reverb > ..
+      yoshimi p4+ eff 2 reverb-5 > ..
       yoshimi part 4+ >
    \end{verbatim}
 
@@ -207,7 +218,7 @@
    any other command.  Starting where we were before:
 
    \begin{verbatim}
-      yoshimi p4+ eff 2 reverb > .. s vol 70
+      yoshimi p4+ eff 2 reverb-1 > .. s vol 70
       yoshimi part 4+ >
    \end{verbatim}
 
@@ -744,10 +755,14 @@ to see what controls were available in each context.
    Numbered effect preset to n. \\
  \texttt{(effect) Send [n1] [n2]} &
    Current part to system effect n1 at volume n2. \\
-\texttt{PRogram [n]/[s]} &
-   Instrument ID / CLear sets default. \\
+\texttt{PRogram [n]/[[s [n]]} &
+   Instrument ID / CLear sets default, Group (n) loads from search list. \\
 \texttt{NAme [s]} &
    The display name the part can be saved with. \\
+\texttt{Humanise Pitch [n]} &
+   A small random detune. \\
+\texttt{Humanise Velocity [n]} &
+   A small random velocity reduction. \\
 \texttt{Channel [n]} &
    Channel (32 disables, 16 note off only).   \\
 \texttt{Destination [s]} &
@@ -874,7 +889,7 @@ to see what controls were available in each context.
    \begin{table}[H]
       \centering
       \caption{MIDI Emulators}
-      \label{table:yoshimi_part_midi_emolators}
+      \label{table:yoshimi_part_midi_emulators}
       \begin{tabular}{l l}
 \texttt{MOEmulate [n]} &
    emulate modulation controller. \\
@@ -980,9 +995,11 @@ to see what controls were available in each context.
 \texttt{EQUal [n]} &
    Equal temper variation. \\
 \texttt{Type [s]} &
-   Sound type (Oscillator, White noise, Pink noise). \\
-\texttt{Source [n]} &
-   Oscillator voice number (-1 for self). \\
+   Sound type (Oscillator, White noise, Pink noise, Spot noise). \\
+\texttt{SOurce [n]} &
+   Voice source number (Local for self). \\
+\texttt{OSCillator [n]} &
+   Oscilator source number (Internal for self). \\
 \texttt{Phase [n]} &
    Relative voice phase. \\
 \texttt{Minus [s]} &
@@ -1029,7 +1046,7 @@ to see what controls were available in each context.
 
 \texttt{[s]} &
    Directly set the type (OFF, Morph, Ring, Phase, Frequency, Pulse width). \\
-\texttt{Source [[s]/[n]]} &
+\texttt{SOurce [[s]/[n]]} &
    Oscillator source (Local, voice number). \\
 \texttt{Volume [n]} &
    Modulator depth.  \\
@@ -1037,9 +1054,11 @@ to see what controls were available in each context.
    Velocity sensing sensitivity. \\
 \texttt{Damping [n]} &
    Higher frequency relative damping. \\
-\texttt{Local [[s]/[n]]} &
+\texttt{OSCillator [[s]/[n]]} &
    Modulation oscillator (Internal, modulator number). \\
-\texttt{PHase [n]} &
+\texttt{FOLlow [s]} &
+   Use source oscillator detune (ON, other). \\
+\texttt{SHift [n]} &
    Oscillator relative phase. \\
 \texttt{WAveform ...} &
    Enter the modulator waveform context. \\
@@ -2052,9 +2071,6 @@ DynFilter presets:
 
    The \textbf{X/Y Features} command sets the features for the
    selected axis, and also if they are to be off or reversed.
-%   See the \textbf{Features} section,
-%   \sectionref{subsec:command_line_command_descriptions}, for more information.
-%   It seems to indicate a feature range of 1 to 4, not 2 to 4.
 
    The \textbf{X/Y Control [n1] [n2]} command
    sets the n2 CC to use for the X or Y feature n1 = 2 to 4.
@@ -2185,23 +2201,21 @@ DynFilter presets:
 \end{longtable}
 \end{center}
 
-%     \end{tabular}
-%  \end{table}
-
 A few more detailed descriptions occur in the following sections, where there
 is not enough room in the table above.
 
-% \paragraph{List / Banks [n]}
-% \label{paragraph:command_line_list_banks}
-%
-%    This command shows all of the banks present in either the numbered ([n])
-%    bank root, or in the current one (if no number is provided).
-%
-% \paragraph{List / Instruments [n]}
-% \label{paragraph:command_line_list_instruments}
-%
-%    This command shows all of the instruments present in either the numbered
-%    ([n]) bank root, or in the current one (if no number is provided).
+\subsubsection{Group List [s]}
+\label{subsec:command_line_instrument_group_list}
+   By itself, \textbf{Groups} will show what instrument types are available.
+   Repeating the command wiith one of these names will then search the entire
+   bank structure listing the ones of that type, along with an index number.
+   Assuming one is at part level, load this instrument into the current part with:
+   \begin{verbatim}
+      set instrument group (n)
+   \end{verbatim}
+
+   Unfortunately many instrument authors didn't identify a type, so the
+   \textbf{undefined} list is probably the longest.
 
 \subsection{List / History [s]}
 \label{subsec:command_line_list_history}
@@ -2234,14 +2248,6 @@ is not enough room in the table above.
    Only now you haven't, because loading \textsl{Yoshimi}
    afresh would not have seen the older file, so now, saving
    will offer the home directory to put a new name in.
-
-% \paragraph{List / Effects [s]}
-% \label{paragraph:command_line_list_effects}
-%
-%    Show the effect types.
-%    [s] = 'All' includes preset numbers and names.
-%    If this command is called from the Effects level, then one see only the name
-%    of the current effect and the number of presets.
 
 \subsubsection{Load/Save List}
 \label{subsec:command_line_loadsave_list}
@@ -2324,12 +2330,6 @@ is not enough room in the table above.
    In the table that follow, we leave off the commands noted above
    (see \sectionref{subsec:command_line_top_command_list}).  Also
    note that more complete descriptions follow this table.
-
-%  \begin{table}[H]
-%     \centering
-%     \caption{Yoshimi Config Commands}
-%     \label{table:yoshimi_text_config_commands}
-%     \begin{tabular}{l l}
 
 \begin{center}
 \begin{longtable}{p{4cm} p{10cm}}
@@ -2456,184 +2456,8 @@ is not enough room in the table above.
 \end{longtable}
 \end{center}
 
-%     \end{tabular}
-%  \end{table}
-
    '*' marks entries that need to be saved, and \textsl{Yoshimi}
    restarted, to activate them.
-
-% \paragraph{Config / Oscillator [n]}
-% \label{paragraph:command_line_config_oscillator}
-%
-%    This sets the size of the buffer used for both AddSynth and PadSynth
-%    oscillators, and is always a power of 2.
-%
-% \paragraph{Config / BUffer [n]}
-% \label{paragraph:command_line_config_buffer}
-%
-%    This is the size of the audio buffer that \textsl{Yoshimi} uses.  For ALSA
-%    audio, it will always be the same size as ALSA's buffering, but for JACK it
-%    can be the same, bigger, or smaller. It also is always a power of 2.
-%
-% \paragraph{Config / PAdsynth [n]}
-% \label{paragraph:command_line_config_padsynth}
-%
-%    Sets the quality of the intepolation that PadSynth uses on its wavetables.
-%    'Linear' is faster, but 'Cubic' is (potentially) very slightly better
-%    quality.
-%
-% \paragraph{Config / Virtual [n]}
-% \label{paragraph:command_line_config_virtual}
-%
-%    This setting controls the layout of the virtual keyboard, and can match the
-%    commonest computer keyboards.
-%
-% \paragraph{Config / Xml [n]}
-% \label{paragraph:command_line_config_xml}
-%
-%    Sets the amount of compression used on all
-%    \textsl{Yoshimi}'s data files. 9 is the most-compressed setting.
-%    0 is no compression, so that the configuration file
-%    can be read in an ordinary text editor.
-%
-% \paragraph{Config / REports [s]}
-% \label{paragraph:command_line_config_reports}
-%
-%    Determines where almost all information and error messages will be sent. A
-%    few will always go to \texttt{stderr} (such as the ones reporting a GUI
-%    problem).
-%
-% \paragraph{Config / STate [s]}
-% \label{paragraph:command_line_config_state}
-%
-%    Sets whether a pre-saved default state file will be loaded on start-up.
-%
-% \paragraph{Config / Hide [n]}
-% \label{paragraph:command_line_config_hide}
-%
-%    Sets to ignore non-fatal system errors, or verbose messages.
-%
-% \paragraph{Config / Display [s]}
-% \label{paragraph:command_line_config_display}
-%
-%    Enables \textsl{Yoshimi}'s start-up splash screen (which is
-%    enabled at first time start).
-%
-% \paragraph{Config / Time [s]}
-% \label{paragraph:command_line_config_time}
-%
-%    Attaches the time an instrument took to load and initialize to the loading
-%    message.
-%
-% \paragraph{Config / Include [s]}
-% \label{paragraph:command_line_config_include}
-%
-%    Reports version information on all data failures.
-%
-% \paragraph{Config / Keep [s]}
-% \label{paragraph:command_line_config_keep}
-%
-%    Sets up to innclude all data on file saves, including data for
-%    inactive and random elements.
-%
-% \paragraph{Config / Gui [s]}
-% \label{paragraph:command_line_config_gui}
-%
-%    Run with the graphic user interface enabled.
-%
-% \paragraph{Config / Cli [s]}
-% \label{paragraph:command_line_config_cli}
-%
-%    Run with the command-line interface enabled.
-%
-% \paragraph{Config / MIdi [s]}
-% \label{paragraph:command_line_config_midi}
-%
-%    Sets whether MIDI input comes from JACK or from ALSA.
-%
-% \paragraph{Config / AUdio [s]}
-% \label{paragraph:command_line_config_audio}
-%
-%    Sets whether audio is passed out to JACK or ALSA.
-%
-% \paragraph{Config / ALsa Midi [s]}
-% \label{paragraph:command_line_config_alsa_midi}
-%
-%    Sets the name of an ALSA MIDI source to which
-%    \textsl{Yoshim}i will try to connect.
-%
-% \paragraph{Config / ALsa Audio [s]}
-% \label{paragraph:command_line_config_alsa_audio}
-%
-%    Sets the name of a hardware audio device to which ALSA will try to connect.
-%
-% \paragraph{Config / ALsa Sample [n]}
-% \label{paragraph:command_line_config_alsa_sample}
-%
-%    Sets the sampling rate when using ALSA audio.
-%
-% \paragraph{Config / Jack Midi [s]}
-% \label{paragraph:command_line_config_jack_midi}
-%
-%    Sets the name of a JACK MIDI source to which
-%    \textsl{Yoshimi} will try to connect.
-%
-% \paragraph{Config / Jack Server [s]}
-% \label{paragraph:command_line_config_jack_server}
-%
-%    Sets the name of an audio server to which JACK will try to connect.
-%
-% \paragraph{Config / Jack Auto [s]}
-% \label{paragraph:command_line_config_jack_auto}
-%
-%    Determines whether JACK will try to connect the main L=R audio outputs at
-%    start-up time.
-%
-% \paragraph{Config / ROot [n]}
-% \label{paragraph:command_line_config_root}
-%
-%    Provides the MIDI CC that \textsl{Yoshimi} expects bank root changes to come
-%    from.
-%
-% \paragraph{Config / BAnk [n]}
-% \label{paragraph:command_line_config_bank}
-%
-%    Provides the MIDI CC that \textsl{Yoshimi} expects bank changes to come from.
-%
-% \paragraph{Config / PRogram [s]}
-% \label{paragraph:command_line_config_program}
-%
-%    Determines whether MIDI program changes are honored or ignored.
-%
-% \paragraph{Config / ACtivate [s]}
-% \label{paragraph:command_line_config_activate}
-%
-%    Enables a part when it gets a MIDI program change message,
-%    if it was disabled.
-%
-% \paragraph{Config / Extended [s]}
-% \label{paragraph:command_line_config_extended}
-%
-%    Sets a MIDI CC for receiving program changes for the top (extra)
-%    32 instruments in a bank.
-%
-% \paragraph{Config / Quiet [s]}
-% \label{paragraph:command_line_config_quiet}
-%
-%    Sets up to ignore a MIDI 'reset all controllers' message.
-%
-% \paragraph{Config / Log [s]}
-% \label{paragraph:command_line_config_log}
-%
-%    Displays the value of received MIDI CCs.
-%
-% \paragraph{Config / SHow [s]}
-% \label{paragraph:command_line_config_show}
-%
-%    A setting for the GUI MIDI learn editor, where [s] is 'Enable', or some
-%    other token to disable the feature.
-%    This setting indicates to automatically open the MIDI-learn editor window
-%    when a sucessful 'learn' has been made.
 
 \subsection{Command Descriptions}
 \label{subsec:command_line_command_descriptions}
@@ -2970,9 +2794,13 @@ is not enough room in the table above.
    crash \textsl{Yoshimi} with out of range values.
    It mostly updates the GUI too.
 
-   Since V1.5.11 users are strongly discouraged from using it as numerical
-   values will be changing and all available controls are now provided in a
-   fully protected manner by the above listed commands.
+%   Since V1.5.11 users are strongly discouraged from using it as numerical
+%   values will be changing and all available controls are now provided in a
+%   fully protected manner by the above listed commands.
+
+    Since V 1.6.0 direct access has been disabled as it no longer produces
+    valid data. Also, all available controls are now provided in a fully
+    protected manner.
 
    For developers there is relevant information within the source code.
 
