@@ -661,7 +661,7 @@
 \begin{figure}[H]
    \centering
 %  \includegraphics[scale=1.0]{1.3.9/edit-instrument.png}
-   \includegraphics[scale=1.0]{1.5.7/edit-instrument.png}
+   \includegraphics[scale=1.0]{1.6.0/edit_instrument.png}
    \caption{Part Edit (Instrument) Dialog}
    \label{fig:instrument_edit_dialog}
 \end{figure}
@@ -693,7 +693,8 @@
       \end{enumber}
       \item \textbf{Kit Edit}
       \item \textbf{Effects}
-      \item \textbf{Rnd. Det.}, which is now a \textbf{Humanise} slider.
+      \item \textbf{Detune}, slider, part of the extended \textbf{Humanise}.
+      \item \textbf{Velocity}, slider, part of the extended \textbf{Humanise}.
       \item \textbf{Close}
    \end{enumber}
 
@@ -801,16 +802,25 @@
    If the \textbf{Bypass} item is checked, then the effect is not
    used; it is taken out of the circuit.
 
-   \itempar{Humanise (Rnd. Det.)}{edit!rnd det}
-   Small Random Detune, Humanise.
-   \index{humanise}
-   \index{edit!humanise}
-   Sets the random detune value of the whole \textsl{part} in
-   cents.
-   In the most recent versions of \textsl{Yoshimi}, this
-   item has been replaced by a \textbf{Humanise} slider.
-   This value is an experimental feature.  It lends some complexity or
-   piquancy to the part.
+   \itempar{Detune (Humanise)}{edit!detune}
+   Small Random Detune.
+   \index{Humanise}
+   \index{edit!detune}
+
+   \itempar{Velocity (Humanise)}{edit!velocity}
+   Small Random Velocity Attenuation.
+   \index{Humanise}
+   \index{edit!velocity}
+
+   There used to be a single Humanise control which set a random detune in cents.
+   Since \textsl{Yoshimi} V 1.6.0 this has become the detune component of Humanise.
+
+   The velocity slider gives an independent random attenuation as a percentage of
+   the full output. This, as well as changing the perceived volume, will change any
+   velocity sensing features, such as filters.
+
+   Combined, they lend considerable complexity or piquancy to the part. Both have the same
+   numeric range.
 
    Values: \texttt{0* to 50}
 
