@@ -58,7 +58,7 @@
    \centering
    \includegraphics[scale=1.00]{1.6.0/Front.png}
 \end{figure}
-provisional
+
 \clearpage                             % moves Contents to next page
 
 \tableofcontents
@@ -338,9 +338,9 @@ provisional
    "\texttt{s p 4 pr 6}" ("set part 4 program 6"):
    This command sets part 4 to the instrument with ID 6 from the current bank.
    It also leaves one at the part context level and pointed to part 4.
-   Additionally, it will activate that part if it was off (and the
-   configuration setting is checked). In most cases the words \textbf{program}
-   and \textbf{instrument} are interchangable.
+   Additionally, the fact that it loaded an instrument means it will activate
+   that part if it was off (and the configuration setting is checked). In most
+   cases the words \textbf{program} and \textbf{instrument} are interchangable.
 
    "\texttt{s ef 1 rev}" ("set effect 1 reverb"):
    This command moves one to the effects context level and sets that part's
@@ -425,8 +425,8 @@ provisional
 
    One can direct messages to either \texttt{stderr}
    (the error output of a terminal console) or the \textbf{Reports} window
-   on the fly. If one chose \texttt{stderr}, the \textbf{Reports} button is
-   greyed out.
+   on the fly. If one chose \texttt{stderr}, the \textbf{Reports} window is
+   inactive.
 
    One can use the mouse scroll wheel to adjust rotary controls. Holding
    down the Ctrl key gives access to finer adjustment.  Also, horizontal as
@@ -474,9 +474,10 @@ provisional
    \textsl{Yoshimi} will fail to start.
 
    We've tested \textsl{Yoshimi} in recovery mode, logged in as root, with
-   no X server. The command \texttt{/usr/share/bin/yoshimi -A -i}
-   worked perfect.y and auto-connected the keyboard.
-   Since version 1.5.11 it one can provide
+   no X server.
+
+   The command \texttt{/usr/share/bin/yoshimi -A -i} worked perfectly and
+   auto-connected the keyboard. Since version 1.5.11 it one can provide
    a compile-time option to build a purely headless version.
 
    Load and Save dialogues recognise the history lists and offer
