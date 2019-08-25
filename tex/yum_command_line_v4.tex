@@ -2217,7 +2217,7 @@ is not enough room in the table above.
    Unfortunately many instrument authors didn't identify a type, so the
    \textbf{undefined} list is probably the longest.
 
-\subsection{List / History [s]}
+\subsection{History List [s]}
 \label{subsec:command_line_list_history}
 
    Show the recent history of the following items [s]:
@@ -2364,9 +2364,19 @@ is not enough room in the table above.
    Determines where almost all information and error messages will be sent. A
    few will always go to \texttt{stderr} (such as the ones reporting a GUI
    problem). \\
+\texttt{SAved [s]} &
+   Saved instrument type. (Legacy - .xiz, Yoshimi - .xiy, Both).\\
+\texttt{ENGine [s]} &
+   Enable instrument engines and types info (OFF, {other})
+   Slower initial start, but bank instruments can be selected by type and
+   engines will be identified in lists.\\
+\texttt{EXPose [s]} &
+   Show current context level (ON, OFF, PRompt).\\
 \texttt{STate [s]} &
    * Autoload default at start (Enable; other = disable).
    Sets whether a pre-saved default state file will be loaded on start-up. \\
+\texttt{SIngle [s]} &
+   * Force 2nd startup to open new instance instead (ON, other)\\
 \texttt{Hide [s]} &
    Hide non-fatal errors (Enable; other = disable).
    Sets to ignore non-fatal system errors, or verbose messages. \\
@@ -2390,6 +2400,9 @@ is not enough room in the table above.
 \texttt{Cli [s]} &
    * Run with CLI (Enable, Disable).
    Run with the command-line interface enabled. \\
+\texttt{Lock [si][s2]} &
+   Lock history of group s1 (ON, OFF).
+   Groups - INstrument, PAtchset, SCale, STate, VEctor, MLearn. \\
 \texttt{MIdi [s]} &
    * Connection type (Jack, Alsa).
    Sets whether MIDI input comes from JACK or from ALSA.
