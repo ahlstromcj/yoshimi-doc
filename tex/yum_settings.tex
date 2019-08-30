@@ -268,8 +268,8 @@
    \itempar{Direct part audio}{automation!part audio}
    Direct part audio is JACK-specific, and allows one to apply further
    processing to just the defined part's audio output (which can still output
-   to the main L+R if one wants). This setting is saved with parameter
-   blocks. Currently it is only set in the mixer panel window, but it will also
+   to the main L+R if one wants). This setting is saved with patch sets.
+   Currently it is only set in the mixer panel window, but it will also
    eventually come under MIDI direct part control.  Again, to reduce
    unnecessary clutter, part ports are only registered with JACK if they are
    both enabled, and set for direct output. However, once set they will remain
@@ -719,8 +719,6 @@
    by dragging with the right mouse button. In fact, the \textbf{interpPk}
    functionality interpolates between non-zero values.
    Oh, and note that the \textbf{kHz} and \textbf{dB} fields update to match it.
-   And don't forget to try the middle-click feature to see the corresponding
-   command-line needed to achieve the setting.
 
    \itempar{KHz}{resonance!khz}
    The current frequency on graph.
@@ -753,8 +751,6 @@
    Note how the amplitude of the peaks is also reduced by the smoothing.
    Presumably, a frequency-smoothing window is applied to the peaks, thus making
    each new data-point a weighted average of the data-points around it.
-   Don't forget to try the middle-click feature to see the corresponding
-   command-line needed to achieve the setting.
 
    \itempar{RND1}{resonance!randomize}
    Randomize the resonance function, 1.
@@ -1225,8 +1221,7 @@ These parameters are:
 
    \itempar{S.val}{envelope!sustain value}
    Sustain value.
-   This is the (relative?) level at which the envelope will settle
-   while the note is held down.
+   This is the level at which the envelope will settle while the note is held down.
    The only stage that always remains defined is the Sustain, where the
    envelopes freezes until a Note Off event.
 
@@ -1256,11 +1251,8 @@ These parameters are:
 
    \itempar{frcR}{envelope!forced release}
    Forced release.
-   This means that if this option is turned on, the release will go to the
-   final value, even if the sustain stage is not reached. Usually, this must
-   be set.
-   If this option is turned on, the release will go to the
-   final value, even if the sustain level is not reached.
+   If this option is turned on, the release will go to the final value, even
+   if the sustain stage is not reached. Usually, this must be set.
    Also present in this sub-panel are the usual \textbf{C}opy
    and \textbf{P}aste buttons that call up a copy-parameters or
    paste-parameters dialog.
@@ -1324,9 +1316,8 @@ These parameters are:
    is pressed on a control point, it will be shown the duration of the
    stage where the point is.
 
-   \figureref{fig:amplitude_envelope_freemode}
-   shows an example of the stock Freemode envelope editor, with
-   Freemode enabled.
+   For an example of the stock Freemode envelope editor, with
+   Freemode enabled, see \figureref{fig:amplitude_envelope_freemode}.
 
 \begin{figure}[H]
    \centering

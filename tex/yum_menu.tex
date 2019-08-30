@@ -446,10 +446,9 @@
    \label{fig:send_reports_to}
 \end{figure}
 
-   If the \textbf{Console Window} option is chosen, then the
-   \textbf{Reports} button in the effects panel is enabled.
-   Pressing the \textbf{Reports} button brings up a small console dialog, as
-   shown in \figureref{fig:console_window}.
+   If the \textbf{Console Window} option is chosen, then a small console dialog
+   will be opened, as shown in \figureref{fig:console_window}. If this is closed,
+   it can be re-opened from the \textsl{Yoshimi} menu.
 
 \begin{figure}[H]
    \centering
@@ -580,8 +579,8 @@
    The default state file is named
    \texttt{\textasciitilde/.config/yoshimi/yoshimi.state}.
 
-   If the \textbf{Reset} button on the main screen is click, then this file is
-   loaded, instead of reverting to the first-run default state of
+   If the \textbf{Reset} button on the main screen is clicked, then this file
+   is loaded, instead of reverting to the first-run default state of
    \textsl{Yoshimi}.
 
    \itempar{Hide Non Fatal Errors}{Main Settings!Hide Non-Fatal Errors}
@@ -1131,8 +1130,8 @@
       /usr/local/share/yoshimi/presets
    \end{verbatim}
 
-   The user can provide additional directories for the presets, up to a limit
-   of 128 directories (the same limit as for roots and banks).
+   The user can provide additional directories for the presets, up to a
+   limit of 1000 directories (unlike roots and banks).
    These directories are useful for containing copies of the system
    presets that one can modify safely, and for providing custom
    presets designed by the user.
@@ -1143,14 +1142,14 @@
       \item \textbf{Preset list}
       \item \textbf{Add preset directory...}
       \item \textbf{Remove preset directory...}
-      \item \textbf{Make default}
+      \item \textbf{Make Current}
       \item \textbf{Save and Close}
       \item \textbf{Close Unsaved}
    \end{enumber}
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-presets-dirs.jpg}
+   \includegraphics[scale=0.75]{1.6.0/presets_dirs.png}
    \caption[Preset Dirs Tab]{Yoshimi Preset Dirs Dialog}
    \label{fig:yoshimi_presets_dirs_tab}
 \end{figure}
@@ -1200,10 +1199,10 @@
    directories.  It is removed immediately, with no need to confirm the
    deletion, click an OK button, or click a Save button.
 
-   \itempar{Make default presets}{Yoshimi Presets!Make Default}
-   Make Default Presets Directory.
+   \itempar{Make current presets}{Yoshimi Presets!Make Current}
+   Make Current Presets Directory.
    Select one of the preset directories in the preset list, then press this
-   button to make the preset directory the default preset directory.
+   button to make the preset directory the currently visible preset directory.
    It should be a directory for which one has write permissions.
    By default, it is \texttt{\textasciitilde/.config/yoshimi/presets}.
 
@@ -1276,7 +1275,8 @@
    This item is effective only if the \textbf{Start With Default State}
    option is checked in \textbf{Yoshimi / Settings}. This item is also
    exceptional as it will \textsl{not} appear in the history list, and so
-   will not be offered as a normal load.
+   will not be offered as a normal load or save. This provides some protection
+   against inavertently ovewriting it.
 
    \itempar{Recent States}{State!Recent}
    This item brings up a list of states to select.
