@@ -462,14 +462,14 @@ is to be handled.
       \centering
       \caption{History Load Commands}
       \label{table:history_load_commands}
-      \begin{tabular}{r r c l l l}
-\textbf{NRPN LSB} & \textbf{DATA MSB} & \textbf{DATA LSB} & \textbf{Type} & \textbf{Settings} \\
-        0 & part & index     & Instrument &  0 to 63 & 0 to 24 \\
-        1 & 0 & index        & Patch Set  & 0        & 0 to 24 \\
-        2 & 0 & index        & Scale      & 0        & 0 to 24 \\
-        3 & 0 & index        & State      & 0        & 0 to 24 \\
-        4 & channel & index   & Vector    & 0 to 15  & 0 to 24 \\
-        5 & 0 & index        & Midi Learn & 0        & 0 to 24 \\
+      \begin{tabular}{c l c l c l}
+\textbf{NRPN LSB} & \textbf{Type} & \textbf{DATA MSB} & \textbf{Range} & \textbf{DATA LSB}  & \textbf{Range}\\
+        0 & Instrument & Part    & 0 to 63 & index   & 0 to 24 \\
+        1 & Patch Set  & (none)  & 0       & index   & 0 to 24 \\
+        2 & Scale      & (none)  & 0       & index   & 0 to 24 \\
+        3 & State      & (none)  & 0       & index   & 0 to 24 \\
+        4 & Vector     & Channel & 0 to 15 & index   & 0 to 24 \\
+        5 & Midi Learn & (none)  & 0       & index   & 0 to 24 \\
       \end{tabular}
    \end{table}
 

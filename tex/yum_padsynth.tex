@@ -520,7 +520,7 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    user-interface element described in
    \sectionref{subsec:stock_resonance_settings}.
 
-\subsubsection{PADsynth / Harmonic Structure / Change}
+\subsubsection{PADsynth / Harmonic Structure / Waveform}
 \label{subsubsec:padsynth_harmonic_structure_change}
 
    The \textbf{Waveform} button brings up the
@@ -582,6 +582,22 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 
    \itempar{Apply}{padsynth!apply button}
    PADsynth Harmonic Content Editor Apply Button.
+
+   \textbf{Note:} This is not present in the ADDsynth oscillator. Instead there are two additional
+   controls, as seen with
+   \figref{fig:addsynth_wave_controls_extra}.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=1.0]{1.6.0/wave_controls_extra.png}
+   \caption{ADDsynth Oscillator Extras}
+   \label{fig:addsynth_wave_controls_extra}
+\end{figure}
+    \textbf{Phase Randomness} changes the relative phase of the overall oscillator and is only really
+    noticeable when there is more than one voice.
+
+    \textbf{H. rnd} - Harmonic Randomness is very noticeable and (we think) changes the
+    \textsl{amplitude} of the harmonics.
 
 \paragraph{PADsynth / Harmonic Structure / Change / Base Function}
 \label{paragraph:padsynth_harmonic_structure_change_base_function}

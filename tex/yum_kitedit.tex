@@ -22,15 +22,11 @@
    It provides a way to use individual voices and synth blocks to create
    drumlike sounds, or complex layered sounds.
    Within this window one can create drum kits, layered instruments, or one
-   can combine more instruments into one instrument.  
-
-%  Item 1 is a special type: it cannot be disabled (but it can be muted), to
-%  edit it one must use "ADs edit" or "SUBs edit" from the part window.
+   can combine more instruments into one instrument.
 
 \begin{figure}[H]
-   \centering 
-%  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Kit/instrument-kit-edit.jpg}
-   \includegraphics[scale=1.0]{1.5.3/instrument-kit-edit.png}
+   \centering
+   \includegraphics[scale=1.0]{1.6.0/instrument_kit_edit.png}
    \caption{Kit Edit Dialog}
    \label{fig:kit_edit_dialog}
 \end{figure}
@@ -84,6 +80,9 @@
    Kit Row Enable.  This unlabelled checkbox enables or disables an instrument
    in the kit.
 
+   Item 1 is a special type: it cannot be disabled (but it can be muted), to
+   edit it one must use "ADDsynth edit" or "SUBsynth edit" from the part window.
+
    Value: \texttt{Off*, On}
 
    \itempar{Mute}{kit!Mute}
@@ -130,14 +129,19 @@
    \itempar{FX.r}{kit!fx.r}
    Kit Effect.
    Chooses the Part Effect (PartFX) to process the item (OFF means that is
-   unprocessed). 
+   unprocessed).
 
    Values: \texttt{OFF, FX1, FX2, FX3}
 
    \itempar{Mode}{kit!mode}
    Kit Mode.
 
-   We need a picture to show the full \textbf{Mode} menu.
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=1.0]{1.6.0/kit_mode_list.png}
+   \caption{Kit Mode}
+   \label{fig:kit_mode_list}
+\end{figure}
 
    \index{kit!mode off}
    \index{kit!mode single}
@@ -215,8 +219,8 @@
 
    \index{kit!direct access}
    \index{direct access!kit}
-   One kit mode is set, some direct-access to the kit mode is available.
- 	We'll set it to 'multi'.
+   Once kit mode is set, some direct-access to the kit mode is available.
+   We'll set it to 'multi'.
 
    \begin{verbatim}
       direct 1 64 58 0
