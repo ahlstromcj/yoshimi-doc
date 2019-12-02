@@ -419,33 +419,6 @@
   84    & extended  & Set CC control Extended program change (\textgreater119 disables) \\
   85    & parts     & Set number of available parts (16, 32 or 64) \\
   86    & x         & Save all dynamic settings \\
-
-% 100 & LSB \textgreater 63 & Send reports to Reports window, otherwise to stderr. \\
-% 108 & LSB x [13824] & List settings of all vectors. \\
-% 109 & LSB x [13843] & List the following: \\
-%   & &             Reports destination \\
-%   & &             Current Root path \\
-%   & &             Current Bank \\
-%   & &             CC to control Root path change \\
-%   & &             CC to control Bank change \\
-%   & &             Accept Program change (enabled/disabled) \\
-%   & &             Activate part when program changed (enabled/disabled) \\
-%   & &             CC to control Extended Program change (instruments 128-159) \\
-%   & &             Number of available parts \\
-% 110 & LSB x [13970]      & List all root paths \\
-% 111 & LSB path [14224]   & List all banks in Root ID 'path';
-%                         path=127 for current root) \\
-% 112 & LSB bank [14351]   & List all instruments, current root, bank 'bank' \\
-%   & &                       (bank = 127 for current bank in current root) \\
-% 113 & LSB root & Set CC to control Root path change (root\textgreater 119 disables) \\
-% 114 & LSB bank & Set CC to control Bank change (bank\textgreater 119 disables) \\
-% 115 & LSB \textgreater 63      & Enable Program change otherwise disable \\
-% 116 & LSB \textgreater 63      & Enable activation of part when program changed \\
-% 117 & LSB extprog   & Set CC control Extended program change
-%                       (extprog\textgreater 119 disables) \\
-% 118 & LSB parts     & Set number of available parts (parts = 16, 32 or 64) \\
-% 119 & LSB x  [15113]  &  Save all dynamic settings \\
-
       \end{tabular}
    \end{table}
 
@@ -473,20 +446,22 @@ is to be handled.
       \end{tabular}
    \end{table}
 
-   The absolute maximum size of these lists is 24, but if an index is given that is
-   greater than the current list size an error will be reported.
+   The absolute maximum size of these lists is 24, but if an index is given that
+   is greater than the current list size an error will be reported.
 
-   If an instrument part number is greater than 63 then it will be loaded to any part
-   previously seen by the NRPN system, but if none was seen then the entire command
-   will be ignored, on the basis that no action is better than wrong action.
+   If an instrument part number is greater than 63 then it will be loaded to any
+   part previously seen by the NRPN system, but if none was seen then the entire
+   command will be ignored, on the basis that no action is better than wrong action.
 
    If a vector channel value is greater than 15 then \textsl{Yoshimi} will load this
    to the channel that the vector was originally saved from.
 
 
-   \textsl{Yoshimi} can run with neither GUI nor CLI input access. Working
-   purely as a hidden MIDI device. To enable a tidy close, there is a new
-   short-form NRPN. Just send 68 to both MSB and LSB (CC 99 and CC 98).
+   \textsl{Yoshimi} can run with neither GUI nor CLI input access. Working purely as
+   a hidden MIDI device. To enable a tidy close, there is a new short-form NRPN.
+   Just send 68 to both MSB and LSB (CC 99 and CC 98). If you make the LSB 69, it
+   will return an exit value of 16. This is the 'forced exit' and can be used by the
+   system for other cleanups and a shut down.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex
