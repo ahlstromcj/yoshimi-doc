@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-26
-% \update      2017-11-29
+% \update      2019-12-08
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -64,7 +64,11 @@
    the effect/parameter doesn't exists or is set to none, then the NRPN is
    ignored.
 
-   It's generally advisable to set NRPN MSB before LSB However, once MSB has
+   Also note that when a parameter, such as channel or program is to be modified
+   by an NRPN, the value is specified as \textsl{raw} data, meaning the values
+   start at \textbf{0}, not \textbf{1}.
+
+   It's advisable to set NRPN MSB before LSB. However, once MSB has
    been set one can set a chain of LSBs if they share the same MSB.
    The data CCs associated with these are 6 for MSB and 38 for LSB.
    Only when an NRPN has been established can the data values be entered
@@ -75,36 +79,40 @@
    cleared (but stored settings will not be affected).
    If either NRPN byte is set to 127, all data values are ignored again.
 
-   In \textsl{Yoshimi} NRPNs are not themselves channel-sensitive, but the
+   In \textsl{Yoshimi}, NRPNs are not themselves channel-sensitive, but the
    final results will often be sent to whichever is the current channel.
    \textsl{Yoshimi} also supports the curious 14-bit NRPNs, but this shouldn't
-   be noticeable to the user. In order to deal with this, and also some
+   be noticeable to the user.
+   (In these notes, where practical we also list the 14 bit values in square
+   brackets.)
+   
+   In order to deal with some
    variations in the way sequencers present NRPNs generally, if a complete
    NRPN is set
    (i.e. \texttt{Nhigh}, \texttt{Nlow}, \texttt{Dhigh}, \texttt{Dlow}),
    then the data bytes can be in
    either order, but must follow \texttt{Nhigh} and \texttt{Nlow}.
 
-   (In these notes, where practical we also list the 14 bit values in square
-   brackets.)
-
    After this, for running values, once
-   \texttt{Dhigh} and \texttt{Dlow} have been set if one
-   changes either of these, the other will be assumed.
+   \texttt{Dhigh} and \texttt{Dlow} have been set, if one
+   changes either of these values, the other value will be assumed.
    For example, starting with \texttt{Dhigh} = 6 and \texttt{Dlow} = 20:
 
-   Change \texttt{Dlow} to 15 and \textsl{Yoshimi} will regard this as a
-   command \texttt{Dhigh} 6 + \texttt{Dlow} 16 Alternatively change
-   \texttt{Dhigh} to 2 and \textsl{Yoshimi} will regard this as a
+   Change \texttt{Dlow} to 15, and \textsl{Yoshimi} will regard this as a
+   command \texttt{Dhigh} 6 + \texttt{Dlow} 16.
+   Alternatively, change
+   \texttt{Dhigh} to 2, and \textsl{Yoshimi} will regard this as a
    command \texttt{Dhigh} 2 + \texttt{Dlow} 20.
    This can be useful but may have unintended consequences!
    If in doubt change either of the NRPN bytes and both data bytes will be
    cleared.
 
-   Additionally there is 96 for data increment and 97 for decrement.
+   Additionally there is CC 96 for data increment, and CC 97 for data
+   decrement.
 
    Data increment and decrement operation enables one to directly change the
-   data LSB by between 0 and 63. To change the MSB, add 64 to cover the same
+   data LSB by deltas between 0 and 63.
+   To change the MSB, add 64 to cover the same
    range. Setting 0 might seem pointless, but it gives an alternative way
    to make an initial setting if one's sequencer doesn't play nice.
 
@@ -142,8 +150,10 @@
    The parameter that produces clicks only when they are changed fast are
    written in \textcolor{blue}{blue} and have a (FC) after the entry (Fast
    Clicks).
-   Most parameters have the range from 0 to 127.
-   When parameters have another range, it is written as "(low...high)".
+   Most parameters have the range from 0 to 127.  All numbers are specified re 0,
+   not 1.  For example, channel numbers range from 0 to 15, not 1 to 16, when
+   used in an NRPN setting.
+   When parameters have another range, it is written as "(low..high)".
 
    Here are the basic formats:
 
@@ -383,7 +393,7 @@
    can then be used with normal MIDI CCs to get exactly the instrument you
    want at any time.
 
-   This arrangment looks positively steam-punk, but is actually very easy to
+   This arrangement looks positively steam-punk, but is actually very easy to
    use, requiring only a command line interface and any utility that can send
    MIDI CCs. NRPNs aren't special. They are simply a specific pattern of CCs.
    \textsl{Yoshimi}'s implementation is very forgiving, doesn't mind if you
