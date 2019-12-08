@@ -268,6 +268,7 @@
    causes the instrument list of the previous bank to be replaced by the
    instrument list of the newly-selected bank.
 
+   \index{new!instruments search}
    \itempar{Search}{instruments!search}
    Instruments Search Button.
    This feature arrived with \textsl{Yoshimi} V 1.6.0 and provides a
@@ -281,11 +282,15 @@
    \caption[A search list List]{A search list}
    \label{fig:bank_search}
 \end{figure}
-   The top field is a drop-down menu that gives all the types \textsl{Yoshimi} recognises, and below this is the list of those
+   The top field is a drop-down menu that gives all the types
+   \textsl{Yoshimi} recognises, and below this is the list of those
    most recently found. As well as the names of the instruments
-   one sees the bank root ID, bank ID and instrument number. All of these are the values that will be recognised by MIDI.
+   one sees the bank root ID, bank ID and instrument number. All of these
+   are the values that will be recognised by MIDI.
 
-   Clicking on any entry will immediately load the instrument into the current part.
+   Clicking on any entry will immediately load the instrument into the
+   current part \textbf{without} changing the settings for current bank or
+   root.
 
    \itempar{Roots}{instruments!roots}
    Instruments Roots Button.

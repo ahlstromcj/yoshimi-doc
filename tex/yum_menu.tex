@@ -289,6 +289,7 @@
       \item \textbf{XML compression level}
       \item \textbf{Send reports to}
       \item \textbf{Saved instrument Format}
+      \item \textbf{Mixer Panel Layout}
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
@@ -504,17 +505,17 @@
 %   file for safe-keeping.
 
    \itempar{Saved instrument Format}{Main Settings!instrument file format}
-   This new (1.5.5) feature provides a choice between the old instrument format
-   and a new format.
+   This new (1.5.5) feature provides a choice between the old instrument
+   format and a new format.
    The \textbf{Legacy} format has a file extension \texttt{.xiz}.
    The \textbf{Yoshimi} format has a file extension \texttt{.xiy}.
 
    Values: \texttt{Legacy (.xiz), Yoshimi (.xiy), Both (.xiz + .xiy)}
 
-	Some users wanted a way to store the \textbf{Controllers} settings
+   Some users wanted a way to store the \textbf{Controllers} settings
    with an instrument, as they can make a dramatic difference to the
-   sound. There is now a superset of instruments that can be saved instead of,
-   or as well as, the standard ones. On loading, \textsl{Yoshimi}
+   sound. There is now a superset of instruments that can be saved instead
+   of, or as well as, the standard ones. On loading, \textsl{Yoshimi}
    will look for the extended version (\texttt{.xiy}) first.
    This applies to instruments in banks, as well as
    externally saved instrument.
@@ -535,10 +536,19 @@
    and refinements to the new format, with compatible
    adjustments for the standard-format instruments, where appropriate.
 
-   There is a caveat when handling instruments in banks. If one sets for only
-   \textbf{Legacy} or only \textbf{Yoshimi}, but have previously set for both,
-   saving to such a dual entry will erase the one that wasn't selected. Currently,
-   it is not known why that happens (banks are 'interesting').
+   There is a caveat when handling instruments in banks. If one sets for
+   only \textbf{Legacy} or only \textbf{Yoshimi}, but have previously set
+   for both, saving to such a dual entry will erase the one that wasn't
+   selected. Currently, it is not known why that happens (banks are
+   'interesting').
+
+   \itempar{Mixer Panel Layout}{Main Settings!mixer panel layout}
+   This enables one to set either a single row of 16 parts, or a 'box'
+   style of two rows of eight. It performs the same function as the one
+   in the mixer window itself. This has been placed here as it has been
+   found that with very low resolution screems and some window managers
+   it is possible for the mixer panel's own selector to disappear off the
+   screen in an unrecoverable manner.
 
 \paragraph{Menu / Yoshimi / Settings / Switches}
 \label{paragraph:menu_yoshimi_settings_switches}
@@ -822,12 +832,31 @@
    \centering
 %  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-alsa.jpg}
 %  \includegraphics[scale=0.75]{1.3.8/yoshimi-settings-alsa.png}
-   \includegraphics[scale=0.75]{1.4.1/SettingsAlsa.png}
+   \includegraphics[scale=0.75]{1.6.0/Settings_Alsa.png}
    \caption[ALSA Settings]{ALSA Settings Tab}
    \label{fig:yoshimi_settings_alsa_tab}
 \end{figure}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \index{new!Alsa Connection Type}
+   \itempar{Alsa Connection Type}{ALSA!MIDI Connection Type}
+   ALSA MIDI Connection Type.
+   This feature was added in \textsl{Yoshimi} V 1.6.1 and is a dropdown
+   list with the following three options.
+
+   \textbf{Fixed} is the original arrangement, and activates the Alsa Midi Source control below.
+
+   \textbf{Search} will search for and connect to any MIDI sources that are
+   available and is aimed particularly at new users.
+
+   \textbf{External} doesn't make any attempt to connect at all, so one would
+   then do so by some other means.
+
+   Values: \texttt{Fixed, Search*, External}
+
+   Notice that the default is now the second option. However this will not
+   affect existing users, who will see it as 'Fixed' until such time as they change it themselves.
 
    \itempar{Alsa Midi Source}{ALSA!MIDI Source}
    ALSA MIDI Source.
@@ -837,11 +866,16 @@
    such as a keyboard.  For example, the one that Will has identifies itself
    as name = "Hua Xing".
    A port name, such as "128:0" (for one of the ports provided by
-   \textsl{TiMidity}) should work as well.
-   If the destination is "default",
-   then ALSA decides on the sound card, bit depth, number of channels and the
-   buffer size, and \textsl{Yoshimi} will set it's internal buffer size to
-   match.  On most machines this always seems to be 1024.
+   \textsl{TiMidity}) should work as well, but beware of USB MIDI devices that
+   might not have the same port numbers each time.
+   \index{new!multiple sources}
+
+   An extension was also added here during the development of
+   \textsl{Yoshimi} V 1.6 so that one can have a comma separated list of
+   sources. These will be searched for and connected if found. This is
+   especially useful if wanting a known variety of keyboards and/or
+   controllers connected, but only those in a compartively congested MIDI
+   setup.
 
    Values: \texttt{default*}
 

@@ -99,9 +99,7 @@
 
 \begin{figure}[H]
    \centering
-%  \includegraphics[scale=0.75]{menu/Scales/scale-settings-microtonal.jpg}
-%  \includegraphics[scale=0.75]{1.5.0/scale-settings-microtonal.png}
-   \includegraphics[scale=0.75]{1.5.8/Scales.png}
+   \includegraphics[scale=0.75]{1.6.0/Scales.png}
    \caption{Yoshimi Menu, Scales Settings}
    \label{fig:yoshimi_scales_settings}
 \end{figure}
@@ -109,15 +107,15 @@
 \subsubsection{Scales Basic Settings}
 \label{subsubsec:scales_basic_settings}
 
-   This item controls the micro-tonal capabilities of \textsl{Yoshimi} and
+   This item controls the microtonal capabilities of \textsl{Yoshimi} and
    some other settings related to tuning.
    The last entry in the tunings list represents one octave.
    All other notes are deduced from these settings.
 
    \begin{enumber}
       \item \textbf{Enable Microtonal}
-      \item \textbf{"A" Freq.}
-      \item \textbf{"A" Note}
+      \item \textbf{(Ref.) Freq.}
+      \item \textbf{(Ref.) Note}
       \item \textbf{Invert Keys}
       \item \textbf{Center}
       \item \textbf{Name}
@@ -143,19 +141,24 @@
    Enable Microtonal Scales.
    When disabled, the synthesizer will use equal-temperament, 12 notes per
    octave.  Otherwise, one can input any scale one desires.
+   In \textsl{Yoshimi} V 1.6.1 this was revised to more correctly identify
+   the frequency and note settings. The ranges have also been reduced to
+   reduce the risk of possible damage to audio equipment. They are still
+   well outside any reasomable requirement.
 
    Values: \texttt{Off*, On}
 
-   \itempar{"A" Freq}{"A"}
-   Frequency of the "A" Note.
-   Sets the frequency of the "A" key. The standard is 440.0 Hz.
+   \itempar{(Ref.) Freq}{Frequency}
+   Frequency of the refenence note.
+   Sets the frequency of the reference key. The standard is "A", 440.0 Hz.
 
-   Values: \texttt{329 to 660, 440*}
+   Values: \texttt{30 to 1100, 440*}
 
-   \itempar{"A" Note}{"A" MIDI}
-   Sets the MIDI Value of the "A" Note.
+   \itempar{(Ref.) Note}{MIDI note number}
+   Sets the MIDI value of the refencence note. This is usually number 69,
+   which is A4
 
-   Values: \texttt{0 to 127, 69*}
+   Values: \texttt{24 to 84, 69*}
 
    \itempar{Invert Keys}{keys}
    Allows the keys to be inverted, so that higher-valued keys play lower
@@ -215,7 +218,7 @@ One can enter the tunings in two ways:
    changes any of the actual scale settings. However, it's not needed for key
    mappings or any other controls, all of which operate immediately.
 
-   \itempar{nts./oct}{Notes per Octave}
+   \itempar{Notes/oct}{Notes per Octave}
    Notes Per Octave.
    This value is affected by changes to the \textbf{Tunings} mapping.
 
@@ -396,10 +399,10 @@ One can enter the tunings in two ways:
 
 \subsection{Scales / Reference Pitch...}
 \label{subsec:scales_reference_pitch}
-   A note about relationships between the 'A' note frequency, note number and
+   A note about relationships between the refernce note frequency, note number and
    key shifts.
 
-   The 'A' note frequency should be regarded as an absolute value, with the
+   The reference note frequency should be regarded as an absolute value, with the
    note number being specifically a MIDI representation.
    Master keyshift, and Part keyshifts are relative values that modify this for
    convenience.
@@ -407,20 +410,29 @@ One can enter the tunings in two ways:
    As an example, some very old wood-framed pianos were tuned with C4=256 cycles
    per second (Hz). This can't be changed as the frame couldn't withstand the
    extra stress, so to play alongside such a piano one would have to set the
-   absolute value 'A' frequency at 430.581Hz.
+   absolute value 'A' frequency at 430.581Hz. Better still would be to set note
+   number 60 to a frequency of 256! If you have the reports window open you will see the following responses, making it quite clear what has changed.
+
+   \begin{verbatim}
+      Scales Ref note 60 (C4)
+      Scales (C4) Frequency Value 256.000000
+   \end{verbatim}
 
    A singer might then say they couldn't sing at that pitch, so one would then use
    the Master Keyshift to change to a key they were more comfortable with.
 
    When playing \textsl{Yoshimi} in a band where there is a minor pitch
    discreapancy it would be best to use the Master Detune to match, rather than
-   altering the 'A' frequency.
+   altering the reference frequency.
 
-   Since V 1.5.11 'A' frequency range has been limited to 329Hz-660Hz, which covers
-   the range E4 to E5. Previously it could be set anywhere between 1Hz and 2000Hz.
-   Not only did this put most notes right out of the audio spectrum, but it was potentially damaging for some audio equipment.
+   Since V 1.5.11 reference frequency range has been limited, and revised further
+   since V 1.6. The range is 30Hz to 1100Hz which covers
+   the range B0 to C6. Previously it could be set anywhere between 1Hz and 2000Hz.
+   Not only did this put most notes right out of the audio spectrum, but it was
+   potentially damaging for some audio equipment.
 
-   With the various key shift and octave controls it is still possible to cover every part of the audio spectrum.
+   With the various key shift and octave controls it is still possible to cover
+   every part of the audio spectrum.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex

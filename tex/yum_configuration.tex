@@ -25,11 +25,11 @@
    Also note that all configuration settings are exposed to the command line
    interface as well.
 
-   As with most applications, \textsl{Yoshimi} and \textsl{ZynAddSubFX}
-   allow for one to save one's work and reload it.
-   In recent versions of \textsl{Yoshimi}, it is possible to autoload a default
-   state on startup, so that \textsl{Yoshimi} is already configured exactly as
-   desired, with patches loaded and part destinations set.
+   As with most applications, \textsl{Yoshimi} allows for one to save one's
+   work and reload it. In recent versions of \textsl{Yoshimi}, it is possible
+   to autoload a default state on startup, so that \textsl{Yoshimi} is
+   already configured exactly as desired, with patches loaded and part
+   destinations set.
    In addition, \textsl{Yoshimi} now saves settings that have been disabled.
    In this way, they can be re-enabled without having to reconstruct them from
    scratch.
@@ -98,12 +98,13 @@
          \index{config!.config}
          Contains the setup information configured in the
          \textbf{Yoshimi / Settings} dialog.
-         This is the main configuration file.
+         This is just the basic configuration file.
          Configuration instances are now in place, so the main configuration
          file is common to all, but each instance has its own file for things
          like current bank, JACK/ALSA settings, etc.
-         Common settings are only visible
-         in the main instance and completely hidden in all the later ones.
+         Common overal settings are only visible in the main instance and
+         completely hidden in all the later ones.
+         In \textsl{Yoshimi} V 1.6.1 there has been further revision of this.
       \item \texttt{.history}
          \index{.history}
          \index{config!.history}
@@ -217,11 +218,11 @@
 %  file browser selection.
    Once saved, \textbf{Vectors / Options / Recent} is your friend.
 
-   \textsl{Yoshimi} can set up critical configuration settings to be writable
-   only by the main instance, but readable (and used) by any others. In the
-   current version of \textsl{Yoshimi}, this applies to \textbf{AddSynth
-   Oscillator Size}, \textbf{Internal Buffer Size}, and \textbf{Alsa
-   Samplerate}. These three must be defined before any other initialisation.
+ %  \textsl{Yoshimi} can set up critical configuration settings to be writable
+%   only by the main instance, but readable (and used) by any others. In the
+%   current version of \textsl{Yoshimi}, this applies to \textbf{AddSynth
+%   Oscillator Size}, \textbf{Internal Buffer Size}, and \textbf{Alsa
+%   Samplerate}. These three must be defined before any other initialisation.
 
 \subsection{Configuration Files / Patch Set}
 \label{subsec:configuration_patch_set}
@@ -276,17 +277,14 @@
    working modes, so no one will ever want to copy it across even to another
    \textsl{Yoshimi} environment.  Recent patch sets are now no longer stored in
    the main \texttt{.config} file, but in a new \texttt{.history} file.  The
-   \texttt{.config} file is now a much reduced common settings -- interfaces,
-   sample rate -- file.  It is a single file that every instance can read, but
-   only the first one can write.
+   \texttt{.config} file is now a much reduced common startup settings
+   file.  It is a single file that every instance can read, but only the
+   first one can write.
 
    The \texttt{.config} file has been separated from \texttt{.instance(n)}.
-   It is saved only when the user explicitly calls for it to be saved.
-
-   All files are still per instance, as the
-   \textsl{Yoshimi} team haven't had time to work out exactly how to manage
-   common files and memory locations for those that should be shared.
-   \textsl{Yoshimi} will still mention its absense:
+   It is saved only when the user explicitly calls for it to be saved. If
+   it is missing for some reason when restarting, \textsl{Yoshimi} will
+   report the fact and take corrective action.
 
    \begin{verbatim}
       $ yoshimi -a -A
@@ -316,41 +314,52 @@
    \index{state}
    \index{file!state}
    Sometimes one will see the extension \texttt{.state} used in the
-   \texttt{\$HOME/.config/yoshimi} directory.  These files contain a lot more
-   information, that needed to duplicate a \textsl{Yoshimi} session that was
-   saved.  This file is a superset of an \texttt{.xmz} file, saving everything.
+   \texttt{\$HOME/.config/yoshimi} directory.  These files contain a lot
+   more information that is needed to duplicate a \textsl{Yoshimi} session
+   that was saved.  This file is a superset of an \texttt{.xmz} file,
+   saving everything.
    The state file is accessed from the \textbf{State} menu item in the main
    window.
    Its default name is
    \texttt{\textasciitilde/.config/yoshimi/yoshimi.state}.
-   This file can be auto-loaded when \textsl{Yoshimi} starts, if it is present
-   and the feature enabled. Otherwise the normal settings are in place.
+   This file can be auto-loaded when \textsl{Yoshimi} starts, if it is
+   present and the feature enabled. Otherwise the normal settings are in
+   place.
 
-   The advantage of this is that once
-   can set up a complete patch set of instruments one commonly uses, with
-   all their settings, including audio destination.  Save it to the default
-   state and it will be loaded, along with the system settings, every time one
-   starts \textsl{Yoshimi}, if the
+   The advantage of this is that one can set up a complete patch set of
+   instruments one commonly uses, with all their settings, including audio
+   destination.  Save it to the default state and it will be loaded, along
+   with the system settings, every time one starts \textsl{Yoshimi}, if the
    \textbf{Yoshimi / Settings / Switches / Start With Default State}
-   setting is checked.
-   To revert the state, simply uncheck the
+   setting is checked. To revert the state, simply uncheck the
    \textbf{Yoshimi / Settings / Switches / Start With Default State}
-   setting (and change any other needed), click the \textbf{Reset}
-   button on the main screen, and save the settings.
+   setting (and change any other needed).
 
-   The \textsl{Yoshimi} 'state' file consists of the entire setup, from basic
-   configuration settings to currently-loaded instrument sets.
-   However, upon investigating some JACK
-   session managers, it looks like they don't want (or can't use) most of the
-   configuration information because they are expecting to be able to change
-   the state in \textsl{running} instances.
+   Since \textsl{Yoshimi} V 1.6.1 one specifically must \textbf{not} save
+   the settings when changing this. It is part of the reorganisation.
+   State, defaults, and jack session files have all been considerably
+   improved, and behave in a more transparent fashion. Also, the instances
+   have more controls available that can be actively restored.
+
+   The \textsl{Yoshimi} 'state' file consists of the entire setup, (apart
+   from basic configuration settings), instance to currently-loaded
+   instrument sets. However, upon investigating some session managers, it
+   looks like they don't want (or can't use) some of the configuration
+   information because they are expecting to be able to change the entire
+   state in \textsl{running} instances.
 
    \textsl{Yoshimi} now splits the 'instance' data
    from the main configuration.  This solves this session issue
    by saving only the true configuration locally, and to the state save.
    However, the 'instance' data includes things like ALSA/JACK settings.
-   Currently we can't change these live (although it would be nice if we could),
-   but would anyone want to do so from a JACK session manager?
+   Since \textsl{Yoshimi} V1.6.1 one can change these
+   \textsl{at the time the instance starts}, but there is a potential
+   'gotcha'. If using the JACK session manager (and possibly others) it is
+   possible to save a session to switch to ALSA audio when run, and this
+   will be done. However, at that point the session manager loses contact
+   with \textsl{Yoshimi} and it is no longer possible to save anything
+   back to that session for that instance (assuming the session manager can
+   handle mutiple instances).
 
 \subsection{Configuration Files / Instrument}
 \label{subsec:configuration_instrument}
@@ -366,7 +375,7 @@
    0, and compressed is set by a value greater tha 0.
 
    With the \textbf{Instrument} menu, one can save the file to any
-   given location with the \texttt{.xiz} extension.
+   given location with the \texttt{.xiz} and/or \texttt{.xiy} extension.
 
    Default instruments are never saved, not even in patch sets and states, but
    if the parts are activated, that fact \textsl{is} saved; it's a part
