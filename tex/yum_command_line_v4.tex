@@ -46,8 +46,8 @@
    For full details of NRPNs see \sectionref{subsection:nrpns_midi_nrpn_basics}
 
    In a command line environment, almost all the 'running' commands are
-   available, and now all of the instrument editing ones are available.
-   Also, the whole of vector control, and MIDI-learn, is also exposed
+   available, and now all of the instrument editing ones are too.
+   Also, the whole of vector control, and MIDI-learn, is exposed
    to the command line.
 
    One can decide what MIDI/audio setup is wanted, list and set roots and
@@ -60,7 +60,7 @@
    This will be given the next free ID. A future upgrade will allow the ID to
    be set to any valid one when it is created, mirroring the GUI behaviour.
 
-   Once running, almost all configuration can be done within the terminal
+   Once running, all configuration can be done within the terminal
    window.  There is also extensive control of roots, banks, parts and
    instruments including the ability to list and set all of these.
    Additional controls that are frequently taken for granted in the GUI, but
@@ -443,7 +443,14 @@
    a particular context, and what one sees if one enters
    \textbf{?} while at that level, to get help.
    However the command lists can all be called \textsl{specifically} from any
-   level. From any higher level, \textbf{? ?} will show the top level one.
+   level and the normal abbreviations are accepted. For example:
+   \begin{verbatim}
+      yoshimi> ? p
+   \end{verbatim}
+   This will list just the part commands regardless of what context it is
+   called from.
+
+   Also, from any level, \textbf{? ?} will show the top level one.
 
 \subsubsection{Top Commands}
 \label{subsec:command_line_top_command_list}
@@ -602,7 +609,7 @@
 
 \paragraph{MONo}
 \label{paragraph:command_line_mono}
-    The \textbf{MONo [s]} command is provided for switching beteween mono and
+    The \textbf{MONo [s]} command is provided for switching between mono and
     stereo on the fly while \textsl{Yoshimi} is actually playing. This helps
     one make sure there is a good balance between these two.
 
@@ -2268,7 +2275,7 @@ DynFilter presets:
 \texttt{Config} &
    Show the current configuration. See the Config section. \\
 \texttt{MLearn [s[n]]} &
-   MIDI learned controls ('@n' for full details on one line). \\
+   MIDI learned controls ('@ n' for full details on one line). \\
 \texttt{History [s]} &
    Show recent files. See the extensive description below. \\
 \texttt{Effects [s]} &
