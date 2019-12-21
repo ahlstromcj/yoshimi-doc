@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-07
-% \update      2019-05-11
+% \update      2019-12-21
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -719,7 +719,10 @@
    Sound/Noise choice.
    Select the mode of the oscillator (sound versus white noise).
 
-   Values: \texttt{Sound*, Noise (white), Noise (pink), Noise (spot)}
+   Values: \texttt{Sound* (green), Noise (black), Noise (pink), Noise (cyan)}
+
+   The noise types are, respectively, white noise, pink noise, and spot noise, as
+   explained below.
 
 \begin{figure}[H]
    \centering
@@ -750,8 +753,9 @@
    \label{fig:voice_oscillator_white_noise}
 \end{figure}
 
-   If pink \textbf{Noise} is selected, then the waveform graph simply announces
-   "Pink Noise".  Also, the \textbf{Unison, Frequency, Modulator} controls are
+   If the pink \textbf{Noise} entry is selected,
+   then the waveform graph simply announces "Pink Noise".
+   Also, the \textbf{Unison, Frequency, Modulator} controls are
    all disabled.
 
 \begin{figure}[H]
@@ -762,7 +766,8 @@
 \end{figure}
 
 \index{new!spot noise}
-   If spot \textbf{Noise} is selected, then the waveform graph simply announces
+   If the cyan (spot) \textbf{Noise} entry is selected,
+   then the waveform graph simply announces
    "Spot Noise".  Also, the \textbf{Unison, Frequency, Modulator} controls are
    all disabled.
    Spot noise is based on white noise but has a very broken sound. Combined with
