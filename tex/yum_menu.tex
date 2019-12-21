@@ -168,13 +168,12 @@
    is now:
 
    \begin{itemize}
-      \item ALSA Sample Rate
-      \item Internal Buffer Size
-      \item AddSynth Oscillator Size
       \item XML Compression Level
       \item Show Splash Screen
       \item Enable GUI
       \item Enable CLI
+      \item Enable Auto Instance
+      \item Enable Single Master
    \end{itemize}
 
    In the other instances these are now hidden instead of deactivated.  This
@@ -651,8 +650,8 @@
       If checked, then once running, trying to start a new instance from the
       desktop ( or command line) will instead get the next available instance in
       the currently running one. This is both more efficient use of resources,
-      and ensures consistency. Top-level instances cannot communicate independently
-      changed configuration settings. (new from V 1.6.0)
+      and ensures consistency because top-level instances cannot communicate
+      independently changed configuration settings. (new from V 1.6.0)
 
    \paragraph{Menu / Yoshimi / Settings / Switches / History Locks}
    \label{paragraph:menu_yoshimi_settings_historylocks}
