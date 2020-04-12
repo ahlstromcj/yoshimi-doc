@@ -132,7 +132,7 @@
          Contains the current layout of windows for reinstantiation at the next
          startup of \textsl{Yoshimi}.
          If there is no such file
-         (\texttt{\textasciitilde/.config/yoshimi/yoshimi.window}) at then the
+         (\texttt{\textasciitilde/.config/yoshimi/yoshimi.window}) then the
          keyboard is also opened, alongside the main window, as a help to those
          new to \textsl{Yoshimi}.
          And of course that state will be saved, if present, when
@@ -150,6 +150,11 @@
       \item \texttt{.history}
       \item \texttt{.banks}
    \end{itemize}
+
+   From \textsl{Yoshimi} V 1.7.1 instead of a single '.windows' file there is a
+   directory 'windows' which contains individual files with the status of each
+   window recognised. This is more reliable and less prone to errors under fault
+   conditions. Also, the main config directory is more rational.
 
    Other \textsl{Yoshimi} specific files are:
 
