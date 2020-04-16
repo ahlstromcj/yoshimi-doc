@@ -39,9 +39,9 @@
       \item \textbf{Velocity Sens}
       \item \textbf{Velocity Offset}
       \item \textbf{Pan}
-%     \item \textbf{Pan Reset Button}
       \item \textbf{Volume}
       \item \textbf{Controllers}
+      \item \textbf{Pan Law}
       \item \textbf{Minimum Note}
       \item \textbf{Maximum Note}
       \item \textbf{m}
@@ -259,9 +259,6 @@
 
    Values: \texttt{0 to 127, 64*}
 
-%  \itempar{Pan (reset)}{bottom panel!pan reset}
-%  Reset Pan to Middle (64).
-
    \itempar{Volume}{bottom panel!volume}
    Instrument Volume.
 
@@ -270,6 +267,26 @@
    The default volume for ADD parts (overall) and SUB parts is 96; the
    default volume for SUB parts is 90; the ADD voice volumen is 100; and
    effects volumes vary heavily with the effect.
+
+   \itempar{Pan Law}{bottom panel!panlaw}
+   Session panning behaviour.
+
+   Values: \texttt{Cut, Default*, Boost}
+
+   This dropdown menu is new in \textsl{Yoshimi} V 1.7.1 and detirmines the way
+   stereo sounds are tracked across, and their effect in mono.
+
+   'Cut' tends to make the sound move away as it reaches the extreme left or
+   right, and as it's name suggests seems to make it quieter in mono.
+
+   'Default' is what we've been using up to now, and gives a fairly even reponse.
+
+   'Boost' seems to make the sound move closer at the extremes, and, uniquely,
+   leaves the volume unchanged in mono.
+
+   Note that when listening on speakers, the greater the distance from the
+   speakers, the closer one is to hearing a mono sound, so the setting of this
+   control can have quite a profound effect. It is stored in patch sets.
 
    \itempar{Minimum Note}{bottom panel!minimum note}
    Minimum note the part receives.
@@ -318,10 +335,11 @@
 
    \itempar{System Effect Sends 1, 2, 3, and 4}{bottom panel!system effect sends}
 
-   TODO:  Describe how these sends work.
-   \index{todo!SES123}
-
    Values: \texttt{0 to 127*}
+
+   These controls determine the amount of signal that is sent from this part to
+   the identically numbered System Effect (in the panel above). Obviously if
+   there is no system effect set then the control will do nothing.
 
    \itempar{Sound Meter}{bottom panel!sound meter}
    VU Meter.  Sound Meter.
@@ -375,7 +393,7 @@
 \begin{figure}[H]
    \centering
 %  \includegraphics[scale=1.0]{bottom-panel/controllers-dialog.jpg}
-   \includegraphics[scale=1.0]{1.5.6/Controllers.png}
+   \includegraphics[scale=1.0]{1.7.1/Controllers.png}
    \caption{Controllers Dialog}
    \label{fig:controllers_dialog}
 \end{figure}
@@ -398,6 +416,7 @@
       \item \textbf{Resonance} (section)
       \item \textbf{PortaMento} (section)
       \item \textbf{Reset all controllers}
+      \item \textbf{Aftertouch}
       \item \textbf{Close}
    \end{enumber}
 
@@ -500,8 +519,32 @@
    \itempar{Reset all controllers}{controllers!reset all}
    Reset All Controllers.
 
+   \itempar{Aftertouch}{controllers!aftertouch}
+   Open Aftertouch window.
+
    \itempar{Close}{controllers!close}
    Close Window.
+
+\subsubsection{Bottom Panel / Controllers / Aftertouch}
+\label{subsubsec:bottom_panel_controllers_aftertouch}
+   This is completely new in \textsl{Yoshimi V 1.7.1} and clicking on the button
+   in Controllers will open the window below.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.7]{1.7.1/AfterTouch.png}
+   \caption{The MIDI Aftertouch Window}
+   \label{fig:instrument_midi_aftertouch}
+\end{figure}
+
+This feature is so new that it may well change dependent on user feedback.
+
+Both types of aftertouch are supported, Channel and Key. Many keyboards only have Channel aftertouch , but Key is becoming more common. Key is where the aftertouch behaviour only affects the note produced by the key being pressed harder.
+
+Currently both forms support Filter Cutoff point, Filter Q, and Pitch Bend. Also note the extra checkboxes where these can be set to move the controls down instead of up. Volume is only available to Channel pressure.
+
+You can have multiple actions such as Filter Q and Pitch Bend, but you can't have the same control on both Channel and Key.
+
 
 \subsubsection{Bottom Panel / Controllers / MIDI Controls}
 \label{subsubsec:bottom_panel_controllers_midi_controls}
