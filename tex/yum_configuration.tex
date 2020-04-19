@@ -108,7 +108,7 @@
       \item \texttt{.history}
          \index{.history}
          \index{config!.history}
-         Recent patch sets are now stored in the \texttt{.history} file.
+         Recent patch sets are stored in the \texttt{.history} file.
          The last-used file in any section is always at the top of its history
          list.
       \item \texttt{\textasciitilde/.yoshimi\_history}
@@ -458,11 +458,12 @@
    \index{history}
    \index{file!history}
    A new feature of the \textsl{Yoshimi} configuration.
-   Recent patch sets are now stored in the \texttt{.history} file.
+   Recent patch sets are stored in the \texttt{.history} file.
    For example, if the \textbf{XML Compression} option is set to 0, and one
-   exits \textsl{Yoshimi}, then the file
-   \texttt{\textasciitilde/.config/yoshimi/yoshimi.history} might
-   contain the following items (ignoring the XML markup):
+   exits \textsl{Yoshimi}, then the following file
+   might contain the following items (ignoring the XML markup):
+
+   \texttt{\textasciitilde/.config/yoshimi/yoshimi.history}
 
    \begin{verbatim}
 		/home/me/yoshimi-cookbook/sequencer64/b4uacuse/yoshimi-b4uacuse-gm.state
@@ -530,7 +531,7 @@
    instrument to an external file, one is  first offered the internal name
    and the current directory, but one can change it if desired.
 
-   By default \textsl{Yoshimi} does not assign a bank ID 0 (zero) in any root.
+   By default, \textsl{Yoshimi} does not assign a bank ID 0 (zero) in any root.
    This feature has an interesting benefit. Several sequencers insist on
    setting a bank with every program change, and if one doesn't give a bank,
    they will try to set 0. However, \textsl{Yoshimi} is smart enough to ignore
@@ -545,8 +546,8 @@
    Loading an instrument now updates the \textbf{Kit} window;
    the kit is all there and looks and sounds correctly.
 
-   On first time start up, \textsl{Yoshimi}
-   will look for \textsl{ZynAddSubFX} banks as well, in the usual locations.
+   On first-time start up, \textsl{Yoshimi}
+   looks for \textsl{ZynAddSubFX} banks as well, in the usual locations.
    It will not look for a \textsl{ZynAddSubFX} configuration file, as these
    are no longer relevant to \textsl{Yoshimi}.
 
