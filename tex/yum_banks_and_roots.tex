@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-09-06
-% \update      2016-03-01
+% \update      2020-04-19
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -120,11 +120,11 @@
    swap/move instruments across any banks and any bank roots. One can also move
    whole banks across bank roots.  These extensions use exactly the same controls
    as before. However, it isn't just a case of changing IDs. Files are actually
-   moved, so additional protections and warnings are put in place.
+   moved, so additional protections and warnings are in place.
 
    There are also bank importing and exporting controls and since version 1.5.8
-   these have been made available to the CLI with specific IMport and EXPort
-   controls.
+   these have been made available to the CLI with specific
+   \texttt{IMport} and \texttt{EXPort} controls.
 
    A "CC" is a MIDI "continuous controller".
    A MIDI bank change is usually a CC\#0 value of 0, followed by a CC\#32
@@ -202,14 +202,17 @@
    make them not only more efficient, but also provide additional protections and
    capability.
 
-   The first of these copies all banks found in the non-editable locations /usr
-   and /usr/local into the users hidden directory .local/share. It only does this
-   if they are not already there, and for first time users silently adds these to
-   priority locations in the recognised bank roots. One now has fully editabe
-   banks and roots, but still has the protection of non-writable ones.
+   The first of these restructuring copies all banks found in the non-editable
+   locations \texttt{/usr} and \texttt{/usr/local} into the users
+   hidden home directory \texttt{.local/share}.
+   It only does this copying if the banks are not already there,
+   and, for first-time users,
+   silently adds these to priority locations in the recognised bank roots. One
+   now has fully editable banks and roots, but with the protection of
+   non-writable ones.
 
-   For existing users, the copying process takes place, but the banks are not
-   automatically installed. Instead one is presented with the following dialog.
+   For long-time users, the copying process takes place, but the banks are not
+   automatically installed. Instead, one is presented with the following dialog.
 
 \begin{figure}[H]
    \centering
@@ -223,12 +226,13 @@
 
    Another upgrade resolves a problem where it is possible to start with no banks
    at all. Ths could be due to an accidental deletion, or, for a new user, an
-   installer may not have included them. In this situation Yoshimi will generate
-   a new bank root, bank and instrument and make these available.
+   installer may not have included them. In this situation
+   \textsl{Yoshimi} generates a new bank root, bank, and instrument,
+   and makes these available.
 
-   A similar problem is where one tries to add a new bank root that doesn't
-   actually exist. Previously \textsl{Yoshimi} would just report this and close
-   the operation. Now you will see the following dialog.
+   A similar problem happens when one tries to add a new bank root that doesn't
+   actually exist. Previously, \textsl{Yoshimi} would just report this and close
+   the operation. Now one will see the following dialog.
 
 \begin{figure}[H]
    \centering
@@ -237,11 +241,23 @@
    \label{fig:no_root_dialog}
 \end{figure}
 
-If one selects 'Yes' \textsl{Yoshimi} will create and install the bank root asked for and will create 'newBank' in it, and inside that '0005-First Instrument' which will be a quite nice SubSynth one. It will also load that instrument to part 1.
+   If one selects 'Yes', \textsl{Yoshimi} creates and installs the bank root
+   asked for, and will create the \texttt{newBank} directory
+   in it, and inside that a '0005-First Instrument' file which will be a quite
+   nice SubSynth patch. It will also load that instrument to part 1.
 
-The last improvement provided by \textsl{Yoshimi} V 1.7.1 concerns banks having additional entries installed by external means, such as from the OS filing system. This is always advised against, partly because one doesn't necessarily know exactly what is there, but also because, previously, it would cause Yoshimi to regenerate the entire bank root which would result in different IDs for existing ones, thus breaking one's older projects.
+   The last improvement provided by \textsl{Yoshimi} V 1.7.1 concerns banks
+   having additional entries installed by external means, such as from the OS
+   filing system. This is always advised against, partly because one doesn't
+   necessarily know exactly what is there, but also because, previously, it would
+   cause \textsl{Yoshimi} to regenerate the entire bank root,
+   which would result in different IDs for existing ones, thus breaking one's
+   older projects.
 
-The new behaviour is to first install banks Yoshimi already knows about, and then test validity and install any new ones in spaces between the others. We still advise against doing this. It is much better to use the Install routine provided in the Banks window.
+   The new behaviour is to first install banks \textsl{Yoshimi} already knows
+   about, and then test validity and install any new ones in spaces between the
+   others. We still advise against doing this. It is much better to use the
+   \textbf{Install} routine provided in the \textbf{Banks} window.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex
