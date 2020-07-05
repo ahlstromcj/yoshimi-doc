@@ -198,18 +198,17 @@
    See also \sectionref{subsubsec:menu_patch_sets}, and
    \sectionref{sec:banks_collection}, for further information.
 
-   In \textsl{Yoshimi} V 1.7.1 there has been further restructuring of banks to
-   make them not only more efficient, but also provide additional protections and
-   capability.
+   During development of \textsl{Yoshimi} V 1.7.1 there has been further
+   restructuring of banks to make them not only more efficient, but also provide
+   additional protections and capability.
 
-   The first of these restructuring copies all banks found in the non-editable
-   locations \texttt{/usr} and \texttt{/usr/local} into the users
-   hidden home directory \texttt{.local/share}.
-   It only does this copying if the banks are not already there,
-   and, for first-time users,
-   silently adds these to priority locations in the recognised bank roots. One
-   now has fully editable banks and roots, but with the protection of
-   non-writable ones.
+   The first of these restructuring actions copies all banks found in the
+   non-editable locations \texttt{/usr} and \texttt{/usr/local} into the users
+   hidden home directory \texttt{.local/share}. It only does this copying if the
+   banks are not already there, and, for first-time users, silently adds these to
+   priority locations in the recognised bank roots. One now has the best of both
+   worlds -- fully editable banks and roots, but also the protected non-writable
+   ones.
 
    For long-time users, the copying process takes place, but the banks are not
    automatically installed. Instead, one is presented with the following dialog.

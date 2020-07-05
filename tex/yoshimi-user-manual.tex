@@ -49,7 +49,7 @@
 \makeindex
 
 \begin{document}
-\title{Yoshimi Advanced User Manual, v 1.7.1}
+\title{Yoshimi Advanced User Manual, v 1.7.1 +}
 \author{Chris Ahlstrom \texttt{(ahlstromcj@gmail.com)} with Will J. Godfrey}
 \date{\today}
 \maketitle
@@ -58,7 +58,7 @@
    \centering
    \includegraphics[scale=1.00]{1.7.1/Front.png}
 \end{figure}
-Provisional
+
 \clearpage                             % moves Contents to next page
 
 \tableofcontents
@@ -460,14 +460,13 @@ Provisional
    The same colors highlight the engine names when they are enabled with the
    check boxes.
 
-   \textsl{Yoshimi} remembers where major windows were last placed (per
-   instance), and if any were left open at shutdown, they will be reopened at
-   the same location on the next run.
+   \textsl{Yoshimi} remembers where windows were last placed (per instance),
+   and they will be reopened at the same location on the next run.
 
    Thanks to the \textsl{ZynAddSubFX} developers, \textsl{Yoshimi} has pink
    as well as white noise available on Addsynth voices. Pink noise sounds
-   softer.  In \textsl{Yoshimi} version 1.6.0 we add spot noise, which has a
-   sort of 'gritty' sound.
+   softer.  In \textsl{Yoshimi} version 1.6.0 we added spot noise, which has
+   a sort of 'gritty' sound.
 
    The \textbf{Humanise} feature has had more interest so it's been upgraded.
    It's now a pair of sliders, and its settings can be saved in patch sets.
@@ -497,9 +496,9 @@ Provisional
    in the currently selected part, prefixed with the home directory.
 
    There is a specific \textsl{State} menu item ("Save as Default") to save
-   the current complete setup as the default. The configuration file is always
-   saved to \textsl{Yoshimi}'s configuration directory,
-   and will not show in history lists.
+   the current complete setup as the default. This particular state file is
+   always saved to \textsl{Yoshimi}'s configuration directory, and will not
+   show in history lists.
 
    If \textbf{Start With Default State} has been set, and a
    default state has been saved, a complete restart will load this state,
@@ -507,10 +506,9 @@ Provisional
    first-time default reset.
    There is a "gotcha" with this, in that when saving the default state,
    one must \textsl{already} have set the \textbf{Start With Default State}
-   switch, otherwise reloading
-   the default state works \textsl{once}, but upon re-opening
-   \textsl{Yoshimi}, the switch will be
-   unchecked \textemdash that is, quite correctly in its previously saved state!
+   switch, otherwise reloading the default state works \textsl{once}, but
+   upon re-opening \textsl{Yoshimi}, the switch will be unchecked
+   \textemdash that is, quite correctly in its previously saved state!
 
    A final detail with the history lists is that in each list type, the last
    used item will be placed at the top of the list. This is especially useful
@@ -644,10 +642,10 @@ Provisional
    \label{fig:yoshimi_splash_screen}
 \end{figure}
 
-   One sees a brief message, and then the splash screen.
+   One sees a brief message, or if enabled, the splash screen.
    We show the new splash screen, \figureref{fig:yoshimi_splash_screen},
-   here because it goes away too fast when one runs \textsl{Yoshimi}!
-   What fun is that?
+   here because it only appears for three or four seconds when one runs
+   \textsl{Yoshimi}! What fun is that?
 
    Next shown is the \textsl{Yoshimi} main window,
    as shown in \figureref{fig:yoshimi_main_screen},
