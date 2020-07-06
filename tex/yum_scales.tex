@@ -19,9 +19,10 @@
 
    \textsl{Yoshimi} is a microtonal synthesizer, and is capable of a wide
    range of microtonal scales.  Many improvements have been made to the scales,
-   including the user-interface, performance, accuracy of calculations,
-   and adherence to the Scala (\cite{scala}) specification.
-   in version 1.5.2 and above. At the request of users, since version 1.5.8 some controls have been made accessible to MIDI-learn, and these have the familiar pale blue border.
+   including the user-interface, performance, accuracy of calculations, and
+   adherence to the Scala (\cite{scala}) specification in version 1.5.2 and
+   above. At the request of users, since version 1.5.8 some controls have been
+   made accessible to MIDI-learn, and these have the familiar pale blue border.
    \index{LV2!scales}
    For users of the LV2 plugin, any changes in scale
    settings are reported back so that the plugin host can be aware of the
@@ -30,10 +31,10 @@
 \subsection{Scales / Command Line}
 \label{subsec:scales_command_line}
 
-	One can now fully control scales from the CLI.
-	For tunings, either ratios or floating point numbers can be entered.
-	Ratios are in the form
-	\texttt{n1/n2} to a maximum of normal integer range.
+    One can now fully control scales from the CLI.
+    For tunings, either ratios or floating point numbers can be entered.
+    Ratios are in the form
+    \texttt{n1/n2} to a maximum of normal integer range.
    If just a numerator is set, it will be regarded as \texttt{n/1}.
    Floating point numbers \textsl{must}
    include the decimal point and at least one digit (or zero) on either side.
@@ -144,7 +145,7 @@
    In \textsl{Yoshimi} V 1.6.1 this was revised to more correctly identify
    the frequency and note settings. The ranges have also been reduced to
    reduce the risk of possible damage to audio equipment. They are still
-   well outside any reasomable requirement.
+   well outside any reasonable requirement.
 
    Values: \texttt{Off*, On}
 

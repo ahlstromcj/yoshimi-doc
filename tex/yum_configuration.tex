@@ -405,12 +405,6 @@
    These instance files are totally independent files, distinguished by a number
    in the file-name.
 
-   Now, there is also another "history" file created by
-   \textsl{Yoshimi}: \texttt{\textasciitilde/.yoshimi\_history}.
-   This file is a history of commands typed into the command-line
-   interface of \textsl{Yoshimi}; it follows standard
-   \texttt{readline} practice.
-
 \subsection{Configuration Files / Banks}
 \label{subsec:configuration_banks}
 
@@ -467,9 +461,6 @@
    first-time startup, discovered roots will be given ID numbers starting from 5,
    continuing in steps of 5. This makes it easier to re-arrange them to
    preference. We recommend not using 0.
-
-   Loading an instrument now updates the \textbf{Kit} window;
-   the kit is all there and looks and sounds correctly.
 
    On first-time start up, \textsl{Yoshimi}
    looks for \textsl{ZynAddSubFX} banks as well, in the usual locations.
@@ -607,9 +598,10 @@
    \index{new!Local Data}
    During the development of \textsl{Yoshimi} V 1.7.1/2, a number of files and
    directories have been moved from the configuration directory to the
-   standards preferred hidden directory in one's \texttt{home} directory. One's
-   exisiting files in the old locations will be copied across, there should be
-   no disruption. For \textsl{Yoshimi} this is \texttt{.local/share/yoshimi}
+   standards preferred hidden directory in one's \texttt{home} directory.
+   However, one's exisiting files in the old locations will be copied across, so
+   there should be no disruption. For \textsl{Yoshimi} this is
+   \texttt{.local/share/yoshimi}
 
    Here is a summary of the files.
 
@@ -620,9 +612,9 @@
         the \texttt{presets subdirectory}.
    \item \texttt{recent}
          \index{recent}
-         Recent patch sets are stored in the \texttt{recent} file.
-         The last-used file in any section is always at the top of its recent
-         history list.
+         Recent instruments, patch sets, etc. are stored in the \texttt{recent}
+         file. The last-used file in any section is always at the top of its
+         recent history list.
     \item \texttt{found}
         \index{found}
         Editable copies of all the banks found in the \texttt{\textbackslash usr}
@@ -630,14 +622,12 @@
     \item \texttt{\textasciitilde/.yoshimi\_history}
          \index{\textasciitilde/.yoshimi\_history}
          Specific to command line use, this holds the command-line history.
-
 \end{itemize}
 
 \subsection{Local Data Files / Presets}
 \label{subsec:local_data_preset}
 
    \index{.xpz}
-%   \index{preset!.xpz}
    \index{preset}
    \index{file!preset}
    Have a favorite setting for an envelope, or a difficult-to-reproduce
@@ -657,10 +647,10 @@
    clipboard or to a file, for later loading elsewhere.
 
    A preset is canned version of a \textsl{Yoshimi} sub-setting.  Presets can be
-   copied and pasted using the \textbf{C} and \textbf{P} user-interface buttons
-   associated with many of the \textsl{Yoshimi} dialog windows.  They make it
-   easy to save portions of the current settings for later use.  For example,
-   resonance settings can be saved.
+   copied and pasted using the blue \textbf{C} and \textbf{P} user-interface
+   buttons associated with many of the \textsl{Yoshimi} dialog windows.  They
+   make it easy to save portions of the current settings for later use.  For
+   example, resonance settings can be saved.
 
    The naming convention for a preset file is
    \texttt{presetname.presettype.xpz}, where
@@ -697,12 +687,12 @@
    write.
 
    This is actually quite interesting as there can never be a conflict.  It is
-   impossible to have two browser lists open at the same time (try it!) and the
-   lists are always rebuilt from memory every time they are opened. Similarly,
-   the entries are added too every time a new recognised file is loaded or
-   saved and one can't physically do two at the same time -- even if one could
-   it would simply mean that one very briefly waited for the other, which is
-   not an issue as they are not in the realtime thread.
+   impossible to have two browser lists open at the same time, and the lists are
+   always rebuilt from memory every time they are opened. Similarly, the entries
+   are added to every time a new recognised file is loaded or saved and one
+   can't physically do two at the same time -- even if one could it would simply
+   mean that one very briefly waited for the other, which is not an issue as
+   they are not in the realtime thread.
 
    The \texttt{recent} file is saved only upon a normal exit, as it is
    comparatively unimportant.
@@ -720,8 +710,8 @@
 \label{subsec:local_data_cli_history}
    \index{Command Line History}
    The CLI history is an outlier and not part of the \textsl{Yoshimi} file
-   management. It is a hidden file maintained by the standard \texttt{readline}
-   program.
+   management. It is a hidden file in one's \texttt{home} directory, maintained
+   by the standard \texttt{readline} program.
    It conveniently allows you to easily repeat previous commands, both in the
    current session, and when restarting later ones.
 
