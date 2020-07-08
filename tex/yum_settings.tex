@@ -274,6 +274,78 @@
    in place for the session to avoid disrupting other applications that may
    have seen them.
 
+\index{new!Volume Velocity Panning}
+\subsection{Volume Velocity Panning}
+\label{subsec:volume_panning}
+   In \textsl{Yoshimi} V 1.7.2 this panel of controls within the amplitude
+   groups of AddSynth, Voice, SubSynth and PadSynth has undergone considerable
+   change. This can be seen in \figureref{fig:volume_pan_group}. All of these
+   have the same actual controls although the settings vary slightly.
+   Therefore, rather than repeat the description in all four sections of the
+   manual they are detailed here.
+\index{new!Panning Width}
+   Both 'Volume' and 'Vel Sens' are now defined in actual dB terms.
+
+   \setcounter{ItemCounter}{0}
+   \itempar{Volume}{volume}
+   Volume.
+   Sets the overall/relative volume of the instrument.
+
+   \itempar{Vel Sens}{vel sens}
+   Velocity Sensing function.
+   Velocity sensing is simply an exponental transformation from the note’s
+   velocity to some parameter change.
+   Observe \figureref{fig:velocity_sensing_function}.
+   It shows how the velocity sensing controls affects the translation of a
+   parameter over the whole range of possible note velocities.
+   Turn the knob rightmost/maximum to disable this function.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.25]{zyn/velocity_sensing_function_velf.png}
+   \caption{Velocity Sensing Function}
+   \label{fig:velocity_sensing_function}
+\end{figure}
+
+   \itempar{Pan}{pan}
+   Panning.
+   This longer doubles up as a random panning switch, and is defined in terms
+   of plus/minus percentage.
+
+   \itempar{Rand}{random pan}
+   Random Panning Switch.
+   Switches the random function on or off.
+
+   \itempar{Width}{random width}
+   'Width.
+   This is a new control also defined in terms of percentage.
+
+   The way this works is that with the default random setting of 100\% the
+   apparent position can be anywhere between extreme left and extreme right,
+   as before. Set this to 50\% and the range will be between 50\% left of the
+   centre position and 50\% right of the centre. However, unlike the previous
+   implementation, the panning position is still active, and if one was to set
+   that to 25\% left, then the actual range will be between 75\% left and 25\%
+   right.
+
+   Obviously it is not possible to go to more than 100\% so if the controls
+   were set with Pan at 100\% right, and width was 100\% the actual range
+   would be centre to 100\% right. The range is set before the actual
+   randomisation so this will still produce an even distribution over the
+   range, resulting in an apparent centre of 50\% right. That is, the same as
+   if of both controls were set at 50\%
+
+   As far as possible we maintain backwards compatibility, and in this case
+   the fact of random panning being set will be correctly interpreted by older
+   versions of \textsl{Yoshimi} but random position and width will be lost.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=1.0]{1.7.2/volume_pan_group.png}
+   \caption{Volume/Velocity/Panning}
+   \label{fig:volume_pan_group}
+\end{figure}
+
 \subsection{Filter Settings}
 \label{subsec:filter_settings}
 

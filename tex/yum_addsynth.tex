@@ -61,7 +61,7 @@
 %  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/ADDsynth-edit.jpg}
 %  \includegraphics[scale=1.0]{1.4.0/ADDsynth-edit.png}
 %  \includegraphics[scale=1.0]{1.5.0/AddSynth.png}
-   \includegraphics[scale=1.0]{1.5.7/AddSynth.png}
+   \includegraphics[scale=1.0]{1.7.2/AddSynth.png}
    \caption{ADDsynth Edit/Global Dialog}
    \label{fig:addsynth_edit_dialog}
 \end{figure}
@@ -92,12 +92,19 @@
       \item \textbf{Vel Sens}
       \item \textbf{Pan}
       \item \textbf{Rand}
+      \item \textbf{Width}
+
+       The controls above are discussed in detail in
+       \sectionref{subsec:volume_panning}. However their values for ADDsynth
+       are as below.
+
       \item \textbf{Amplitude Env}
          The Amplitude Env panel is described in detail in
          \sectionref{subsubsec:amplitude_envelope_subpanel}.
       \item \textbf{Amplitude LFO}
          The Amplitude LFO panel is described in detail in
          \sectionref{subsubsec:lfo_user_interface_panels}.
+
       \item \textbf{Stereo}
       \item \textbf{Rnd Grp}
       \item \textbf{P.Str.}
@@ -112,41 +119,24 @@
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{Volume}{addsynth!volume}
-   ADDsynth Volume.
-   Sets the overall/relative volume of the instrument.
 
-   Values: \texttt{1 to 127, 64*}
+   Values: \texttt{-60dB to 19.4dB, -3.8dB*}
 
    \itempar{Vel Sens}{addsynth!vel sens}
-   ADDsynth Velocity Sensing function.
-   Velocity sensing is simply an exponental transformation from the note’s
-   velocity to some parameter change.
-   Observe \figureref{fig:velocity_sensing_function}.
-   It shows how the velocity sensing controls affects the translation of a
-   parameter over the whole range of possible note velocities.
-   Turn the knob rightmost/maximum to disable this function.
 
-   Values: \texttt{1 to 127, 64*}
-
-\begin{figure}[H]
-   \centering
-   \includegraphics[scale=0.25]{zyn/velocity_sensing_function_velf.png}
-   \caption{Velocity Sensing Function}
-   \label{fig:velocity_sensing_function}
-\end{figure}
+   Values: \texttt{-48dB to -0.8dB, disabled, -6.02dB*}
 
    \itempar{Pan}{addsynth!pan}
-   ADDsynth Global Panning.
-   Dialing the knob to leftmost or zero gives random panning.
-   Also, clicking on the \textbf{Rand} LED will enable random panning.
 
-   Values: \texttt{0, 1 to 127, 64*}
+   Values: \texttt{100\% left to 100\% right, centered*}
 
    \itempar{Rand}{addsynth!random pan}
-   ADDsynth Random Panning Indicator.
-   A red fill-in color provides an indicator for the activation of random
-   panning in this control.
-   Also, clicking on this small control will enable random panning.
+
+   Values: \texttt{off*, on}
+
+   \itempar{Width}{addsynth!random width}
+
+   Values: \texttt{0 to 100\%* }
 
    Next, we skip the \textbf{Amplitude Env} and \textbf{Amplitude LFO}
    panels, which are described elsewhere, as noted above.
@@ -337,11 +327,7 @@
 
 \begin{figure}[H]
    \centering
-%   \includegraphics[scale=0.75]{1.5.10/AddVoice.png}
-
-% TODO FOR 1.6.0:  REPLACE THE ABOVE WITH THIS LINE IN Version 1.6.0
-
-  \includegraphics[scale=0.75]{1.6.0/AddVoice.png}
+   \includegraphics[scale=0.75]{1.7.2/AddVoice.png}
    \caption{ADDsynth Voice Parameters Dialog}
    \label{fig:addsynth_voice_parameters_dialog}
 \end{figure}
@@ -367,13 +353,9 @@
    frequency-controlled.  Each voice can also be modulated by a
    modulator.
 
-% TODO FOR 1.6.0:  REPLACEMENT TEXT FOR VERSION 1.6.0
-%
-  Another property of the voice is that one can tell \textsl{Yoshimi} to import
-  a given lower-numbered voice, either as an oscillator, or as a modulator.
-
-%   Another property of the voice is that one can tell \textsl{Yoshimi} to
-%   modulate a given voice with a lower-numbered voice.
+  Another property of the voice is that one can tell \textsl{Yoshimi} to
+  import a given lower-numbered voice, either as an oscillator, or as a
+  modulator.
 
    \begin{enumber}
       \item \textbf{Voice Number Tab}
@@ -427,8 +409,13 @@
       \item \textbf{Volume}
       \item \textbf{Vel Sens}
       \item \textbf{Pan}
-      \item \textbf{Pan randomness indicator}
-      \item \textbf{Pan reset} (red button)
+      \item \textbf{Rand}
+      \item \textbf{Width}
+
+      The controls above are discussed in detail in
+       \sectionref{subsec:volume_panning}. However their values for ADDsynth
+       Voice are as below.
+
       \item \textbf{Amplitude Env, Stock + Enable}
       \item \textbf{Amplitude LFO, Stock + Enable}
    \end{enumber}
@@ -437,10 +424,8 @@
 
    \itempar{Minus}{voice par amp!invert phase}
    ADDsynth Amplitude Minus.
-%  This setting enables the inversion of the volume control action.
-%  It enables negative values for the volume control of the voice.
-   When checked, this control inverts the phase of the waveform relative to all
-   the other voices.
+   When checked, this control inverts the phase of the waveform relative to
+   all the other voices.
    With only one voice enabled, this control will seem to do nothing.
    With two voices enabled with \textsl{identical} waveforms, the
    \textbf{Minus} control will indeed seem to reverse the effect of the volume
@@ -450,26 +435,24 @@
    Values: \texttt{Off*, On}
 
    \itempar{Volume}{voice par amp!volume}
-   ADDsynth Voice Volume.
-   Sets the (relative) volume of this voice in the part/instrument.
 
-   Values: \texttt{0 to 127, 100}
+   Values: \texttt{off, -57.6dB to 0dB, -12.8dB*}
 
    \itempar{Vel Sens}{voice par amp!vel sens}
-   ADDsynth Voice velocity-sensing function; setting to rightmost/max
-   disables this function.
 
-   Values: \texttt{0 to 127*}
+   Values: \texttt{-48dB to -0.8dB, disabled*}
 
    \itempar{Pan}{voice par amp!pan}
-   ADDsynth Voice panning; setting to leftmost/0 gives random panning.
 
-   Values: \texttt{0 to 127, 64*}
+   Values: \texttt{100\% left to 100\% right, centered*}
 
-   \itempar{Pan randomness indicator}{voice par amp!random pan}
-   ADDsynth Voice random panning On/Off.
-   Fills in red to indicate that random panning is in force.
-   Clicking on it will also set random panning.
+   \itempar{Rand}{voice par amp!random pan}
+
+   Values: \texttt{off*, on}
+
+   \itempar{Width}{voice par amp!random width}
+
+   Values: \texttt{0 to 100\%* }
 
    \itempar{Amplitude Env, Stock + Enable}{voice par amp!amp env}
    ADDsynth Amplitude Envelope Sub-panel.
