@@ -329,7 +329,7 @@
    The command-line interface can access all top level controls, as well as the
    part editing controls, and can select any effect and effect preset.  It can be
    used to set up Vector Control much more quickly and easily than using NRPNs.
-   It allows setting to be made to the various synthesis engines.
+   It allows settings to be made to the various synthesis engines.
    The command-line is also context-sensitive, which, with careful choice
    of command names and abreviations, allows fast access with minimal
    typing.
@@ -382,9 +382,9 @@
    The CLI prompt always
    shows what level one is on, and the help-lists are also
    context-sensitive, so one doesn't see a lot of irrelevent clutter.
-   \textsl{Yoshimi} instrument patches are fully
-   compatible with \textsl{ZynAddSubFX} patches, and we have ported across
-   new refinements with thanks to the Zyn authors.
+%   \textsl{Yoshimi} instrument patches are fully
+%   compatible with \textsl{ZynAddSubFX} patches, and we have ported across
+%   new refinements with thanks to the Zyn authors.
    See \sectionref{sec:command_line}, for more information.
 
 \subsubsection{Audio Support}
@@ -427,9 +427,10 @@
    Where XML files are cross-compatible with \textsl{ZynAddSubFX},
    (such as instrument ones) \textsl{Yoshimi} stamps them with its own major
    and minor version numbers underneath the existing ones, so it is possible
-   to tell which version created the files, or whether they were created by \textsl{ZynAddSubFX}. If the new files are not compatible (such as config)
+   to tell which version created the files, or whether they were created by
+   \textsl{ZynAddSubFX}. If the new files are not compatible (such as config)
    the doctype and all other details are identfied as purely for
-   \textsl{Yoshimi}
+   \textsl{Yoshimi}. However, see \sectionref{subsec:file_compatibility}
 
    One can direct messages to either \texttt{stderr}
    (the error output of a terminal console) or the \textbf{Reports} window
@@ -446,8 +447,9 @@
    As of version 1.5.8 switches, buttons and
    selectors will also home with a right-click.
 
-   Part-editing windows carry the part number and voice name in the title bar.
-   For the AddSynth oscillator window this also includes the voice number.
+   Part-editing windows carry the part number and voice name in the title
+   bar. For the AddSynth oscillator window this also includes the voice
+   number.
 
    When opening an instrument bank, one can tell exactly which synth
    engines are used by each instrument. This is represented by three pale
@@ -470,8 +472,8 @@
 
    The \textbf{Humanise} feature has had more interest so it's been upgraded.
    It's now a pair of sliders, and its settings can be saved in patch sets.
-   It provides a tiny per-note random detune and/or velocity attenuation to an
-   \textsl{entire} part (all engines in all kits), but only for that part.
+   It provides a tiny per-note random detune and/or velocity attenuation to
+   an \textsl{entire} part (all engines in all kits), but only for that part.
 
    Audio and MIDI preferences have been improved. If one sets ALSA MIDI
    and JACK audio from the GUI or the command line, the setting can be
@@ -513,8 +515,44 @@
    A final detail with the history lists is that in each list type, the last
    used item will be placed at the top of the list. This is especially useful
    when wanting to continually save/load an item currently being worked on.
-   However, since version 1.6.0 it has been possible to freeze these lists, so
-   benefiting the (also new) MIDI NRPN control to load settings from these lists.
+   However, since version 1.6.0 it has been possible to freeze these lists,
+   so benefiting the (also new) MIDI NRPN control to load settings from these
+   lists.
+
+\subsection{File Compatibility}
+\label{subsec:file_compatibility}
+   It is always a challenge with developing software to make impovements to
+   features and add new ones without breaking older versions that users might
+   not be in a position to upgrade. \textsl{Yoshimi} handles this by
+   retaining original file parameters with the closest match possible, and at
+   the same time a separately named new or extended parameter. This ensures
+   both older \textsl{Yoshimi} versions will run correctly, and will do so on
+   \textsl{ZynAddSubFX}. Obviously, completely new features will be lost to
+   older versions but   othewise files will behave as before. This is
+   especially relevant where exisiting files are loaded and then resaved.
+
+   Where there are great changes or where an entirely new concept is
+   developed we create a completely new file type, but again store what is
+   relevant in the older type.
+\index{new!Yoshimi/ZynAddSubFX Warning}
+   This has worked very well for several years. However we have come up
+   against a problem. The \textsl{ZynAddSubFX} developers have taken a
+   different approach, and some prameters have different types in their
+   versions from 3.0 onwards. Therefore we now make a test for this and give
+   a warning as shown in \figureref{fig:compatibilty_warning}.
+
+   This is known to be a problem with instrument files (.xiz) and presets
+   (.xpz). We don't know if there are others. Ironically, even the latest
+   \textsl{Yoshimi} versions of these files will behave correctly on
+   \textsl{ZynAddSubFX}.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=1.0]{1.7.2/CompatibilityWarning.png}
+   \caption{Compatibility Warning}
+   \label{fig:compatibilty_warning}
+\end{figure}
+
 
 \subsection{Document Structure}
 \label{subsec:introduction_document_structure}
