@@ -388,7 +388,7 @@
    ADDsynth Voice Delay.
    \index{todo!voice delay units (milliseconds/seconds)}
 
-   Values: \texttt{0* to 4.90}
+   Values: \texttt{0* to 4.90 s}
 
    \itempar{Resonance}{voice!resonance}
    ADDsynth Voice Resonance On/Off.
@@ -790,8 +790,7 @@
    \itempar{Phase}{voice oscillator!phase}
    Voice Oscillator Phase.
 
-   Values: \texttt{0 to 360 (0 to 2*pi)}
-
+   Values: \texttt{-90, 0*, 88.6 to 360 (degrees)}
 
 \subsubsection{ADDsynth / Voice Parameters / MODULATOR}
 \label{subsubsec:addsynth_voice_parameters_modulator}
@@ -990,7 +989,8 @@
          Values: \texttt{Internal*, Other oscillators?}
       \item \textbf{Phase}
          Oscillator Phase.
-         Values: \texttt{0 to 360 (0 to 2PI)}
+
+         Values: \texttt{-90, 0*, 88.6 to 360 (degrees)}
       \item \textbf{Waveform graph}
          Waveform graph.
    \end{enumber}
@@ -1227,8 +1227,8 @@
    below.
 
    \itempar{Phase Randomness}{addsynth!rnd}
-   Phase Randomness. Sets the randomness of the oscillator phase which is settable
-   from -64 (-90 deg) to 63 (+90 deg).
+   Phase Randomness. Sets the randomness of the oscillator phase which is
+   settable from -64 (-90 deg) to 63 (+90 deg).
 
    \itempar{H.rnd}{addsynth!H.rnd}
    Harmonic Amplitude Randomness.
