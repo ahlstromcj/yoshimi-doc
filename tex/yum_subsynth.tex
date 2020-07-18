@@ -27,7 +27,7 @@
 %  \includegraphics[scale=0.9]{bottom-panel/instrument-edit/SUB/SUBsynth-parameters.jpg}
 %  \includegraphics[scale=0.9]{1.4.0/SUBsynth-parameters.png}
 %  \includegraphics[scale=0.9]{1.5.0/SubSynth.png}
-   \includegraphics[scale=0.9]{1.6.1/SubSynth.png}
+   \includegraphics[scale=0.9]{1.7.2/SubSynth.png}
    \caption{SUBsynth Edit Dialog}
    \label{fig:subsynth_edit_dialog}
 \end{figure}
@@ -57,34 +57,38 @@
       \item \textbf{Vel Sens}
       \item \textbf{Pan}
       \item \textbf{Rand}
+      \item \textbf{Width}
+
+       The controls above are discussed in detail in
+       \sectionref{subsec:volume_panning}. However their values for SUBsynth
+       are as below.
       \item \textbf{Reset (panning)} (red button)
       \item \textbf{Amplitude Env} (stock sub-panel)
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
-   \itempar{Volume}{subsynth!amplitude volume}
-   SUBsynth Volume.
+   \itempar{Volume}{subsynth!volume}
 
-   Values: \texttt{1 to 127, 64*}
+   Values: \texttt{-60dB to 19.4dB, 0dB*}
 
-   \itempar{Vel Sens}{subsynth!amplitude vel sense}
-   Velocity Sensing function, rightmost/max to disable.
+   \itempar{Vel Sens}{subsynth!vel sens}
 
-   Values: \texttt{1 to 127, 64*}
+   Values: \texttt{-48dB to -0.8dB, disabled, -2.59dB*}
 
-   \itempar{Pan}{subsynth!amplitude pan}
-   Global panning, leftmost/zero gives random panning.
+   \itempar{Pan}{subsynth!pan}
 
-   Values: \texttt{1 to 127, 64*}
+   Values: \texttt{100\% left to 100\% right, centered*}
 
-   \itempar{Rand}{subsynth!amplitude random pan}
-   Indicator for activation of random panning.
+   \itempar{Rand}{subsynth!random pan}
 
-   \itempar{Reset (panning)}{subsynth!amplitude reset pan}
-   Reset Panning.
+   Values: \texttt{off*, on}
 
-   \itempar{Amplitude Env}{subsynth!amplitude volume}
+   \itempar{Width}{subsynth!random width}
+
+   Values: \texttt{0 to 100\%* }
+
+   \itempar{Amplitude Env}{subsynth!amplitude envelope}
    Amplitude Envelope.
    See \sectionref{subsubsec:amplitude_envelope_subpanel},
    for information on this stock sub-panel.

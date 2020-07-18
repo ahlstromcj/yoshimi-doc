@@ -356,12 +356,12 @@
    \end{verbatim}
 
    To avoid confusion, the script routine first sets the context to the
-   top level, then performs all the commands, following context level changes.
-   If there is a fault in the script, it will be reported along with the
-   number of the line where the error occurred. Due to the buffering used, the
-   script will return before many of the actions have actually taken place.
-   Therefore an error report is likely to be some way up the responses.
-   Typically it will be something like:
+   top level, then performs all the commands, following context level
+   changes. If there is a fault in the script, it will be reported along with
+   the number of the line where the error occurred. Due to the buffering
+   used, the script will return before many of the actions have actually
+   taken place. Therefore an error report is likely to be some way up the
+   responses. Typically it will be something like:
 
    \begin{verbatim}
     *** Error: Which Operation? @ line 13 ***
@@ -378,11 +378,11 @@
       set volume 45
    \end{verbatim}
 
-   This script makes sure the part is on, that the relative addsynth and voice
-   are on, and finally sets its volume to 45.
+   This script makes sure the part is on, that the relative addsynth and
+   voice are on, and finally sets its volume to 45.
 
-   Although this process starts from the top level, it will use the parameters
-   that were last set.
+   Although this process starts from the top level, it will use the
+   parameters that were last set.
    Thus, if one had been working on part 7, addsynth voice 2,
    then that is the one that will have its volume adjusted.
    This means one can set up generic preferences,
@@ -393,18 +393,19 @@
    as a comment so will also be ignored. However, both of these kinds
    of lines will be in the line count if an error is reported.
 
-   Buffering can also cause commands to go out of sequence if a buffered one is
-   immediately followed by a related direct one. For this reason there is an
-   extra command specific to scripts:
+   Buffering can also cause commands to go out of sequence if a buffered one
+   is immediately followed by a related direct one. For this reason there is
+   an extra command specific to scripts:
 
    \begin{verbatim}
       WAIT [n]
    \end{verbatim}
 
-   The command must be entered in full, and the range is 1 to 1000 milliseconds.
+   The command must be entered in full, and the range is 1 to 1000
+   milliseconds.
    In the example below, switching the kit mode is buffered but setting a kit
-   item isn't, so without a delay the setting would be attempted before it was
-   available. A 20ms wait seems to be enough of a delay in this case.
+   item isn't, so without a delay the setting would be attempted before it
+   was available. A 20ms wait seems to be enough of a delay in this case.
    \begin{verbatim}
       # Using delays
       s p 1 on
@@ -425,8 +426,8 @@
    Commands can be abbreviated to the first three letters of each command,
    or, in some cases, just one letter.  This is indicated by
    uppercase letters in command descriptions.
-   The commands available depend on the current "context" of the command line.
-   However, there is a group of commands always available:
+   The commands available depend on the current "context" of the command
+   line. However, there is a group of commands always available:
 
    \begin{itemize}
       \item \texttt{\textbf{?}} or \texttt{\textbf{help}}
@@ -604,8 +605,8 @@
 %     \end{tabular}
 %  \end{table}
 
-   Some of the commands in the table above have more extensive descriptions in
-   the sections that follow.
+   Some of the commands in the table above have more extensive descriptions
+   in the sections that follow.
 
 \paragraph{MONo}
 \label{paragraph:command_line_mono}
@@ -621,10 +622,10 @@
    The modes 'Row' and 'Loop' mode use the first 16 parts, while
    'Column' mode can use all possible 64 parts.
 
-   The mode setting has to be decided before setting 'CC', which then determines
-   which MIDI controller to listen to for performing the actual switch.
-   See \sectionref{subsec:mixer_panel_window}; it goes into more details about
-   this setting, at a user-interface level.
+   The mode setting has to be decided before setting 'CC', which then
+   determines which MIDI controller to listen to for performing the actual
+   switch. See \sectionref{subsec:mixer_panel_window}; it goes into more
+   details about this setting, at a user-interface level.
 
 \paragraph{Set / Read / MLearn Context Levels}
 \label{paragraph:command_line_context_levels}
@@ -648,15 +649,16 @@
    \begin{itemize}
       \item \texttt{Part}. Enter context level for part operations.
       \item \texttt{VEctor}. Enter context level for vector operations.
-      \item \texttt{SCale}. Enter context level for scale (microtonal) operations.
+      \item \texttt{SCale}. Enter context level for scale (microtonal)
+      operations.
       \item \texttt{MLearn}. Enter context level for MIDI Learn line editing.
       \item \texttt{COnfig}. Enter context level for configuration settings.
       \item \texttt{SYStem effects [n]}. Enter the effects context level.
       \begin{itemize}
          \item \texttt{[s]}.  Set the effect type directly by name.
          \item \texttt{PREset [n]}. Set the numbered effect preset to n.
-         \item \texttt{SEnd [n1] [n2]}. Send the current system effect to effect n1
-            at volume n2.
+         \item \texttt{SEnd [n1] [n2]}. Send the current system effect to
+         effect n1 at volume n2.
       \end{itemize}
       \item \texttt{INSert effects [n]}. Enter effects context level.
       \begin{itemize}
@@ -730,8 +732,8 @@
       yoshimi P1+, M4+, A+, V5+, LFO freq+>
    \end{verbatim}
 
-   The need for compression is obvious, and once at this level, the \texttt{?}
-   command will list the LFO controls.
+   The need for compression is obvious, and once at this level, the
+   \texttt{?} command will list the LFO controls.
 
 \subsubsection{Part Common Commands}
 \label{subsec:command_line_part_common_commands}
@@ -766,6 +768,8 @@ to see what controls were available in each context.
    Minimum MIDI last seen, or note value.   \\
 \texttt{MAx [[s][n]]} &
    Maximum MIDI last seen, or note value.   \\
+\texttt{FUll} &
+   Restore full key range.   \\
 \texttt{POrtamento [s]} &
    (ON / other).   \\
 \texttt{Mode [s]} &
@@ -810,18 +814,20 @@ to see what controls were available in each context.
    Set kit mode and cross fade item pairs. \\
 \texttt{KIT} &
    Re-enter kit mode editing if it is enabled. \\
-\texttt{DIsable} &
-   Disable kit mode. \\
+\texttt{NORmal} &
+   Return to mormal (not kit) mode. \\
    \texttt{(kit mode) [n]} &
       Kit item number (1-16). \\
-   \texttt{[ON/OFF]} &
-      Enables / Disables the kit item. \\
-   \texttt{QUiet [s]} &
-      This kit item (ON, {other}). \\
+   \texttt{(kit mode) [ON/OFF]} &
+      Enables / Disables and removes the kit item. \\
+   \texttt{(kit mode) QUiet [s]} &
+      Mute this kit item without changing it's features (ON, {other}). \\
    \texttt{(kit item) MIn [[s][n]]} &
       Minimum MIDI last seen, or note value   \\
    \texttt{(kit item) MAx [[s][n]]} &
       Maximum MIDI last seen, or note value.   \\
+   \texttt{(kit item) FUll} &
+      Restore full key range.   \\
    \texttt{(kit item) EFfect [n]} &
       Effect for this item (0-none, 1-3). \\
    \texttt{(kit item) NAme [s]} &
@@ -855,9 +861,9 @@ to see what controls were available in each context.
    \end{verbatim}
 
    Note how the kit mode is shown in parenthesis when not actually in the kit
-   editing context. Also, to disable kit mode the specific \textbf{DI}sable
-   command must be used, as the normal \textbf{ON/OFF} commands refer to
-   individual kit items.
+   editing context. Also, to disable kit mode the specific \textbf{NOR}mal
+   command must be used, as the \textbf{ON/OFF} commands refer to individual
+   kit items.
 
 \paragraph{Part MIDI Controllers}
 \label{paragraph:command_line_part_midi_commands}
@@ -871,7 +877,7 @@ to see what controls were available in each context.
 \texttt{VRange [n]} &
    relative degree of volume control. \\
 \texttt{PAn [n]} &
-   relative width of panning control. \\
+   relative range (width) of panning control. \\
 \texttt{MOdwheel [s]} &
    enables/disables exponential modulation (ON / other). \\
 \texttt{MRange [n]} &
@@ -959,7 +965,11 @@ to see what controls were available in each context.
 \texttt{Volume [n]} &
    AddSynth Volume.  \\
 \texttt{Pan [n]} &
-   Panning (zero gives random panning).\\
+   Panning position.\\
+\texttt{PRandom [s]} &
+   Enable random panning (ON / other).\\
+\texttt{PWidth [n]} &
+   Random panning range.\\
 \texttt{VElocity [n]} &
    Velocity sensing sensitivity. \\
 \texttt{STEreo [s]} &
@@ -1012,7 +1022,11 @@ to see what controls were available in each context.
 \texttt{Volume [n]} &
    Voice Volume.  \\
 \texttt{Pan [n]} &
-   Panning (zero gives random panning).\\
+   Panning position.\\
+\texttt{PRandom [s]} &
+   Enable random panning (ON / other).\\
+\texttt{PWidth [n]} &
+   Random panning range.\\
 \texttt{VElocity [n]} &
    Velocity sensing sensitivity. \\
 \texttt{BENd Adjust [n]} &
@@ -1115,7 +1129,11 @@ to see what controls were available in each context.
 \texttt{Volume [n]} &
    PadSynth Volume. \\
 \texttt{Pan [n]} &
-   Panning (zero gives random panning).\\
+   Panning position.\\
+\texttt{PRandom [s]} &
+   Enable random panning (ON / other).\\
+\texttt{PWidth [n]} &
+   Random panning range.\\
 \texttt{VElocity [n]} &
    Velocity sensing sensitivity. \\
 \texttt{STEreo [s]} &
@@ -1232,7 +1250,11 @@ to see what controls were available in each context.
 \texttt{Volume [n]} &
    SubSynth Volume.  \\
 \texttt{Pan [n]} &
-   Panning (zero gives random panning).\\
+   Panning position.\\
+\texttt{PRandom [s]} &
+   Enable random panning (ON / other).\\
+\texttt{PWidth [n]} &
+   Random panning range.\\
 \texttt{VElocity [n]} &
    Velocity sensing sensitivity. \\
 \texttt{STEreo [s]} &

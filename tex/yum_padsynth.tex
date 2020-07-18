@@ -765,7 +765,7 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    guitars, is often achieved by limiting: It happens because an amplifier
    "overdrives" the maximum amplitude it can deliver.
 
-   ZynAddSubFX has two types of limiting. Soft limiting, here as Lmt, means
+   \textsl{Yoshimi} has two types of limiting. Soft limiting, here as Lmt, means
    that the sound may not exceed a certain value. If the amplitude does so,
    it will simply be reduced to the limiting value. The overtones are
    generated in the lower frequencies first.
@@ -773,7 +773,7 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    Hard limiting, is also called clipping and abbreviated Clip. This means
    that if the maximum is exceeded, instead of being constant at the limiting
    value, the original signal still has some influence on the output signal.
-   Still, it does not exceed the limiting value. For ZynAddSubFX, a signal
+   Still, it does not exceed the limiting value. For \textsl{Yoshimi}, a signal
    exceeding the limiting value will continue to grow "in the negative". This
    leads to overtones being generated on the full frequency band.
 
@@ -892,9 +892,13 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    Harmonics Amplitude.
    Provides 128 sliders for the amplitude of harmonics.
 
+   Values: \texttt{-100\%, 0*, 100\%}
+
    \itempar{Harmonics Bandwidth}{padsynth!harmonics bandwidth}
    Harmonics Bandwidth.
    Provides 128 sliders for the bandwidth of harmonics.
+
+   Values: \texttt{-88.6, 0*, 90} (degrees)
 
    \itempar{Harmonics Scrollbar}{padsynth!harmonics scrollbar}
    Harmonics Scrollbar.
@@ -976,13 +980,15 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 
    It consists of nothing but stock user-interface elements that are described
    elsewhere in this manual.
+   The Volume and Panning values and ranges are indentical to the ADDsynth
+   global ones.
 
 \begin{figure}[H]
    \centering
 %  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/PAD/PADsynth-parameters-envelopes-LFOs.jpg}
 %  \includegraphics[scale=1.0]{1.4.0/PADsynth-parameters-envelopes-LFOs.png}
 %  \includegraphics[scale=1.0]{1.5.0/PadSynthEnvelopes.png}
-   \includegraphics[scale=1.0]{1.5.7/PadSynthEnvelopes.png}
+   \includegraphics[scale=1.0]{1.7.2/PadSynthEnvelopes.png}
    \caption{PADSynth Parameters, Envelopes and LFOs}
    \label{fig:padsynth_parameters_envelopes_and_lfos}
 \end{figure}

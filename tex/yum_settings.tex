@@ -274,6 +274,78 @@
    in place for the session to avoid disrupting other applications that may
    have seen them.
 
+\index{new!Volume Velocity Panning}
+\subsection{Volume Velocity Panning}
+\label{subsec:volume_panning}
+   In \textsl{Yoshimi} V 1.7.2 this panel of controls within the amplitude
+   groups of AddSynth, Voice, SubSynth and PadSynth has undergone considerable
+   change. This can be seen in \figureref{fig:volume_pan_group}. All of these
+   have the same actual controls although the settings vary slightly.
+   Therefore, rather than repeat the description in all four sections of the
+   manual they are detailed here.
+\index{new!Panning Width}
+   Both 'Volume' and 'Vel Sens' are now defined in actual dB terms.
+
+   \setcounter{ItemCounter}{0}
+   \itempar{Volume}{volume}
+   Volume.
+   Sets the overall/relative volume of the instrument.
+
+   \itempar{Vel Sens}{vel sens}
+   Velocity Sensing function.
+   Velocity sensing is simply an exponental transformation from the note’s
+   velocity to some parameter change.
+   Observe \figureref{fig:velocity_sensing_function}.
+   It shows how the velocity sensing controls affects the translation of a
+   parameter over the whole range of possible note velocities.
+   Turn the knob rightmost/maximum to disable this function.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.25]{zyn/velocity_sensing_function_velf.png}
+   \caption{Velocity Sensing Function}
+   \label{fig:velocity_sensing_function}
+\end{figure}
+
+   \itempar{Pan}{pan}
+   Panning.
+   This longer doubles up as a random panning switch, and is defined in terms
+   of plus/minus percentage.
+
+   \itempar{Rand}{random pan}
+   Random Panning Switch.
+   Switches the random function on or off.
+
+   \itempar{Width}{random width}
+   'Width.
+   This is a new control also defined in terms of percentage.
+
+   The way this works is that with the default random setting of 100\% the
+   apparent position can be anywhere between extreme left and extreme right,
+   as before. Set this to 50\% and the range will be between 50\% left of the
+   centre position and 50\% right of the centre. However, unlike the previous
+   implementation, the panning position is still active, and if one was to set
+   that to 25\% left, then the actual range will be between 75\% left and 25\%
+   right.
+
+   Obviously it is not possible to go to more than 100\% so if the controls
+   were set with Pan at 100\% right, and width was 100\% the actual range
+   would be centre to 100\% right. The range is set before the actual
+   randomisation so this will still produce an even distribution over the
+   range, resulting in an apparent centre of 50\% right. That is, the same as
+   if of both controls were set at 50\%
+
+   As far as possible we maintain backwards compatibility, and in this case
+   the fact of random panning being set will be correctly interpreted by older
+   versions of \textsl{Yoshimi} but random position and width will be lost.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=1.0]{1.7.2/volume_pan_group.png}
+   \caption{Volume/Velocity/Panning}
+   \label{fig:volume_pan_group}
+\end{figure}
+
 \subsection{Filter Settings}
 \label{subsec:filter_settings}
 
@@ -915,39 +987,36 @@ These parameters are:
 
    \itempar{Freq}{LFO!frequency}
    LFO Frequency.
-   This parameter varies from 0 to 1.
-   We still need to figure out what that scale means, however.
-   Obviously, it is a relative scale, and is perhaps related to the
-   overall sampling frequency.
+   This parameter varies from 0 to 85.25Hz.
 
-   Values: \texttt{0 to 1, 0.63*}
+   Values: \texttt{0 to 85.25, 6.259*}
 
    \itempar{Depth}{LFO!depth}
    \index{LFO!amount}
    LFO Depth.  Also called "LFO Amount".
 
-   Values: \texttt{0* to 127}
+   Values: \texttt{0* to 100\%}
 
    \itempar{Start}{LFO!starting phase}
-   LFO Start Phase. If this knob is at the lowest value, the LFO Start
+   LFO Start Phase in degrees. If this knob is at the lowest value, the LFO Start
    Phase will be random.
 
-   Values: \texttt{0 = random, to 127, 64*}
+   Values: \texttt{random/-167, to 179, 0*}
 
    \itempar{Delay}{LFO!delay}
-   LFO Delay.
+   LFO Delay).
 
-   Values: \texttt{0* to 127}
+   Values: \texttt{0* to 4.00 sec}
 
    \itempar{A.R}{LFO!amplitude randomness}
    LFO Amplitude Randomness.
 
-   Values: \texttt{0* to 127}
+   Values: \texttt{0.1* to 100\%}
 
    \itempar{F.R}{LFO!frequency randomness}
    LFO Frequency Randomness.
 
-   Values: \texttt{0* to 127}
+   Values: \texttt{0.1* to 100\%}
 
    \itempar{C}{LFO!continuous mode}
    LFO Continous Mode.
@@ -957,10 +1026,9 @@ These parameters are:
    \itempar{Str}{LFO!stretch}
    LFO Stretch. See the image in
    \figureref{fig:amplitude_lfo}.
-   It shows that the LFO stretch is set to zero,
-   though the tooltip would show it to be 64.
+   It shows that the LFO stretch is set to zero.
 
-   Values: \texttt{0 to 127, 64*}
+   Values: \texttt{-100\% to 100\%, 0*}
 
    \itempar{Type}{LFO!type}
    LFO Function.
@@ -968,32 +1036,56 @@ These parameters are:
    and \textbf{P}aste buttons that call up a copy-parameters or
    paste-parameters dialog.
 
-   Values: \texttt{SINE*, TRI, SQR, R.up, R.dn, E1dn, E2dn}
+   Values: \texttt{SINE*, TRI, SQR, R.up, R.dn, E1dn, E2dn, S\&H, RSQu, RSQd}
+
+   Meaning: \texttt{Sine, Triangle, Square, Ramp Up, Ramp Down, Exponent 1 Down, Exponent 2 Down, Sample and Hold, Random Square Up, Random Square Down}
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/lfo-function-type.jpg}
+%   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/lfo-function-type.jpg}
+   \includegraphics[scale=1.0]{1.7.2/LFO_function_type.png}
    \caption[LFO Type Drop-down]{LFO Function Type Drop-down}
    \label{fig:lfo_function_type_dropdown}
 \end{figure}
 
-   \itempar{Type}{LFO!function type}
-   LFO Type (or Shape, or Function).
+%   \itempar{Type}{LFO!function type}
+%   LFO Type (or Shape, or Function).
    The various shapes of LFO functions are shown in
    \figureref{fig:types_of_lfo}.
    The values that can be selected are shown in
    \figureref{fig:lfo_function_type_dropdown}.
+
+   \index{new!Extended LFO Types}
+   The last three types are new from \textsl{Yoshimi} V 1.7.2. They are all
+   based on the square wave type but with the following variations:
+
+   \texttt{S\&H} alternates between the maximum depth and a random level
+   from the 'depth' setting to the maximum. It also randomly skips some
+   changes.
+
+   \texttt{RSQu} maintains the freqency (doesn't skip any changes) but
+   alternates between the depth control setting and a random level from that
+   to the maximum depth.
+
+   \texttt{RSQd} also maintains the freqency but alternates between the
+   maximum depth and a random amount from the depth control setting and
+   maximum.
+
+   These extensions sound more like some special effect than normal LFOs, so
+   it is likely they would be of most interest to those involved in
+   experimental sounds and music.
+
+   For reference,
+   \figureref{fig:filter_lfo},
+   shows the LFO sub-panel for a filter, and
+   \figureref{fig:frequency_lfo_subpanel},
+   shows the LFO sub-panel for frequency.
+
+   \itempar{C / P}{LFO!Copy Paste}
    Also present in this sub-panel are the usual \textbf{C}opy
    and \textbf{P}aste buttons that call up a copy-parameters or
    paste-parameters dialog.
 
-   Values: \texttt{SINE*, TRI, SQR, R.up, R.dn, E1dn, E2dn}
-
-   For reference,
-   \figureref{fig:filter_lfo}
-   shows the LFO sub-panel for a filter, and
-   \figureref{fig:frequency_lfo_subpanel}
-   shows the LFO sub-panel for frequency.
 
 \subsubsection{Filter LFO Sub-panel}
 \label{subsubsec:filter_lfo_sub_panel}
@@ -1030,27 +1122,27 @@ These parameters are:
    \itempar{Freq}{lfo!frequency}
    LFO Frequency.
 
-   Values: \texttt{0 to 1, 0.64*}
+   Values: \texttt{0 to 85.25, 6.259*}
 
    \itempar{Depth}{lfo!depth}
    LFO Amount.
 
-   Values: \texttt{0* to 127}
+   Values: \texttt{0* to 100\%}
 
    \itempar{Start}{lfo!start phase}
    LFO Startphase (leftmost is random).
 
-   Values: \texttt{0 to 127, 64*}
+   Values: \texttt{random/-167, to 179, 0*}
 
    \itempar{Delay}{lfo!delay}
    LFO Delay.
 
-   Values: \texttt{0* to 127}
+   Values: \texttt{0* to 4.00 sec}
 
    \itempar{Str}{lfo!stretch}
    LFO Stretch.
 
-   Values: \texttt{0 to 127, 64*}
+   Values: \texttt{-100\% to 100\%, 0*}
 
    \itempar{C}{lfo!continuous}
    Continuous LFO.
@@ -1060,24 +1152,25 @@ These parameters are:
    \itempar{A.R}{lfo!random amplitude}
    LFO Amplitude Randomness.
 
-   Values: \texttt{0* to 127}
+   Values: \texttt{0.1* to 100\%}
 
    \itempar{F.R}{lfo!random frequency}
    LFO Frequency Randomness.
 
-   Values: \texttt{0* to 127}
+   Values: \texttt{0.1* to 100\%}
 
    \itempar{Type}{lfo!type}
    LFO Type.
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/lfo-function-type.jpg}
+%   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/lfo-function-type.jpg}
+   \includegraphics[scale=1.0]{1.7.2/LFO_function_type.png}
    \caption[LFO Function Types]{LFO Function Type Dropdown}
    \label{fig:frequency_lfo_dropdown}
 \end{figure}
 
-   Values: \texttt{SINE*, TRI, SQR, R.up, R.dn, E1dn, E2dn}
+   Values: \texttt{SINE*, TRI, SQR, R.up, R.dn, E1dn, E2dn, S\&H, RSQu, RSQd}
 
    \itempar{C}{lfo!copy}
    Copy to Clipboard/Preset.

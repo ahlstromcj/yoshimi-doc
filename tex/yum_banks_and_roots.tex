@@ -27,7 +27,7 @@
    \sectionref{subsec:concepts_banks_and_roots}.
 
    At one time, one could in theory have 1000 roots, 1000 banks and 1000
-   presets.  However, now roots and banks were trimmed to what can be
+   presets.  However, now roots and banks have been trimmed to what can be
    addressed from MIDI. One can supposedly still have 1000 presets, though.
    Anyway, 128x128x160 = 2621440 instruments should be enough for anyone.
 
@@ -142,9 +142,7 @@
    way.  By choosing a root and making it the current root, one can hone in
    on a smaller collection of banks.
 
-   One cannot reach root paths through the \textbf{Yoshimi / Settings} menu
-   any more; it was causing a nightmare of syncing with the other entry
-   routes. One can reach it from the Banks window
+   One can reach root paths from the Banks window
 %  (see \sectionref{subsubsec:menu_instrument_show_banks})
    or the Instruments window,
 %  (see\sectionref{subsubsec:menu_instrument_show}),
@@ -154,10 +152,11 @@
 \subsection{Banks}
 \label{subsec:banks_and_roots_banks}
 
-   Another important concept in \textsl{Yoshimi} is \textsl{banks}.  Instruments
-   can be stored in banks. These are loaded and saved automatically by the
-   program.  On program start, the last used bank is loaded. A single bank
-   can store up to 128 instruments normally, and 160 using extended programs.
+   Banks of instruments are loaded and saved automatically by the program. On
+   program start, the last used bank is loaded. A single bank can store up to
+   128 instruments normally, and 160 using extended programs.
+   There is a MIDI CC one can use to access the voices from 129 to 160
+   (numbered re 1).
 
 %  TODO:  We should be able to walk the user through a session and
 %  set up a set of instruments that is tractable under MIDI control.
@@ -168,8 +167,6 @@
 %  Some minor instructions are provided in
 %  \sectionref{subsubsec:menu_instrument_show_root_paths}.
 
-   Also note that, as well as bank and program changes, there is the ability
-   to set a MIDI CC to access the voices from 129 to 160 (numbered re 1).
    All the Bank controls are contained in a tab in the main
    \textbf{Settings} window, and take immediate effect.
 
@@ -198,18 +195,17 @@
    See also \sectionref{subsubsec:menu_patch_sets}, and
    \sectionref{sec:banks_collection}, for further information.
 
-   In \textsl{Yoshimi} V 1.7.1 there has been further restructuring of banks to
-   make them not only more efficient, but also provide additional protections and
-   capability.
+   During development of \textsl{Yoshimi} V 1.7.1 there has been further
+   restructuring of banks to make them not only more efficient, but also provide
+   additional protections and capability.
 
-   The first of these restructuring copies all banks found in the non-editable
-   locations \texttt{/usr} and \texttt{/usr/local} into the users
-   hidden home directory \texttt{.local/share}.
-   It only does this copying if the banks are not already there,
-   and, for first-time users,
-   silently adds these to priority locations in the recognised bank roots. One
-   now has fully editable banks and roots, but with the protection of
-   non-writable ones.
+   The first of these restructuring actions copies all banks found in the
+   non-editable locations \texttt{/usr} and \texttt{/usr/local} into the users
+   hidden home directory \texttt{.local/share}. It only does this copying if the
+   banks are not already there, and, for first-time users, silently adds these to
+   priority locations in the recognised bank roots. One now has the best of both
+   worlds -- fully editable banks and roots, but also the protected non-writable
+   ones.
 
    For long-time users, the copying process takes place, but the banks are not
    automatically installed. Instead, one is presented with the following dialog.
@@ -245,6 +241,7 @@
    asked for, and will create the \texttt{newBank} directory
    in it, and inside that a '0005-First Instrument' file which will be a quite
    nice SubSynth patch. It will also load that instrument to part 1.
+   These names can, of course, be changed later.
 
    The last improvement provided by \textsl{Yoshimi} V 1.7.1 concerns banks
    having additional entries installed by external means, such as from the OS

@@ -105,36 +105,45 @@
 \begin{figure}[H]
    \centering
 %  \includegraphics[scale=0.75]{1.3.9/instruments_show_stored.png}
-   \includegraphics[scale=0.75]{1.6.0/Instrument.png}
+   \includegraphics[scale=0.75]{1.7.2/Instrument.png}
    \caption[Show Stored Instruments]{Instruments Stored in Current Banks}
    \label{fig:instruments_show_stored}
 \end{figure}
 
    As \figureref{fig:instruments_show_stored},
    shows, this is a very complex dialog with a lot of options.
-   The figure shows a default setup, with the first bank of instruments,
-   \textbf{5. Arpeggios}, listed.
+   The figure shows a default setup, with the bank of instruments at location
+   45, \textbf{45. Misc}, listed.
    If one drops this list down (shown later), one also observes that the banks
    are numbered in increments of 5, to make it easier for a user to insert his
-   or her own bank(s) of instruments.
-
-   The default set of banks are spaced 5 apart only because thats the
-   best-fit for the current number of banks.  If we add more banks in future
-   versions of \textsl{Yoshimi}, then a \textsl{clean} install is likely to have
-   different spacing, but for an existing setup, the new entries will just be
-   slotted in where they will fit.
+   or her own bank(s) of instruments. The default set of banks are spaced 5
+   apart for this reason. If we add more that 25 banks in future versions of
+   \textsl{Yoshimi}, then a \textsl{clean} install will wrap round starting with
+   location 2 and again spaced 5 apart, and so-on until all spaces are filled.
+   For an existing setup, new entries will just be slotted in where they
+   will fit.
 
    Also, if one deletes banks or instruments by some external means, the next
    time \textsl{Yoshimi} starts, it will notice their absence and quietly
    remove their entries.
 
-   Note how \textsl{Yoshimi} now shows the color codings for the
+   Note how \textsl{Yoshimi} shows the color codings for the
    synth-sections used in each instrument:
    red for ADDsynth, blue for SUBsynth, and green for PADsynth.
+   This used to be switchable as not fetching the colour information from the
+   banks meant startup was sometimes slightly faster. However this then
+   interfered with later developments that use this information for other
+   purposes so it has now been removed.
 
    Also note how the numbers at the beginning of the filenames are used as
    an "instrument" or "program" number.  These numbers can be used in MIDI
    Program Change commands.
+
+\index{new!Instrument Highlight}
+   A new feature since \textsl{Yoshimi} V 1.7.2 is highlighing the last
+   instrument seen. In this case, the third one in the list. This is
+   particulalry useful for banks where the internal name is different from the
+   filename.
 
    All of the instrument files (such as \texttt{0001-Arpeggio1.xiz})
    with filenames starting with numbers (no matter how many digits)
@@ -177,7 +186,7 @@
       \item \textbf{SAVE}
       \item \textbf{DELETE}
       \item \textbf{SWAP}
-      \item \textbf{Show synth engines}
+%      \item \textbf{Show synth engines}
       \item \textbf{Close}
    \end{enumber}
 
@@ -272,7 +281,8 @@
    \itempar{Search}{instruments!search}
    Instruments Search Button.
    This feature arrived with \textsl{Yoshimi} V 1.6.0 and provides a
-   way of finding instruments of a given type right across all known banks and bank roots.
+   way of finding instruments of a given type right across all known banks and
+   bank roots.
 
 
 \begin{figure}[H]
@@ -399,11 +409,12 @@
       Arpeggio3.xiz Permission denied
    \end{verbatim}
 
-   \itempar{Show synth engines}{instruments!show engines}
-   If enabled, then the usage of each of the \textsl{Yoshimi} synthesis
-   engines is indicated by color coding, as shown in the figure above.
+%   \itempar{Show synth engines}{instruments!show engines}
+%   If enabled, then the usage of each of the \textsl{Yoshimi} synthesis
+%   engines is indicated by color coding, as shown in the figure above.
 
-   \textbf{Note} This also affects the new search feature, as at startup there is a scan of all banks checking for the instrument engines and type.
+%   \textbf{Note} This also affects the new search feature, as at startup there
+%    is a scan of all banks checking for the instrument engines and type.
 
    \itempar{Close}{instruments!Close}
    Closes the window.
@@ -437,8 +448,8 @@
    \label{fig:instruments_load_external}
 \end{figure}
 
-   These "xiz" files are normally found in a \texttt{banks} directory, but this
-   operation allows access to instruments that are not located in a bank.
+   These "xiz" files are normally found in a \texttt{banks} directory, but
+   this operation allows access to instruments that are not located in a bank.
 
    \begin{itemize}
       \item If loading an external instrument file with no internal name,
@@ -455,7 +466,7 @@
    \begin{enumber}
       \item \textbf{Show}
       \item \textbf{Favorites}
-      \item \textbf{Create a new diretory}
+      \item \textbf{Create a new directory}
       \item \textbf{Instrument List}
       \item \textbf{XML Preview}
       \item \textbf{Preview}
@@ -466,7 +477,8 @@
       \item \textbf{Cancel}
    \end{enumber}
 
-   These elements are used in a number of different places in \textsl{Yoshimi}.
+   These elements are used in a number of different places in
+   \textsl{Yoshimi}.
    Therefore, we will explain them all once, here.
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.

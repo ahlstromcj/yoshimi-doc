@@ -69,13 +69,13 @@
       \item \textbf{Exit}
    \end{enumber}
 
-   \index{new!vectors}
+   \index{Vectors}
    The \textbf{Vectors} menu entry of version 1.4.0 has been moved to its own
    button in version 1.4.1, as can be seen in the figure.  See
    \sectionref{subsec:vector_dialogs}, which presents this dialog and
    describes it.
 
-   \index{new!Reports}
+   \index{Reports}
    \textbf{Reports} This opens the \textsl{Yoshimi} console window.
    It has been swapped with MIDI-learn, which now has the button on the main window.
    Note that this will only show any messages if reports are not going to
@@ -147,7 +147,7 @@
    (They can share some information, such as copy/paste.)
    The new instance tries to open a \textsl{Yoshimi} instance based on the
    configuration found in the file
-   \texttt{\textasciitilde/.config/\-yoshimi/\-yoshimi.configXX}, where
+   \texttt{\textasciitilde/.config/\-yoshimi/\-yoshimi-XX.instance}, where
    \textsl{XX} is the ID one supplied.
 
    Opening a new instance creates a copy that has it's own dynamic memory for
@@ -179,35 +179,9 @@
    In the other instances these are now hidden instead of deactivated.  This
    behavior makes sense, as they are \textsl{never} enabled in the other
    instances of \textsl{Yoshimi}. This is more consistent, making
-   \textsl{Yoshimi}'s configuration directory more tidy.
-
-\iffalse
-
-%  SECTION COMMENTED OUT
-
-\subsubsection{Menu / Yoshimi / New instance with id...}
-\label{subsubsec:menu_yoshimi_new_instance_with_id}
-
-   Creates a new instance of \textsl{Yoshimi}
-   with an ID that is a number.
-   See \figureref{fig:yoshimi_instance_dialog}.
-
-\begin{figure}[H]
-   \centering
-   \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-instance-id.jpg}
-   \caption{Yoshimi Menu, Instance Dialog}
-   \label{fig:yoshimi_instance_dialog}
-\end{figure}
-
-   Useful when connecting devices with JACK.
-   Start a normal (JACK-using) instance of \textsl{Yoshimi}.
-   Then use this menu entry, supply a number as an ID.
-   \textsl{Yoshimi} will start another instance
-   of itself, with an ID of whatever number one specified.
-   This instance can be verified by running a JACK session manager such as
-   \textsl{QJackCtl}.
-
-\fi
+   \textsl{Yoshimi}'s configuration directory more tidy. These entries are
+   also hidden when \textsl{Yoshimi} is being used as an LV2 plugin as they
+   are not relevant at all in that environment.
 
 \subsubsection{Menu / Yoshimi / Settings...}
 \label{subsubsec:menu_yoshimi_settings}
@@ -270,10 +244,8 @@
 
 \begin{figure}[H]
    \centering
-%  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-main.jpg}
-%  \includegraphics[scale=0.75]{1.3.9/yoshimi-settings-main.png}
 %  \includegraphics[scale=0.75]{1.4.1/SettingsMain.png}
-   \includegraphics[scale=0.75]{1.5.5/SettingsMain.png}
+   \includegraphics[scale=0.75]{1.7.2/SettingsMain.png}
    \caption{Yoshimi Main Settings Tab}
    \label{fig:yoshimi_main_settings_tab}
 \end{figure}
@@ -547,7 +519,7 @@
    This enables one to set either a single row of 16 parts, or a 'box'
    style of two rows of eight. It performs the same function as the one
    in the mixer window itself. This has been placed here as it has been
-   found that with very low resolution screems and some window managers
+   found that with very low resolution screens and some window managers
    it is possible for the mixer panel's own selector to disappear off the
    screen in an unrecoverable manner.
 
@@ -561,7 +533,7 @@
    \centering
 %  \includegraphics[scale=0.75]{1.4.1/SettingsSwitches.png}
 %  \includegraphics[scale=0.75]{1.5.0/SettingsSwitches.png}
-   \includegraphics[scale=0.75]{1.6.0/Settings_Switches.png}
+   \includegraphics[scale=0.75]{1.7.2/Settings_Switches.png}
    \caption{Yoshimi Switches Tab}
    \label{fig:yoshimi_settings_switches_tab}
 \end{figure}
@@ -569,6 +541,7 @@
    The following settings exist in the \textsl{Switches} tab:
 
    \begin{enumber}
+      \item \textbf{Enable Bank Highlight}
       \item \textbf{Start With Default State}
       \item \textbf{Hide Non Fatal Errors}
       \item \textbf{Show Splash Screen}
@@ -582,6 +555,9 @@
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+    \index{new!Enable Bank Highlight}
+   \itempar{Enable Bank Highlight}{Switches!Enable Bank Highlight}
+   Setting this will highlight the most recent instrument either loaded from, or saved to a bank. It will be printed in bold text so will really stand out. This is especially useful where instruments have a different internal name to their filename.
 
    \itempar{Start With Default State}{Switches!Start With Default State}
    Requires \textsl{Yoshimi} to be restarted, to take effect.
@@ -1105,7 +1081,7 @@
 \label{subsubsec:menu_yoshimi_view_manual}
 
    This menu entry brings up the most recent version of this manual, which is
-   now include as part of a \textsl{Yoshimi} installation.
+   now included as part of a \textsl{Yoshimi} installation.
    Note that some viewers might not work properly
    (e.g. \texttt{apvlv} (\cite{apvlv}).
 
