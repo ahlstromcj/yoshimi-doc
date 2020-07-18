@@ -768,6 +768,8 @@ to see what controls were available in each context.
    Minimum MIDI last seen, or note value.   \\
 \texttt{MAx [[s][n]]} &
    Maximum MIDI last seen, or note value.   \\
+\texttt{FUll} &
+   Restore full key range.   \\
 \texttt{POrtamento [s]} &
    (ON / other).   \\
 \texttt{Mode [s]} &
@@ -816,14 +818,16 @@ to see what controls were available in each context.
    Return to mormal (not kit) mode. \\
    \texttt{(kit mode) [n]} &
       Kit item number (1-16). \\
-   \texttt{[ON/OFF]} &
-      Enables / Disables the kit item. \\
-   \texttt{QUiet [s]} &
-      This kit item (ON, {other}). \\
+   \texttt{(kit mode) [ON/OFF]} &
+      Enables / Disables and removes the kit item. \\
+   \texttt{(kit mode) QUiet [s]} &
+      Mute this kit item without changing it's features (ON, {other}). \\
    \texttt{(kit item) MIn [[s][n]]} &
       Minimum MIDI last seen, or note value   \\
    \texttt{(kit item) MAx [[s][n]]} &
       Maximum MIDI last seen, or note value.   \\
+   \texttt{(kit item) FUll} &
+      Restore full key range.   \\
    \texttt{(kit item) EFfect [n]} &
       Effect for this item (0-none, 1-3). \\
    \texttt{(kit item) NAme [s]} &
