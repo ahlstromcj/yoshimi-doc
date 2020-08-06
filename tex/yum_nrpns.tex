@@ -177,7 +177,7 @@
                     2 = direct L\&R;
                     3 = both;
                     all other values are ignored
-         \item 7 : data LSB = main volume (not yet implemented)
+         \item 7 : data LSB = main volume
          \item 35 (0x23) : data LSB = controller LSB value (not yet implemented)
          \item 39 (0x27) : data LSB = main volume LSB (not yet implemented)
          \item 64 (0x40) : data LSB = key shift value (64 = no shift)
@@ -422,8 +422,8 @@
   2 & LSB key       & Set master key shift, 52\textless=key\textless=76 (-36 to +36) \\
   7 & LSB volume    & Set master Volume 'volume' \\
   64-79 & LSB key   & Set channel-based (MSB-64) key shift, key-64 (-36 to +36) \\
-  80    & root      & Set CC to control Root path change (\textgreater119 disables) \\
-  81    & bank      & Set CC to control Bank change (\textgreater119 disables) \\
+  80    & root      & Set which CC will control Root path change (\textgreater119 disables) \\
+  81    & bank      & Set wich CC will control Bank change (\textgreater119 disables) \\
   82    & \textgreater63       & Enable Program change otherwise disable \\
   83    & \textgreater63       & Enable activation of part when program changed \\
   84    & extended  & Set CC control Extended program change (\textgreater119 disables) \\
@@ -435,12 +435,12 @@
 \subsection{NRPN / Load From History Index}
 \label{subsection:nrpns_load_from_history_index}
 \index{new!NRPN History Loading}
-In \textsl{Yoshimi} V 1.6.0 there is now a method of loading external
-instruments, patch sets, etc. from their history lists. This is only practical if
-the relative history has been locked in settings.
+   Since \textsl{Yoshimi} V 1.6.0 there is a method of loading external
+   instruments, patch sets, etc. from their history lists. This is only
+   practical if the relative history has been locked in settings.
 
-For all of these the NRPN MSB is 96 (0x60), and the LSB determines which list
-type is to be handled.
+   For all of these the NRPN MSB is 96 (0x60), and the LSB determines which
+   list type is to be handled.
 
    \begin{table}[H]
       \centering
@@ -473,6 +473,65 @@ type is to be handled.
    Just send 68 to both MSB and LSB (CC 99 and CC 98). If you make the LSB 69, it
    will return an exit value of 16. This is the 'forced exit' and can be used by the
    system for other cleanups and a shut down.
+
+\subsection{CC and NRPN Quick Reference}
+\label{subsection:cc_nrpn_quick_ref}
+   The table \tableref{table:CCandNRPNreference}, is a simple list of all the
+   Continuous Controllers (CCs) and Non Registered Parameter Numbers (NRPNs)
+   recognised by Yoshimi.
+   For more CC details see \sectionref{subsubsec:concepts_midi_messages}, and for NRPN details \sectionref{sec:nrpns}.
+
+\index{new!CC and NRPN Quick Reference}
+      \begin{table}[H]
+      \centering
+      \caption{CC and NRPN Quick Reference}
+      \label{table:CCandNRPNreference}
+      \begin{tabular}{c c l}
+    \textbf{CC} & & \textbf{Function} \\
+       Hex (Dec) \\
+       00 (0) & & Bank MSB\\
+       01 (1) & & Modulation Wheel\\
+       02 (2) & & Breath\\
+       06 (6) & & NRPN Data MSB\\
+       07 (7) & & Volume\\
+       0A (10) & & Panning\\
+       0B (11) & & Expression\\
+       20 (32) & & Bank LSB\\
+       26 (38) & & NRPN Data LSB \\
+       40 (64) & & Sustain Pedal \\
+       41 (65) & & Prtamento \\
+       44 (68) & & Legato Pedal \\
+       47 (71) & & Filter Q \\
+       4A (74) & & Filter Cutoff \\
+       4B (75) & & Bandwidth \\
+       4C (76) & & FM Amplitude \\
+       4D (77) & & Resonance Centre Frequency\\
+       4E (78) & & Resonance Bandwidth \\
+       60 (96) & & NRPN Data Increment \\
+       61 (97) & & NRPN Daya Decrement \\
+       62 (98) & & NRPN LSB \\
+       63 (99) & & NRPN MSB \\
+       78 (120) & & All Sound Off \\
+       79 (121) & & Reset All Controllers \\
+       7B (123) & & All Notes Off\\
+       \\
+    \textbf{NRPN MSB} & \textbf{NRPN LSB} & \textbf{Function} \\
+        Hex (Dec) & Hex (Dec)\\
+        04 (4) & 00-04 (0-4)& System Effect number \\
+        08 (8) & 00-08 (0-8)& Insertion Effect number \\
+        40 (64) & 00 (0) & Direct part control \\
+        40 (64) & 01 (1) & Vector Control \\
+        40 (64) & 02 (2) & System Settings \\
+        60 (96) & 00-05 (0-5) & Load Numbered File from List \\
+        \\
+    \textbf{ShortForm} &  LSB is value & No data bytes needed \\
+        41 (65) & 00-05 (0-5) & Set Solo Switch Type \\
+        42 (66) & 00-77 (0-119) & Set Solo Switch Incomming Controller \\
+        44 (68) & 44 (68) & Perform Normal Shutdown, exit value 0 \\
+        44 (68) & 45 (69) & Perform shutdown without messages, exit value 16 \\
+      \end{tabular}
+   \end{table}
+
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex
