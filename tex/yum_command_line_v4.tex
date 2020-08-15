@@ -619,13 +619,13 @@
    The \textbf{SOlo [s]} and \textbf{SOlo CC [n]}
    commands enable and set \textsl{Yoshimi}'s 'Solo' feature,
    whereby one can silently switch MIDI input to different parts.
-   The modes 'Row' and 'Loop' mode use the first 16 parts, while
-   'Column' mode can use all possible 64 parts.
+   The 'Row' and 'Loop' types use the first 16 parts, while
+   'Column' type can use all possible 64 parts.
 
-   The mode setting has to be decided before setting 'CC', which then
+   The type setting has to be decided before setting 'CC', which then
    determines which MIDI controller to listen to for performing the actual
    switch. See \sectionref{subsec:mixer_panel_window}; it goes into more
-   details about this setting, at a user-interface level.
+   details about this setting, at a graphical user interface level.
 
 \paragraph{Set / Read / MLearn Context Levels}
 \label{paragraph:command_line_context_levels}
@@ -815,7 +815,7 @@ to see what controls were available in each context.
 \texttt{KIT} &
    Re-enter kit mode editing if it is enabled. \\
 \texttt{NORmal} &
-   Return to mormal (not kit) mode. \\
+   Return to normal (not kit) mode. \\
    \texttt{(kit mode) [n]} &
       Kit item number (1-16). \\
    \texttt{(kit mode) [ON/OFF]} &
@@ -2808,7 +2808,7 @@ is not enough room in the table above.
       Set the MIDI connection type.
       The parameter should be either "jack" or "alsa".
 
-   \itempar{set - preset [n]}
+   \itempar{set - preset [n]}{cmd!set effect preset}
       Set effect preset.
       Set numbered effect preset.
 

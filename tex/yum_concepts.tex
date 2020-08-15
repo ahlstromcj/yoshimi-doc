@@ -639,15 +639,15 @@
       \caption{ZynAddSubFX/Yoshimi MIDI Messages}
       \label{table:zynaddsubfx_midi_messages}
       \begin{tabular}{r l}
-         \textbf{0} or \textbf{32} &
-            Bank Change (user selectable, does \textsl{not} force a program
-            change) \\
+         \textbf{0} &
+            Bank MSB (user selectable, usually selects banks from a bank root) \\
          \textbf{1} & Modulation Wheel \\
          \textbf{2} & Breath Control (Yoshimi only)\\
          \textbf{6} & Data MSB \\
          \textbf{7} & Volume \\
          \textbf{10} & Panning \\
          \textbf{11} & Expression \\
+         \textbf{32} & Bank LSB (user selectable, usually selects instruments from a bank) \\
          \textbf{38} & Data LSB \\
          \textbf{64} & Sustain pedal \\
          \textbf{65} & Portamento \\
@@ -686,6 +686,8 @@
    \textsl{Yoshimi}:
 
    \begin{itemize}
+      \item \textbf{Bank Change (0 or 32)} These are intechangable and do
+      \textsl{not} force a program change).
       \item \textbf{Program Change (192)}
          also provides user selectable CC for
          voices 128-160.  There is now an option to make Program Change enable
