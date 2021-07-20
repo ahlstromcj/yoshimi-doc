@@ -283,11 +283,13 @@
 
    "To" Values: \texttt{Next Effect* , Part Out, Dry Out}\\
    \\
-   The default is to pass each effect on to the next, forming a daisy chain
-   of effects.\\
+   The default is to pass each effect (combined with the incoming signal) on to the next,
+   forming a daisy chain of effects.\\
    If it is set to Part Out, it breaks the chain and blocks any higher numbered effects.\\
-   If it is set to Dry Out, it takes \textsl{itself} out of the chain and
-   goes straight to the point where all the part effects are added together.
+   If it is set to Dry Out, it sends the incoming signal component directly where part
+   effects are added together, so it won't be passed on to later effects. However, the
+   output of the effect itself \textsl{is} passed on to later ones. Consequently, if this
+   effect is bypassed it also effectively bypasses all later ones.
 
 \begin{figure}[H]
    \centering
@@ -432,7 +434,7 @@
    control the LFO.
 
    BPM is new from \textsl{Yoshimi} V 2.1.0 and locks the frequency control to the
-   incoming MIDI clock.
+   incoming MIDI clock. See \sectionref{subsubsec:bpm_and_frequency}\ for further details.
 
    In \textbf{DynFilter}, the \textbf{Gain} control, and most of the formant
    filter ones only operate as one \textsl{releases} the mouse button, and the
@@ -657,7 +659,8 @@
 
    \itempar{BPM}{alienwah!lfo sync}
    Locks the frequency control to the incoming MIDI clock. New from
-   \textsl{Yoshimi} V 2.1.0
+   \textsl{Yoshimi} V 2.1.0 See
+   \sectionref{subsubsec:bpm_and_frequency}\ for further details.
 
    \itempar{LFO type}{alienwah!lfo shape}
    Set the LFO shape.
@@ -815,7 +818,8 @@ This section details the value supported by the AlienWah effect.
 
    \itempar{BPM}{chorus!lfo sync}
    Locks the frequency control to the incoming MIDI clock. New from
-   \textsl{Yoshimi} V 2.1.0
+   \textsl{Yoshimi} V 2.1.0 See
+   \sectionref{subsubsec:bpm_and_frequency}\ for further details.
 
    \itempar{St.df}{chorus!l/r phase}
    The phase difference between LFO for left/right channels .
@@ -1085,7 +1089,8 @@ This section details the value supported by the Chorus effect.
 
    \itempar{BPM}{echo!lfo sync}
    Locks the delay time to the incoming MIDI clock. New from
-   \textsl{Yoshimi} V 2.1.0
+   \textsl{Yoshimi} V 2.1.0 See
+   \sectionref{subsubsec:bpm_and_frequency}\ for further details.
 
 \subsubsection{Effects / Echo / NRPN Values}
 \label{subsubsec:effects_edit_echo_nrpn}
@@ -1310,7 +1315,7 @@ This section details the value supported by the Chorus effect.
       \item \textbf{Phase}
       \item \textbf{Depth}
       \item \textbf{L/R}
-      \item \textbf{dist}
+      \item \textbf{Dist}
       \item \textbf{D/W}
       \item \textbf{Pan}
       \item \textbf{Freq}
@@ -1321,7 +1326,7 @@ This section details the value supported by the Chorus effect.
       \item \textbf{St.df}
       \item \textbf{Fb}
       \item \textbf{Analog}
-      \item \textbf{hyper}
+      \item \textbf{Hyper}
       \item \textbf{Sub.}
       \item \textbf{Stages}
 
@@ -1359,7 +1364,7 @@ This section details the value supported by the Chorus effect.
          \item rightmost. Left to right, and right to left.
       \end{enumber}
 
-   \itempar{dist}{phaser!dist}
+   \itempar{Dist}{phaser!dist}
    Phaser Distortion.
    Ranges from 0\% to 100\%.
 
@@ -1391,7 +1396,8 @@ This section details the value supported by the Chorus effect.
 
    \itempar{BPM}{phaser!lfo sync}
    Locks the frequency control to the incoming MIDI clock. New from
-   \textsl{Yoshimi} V 2.1.0
+   \textsl{Yoshimi} V 2.1.0 See
+   \sectionref{subsubsec:bpm_and_frequency}\ for further details.
 
    \itempar{LFO}{phaser!lfo type}
    Phaser LFO Type.
@@ -1414,7 +1420,7 @@ This section details the value supported by the Chorus effect.
 
    Values: \texttt{Off*, On}
 
-   \itempar{hyper}{phaser!hyper}
+   \itempar{Hyper}{phaser!hyper}
    Phaser Hyper.
    Checking this box sets the "hyper-sine" mode.
 
