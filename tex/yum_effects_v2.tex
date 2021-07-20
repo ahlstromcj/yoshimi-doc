@@ -195,7 +195,7 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=1.0]{1.6.0/system_effect_example.png}
+   \includegraphics[scale=1.0]{2.1.0/system_effect_example.png}
    \caption{Sample System Effects Dialog}
    \label{fig:sample_system_effects_dialog}
 \end{figure}
@@ -221,7 +221,7 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=1.0]{1.6.0/insertion_effect_example.png}
+   \includegraphics[scale=1.0]{2.1.0/insertion_effect_example.png}
    \caption{Sample Insertions Effects Dialog}
    \label{fig:sample_insertion_effects_dialog}
 \end{figure}
@@ -291,7 +291,7 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=1.0]{1.3.9/effects-edit-echo.png}
+   \includegraphics[scale=0.7]{2.1.0/sample_part_effect.png}
    \caption{Sample Instrument Effects Dialog}
    \label{fig:sample_instrument_effects_dialog}
 \end{figure}
@@ -305,11 +305,15 @@
 
    Also be aware that the layout of some of the effects dialogs have been modified
    in the latest revisions of \textsl{Yoshimi}.
-   This dialog form is reversed (top and bottom) with the latest
-   \textsl{Yoshimi}, and slightly simplified in appearance. This was done to more
-   closely match the layout of the System and Insertion Effects.
+   This dialog form is reversed (top and bottom) compared with very old
+   \textsl{Yoshimi} versions, and slightly simplified in appearance. This was done to
+   more closely match the layout of the System and Insertion Effects.
    Also, in the actual effects, some control positions and sizes have been changed
    to improve readbility.
+
+   From here on we only show the effects inserts themselves, as they are identical
+   across Part, Insertion, and System. The only difference being \textbf{D/W} becoming
+   \textbf{Vol} in System effects.
 
 \subsection{Effects / Upgrade}
 \label{subsec:effects_upgrade}
@@ -340,7 +344,7 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=1.0]{1.3.9/effects-edit-none.png}
+   \includegraphics[scale=0.5]{2.1.0/none.png}
    \caption{Effects Edit, No Effect}
    \label{fig:effects_edit_none}
 \end{figure}
@@ -399,7 +403,7 @@
 \begin{figure}[H]
    \centering
 %  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-dynfilter.jpg}
-   \includegraphics[scale=1.0]{1.3.9/effects-edit-dynfilter.png}
+   \includegraphics[scale=0.5]{2.1.0/dynfilter.png}
    \caption{Effects Edit, DynFilter}
    \label{fig:effects_edit_dynfilter}
 \end{figure}
@@ -414,6 +418,7 @@
       \item \textbf{Pan}
       \item \textbf{Freq}
       \item \textbf{Rnd}
+      \item \textbf{BPM}
       \item \textbf{LFO Type}
       \item \textbf{St.df}
       \item \textbf{LfoD}
@@ -422,27 +427,12 @@
       \item \textbf{Inv.}
    \end{enumber}
 
-   This figure shows an additional section, in the bottom panel of the effect's
-   user-interface.
-   See \sectionref{subsubsec:effects_edit_reverb_ui}, which
-   describes these elements in more detail.
-   However, it seems that all but the \textbf{bypass} control and
-   the \textbf{Close} button have been removed
-   from the latest versions of \textsl{Yoshimi}.
-
-   \begin{enumber}
-      \item \textbf{FX No.} (an unlabelled number "wheel")
-      \item \textbf{bypass} (bottom panel)
-      \item \textbf{EffType} (now unlabelled, obvious from context)
-      \item \textbf{To} (where the effect is sent to)
-      \item \textbf{C}
-      \item \textbf{P}
-      \item \textbf{Close} (bottom panel)
-   \end{enumber}
-
-   The four controls in the middle of the middle panel
-   (\textbf{Freq}, \textbf{Rnd}, \textbf{LFO Type}, and \textbf{St.df})
+   The five controls in the middle of the middle panel
+   (\textbf{Freq}, \textbf{Rnd}, \textbf{BPM}, \textbf{LFO Type}, and \textbf{St.df})
    control the LFO.
+
+   BPM is new from \textsl{Yoshimi} V 2.1.0 and locks the frequency control to the
+   incoming MIDI clock.
 
    In \textbf{DynFilter}, the \textbf{Gain} control, and most of the formant
    filter ones only operate as one \textsl{releases} the mouse button, and the
@@ -601,7 +591,7 @@
 \begin{figure}[H]
    \centering
 %  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-alienwah.jpg}
-   \includegraphics[scale=1.0]{1.3.9/effects-edit-alienwah.png}
+   \includegraphics[scale=0.5]{2.1.0/alienwah.png}
    \caption{Effects Edit, AlienWah}
    \label{fig:effects_edit_alienwah}
 \end{figure}
@@ -613,6 +603,7 @@
       \item \textbf{Pan}
       \item \textbf{Freq}
       \item \textbf{Rnd}
+      \item \textbf{BPM}
       \item \textbf{LFO type}
       \item \textbf{St.df.}
       \item \textbf{Dpth}
@@ -663,6 +654,10 @@
    Values: \texttt{0 to 127}
 
    Part of the LFO definition.
+
+   \itempar{BPM}{alienwah!lfo sync}
+   Locks the frequency control to the incoming MIDI clock. New from
+   \textsl{Yoshimi} V 2.1.0
 
    \itempar{LFO type}{alienwah!lfo shape}
    Set the LFO shape.
@@ -789,7 +784,7 @@ This section details the value supported by the AlienWah effect.
 \begin{figure}[H]
    \centering
 %  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-chorus.jpg}
-   \includegraphics[scale=1.0]{1.3.9/effects-edit-chorus.png}
+   \includegraphics[scale=0.5]{2.1.0/chorus.png}
    \caption{Effects Edit, Chorus}
    \label{fig:effects_edit_chorus}
 \end{figure}
@@ -797,6 +792,7 @@ This section details the value supported by the AlienWah effect.
    \begin{enumber}
       \item \textbf{Freq}
       \item \textbf{Rnd}
+      \item \textbf{BPM}
       \item \textbf{LFO type}
       \item \textbf{St.df.}
       \item \textbf{Dpth}
@@ -816,6 +812,10 @@ This section details the value supported by the AlienWah effect.
 
    \itempar{LFO type}{chorus!lfo type}
    Set the LFO shape.
+
+   \itempar{BPM}{chorus!lfo sync}
+   Locks the frequency control to the incoming MIDI clock. New from
+   \textsl{Yoshimi} V 2.1.0
 
    \itempar{St.df}{chorus!l/r phase}
    The phase difference between LFO for left/right channels .
@@ -942,7 +942,7 @@ This section details the value supported by the Chorus effect.
 \begin{figure}[H]
    \centering
 %  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-distortion.jpg}
-   \includegraphics[scale=1.0]{1.3.9/effects-edit-distortion.png}
+   \includegraphics[scale=0.5]{2.1.0/distortion.png}
    \caption{Effects Edit, Distortion}
    \label{fig:effects_edit_distortion}
 \end{figure}
@@ -1038,7 +1038,7 @@ This section details the value supported by the Chorus effect.
 \begin{figure}[H]
    \centering
 %  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-echo.jpg}
-   \includegraphics[scale=1.0]{1.3.9/effects-edit-echo.png}
+   \includegraphics[scale=0.5]{2.1.0/echo.png}
    \caption{Effects Edit, Echo}
    \label{fig:effects_edit_echo}
 \end{figure}
@@ -1051,6 +1051,7 @@ This section details the value supported by the Chorus effect.
       \item \textbf{LRc.}
       \item \textbf{Fb.}
       \item \textbf{Damp}
+      \item \textbf{BPM}
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
@@ -1081,6 +1082,10 @@ This section details the value supported by the Chorus effect.
    How high frequencies are damped in the Echo effect.
    The Damp value lets the LP1 reject higher frequencies earlier if
    increased.
+
+   \itempar{BPM}{echo!lfo sync}
+   Locks the delay time to the incoming MIDI clock. New from
+   \textsl{Yoshimi} V 2.1.0
 
 \subsubsection{Effects / Echo / NRPN Values}
 \label{subsubsec:effects_edit_echo_nrpn}
@@ -1119,7 +1124,7 @@ This section details the value supported by the Chorus effect.
 \begin{figure}[H]
    \centering
 %  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-eq.jpg}
-   \includegraphics[scale=1.0]{1.3.9/effects-edit-EQ.png}
+   \includegraphics[scale=0.5]{2.1.0/eq.png}
    \caption{Effects Edit, EQ}
    \label{fig:effects_edit_eq}
 \end{figure}
@@ -1293,7 +1298,7 @@ This section details the value supported by the Chorus effect.
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=1.0]{1.5.11/effects-edit-phaser.png}
+   \includegraphics[scale=0.5]{2.1.0/phaser.png}
    \caption{Effects Edit, Phaser}
    \label{fig:effects_edit_phaser}
 \end{figure}
@@ -1302,25 +1307,29 @@ This section details the value supported by the Chorus effect.
 
    \begin{enumber}
       \item \textbf{Preset.}
-      \item \textbf{Depth}
       \item \textbf{Phase}
-      \item \textbf{Stages}
-      \item \textbf{Sub.}
-      \item \textbf{hyper}
-      \item \textbf{Analog}
+      \item \textbf{Depth}
+      \item \textbf{L/R}
+      \item \textbf{dist}
       \item \textbf{D/W}
       \item \textbf{Pan}
       \item \textbf{Freq}
+      \item \textbf{Start}
       \item \textbf{Rnd}
+      \item \textbf{BPM}
+      \item \textbf{LFO type}
       \item \textbf{St.df}
       \item \textbf{Fb}
-      \item \textbf{L/R}
-      \item \textbf{dist}
-      \item \textbf{LFO}
+      \item \textbf{Analog}
+      \item \textbf{hyper}
+      \item \textbf{Sub.}
+      \item \textbf{Stages}
+
    \end{enumber}
 
-   The extra fields that are shown if the effect is an insertion effect are
-   not shown.  They are still need to be described.
+%   The extra fields that are shown if the effect is an insertion effect are
+%   not shown.  They are still need to be described.
+%   What extra fields ???
 
    \itempar{Preset}{phaser!preset}
    Phaser Presets.
@@ -1331,38 +1340,28 @@ This section details the value supported by the Chorus effect.
 
 %  TODO.
 
-   \itempar{Depth}{phaser!depth}
-   Phaser Depth. Phaser LFO Depth?
-
-   Values: \texttt{0\% to 100\%}
-
    \itempar{Phase}{phaser!phase}
    Phaser Phase.
 
    Values: \texttt{0\% to 100\%}
 
-   \itempar{Stages}{phaser!stages}
-   Phaser Stages.
+   \itempar{Depth}{phaser!depth}
+   Phaser Depth. Phaser LFO Depth?
 
-   Values: \texttt{1*, 2, ... 12}
+   Values: \texttt{0\% to 100\%}
 
-   \itempar{Sub.}{phaser!Subtract}
-   Phaser Subtract.
-   Checking this box inverts the output.
+   \itempar{L/R}{phaser!l/r}
+   L/R. How the left/right channels are routed to output:
 
-   Values: \texttt{Off*, On}
+      \begin{enumber}
+         \item leftmost. Left to left and right to right.
+         \item middle. Left+right to mono.
+         \item rightmost. Left to right, and right to left.
+      \end{enumber}
 
-   \itempar{hyper}{phaser!hyper}
-   Phaser Hyper.
-   Checking this box sets the "hyper-sine" mode.
-
-   Values: \texttt{Off*, On}
-
-   \itempar{Analog}{phaser!analog}
-   Phaser Analog.
-   Checking this box emulates an "FET"  (Field-effect transistor).
-
-   Values: \texttt{Off*, On}
+   \itempar{dist}{phaser!dist}
+   Phaser Distortion.
+   Ranges from 0\% to 100\%.
 
    \itempar{D/W}{phaser!dry/wet}
    Phaser Dry/Wet.
@@ -1380,10 +1379,24 @@ This section details the value supported by the Chorus effect.
    Set the Phaser LFO frequency.
    Ranges from 0.0 Hz to 30.68 Hz.
 
+   \itempar{Start}{phaser!start}
+   Phaser Start.
+   Set the start of the Phaser phase relative to MIDI sync.
+   Ranges from 0 to 178.6\%
+
    \itempar{Rnd}{phaser!randomness}
    Phaser Randomness.
    Set the Phaser LFO randomness.
    Ranges from 0.0\% to 100\% percent.
+
+   \itempar{BPM}{phaser!lfo sync}
+   Locks the frequency control to the incoming MIDI clock. New from
+   \textsl{Yoshimi} V 2.1.0
+
+   \itempar{LFO}{phaser!lfo type}
+   Phaser LFO Type.
+
+   Values: \texttt{SINE, TRI}
 
    \itempar{St.df}{phaser!stereo phase diff}
    Left/Right Channel Phase Shift.
@@ -1395,23 +1408,28 @@ This section details the value supported by the Chorus effect.
    Phaser Feedback.
    Ranges from -99\% to 99\%.
 
-   \itempar{L/R}{phaser!l/r}
-   L/R. How the left/right channels are routed to output:
+   \itempar{Analog}{phaser!analog}
+   Phaser Analog.
+   Checking this box emulates an "FET"  (Field-effect transistor).
 
-      \begin{enumber}
-         \item leftmost. Left to left and right to right.
-         \item middle. Left+right to mono.
-         \item rightmost. Left to right, and right to left.
-      \end{enumber}
+   Values: \texttt{Off*, On}
 
-   \itempar{dist}{phaser!dist}
-   Phaser Distortion.
-   Ranges from 0\% to 100\%.
+   \itempar{hyper}{phaser!hyper}
+   Phaser Hyper.
+   Checking this box sets the "hyper-sine" mode.
 
-   \itempar{LFO}{phaser!lfo type}
-   Phaser LFO Type.
+   Values: \texttt{Off*, On}
 
-   Values: \texttt{SINE, TRI}
+   \itempar{Sub.}{phaser!Subtract}
+   Phaser Subtract.
+   Checking this box inverts the output.
+
+   Values: \texttt{Off*, On}
+
+   \itempar{Stages}{phaser!stages}
+   Phaser Stages.
+
+   Values: \texttt{1*, 2, ... 12}
 
 \subsubsection{Effects / Phaser / NRPN Values}
 \label{subsubsec:effects_edit_phaser_nrpn}
@@ -1461,7 +1479,7 @@ This section details the value supported by the Phaser effect.
 \begin{figure}[H]
    \centering
 %  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-reverb.jpg}
-   \includegraphics[scale=1.0]{1.3.9/effects-edit-reverb.png}
+   \includegraphics[scale=0.5]{2.1.0/reverb.png}
    \caption{Effects Edit, Reverb}
    \label{fig:effects_edit_reverb}
 \end{figure}
