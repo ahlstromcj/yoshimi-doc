@@ -205,7 +205,7 @@
    Adding or deleting rows in this dialog, or changing the CC or channel
    number, will cause the rows to be sorted again.
    \index{MIDI Learn!200 lines}
-   The maximum number of MIDI-Learned lines per session is 200.
+   Since \textsl{Yoshimi} V 2.0 the maximum number of MIDI-Learned lines per session has been raised to 400. Previously it was 200.
 
    The major items of this dialog are the editor settings available:
 
@@ -248,7 +248,7 @@
    affect the main volume of \texttt{Yoshimi}.
    Note that NRPNs are \textsl{not included}.
    Also note that CC has no default values; the values are whatever the
-   incoming learned values are.
+   incoming learned values are. However, they are then editable.
 
    Values: \texttt{1 to 127}
 
@@ -259,14 +259,16 @@
    from 1,  as do all the other numbers in that window except controllers, which
    start from 0, following MIDI convention.
    Also note that the channel has no default values; the values are whatever the
-   incoming learned values are.
+   incoming learned values are. However, they are then editable.
 
    Values: \texttt{1 to 16, and All}
 
    \itempar{Min/Max}{MIDI Learn!Min/Max}
    Min and Max.
    Provides the minimum and maximum incoming values for the controller value.
-   Since V 1.5.2 this is shown as a percentage with a resolution of 0.5
+   Since V 1.5.2 this is shown as a percentage with a resolution of 0.5. However,
+   the resulting output value will be a floating point number that will be further
+   modified to suit the control that was learned.
    If \textbf{Min} is greater than \textbf{Max}, this reverses the control
    direction.
    If \textbf{Min} is equal to \textbf{Max}, it becomes a threshold setting.
@@ -280,7 +282,7 @@
 
    Bear in mind that \textbf{Min} and \textbf{Max} are percentage values, not
    0-to-127 MIDI values.  Divide the incoming MIDI value by 1.27 to get the
-   percentage value.  The resolution is to the nearest 0.5.
+   percentage value.
    To summarize:
 
    \begin{enumerate}
@@ -301,13 +303,13 @@
    The Min/Max range can either be in the style of a limiter or a compression.
    Set to \textbf{limit}, the \textbf{Min} and \textbf{Max} will be hard
    cutoffs.
-   For example, if \textbf{Min} is 20 and the incoming value is 5, then the
-   result is 20.
+   For example, if \textbf{Min} is 30\% and the incoming MIDI value is 5, the
+   result is 30\%.
 
    Set to \textbf{compress}, the incoming value will be converted to fit
-   the range. For example, if \textbf{Min} is 32, \textbf{Max} is 95, then
-   an incoming value of 0 will be 32, an incoming value of 2
-   will be 33, etc.
+   the range. For example, if \textbf{Min} is 30\%, \textbf{Max} is 95\%,
+   an incoming MIDI value of 0 will be 30\%, an incoming MIDI value of 2
+   will be 30.8\%, etc.
 
    Values: \texttt{Checked (Limit), Unchecked (Compress)}
 
@@ -316,12 +318,13 @@
    Specifies blocking of all later actions on the same CC/channel pair
    (including system ones).
    If a loaded set refers to \textsl{Yoshimi} controls that are disabled, or
-   don't exist, such controls will be ignored.
-   The \textsl{block} feature will be active unless the line is muted.
+   don't exist, such controls will be ignored. However, the \textsl{block}
+   feature will be active unless the line is muted.
 
    Values: \texttt{Checked, Unchecked}
 
-   Also, for devices that send high resolution controllers as NRPNs, the lines default to having \textbf{Block} set. This is so that the NRPN is not passed
+   Also, for devices that send high resolution controllers as NRPNs, the lines
+   default to having \textbf{Block} set. This is so that the NRPN is not passed
    on to \textsl{Yoshimi}, which would result in "go away" messages or obscure
    actions. However, like ordinary CCs, they will stack and one can set several
    lines with the same NRPN performing multiple actions, and then unblock all
