@@ -476,7 +476,7 @@
 \begin{figure}[H]
    \centering
 %  \includegraphics[scale=1.0]{subpanels/Filter_Params.png}
-   \includegraphics[scale=1.0]{1.5.0/Filter_Params.png}
+   \includegraphics[scale=0.5]{2.1.0/filter_parameters.png}
    \caption[Filter Parameters Sub-panel]{Stock Filter Parameters Sub-Panel}
    \label{fig:filter_parameters_subpanel}
 \end{figure}
@@ -499,14 +499,13 @@
       \item \textbf{Category}
       \item \textbf{Filter Type}
       \item \textbf{C.freq}
+      \item \textbf{St}
       \item \textbf{Q}
       \item \textbf{V.SnsA}
-      \item \textbf{freq.tr}
-      \item \textbf{gain}
-      \item \textbf{St}
+      \item \textbf{V.Sns}
+      \item \textbf{Gain}
+      \item \textbf{Freq.tr}
       \item \textbf{0/+}
-      \item \textbf{C}
-      \item \textbf{P}
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
@@ -583,6 +582,25 @@
 
    Values: \texttt{0 to 127, 90*}
 
+   \itempar{St}{filter!stages}
+   Filter stages.
+   The more filter stages applied to a signal, the stronger (in general) the
+   filtering.
+   It is the number of additional times the filter will be applied (in
+   order to create a very steep roll-off, such as 48 dB/octave).
+   This dropdown element is shown in
+   \figureref{fig:filter_stage_dropdown}.
+   Obviously, the more stages used, the more calculation-intensive the
+   filter will be.  This should also increase the latency (lag) of the
+   filter.
+
+   \begin{figure}[H]
+   \centering
+   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/filter-stages.jpg}
+   \caption[Filter Stage Dropdown]{Filter Stage Dropdown}
+   \label{fig:filter_stage_dropdown}
+\end{figure}
+
    \itempar{Q}{resonance level}
    The level of resonance for the filter.
    It indicates a measure of the sharpness of a filter.
@@ -604,7 +622,14 @@
 
    Values: \texttt{0 to 127, 64*}
 
-   \itempar{freq.tr}{frequency tracking amount}
+   \itempar{Gain}{filter!gain}
+   Filter gain.
+   Additional gain/attenuation for a filter.
+   Also described as the filter output gain/damping factor.
+
+   Values: \texttt{0 to 127, 64*}
+
+   \itempar{Freq.tr}{frequency tracking amount}
    \index{filter!frequency tracking amount}
    Filter Frequency Tracking Amount.
    When this parameter is positive, higher note
@@ -613,33 +638,6 @@
    zero, and right is positive.
 
    Values: \texttt{0 to 127, 64*}
-
-   \itempar{gain}{filter!gain}
-   Filter gain.
-   Additional gain/attenuation for a filter.
-   Also described as the filter output gain/damping factor.
-
-   Values: \texttt{0 to 127, 64*}
-
-   \itempar{St}{filter!stages}
-   Filter stages.
-   The more filter stages applied to a signal, the stronger (in general) the
-   filtering.
-   It is the number of additional times the filter will be applied (in
-   order to create a very steep roll-off, such as 48 dB/octave).
-   This dropdown
-   element is shown in
-   \figureref{fig:filter_stage_dropdown}.
-   Obviously, the more stages used, the more calculation-intensive the
-   filter will be.  This should also increase the latency (lag) of the
-   filter.
-
-\begin{figure}[H]
-   \centering
-   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/filter-stages.jpg}
-   \caption[Filter Stage Dropdown]{Filter Stage Dropdown}
-   \label{fig:filter_stage_dropdown}
-\end{figure}
 
    \itempar{0/+}{filter!0/+}
    Filter tracking upgrade.
@@ -1003,7 +1001,9 @@ These parameters are:
 
    \itempar{Depth}{LFO!depth}
    \index{LFO!amount}
-   LFO Depth.  Also called "LFO Amount". Uniquely, this control can be set greater than full depth, and the LFO envelope becomes re-entrant. A sine shape becomes two humps, as if rectified, triangle becomes two, etc.
+   LFO Depth.  Also called "LFO Amount". Uniquely, this control can be set
+   greater than full depth, and the LFO envelope becomes re-entrant. A sine
+   shape becomes two humps, as if rectified, triangle becomes two, etc.
 
    Values: \texttt{0* to 200\%}
 
@@ -1036,7 +1036,9 @@ These parameters are:
    Values: \texttt{-100\% to 100\%, 0*}
 
    \itempar{BPM}{LFO!BPM sync mode}
-   Turns the LFO frequency control into a ratio control related to the incoming MIDI timecode. New in \textsl{Yoshimi} V2.0
+   Turns the LFO frequency control into a ratio control related to the
+   incoming MIDI timecode. New in \textsl{Yoshimi} V2.0 See
+   \sectionref{subsubsec:bpm_and_frequency}\ for further details.
 
    Values: \texttt{Off*, On}
 
@@ -1047,6 +1049,7 @@ These parameters are:
 
    \itempar{Type}{LFO!type}
    LFO Function.
+
    Also present in this sub-panel are the usual \textbf{C}opy
    and \textbf{P}aste buttons that call up a copy-parameters or
    paste-parameters dialog.
@@ -1078,23 +1081,17 @@ These parameters are:
    from the 'depth' setting to the maximum. It also randomly skips some
    changes.
 
-   \texttt{RSQu} maintains the freqency (doesn't skip any changes) but
+   \texttt{RSQu} maintains the frequency (doesn't skip any changes) but
    alternates between the depth control setting and a random level from that
    to the maximum depth.
 
-   \texttt{RSQd} also maintains the freqency but alternates between the
+   \texttt{RSQd} also maintains the frequency but alternates between the
    maximum depth and a random amount from the depth control setting and
    maximum.
 
    These extensions sound more like some special effect than normal LFOs, so
    it is likely they would be of most interest to those involved in
    experimental sounds and music.
-
-   For reference,
-   \figureref{fig:filter_lfo},
-   shows the LFO sub-panel for a filter, and
-   \figureref{fig:frequency_lfo_subpanel},
-   shows the LFO sub-panel for frequency.
 
    \itempar{C / P}{LFO!Copy Paste}
    Also present in this sub-panel are the usual \textbf{C}opy
@@ -1108,93 +1105,7 @@ These parameters are:
    % Obtain sub-items from checklist
    The controls and layout for this are identical to the Amplitude LFO.
    \sectionref{subsubsec:lfo_user_interface_panels}
-\iffalse
-\begin{figure}[H]
-   \centering
-   \includegraphics[scale=1.0]{subpanels/Filter_LFO.png}
-   \caption[Filter LFO Sub-Panel]{Filter LFO Sub-Panel}
-   \label{fig:filter_lfo}
-\end{figure}
 
-   \begin{enumber}
-      \item \textbf{Enable} (present on some versions of this sub-panel).
-      \item \textbf{Freq.}
-      \item \textbf{Depth}
-      \item \textbf{Start}
-      \item \textbf{Delay}
-      \item \textbf{Str.}
-      \item \textbf{C.}
-      \item \textbf{A.R.}
-      \item \textbf{F.R.}
-      \item \textbf{Type}
-      \item \textbf{C}
-      \item \textbf{P}
-   \end{enumber}
-
-   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
-
-   \itempar{Enable}{lfo!enable}
-   Enable the panel.  (Present on some versions of this sub-panel).
-
-   \itempar{Freq}{lfo!frequency}
-   LFO Frequency.
-
-   Values: \texttt{0 to 85.25, 6.259*}
-
-   \itempar{Depth}{lfo!depth}
-   LFO Amount.
-
-   Values: \texttt{0* to 100\%}
-
-   \itempar{Start}{lfo!start phase}
-   LFO Startphase (leftmost is random).
-
-   Values: \texttt{random/-167, to 179, 0*}
-
-   \itempar{Delay}{lfo!delay}
-   LFO Delay.
-
-   Values: \texttt{0* to 4.00 sec}
-
-   \itempar{Str}{lfo!stretch}
-   LFO Stretch.
-
-   Values: \texttt{-100\% to 100\%, 0*}
-
-   \itempar{C}{lfo!continuous}
-   Continuous LFO.
-
-   Values: \texttt{Off*, On}
-
-   \itempar{A.R}{lfo!random amplitude}
-   LFO Amplitude Randomness.
-
-   Values: \texttt{0.1* to 100\%}
-
-   \itempar{F.R}{lfo!random frequency}
-   LFO Frequency Randomness.
-
-   Values: \texttt{0.1* to 100\%}
-
-   \itempar{Type}{lfo!type}
-   LFO Type.
-
-\begin{figure}[H]
-   \centering
-%   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/lfo-function-type.jpg}
-   \includegraphics[scale=1.0]{1.7.2/LFO_function_type.png}
-   \caption[LFO Function Types]{LFO Function Type Dropdown}
-   \label{fig:frequency_lfo_dropdown}
-\end{figure}
-
-   Values: \texttt{SINE*, TRI, SQR, R.up, R.dn, E1dn, E2dn, S\&H, RSQu, RSQd}
-
-   \itempar{C}{lfo!copy}
-   Copy to Clipboard/Preset.
-
-   \itempar{P}{lfo!paste}
-   Paste from Clipboard/Preset.
-\fi
 \subsubsection{Frequency LFO Sub-panel}
 \label{subsubsec:frequency_lfo_sub_panel}
 
@@ -1211,8 +1122,23 @@ These parameters are:
    This panel is basically identical to the Filter LFO panel described
    in the previous section.
 
-% Move this section upward?
 \fi
+
+\begin{flushleft}
+  \begin{minipage}{\textwidth}
+   \subsubsection{BPM and Frequency}
+   \label{subsubsec:bpm_and_frequency}
+   The BPM setting for LFOs and Effects changes the behaviour so that the frequency control produces
+   stepped ratios against the incoming MIDI timecode.
+
+   These are: \newline
+    .\hspace{3em}1/16, 1/15, 1/14, 1/13, 1/12, 1/11, 1/10, 1/9, 1/8, 1/7, 1/6, 1/5, 1/4, 1/3, 1/2 \newline
+    .\hspace{3em}2/3, 1/1, 3/2 \newline
+    .\hspace{3em}2/1, 3/1, 4/1, 5/1, 6/1, 7/1, 8/1, 9/1, 10/1, 11/1, 12/1, 13/1, 14/1, 15/1, 16/1 \newline
+    This will track timecode changes in real time, but if there is no incoming timecode the behaviour is undefined.
+  \end{minipage}
+\end{flushleft}
+
 \subsection{Envelope Settings}
 \label{subsec:envelope_settings}
 
@@ -1752,7 +1678,7 @@ These parameters are:
 \begin{figure}[H]
    \centering
 %  \includegraphics[scale=0.75]{zyn/formant_filter.png}
-   \includegraphics[scale=1.0]{2.0/AddSynthFormantFilter.png}
+   \includegraphics[scale=0.7]{2.0/AddSynthFormantFilter.png}
    \caption[Formant Filter Editor]{Formant Filter Editor Dialog}
    \label{fig:formant_filter_editor}
 \end{figure}
