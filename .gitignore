@@ -6,4 +6,14 @@ tex-stamp
 tex/yoshimi-user-manual.pdf
 !config
 !Makefile
-
+pdf/yoshimi-user-manual-unoptimized.pdf
+tex/yoshimi-user-manual.aux
+tex/yoshimi-user-manual.fdb_latexmk
+tex/yoshimi-user-manual.idx
+tex/yoshimi-user-manual.ilg
+tex/yoshimi-user-manual.ind
+tex/yoshimi-user-manual.lof
+tex/yoshimi-user-manual.log
+tex/yoshimi-user-manual.lot
+tex/yoshimi-user-manual.out
+tex/yoshimi-user-manual.toc
