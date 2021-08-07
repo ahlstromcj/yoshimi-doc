@@ -70,6 +70,75 @@
    \label{fig:filer_load_window}
 \end{figure}
 
+
+   At the top is the \textsl{path} field. One can manually edit this field to go
+   to a known route, and on hitting 'Return' the list below it will be updated.
+   If saving or exporting files new directories can added here. A request for
+   confirmation will pop up. However it wouldn't make sense to try to load or
+   import something from a directory that doesn't yet exist, so this will
+   generate an error message.
+
+   The \textsl{Up} button moves back along the directory tree, or one can simply
+   edit out one or more directory names and hit 'Return'.
+
+   The \textsl{Load} button simply performs that action on the entry in the
+   \textsl{name} field if it is valid. For saving one would be able to create a
+   new name here.
+
+    \textbf{Note:} The Path and Name fields along with the Up and Load buttons
+    will change depending on what type of file is being managed. See the examples
+    below.
+
+   The main list area shows first the sub-directories it has found, and a double
+   click on these will add them to the path field and re-scan for contents. Below
+   these are the actual files that \textsl{Yoshimi} recognises. A single click on
+   one of these will will place it in the name field where it can be edited,
+   whereas a double click will perform the appropriate load/save operation.
+
+   To the side are a number of extra buttons and switches.
+
+   \textsl{Show List} is described below.
+
+   \textsl{Add} will place the current path in the favourites list and switch to
+   this view for further management.
+
+   \textsl{Hide Dirs} is useful when one knows they have the right path, but the
+   directory contains a long list of sub-directories.
+
+   \textsl{.(dot) Dirs} makes these directories visible, although it would be most
+   unusual to have these containing valid \textsl{Yoshimi} files.
+
+   \textsl{.(dot) Files} makes these \textsl{Yoshimi} files visible.
+
+
+   Here are just the headings for several other file types.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.5]{2.1.0/tuning_import.png}
+   \caption{A Scala 'import' window}
+%   \label{fig:filer_scala_window}
+\end{figure}
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.5]{2.1.0/bank_root.png}
+   \caption{A bank 'root' window}
+   \label{fig:filer_bank_root_window}
+\end{figure}
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.5]{2.1.0/bank_import.png}
+   \caption{A Bank 'import' window}
+   \label{fig:filer_bank_import_window}
+\end{figure}
+
+Neither the bank root, nor bank import views have a 'name' field. This is because one
+is directly importing or registering a path containing these elements, not the elements themselves. Therefore the path 'leaf' \textbf{is} the name. However, when exporting
+these you will want to give them a name, so the field is then present.
+
+
 When selecting 'Show Favourites, the existing filer window is overlaid with the
 following view. Notice, it retains the path as a reminder.
 \begin{figure}[H]
