@@ -272,8 +272,10 @@
    The \texttt{.config} file is always going to be specific to one machine and
    working modes, so no one will ever want to copy it across even to another
    \textsl{Yoshimi} environment.  Recent patch sets are now no longer stored in
-   the main \texttt{.config} file, but in a new \texttt{recent} file,
-   see \sectionref{sec:local_data}.
+   the main \texttt{.config} file, but in a new \texttt{recent} file.
+
+%  see \sectionref{sec:local_data}.
+
    The \texttt{.config} file is now a much reduced common startup settings
    file.  It is a single file that every instance can read, but only the
    first one can write.
@@ -595,6 +597,7 @@
 
 \section{Local Data Files}
 \label{sec:local_data}
+
    \index{new!Local Data}
    During the development of \textsl{Yoshimi} V 1.7.1/2, a number of files and
    directories have been moved from the configuration directory to the

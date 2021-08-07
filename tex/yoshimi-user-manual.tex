@@ -436,7 +436,8 @@
    to tell which version created the files, or whether they were created by
    \textsl{ZynAddSubFX}. If the new files are not compatible (such as config)
    the doctype and all other details are identfied as purely for
-   \textsl{Yoshimi}. However, see \sectionref{subsec:file_compatibility}
+   \textsl{Yoshimi}.
+%  However, see \sectionref{subsec:file_compatibility}.
 
    One can direct messages to either \texttt{stderr}
    (the error output of a terminal console) or the \textbf{Reports} window
@@ -527,11 +528,12 @@
 
 \subsection{File Compatibility}
 \label{subsec:file_compatibility}
-   It is always a challenge with developing software to make impovements to
+
+   It is always a challenge with developing software to make improvements to
    features and add new ones without breaking older versions that users might
    not be in a position to upgrade. \textsl{Yoshimi} handles this by
    retaining original file parameters with the closest match possible, and at
-   the same time a separately named new or extended parameter. This ensures
+   the same time a separately-named new or extended parameter. This ensures
    both older \textsl{Yoshimi} versions will run correctly, and will do so on
    \textsl{ZynAddSubFX}. Obviously, completely new features will be lost to
    older versions but   othewise files will behave as before. This is
@@ -545,7 +547,9 @@
    against a problem. The \textsl{ZynAddSubFX} developers have taken a
    different approach, and some prameters have different types in their
    versions from 3.0 onwards. Therefore we now make a test for this and give
-   a warning as shown in \figureref{fig:compatibilty_warning}.
+   a warning as shown below.
+   
+%  in \figureref{fig:compatibility_warning}.
 
    This is known to be a problem with instrument files (.xiz) and presets
    (.xpz). We don't know if there are others. Ironically, even the latest
@@ -556,7 +560,7 @@
    \centering
    \includegraphics[scale=1.0]{1.7.2/CompatibilityWarning.png}
    \caption{Compatibility Warning}
-   \label{fig:compatibilty_warning}
+   \label{fig:compatibiilty_warning}
 \end{figure}
 
 
