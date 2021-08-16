@@ -45,7 +45,7 @@
 
    For full details of NRPNs see \sectionref{subsection:nrpns_midi_nrpn_basics}
 
-   In a command line environment, almost all the 'running' commands are
+   In a command line environment, all the 'running' commands are
    available, and now all of the instrument editing ones are too.
    Also, the whole of vector control, and MIDI-learn, is exposed
    to the command line.
@@ -66,9 +66,6 @@
    Additional controls that are frequently taken for granted in the GUI, but
    otherwise get forgotten, are \textsl{master key shift} and \textsl{master
    volume}.
-
-%  The whole of vector control, and much of MIDI-learn, is also exposed to the
-%  command line.
 
    The command-line mode provides extensive error checking and feedback.
    Note the change in nomenclature from "Parameters" to "Patch Set", which is
@@ -124,8 +121,8 @@
 
    The default setting is \textbf{ON}.
 
-   At the CLI prompt, when effects are being managed, the preset number is also
-   shown on the prompt so one typically sees something like:
+   At the CLI prompt, when effects are being managed, the preset number is
+   also shown on the prompt, so one typically sees something like:
 
    \begin{verbatim}
       yoshimi p2+ eff 1 reverb-1 >
@@ -156,7 +153,7 @@
       yoshimi part 4+ >
    \end{verbatim}
 
-   For clarity we ommit the confirmation messages from here on.
+   For clarity we omit the confirmation messages from here on.
 
    \textsl{Yoshimi} is now on part number 4. Now set an effect:
 
@@ -183,28 +180,31 @@
    Note that when entering effects, there will always be a preset. It will be number 1
    unless it is changed.
 
-   Settings that follow in a direct command "path" through several levels
-   can be made all at once, and one will be left at the appropriate level.
-   Thus, summarizing some of the above commands:
+   Many settings that follow in a direct command "path" through several
+   levels can be made all at once, and one will be left at the appropriate
+   level. Thus, summarizing some of the above commands:
 
    \begin{verbatim}
       yoshimi part 4+ > s ef 2 re
       yoshimi p4+ eff 2 reverb-1>
    \end{verbatim}
 
-   A new feature in \textsl{Yoshimi} V 1.6.0 is a warning when an effect doesn't have the default
-   settings for the given preset. This is in the form of a question mark on the end of the line.
+   A new feature in \textsl{Yoshimi} V 1.6.0 is a warning when an effect
+   isn't at the default settings for the given preset. This is in the form
+   of a question mark on the end of the line.
    \begin{verbatim}
       yoshimi p4+ eff 2 reverb-1? >
    \end{verbatim}
-   This warning will be there as soon as one changes any of the effect controls until either
-   another preset or effect is selected. It will also show if a patchset or instrument is loaded
-   that was previously saved with altered effects controls.
+   This warning will be there as soon as one changes any of the effect
+   controls until either another preset or effect is selected. It will also
+   show if a patchset or instrument is loaded that was previously saved
+   with altered effects controls.
 
    One cannot combine \texttt{type} and \texttt{preset} as they
    are both at the same level.
 
-   To go back one level, use the ".." command (reminiscent of the \texttt{cd ..} operation in an OS command shell):
+   To go back one level, use the ".." command (reminiscent of the
+   \texttt{cd ..} operation in an OS command shell):
 
    \begin{verbatim}
       yoshimi p4+ eff 2 reverb-5 > ..
@@ -218,8 +218,8 @@
       yoshimi >
    \end{verbatim}
 
-   These two special level-movement commands can also be put on the front of
-   any other command.  Starting where we were before:
+   These two special level-movement commands can also be put on the front
+   of any other command.  Starting where we were before:
 
    \begin{verbatim}
       yoshimi p4+ eff 2 reverb-1 > .. s vol 70
@@ -233,18 +233,19 @@
    The help menus and lists are also partially context sensitive. This
    feature should help avoid clutter and confusion.
 
-   As well as an immediate history, \textsl{Yoshimi} maintains a single command
-   history file for all instances of \textsl{Yoshimi} that records any
-   non-duplicated loads or save.  Thus, provided one makes a normal
-   command-line exit, the last commands will be available on the next run of
-   \textsl{Yoshimi}.
-   The command-line now has formal methods of opening, selecting and closing
-   additional instances.
+   As well as an immediate history, \textsl{Yoshimi} maintains a single
+   command history file for all instances of \textsl{Yoshimi} that records
+   any non-duplicated loads or save.  Thus, provided one makes a normal
+   command-line exit, the last commands will be available on the next run
+   of \textsl{Yoshimi}.
 
-   When loading external files from the command line, there is an alternative
-   to entering the full name if \textsl{Yoshimi} has already seen this file and
-   it is in the history list. In this situation one enters '@' followed by the
-   list number.
+   The command-line now has formal methods of opening, selecting and
+   closing additional instances.
+
+   When loading external files from the command line, there is an
+   alternative to entering the full name if \textsl{Yoshimi} has already
+   seen this file and it is in the history list. In this situation one
+   enters '@' followed by the list number.
 
    \begin{verbatim}
       yoshimi> l h v
@@ -287,10 +288,11 @@
    abbreviations are now \textbf{C}apitalised in the help lists.
 
    The organisation of these features may be adjusted slightly, based on
-   comments from users.  If any configuration settings are changed, either
-   at the command-line or in the graphical user-interface, one will be given
-   a warning when exiting, with the option to continue running so one can
-   save the changes.
+   comments from users.
+
+   If any configuration settings are changed, either at the command-line or
+   in the graphical user-interface, one will be given a warning when
+   exiting, with the option to continue running so one can save the changes.
 
 \subsection{Command Level}
 \label{subsec:command_line_command_level}
@@ -418,6 +420,12 @@
       s sub on
    \end{verbatim}
 
+   Since \textsl{Yoshimi} V 2.0.2 there has been an alternative command:
+   \begin{verbatim}
+      RUNLocal {filepath-of-script}
+   \end{verbatim}
+   As it's name suggests, this will run from the current context level.
+
 \subsection{Other Command Tables}
 \label{subsec:command_line_other_command_tables}
 
@@ -470,7 +478,7 @@
    We describe them here.
 
 \begin{center}
-\begin{longtable}{p{2cm} p{10cm}}
+\begin{longtable}{p{3cm} p{12cm}}
 \caption[Yoshimi Common Commands]{Yoshimi Common Commands} \\
 
 \texttt{?,  Help [s]} &
@@ -487,10 +495,13 @@
    However, this will \textsl{not} clear any MIDI-learned lines, unless
    the \textbf{ALL} is included in the command.\\
 \texttt{EXit [s]} &
-   Tidy up and close \textsl{Yoshimi} (if 'y' to the prompt), 'FOrce' instant with no checks and exit value of 16 \\
+   Tidy up and close \textsl{Yoshimi} (if 'y' to the prompt), 'FOrce'
+   instant with no checks and exit value of 16 \\
 \texttt{RUN [s]} &
-   Execute a simple named script file.
+   Execute a simple named script file, first setting top level.
    This script can also include time delays with a \textbf{WAIT} command.\\
+\texttt{RUNLocal [s]} &
+   As above but starting from the current context level.\\
 \texttt{..} &
    Step up one command level. \\
 \texttt{/} &
@@ -517,7 +528,7 @@
 \texttt{BAnk ...} &
    Enter context level. \\
 \texttt{LIst ...} &
-   Show various available parameters. \\
+   Show various settings and available parameters. \\
 \texttt{LOad ...} &
    Load various files. \\
 \texttt{SAve ...} &
@@ -602,12 +613,44 @@
 \end{longtable}
 \end{center}
 
-%     \end{tabular}
-%  \end{table}
-
    Some of the commands in the table above have more extensive descriptions
    in the sections that follow.
 
+\paragraph{List}
+\label{paragraph:command_line_list}
+   With no suffix this displays all the lists that are available. We show
+   this here as the entries are extremely useful.
+\begin{center}
+\begin{longtable}{p{6cm} p{10cm}}
+\caption[Yoshimi Lists]{Yoshimi Lists} \\
+\texttt{Roots} &
+   all available root paths \\
+\texttt{Banks [n]} &
+   banks in root ID or current \\
+\texttt{Instruments [n]} &
+   instruments in bank ID or current \\
+\texttt{Group <s1> [s2]} &
+   instruments by <s1> type grouping ( s2 'Location' for extra details) \\
+\texttt{Parts [s]} &
+   parts with instruments installed ('More' for extra details) \\
+\texttt{Vectors} &
+   settings for all enabled vectors \\
+\texttt{Tuning} &
+   microtonal scale tunings \\
+\texttt{Keymap} &
+   microtonal scale keyboard map \\
+\texttt{Config} &
+   current configuration \\
+\texttt{MLearn [s <n>]} &
+   midi learned controls ('@' n for full details on one line) \\
+\texttt{History [s]} &
+   recent files (Patchsets, SCales, STates, Vectors, MLearn) \\
+\texttt{Effects [s]} &
+   effect types ('all' include preset numbers and names) \\
+\texttt{PREsets } &
+  all the presets for the currently selected effect \\
+\end{longtable}
+\end{center}
 \paragraph{MONo}
 \label{paragraph:command_line_mono}
     The \textbf{MONo [s]} command is provided for switching between mono and
@@ -789,7 +832,9 @@ to see what controls were available in each context.
  \texttt{(effect) Send [n1] [n2]} &
    Current part to system effect n1 at volume n2. \\
 \texttt{PRogram [s]/[[s] [n]]} &
-   Instrument ID / CLear sets default, Group (n) loads from search list. \\
+   Instrument ID / Group (n) loads from search list. \\
+\texttt{LAtest} &
+   The most recent bank instrument loaded or saved. \\
 \texttt{TYPe [s]} &
    The instrument type, i.e. Piano, Guitar etc. \\
 \texttt{NAme [s]} &
@@ -802,10 +847,16 @@ to see what controls were available in each context.
    A small random detune. \\
 \texttt{Humanise Velocity [n]} &
    A small random velocity reduction. \\
+\texttt{CLear} &
+  Resets the part to the default 'Simple Sound'. \\
 \texttt{Channel [n]} &
-   Channel (32 disables, 16 note off only).   \\
+   CHannel (32 disables, 16 note off only).   \\
+\texttt{AFtertouch Chan <s1> [s2]} &
+   Off, Filter (Down) + Peak (Down) + Bend (Down) + Modulation + Volume. \\
+\texttt{AFtertouch Key <s1> [s2]} &
+   Off, Filter (Down) + Peak (Down) + Bend (Down) + Modulation. \\
 \texttt{Destination [s]} &
-   Audio destination (Main, Part, Both).  \\
+   JACK audio destination (Main, Part, Both).  \\
 \texttt{MUlti} &
    Set kit mode and allow kit item overlaps. \\
 \texttt{SIngle} &
@@ -1640,14 +1691,16 @@ Note: Some envelopes have limited controls.
    Time before effect. \\
 \texttt{Expand [n]} &
    Rate / note pitch. \\
+texttt{BPM [s]} &
+   Sync frequency to MIDI clock (ON / other). \\
 \texttt{Continuous [s]} &
-   ON / other. \\
+   Free running - ignore start position (ON / other). \\
 \texttt{Type [s]} &
    LFO oscillator shape. See the list below. \\
 \texttt{AR [n]} &
    Amplitude randomness. \\
-\texttt{FR [n]} &
-   Frequency randomness. \\
+\texttt{RR [n]} &
+   Rate (frequency) randomness. \\
 
       \end{tabular}
    \end{table}
@@ -1663,6 +1716,9 @@ Filter types (s parameter, LFO oscillator shape):
       \item RDown (ramp down)
       \item E1dn
       \item E2dn
+      \item SH (sample / hold)
+      \item RSU (random square up)
+      \item RSD(random square down)
    \end{itemize}
 
 \subsection{MLearn}
@@ -1829,6 +1885,8 @@ Filter types (s parameter, LFO oscillator shape):
    Echo feedback. \\
 \texttt{DAMp [n]} &
    Feedback damping. \\
+\texttt{BPM [s>]} &
+   delay BPM sync (ON / other) \\
 \texttt{PREset [n]} &
    Select numbered preset (sets all above controls). \\
       \end{tabular}
@@ -1872,6 +1930,10 @@ Echo presets:
    Left-right routing. \\
 \texttt{SUBtract [s]} &
    Invert output (ON / other). \\
+\texttt{BPM [s]} &
+   LFO BPM sync (ON / other). \\
+\texttt{STArt [n]} &
+   LFO BPM phase start. \\
 \texttt{PREset [n]} &
    Select numbered preset (sets all above controls). \\
       \end{tabular}
@@ -1923,6 +1985,10 @@ Chorus presets:
    Distortion. \\
 \texttt{ANAlog [s]} &
    Analog emulation  (ON / other). \\
+\texttt{BPM [s]} &
+   LFO BPM sync (ON / other). \\
+\texttt{STArt [n]} &
+   LFO BPM phase start. \\
 \texttt{PREset [n]} &
    Select numbered preset (sets all above controls). \\
       \end{tabular}
@@ -1966,8 +2032,12 @@ Phaser presets:
    LFO delay. \\
 \texttt{CROssover [n]} &
    Left-right routing. \\
-\texttt{RELatove [n]} &
+\texttt{RELative [n]} &
    Relative phase. \\
+\texttt{BPM [s]} &
+   LFO BPM sync (ON / other). \\
+\texttt{STArt [n]} &
+   LFO BPM phase start. \\
 \texttt{PREset [n]} &
    Select numbered preset (sets all above controls). \\
       \end{tabular}
@@ -2071,6 +2141,10 @@ EQ has no presets.
    Speed of filter change with amplitude. \\
 \texttt{FILter ...} &
    Enter the dynamic filter context. (a stock filter)\\
+\texttt{BPM [s]} &
+   LFO BPM sync (ON / other). \\
+\texttt{STArt [n]} &
+   LFO BPM phase start. \\
 \texttt{PREset [n]} &
    Select numbered preset (sets all above controls). \\
       \end{tabular}
@@ -2324,7 +2398,8 @@ is not enough room in the table above.
    \end{verbatim}
 
    Unfortunately many instrument authors didn't identify a type, so the
-   \textbf{undefined} list is probably the longest.
+   \textbf{undefined} list is the longest (although with revision
+   of banks in V 2.0, this has reduced somewhat).
 
 \subsection{History List [s]}
 \label{subsec:command_line_list_history}
