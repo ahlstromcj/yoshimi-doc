@@ -138,6 +138,66 @@
        B0 26 7F // Change the parameter of effect to the value 7F (127)
    \end{verbatim}
 
+\subsection{CC and NRPN Quick Reference}
+\label{subsection:cc_nrpn_quick_ref}
+   The table \tableref{table:CCandNRPNreference}, is a simple list of all the
+   Continuous Controllers (CCs) and Non Registered Parameter Numbers (NRPNs)
+   recognised by Yoshimi.
+   For more CC details see \sectionref{subsubsec:concepts_midi_messages}, and for NRPN details \sectionref{sec:nrpns}.
+
+\index{new!CC and NRPN Quick Reference}
+      \begin{table}[H]
+      \centering
+      \caption{CC and NRPN Quick Reference}
+      \label{table:CCandNRPNreference}
+      \begin{tabular}{c c l}
+    \textbf{CC} & & \textbf{Function} \\
+       Hex (Dec) \\
+       00 (0) & & Bank MSB\\
+       01 (1) & & Modulation Wheel\\
+       02 (2) & & Breath\\
+       06 (6) & & NRPN Data MSB\\
+       07 (7) & & Volume\\
+       0A (10) & & Panning\\
+       0B (11) & & Expression\\
+       20 (32) & & Bank LSB\\
+       26 (38) & & NRPN Data LSB \\
+       40 (64) & & Sustain Pedal \\
+       41 (65) & & Prtamento \\
+       44 (68) & & Legato Pedal \\
+       47 (71) & & Filter Q \\
+       4A (74) & & Filter Cutoff \\
+       4B (75) & & Bandwidth \\
+       4C (76) & & FM Amplitude \\
+       4D (77) & & Resonance Centre Frequency\\
+       4E (78) & & Resonance Bandwidth \\
+       60 (96) & & NRPN Data Increment \\
+       61 (97) & & NRPN Daya Decrement \\
+       62 (98) & & NRPN LSB \\
+       63 (99) & & NRPN MSB \\
+       78 (120) & & All Sound Off \\
+       79 (121) & & Reset All Controllers \\
+       7B (123) & & All Notes Off\\
+       \\
+    \textbf{NRPN MSB} & \textbf{NRPN LSB} & \textbf{Function} \\
+        Hex (Dec) & Hex (Dec)\\
+        04 (4) & 00-04 (0-4)& System Effect number \\
+        08 (8) & 00-08 (0-8)& Insertion Effect number \\
+        40 (64) & 00 (0) & Direct part control \\
+        40 (64) & 01 (1) & Vector Control \\
+        40 (64) & 02 (2) & System Settings \\
+        60 (96) & 00-05 (0-5) & Load Numbered File from List \\
+        \\
+    \textbf{ShortForm} &  LSB is value & No data bytes needed \\
+        41 (65) & 00-05 (0-5) & Set Solo Switch Type \\
+        42 (66) & 00-77 (0-119) & Set Solo Switch Incomming Controller \\
+        44 (68) & 44 (68) & Perform Normal Shutdown, exit value 0 \\
+        44 (68) & 45 (69) & Perform shutdown without messages, exit value 16 \\
+      \end{tabular}
+   \end{table}
+
+\subsection{Effects NRPN values}
+\label{subsection:effects_nrpn_values}
    \textbf{WARNING}:
    Changing of some of the effect parameters produces clicks when sounds
    passes thru these effects.  We advise one to change only when the sound
@@ -347,6 +407,16 @@
       \item 7 - DynFilter
    \end{itemize}
 
+
+   For System effects, if the Data MSB bit 5 (32) is set
+   \textsl{and} Data MSB bit 6 (64) is set (i.e. a combined value of 96),
+   then the command sets how much of one system effect is sent to another.
+   The range of values depend on which is the sending effect. It can't be sent to itself, or a lower numbered one.
+
+   The MSB would be from 96 to 98, representing effect 2 to 4.
+
+   The Data LSB is the amount to actually send.
+
    For Insert effects, if the Data MSB bit 5 (32) is set
    \textsl{and} Data MSB bit 6 (64) is set (i.e. a combined value of 96),
    then Data LSB sets the destination part number.
@@ -379,6 +449,32 @@
       \item 38 -  75 \textasciitilde value
    \end{itemize}
 
+
+\subsection{NRPN / Direct Part Controls}
+\label{subsection:nrpns_direct_part_control}
+   All of these controls are assigned to a specific part, regardless of what channel number it is on and in most cases doesn't even require the part to be enabled. They do however need to be in the current range available. i.e if the range is 32 parts, one can only set numbers 0 to 31.
+
+   Data MSB is the control to be managed, and Data LSB is the value to set.
+
+   \begin{itemize}
+      \item 0 \hspace{8pt}Part number (this must be set first)
+      \item 1 \hspace{8pt}Program Change
+      \item 2 \hspace{8pt}Controller to change (0 - 119)
+      \item 3 \hspace{8pt}Controller value
+      \item 4 \hspace{8pt}Channel number
+      \begin{enumerate}[label=\alph*)]
+          \item 0 - 15 select for all messages
+          \item 6 - 31 select for note off only
+          \item 32 - 47 mute
+      \end{enumerate}
+      \item 5 * Audio destination (0 - 2) main/part/both
+      \item 8 \hspace{8pt}Send part output the System effect 1
+      \item 9 \hspace{8pt}Send part output the System effect 2
+      \item 10 \hspace{8pt}Send part output the System effect 3
+      \item 11 \hspace{8pt}Send part output the System effect 4
+      \item 64 * Key shift (28 - 100) gives -36 to +36
+   \end{itemize}
+   Note (*): requires the part to be enabled.
 \subsection{NRPN / Dynamic System Settings}
 \label{subsection:nrpns_dynamic_system_settings}
 
@@ -473,13 +569,14 @@
    Just send 68 to both MSB and LSB (CC 99 and CC 98). If you make the LSB 69, it
    will return an exit value of 16. This is the 'forced exit' and can be used by the
    system for other cleanups and a shut down.
-
+\iffalse
 \subsection{CC and NRPN Quick Reference}
 \label{subsection:cc_nrpn_quick_ref}
    The table \tableref{table:CCandNRPNreference}, is a simple list of all the
    Continuous Controllers (CCs) and Non Registered Parameter Numbers (NRPNs)
    recognised by Yoshimi.
    For more CC details see \sectionref{subsubsec:concepts_midi_messages}, and for NRPN details \sectionref{sec:nrpns}.
+
 
 \index{new!CC and NRPN Quick Reference}
       \begin{table}[H]
@@ -531,6 +628,7 @@
         44 (68) & 45 (69) & Perform shutdown without messages, exit value 16 \\
       \end{tabular}
    \end{table}
+\fi
 
 
 %-------------------------------------------------------------------------------

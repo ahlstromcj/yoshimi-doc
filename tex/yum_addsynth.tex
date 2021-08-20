@@ -549,12 +549,15 @@
    Values: \texttt{Off*, On}
 
    \itempar{Eq.T}{voice parameters!eq type}
-   Equal Temperament?
+   Equal Temperament
    This item is enabled only if the \textbf{440Hz} check-box is enabled.
-   It determines how the frequency varies according to the
-   keyboard.  If set to its leftmost (0) value, then the frequency is fixed.
+   If this is greater than zero it modifies the effect of the 440Hz checkbox. The A4
+   key remains at 440Hz, but the frequency of the other keys vary according to the
+   key pressed. When set to the middle of the value range (64), the step size is
+   exactly like the classical equal temperament, i.e. one note step for one semitone
+   and 12 steps will double the frequency.
 
-   Values: \texttt{0 to 127?}
+   Values: \texttt{0 to 127}
 
    \itempar{Octave}{voice parameters!octave}
    Voice Parameters Octave.
@@ -603,20 +606,20 @@
    activated.
 
    \begin{enumber}
-      \item \textbf{Enable (unmarked button)}
+      \item \textbf{On}
       \item \textbf{Size}
       \item \textbf{Frequency Spread}
       \item \textbf{Ph.rnd}
       \item \textbf{Stereo}
-      \item \textbf{Vibrato}
+      \item \textbf{Vib.}
       \item \textbf{V.speed}
       \item \textbf{Invert}
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
-   \itempar{Enable}{unison!enable}
-   Enables or disables unison.
+   \itempar{On}{unison!enable}
+   Enables or disables unison. When disabled the size is always set at 2.
 
    Values: \texttt{Off*, On}
 
@@ -668,8 +671,6 @@
    The ADDsynth Voice Oscillator panel is tucked in the lower left side of the
    ADDSynth Voice Parameters editor.
 
-% TODO FOR 1.6.0: Uncomment the commented bullet.
-
    \begin{enumber}
      \item \textbf{Voice}
       \item \textbf{Sound}
@@ -684,8 +685,6 @@
 
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
-
-% TODO FOR 1.6.0: Uncomment the commented text.
 
   \itempar{Source}{voice oscillator!Source}
   ADDSynth Voice Import. Selects whether to import a lower-numbered voice as
@@ -770,8 +769,6 @@
    For example, if one is currently editing current voice 3,
    then the dropdown list includes \textbf{Internal}, \textbf{Voice 1}, and
    \textbf{Voice 2}.
-
-% TODO FOR 1.6.0: Uncomment the commented text.
 
   Unlike Source, using an oscillator from a different voice
   only imports the waveform, not any other parameters.
@@ -859,8 +856,6 @@
 
    Values: \texttt{OFF, MORPH, RING, PM, FM, PWM}
 
-% TODO FOR 1.6.0:  Replace the paragraph with the commented text.
-
   \itempar{Modulator Source}.
   AddSynth Modulator Source.
   \index{modulator!source}
@@ -871,9 +866,6 @@
   current voice will then tweak the modulator further.
   One can only select Local (i.e. Internal), or one from a lower numbered voice.
 
-%   \itempar{Modulator Source}{modulator!external}
-%   AddSynth Modulator Source.
-%   \index{oscillator!external}
    This feature allows one of the voices (of the up to 8 allowed in a single
    ADDsynth instrument) to be used as a modulator or external oscillator for
    another voice in the instrument.
