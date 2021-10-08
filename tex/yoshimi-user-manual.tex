@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-04-20
-% \update      2019-12-08
+% \update      2021-10-08
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -49,14 +49,14 @@
 \makeindex
 
 \begin{document}
-\title{Yoshimi Advanced Reference Manual, v 2.1.0}
+\title{Yoshimi Advanced Reference Manual, v 2.1.1}
 \author{Chris Ahlstrom \texttt{(ahlstromcj@gmail.com)} with Will J. Godfrey}
 \date{\today}
 \maketitle
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=1.00]{2.0/Front.png}
+   \includegraphics[scale=0.60]{2.0/Front.png}
 \end{figure}
 
 \clearpage                             % moves Contents to next page
@@ -142,6 +142,35 @@
    There are new features for the command-line interface, and many internal
    fixes to reduce the likelihood of "xruns", static, clicks, or other
    performance issues.
+
+\subsubsection{New for Version 2.1.1}
+\label{subsubsec:new_features_2_1_1}
+
+   The most noticeable feature is a new button in the main window for access to
+   the MIDI CCs window. This was always accessible, but required a right-click on
+   the Controllers button; many people never knew it was available!
+   These controls be used with no MIDI source connected, and they can be
+   learned and combined with others for greater expression.
+
+   Improved instrument bank management gives a faster startup (particularly
+   with very large banks and roots) and greater protection against outside
+   influences. A setup with 7500 instruments in 200 banks used to take nearly 5
+   seconds to get to the main window, and now takes much less than a second.
+
+   There is a new ability to separate properly instruments in banks with the
+   same numeric prefix, but different names. Also, two that have different
+   file-names but the same prefix (and are in fact the same) are treated as
+   just the one. This situation typically occurs when banks were merged in the
+   past with a mixture of spaces and underscores in the filenames.
+
+   We've removed the switch for disabling 'Enable part on program change'. It
+   was only relevant to MIDI and nobody could think of a circumstance where one
+   would want to select a program via MIDI but not have it active. If one wants
+   to silence a channel, CC7 (volume) would do so, and if it was just a
+   specific part, there is an NRPN that can do it.
+
+   A double-click on a path in the filer favourites view will now select it and
+   return you to the main filer window.
 
 \subsubsection{Resizeable Windows}
 \label{subsubsec:new_features_resizable_windows}
@@ -295,10 +324,9 @@
    any graphical components to be installed.
    Real accessible control is available.
 
-%  When starting from
-%  the command line, an argument can be included for a new root path to be defined
-%  to point to a set of banks fetched from elsewhere. This will be given the next
-%  free ID.
+%  When starting from the command line, an argument can be included for a new
+%  root path to be defined to point to a set of banks fetched from elsewhere.
+%  This will be given the next free ID.
 
    Once running, all setup can be done within the terminal window.
    Some settings will require a restart.
@@ -701,13 +729,13 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=1.0]{2.0/Front.png}
+   \includegraphics[scale=0.60]{2.0/Front.png}
    \caption{Yoshimi Main Screen}
    \label{fig:yoshimi_main_screen}
 \end{figure}
 
-    From \textsl{Yoshimi} version 1.5.11, on the very first time Yoshimi is
-    started the main window will be overlaid with the following prompt. This
+    From \textsl{Yoshimi} version 1.5.11, the very first time Yoshimi is
+    started, the main window will be overlaid with the following prompt. This
     is for the benefit of very new users who might not know where to start.
 
 \begin{figure}[H]
@@ -767,7 +795,7 @@
 
 \rhead{\rightmark}         % shows section number and section name
 
-% new GUI structure
+% New GUI structure
 
 \input{yum_new_gui}
 

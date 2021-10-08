@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-11
-% \update      2019-12-08
+% \update      2021-10-08
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -926,7 +926,8 @@
 %  \includegraphics[scale=0.75]{1.4.1/SettingsMidi.png}
 %  \includegraphics[scale=0.75]{1.5.0/SettingsMidi.png}
 %  \includegraphics[scale=0.75]{1.5.4/SettingsMidi.png}
-   \includegraphics[scale=0.75]{1.5.11/Settings_Midi.png}
+%  \includegraphics[scale=0.75]{1.5.11/Settings_Midi.png}
+   \includegraphics[scale=0.75]{2.1.1/midi-cc.png}
    \caption[MIDI Preferences]{MIDI Preferences Tab}
    \label{fig:yoshimi_settings_cc}
 \end{figure}
@@ -937,18 +938,19 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{1.5.11/Settings_Pending.png}
+%  \includegraphics[scale=0.75]{1.5.11/Settings_Pending.png}
+   \includegraphics[scale=0.75]{2.1.1/midi-cc-pending.png}
    \caption[MIDI Settings Pending]{MIDI Settings Pending}
    \label{fig:yoshimi_settings_pending}
 \end{figure}
 
-   The following items are provided by the MIDI settings tab:
+   The following items are provided by the MIDI CCs settings tab:
 
    \begin{enumber}
       \item \textbf{Bank Root Change}
       \item \textbf{Bank Change}
       \item \textbf{Enable Program Change}
-      \item \textbf{Enable Part On Program Change}
+%     \item \textbf{Enable Part On Program Change}
       \item \textbf{Enable Extended Program Change}
       \item \textbf{Extended Program Change}
       \item \textbf{Enable Incoming NRPNs}
@@ -1008,12 +1010,11 @@
    Program changes can be completely disabled, but some hardware synths don't
    play nice!
 
-   \itempar{Enable Part On Program Change}{MIDI settings!enable part change}
-
-   Values: \texttt{Off*, On}
+%  \itempar{Enable Part On Program Change}{MIDI settings!enable part change}
+%  Values: \texttt{Off*, On}
 
    The part is automatically enabled if the MIDI program was changed on this
-   part.
+   part.  There is no longer an option to disable this enabling.
 
    \itempar{Enable Extended Program Change}{MIDI settings!enable extended program change}
 

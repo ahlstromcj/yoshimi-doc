@@ -142,13 +142,16 @@
 \index{new!Instrument Highlight}
    A new feature since \textsl{Yoshimi} V 1.7.2 is highlighing the last
    instrument seen. In this case, the third one in the list. This is
-   particulalry useful for banks where the internal name is different from the
+   particularly useful for banks where the internal name is different from the
    filename.
 
    All of the instrument files (such as \texttt{0001-Arpeggio1.xiz})
    with filenames starting with numbers (no matter how many digits)
-   will be
-   shown in the corresponding slot number.  Those instrument files
+   will be shown in the corresponding slot number.
+   Variations in filename after the number are ignored; the files
+   are treated as the same instrument.
+
+   Those instrument files
    without numbers (or larger numbers?) will start
    with numbers at 129 or above ("Extended Program Change") up to 160.
    One could give them numbers by renaming them outside of \textsl{Yoshimi},
