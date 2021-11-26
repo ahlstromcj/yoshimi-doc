@@ -22,6 +22,10 @@
    instrument.  This is the most complex, most advanced and most
    sophisticated part of the synthesizer and allows one to edit the
    parameters that apply to all the voices of ADDsynth.
+   AddSynth is the most complex and feature filled engine,
+   and so is split up into various context levels.
+   Although based on well-known additive synthesis,
+   \textsl{Yoshimi} extends that considerably.
 
    ADDsynth, a primarily additive synthesis engine, is one of the three major
    synthesis engines available in \textsl{Yoshimi}/\textsl{ZynAddSubFX}.
@@ -104,10 +108,16 @@
 
       \item \textbf{Stereo}
       \item \textbf{Rnd Grp}
+      \item \textbf{D.Pop}
       \item \textbf{P.Str.}
       \item \textbf{P.t}
       \item \textbf{P.Stc.}
       \item \textbf{P.Vel.}
+      \item \textbf{Detune}
+      \item \textbf{Octave}
+      \item \textbf{relBW}
+      \item \textbf{Detune Type}
+      \item \textbf{Coarse Detune}
    \end{enumber}
 
    Note the two sub-panels, mentioned above, that are described elsewhere.
@@ -142,17 +152,30 @@
    ADDsynth Stereo.
    Stereo can be enabled.
    When disabled, all the voices will also have panning disabled.
+   \textbf{Stereo} determines whether the whole of this engine is to be Stereo or
+   Mono. If the box is not checked (i.e. Mono), there will be no \textsl{spread}
+   to the sound, but the Panning controls will not be affected, and neither will
+   the stereo spread of any part effects.
 
    Values: \texttt{Off, On*}
 
    \itempar{Rnd Grp}{addsynth!group}
    ADDsynth Random Group.
-   Disable harmonic amplitude randomness of voices with a common oscillator.
+   \textbf{Rnd Grp} Normally each voice> has it's own harmonic amplitude
+   random element. If this is checked, then all voices that use the same waveform
+   oscillator will be grouped so they have the same harmonic randomness, assuming
+   this has been set in the Waveform window.
+   It disables harmonic amplitude randomness of voices with a common oscillator.
    There are many per-voice random elements that can give the sound more
    'depth'. When this control is checked, the voices all sound together
    instead.
 
    Values: \texttt{Off*, On}
+
+   \itempar{D. Pop}{addsynth!de-pop}
+   ADDsynth De-Pop.
+   This sets the time of a very short attack ramp up,
+   to suppress the click some sounds might produce.
 
    \itempar{P.Str}{addsynth!punch strength}
    ADDsynth Punch Strength.
@@ -182,6 +205,40 @@
    ADDsynth Punch Velocity Sensing.
    The higher this value, the higher the effect of velocity on the punch of
    the note.
+
+   Values: \texttt{0 to 127, 72*}
+
+   \itempar{Detune}{addsynth!detune}
+   ADDsynth Detune.
+   Detunes the engine by a small amount.
+
+   Values: \texttt{0 to 127, 72*}
+
+   \itempar{Octave}{addsynth!octave}
+   ADDsynth Octave.
+   Allows a change of the overall pitch up or down by up to eight octaves.
+
+   Values: \texttt{0 to 8, 0*}
+
+   \itempar{relBW}{addsynth!relbw}
+   ADDsynth relBW (relative bandwidth).
+   Modifies the amount individual voice and unison detunes can deviate
+   from the overall value.
+
+   Values: \texttt{0 to 127, 72*}
+
+   \itempar{Detune Type}{addsynth!detune type}
+   ADDsynth Detune Type.
+   The menu options control the amount of detune of the slider and whether it is a
+   linear change or exponential (i.e. has more effect the further away it is from
+   the centre position).
+
+   Values: \texttt{0 to 127, 72*}
+
+   \itempar{Coarse Detune}{addsynth!coarse detune}
+   ADDsynth Coarse Detune.
+   The inner single arrows make a coarse step change to the detune, and the outer
+   double ones change by ten times as much.
 
    Values: \texttt{0 to 127, 72*}
 
@@ -318,9 +375,20 @@
    Again, this dialog is built from some stock sections and stock
    sub-panels, plus additional elements.
 
-   Each \textsl{Yoshimi} ADDsynth instrument consists of up to 8 voices.
-   This dialog provides a way to define each of the 8 voices in great
-   detail.  By default, an ADDsynth instrument consists of one voice, voice 1.
+   Each \textsl{Yoshimi} ADDsynth instrument consists of up to 8 voices
+   that can all interact with each other to some degree. Each of those voices
+   has a waveform oscillator, and, optionally a modulation one with five
+   different modulation types. It also has "Unison" capability (effectively
+   sub-voices).
+
+   The oscillators themselves have a wide range of waveform shaping controls,
+   almost all of which can be changed in real time.
+
+    The image shows your entry point with all the global controls. Much of this
+    actually consists of standardised inserts that are used across all engines.
+    Detailed descriptions of these are provided in the following sections.
+    This dialog provides a way to define each of the 8 voices in great detail.
+    By default, an ADDsynth instrument consists of one voice, voice 1.
 
 \begin{figure}[H]
    \centering
@@ -749,9 +817,9 @@
    then the waveform graph simply announces
    "Spot Noise".  Also, the \textbf{Unison, Frequency, Modulator} controls are
    all disabled.
-   Spot noise is based on white noise but has a very broken sound. Combined with
-   envelope shaping this is useful for adding 'grit' or sizzle, particularly for
-   percussion.
+   Spot noise is based on white noise but has a very broken sound. Combined
+   with envelope shaping this is useful for adding 'grit' or sizzle,
+   particularly for percussion.
 
 \begin{figure}[H]
    \centering
