@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-07
-% \update      2019-12-21
+% \update      2021-11-26
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -62,7 +62,8 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=1.0]{2.0/AddSynth.png}
+%  \includegraphics[scale=1.0]{2.0/AddSynth.png}
+   \includegraphics[scale=0.65]{2.1.2/global.png}
    \caption{ADDsynth Edit/Global Dialog}
    \label{fig:addsynth_edit_dialog}
 \end{figure}
@@ -392,7 +393,8 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{2.0/AddVoice.png}
+%  \includegraphics[scale=0.75]{2.0/AddVoice.png}
+   \includegraphics[scale=0.65]{2.1.2/voice.png}
    \caption{ADDsynth Voice Parameters Dialog}
    \label{fig:addsynth_voice_parameters_dialog}
 \end{figure}
@@ -402,6 +404,10 @@
    another editing window.
    Non-active voices are shown with an inactive tab/number appearance.
    This is all in synchrony with the \textbf{Voice List} window.
+   The tabs select the particular voice to manage, and its modulator section.
+   The tab colour changes to cyan to indicate it is the selected one.
+   Active voices show their tab \textsl{number} in black to show
+   at a glance which ones have been enabled.
 
    This dialog consists of a few extra settings, plus a number of
    stock dialog sections.  Take some time to compare
@@ -446,17 +452,23 @@
    \itempar{On}{voice!on/off}
    ADDsynth Voice On/Off.
    Enables this voice in the part/instrument.
+   It enables or disables the entire voice, including it's modulator.
+   Also, with the exception of \textbf{Volume/Panning},
+   all inserts can be switched on or off.
 
    Values: \texttt{Off, On}
 
    \itempar{Delay}{voice!delay}
    ADDsynth Voice Delay.
-   \index{todo!voice delay units (milliseconds/seconds)}
+   Individual voices can be delayed against the overall note on point.
+   However, if one is delayed beyond the note release point, it will never sound.
 
    Values: \texttt{0* to 4.90 s}
 
    \itempar{Resonance}{voice!resonance}
    ADDsynth Voice Resonance On/Off.
+   This determines whether overall resonance is applied to a particular voice.
+
    The rest of the GUI elements
    (AMPLITUDE, FILTER, MODULATOR, FREQUENCY, and Voice Oscillator)
    are more detailed, and discussed in the sections that follow.
@@ -489,7 +501,7 @@
 
    \itempar{Minus}{voice par amp!invert phase}
    ADDsynth Amplitude Minus.
-   When checked, this control inverts the phase of the waveform relative to
+   This control inverts the phase of the waveform relative to
    all the other voices.
    With only one voice enabled, this control will seem to do nothing.
    With two voices enabled with \textsl{identical} waveforms, the
@@ -555,12 +567,11 @@
 
    \itempar{Bypass Global F}{voice par filter!bypass}
    ADDsynth Voice Bypass Global Filter.
-   The voice signal bypasses the global filter.
+   The voice signal bypasses the global filter,
+   and only uses the filter block for the voice;
+   otherwise it is applied, but before the global one.
 
    Values: \texttt{Off*, On}
-
-   \index{todo!global filter}
-   We need to make sure there is a discussion of the global filter.
 
    \itempar{Filter Params, Stock}{voice par filter!parameters}
    See \sectionref{subsubsec:filter_parameters_user_interface}.
@@ -924,15 +935,15 @@
 
    Values: \texttt{OFF, MORPH, RING, PM, FM, PWM}
 
-  \itempar{Modulator Source}.
-  AddSynth Modulator Source.
-  \index{modulator!source}
-  Use another voice as a modulator instead of the modulator of the internal
-  voice. One can make a "modulation stack". All parameters from the imported
-  voice remain in effect, except for volume, panning, base frequency and pitch
-  bend scaling factor. The voice is also converted to mono. Parameters in the
-  current voice will then tweak the modulator further.
-  One can only select Local (i.e. Internal), or one from a lower numbered voice.
+   \itempar{Modulator Source}.
+   AddSynth Modulator Source.
+   \index{modulator!source}
+   Use another voice as a modulator instead of the modulator of the internal
+   voice. One can make a "modulation stack". All parameters from the imported
+   voice remain in effect, except for volume, panning, base frequency and pitch
+   bend scaling factor. The voice is also converted to mono. Parameters in the
+   current voice will then tweak the modulator further.  One can only select
+   Local (i.e. Internal), or one from a lower numbered voice.
 
    This feature allows one of the voices (of the up to 8 allowed in a single
    ADDsynth instrument) to be used as a modulator or external oscillator for
