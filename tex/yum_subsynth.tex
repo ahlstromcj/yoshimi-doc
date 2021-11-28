@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-07
-% \update      2017-03-18
+% \update      2021-11-28
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -186,6 +186,8 @@
    \begin{enumber}
       \item \textbf{Detune}
       \item \textbf{FREQUENCY Slider}
+      \item \textbf{Bend}
+      \item \textbf{Offset}
       \item \textbf{440Hz}
       \item \textbf{Eq.T}
       \item \textbf{Octave}
@@ -203,6 +205,16 @@
    Frequency Slider.
 
    Values: \texttt{-35 to 34.99}
+
+   \itempar{Bend}{voice parameters!bend}
+   Bend.
+   It modifies the pitch bend control.  It is possible to make the pitch
+   bend control work in the opposite direction.
+
+   \itempar{Offset}{voice parameters!offset}
+   Offset.
+   It shifts the overal pitch of the engine (up or down) relative to the rest
+   of the engines.
 
    \itempar{440Hz}{subsynth!freq 440hz}
    Frequency 440Hz.
