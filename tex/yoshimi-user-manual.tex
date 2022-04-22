@@ -49,14 +49,15 @@
 \makeindex
 
 \begin{document}
-\title{Yoshimi Advanced Reference Manual, v 2.1.2}
+\title{Yoshimi Advanced Reference Manual, v 2.2.0}
 \author{Chris Ahlstrom \texttt{(ahlstromcj@gmail.com)} with Will J. Godfrey}
 \date{\today}
 \maketitle
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.60]{2.0/Front.png}
+%   \includegraphics[scale=0.60]{2.0/Front.png}
+   \includegraphics[scale=0.60]{2.2.0/Main.png}
 \end{figure}
 
 \clearpage                             % moves Contents to next page
@@ -142,6 +143,24 @@
    There are new features for the command-line interface, and many internal
    fixes to reduce the likelihood of "xruns", static, clicks, or other
    performance issues.
+
+\subsubsection{New for Version 2.2.0}
+\label{subsubsec:new_features_2_2_0}
+   A major development here concerns the PadSynth engine. It is now
+   possible to make changes deep within this structure without interruption
+   while notes are sounding. There is setting to enable the sound to
+   smoothly fade from one setting to the next over a few milliseconds.
+   Alteratively one can set new control in the PadSynth engine itself to
+   spread the change over several seconds for a unique musical effect.
+
+   Another much requested feature is a comprehensive Undo/Redo capability.
+   This is most usefull when wanting to try changing something but with the
+   safety net of being able to revert if the result is unsatisfactory.
+
+   When we first implemented BPM sync for LFOs etc. we had to provide a
+   fallback in case there was no incoming MIDI clock to sync to. We set
+   this to the standard 120BPM. Now, howver there is a control so that it
+   can be set over a wide range to get exactly the wanted effect.
 
 \subsubsection{New for Version 2.1.1, 2.1.2}
 \label{subsubsec:new_features_2_1_1}
@@ -730,7 +749,7 @@
 \begin{figure}[H]
    \centering
 %  \includegraphics[scale=0.60]{2.0/Front.png}
-   \includegraphics[scale=0.60]{2.1.2/Main.png}
+   \includegraphics[scale=0.60]{2.2.0/Main.png}
    \caption{Yoshimi Main Screen}
    \label{fig:yoshimi_main_screen}
 \end{figure}
