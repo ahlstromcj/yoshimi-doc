@@ -193,8 +193,7 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 
 \begin{figure}[H]
    \centering
-%  \includegraphics[scale=1.0]{2.0/PadSynth.png}
-   \includegraphics[scale=0.65]{2.1.2/padharmonic.png}
+   \includegraphics[scale=0.65]{2.2.0/padharmonic.png}
    \caption{PADsynth Edit Dialog}
    \label{fig:padsynth_edit_dialog}
 \end{figure}
@@ -353,6 +352,8 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
       \item \textbf{smp/oct}
       \item \textbf{no.oct}
       \item \textbf{Sample Size}
+      \item \textbf{Crossfade}
+      \item \textbf{Retrigger} (section)
       \item \textbf{Resonance} (section)
       \item \textbf{Change} (section)
    \end{enumber}
@@ -409,6 +410,11 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 \end{figure}
 
    Values: \texttt{16k (Tiny), 32k, 64k (Small), 128k*, 256k (Normal), 512k, 1M (Big)}
+
+   \itempar{Crossfade}{padsynth!crossfade}
+   Wavetable Fade Time.
+
+   Values: \texttt{off, 1mS,200mS*, 20S}
 
 \subsubsection{PADsynth / Harmonic Structure / Bandwidth and Position}
 \label{subsubsec:padsynth_harmonic_structure_bw_and_pos}
@@ -512,6 +518,17 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 
    This export dialog is a file dialog similar to other file dialogs
    in \textsl{Yoshimi}.
+
+\subsubsection{PADsynth / Harmonic Structure / Retrigger}
+\label{subsubsec:padsynth_harmonic_structure_retrigger}
+    This dialog (new in \textsl{Yoshimi} V2.2.0) has yet to be described.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.75]{2.2.0/padrandom.png}
+   \caption{Random Walk Editor}
+   \label{fig:padsynth_random_walk_editor}
+\end{figure}
 
 \subsubsection{PADsynth / Harmonic Structure / Resonance}
 \label{subsubsec:padsynth_harmonic_structure_resonance}
