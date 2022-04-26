@@ -1,17 +1,18 @@
-Yoshimi User Manual Document v. 1.5.3
-Chris Ahlstrom
-2015-04-20 to 2017-09-03
+Yoshimi User Manual Document v. 2.2.0
+Chris Ahlstrom and Will Godfrey
+2015-04-20 to 2022-04-26
 
 This project provides two things:
 
-   1. A document, still in progress, but extremely complete,
-      to cover just about everything to do with Yoshimi, with some material
-      covering ZynAddSubFX as well.  Tips, bug notes, and "to-do's" are also
-      included.
+   1. An advanced user manual, always in progress, but extremely complete, to
+      cover just about everything to do with Yoshimi.  Tips, bug notes, and
+      "to-do's" are also included.
 
-   2. A safe place for notes, banks, presets, and other material I have
+   2. A safe place for notes, banks, presets, and other material
       discovered while using Yoshimi.  Some of this material has
       since disappeared from where I first got it.
+
+Mostly maintained by Will Godfrey, who has carried on the Yoshimi project.
 
 Now, if you see your material in this project, and want me to take it
 out, just send me a mailto:ahlstromcj@gmail.com and I will comply
@@ -21,10 +22,8 @@ To recreate the PDF file (the latest version is always available in the "pdf"
 directory), you will need to install GNU make, latexmk, tex-live, pdf2latex,
 and other resources related to LaTeX and PDF support.  If everything is in
 place, then change to the "tex" directory, and a simple "make" command will
-create the document.
-
-"make clean" in the "tex" directory will remove all of the generated
-products.
+create the document.  "make clean" in the "tex" directory will remove all of
+the generated products.
 
 Actually, both "make" and "make clean" are now supported from the top-level
 of the project, for convenience, and "make" archives the PDF file if the
@@ -42,8 +41,9 @@ To build the document, you need to install packages like the following:
         command.
     -   texlive-latex-base.
     -   pdflatex.
-    -   Ghostscript.  Used for optimizing the PDF to make it a lot smaller.
+    -   Ghostscript.  Usefu for optimizing the PDF to make it a lot smaller.
+        But it seems to break the internal document hyperlinks.
 
 This list might be incomplete, still working on it.
 
-# vim: sw=4 ts=4 wm=4 et ft=sh
+# vim: sw=4 ts=4 wm=4 et ft=rc
