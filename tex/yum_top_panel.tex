@@ -22,22 +22,24 @@
    The top panel is shown in
    \figureref{fig:yoshimi_main_screen}.
 
-   Here are the major elements of the top panel.
+   Here are the major elements of the top panel. There have been several
+   new additions and a reoganization of this section starting from
+   \textsl{Yoshimi} V 2.2.0.
 
    \begin{enumber}
       \item \textbf{Stop!}
       \item \textbf{Reset}
-%     \item \textbf{Panel}
+      \item \textbf{Sereo}
       \item \textbf{Mixer Panel}
-%     \item \textbf{VirKbd}
       \item \textbf{Virtual Keyboard}
-      \item \textbf{Vectors}
       \item \textbf{Midi Learn}
-      \item \textbf{S}
-      \item \textbf{Shift}
+      \item \textbf{Vectors}
+      \item \textbf{Undo}
+      \item \textbf{Redo}
       \item \textbf{Detune}
-%     \item \textbf{Reset Detune}
       \item \textbf{Volume}
+      \item \textbf{Key Shift}
+      \item \textbf{F. BPM}
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
@@ -46,7 +48,8 @@
    Stop!
    This button causes \textsl{Yoshimi} to
    "Cease all sound immediately!"
-   Useful when MIDI input suddenly stops due to a bug in the MIDI source.
+   Useful when MIDI input suddenly stops resulting in 'stuck' notes, most
+   likely due to a bug in the MIDI source .
 
    \itempar{Reset}{top panel!reset}
    \index{master reset}
@@ -59,6 +62,13 @@
    \index{master reset, ctrl}
    If the Ctrl key is held down while doing a master reset, then
    MIDI Learn will also be cleared.
+
+   \itempar{Stereo}{top panel!stereo}
+   Stereo Button.
+   This toggles the main audio output between stereo and mono, but doesn't
+   affect individual part ones.
+   It is useful for checking balance between the two on the fly while playing.
+   This is new from V 1.5.11.
 
    \itempar{Mixer Panel}{top panel!mixer panel}
    This button brings up a panel that shows a "mixer" view
@@ -74,35 +84,25 @@
    It also provides a way to use the computer keyboard for faster
    playing.  See \sectionref{subsec:virtual_keyboard}.
 
-   \itempar{Vectors}{top panel!vectors}
-   Provides the recent new feature of vector control.  This has been moved
-   to this button from the \textbf{Yoshimi} menu.  See
-   \sectionref{subsec:vector_dialogs}.
-
    \itempar{Midi Learn}{top panel!midilearn}
    When pressed, the \textsl{Yoshimi} Midi Learn editing window is opened.
    This button used to be for opening the \textsl{Yoshimi} Reports window,
    but that is seldom changed so they've been swapped.
 
-   \itempar{S}{top panel!stereo}
-   Stereo Button.
-   This toggles the main audio output between stereo and mono, but doesn't
-   affect individual part ones.
-   It is useful for checking balance between the two on the fly while playing.
-   This is new from V 1.5.11.
+   \itempar{Vectors}{top panel!vectors}
+   Provides two or four part vector control.  This was originally in the \textbf{Yoshimi} menu.  See
+   \sectionref{subsec:vector_dialogs}.
 
-   \itempar{Shift}{top panel!key shift}
-   Master Key Shift.
-   This is the key-shift (transpose) that applies to all parts, in units of
-   semitones.
-   In recent versions of \textsl{Yoshimi}, this range has been extended.
-   Also note that the master key shift can be set via the user-interface, the
-   command-line, or by MIDI NRPN commands.
+   \itempar{Undo}{top panel!undo}
+   Undo Button.
+   This reverts the last control change made. More details are...
+   This is new from V 2.2.0.
 
-   Values: \texttt{-36 to 36, 0*}
-
-   Also see the \textbf{Key Shift} item in
-   \sectionref{sec:bottom_panel} \hspace{6 pt}for more information.
+   \itempar{Undo}{top panel!redo}
+   Redo Button.
+   This re-applies control change that was most recently 'undone'.
+   More details are...
+   This is new from V 2.2.0.
 
    \itempar{Detune}{top panel!detune}
    Detune.  Provides a global fine detune functionality.
@@ -117,6 +117,29 @@
    \textsl{Yoshimi}.
 
    Values: \texttt{0 to 127, 90*}
+
+   \itempar{Key Shift}{top panel!key shift}
+   Master Key Shift.
+   This is the key-shift (transpose) that applies to all parts, in units of
+   semitones.
+   In recent versions of \textsl{Yoshimi}, this range has been extended.
+   Also note that the master key shift can be set via the user-interface, the
+   command-line, or by MIDI NRPN commands.
+
+   Values: \texttt{-36 to 36, 0*}
+
+   Also see the \textbf{Key Shift} item in
+   \sectionref{sec:bottom_panel} \hspace{6 pt}for more information.
+
+
+   \itempar{F. BPM}{top panel!fallback bpm}
+   Fallback BPM.
+   Provides a synchronizing MIDI clock for BPM controls if
+   \textsl{Yoshimi} is not seeing an incoming one.
+   This is new from V 2.2.0.
+
+   Values: \texttt{32 to 480, 120*}
+
 
 \subsection{Mixer Panel Window}
 \label{subsec:mixer_panel_window}
