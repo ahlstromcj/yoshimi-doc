@@ -234,7 +234,7 @@
 \begin{figure}[H]
    \centering
 %  \includegraphics[scale=0.75]{1.4.1/SettingsMain.png}
-   \includegraphics[scale=0.4]{2.1.0/SettingsMain.png}
+   \includegraphics[scale=0.4]{2.2.0/SettingsMain.png}
    \caption{Yoshimi Main Settings Tab}
    \label{fig:yoshimi_main_settings_tab}
 \end{figure}
@@ -244,7 +244,8 @@
    \begin{enumber}
       \item \textbf{AddSynth Oscillator Size}
       \item \textbf{Internal Buffer Size}
-      \item \textbf{PADsynth interpolation}
+      \item \textbf{PadSynth Interpolation}
+      \item \textbf{PadSynth Wavetable Build Mode}
       \item \textbf{Virtual Keyboard Layout}
       \item \textbf{XML compression level}
       \item \textbf{Send reports to}
@@ -317,7 +318,7 @@
 
    Note that there are two more values, not shown in this old diagram.
 
-   \itempar{PADsynth interpolation}{Main Settings!PADsynth Interpolation}
+   \itempar{PADsynth Interpolation}{Main Settings!PADsynth Interpolation}
    See \figureref{fig:padsynth_interpolation}, shown below,
    for the interpolation values.
    From an email conversation with Paul Nasca, Will notes that
@@ -333,6 +334,19 @@
 \end{figure}
 
    Values: \texttt{Linear(fast)*, Cubic(slow)}
+
+   \itempar{PadSynth Wavetable Build Mode}{Main Settings!PadSynth Wavetable Build Mode}
+
+   PadSynth wavetables have to be generated before they can be played, and this can take
+   some time. Previously this always involved silencing the whole part, building the
+   wave table, then restarting the part. While this \textsl{Muted} mode is still
+   available for older computers, there are now two other build modes.
+   \textsl{Background}, as the name implies will let one continue using an existing
+   wavetable while it builds a new one, then notifes that it is ready to be applied.
+   Finally, \textsl{Auto-Apply} also builds the new wavetable without disrupting one's
+   playing, then applies it as soon as it is ready.
+
+   Values: \texttt{Muted, Background*, Auto-Apply}
 
    \itempar{Virtual Keyboard Layout}{Main Settings!Virtual Keyboard Layout}
    The virtual keyboard is useful, but it is difficult to move the mouse

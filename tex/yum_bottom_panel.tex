@@ -32,9 +32,9 @@
       \item \textbf{of}
       \item \textbf{Instrument Name}
       \item \textbf{Edit} (Instrument Edit Button)
-      \item \textbf{Midi}
+      \item \textbf{On}
       \item \textbf{Mode}
-      \item \textbf{Enabled}
+      \item \textbf{Midi}
       \item \textbf{Portamento}
       \item \textbf{Velocity Sens}
       \item \textbf{Velocity Offset}
@@ -204,10 +204,13 @@
    Holding down the \texttt{K} key then clicking will open
    the Kit editor.  The \texttt{E} key opens the part's Effects window.
 
-   \itempar{Midi}{bottom panel!MIDI channel}
-   MIDI Channel.
+   \itempar{On}{bottom panel!instrument enable}
+   Enable the part. If the Part is disabled it doesn't use CPU time.
 
-   Values: \texttt{1 to 16}
+   Values: \texttt{Off*, On}
+
+   Note. At startup, and after a main reset part 1 will be set 'On', but all
+   others will be 'Off'.
 
    \itempar{Mode}{bottom panel!mode}
    Note-generation mode.
@@ -233,10 +236,10 @@
 
    Values: \texttt{Poly, Mono, Legato}
 
-   \itempar{Enabled}{bottom panel!instrument enable}
-   Enable the part. If the Part is disabled it doesn't use CPU time.
+   \itempar{Midi}{bottom panel!MIDI channel}
+   MIDI Channel this part responds to.
 
-   Values: \texttt{Off*, On}
+   Values: \texttt{1 to 16}
 
    \itempar{Portamento}{bottom panel!portamento enable}
    Enable/disable the portamento.
