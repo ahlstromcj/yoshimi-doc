@@ -403,7 +403,7 @@
       WAIT [n]
    \end{verbatim}
 
-   The command must be entered in full, and the range is 1 to 1000
+   The command must be entered in full, and the range is 1 to 30,000
    milliseconds.
    In the example below, switching the kit mode is buffered but setting a kit
    item isn't, so without a delay the setting would be attempted before it
@@ -1258,7 +1258,7 @@ to see what controls were available in each context.
 \texttt{OVertone Position [s]} &
    Relationship to fundamental (HArmonic, SIne,\\
 \texttt{} &
-   POwer, SHift, UShift, LShift, UPower, LPower).\\
+   POwer, SHift, UShift, LShift, UPower, LPower). \\
 \texttt{OVertone First [n]} &
    Degree of first parameter. \\
 \texttt{OVertone Second [n]} &
@@ -1269,10 +1269,24 @@ to see what controls were available in each context.
    \end{table}
    \begin{table}
       \begin{tabular}{l l}
+\texttt{XFadeupdate [n]} &
+   Cross fade (millisec) after building new wavetable. \\
+\texttt{BUildtrigger [n]} &
+   Re-trigger wavetable build after n millisec. \\
+\texttt{RWDetune [n]} &
+   Random walk spread of voice detune on re-triggered build (0 off 96 factor 2). \\
+\texttt{RWBandwidth [n]} &
+   Random walk spread of line bandwidth. \\
+\texttt{RWFilterFreq [n]} &
+   Random walk spread of filter cutoff frequency. \\
+\texttt{RWWidthProfile [n]} &
+   Random walk spread of profile line width. \\
+\texttt{RWStretchProfile [n]} &
+   Random walk spread of profile modulation stretch. \\
 \texttt{APply} &
    Puts the latest changes into the wavetable. \\
 \texttt{XPort} &
-   Export the current sample set to maned file. \\
+   Export the current sample set to named file. \\
 \texttt{WAveform ...} &
    Enter the oscillator waveform context. \\
 \texttt{LFO ...} &
@@ -2533,6 +2547,8 @@ is not enough room in the table above.
    Sets the quality of the intepolation that PadSynth uses on its wavetables.
    'Linear' is faster, but 'Cubic' is (potentially) very slightly better
    quality. \\
+\texttt{BUIldpad [s]} &
+   PADSynth wavetable build mode (Muted, Background, Autoapply)\\
 \texttt{Virtual [n]} &
    Keyboard layout (0 = QWERTY, 1 = Dvorak, 2 = QWERTZ, 3 = AZERTY).
    This setting controls the layout of the virtual keyboard, and can match the
