@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-06-07
-% \update      2018-03-18
+% \update      2022-05-09
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -21,6 +21,18 @@
    pad instrument,  "PADsynth" or "PADnote" is engine that makes very
    beautiful pads and other instruments. (These instruments can be exported
    for use with other programs too).
+
+   The PadSynth engine was designed by Paul Nasca and to the best of our
+   knowledge there is no comparable type generally available. It starts with a
+   waveform that is virtually identical to the one used by AddSynth. However,
+   each harmonic of this waveform is then widened and shifted and blurred, by
+   rendering it with a harmonic profile (frequency distribution). The resulting
+   sound is similar to granular synthesis, but can be generated very
+   efficiently from a set of perfectly looping wavetables. These wavetables
+   need to be precomputed after a change, so none of the harmonic profile
+   controls are real-time. Also, it is the wavetables that are called for
+   actual sound generation after passing through the usual envelope controls
+   (and this part of sound generation does work real-time).
 
    The PADsynth dialog consists of two major tabs,
    \textbf{Harmonic Structure} and \textbf{EnvelopesLFOs}.
@@ -169,19 +181,19 @@
    We have A\_orig[]={1,2,1,3,0,0,1,0} and base\_frequency is equal to 440 Hz
    Here are some cases:
 
-A[] for 440 Hz: is the same as A\_orig[]
+   A[] for 440 Hz: is the same as A\_orig[]
 
-A[] for 220 Hz: is the A\_orig[] upsampled by factor of 2
+   A[] for 220 Hz: is the A\_orig[] upsampled by factor of 2
 
-so: A[]={1, 1, 1.5, 2, 1.5, 1, 2, 3, 1.5, 0, 0, 0, 0.5, 1, 0.5, 0}
+   so: A[]={1, 1, 1.5, 2, 1.5, 1, 2, 3, 1.5, 0, 0, 0, 0.5, 1, 0.5, 0}
 
-(the original A\_orig amplitudes are shown as bold)
+   (the original A\_orig amplitudes are shown as bold)
 
-A[] for 880 Hz: the A\_orig[] is downsampled by a factor of 2
+   A[] for 880 Hz: the A\_orig[] is downsampled by a factor of 2
 
-so: A[]={1.5, 2, 0, 0.5}
+   so: A[]={1.5, 2, 0, 0.5}
 
-A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
+   A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 
    Even if this idea is very simple, the resulting sounds are very natural,
    because it keeps the spectrum constant according to the frequency of the
@@ -193,7 +205,7 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.65]{2.2.0/padharmonic.png}
+   \includegraphics[scale=0.45]{2.2.0/padharmonic.png}
    \caption{PADsynth Edit Dialog}
    \label{fig:padsynth_edit_dialog}
 \end{figure}
@@ -221,7 +233,7 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 \label{subsubsec:padsynth_harmonic_structure_basics}
 
    \begin{enumber}
-      \item \textbf{BaseType}
+      \item \textbf{Base Type}
       \item \textbf{Width}
       \item \textbf{FreqMlt}
       \item \textbf{Str}
@@ -236,8 +248,10 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
-   \itempar{BaseType}{padsynth!harmonic type}
-   Base Type of Harmonic.
+   \itempar{Base Type}{padsynth!harmonic type}
+   Base Type of the Harmonic.
+   This is the base shape used to widen and spread each harmonic:
+   gauss, square, or double explonential.
 
 \begin{figure}[H]
    \centering
@@ -249,7 +263,7 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    Values: \texttt{Gauss*, Square, DoubleExp}
 
    \itempar{Width}{padsynth!harmonic width}
-   Width of Harmonic.
+   Width of harmonic, the spread of a single peak within the profile.
    The lowest value yields a very thin
    \textbf{Profile of One Harmonic (Frequency Distribution)}
    waveform, pretty close to a Dirac delta function (in this case, pretty close
@@ -259,25 +273,36 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 
    Values: \texttt{0 to 127}
 
-   \itempar{FreqMlt}{padsynth!freq mult}
-   Frequency Multiplier.
-   Increasing this value causes more and more repetitions of the harmonic
-   spectrum frequency distribution to appear.  A value of 127 yields 32
-   repetitions of the spectrum.
+   \itempar{Repeat}{padsynth!repeat}
+   Repeat the same base shape multiple times in the generated profile.
 
    Values: \texttt{0 to 127}
 
    \itempar{Str}{padsynth!harmonic stretch}
    Stretch.
-   Not quite sure what this one does.  Increasing it adds harmonics to the
+   Modulate and spread the base shape, thereby creating several side bands with
+   frequency shifted slightly above/below the center; side bands create a
+   chorus like quality.
+   Increasing it adds harmonics to the
    spectrum and alters the distribution of their levels.
 
    Values: \texttt{0 to 127}
 
-   \itempar{SFreq}{padsynth!harmonic sfreq}
-   Harmonic Sfreq.
-   Not quite sure what this one does.  Increasing it tightens up the spread of
-   harmonics.
+   \itempar{Freq}{padsynth!freq mult}
+   Frequency Multiplier.
+   Increasing this value causes more and more repetitions of the harmonic
+   spectrum frequency distribution to appear.
+   This increases the energy of the sidebands.
+   A value of 127 yields 32 repetitions of the spectrum.
+
+   Values: \texttt{0 to 127}
+
+   \itempar{Scale}{padsynth!harmonic scale}
+   Harmonic Scale.
+   The profile as a whole can be stretched or squeezed by this parameter.  Note:
+   when AutoScale is on, the effect of this parameter is almost
+   completely compensated.
+   Increasing it tightens up the spread of harmonics.
 
    Values: \texttt{0 to 127}
 
@@ -305,7 +330,10 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 
    \itempar{AmpMultiplier}{padsynth!amp mult}
    Amplitude Multiplier.
-   These values spread out the frequency components in various ways.
+   Apply a secondary modulation on top of the profile built thus far; the
+   modulating shape can be a bell function (gauss), a sine wave, or just a plateau
+   in the center (flat).   These values spread out the frequency components in
+   various ways.
 
 \begin{figure}[H]
    \centering
@@ -318,6 +346,7 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 
    \itempar{AmpMode}{padsynth!amp mode}
    Amplitude Mode.
+   The way this secondary modulation is worked into the profile.
 
 \begin{figure}[H]
    \centering
@@ -328,8 +357,24 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 
    Values: \texttt{Sum*, Mult, Div1, Div2}
 
+   \begin{itemize}
+      \item \textbf{Sum}.
+         A linear blend between the secondary modulator, and the original
+         profile; the fade is controlled by par2
+      \item \textbf{Multiply}.
+         The profile is filtered by (multiplied with) the modulator; the strength
+         of filtering is controlled by par2
+      \item \textbf{Div1}.
+         The profile is divided by the modulator — where the latter is strong, the
+         profile is damped
+      \item \textbf{Div2}.
+         The modulator is divided by the profile, i.e. the profile is carved out of
+         the modulator shape
+   \end{itemize}
+
    \itempar{Par1}{padsynth!harmonic par1}
    Harmonic Parameter 1.
+   Squeeze or spread the secondary modulating shape.
    Increasing this parameter narrows the width of the central spectral
    component.
 
@@ -337,7 +382,8 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 
    \itempar{Par2}{padsynth!harmonic par2}
    Harmonic Parameter 2.
-   Varying this parameter changes the relative amplitude of the central
+   Controls how the secondary modulation is faded or combined with the harmonic
+   profile.  Varying this parameter changes the relative amplitude of the central
    spectral component and the sidebands.
 
    Values: \texttt{0 to 127}
@@ -360,13 +406,16 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
-   \itempar{Profile of One Harmonic}{padsynth!harmonic profile}
+   \itempar{Profile}{padsynth!harmonic profile}
    Profile of One Harmonic (Frequency Distribution).
+   Indicates which part of the profile to use: Full (the default), or only the
+   upper half, or only the lower half.
 
    \itempar{Harmonic Content Window}{padsynth!harmonic content}
    Harmonic Content Window.
 
    \itempar{base}{padsynth!harmonic base}
+   The note value for the lowest wavetable generated.
 
 \begin{figure}[H]
    \centering
@@ -379,6 +428,7 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 
    \itempar{smp/oct}{padsynth!harmonic samples per oct}
    Harmonic Samples Per Octave.
+   The number of wavetables generated within each octave.
 
 \begin{figure}[H]
    \centering
@@ -389,6 +439,7 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 
    \itempar{no.oct}{padsynth!harmonic no. of octaves}
    Number of Octaves of Harmonic.
+   The number of octaves to cover with dedicated wavetables.
 
 \begin{figure}[H]
    \centering
@@ -401,6 +452,9 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 
    \itempar{Sample Size}{padsynth!harmonic sample size}
    Harmonic Sample Size.
+   Size of the generated wavetable(s). A large wavetable captures more fine
+   details of the harmonic profile and gives more time until the patterns repeat,
+   but it costs more time to build and it takes up more memory.
 
 \begin{figure}[H]
    \centering
@@ -409,10 +463,23 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    \label{fig:padsynth_harmonic_sample_size_dropdown}
 \end{figure}
 
-   Values: \texttt{16k (Tiny), 32k, 64k (Small), 128k*, 256k (Normal), 512k, 1M (Big)}
+   \begin{itemize}
+      \item \textbf{128k}
+         The default value provides 2.6sec of sound at 48kHz sampling rate and
+         requires 1/2 MiB.
+      \item \textbf{1M (big)}
+         The largest possible wavetable holds 21sec of sound until repetition, and
+         requires 4 MiB of RAM per table.
+   
+   \end{itemize}
+
+   Values: \texttt{16k (Tiny), 32k, 64k (Small), 128k*, 256k (Normal), 512k, 1M
+   (Big)}
 
    \itempar{Crossfade}{padsynth!crossfade}
    Wavetable Fade Time.
+   The time it takes to fade from the old wavetable to the new one (for Background
+   and Auto-Apply modes).
 
    Values: \texttt{off, 1mS,200mS*, 20S}
 
@@ -433,8 +500,21 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
+   \itempar{AutoScale}{padsynth!autoscale}
+   AutoScale.
+   Automatically stretches or squeezes the resulting profile, so that all the
+   various profile shapes generate a similar blurring effect.
+   What is taken as
+   \textsl{nominal bandwith} is indicated in the profile display by the vertical
+   bars and the dark background.
+   If AutoScale is disabled, this nominal bandwidth is fixed
+   and thus reshaping the profile also increases or decreases the actual spread.
+
    \itempar{BandWidth}{padsynth!bandwidth}
    Harmonics Bandwidth.
+   This is the most important control, and defines the effective Bandwidth of the
+   harmonic profile in cents. By increasing this value, the sound transitions
+   gradually from the precise waveform to a sonic cloud.
 
    Values: \texttt{0 to 127}
 
@@ -443,6 +523,24 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 
    \itempar{Bandwidth Scale}{padsynth!bandwidth scale}
    Bandwidth Scale.
+   How the Bandwidth is adjusted with the increasing frequency of each harmonic.
+
+   \begin{itemize}
+      \item \textbf{Normal}.
+         Bandwith grows with frequency, and thus perceptually the spread is the same
+         on each harmonic.
+      \item \textbf{EqualHz}.
+         Bandwidth is constant, independent of frequency.
+         Perceptually this means that the bandwidth on higher harmonics seems to
+         diminish.
+      \item \textbf{Quarter, Half, 75\%, 150\%, Double}.
+         All these setting increase the Bandwith for higher harmonics to various
+         degrees.
+      \item \textbf{Inv.Half}.
+         Here the bandwidth is even reduced for higher harmonics by half an octave
+         per octave.
+   
+   \end{itemize}
 
 \begin{figure}[H]
    \centering
@@ -451,11 +549,14 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    \label{fig:padsynth_harmonics_bandwidth_scale}
 \end{figure}
 
-   Values: \texttt{Normal, EqualHz, Quater, Half, 75\%, 150\%, Double, Inv.  Half}
+   Values: \texttt{Normal, EqualHz, Quarter, Half, 75\%, 150\%, Double, Inv.  Half}
 
    \itempar{Spectrum Mode}{padsynth!spectrum mode}
    Harmonics Spectrum Mode.
 
+   Spectrum Mode defines the way PadSynth generates the spectrum, which is then
+   rendered into wavetables.
+   
 \begin{figure}[H]
    \centering
    \includegraphics[scale=1.0]{bottom-panel/instrument-edit/PAD/spectrum-mode.jpg}
@@ -463,10 +564,54 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    \label{fig:padsynth_harmonics_spectrum mode}
 \end{figure}
 
+   \begin{itemize}
+      \item \textbf{Bandwidth(default)}.
+         Widen each harmonic of the base waveform spectrum with the harmonic
+         profile, by an amount controlled through the bandwidth setting and
+         bandwidth scale.
+      \item \textbf{Discrete}.
+         Similar to AddSynth, each harmonic is retained as a sharp line, not using
+         bandwidth and profile, yet the overtones position can still be shifted
+         and unharmonic.
+      \item \textbf{Continuous}.
+         Likewise ignoring bandwidth and profile, but this time taken to the other
+         extreme; the outline of all harmonics is connected into a common
+         distribution and thus rendered into a form of coloured noise.
+   \end{itemize}
+
    Values: \texttt{Bandwidth*, Discrete, Continuous}
 
    \itempar{OvertonesPosition}{padsynth!overtones}
    Overtones Position.
+   Since PadSynth re-renders the partials with high resolution, it is possible to
+   shift overtones to non-harmonic positions, to create a wide array of metallic
+   and noisy flavours. For Harmonic there is no control, so the other parameters
+   are inactive. Similarly Par 2 does nothing for Shift so is disabled for that
+   variation.
+
+   \begin{itemize}
+      \item \textbf{Harmonic (default)}.
+         Overtones are located at exact multiples of the base frequency.
+      \item \textbf{Shift}.
+         All overtones are spread towards higher pitches.
+      \item \textbf{Power}.
+         Here the spread is guided by a power function and thus increases
+         excessively for higher harmonics;
+         Par2 defines the exponent (i.e. the acceleration).
+      \item \textbf{ShiftU / ShiftL}.
+         Par2 defines a threshold, harmonics above are spread or condensed.
+      \item \textbf{PowerU}.
+         Par1 defines a turning point, par2 the strength of the effect;
+         harmonics are condensed around the turning point by a power function.
+      \item \textbf{PowerL}.
+         Par1 controls a linear blend between the harmonic positions and positions
+         shifed by a power function;
+         harmonics are here spread away from a fixed turning point at the 10-th
+         overtone.
+      \item \textbf{Sine}.
+         Harmonics are alternatingly shifted up or down, causing them to cluster;
+         par2 defines the frequency and thus the density of these overtone.
+   \end{itemize}
 
 \begin{figure}[H]
    \centering
@@ -498,6 +643,9 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    If the \textbf{Overtones Position} drop-down is set to something other than
    \texttt{Harmonic}, then this knob changes the harmonic lines shown in the
    spectrum view just below this item.
+   It moves the shifted harmonics by a variable amount back towards the nearest
+   actual multiple of the fundamental. This allows one to reduce and fine-tune the
+   actual amount of \textsl{noisiness}.
    It is best to play with this setting and observe and hear the changes it
    makes.
 
@@ -505,6 +653,29 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    PADSynth Harmonics Plot.
    Shows the position and amplitude of each of the harmonic lines that the
    settings will generate.
+
+   \textbf{Apply Changes}.
+   If any of the above controls for the harmonic profile are altered it will be
+   necessary to rebuild the wavetables to hear the effect. Also, be aware that
+   with a very big sample size and/or octave range and samples/octave this could
+   take many seconds to complete.
+   \textsl{Yoshimi} provides several modes to handle these
+   PadSynth wavetable builds, which can be configured in the
+   \textbf{Global Settings}:
+
+   \begin{itemize}
+      \item \textbf{Mute}.
+         Build is triggered manually with the Apply button — disable part while
+         wavetable is assembled.  This is the legacy mode and should be used if
+         the other modes cause audible clicks.
+      \item \textbf{Background(default)}.
+         Build triggered manually — continue using old wavetables while building
+         the new ones in the background; smooth transition with crossfade when
+         ready.
+      \item \textbf{Auto-Apply}.
+         Automatically launch a wavetable build whenever a parameter is changed,
+         then crossfade when ready.
+   \end{itemize}
 
 \subsubsection{PADsynth / Harmonic Structure / Export}
 \label{subsubsec:padsynth_harmonic_structure_export}
@@ -518,10 +689,14 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 
    This export dialog is a file dialog similar to other file dialogs
    in \textsl{Yoshimi}.
+   It is a filer window for exporting a complete wavetable with the total number
+   of samples one has currently set. These don't include any changes in the sound
+   produced by controls in the envelopes window.
 
 \subsubsection{PADsynth / Harmonic Structure / Retrigger}
 \label{subsubsec:padsynth_harmonic_structure_retrigger}
-    This dialog (new in \textsl{Yoshimi} V2.2.0) has yet to be described.
+   This button opens a window for Random regeneration of the wavetable.
+   This dialog (new in \textsl{Yoshimi} V2.2.0) has yet to be described.
 
 \begin{figure}[H]
    \centering
@@ -533,7 +708,8 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 \subsubsection{PADsynth / Harmonic Structure / Resonance}
 \label{subsubsec:padsynth_harmonic_structure_resonance}
 
-   This dialog, shared in common with the ADDsynth editor, is a stock
+   This button gives access to an overall Resonance that can be applied to the
+   engine.  This dialog, shared in common with the ADDsynth editor, is a stock
    user-interface element described in
    \sectionref{subsec:stock_resonance_settings}.
 
@@ -544,6 +720,13 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    Harmonic Content editor, which is another complex dialog.
    Like \figureref{fig:addsynth_oscillator_editor},
    it allows one to create an essentially unlimited number of oscillators.
+   It is a highly detailed waveshape editor, which is identical to the one
+   available in AddSynth — with the exception of the phase control on individual
+   partials; PadSynth ignores these and always picks completely random phases,
+   whenever building a new wavetable. Note also that one can copy and paste the
+   entire settings of this waveform editor between AddSynth and PadSynth; one may
+   create a clear and pronounced sound with AddSynth and then take it into
+   PadSynth to soften, spread and blur it, while retaining its character.
 
 \begin{figure}[H]
    \centering
@@ -999,6 +1182,8 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    elsewhere in this manual.
    The Volume and Panning values and ranges are indentical to the ADDsynth
    global ones.
+   None of these affect the wavetable itself, so there is no need for the apply
+   button here.
 
 \begin{figure}[H]
    \centering

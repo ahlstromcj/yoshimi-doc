@@ -1,6 +1,6 @@
 Yoshimi User Manual Document v. 2.2.0
 Chris Ahlstrom and Will Godfrey
-2015-04-20 to 2022-04-26
+2015-04-20 to 2022-05-09
 
 This project provides two things:
 
@@ -44,6 +44,6 @@ To build the document, you need to install packages like the following:
     -   Ghostscript.  Usefu for optimizing the PDF to make it a lot smaller.
         But it seems to break the internal document hyperlinks.
 
-This list might be incomplete, still working on it.
+This list might be incomplete.
 
 # vim: sw=4 ts=4 wm=4 et ft=rc
