@@ -193,7 +193,7 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.65]{2.2.0/padharmonic.png}
+   \includegraphics[scale=0.35]{2.2.0/padharmonic.png}
    \caption{PADsynth Edit Dialog}
    \label{fig:padsynth_edit_dialog}
 \end{figure}
@@ -223,10 +223,10 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
    \begin{enumber}
       \item \textbf{BaseType}
       \item \textbf{Width}
-      \item \textbf{FreqMlt}
+      \item \textbf{Repeat}
       \item \textbf{Str}
-      \item \textbf{SFreq}
-      \item \textbf{Size}
+      \item \textbf{Freq}
+      \item \textbf{Scale}
       \item \textbf{Full/Upper/Lower}
       \item \textbf{AmpMultiplier}
       \item \textbf{AmpMode}
@@ -259,8 +259,8 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 
    Values: \texttt{0 to 127}
 
-   \itempar{FreqMlt}{padsynth!freq mult}
-   Frequency Multiplier.
+   \itempar{Repeat}{padsynth!repeat}
+   Spectrum Multiplier.
    Increasing this value causes more and more repetitions of the harmonic
    spectrum frequency distribution to appear.  A value of 127 yields 32
    repetitions of the spectrum.
@@ -274,15 +274,15 @@ A[] for F Hz: the A\_orig[] is scaled by a factor of 440/F.
 
    Values: \texttt{0 to 127}
 
-   \itempar{SFreq}{padsynth!harmonic sfreq}
-   Harmonic Sfreq.
+   \itempar{Freq}{padsynth!harmonic freq}
+   Harmonic Freq.
    Not quite sure what this one does.  Increasing it tightens up the spread of
    harmonics.
 
    Values: \texttt{0 to 127}
 
-   \itempar{Size}{padsynth!harmonic size}
-   Harmonic Size.
+   \itempar{Scale}{padsynth!harmonic scale}
+   Harmonic Scale.
    Increasing this value preserves the shape of the spectrum, but widens it.
 
    Values: \texttt{0 to 127}
