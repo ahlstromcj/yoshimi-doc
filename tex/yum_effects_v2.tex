@@ -25,7 +25,7 @@
    The output is the transformed array of samples.
 
    As described, effects have no information about anything else. For
-   example, key presses are not recognized. Therefore, pressing a key does
+   example, key presses are not recognised. Therefore, pressing a key does
    not initiate the LFO. Phase knobs will always be relative to a global LFO,
    dependent only on the system time.
 
@@ -314,7 +314,7 @@
    \textsl{Yoshimi} versions, and slightly simplified in appearance. This was done to
    more closely match the layout of the System and Insertion Effects.
    Also, in the actual effects, some control positions and sizes have been changed
-   to improve readbility.
+   to improve readability.
 
    From here on we only show the effects inserts themselves, as they are identical
    across Part, Insertion, and System. The only difference being \textbf{D/W} becoming
@@ -337,7 +337,7 @@
    Instrument/Patchset that this effect is in.
    When re-loading, one would be quite likely to forget that changes have been made and
    experimentally switch to different presets or even different effects.
-   Previously, at this point those changes have been lost and one might be puzzed that
+   Previously, at this point those changes have been lost and one might be puzzled that
    the sound has changed (possibly quite subtly) when returning to the same preset.
 
    With the new upgrade one is warned about this. It even applies when loading very old
@@ -721,7 +721,7 @@
    implemented for the Analog Phaser.
 
    \itempar{Subtract}{alienwah!subtract}
-   The output is inversed (inverted?)
+   The output is inverted
 
 \subsubsection{Effects / AlienWah / NRPN Values}
 \label{subsubsec:effects_edit_alienwah_nrpn}
@@ -753,7 +753,7 @@ This section details the value supported by the AlienWah effect.
    Related effects to Chorus are Flangers. Flangers can be described as
    Chorus with very short LFO delay and little LFO depth. One can imagine a
    flanger as two copies of a sound playing at almost the same time. This
-   leads to interference, which can be clearly heared. It is popular to apply
+   leads to interference, which can be clearly heard. It is popular to apply
    flangers to guitars, giving them more "character".
 
 \subsubsection{Effects / Chorus / Circuit}
@@ -777,7 +777,7 @@ This section details the value supported by the AlienWah effect.
 
    After the correct element of the sound buffer is found using the LFO, the
    Fb knob lets one set how loud it shall be played. This is mostly redundant
-   to the D/W knob, but we have not applied panning and substraction yet.
+   to the D/W knob, but we have not applied panning and subtraction yet.
 
    Next, the signal can be negated. If the \textbf{Subtract}
    checkbox is activated, the amplitude is multiplied by -1.
@@ -847,8 +847,8 @@ This section details the value supported by the AlienWah effect.
          \item rightmost. Left to right, and right to left.
       \end{enumber}
 
-   \itempar{Subtract}{chorus!substract}
-   The Chorus output is inversed (inverted?)
+   \itempar{Subtract}{chorus!subtract}
+   The Chorus output is inverted
 
 \subsubsection{Effects / Chorus / NRPN Values}
 \label{subsubsec:effects_edit_chorus_nrpn}
@@ -1104,14 +1104,14 @@ This section details the value supported by the Chorus effect.
 \subsection{Effects / EQ}
 \label{subsec:effects_edit_eq}
 
-   EQ is a parametric equalizer.
-   An equalizer is a filter effect that applies different volume to different
+   EQ is a parametric equaliser.
+   An equaliser is a filter effect that applies different volume to different
    frequencies of the input signal. This can, for example, be used to "filter
    out" unwanted frequencies. ZynAddSubFX’s implementations follow the
    "Cookbook formulae for audio EQ" (\cite{cookbookeq})
    by Robert Bristow-Johnson.
 
-   On the equalizer graph there are 3 white
+   On the equaliser graph there are 3 white
    vertical bars for 100Hz, 1kHz, 10kHz.
 
 \subsubsection{Effects / EQ / Circuit}
@@ -1287,7 +1287,7 @@ This section details the value supported by the Chorus effect.
             or "normal".
             For the analog phaser (see the \textbf{Analog} check-box),
             \textbf{L/R} is not implemented.
-            Converely, for the normal phaser, \textbf{hyper} and \textbf{dist}
+            Conversely, for the normal phaser, \textbf{hyper} and \textbf{dist}
             are not available.
       \item \textbf{Pan} applies panning to the original input in every loop.
       \item Next, phasing is applied - barber-pole type for \textbf{Analog} only.

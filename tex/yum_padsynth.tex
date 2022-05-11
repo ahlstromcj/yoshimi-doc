@@ -235,10 +235,10 @@
    \begin{enumber}
       \item \textbf{Base Type}
       \item \textbf{Width}
-      \item \textbf{FreqMlt}
+      \item \textbf{Repeat}
       \item \textbf{Str}
-      \item \textbf{SFreq}
-      \item \textbf{Size}
+      \item \textbf{Freq}
+      \item \textbf{Scale}
       \item \textbf{Full/Upper/Lower}
       \item \textbf{AmpMultiplier}
       \item \textbf{AmpMode}
@@ -274,7 +274,10 @@
    Values: \texttt{0 to 127}
 
    \itempar{Repeat}{padsynth!repeat}
-   Repeat the same base shape multiple times in the generated profile.
+   Spectrum Multiplier.
+   Increasing this value causes more and more repetitions of the harmonic
+   spectrum frequency distribution to appear.  A value of 127 yields 32
+   repetitions of the spectrum.
 
    Values: \texttt{0 to 127}
 
@@ -306,8 +309,8 @@
 
    Values: \texttt{0 to 127}
 
-   \itempar{Size}{padsynth!harmonic size}
-   Harmonic Size.
+   \itempar{Scale}{padsynth!harmonic scale}
+   Harmonic Scale.
    Increasing this value preserves the shape of the spectrum, but widens it.
 
    Values: \texttt{0 to 127}
@@ -943,7 +946,7 @@
    turns into a kind of phase modulated square wave.
 
    \textbf{Quants} ("Qnts")
-   Quantization adds high overtones early. It can be seen as an unnatural
+   Quantisation adds high overtones early. It can be seen as an unnatural
    effect, which is often used for electronic music.  The transformation is a
    bit similar to building the lower sum of a wave, mathematically said. This
    means that the transformation effect turns an "endless high" sampled
@@ -1180,7 +1183,7 @@
 
    It consists of nothing but stock user-interface elements that are described
    elsewhere in this manual.
-   The Volume and Panning values and ranges are indentical to the ADDsynth
+   The Volume and Panning values and ranges are identical to the ADDsynth
    global ones.
    None of these affect the wavetable itself, so there is no need for the apply
    button here.

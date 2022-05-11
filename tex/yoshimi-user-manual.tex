@@ -56,7 +56,6 @@
 
 \begin{figure}[H]
    \centering
-%   \includegraphics[scale=0.60]{2.0/Front.png}
    \includegraphics[scale=0.60]{2.2.0/Main.png}
 \end{figure}
 
@@ -150,16 +149,16 @@
    possible to make changes deep within this structure without interruption
    while notes are sounding. There is setting to enable the sound to
    smoothly fade from one setting to the next over a few milliseconds.
-   Alteratively one can set new control in the PadSynth engine itself to
+   Alternatively one can set new control in the PadSynth engine itself to
    spread the change over several seconds for a unique musical effect.
 
    Another much requested feature is a comprehensive Undo/Redo capability.
-   This is most usefull when wanting to try changing something but with the
+   This is most useful when wanting to try changing something but with the
    safety net of being able to revert if the result is unsatisfactory.
 
    When we first implemented BPM sync for LFOs etc. we had to provide a
    fallback in case there was no incoming MIDI clock to sync to. We set
-   this to the standard 120BPM. Now, howver there is a control so that it
+   this to the standard 120BPM. Now, however there is a control so that it
    can be set over a wide range to get exactly the wanted effect.
 
 \subsubsection{New for Version 2.1.1, 2.1.2}
@@ -242,7 +241,7 @@
    relative to the GUI controls.  127 gives 0dB and 64 gives -26dB.
 
    In parallel with this there are more NRPNs supported so that one can perform
-   some of these controls via automation. The arrangment looks positively
+   some of these controls via automation. The arrangement looks positively
    steam-punk, but is actually very easy to use, requiring only a utility that
    can send MIDI CCs.  NRPNs aren't special. They are simply a specific pattern
    of CCs.  \textsl{Yoshimi}'s implementation is very forgiving, doesn't mind
@@ -384,7 +383,7 @@
    used to set up Vector Control much more quickly and easily than using NRPNs.
    It allows settings to be made to the various synthesis engines.
    The command-line is also context-sensitive, which, with careful choice
-   of command names and abreviations, allows fast access with minimal
+   of command names and abbreviations, allows fast access with minimal
    typing.
 
    Since version 1.5.8 it has been possible to start, stop and select
@@ -401,7 +400,7 @@
    It also leaves one at the part context level and pointed to part 4.
    Additionally, the fact that it loaded an instrument means it will activate
    that part if it was off (and the configuration setting is checked). In most
-   cases the words \textbf{program} and \textbf{instrument} are interchangable.
+   cases the words \textbf{program} and \textbf{instrument} are interchangeable.
 
    "\texttt{s ef 1 rev}" ("set effect 1 reverb"):
    This command moves one to the effects context level and sets that part's
@@ -434,7 +433,7 @@
 
    The CLI prompt always
    shows what level one is on, and the help-lists are also
-   context-sensitive, so one doesn't see a lot of irrelevent clutter.
+   context-sensitive, so one doesn't see a lot of irrelevant clutter.
 %   \textsl{Yoshimi} instrument patches are fully
 %   compatible with \textsl{ZynAddSubFX} patches, and we have ported across
 %   new refinements with thanks to the Zyn authors.
@@ -469,7 +468,7 @@
 
    For example, since V 1.5.11 one is now warned if an effect is a modified
    version of a preset and not it's default. This is in the form of changing
-   the background color of the preset button to a bright blue.
+   the background colour of the preset button to a bright blue.
 
    When editing an AddSynth voice that is taking it's waveform from another one
    there is a new warning when actually entering the waveform window.
@@ -482,7 +481,7 @@
    and minor version numbers underneath the existing ones, so it is possible
    to tell which version created the files, or whether they were created by
    \textsl{ZynAddSubFX}. If the new files are not compatible (such as config)
-   the doctype and all other details are identfied as purely for
+   the doctype and all other details are identified as purely for
    \textsl{Yoshimi}.
 %  However, see \sectionref{subsec:file_compatibility}.
 
@@ -510,17 +509,17 @@
    background colours: Red = AddSynth; Blue = SubSynth; and Green = PadSynth.
 
    If the instruments are kits they scanned to find out if any member of the
-   kit contains each engine, so that the colors above can be applied.
+   kit contains each engine, so that the colours above can be applied.
    This feature is duplicated in the current part, the mixer panel for the
    currently loaded instruments, and in the Instrument Edit window.
-   The same colors highlight the engine names when they are enabled with the
+   The same colours highlight the engine names when they are enabled with the
    check boxes.
 
    \textsl{Yoshimi} remembers where windows were last placed (per instance),
    and they will be reopened at the same location on the next run.
 
    Thanks to the \textsl{ZynAddSubFX} developers, \textsl{Yoshimi} has pink
-   as well as white noise available on Addsynth voices. Pink noise sounds
+   as well as white noise available on AddSynth voices. Pink noise sounds
    softer.  In \textsl{Yoshimi} version 1.6.0 we added spot noise, which has
    a sort of 'gritty' sound.
 
@@ -583,8 +582,8 @@
    the same time a separately-named new or extended parameter. This ensures
    both older \textsl{Yoshimi} versions will run correctly, and will do so on
    \textsl{ZynAddSubFX}. Obviously, completely new features will be lost to
-   older versions but   othewise files will behave as before. This is
-   especially relevant where exisiting files are loaded and then resaved.
+   older versions but   otherwise files will behave as before. This is
+   especially relevant where existing files are loaded and then re-saved.
 
    Where there are great changes or where an entirely new concept is
    developed we create a completely new file type, but again store what is
@@ -592,8 +591,8 @@
 \index{new!Yoshimi/ZynAddSubFX Warning}
    This has worked very well for several years. However we have come up
    against a problem. The \textsl{ZynAddSubFX} developers have taken a
-   different approach, and some prameters have different types in their
-   versions from 3.0 onwards. Therefore we now make a test for this and give
+   different approach, and some parameters have different types in their
+   versions from 3.0 onward. Therefore we now make a test for this and give
    a warning as shown below.
 
 %  in \figureref{fig:compatibility_warning}.

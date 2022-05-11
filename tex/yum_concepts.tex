@@ -105,7 +105,7 @@
    which can then be loaded into a
    \textsl{Yoshimi} part (\sectionref{subsubsec:concepts_terms_part}).
 
-   Before General MIDI, which standardized patches, MIDI vendors assigned
+   Before General MIDI, which standardised patches, MIDI vendors assigned
    patch numbers to their synthesizer products in an arbitrary manner.
 
    Instrument patches are per part.  When changing patches, one can't
@@ -171,7 +171,7 @@
 \subsection{Concepts / ALSA Versus JACK}
 \label{subsec:concepts_alsa_versus_jack}
 
-   Some discusson from the \textsl{Yoshimi} wiki, for clarification.
+   Some discussion from the \textsl{Yoshimi} wiki, for clarification.
 
    A bit of a question mark was raised over ALSA MIDI support. A lot of
    people seem to be giving this up and relying on bridges like
@@ -342,7 +342,7 @@
 
    Often it is believed that the pitched sounds (like piano, organ, choir,
    etc.) for a single note have a frequency, but it's actually
-   harmonics and nothing more. Many people try to synthesize a sound using an
+   harmonics and nothing more. Many people try to synthesise a sound using an
    exact frequency plus the harmonics, and observe that the result sounds too
    "artificial".  They might try to modify the harmonic content, add a
    vibrato, tremolo, but even that doesn't sound "warm" enough. The reason is
@@ -521,7 +521,7 @@
    able to make changes in the frequency response.
    The affect of the order of the filter is roughly synonymous with the
    number of stages of the filter. For more complex patches it is important
-   to realize that the extra sharpness in the filter does not come for free
+   to realise that the extra sharpness in the filter does not come for free
    as it requires many more calculations being performed. This phenomena is
    the most visible in SUBsynth, where it is easy to need several hundred
    filter stages to produce a given note.
@@ -656,7 +656,7 @@
          \textbf{75} & BandWidth (different from GM spec) \\
          \textbf{76} & FM amplitude (different from GM spec) \\
          \textbf{77} & Resonance Center Frequency (different from GM spec) \\
-         \textbf{78} & Resonance Bandwith (different from GM spec) \\
+         \textbf{78} & Resonance Bandwidth (different from GM spec) \\
          \textbf{96} & Data Increment \\
          \textbf{97} & Data Decrement \\
          \textbf{98} & NRPN LSB \\
@@ -686,7 +686,7 @@
    \textsl{Yoshimi}:
 
    \begin{itemize}
-      \item \textbf{Bank Change (0 or 32)} These are intechangable and do
+      \item \textbf{Bank Change (0 or 32)} These are interchangeable and do
       \textsl{not} force a program change).
       \item \textbf{Program Change (192)}
          also provides user selectable CC for
@@ -763,7 +763,7 @@
        Internal instances are created from the Yoshimi drop-down menu, and
        Yoshimi can keep track of them, also numbering the title bars so one
        knows which one is being dealt with (applies to all their sub-windows,
-       too). Exernal instances are where Yoshimi is restarted from the desktop
+       too). External instances are where Yoshimi is restarted from the desktop
        or some other system such as a session manager. Although JACK/ALSA will
        give them independent IDs the Yoshimi instances themselves don't know
        about these IDs, which can cause a lot of confusion when saving/loading
@@ -772,7 +772,7 @@
 
        So, two external instances will save \textbf{default} state files to the
        same location, and the actual saved default will be the one last saved.
-       Two internal ones will save to their own numberered defaults.
+       Two internal ones will save to their own numbered defaults.
 
        Previously, states were not being re-loaded. Under the new system, they
        are. Currently internal-instance \textbf{bank} saves can still get out

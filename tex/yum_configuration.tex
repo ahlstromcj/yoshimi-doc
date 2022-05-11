@@ -102,7 +102,7 @@
          Configuration instances are now in place, so the main configuration
          file is common to all, but each instance has its own file for things
          like current bank, JACK/ALSA settings, etc.
-         Common overal settings are only visible in the main instance and
+         Common overall settings are only visible in the main instance and
          completely hidden in all the later ones.
          In \textsl{Yoshimi} V 1.6.1 there has been further revision of this.
       \item \texttt{.instance(n)}
@@ -119,7 +119,7 @@
       \item \texttt{windows}
          \index{windows}
          \index{config!windows}
-         Contains the current layout of windows for reinstantiation at the next
+         Contains the current layout of windows for re-instation at the next
          startup of \textsl{Yoshimi}.
          If there is no such directory
          (\texttt{\textasciitilde/.config/yoshimi/windows}) then the
@@ -201,7 +201,7 @@
 
    In the file-save dialogs, the file extension is determined by the type of
    file being saved, and it doesn't matter if one enters the extension
-   explicity, or not. If it's missing, or it is the wrong one, it will be
+   explicitly, or not. If it's missing, or it is the wrong one, it will be
    replaced. This is actually true of almost all file saves, and has been for
    quite some time now.
 
@@ -293,14 +293,14 @@
    \end{verbatim}
 
    The \texttt{.config} file will be readable by all instances of
-   \textsl{Yoshimi}, but writeable only by the main instance. The relevant
+   \textsl{Yoshimi}, but writable only by the main instance. The relevant
    controls will be hidden from the other instances.  Also, those controls not
    relevant to LV2 are disabled in that mode.  The \texttt{.config} and
    \texttt{.banks} data now reside in separate configuration files.  The banks
    file is saved every time there is a normal exit, so the last-used root and
    bank IDs will always match what that instance thinks is there.  Conversely,
    the main \texttt{.config} file \textsl{doesn't} get saved when one starts a
-   new (unkown) instance of \textsl{Yoshimi}, but the config-changed flag is
+   new (unknown) instance of \textsl{Yoshimi}, but the config-changed flag is
    set, so one has control over whether any settings are saved.  So now, if
    anything goes wrong with the config files they won't corrupt one's carefully
    organised bank files, and vice-versa.
@@ -371,7 +371,7 @@
    uncompressed.
    Uncompressed is set by
    \textbf{Yoshimi / Settings / Main Settings / XML Compression Level} set to
-   0, and compressed is set by a value greater tha 0.
+   0, and compressed is set by a value greater than 0.
 
    With the \textbf{Instrument} menu, one can save the file to any
    given location with the \texttt{.xiz} and/or \texttt{.xiy} extension.
@@ -420,7 +420,7 @@
    talking to the other instances, so one could move a file in one instance, and
    then try (and fail) to access it from another.
 
-   For V 1.5.10 this issue was partially resolved by only alowing the main instance
+   For V 1.5.10 this issue was partially resolved by only allowing the main instance
    to make actual file changes (the related icons no longer existing in the
    other instances). However from V 1.7.2 this has been reverted as it was causing
    confusion, especially when \textsl{Yoshimi} was used as a plugin. The issue of
@@ -439,7 +439,7 @@
    installed.  On a per instance basis, the first thing this process does is
    look for a \texttt{yoshimi(-n).banks} file, if it can't, find that it then
    hunts for a \texttt{yoshimi(-n).config} file, and if that fails it does a
-   rescan for banks. In this way it should be completely backward compatible
+   re-scan for banks. In this way it should be completely backward compatible
    with any previous config files.
 
    The \texttt{.banks} file is \textsl{saved} every time roots, banks, or
@@ -521,7 +521,7 @@
    No, this term isn't a reference to "that other operating system";
    it is a new feature of the \textsl{Yoshimi} configuration.
    It saves the current layout of application
-   windows for reinstantiation at the next startup
+   windows for re-instation at the next startup
    of \textsl{Yoshimi}.
 
 \subsection{Configuration Files / Format}
@@ -602,7 +602,7 @@
    During the development of \textsl{Yoshimi} V 1.7.1/2, a number of files and
    directories have been moved from the configuration directory to the
    standards preferred hidden directory in one's \texttt{home} directory.
-   However, one's exisiting files in the old locations will be copied across, so
+   However, one's existing files in the old locations will be copied across, so
    there should be no disruption. For \textsl{Yoshimi} this is
    \texttt{.local/share/yoshimi}
 
@@ -633,7 +633,7 @@
    \index{.xpz}
    \index{preset}
    \index{file!preset}
-   Have a favorite setting for an envelope, or a difficult-to-reproduce
+   Have a favourite setting for an envelope, or a difficult-to-reproduce
    oscillator? Then presets are for you! Presets allow for one to save the
    settings for any of the components which support copy/paste operations.
    This is done with preset files (\texttt{.xpz}), which get stored in the
@@ -657,7 +657,7 @@
 
    The naming convention for a preset file is
    \texttt{presetname.presettype.xpz}, where
-   \textsl{presename} is the name one types into the \textbf{Copy to Preset}
+   \textsl{presetname} is the name one types into the \textbf{Copy to Preset}
    name field, \textsl{presettype} is the name that appears in the
    \textbf{Type} field, and \textsl{xpz} is the file-extension for compressed
    XML preset files.
@@ -703,10 +703,10 @@
 \subsection{Local Data Files / Found}
 \label{subsec:local_data_found}
    \index{new!Found Banks}
-   Banks suppled when \textsl{Yoshimi} is installed are placed in read-only
+   Banks supplied when \textsl{Yoshimi} is installed are placed in read-only
    locations. This is inconvenient when one wishes to add to, or re-arrange
    them. From V 1.7.1, the first time these banks are seen they are copied into
-   the local directory which \textbf{is} writeable. For further details see
+   the local directory which \textbf{is} writable. For further details see
    \sectionref{subsubsec:banks_and_roots_bank_directories}
 
 \subsection{Local Data Files / CLI history}

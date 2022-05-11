@@ -21,22 +21,20 @@ after verifying you provide that material somewhere.
 To recreate the PDF file (the latest version is always available in the "pdf"
 directory), you will need to install GNU make, latexmk, tex-live, pdf2latex,
 and other resources related to LaTeX and PDF support.  If everything is in
-place, then change to the "tex" directory, and a simple "make" command will
-create the document.  "make clean" in the "tex" directory will remove all of
-the generated products.
+place, then a simple "make" command in the top project directory will
+create the document.  "make clean" will remove all the generated products
+except for the PDF.  "make" archives the PDF file if the build succeeds.
 
-Actually, both "make" and "make clean" are now supported from the top-level
-of the project, for convenience, and "make" archives the PDF file if the
-build succeeds.
-
-Lastly, although this manual is much larger than any other I have seen,
+Lastly, although this manual is much larger than any other we have seen,
 there is still much to be done to make it complete, readable, and easy to
-use.  Any help or suggestions are quite welcome!
+use.  Keeping up with Will and his code is hard work! Any help or suggestions
+are quite welcome!
 
 Build dependencies:
 
 To build the document, you need to install packages like the following:
 
+    -   make.
     -   latexmk.  Provides a way to make the PDF document with a "make"
         command.
     -   texlive-latex-base.

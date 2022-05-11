@@ -172,7 +172,7 @@
        4D (77) & & Resonance Centre Frequency\\
        4E (78) & & Resonance Bandwidth \\
        60 (96) & & NRPN Data Increment \\
-       61 (97) & & NRPN Daya Decrement \\
+       61 (97) & & NRPN Data Decrement \\
        62 (98) & & NRPN LSB \\
        63 (99) & & NRPN MSB \\
        78 (120) & & All Sound Off \\
@@ -384,7 +384,7 @@
       \item 5 - LFO Stereo Difference
       \item 6 - LFO Depth
       \item 7 - Filter Amplitude
-      \item 8 - Fitler Amplitude Rate Change
+      \item 8 - Filter Amplitude Rate Change
       \item 9 - Invert the signal (negate) (0..1)
    \end{itemize}
 
@@ -481,7 +481,7 @@
    Almost all dynamic setup (i.e. that doesn't require a restart) can now be
    done via NRPNs, so a MIDI file can manage \textsl{Yoshimi} starting from a
    pretty random state, and set up important features like Bank and Program
-   Change behavior and the number of available parts.
+   Change behaviour and the number of available parts.
 
    In parallel with this setup, there is a command to list all of these
    settings. One can also list the available bank roots, the banks in any
@@ -596,7 +596,7 @@
        20 (32) & & Bank LSB\\
        26 (38) & & NRPN Data LSB \\
        40 (64) & & Sustain Pedal \\
-       41 (65) & & Prtamento \\
+       41 (65) & & Portamento \\
        44 (68) & & Legato Pedal \\
        47 (71) & & Filter Q \\
        4A (74) & & Filter Cutoff \\
@@ -605,7 +605,7 @@
        4D (77) & & Resonance Centre Frequency\\
        4E (78) & & Resonance Bandwidth \\
        60 (96) & & NRPN Data Increment \\
-       61 (97) & & NRPN Daya Decrement \\
+       61 (97) & & NRPN Data Decrement \\
        62 (98) & & NRPN LSB \\
        63 (99) & & NRPN MSB \\
        78 (120) & & All Sound Off \\
@@ -623,7 +623,7 @@
         \\
     \textbf{ShortForm} &  LSB is value & No data bytes needed \\
         41 (65) & 00-05 (0-5) & Set Solo Switch Type \\
-        42 (66) & 00-77 (0-119) & Set Solo Switch Incomming Controller \\
+        42 (66) & 00-77 (0-119) & Set Solo Switch Incoming Controller \\
         44 (68) & 44 (68) & Perform Normal Shutdown, exit value 0 \\
         44 (68) & 45 (69) & Perform shutdown without messages, exit value 16 \\
       \end{tabular}

@@ -83,7 +83,7 @@
    This creates a problem where the command line itself could become
    unmanageably long.
    Thus, now only the current context level is printed in full.
-   The levels higher up the tree are minimized:
+   The levels higher up the tree are minimised:
 
    \begin{verbatim}
       yoshimi Part 1+>
@@ -182,7 +182,7 @@
 
    Many settings that follow in a direct command "path" through several
    levels can be made all at once, and one will be left at the appropriate
-   level. Thus, summarizing some of the above commands:
+   level. Thus, summarising some of the above commands:
 
    \begin{verbatim}
       yoshimi part 4+ > s ef 2 re
@@ -390,7 +390,7 @@
    This means one can set up generic preferences,
    then apply them to any part, engine, etc.
 
-   The script routine honors any normal abbreviations.
+   The script routine honours any normal abbreviations.
    Blank lines are ignored. A '\#' at the start of a line marks it
    as a comment so will also be ignored. However, both of these kinds
    of lines will be in the line count if an error is reported.
@@ -780,7 +780,7 @@
 
 \subsubsection{Part Common Commands}
 \label{subsec:command_line_part_common_commands}
-The idea of having a list of common comands is now deprecated. This is
+The idea of having a list of common commands is now deprecated. This is
 because although originally intended to keep the individual command lists to
 manageable proportions, it actually made it more confusing when trying
 to see what controls were available in each context.
@@ -899,7 +899,7 @@ to see what controls were available in each context.
    Kit mode is an unusual form of context level as it either modifies some
    part level controls or adds new ones. At the same time it still allows
    all the other part controls. The examples below show how kit mode
-   interracts with part, and how one is informed of the exact status.
+   interacts with part, and how one is informed of the exact status.
 
    \begin{verbatim}
       yoshimi Part 1+> set multi
@@ -1048,7 +1048,7 @@ to see what controls were available in each context.
 \texttt{ } &
              with a common oscillator (ON / other). \\
 \texttt{Bandwidth [n]} &
-   Modifes the relative fine detune of voices. \\
+   Modifies the relative fine detune of voices. \\
 \texttt{VOice ...} &
    Enter the Addsynth voice context. \\
 \texttt{LFO ...} &
@@ -1108,7 +1108,7 @@ to see what controls were available in each context.
    Invert entire voice (ON / other). \\
 \texttt{DELay [n]} &
    Delay before this voice starts. \\
-\texttt{Resonanace [s]} &
+\texttt{Resonance [s]} &
    Enable resonance for this voice (ON / other). \\
 \texttt{Bypass [s]} &
    Bypass global filter for this voice (ON / other). \\
@@ -1437,9 +1437,9 @@ to see what controls were available in each context.
    \texttt{Base Convert [s]} &
        Use resultant wave as basic waveform type. \\
    \texttt{} &
-      Also clear modifers and harmonics (OFF other). \\
+      Also clear modifiers and harmonics (OFF other). \\
    \texttt{SHape Type [s] } &
-      Wave shape modifer type. (OFF, ATAn, ASYm1, POWer, SINe,\\
+      Wave shape modifier type. (OFF, ATAn, ASYm1, POWer, SINe,\\
    \texttt{} &
        QNTs, ZIGzag, LMT, ULMt, LLMt, ILMt, CLIp, AS2, PO2, SGM) \\
    \texttt{SHape Par [n]} &
@@ -1651,9 +1651,9 @@ Note: Some envelopes have limited controls.
 \texttt{FCenter [n]} &
    Center frequency of sequence. \\
 \texttt{FRange [n]} &
-   Octave range of formants. \\
+   Octave range of formant. \\
 \texttt{Expand [n]} &
-   Stretch overal sequence time. \\
+   Stretch overall sequence time. \\
 \texttt{Lucidity [n]} &
    Clarity of vowels. \\
 \texttt{Morph [n]} &
@@ -1760,9 +1760,9 @@ Filter types (s parameter, LFO oscillator shape):
          restores this line.
       \item \texttt{SEven} will interpret a learned NRPN as a 7-bit value.
       \item \texttt{CC [n]} will set the incoming controller value that will
-         be recognized.  This command can re-order the list.
+         be recognised.  This command can re-order the list.
       \item \texttt{CHan [n]} will set the incoming channel number that will
-         be recognized.  This command can re-order the list.
+         be recognised.  This command can re-order the list.
       \item \texttt{MIn [n]} will set the conversion for the incoming
          value to a minimum percentage.
       \item \texttt{MAx [n]} will set the conversion for the incoming
@@ -1790,11 +1790,11 @@ Filter types (s parameter, LFO oscillator shape):
    have a \textbf{send} route selected as well as the effect type.
 
    There is some extra information given in V 1.5.11.
-   When one choses a new effect the first preset is always selected, which can
+   When one chooses a new effect the first preset is always selected, which can
    then be edited to taste. Up to now, there was no indication that it had
    been altered apart from checking each control against it's default. One
    could easily forget having edited this - especially if saving everything and
-   comming back to it some days later.
+   coming back to it some days later.
 
    In the latest master there is now a '?' on the end of the line if any of the
    controls on that preset are not the default values.
@@ -2293,9 +2293,9 @@ DynFilter presets:
 \caption[Yoshimi Scales Commands]{Yoshimi Scales Commands} \\
 
 \texttt{FRequency [n]} &
-   Set the refence note's actual frequency to n, usually 69 (A4) to 440 Hz. \\
+   Set the reference note's actual frequency to n, usually 69 (A4) to 440 Hz. \\
 \texttt{NOte [n]} &
-   Set the refence note's number to n. \\
+   Set the reference note's number to n. \\
 \texttt{Invert [s]} &
    Invert the entire scale (ON / other) \\
 \texttt{CEnter [n]} &
@@ -2404,7 +2404,7 @@ is not enough room in the table above.
 \subsubsection{Group List [s]}
 \label{subsec:command_line_instrument_group_list}
    By itself, \textbf{Groups} will show what instrument types are available.
-   Repeating the command wiith one of these names will then search the entire
+   Repeating the command with one of these names will then search the entire
    bank structure listing the ones of that type, along with an index number.
    Assuming one is at part level, load this instrument into the current part with:
    \begin{verbatim}
@@ -2544,7 +2544,7 @@ is not enough room in the table above.
    can be the same, bigger, or smaller. It is always a power of 2. \\
 \texttt{PAdsynth [s]} &
    Interpolation type (Linear, other = cubic).
-   Sets the quality of the intepolation that PadSynth uses on its wavetables.
+   Sets the quality of the interpolation that PadSynth uses on its wavetables.
    'Linear' is faster, but 'Cubic' is (potentially) very slightly better
    quality. \\
 \texttt{BUIldpad [s]} &
@@ -2586,7 +2586,7 @@ is not enough room in the table above.
    enabled at first time start). \\
 \texttt{Time [s]} &
    Add to instrument load message (Enable; other = disable).
-   Attaches the time an instrument took to load and initialize to the loading
+   Attaches the time an instrument took to load and initialise to the loading
    message. \\
 \texttt{Include [s]} &
    Include XML headers on file load (Enable; other = disable). \\
@@ -2618,7 +2618,7 @@ is not enough room in the table above.
 \texttt{ALsa Midi [s]} &
    * comma separated source name list.
    Sets the entries of a list of ALSA MIDI sources to which
-   \textsl{Yoshim}i will try to connect.  \\
+   \textsl{Yoshimi}i will try to connect.  \\
 \texttt{ALsa Audio [s]} &
    * Name of ALSA audio hardware device.
    Sets the name of a hardware (or software)
@@ -2647,7 +2647,7 @@ is not enough room in the table above.
    bank changes to come from.  \\
 \texttt{PRogram [s]} &
    MIDI program change enabling (OFF / other).
-   Determines whether MIDI program changes are honored or ignored.  \\
+   Determines whether MIDI program changes are honoured or ignored.  \\
 \texttt{ACtivate [s]} &
    MIDI program change activates part (ON / other).
    Enables a part when it gets a MIDI program change message,
@@ -2724,7 +2724,7 @@ is not enough room in the table above.
 \end{verbatim}
 
    If one is happy to export from the currently selected root, then this
-   simplifes to:
+   simplifies to:
 
 \begin{verbatim}
    EXport (bank ID number) (full path name to export to)
@@ -2732,7 +2732,7 @@ is not enough room in the table above.
 
    \itempar{import bank [s [n1]] [n2] [s]}{cmd!import bank}
       Import of a bank uses the identical syntax of the export command.
-      A full example using the normal abbeviations is:
+      A full example using the normal abbreviations is:
 
 \begin{verbatim}
    im r 5 25 /home/will/downloads/some new bank
@@ -2777,7 +2777,7 @@ is not enough room in the table above.
          yoshimi> lo p @4
       \end{verbatim}
 
-   \itempar{list instruments [n]}{cmd!list instruents}
+   \itempar{list instruments [n]}{cmd!list instruments}
       List all instruments and IDs in bank \textsl{n}
       or the current bank/root.
       Listing instruments will identify the current one with an asterisk, and
@@ -2991,7 +2991,7 @@ is not enough room in the table above.
 
    \itempar{? or help}{cmd!help}
       List commands for current mode.  All of the minimum command-line
-      abbrevations are capitalised in the help listing.
+      abbreviations are capitalised in the help listing.
 
    \itempar{exit}{cmd!exit}
          Tidy up and close \textsl{Yoshimi} down.
