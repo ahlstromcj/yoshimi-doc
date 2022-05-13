@@ -31,9 +31,9 @@
 
    NRPN stands for "Non Registered Parameters Number".
    NRPNs can control all System and Insertion effect parameters.
-   Using NRPNs, \textsl{Yoshimi} can now directly set some part values
+   Using NRPNs, \textsl{Yoshimi} can directly set some part values
    regardless of what channel that part is connected to.  For example, one
-   may change the reverb time when playing to keyboard, or
+   may change the reverb time when playing on a keyboard, or
    change the flanger's LFO frequency.
 %  One can disable the NRPN receiving by deselecting the "NRPN" checkbox
 %  from the main window (near "Master Keyshift" counter).
@@ -61,7 +61,7 @@
    \end{itemize}
 
    One must send NRPN coarse/fine before sending Data entry coarse/fine.  If
-   the effect/parameter doesn't exists or is set to none, then the NRPN is
+   the effect/parameter doesn't exist or is set to none, then the NRPN is
    ignored.
 
    Also note that when a parameter, such as channel or program is to be modified
@@ -104,7 +104,7 @@
    \texttt{Dhigh} to 2, and \textsl{Yoshimi} will regard this as a
    command \texttt{Dhigh} 2 + \texttt{Dlow} 20.
    This can be useful but may have unintended consequences!
-   If in doubt change either of the NRPN bytes and both data bytes will be
+   If in doubt; change either of the NRPN bytes and both data bytes will be
    cleared.
 
    Additionally there is CC 96 for data increment, and CC 97 for data
@@ -120,13 +120,13 @@
    been set, they are otherwise quite independent single CCs.  For example:
 
    \begin{verbatim}
-      Start Value       Command value   Result
-      ----- -----       --------------  ------
-      LSB     5           inc 20      25
-      MSB     7           inc 68      11
-      LSB     128(off)    inc 1       1
-      MSB     126         dec 74      116
-      MSB     128(off)    dec 65      127
+      Start  Value      Command value   Result
+      -----  -----      --------------  ------
+      LSB     5           inc 20         25
+      MSB     7           inc 68         11
+      LSB     128(off)    inc 1          1
+      MSB     126         dec 74         116
+      MSB     128(off)    dec 65         127
    \end{verbatim}
 
    A small example (all values in this example are hex):
@@ -205,7 +205,7 @@
    parameters produce clicks when they are changed rapidly.
 
    Here are the effects parameter numbers (for Data entry, coarse).
-   The parameters that produces clicks are written in \textcolor{red}{red}
+   The parameters that produce clicks are written in \textcolor{red}{red}
    and have (AC) after their entry (always clicks).
    The parameter that produces clicks only when they are changed fast are
    written in \textcolor{blue}{blue} and have a (FC) after the entry (Fast
@@ -565,7 +565,9 @@
 
 
    \textsl{Yoshimi} can run with neither GUI nor CLI input access. Working purely as
-   a hidden MIDI device. To enable a tidy close, there is a new short-form NRPN.
+   a hidden MIDI device.
+
+   To enable a tidy close, there is a new short-form NRPN.
    Just send 68 to both MSB and LSB (CC 99 and CC 98). If you make the LSB 69, it
    will return an exit value of 16. This is the 'forced exit' and can be used by the
    system for other cleanups and a shut down.

@@ -18,7 +18,7 @@
 \label{sec:padsynth}
 
    The \textsl{Yoshimi} PADsynth dialog is a complex dialog for creating a
-   pad instrument,  "PADsynth" or "PADnote" is engine that makes very
+   pad instrument,  "PADsynth" or "PADnote" is an engine that makes very
    beautiful pads and other instruments. (These instruments can be exported
    for use with other programs too).
 
@@ -48,8 +48,8 @@
 \subsection{PADsynth / Algorithm}
 \label{subsec:padsynth_algorithm}
 
-   The complexity of the PADsynth dailog merely reflects the complexity of the
-   PADsynth algorithms.
+   The complexity of the PADsynth dailog reflects the complexity of the
+   PADsynth algorithms themselves.
 
 \subsubsection{PADsynth / Algorithm / General}
 \label{subsubsec:padsynth_algorithm_general}
@@ -59,7 +59,7 @@
    wave-table sample which can be used in instruments. It easily generates
    sounds of ensembles, choirs, metallic sounds (bells) and many other types of
    sound.  Paul Nasca wanted to make this algorithm known, and everyone is
-   welcome to learn and use this algorithm into one's projects or products
+   welcome to learn and use this algorithm in one's projects or products
    (non-commercial or commercial).
 
    Quote \cite{zyndoc}:
@@ -121,10 +121,14 @@
 %
 %     TODO:  A GRAPHIC, full spectrum, closeup of the spectrum
 
+%   The harmonics become wider and wider, until a certain frequency, where
+%   they may merge into a noise band (as in the full spectrum image from above
+%   shows). This is a normal thing and we recommend to not avoid this by
+%   limiting the bandwidth of the harmonics.
+
    The harmonics become wider and wider, until a certain frequency, where
-   they may merge into a noise band (as in the full spectrum image from above
-   shows). This is a normal thing and we recommend to not avoid this by
-   limiting the bandwidth of the harmonics.
+   they may merge into a noise band. This is quite normal and we recommend not
+   suppressing this by limiting the bandwidth of the harmonics.
 
 %  The frequency distribution of one harmonic/overtone (or the harmonic
 %  profile).
@@ -473,7 +477,7 @@
       \item \textbf{1M (big)}
          The largest possible wavetable holds 21sec of sound until repetition, and
          requires 4 MiB of RAM per table.
-   
+
    \end{itemize}
 
    Values: \texttt{16k (Tiny), 32k, 64k (Small), 128k*, 256k (Normal), 512k, 1M
@@ -542,7 +546,7 @@
       \item \textbf{Inv.Half}.
          Here the bandwidth is even reduced for higher harmonics by half an octave
          per octave.
-   
+
    \end{itemize}
 
 \begin{figure}[H]
@@ -559,7 +563,7 @@
 
    Spectrum Mode defines the way PadSynth generates the spectrum, which is then
    rendered into wavetables.
-   
+
 \begin{figure}[H]
    \centering
    \includegraphics[scale=1.0]{bottom-panel/instrument-edit/PAD/spectrum-mode.jpg}
@@ -952,9 +956,12 @@
    means that the transformation effect turns an "endless high" sampled
    wave into only a few samples. The more distortion one applies, the fewer
    samples will be used. Indeed, this is equivalent to say that more input
-   amplification is used. To see this, here is a small sample of code, where
-   "ws" is the (correctly scaled amount of input amplification, and "n" the
-   number of original samples.
+   amplification is used.
+%   To see this, here is a small sample of code, where
+%   "ws" is the (correctly scaled amount of input amplification, and "n" the
+%   number of original samples.
+
+%  WHERE IS THE CODE?
 
    If one turns on quantisation very high, one might be confused that,
    especially high notes, make no sound. The reason: High frequencies are
@@ -1134,10 +1141,10 @@
 
    \itempar{Adpt.Harm. Slider}{padsynth!harmonics slider}
    Adaptive Harmonics Slider.
-   If something other that \texttt{OFF} or \texttt{ON} is selected,
+   If something other than \texttt{OFF} or \texttt{ON} is selected,
    then this slider changes the waveform appearance.
    Even more informative is the change in the spectrum that is shown.
-   Obviously, this setting is something to play with while listening to the
+   This setting is something to play with while listening to the
    waveform.
 
    \itempar{Adpt.Harm. baseF}{padsynth!harmonics basef}
@@ -1145,7 +1152,7 @@
    If something other that \texttt{OFF} is selected,
    then this knob changes the waveform appearance.
    Even more informative is the change in the spectrum that is shown.
-   Obviously, this setting is something to play with while listening to the
+   This setting is also something to play with while listening to the
    waveform.
 
    \itempar{Adpt.Harm. pow}{padsynth!harmonics pow}
@@ -1153,7 +1160,7 @@
    If something other that \texttt{OFF} is selected,
    then this knob changes the waveform appearance.
    Even more informative is the change in the spectrum that is shown.
-   Obviously, this setting is something to play with while listening to the
+   Again, this setting is something to play with while listening to the
    waveform.
 
    \itempar{Clear}{padsynth!harmonics clear}
@@ -1181,8 +1188,8 @@
    tab of the PADsynth parameters dialog.  This tab is next to the
    \textbf{Harmonic Structure} tab.
 
-   It consists of nothing but stock user-interface elements that are described
-   elsewhere in this manual.
+   This view consists of nothing but stock user-interface elements that are
+   described elsewhere in this manual.
    The Volume and Panning values and ranges are identical to the ADDsynth
    global ones.
    None of these affect the wavetable itself, so there is no need for the apply
@@ -1213,7 +1220,7 @@
 
    \itempar{AMPLITUDE}{padsynth!amplitude section}
    See \sectionref{subsec:addsynth_amplitude}.
-   This stock dialog section provide volume, velocity sensing, panning, an
+   This stock dialog section provides volume, velocity sensing, panning, an
    amplitude envelope sub-panel, and an amplitude LFO sub-panel.
 
    \itempar{FILTER}{padsynth!amplitude section}

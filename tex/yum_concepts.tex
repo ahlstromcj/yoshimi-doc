@@ -199,7 +199,7 @@
    but \textsl{Yoshimi} nearly always gets to decide the buffer size (it will be
    set to the internal buffer size).  However, if the destination is "default",
    then ALSA decides on the sound card, bit depth, number of channels and the
-   buffer size, and \textsl{Yoshimi} will set it's internal buffer size to
+   buffer size, and \textsl{Yoshimi} will set its internal buffer size to
    match.  On most machines this always seems to be 1024.
 
    \textsl{Yoshimi} can use a 192000 Hz sample
@@ -266,7 +266,7 @@
 
    For a given part, the synthesizer first creates a note.  Each note's
    waveform (for example, in a chord) is summed (mixed).  This complex
-   waveform is then send to the series of Insertion effects (if any) that
+   waveform is then sent to the series of Insertion effects (if any) that
    are defined.  Each part is then sent to a System effect and (depending on
    the wetness of the mix) directly to a mixer.  Additional Insertion
    effects (if any) are then applied.  The result is the final output of the
@@ -296,9 +296,10 @@
 \label{subsubsec:concepts_basics_wetness}
 
    Wetness determines the mix of the results of the effect and its input.
-   This mix is made the effects output. If an effect is wet, it means that
-   none of the input signal is bypassing the effect. If it is dry, then
-   the effect is bypassed completely, and has no effect.
+   This mix of input and effect output is the total output. If an effect
+   is wet, it means that none of the input signal is bypassing the effect.
+   If it is dry, then the effect is bypassed completely, and has no impact
+   on the sound.
 
 \subsubsection{Concepts / Basic Synthesis / Single Note}
 \label{subsubsec:concepts_basics_single_note}
@@ -306,7 +307,7 @@
    The idea of this synthesis model is from another synthesizer Paul Nasca
    wrote years ago, released on the Internet as "Paul's Sound
    Designer".  The new model is more advanced than that project
-   (adding SUBsynth, more LFO's/Envelopes, etc.), but the idea is
+   (adding SUBsynth, more LFOs/Envelopes, etc.), but the idea is
    the same.
 
 \begin{figure}[H]
@@ -321,13 +322,13 @@
    controlling signals (they control the frequency of something).  The
    dashed lines control the bandwidths of bandpass filters. "Env" are the
    envelopes, "LFO" the Low Frequency Oscillators, "BPF" are band pass
-   filters, "bw" are the bandwidth of the BPF's.  If one uses instrument kits,
+   filters, "bw" are the bandwidth of the BPFs.  If one uses instrument kits,
    the "note out" represents the output of the kit item.
 
 \subsubsection{Concepts / Basic Synthesis / Harmonics}
 \label{subsubsec:concepts_basics_harmonics}
 
-   Harmonics are sine waves that are multiple of the base frequency of a
+   Harmonics are sine waves that are multiples of the base frequency of a
    note.  \textsl{Yoshimi} and \textsl{ZynAddSUbFX} introduce the concept of
    increasing the bandwidth of a harmonic so that it is not quite a sine
    wave.
@@ -701,7 +702,7 @@
       \item \textbf{Modulation}
          The wheel only affects AddSynth and PadSynth, and then only the
          frequency LFO depth. Just to make it more confusing, it changes the
-         level from 0 up to it's current (GUI) setting only. Therefore, if the
+         level from 0 up to its current (GUI) setting only. Therefore, if the
          LFO depth is set to zero, the Mod Wheel will have no effect.
       \item \textbf{User selectable CC for Bank Root Path change}
          For more details of bank changes see
@@ -715,7 +716,7 @@
 \subsubsection{Concepts / MIDI / NRPN}
 \label{subsubsec:concepts_midi_nrpn}
 
-   NRPN stands for "Non Registered Parameters Number".
+   NRPN stands for "Non Registered Parameter Number".
    NRPNs can control all System and Insertion effect parameters.
    Using NRPNs, \textsl{Yoshimi} can now directly set some part values
    regardless of what channel that part is connected to.  For example, one
@@ -794,14 +795,14 @@
           The main instance (0) gets MIDI via ALSA from an external keyboard
           that it specifically looks for at startup. It has learned MIDI for
           the controls this keyboard can send. It also gets other channels from
-          Rosegarden. It sends it's audio to JACK.
+          Rosegarden. It sends its audio to JACK.
 
           Instance 1 is all JACK and has a MIDI sequencer and arpeggiator
           connected. It is also configured for separate part outputs only, for
           further processing.
 
           Instance 2 is all ALSA, has its MIDI from a different keyboard,
-          which it is set to recognise. it has its own learned MIDI setup and
+          which it is set to recognise. It has its own learned MIDI setup and
           and a pattern generator.  Its audio is connected to a second sound
           card, which is then mixed in the analog domain.
 

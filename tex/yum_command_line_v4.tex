@@ -630,7 +630,7 @@
 \texttt{Instruments [n]} &
    instruments in bank ID or current \\
 \texttt{Group <s1> [s2]} &
-   instruments by <s1> type grouping ( s2 'Location' for extra details) \\
+   instruments by s1 type grouping (s2 'Location' for extra details) \\
 \texttt{Parts [s]} &
    parts with instruments installed ('More' for extra details) \\
 \texttt{Vectors} &
@@ -790,11 +790,10 @@ to see what controls were available in each context.
 
    Note that the table below assumes one is already at part level.
 
-   \begin{table}[H]
-      \centering
-      \caption{Part Commands}
-      \label{table:yoshimi_part_commands}
-      \begin{tabular}{l l}
+\begin{center}
+\begin{longtable}{p{3cm} p{15cm}}
+\caption[Part Commands]{Part Commands} \\
+   \label{table:yoshimi_part_commands}
 \texttt{(part) [n]} &
    Change part number.  \\
 \texttt{[ON/OFF]} &
@@ -893,9 +892,8 @@ to see what controls were available in each context.
    Enter PadSynth context. \\
 \texttt{MCOntrol ...} &
    Enter MIDI controllers context. \\
-      \end{tabular}
-   \end{table}
-
+\end{longtable}
+\end{center}
    Kit mode is an unusual form of context level as it either modifies some
    part level controls or adds new ones. At the same time it still allows
    all the other part controls. The examples below show how kit mode
@@ -995,14 +993,13 @@ to see what controls were available in each context.
    emulate filter cutoff controller. \\
 \texttt{E Q [n]} &
    emulate filter Q controller. \\
-\texttt{E BAandwidth [n]} &
+\texttt{E BAndwidth [n]} &
    emulate bandwidth controller. \\
       \end{tabular}
    \end{table}
 
    The following commands are available once in the context for the various
    types of synth engines:
-
 
 \paragraph{Part AddSynth Commands}
 \label{paragraph:command_line_part_addsynth_commands}
@@ -1145,7 +1142,6 @@ to see what controls were available in each context.
       \caption{Voice Modulator Commands}
       \label{table:yoshimi_part_addsynth_voice_modulator_commands}
       \begin{tabular}{l l}
-
 \texttt{[s]} &
    Directly set the type (OFF, Morph, Ring, Phase, Frequency, Pulse width). \\
 \texttt{SOurce [[s]/[n]]} &
@@ -1705,7 +1701,7 @@ Note: Some envelopes have limited controls.
    Time before effect. \\
 \texttt{Expand [n]} &
    Rate / note pitch. \\
-texttt{BPM [s]} &
+\texttt{BPM [s]} &
    Sync frequency to MIDI clock (ON / other). \\
 \texttt{Continuous [s]} &
    Free running - ignore start position (ON / other). \\
@@ -1792,7 +1788,7 @@ Filter types (s parameter, LFO oscillator shape):
    There is some extra information given in V 1.5.11.
    When one chooses a new effect the first preset is always selected, which can
    then be edited to taste. Up to now, there was no indication that it had
-   been altered apart from checking each control against it's default. One
+   been altered apart from checking each control against its default. One
    could easily forget having edited this - especially if saving everything and
    coming back to it some days later.
 
@@ -1992,9 +1988,9 @@ Chorus presets:
 \texttt{CROssover [n]} &
    Left-right routing. \\
 \texttt{SUBtract [s]} &
-   Invert output (ON / other). \\
+   Invert output against source (ON / other). \\
 \texttt{HYPer [s]} &
-   Hyper ?   (ON / other). \\
+   Hyper-sine (ON / other). \\
 \texttt{OVErdrive [n]} &
    Distortion. \\
 \texttt{ANAlog [s]} &
@@ -2271,7 +2267,8 @@ DynFilter presets:
    They can be any CC that \textsl{Yoshimi} recognises.
 
    Feature 1 is always fixed as Volume, and cannot be reversed. It is arranged
-   try to maintian a constant overall level.
+   such that it will try to maintian a constant overall volume from the paired
+   instruments.
 
 \subsection{Scales Commands}
 \label{subsec:command_line_scales_command_list}
@@ -2351,7 +2348,7 @@ DynFilter presets:
    In general \textbf{?} and \textbf{help} indicate what can be changed, while
    \textbf{list} reports what the current status is. In fact in most contexts just 'L' by itself works!
 
-   In the table that follow, we leave off commands noted above
+   In the table that follows, we leave off commands noted above
    (see \sectionref{subsec:command_line_top_command_list}).
 
 \begin{center}
@@ -2525,7 +2522,7 @@ is not enough room in the table above.
       yoshimi> ? con
    \end{verbatim}
 
-   In the table that follow, we leave off the commands noted above
+   In the table that follows, we leave off the commands noted above
    (see \sectionref{subsec:command_line_top_command_list}).  Also
    note that more complete descriptions follow this table.
 
@@ -2600,7 +2597,7 @@ is not enough room in the table above.
 \texttt{Cli [s]} &
    * run with CLI (Enable, Disable).
    Run with the command-line interface enabled. \\
-\texttt{Lock [si][s2]} &
+\texttt{Lock [s1][s2]} &
    Lock history of group s1 (ON, OFF).
    Groups - INstrument, PAtchset, SCale, STate, VEctor, MLearn. \\
 \texttt{MIdi [s]} &
@@ -2753,8 +2750,8 @@ is not enough room in the table above.
       List the instruments and IDs in bank \textsl{n} or the
       current bank/root.
 
-   \itempar{list effects [n]}{cmd!list effects}
-      List effect types for \textsl[n].
+   \itempar{list effects [s]}{cmd!list effects}
+      List effect types for \textsl{s}.
       If the parameter is the word \textsl{all},
       then list every effect and all its
       presets along with the preset number.
@@ -2828,7 +2825,8 @@ is not enough room in the table above.
 
    \itempar{save setup}{cmd!save setup}
       Save the current dynamic system settings.
-      These settings get saved to the state file (we think).
+      Most settings get saved to the state file for the current instance,
+      but a few are saved in the master config file.
 
    \itempar{save vector [s]}{cmd!save vector}
       Saves the vector setup to the named file.
@@ -2865,9 +2863,8 @@ is not enough room in the table above.
       Set CC value for extended program change (values above 119 disables this
       feature).
 
-   \itempar{set insert effects [n]}{cmd!set insert effects}
-      Set insertion effects for editing.
-      What are the possible values of \textsl{n}?
+   \itempar{set insert effect [n]}{cmd!set insert effects}
+      Set insertion effect for editing. Where \textsl{n} is from 1 to 8.
 
    \itempar{set jack midi [s]}{cmd!set jack midi}
       Sets the name of the JACK MIDI source for \textsl{Yoshimi}.
