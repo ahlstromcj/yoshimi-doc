@@ -257,12 +257,9 @@
 
 \subsection{SUBsynth / OVERTONES}
 \label{subsec:subsynth_overtones}
-
-The harmonics settings controls the harmonic intensities/relative bandwidth.
-Moving the sliders upwards increases the relative bandwidth.  Please note
-that, if one increases the number of harmonics, the CPU usage increases. Right
-click to set the parameters to default values.
-
+   By default harmonic overtones are exact multiples of the base frequency, but
+   this section allows one to shift them in various unharmonic ways to produce
+   metalic or noisy variations.
    \begin{enumber}
       \item \textbf{Overtones Position}
       \item \textbf{Par1}
@@ -274,8 +271,9 @@ click to set the parameters to default values.
 
    \itempar{Overtones Position}{subsynth!overtone position}
    Subsynth Overtones Position.
+   Sets the type of overtone variation. For \textsl{Harmonic} there is no control, so the other parameters are inactive. Similarly \textsl{par2} does nothing for \textsl{Shift} so is disabled for that variation.
 
-   Values: \texttt{Harmonic, ShiftU, ShiftL, PowerU, PowerL, Sine, Power, Shift}
+   Values: \texttt{Harmonic*, ShiftU, ShiftL, PowerU, PowerL, Sine, Power, Shift}
 
 \begin{figure}[H]
    \centering
@@ -286,18 +284,21 @@ click to set the parameters to default values.
 
    \itempar{Par1}{subsynth!overtone par1}
    Subsynth Overtones Par1.
+   Spreads the harmonics according to the 'position' type.
 
-   Values: \texttt{0 to 127}
+   Values: \texttt{0* to 127}
 
    \itempar{Par2}{subsynth!overtone par1}
    Subsynth Overtones Par2.
+   Provides a further variation on the harmonics spread.
 
-   Values: \texttt{0 to 127}
+   Values: \texttt{0* to 127}
 
    \itempar{ForceH}{subsynth!overtone forceh}
    Subsynth Overtones ForceH.
+   Moves the shifted harmonics by a variable amount towards to the nearest actual multiple of the fundamental.
 
-   Values: \texttt{0 to 127}
+   Values: \texttt{0* to 127}
 
 \subsection{SUBsynth / FILTER}
 \label{subsec:subsynth_filter}
@@ -368,6 +369,11 @@ click to set the parameters to default values.
 
 \subsection{SUBsynth / Harmonics}
 \label{subsec:subsynth_harmonics}
+
+   The harmonics settings controls the harmonic intensities/relative bandwidth.
+   Moving the sliders upwards increases the relative bandwidth.  Please note
+   that, if one increases the number of harmonics, the CPU usage increases. Right
+   click to set the parameters to default values.
 
    This section consists of 64 sliders to control the amplitude of the narrow
    noise band at a given harmonic, and 64 sliders to control the bandwidth of
