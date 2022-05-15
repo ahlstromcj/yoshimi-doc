@@ -6,12 +6,12 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-05-15
-% \update      2018-03-18
+% \update      2012-05-15
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
-%     Provides the Settings section of yoshimi-user-manual.tex, which covers
-%     stock settings user-interface items.
+%     Provides the Settings section of yoshimi-advanced-reference-manual.tex,
+%     which covers stock settings user-interface items.
 %
 %-------------------------------------------------------------------------------
 
@@ -180,8 +180,7 @@
 \label{subsubsec:stock_settings_elements_presets}
 
    \index{preset}
-   The \textsl{ZynAddSubFX}/\textsl{Yoshimi} concept of presets is very
-   powerful.
+   The \textsl{Yoshimi} concept of presets is very powerful.
 
    Absolutely every user-interface section that has blue \textbf{C}
    and \textbf{P} buttons can be
@@ -225,7 +224,7 @@
    graduated values for both data LSB and MSB. Additionally, the ALSA
    sequencer's 14-bit NRPN blocks are supported.
 
-   \itempar{ZynAddSubFx controls}{automation!controls}
+   \itempar{controls}{automation!controls}
    System and Insertion Effect controls are fully supported, with extensions
    to allow one to set the effect type and (for insertion effects) the
    destination part number.
@@ -365,7 +364,7 @@
    Filter stages are the number of times that this filter is applied in
    series. So, if this number is 1, one simply has this one filter. If it is
    two, the sound first passes the filter, and the results then pass the same
-   filter again. In \textsl{ZynAddSubFX}, the wetness is applied after all
+   filter again. In \textsl{Yoshimi}, the wetness is applied after all
    stages were passed.
 
 \subsubsection{Filter Type}
@@ -375,15 +374,15 @@
    A filter removes or attenuates frequency elements or tones from a signal.
    Filtering changes the character of a signal.
 
-   The basic analog filters that \textsl{Yoshimi} and \textsl{ZynAddSubFX}
-   offer are shown in \figureref{fig:basic_filter_types}, with
+   The basic analog filters that \textsl{Yoshimi}
+   offers are shown in \figureref{fig:basic_filter_types}, with
    the center frequency being marked by the red
    line. The state variable filters should look quite similar.
 
 \begin{figure}[H]          % keep figure closer, requires the 'float' package
    \centering
    \includegraphics[scale=0.5]{zyn/zyn_filter_types_filter0.png}
-   \caption[Basic Filter Types]{Filter Types, Yoshimi/ZynAddSubFX}
+   \caption[Basic Filter Types]{Filter Types, Yoshimi}
    \label{fig:basic_filter_types}
 \end{figure}
 
@@ -410,7 +409,7 @@
    \index{filter!Q}
    \index{filter!resonance}
    The resonance of a filter determines how much excess energy is present at
-   the cutoff frequency. In \textsl{Yoshimi} and \textsl{ZynAddSubFX},
+   the cutoff frequency. In \textsl{Yoshimi},
    this is represented by the Q-factor,
    which is defined to be the cutoff frequency divided by the bandwidth. In
    other words higher Q values result in a much more narrow resonant spike.

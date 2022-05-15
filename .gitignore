@@ -3,18 +3,18 @@
 
 *.fls
 tex-stamp
-tex/yoshimi-user-manual.pdf
+tex/yoshimi-advanced-reference-manual.pdf
 !config
 !Makefile
-pdf/yoshimi-user-manual-unoptimized.pdf
-tex/yoshimi-user-manual.aux
-tex/yoshimi-user-manual.fdb_latexmk
-tex/yoshimi-user-manual.idx
-tex/yoshimi-user-manual.ilg
-tex/yoshimi-user-manual.ind
-tex/yoshimi-user-manual.lof
-tex/yoshimi-user-manual.log
-tex/yoshimi-user-manual.lot
-tex/yoshimi-user-manual.out
-tex/yoshimi-user-manual.toc
+pdf/yoshimi-advanced-reference-manual-unoptimized.pdf
+tex/yoshimi-advanced-reference-manual.aux
+tex/yoshimi-advanced-reference-manual.fdb_latexmk
+tex/yoshimi-advanced-reference-manual.idx
+tex/yoshimi-advanced-reference-manual.ilg
+tex/yoshimi-advanced-reference-manual.ind
+tex/yoshimi-advanced-reference-manual.lof
+tex/yoshimi-advanced-reference-manual.log
+tex/yoshimi-advanced-reference-manual.lot
+tex/yoshimi-advanced-reference-manual.out
+tex/yoshimi-advanced-reference-manual.toc
 

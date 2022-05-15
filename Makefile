@@ -6,7 +6,7 @@
 # \library    	Documents
 # \author     	Chris Ahlstrom
 # \date       	2015-07-05
-# \update     	2018-12-28
+# \update     	2022-05-15
 # \version    	$Revision$
 # \license    	$XPC_SUITE_GPL_LICENSE$
 #
@@ -21,6 +21,7 @@ all:
 
 clean:
 	./Makefile-helper clean
+	rm -f make.log
 
 debug:
 	./Makefile-helper debug

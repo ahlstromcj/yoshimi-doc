@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Chris Ahlstrom
 % \date        2015-04-20
-% \update      2018-12-29
+% \update      2022-05-15
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -19,26 +19,16 @@
 
 \usepackage{enumitem}         % setting the whitespace between and within lists
 \setlistdepth{9}
-% \setlist{nosep}             % spacing around the list
 \setlist{noitemsep}           % spacing within the list
-
-% \usepackage[dvipsnames]{xcolor} % provide more colors?
-
 \usepackage{color}            % provide colors?
-
-% \usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
-
 \usepackage{nameref}          % Provide references by name instead of number
 \usepackage[colorlinks=true,linkcolor=webgreen,filecolor=webbrown,citecolor=webgreen]{hyperref}
 \definecolor{webgreen}{rgb}{0,.5,0}
 \definecolor{webbrown}{rgb}{.6,0,0}
-
 \usepackage{url}              % Required for including URLs
 \usepackage{hyperref}         % Required for including hyperlinks
 \usepackage{amsthm}           % Helps avoid "destination with same
-% \usepackage{cleveref}       % identifier" warnings?
 \usepackage[hypcap]{caption}  % make labels point to figure, not the caption
-% \usepackage{hypcap}         % make labels point to figure, not the caption
 \usepackage[pdftex]{graphicx} % Required for including images
 \graphicspath{{../images/}}   % Set the default folder for images
 \usepackage{float}            % For more control of location of Figures
@@ -75,7 +65,6 @@
 % draft,                      % Uncomment removes links (e.g. for B&W printing)
  colorlinks=true,
  breaklinks=true,
-% bookmarks=true,
  bookmarksnumbered,
  urlcolor=webbrown,
  linkcolor=blue,              % RoyalBlue
@@ -190,24 +179,6 @@
    "\nameref{#1}"
    on page~\pageref{#1}\ignorespaces
 }
-
-% An attempt to reduce excess vertical space.  Does not work.  See the
-% top of yoshimi-user-manual.tex instead.
-%
-% \setlength{\parindent}{0pt}
-% \setlength{\parskip}{0pt}
-
-% Space between floats. \dblfloatsep for 2 column format.
-% \setlength{\floatsep}{8pt}
-
-% Space above and below in-line text floats
-% \setlength{\intextsep}{8pt}
-
-% Space above float caption
-% \setlength{\abovecaptionskip}{8pt}
-
-% Space below float caption
-% \setlength{\belowcaptionskip}{8pt}
 
 % Change the fragction of the page that can be filled with graphics from 0.7
 % to 0.9.

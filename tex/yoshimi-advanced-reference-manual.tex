@@ -1,0 +1,947 @@
+%-------------------------------------------------------------------------------
+% yoshimi-advanced-reference-manual
+%-------------------------------------------------------------------------------
+%
+% \file        yoshimi-advanced-reference-manual.tex
+% \library     Documents
+% \author      Chris Ahlstrom
+% \date        2015-04-20
+% \update      2021-11-26
+% \version     $Revision$
+% \license     $XPC_GPL_LICENSE$
+%
+%     This document provides LaTeX documentation for yoshimi.
+%
+%-------------------------------------------------------------------------------
+
+\documentclass[
+ 11pt,
+ twoside,
+ a4paper,
+ final                                 % versus draft
+]{article}
+
+\frenchspacing
+
+\input{yoshimi-docs-structure}         % specifies document structure and layout
+
+% Replacing normal header/footer with a fancier version.  These two symbols of
+% document class were showing up as "unused" in the log file.
+%
+% headinclude,
+% footinclude,
+%
+% So we add the fancyhdr package, clear the default layout, and set it up for
+% our wider pages.
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyheadoffset{0.005\textwidth}
+\lhead{Yoshimi Software Synthesizer}
+\chead{}
+\rhead{Advanced Reference Manual}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+
+\makeindex
+
+\begin{document}
+\title{Yoshimi Advanced Reference Manual, v 2.2.0}
+\author{Chris Ahlstrom \texttt{(ahlstromcj@gmail.com)} with Will J. Godfrey}
+\date{\today}
+\maketitle
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.60]{2.2.0/Main.png}
+\end{figure}
+
+\clearpage                             % moves Contents to next page
+
+\tableofcontents
+\listoffigures                         % print the list of figures
+\listoftables                          % print the list of tables
+
+% Change the paragraph style to remove indenting and put a line between each
+% paragraph.  This could be moved up into the preamble, but then would
+% affect the spacing of the TOC and LOF, LOT noted above.
+%
+% \setlength{\parindent}{0pt}
+
+\setlength{\parindent}{2em}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+
+\section{Introduction}
+\label{sec:introduction}
+
+   This manual was inspired by a wiki version of a
+   \textsl{ZynAddSubFX} manual (see reference \cite{zynwiki}).  That wiki
+   shows screen shots and a
+   detailed survey of the settings and parameters of \textsl{ZynAddSubFX}.  It
+   inspired us to thoroughly document \textsl{Yoshimi}, with the help of
+   Will Godfrey, who, with the 'little band of helpers' continues to improve
+   \textsl{Yoshimi} at great pace.
+   This manual owes much to the descriptions and diagrams provided by the
+   original \textsl{ZynAddSubFX} author, Paul Nasca, as well as some others
+   whose names we don't know.
+
+\subsection{Yoshimi And ZynAddSubFX}
+\label{subsec:introduction_yoshimi_vs_zyn}
+
+   \textsl{Yoshimi} is an algorithmic MIDI software synthesizer for Linux.
+   It synthesizes in real time, can run polyphonic or monophonic, with multiple
+   simultaneous patches on one or more MIDI channels, and has broad microtonal
+   capability. It includes extensive addititive, subtractive,
+   and pad synth capabilities which can be run simultaneously within the
+   same patch.  It also has eight audio effects modules.
+
+   This manual describes how to use \textsl{Yoshimi} \cite{yoshimi},
+   the software synthesizer derived from the great
+   \textsl{ZynAddSubFx} (version 2.4.0) \cite{zynaddsubfx} software
+   synthesizer (Copyright 2002-2009 Nasca Octavian Paul).
+   This manual uses some earlier \textsl{ZynAddSubFX} documentation and
+   diagrams.  Please note that any reference to \textsl{ZynAddSubFx}
+   in this manual applies specifically to versions of \textsl{ZynAddSubFx}
+   prior to version 3.0.
+
+%  continued for quite a while in its own direction. These include
+%  major optimizations for audio and MIDI performance,
+%  progressive development of user-level and command-line access to all
+%  controls, MIDI learn, and vector control.
+%  At the same time, refinement continues, both visually and within the code.
+%
+%  What are the advantages of
+%  \textsl{Yoshimi} versus \textsl{ZynAddSubFX}?
+%  At one time \textsl{Yoshimi} had better JACK support
+%  than \textsl{ZynAddSubFX}, but that is no longer true.
+%  Both projects are in active development, and both are
+%  progressing along their respective roadmaps.
+%  \textsl{Yoshimi} currently has a considerably
+%  revised graphical user-interface,
+%  while \textsl{ZynAddSubFX} has a major user-interface upgrade planned.
+%  Each project has some features and capabilities that the other lacks.
+%  There may be internal differences of importance to
+%  a developer, as well as features that aren't so easy to discover.  So,
+%  really, ... use them both!
+%
+%  -- the \textsl{ZynAddSubFx} project is planning
+%  a major user-interface change for version 3.0, and many of the file formats
+%  will change as well.  Of course, one can still continue to use the old
+%  "Zyn" as well.
+
+\subsection{New Features}
+\label{subsec:introduction_new_features}
+
+   This section provides an \textsl{ad hoc}, catch-as-catch-can survey of the
+   new features of \textsl{Yoshimi}, in no particular order.
+   There are new features for the command-line interface, and many internal
+   fixes to reduce the likelihood of "xruns", static, clicks, or other
+   performance issues.
+
+\subsubsection{New for Version 2.2.0}
+\label{subsubsec:new_features_2_2_0}
+   A major development here concerns the PadSynth engine. It is now
+   possible to make changes deep within this structure without interruption
+   while notes are sounding. There is setting to enable the sound to
+   smoothly fade from one setting to the next over a few milliseconds.
+   Alternatively one can set new control in the PadSynth engine itself to
+   spread the change over several seconds for a unique musical effect.
+
+   Another much requested feature is a comprehensive Undo/Redo capability.
+   This is most useful when wanting to try changing something but with the
+   safety net of being able to revert if the result is unsatisfactory.
+
+   When we first implemented BPM sync for LFOs etc. we had to provide a
+   fallback in case there was no incoming MIDI clock to sync to. We set
+   this to the standard 120BPM. Now, however there is a control so that it
+   can be set over a wide range to get exactly the wanted effect.
+
+\subsubsection{New for Version 2.1.1, 2.1.2}
+\label{subsubsec:new_features_2_1_1}
+
+   The most noticeable feature is a new button in the main window for access to
+   the MIDI CCs window. This was always accessible, but required a right-click on
+   the Controllers button; many people never knew it was available!
+   These controls be used with no MIDI source connected, and they can be
+   learned and combined with others for greater expression.
+
+   Improved instrument bank management gives a faster startup (particularly
+   with very large banks and roots) and greater protection against outside
+   influences. A setup with 7500 instruments in 200 banks used to take nearly 5
+   seconds to get to the main window, and now takes much less than a second.
+
+   There is a new ability to separate properly instruments in banks with the
+   same numeric prefix, but different names. Also, two that have different
+   file-names but the same prefix (and are in fact the same) are treated as
+   just the one. This situation typically occurs when banks were merged in the
+   past with a mixture of spaces and underscores in the filenames.
+
+   We've removed the switch for disabling 'Enable part on program change'. It
+   was only relevant to MIDI and nobody could think of a circumstance where one
+   would want to select a program via MIDI but not have it active. If one wants
+   to silence a channel, CC7 (volume) would do so, and if it was just a
+   specific part, there is an NRPN that can do it.
+
+   A double-click on a path in the filer favourites view will now select it and
+   return you to the main filer window.
+
+\subsubsection{Resizeable Windows}
+\label{subsubsec:new_features_resizable_windows}
+   A major development with version 2.0 of \textsl{Yoshimi} is the ability to
+   resize every window right up to the size of the monitor - even on 4K screens.
+   Full details can be found in \sectionref{sec:revised_interface}
+
+\subsubsection{Instant Control}
+\label{subsubsec:new_features_instant_control}
+   As of version 1.7.0, \textsl{Yoshimi} is able to give immediate response to
+   almost all rotary controls and sliders. This is also true of many of the
+   switches as well. Previously only a very small number responded straight away,
+   while most only responded on the next note played.
+
+\subsubsection{MIDI Learn}
+\label{subsubsec:new_features_midi_learn}
+
+   \textsl{Yoshimi}, as of version 1.5.0, supports MIDI Learn.
+   It is available by right-clicking on the desired parameter widget.
+   See \sectionref{subsubsec:concepts_midi_learn},
+   and \sectionref{sec:midi_learn}, for more information.
+
+\subsubsection{LV2 Plugin}
+\label{subsubsec:new_features_lv2_plugin}
+
+   \textsl{Yoshimi} can run as an LV2 plugin.  Supported features:
+
+   \begin{enumber}
+      \item Sample-accurate MIDI timing.
+      \item State save/restore support via \textsl{LV2\_State\_Interface}.
+      \item Working UI support via \textsl{LV2\_External\_UI\_Widget}.
+      \item Programs interface support via \textsl{LV2\_Programs\_Interface}.
+      \item Multi-channel audio output.
+         'outl' and 'outr' have lv2 index 2 and 3.
+         All individual ports numbers start at 4.
+   \end{enumber}
+
+   See \sectionref{sec:lv2_plugin}, for more information, but keep in
+   mind there is still much more to document concerning the LV2 plugin.
+
+\subsubsection{Control Automation}
+\label{subsubsec:new_features_control_automation}
+
+   Controls automation support is a part of a common
+   controls interface.  There are significant extensions to the NRPNs that
+   \textsl{Yoshimi} handles.
+   Sensitivity to MIDI volume change (CC \#7) is variable in
+   \textbf{Controllers} in the same way as pan width, etc. The numeric range is
+   64 to 127; the default at 96 gives the same sensitivity as before at -12dB
+   relative to the GUI controls.  127 gives 0dB and 64 gives -26dB.
+
+   In parallel with this there are more NRPNs supported so that one can perform
+   some of these controls via automation. The arrangement looks positively
+   steam-punk, but is actually very easy to use, requiring only a utility that
+   can send MIDI CCs.  NRPNs aren't special. They are simply a specific pattern
+   of CCs.  \textsl{Yoshimi}'s implementation is very forgiving, doesn't mind
+   if one stops halfway through (will just get on with other things while it
+   waits) and will report exactly what it is doing.
+   See \sectionref{sec:nrpns}, for more information, as well as the sections
+   noted below.
+
+\subsubsection{MIDI CC}
+\label{subsubsec:new_features_midi_cc}
+
+   To help when things don't seem to go right, one can show raw incoming
+   CCs. This is enabled from the \textbf{Settings / MIDI} tab.
+   These are the values before \textsl{Yoshimi} does any processing.
+
+   MIDI program changes have always been pretty clean from the time Cal first
+   introduced them, but now GUI changes are just as clean. While it is
+   generally best to change a program when the part is silent, even if a part
+   is sounding there is barely a click. There is no interference at all
+   with any other sounding parts.
+
+   Sometimes MIDI CCs don't seem to give the results one expects. There is
+   a setting that reports all incoming CCs so that one can discover
+   what \textsl{Yoshimi} actually sees (which may not be what was expected).
+
+   \index{breath control}
+   \index{MIDI CC!breath control}
+   At the request of one user, \textsl{Yoshimi} (and only \textsl{Yoshimi})
+   has an implementation of CC 2, Breath Control.
+   This feature combines volume with filter cutoff.
+   See \sectionref{subsubsec:concepts_midi_messages}, for more information.
+
+   \index{legato}
+   \index{MIDI CC!legato}
+   \textsl{Yoshimi} implements the "legato footswitch" control,
+   MIDI CC 68.
+   Send this command with a value of 64 and above, and it will
+   switch to Legato mode. Send less than 64, and it will revert to whatever it
+   was before.  So, if the mode had been Poly, it goes back to that, and it it
+   already was Legato, it just stays at Legato.
+
+\subsubsection{Vectors}
+\label{subsubsec:new_features_vectors}
+
+   It's probably best to more clearly separate the concept of
+   \textsl{parts} versus \textsl{channels} these days.
+   \textsl{Yoshimi} can provide up to 64 parts, in blocks of 16. One can
+   decide how many one wants to have available using the spin-box alongside
+   the channel number.  One can have 16, 32 or 64 parts.  By default, all the
+   upper parts are mapped to the same MIDI channel numbers as the lowest ones,
+   but have independent voice and patch set values. They cannot normally
+   receive independent note or control messages. However, vector control will
+   intelligently work with however many are set, as will all the NRPN direct
+   part controls.
+   See \sectionref{sec:vector}, for more information.
+
+\subsubsection{Bank Support}
+\label{subsubsec:new_features_bank_support}
+
+   Bank root directories are better identified, with IDs that can be changed by
+   the user in the GUI. This is also made available for selecting over MIDI.
+   MIDI only sees banks in the \textsl{current}
+   \textbf{root} directory, but all banks are accessible to the GUI.
+   One can set up a new bank root path when starting from the
+   command line. This takes the form:
+
+   \begin{verbatim}
+      $ yoshimi -D /home/(username)/(directory)/(subdirectory)/bank
+   \end{verbatim}
+
+   \textsl{Yoshimi} will scan this path for new banks, but
+   won't make the root (or any of its banks) current. The final directory
+   doesn't have to be \texttt{banks}, but that is tradition.
+   When running from the command line there is access to many
+   of the system and root, bank, and other settings.
+
+   \textsl{Yoshimi} splits out roots and banks from the main configuration
+   file, and creates a new "history" file. The separation means that the
+   different functions can be implemented, saved, and loaded at the most
+   appropriate time. These files have "yoshimi" as the doc-type.
+   See the new Banks sections,
+   \sectionref{sec:banks_and_roots}
+   and
+   \sectionref{subsec:banks_collection_yoshimi},
+   for more information.
+
+\subsubsection{Accessibility}
+\label{subsubsec:new_features_accessibility}
+
+   An important feature of recent releases of \textsl{Yoshimi} is improved
+   accessibility. The effectiveness and usefulness of accessibility will
+   shape future complementary interfaces. A number of first-time defaults
+   have been changed to make accessibility easier.
+
+   It has always been possible to run \textsl{Yoshimi} headless. Since V 1.5.11
+   it possible to \textsl{compile} a headless version with no need for
+   any graphical components to be installed.
+   Real accessible control is available.
+
+%  When starting from the command line, an argument can be included for a new
+%  root path to be defined to point to a set of banks fetched from elsewhere.
+%  This will be given the next free ID.
+
+   Once running, all setup can be done within the terminal window.
+   Some settings will require a restart.
+   There is also extensive control of
+   roots, banks, parts and instruments including the ability to list and set
+   all of these. One can do things like:
+
+   \begin{verbatim}
+      add root /home/music/yoshimi/banks
+      set part 4 program 130
+   \end{verbatim}
+
+   Additional controls that are taken for granted in the GUI but
+   otherwise forgotten are master key shift and master volume.  The
+   most important parts of vector control are exposed to the command line.
+   For all of this there is extensive error checking and feedback, which can be
+   rendered in voice using text-to-speech software.
+
+   There is a partially-sighted person we hear from, and
+   a totally blind person (working with a Braille reader/writer) who has
+   offered a lot of suggestions, and very much likes vector control.  So
+   accessibility \index{accessibility} is an important feature of
+   \textsl{Yoshimi}.  See the section that follows.
+
+\subsubsection{Command Line}
+\label{subsubsec:new_features_command_line}
+
+   \textsl{Yoshimi} offers great control of one's working environment.
+   One can have the graphical user interface, a command-line
+   interface, or both, and these settings can be saved.  And both
+   interfaces can be disabled, so \textsl{Yoshimi} runs in a headless
+   mode, responding in the background to MIDI events.
+
+   The command-line interface can access all top level controls, as well as the
+   part editing controls, and can select any effect and effect preset.  It can be
+   used to set up Vector Control much more quickly and easily than using NRPNs.
+   It allows settings to be made to the various synthesis engines.
+   The command-line is also context-sensitive, which, with careful choice
+   of command names and abbreviations, allows fast access with minimal
+   typing.
+
+   Since version 1.5.8 it has been possible to start, stop and select
+   different instances for further control.
+
+   \textsl{Yoshimi}'s parser is case-insensitive for commands (but not for
+   filenames), and accepts the shortest unambiguous abbreviation. It is
+   quite pedantic, and expects spelling to be correct regardless of length.
+   Apart from the \texttt{back} commands, it is word-based, so spaces are
+   significant.  Some examples:
+
+   "\texttt{s p 4 pr 6}" ("set part 4 program 6"):
+   This command sets part 4 to the instrument with ID 6 from the current bank.
+   It also leaves one at the part context level and pointed to part 4.
+   Additionally, the fact that it loaded an instrument means it will activate
+   that part if it was off (and the configuration setting is checked). In most
+   cases the words \textbf{program} and \textbf{instrument} are interchangeable.
+
+   "\texttt{s ef 1 rev}" ("set effect 1 reverb"):
+   This command moves one to the effects context level and sets that part's
+   effect number 1 to effect type \textbf{reverb}.
+
+   "\texttt{s pre 2}" ("set preset 2"):
+   This command sets preset number 2 (we use numbers here as most preset names
+   repeat the effect type).
+
+   "\texttt{..s 6 v 80}" ("up one level, set part 6 volume 80"):
+   This command drops one back to part level, switches one to part 6 (but doesn't
+   enable it), and sets its volume to 80.
+
+   "\texttt{/s ve cc 93}" ("to top level, set vector control cc 93"):
+   This command drops up to the top level, and sets vector control for
+   channel 1, X axis to respond to CC 93 leaving one in the vector context.
+
+   Whenever intermediate values are omitted, the default or last-used value
+   will be assumed.
+   All \textsl{standard} CLI inputs, and the return message numbers,
+   should start from 1 with the following exceptions:
+
+    \begin{itemize}
+       \item Bank roots
+       \item Banks
+       \item CCs
+       \end{itemize}
+
+   These follow standard MIDI practice in the CLI and in the GUI.
+
+   The CLI prompt always
+   shows what level one is on, and the help-lists are also
+   context-sensitive, so one doesn't see a lot of irrelevant clutter.
+%   \textsl{Yoshimi} instrument patches are fully
+%   compatible with \textsl{ZynAddSubFX} patches, and we have ported across
+%   new refinements with thanks to the Zyn authors.
+   See \sectionref{sec:command_line}, for more information.
+
+\subsubsection{Audio Support}
+\label{subsubsec:new_features_audio_support}
+
+   The preferred JACK/ALSA MIDI and audio interfaces are no longer fixed at
+   compile time. There are checkboxes on \textbf{Settings} to change them.
+   One can also set preferred startup ALSA/JACK MIDI and audio devices.
+   These selections will be remembered on the next run.
+
+   \textsl{Yoshimi} will always start even if the audio/MIDI backend called
+   for doesn't exist. In this situation, it will try all combinations in this
+   order: JACK, ALSA, and null. This enables one to then change the settings
+   and try again.
+
+   A significant improvement is the handling of ALSA audio, which is very
+   important for some people.  \textsl{Yoshimi} can handle 2-channel 16-bit
+   format. Tests have shown that virtually all motherboard sound chipsets will
+   handle this setting, but many external ones don't.  So \textsl{Yoshimi}
+   initially requests 32-bit 2-channel, then works towards a compromise with the
+   hardware.
+   See \sectionref{paragraph:menu_yoshimi_settings_alsa_tab}, for details.
+
+\subsubsection{User Feedback}
+\label{subsubsec:new_features_user_feedback}
+   With any complex software it is important that the user is kept informed
+   as to exactly what the current status is, and over time \textsl{Yoshimi}
+   has had extensive development of tooltips, warnings and action reports.
+
+   For example, since V 1.5.11 one is now warned if an effect is a modified
+   version of a preset and not it's default. This is in the form of changing
+   the background colour of the preset button to a bright blue.
+
+   When editing an AddSynth voice that is taking it's waveform from another one
+   there is a new warning when actually entering the waveform window.
+
+\subsubsection{Miscellany}
+\label{subsubsec:new_features_miscellany}
+
+   \textsl{Yoshimi} stamps its XML files
+   with its own major
+   and minor version numbers underneath the existing ones, so it is possible
+   to tell which version created the files.
+   If the files (such as config) are not compatible with
+   \textsl{ZynAddSubFX},
+   the doctype and all other details are identified as purely for
+   \textsl{Yoshimi}.
+%  However, see \sectionref{subsec:file_compatibility}.
+
+   One can direct messages to either \texttt{stderr}
+   (the error output of a terminal console) or the \textbf{Reports} window
+   on the fly. If one chose \texttt{stderr}, the \textbf{Reports} window is
+   inactive.
+
+   One can use the mouse scroll wheel to adjust rotary controls. Holding
+   down the Ctrl key gives access to finer adjustment.  Also, horizontal as
+   well as vertical mouse movement will adjust the knob.
+
+   All rotary controls and sliders will return
+   to their home positions if right-clicked anywhere in the control.
+%  In the case of sliders not the peg itself.
+   As of version 1.5.8 switches, buttons and
+   selectors will also home with a right-click.
+
+   Part-editing windows carry the part number and voice name in the title
+   bar. For the AddSynth oscillator window this also includes the voice
+   number.
+
+   When opening an instrument bank, one can tell exactly which synth
+   engines are used by each instrument. This is represented by three pale
+   background colours: Red = AddSynth; Blue = SubSynth; and Green = PadSynth.
+
+   If the instruments are kits they are scanned to find out if any member of the
+   kit contains each engine, so that the colours above can be applied.
+   This feature is duplicated in the current part, the mixer panel for the
+   currently loaded instruments, and in the Instrument Edit window.
+   The same colours highlight the engine names when they are enabled with the
+   check boxes.
+
+   \textsl{Yoshimi} remembers where windows were last placed (per instance),
+   and they will be reopened at the same location on the next run.
+
+   Thanks to the \textsl{ZynAddSubFX} developers, \textsl{Yoshimi} has pink
+   as well as white noise available on AddSynth voices. Pink noise sounds
+   softer.  In \textsl{Yoshimi} version 1.6.0 we added spot noise, which has
+   a sort of 'gritty' sound.
+
+   The \textbf{Humanise} feature has had more interest so it's been upgraded.
+   It's now a pair of sliders, and its settings can be saved in patch sets.
+   It provides a tiny per-note random detune and/or velocity attenuation to
+   an \textsl{entire} part (all engines in all kits), but only for that part.
+
+   Audio and MIDI preferences have been improved. If one sets ALSA MIDI
+   and JACK audio from the GUI or the command line, the setting can be
+   saved and will be reinstated on the next run. These settings are
+   per-instance, so if one has multiple sound cards, one can make full use of
+   them.  Barring major system failures, there are no circumstances where
+   \textsl{Yoshimi} will fail to start.
+
+   We've tested \textsl{Yoshimi} in recovery mode, logged in as root, with
+   no X server.
+
+   The command \texttt{/usr/share/bin/yoshimi -A -i} worked perfectly and
+   auto-connected the keyboard. Since version 1.5.11 it one can provide
+   a compile-time option to build a purely headless version.
+
+   Load and Save dialogues recognise the history lists and offer
+   the appropriate first choice. External instrument loads and saves are
+   also remembered.
+   For saves, on a restart, one is offered the home directory regardless
+   of where \textsl{Yoshimi} was launched, but in the case of saving
+   external instruments, one is always offered the name of the instrument
+   in the currently selected part, prefixed with the home directory.
+
+   There is a specific \textsl{State} menu item ("Save as Default") to save
+   the current complete setup as the default. This particular state file is
+   always saved to \textsl{Yoshimi}'s configuration directory, and will not
+   show in history lists.
+
+   If \textbf{Start With Default State} has been set, and a
+   default state has been saved, a complete restart will load this state,
+   and a master reset will load this file, instead of doing a
+   first-time default reset.
+   There is a "gotcha" with this, in that when saving the default state,
+   one must \textsl{already} have set the \textbf{Start With Default State}
+   switch, otherwise reloading the default state works \textsl{once}, but
+   upon re-opening \textsl{Yoshimi}, the switch will be unchecked
+   \textemdash that is, quite correctly in its previously saved state!
+
+   A final detail with the history lists is that in each list type, the last
+   used item will be placed at the top of the list. This is especially useful
+   when wanting to continually save/load an item currently being worked on.
+   However, since version 1.6.0 it has been possible to freeze these lists,
+   so benefiting the (also new) MIDI NRPN control to load settings from these
+   lists.
+
+\subsection{File Compatibility}
+\label{subsec:file_compatibility}
+
+   It is always a challenge with developing software to make improvements to
+   features and add new ones without breaking older versions that users might
+   not be in a position to upgrade. \textsl{Yoshimi} handles this by
+   retaining original file parameters with the closest match possible, and at
+   the same time a separately-named new or extended parameter. This ensures
+   both older \textsl{Yoshimi} versions will run correctly,
+   and will do so on \textsl{ZynAddSubFX}.
+   Obviously, completely new features will be lost to
+   older versions but otherwise files will behave as before. This is
+   especially relevant where existing files are loaded and then re-saved.
+
+   Where there are great changes or where an entirely new concept is
+   developed we create a completely new file type, but again store what is
+   relevant in the older type.
+\index{new!Yoshimi/ZynAddSubFX Warning}
+   This has worked very well for several years. However we have come up
+   against a problem. The \textsl{ZynAddSubFX} developers have taken a
+   different approach, and some parameters have different types in their
+   versions from 3.0 onward. Therefore we now make a test for this and give
+   a warning as shown below.
+
+%  in \figureref{fig:compatibility_warning}.
+
+   This is known to be a problem with instrument files (.xiz) and presets
+   (.xpz). We don't know if there are others. Ironically, even the latest
+   \textsl{Yoshimi} versions of these files will behave correctly on
+   \textsl{ZynAddSubFX}.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=1.0]{1.7.2/CompatibilityWarning.png}
+   \caption{Compatibility Warning}
+   \label{fig:compatibiilty_warning}
+\end{figure}
+
+
+\subsection{Document Structure}
+\label{subsec:introduction_document_structure}
+
+   The structure of any manual is a struggle.
+   There's no way to avoid jumping all over the place to
+   cover a topic.  The sections are covered roughly
+   in the order of the user interface of
+   \textsl{Yoshimi}.  To help the reader jump around this manual, multiple
+   links and an index are supplied.
+
+   \index{tips!in document}
+   Usage tips
+   for each of the functions provided in
+   \textsl{Yoshimi} are sprinkled throughout this manual.
+   Each tip occurs in a section beginning with "Tip:".
+   Each tip is provided with an entry in the Index, under the
+   main topic "tips".
+   \index{bugs!in document}
+   Bug notes may also be found.
+   Each bug occurs in a sentence beginning with "Bug:".  Each bug is
+   provided with an entry in the Index, under the main topic "bugs".
+   \index{new!in document}
+   New features
+   since the last version are flagged with "New:"  We cannot pretend to have
+   marked all new developments, as \textsl{Yoshimi} is advancing fast.
+   \index{todo!in document}
+   To-do items are also present, in the same vein.
+
+\subsection{Yoshimi Mailing List}
+\label{subsec:introduction_mailing_list}
+
+   The \textsl{Yoshimi} project used to have an email listserv at
+   SourceForge, but the unreliability of the site has prompted a move to a
+   new mailing list.  See reference \cite{yoshiminews}.  The team have
+   managed to port across all the old yoshimi-user archives to this new
+   site.  See reference \cite{yoshiminewsarchive}.
+
+   Subscribe to the \textsl{Yoshimi} mailing list with an e-mail to:
+   \url{yoshimi-request@freelists.org} or by visiting
+   \url{http://www.freelists.org/list/yoshimi}.
+
+   To post to the list, send an email to: \url{yoshimi@freelists.org}.
+   The news archive is at: \url{https://www.freelists.org/archive/yoshimi}.
+
+\subsection{Yoshimi Licensing}
+\label{subsec:introduction_yoshimi_licensing}
+
+   \begin{quotation}
+      Software licenses are are something I \textsl{really}
+      don't want to get involved in - I have much better things to do with my
+      time - but I found I was obliged to do so.
+
+      It is possible I'm the only person who knows all the following events, as
+      I was the one that instigated them!
+
+      The first time I saw ZynAddSubFX source files they were licensed as GPL
+      V2. At that time Zyn had a number of very serious problems, and not much
+      was being done about them. Somewhat naively I asked Lars Luthman if he
+      would help, as he had offered a couple of small patches previously. His
+      response was that he would not do any significant work, as he did not
+      agree with the GPL V2 only license.
+
+      I then contacted Paul, explaining the situation and asking if he would
+      consider a change in the license to V2 or later. I was actually a bit
+      surprised that he immediately agreed. When I next looked at the sources,
+      the licenses on the files had indeed been updated, so I passed this
+      information on.
+
+      Unfortunately Paul forgot to update the website, but I wasn't especially
+      concerned as it was only the files themselves that really mattered.
+
+      While developing Yoshimi after the initial fork, Cal queried the license
+      situation. I told him of the conversations I'd had, and passed him a copy
+      of the email I'd got from Paul. Later on, Cal - in good faith - wrote new
+      sources and placed them under GPL V3. This would be quite compatible with
+      V2 or later, but not with V2 strict.
+
+      What I didn't notice until very much later was that Paul had only updated
+      half of the text in the sources, leaving the actual licence in an
+      ambiguous state.
+
+      To the best of my knowledge, V3 is not compatible with V2 strict, but V2
+      or later is. However the \textsl{complete}
+      project then becomes downgraded to V2
+      strict - although the V2 or later sources (such as all the new root/bank
+      code) can independently be freely merged into V3 code.
+
+      I doubt anyone would actually make an issue of this. However, to safeguard
+      Yoshimi as a whole, I took it upon myself to change Cal's code to V2 or
+      later. I believe it retains the spirit of his wishes, and the only person
+      with standing to object -- his daughter - has been totally supportive of
+      the work currently being done on Yoshimi.
+
+      Any source code I add will be GPL V2 or later.
+      \end{quotation}
+
+      \textbf{Update:} The original change discussion has been located and the
+      license for both Zyn and Yoshi is confirmed as GPL V2 or later. Anyone
+      wanting to confirm this should look at the Zyn user list archives
+      August 2007 and September 2007.
+
+
+\subsection{Let's Get Started with Yoshimi!}
+\label{subsec:introduction_lets_get_started}
+
+   Let us run \textsl{Yoshimi}.
+   The first
+   thing to do is make sure one has no other sound application running
+   (unless one wants to risk blocking \textsl{Yoshimi} or hearing two sounds
+   simultaneously, depending on one's sound card and ALSA setup).
+   Then start \textsl{Yoshimi}:
+
+\begin{verbatim}
+   $ yoshimi
+\end{verbatim}
+
+   If JACK is available, it will be used.  Otherwise ALSA will be used.
+
+\begin{figure}[H]
+   \centering
+%  \includegraphics[scale=0.75]{Yosh-splash-OTW-1.png}
+   \includegraphics[scale=0.75]{1.5.0/Splash-1-5-1.png}
+   \caption{Yoshimi Splash Screen!}
+   \label{fig:yoshimi_splash_screen}
+\end{figure}
+
+   One sees a brief message, or if enabled, the splash screen.
+   We show the new splash screen, \figureref{fig:yoshimi_splash_screen},
+   here because it only appears for three or four seconds when one runs
+   \textsl{Yoshimi}! What fun is that?
+
+   Next shown is the \textsl{Yoshimi} main window,
+   as shown in \figureref{fig:yoshimi_main_screen},
+   and it persists, of course:
+
+\begin{figure}[H]
+   \centering
+%  \includegraphics[scale=0.60]{2.0/Front.png}
+   \includegraphics[scale=0.60]{2.2.0/Main.png}
+   \caption{Yoshimi Main Screen}
+   \label{fig:yoshimi_main_screen}
+\end{figure}
+
+    From \textsl{Yoshimi} version 1.5.11, the very first time Yoshimi is
+    started, the main window will be overlaid with the following prompt. This
+    is for the benefit of very new users who might not know where to start.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.75]{1.5.11/first_time_info.png}
+   \caption{First Time Prompt}
+   \label{fig:first_time_info}
+\end{figure}
+
+
+   Note that, if one presses the \texttt{Space} bar while the main window has
+   keyboard focus (right after starting \textsl{Yoshimi}), the following prompt
+   appears:
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.75]{2.0/DefaultWarn.png}
+   \caption{Space Bar Prompt}
+   \label{fig:yoshimi_main_spacebar_prompt}
+\end{figure}
+
+   Be careful!
+   For this manual, the main window is composed of the following sections:
+
+\begin{enumber}
+   \item \textbf{Menu}.
+   \item \textbf{Top Panel}.
+   \item \textbf{Effects Panel}.
+   \item \textbf{Bottom Panel}.  Includes the VU-meter at the bottom.
+\end{enumber}
+
+   \index{control!reset}
+   \index{reset!control}
+   Starting with version 1.4.0, a right-click on any control in \textsl{Yoshimi}
+   will reset the control's value to its default position.  In version 1.4.1, the \textbf{Vectors} control appears, with some minor rearrangement of the top panel.
+
+   There's a lot going on with \textsl{Yoshimi}, with no way to describe
+   it in linear order.  This manual describes how to do useful things in
+   each of the sections noted above, while leaving some of the details to be
+   described in later sections, to which reference can be made for the details.
+   This document depends heavily on index entries and references.
+   There is also a "cookbook" at \cite{book}; it is a long way from being
+   comprehensive, but still has some useful tips.
+
+   If one downloads the source code for \textsl{Yoshimi}, in the
+   \texttt{examples} directory one finds a complete song set,
+   \texttt{OutThere.mid} and \texttt{OutThere.xmz}. Together these produce a
+   fairly complex 12 part tune that makes \textsl{Yoshimi} work quite hard.
+   Also, after installing \textsl{Yoshimi}, one can find a nice, short
+   introduction to \textsl{Yoshimi} in Will's document,
+   \texttt{/usr/share/doc/yoshimi/The Short Yoshimi Guide.odt},
+   along with a number of texts files with information that might not yet be
+   present in the long manual.
+
+   One last thing to note is that there is a list of important concepts in
+   \sectionref{sec:concepts}, which one should consult if a term is puzzling.
+
+\rhead{\rightmark}         % shows section number and section name
+
+% New GUI structure
+
+\input{yum_new_gui}
+
+% Configuration Files
+
+\input{yum_configuration}
+
+% Banks and Roots
+
+\input{yum_banks_and_roots}
+
+% Menu
+
+\input{yum_menu}
+
+% Musical scales
+
+\input{yum_scales}
+
+% Settings Index and Descriptions
+
+\input{yum_settings}
+
+% Top Panel User-Interface items
+
+\input{yum_top_panel}
+
+% Middle Panel Effects User-Interface items
+
+\input{yum_effects_v2}
+
+% Bottom Panel User-Interface items
+
+\input{yum_bottom_panel}
+
+% ADDsynth User-Interface items
+
+\input{yum_addsynth}
+
+% PADsynth User-Interface items
+
+\input{yum_padsynth}
+
+% SUBsynth User-Interface items
+
+\input{yum_subsynth}
+
+% Kit Edit User-Interface items
+
+\input{yum_kitedit}
+
+% Banks
+
+\input{yum_bank_collection}
+
+% NRPNS and effects in more detail
+
+\input{yum_nrpns}
+
+% "Vector" control
+
+\input{yum_vector_control}
+
+% "MIDI Learn"
+
+\input{yum_midi_learn}
+
+% Command-line mode
+
+% \input{yum_command_line}
+\input{yum_command_line_v4}
+
+% Yoshimi as an LV2 plugin
+
+\input{yum_LV2}
+
+% Man page
+
+\input{yum_manpage}
+
+% Important Concepts
+
+\input{yum_concepts}
+
+% Building and debugging Yoshimi
+
+\input{yum_build}
+
+% Resource usage notes, disabled for now.
+%
+% It causes issues, and is a short section anyway.
+%
+% \input{yum_resource_usage.tex}
+
+\section{Summary}
+\label{sec:summary}
+
+   In summary, we can say that you will absolutely love \textsl{Yoshimi}.
+%  There are some topics that this document does not yet treat:
+
+%  \begin{itemize}
+%     \item Changing the colors and style of the GUI, as seen in some
+%        versions of \textsl{ZynAddSubFX}.  This does not yet seem possible,
+%        because the synth part is not truly separate from the GUI, and the
+%        \textsl{Yoshimi} developers have not found it easy to recode the
+%        FLTK GUI.
+%  \end{itemize}
+
+   \begin{quotation}
+      A car analogy:
+      A sample player is a drive along a straight, wide, almost new highway
+      with only 2 other cars in sight, on a lightly overcast summer's day in a
+      Ford Fiesta at around 40 MPH.
+      Yoshimi is a white-knuckle trip over a Swiss mountain pass in a blizzard,
+      at night, facing donkeys, trucks and bandits, while driving an open-frame
+      kit car doing 90 +
+      In recent times we've been able to dispose of the donkeys, and the
+      bandits are on the run :)
+   \end{quotation}
+
+% References
+
+\input{yum_references}
+
+\printindex
+
+\end{document}
+
+%-------------------------------------------------------------------------------
+% vim: ts=3 sw=3 et ft=tex
+%-------------------------------------------------------------------------------

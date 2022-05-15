@@ -10,7 +10,7 @@
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
-%     Provides the man page section of yoshimi-user-manual.tex.
+%     Provides the man page section of the manual.
 %
 %-------------------------------------------------------------------------------
 
@@ -25,7 +25,7 @@
    The source-code is located at its main location (\cite{yoshimi})
    or its alternate location (\cite{yoshimi2}).
 
-   Like \textsl{ZynAddSubFX}, \textsl{Yoshimi} uses CMake as its build
+   \textsl{Yoshimi} uses CMake as its build
    system \cite{zyncmake}.  CMake is a preprocessor that can generate
    project build setups for Visual Studio, UNIX make, and Xcode.
 
@@ -115,16 +115,17 @@
    We will also show how to set up for an out-source-build, which keeps
    the build products out of the way.
 
-   The location of \texttt{CMakeList.txt} does not appear to be standard, so
-   these instructions differ in details from the build instructions of
-   \textsl{ZynAddSubFX}.  Basically, the build is based in the project's
+   The location of \texttt{CMakeList.txt} does not appear to be standard.
+   Basically, the build is based in the project's
    \texttt{src} directory, instead of its root directory.
+   And it is recommended to use an out-of-source build.
 
    \begin{enumber}
       \item Enter the source directory where the code was unpacked.
       \item Generate the project build-files:
             \begin{verbatim}
-               $ cd src
+               $ mkdir build
+               $ cd build
                $ cmake ..
                $ cmake .
             \end{verbatim}
@@ -135,7 +136,7 @@
             \end{verbatim}
    \end{enumber}
 
-   Here is how to make an out-of-source debug.  Despite what
+   Here is how to make an out-of-source debug build.  Despite what
    cmake documentation (and Googling) says, using a command like the
    following \textsl{does not work} unless you have \texttt{ccmake}
    installed.

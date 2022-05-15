@@ -4,7 +4,7 @@
 # \library    	Documents
 # \author     	Chris Ahlstrom
 # \date       	2015-11-01
-# \update     	2018-12-28
+# \update     	2022-05-15
 # \version    	$Revision$
 # \license    	$XPC_SUITE_GPL_LICENSE$
 #
@@ -41,8 +41,7 @@ else
       MKERROR="yes"
 		echo "FATAL ERROR in processing TeX files!"
 	else
-		cp yoshimi-user-manual.pdf ../pdf/
-#		cp yoshimi-user-manual.pdf ../pdf/yoshimi-user-manual-unoptimized.pdf 
+		cp yoshimi-advanced-reference-manual.pdf ../pdf/
    fi
    popd
 
@@ -50,27 +49,24 @@ else
 		if [ "$1" == "optimize" ] ; then
 			echo "Optimizing PDF using ghostscript pdfwrite device..."
 			pushd pdf
-			cp yoshimi-user-manual.pdf y-temp.pdf
-	gs -sDEVICE=pdfwrite $GSFLAGS -sOutputFile=yoshimi-user-manual-optimized.pdf y-temp.pdf
+			cp yoshimi-advanced-reference-manual.pdf y-temp.pdf
+	gs -sDEVICE=pdfwrite $GSFLAGS -sOutputFile=yoshimi-advanced-reference-manual-optimized.pdf y-temp.pdf
 			if [ $? == 0 ] ; then
 				rm y-temp.pdf
 			else
 				echo "? Could not reduce the size of the PDF"
-#				mv y-temp.pdf yoshimi-user-manual.pdf
 			fi
 			popd
 		fi
 		if [ "$1" == "opt" ] ; then
 			echo "Optimizing PDF using ps2pdf ..."
 			pushd pdf
-			cp yoshimi-user-manual.pdf y-temp.pdf
-#		pdf2ps y-temp.pdf y-temp.ps
-			ps2pdf -dPDFSETTINGS=/ebook y-temp.pdf yoshimi-user-manual-optimized.pdf
+			cp yoshimi-advanced-reference-manual.pdf y-temp.pdf
+			ps2pdf -dPDFSETTINGS=/ebook y-temp.pdf yoshimi-advanced-reference-manual-optimized.pdf
 			if [ $? == 0 ] ; then
 				rm y-temp.pdf
 			else
 				echo "? Could not reduce the size of the PDF"
-#				mv y-temp.pdf yoshimi-user-manual.pdf
 			fi
 			popd
 		fi
