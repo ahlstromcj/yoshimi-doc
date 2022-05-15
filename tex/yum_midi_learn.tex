@@ -161,7 +161,7 @@
    \textsl{different} part.
 
    Multiple lines will always be displayed (and actioned) in ascending order of
-   CC, then channel number
+   CC, then channel number.
 
    For a quick example, on our system we're running only ALSA.  So we
    plug a \textsl{Korg NanoKEY2} mini-USB keyboard in.
@@ -187,7 +187,7 @@
    movement in \textsl{Yoshimi}'s \textbf{Velocity Sense} knob.
 
    Once entries have been added, a fully-fleshed list of learned items is
-   presented if one then uses the \textsl{Midi Learn} button; one will
+   presented, provided "Show Learn Editor" is checked in \textsl{Settings, MIDI CCs} . Otherwise, if one uses the \textsl{Midi Learn} button; one will
    see a new window displaying the recently-learned controller. Along with a
    number of settings, one sees text with precise details of this complete
    action.
@@ -200,7 +200,9 @@
 \end{figure}
 
    If the controller learned was an NRPN, this dialog will show a hexadecimal
-   number in the CC field, and this item will not be editable. Notice that a small indented button will appear between the mute status and the NRPN value. If this it clicked on it will turn red indicating that it is now a 7 bit value. This is type of range is sent by some hardware synths and controllers.
+   number in the CC field, and this item will not be editable. Notice that a small indented button will appear between the mute status and the NRPN value. If this
+   it clicked on, it will turn red; indicating that it is now a 7 bit value. This
+   control range is sent by some hardware synths and controllers.
 
    Adding or deleting rows in this dialog, or changing the CC or channel
    number, will cause the rows to be sorted again.
