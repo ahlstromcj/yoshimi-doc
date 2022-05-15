@@ -894,6 +894,7 @@ to see what controls were available in each context.
    Enter MIDI controllers context. \\
 \end{longtable}
 \end{center}
+
    Kit mode is an unusual form of context level as it either modifies some
    part level controls or adds new ones. At the same time it still allows
    all the other part controls. The examples below show how kit mode
@@ -1138,7 +1139,7 @@ to see what controls were available in each context.
       \end{tabular}
    \end{table}
 
-   \begin{table}[H]
+   \begin{table}[h]
       \caption{Voice Modulator Commands}
       \label{table:yoshimi_part_addsynth_voice_modulator_commands}
       \begin{tabular}{l l}
@@ -1263,6 +1264,7 @@ to see what controls were available in each context.
    Amount harmonics are forced.  \\
       \end{tabular}
    \end{table}
+
    \begin{table}
       \begin{tabular}{l l}
 \texttt{XFadeupdate [n]} &
@@ -1305,7 +1307,6 @@ to see what controls were available in each context.
       \caption{Part SubSynth Commands}
       \label{table:yoshimi_part_subsynth_commands}
       \begin{tabular}{l l}
-
 \texttt{[ON/OFF]} &
    Enables / Disables the SubSynth engine. \\
 \texttt{Volume [n]} &
@@ -1364,7 +1365,6 @@ to see what controls were available in each context.
    Enter Filter insert context.  \\
 \texttt{ENVelope ...} &
    Enter Envelope insert context.   \\
-
       \end{tabular}
    \end{table}
 
@@ -1376,7 +1376,6 @@ to see what controls were available in each context.
       \caption{Resonance Commands}
       \label{table:part_resonance_commands}
       \begin{tabular}{l l}
-
    \texttt{(enable) [s]} &
       Activate resonance (ON / other). \\
     \texttt{PRotect [s]} &
@@ -1397,7 +1396,6 @@ to see what controls were available in each context.
       Set all points to the mid level. \\
    \texttt{POints [[n1] [n2]]} &
       Show all or read n1 or set n1 to n2 \\
-
       \end{tabular}
    \end{table}
 
@@ -1409,7 +1407,6 @@ to see what controls were available in each context.
       \caption{Part Waveform Commands}
       \label{table:yoshimi_part_waveform_commands}
       \begin{tabular}{l l}
-
    \texttt{[s]} &
       Directly set the basic waveform type by name. \\
    \texttt{HArmonic [n1] Amp [n2]} &
@@ -1467,7 +1464,6 @@ to see what controls were available in each context.
 
    \texttt{APply} &
       Fix settings (only for PadSynth). \\
-
       \end{tabular}
    \end{table}
 
@@ -1500,7 +1496,6 @@ to see what controls were available in each context.
       \caption{Engine Envelopes, Type}
       \label{table:yoshimi_engine_envelopes_types}
       \begin{tabular}{l l}
-
 \texttt{AMplitude} &
    Amplitude type. \\
 \texttt{FRequency} &
@@ -1509,7 +1504,6 @@ to see what controls were available in each context.
    Filter type. \\
 \texttt{BAndwidth} &
    Bandwidth type (SubSynth only). \\
-
       \end{tabular}
    \end{table}
 
@@ -1518,7 +1512,6 @@ to see what controls were available in each context.
       \caption{Engine Envelopes, Controls}
       \label{table:yoshimi_engine_envelopes_controls}
       \begin{tabular}{l l}
-
 \texttt{Expand [n]} &
    Envelope time on lower notes. \\
 \texttt{Force [s]} &
@@ -1527,7 +1520,6 @@ to see what controls were available in each context.
    Linear slopes (ON / other). \\
 \texttt{FMode [s]} &
    Set as Freemode (ON / other). \\
-
       \end{tabular}
    \end{table}
 
@@ -1536,7 +1528,6 @@ to see what controls were available in each context.
       \caption{Engine Envelopes, Fixed}
       \label{table:yoshimi_engine_envelopes_fixed}
       \begin{tabular}{l l}
-
 \texttt{Attack Level [n]} &
    Initial attack level. \\
 \texttt{Attack Time [n]} &
@@ -1551,7 +1542,6 @@ to see what controls were available in each context.
    Time to actual release. \\
 \texttt{Release Level [n]} &
    Level at envelope end. \\
-
       \end{tabular}
    \end{table}
 
@@ -1564,7 +1554,6 @@ Note: Some envelopes have limited controls.
       \caption{Engine Envelopes, Freemode}
       \label{table:yoshimi_engine_envelopes_freemode}
       \begin{tabular}{l l}
-
 \texttt{Points} &
    Number of defined points (read only). \\
 \texttt{Sustain [n]} &
@@ -1575,7 +1564,6 @@ Note: Some envelopes have limited controls.
    Remove point n. \\
 \texttt{Change [n1] [n2] [n3]} &
    Change point n1 to X increment n2, Y value n3. \\
-
       \end{tabular}
    \end{table}
 
@@ -1587,7 +1575,6 @@ Note: Some envelopes have limited controls.
       \caption{Engine Filters}
       \label{table:yoshimi_engine_filters}
       \begin{tabular}{l l}
-
 \texttt{CEnter [n]} &
    Center frequency. \\
 \texttt{Q [n]} &
@@ -1608,7 +1595,6 @@ Note: Some envelopes have limited controls.
    filter stages (1 to 5). \\
 \texttt{TYpe [s]} &
    Category dependent, and not formant filters.  See the filter types below.   \\
-
       \end{tabular}
    \end{table}
 
