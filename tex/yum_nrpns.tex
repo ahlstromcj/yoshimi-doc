@@ -22,7 +22,7 @@
    \textsl{Yoshimi}'s NRPNs, the controls can be sent on any MIDI channel.
 
 \subsection{NRPN / Basics}
-\label{subsection:nrpns_midi_nrpn_basics}
+\label{subsection:nrpns_midi_nrpn_basics}\
 
    NRPN stands for "Non Registered Parameters Number".
    NRPNs can control all System and Insertion effect parameters.
@@ -94,7 +94,7 @@
    For example, starting with \texttt{Dhigh} = 6 and \texttt{Dlow} = 20:
 
    Change \texttt{Dlow} to 15, and \textsl{Yoshimi} will regard this as a
-   command \texttt{Dhigh} 6 + \texttt{Dlow} 16.
+   command \texttt{Dhigh} 6 + \texttt{Dlow} 15.
    Alternatively, change
    \texttt{Dhigh} to 2, and \textsl{Yoshimi} will regard this as a
    command \texttt{Dhigh} 2 + \texttt{Dlow} 20.
@@ -406,7 +406,8 @@
    For System effects, if the Data MSB bit 5 (32) is set
    \textsl{and} Data MSB bit 6 (64) is set (i.e. a combined value of 96),
    then the command sets how much of one system effect is sent to another.
-   The range of values depend on which is the sending effect. It can't be sent to itself, or a lower numbered one.
+   The range of values depend on which is the sending effect. It can't be
+   sent to itself, or a lower numbered one.
 
    The MSB would be from 96 to 98, representing effect 2 to 4.
 
@@ -447,7 +448,11 @@
 
 \subsection{NRPN / Direct Part Controls}
 \label{subsection:nrpns_direct_part_control}
-   All of these controls are assigned to a specific part, regardless of what channel number it is on and in most cases doesn't even require the part to be enabled. They do however need to be in the current range available. i.e if the range is 32 parts, one can only set numbers 0 to 31.
+   All of these controls are assigned to a specific part, regardless of
+   what channel number it is on and in most cases doesn't even require the
+   part to be enabled. They do however need to be in the current range
+   available. i.e if the range is 32 parts, one can only set numbers 0 to
+   31.
 
    Data MSB is the control to be managed, and Data LSB is the value to set.
 
@@ -473,30 +478,30 @@
 \subsection{NRPN / Dynamic System Settings}
 \label{subsection:nrpns_dynamic_system_settings}
 
-   Almost all dynamic setup (i.e. that doesn't require a restart) can now be
-   done via NRPNs, so a MIDI file can manage \textsl{Yoshimi} starting from a
-   pretty random state, and set up important features like Bank and Program
-   Change behaviour and the number of available parts.
+   Almost all dynamic setup (i.e. that doesn't require a restart) can now
+   be done via NRPNs, so a MIDI file can manage \textsl{Yoshimi} starting
+   from a pretty random state, and set up important features like Bank and
+   Program Change behaviour and the number of available parts.
 
    In parallel with this setup, there is a command to list all of these
    settings. One can also list the available bank roots, the banks in any
-   root, and instruments in any bank, along with their numeric IDs. These IDs
-   can then be used with normal MIDI CCs to get exactly the instrument you
-   want at any time.
+   root, and instruments in any bank, along with their numeric IDs. These
+   IDs can then be used with normal MIDI CCs to get exactly the instrument
+   you want at any time.
 
-   This arrangement looks positively steam-punk, but is actually very easy to
-   use, requiring only a command line interface and any utility that can send
-   MIDI CCs. NRPNs aren't special. They are simply a specific pattern of CCs.
-   \textsl{Yoshimi}'s implementation is very forgiving, doesn't mind if you
-   stop halfway through (will just get on with other things while it waits),
-   and will report exactly what it is doing.  So ...
+   This arrangement looks positively steam-punk, but is actually very easy
+   to use, requiring only a command line interface and any utility that can
+   send MIDI CCs. NRPNs aren't special. They are simply a specific pattern
+   of CCs. \textsl{Yoshimi}'s implementation is very forgiving, doesn't
+   mind if you stop halfway through (will just get on with other things
+   while it waits), and will report exactly what it is doing.  So ...
 
    ... If \textsl{Yoshimi} has been started from the command line (but not
    necessarily in the no-GUI mode), all of the system settings that don't
-   require a restart can now be viewed by sending the appropriate NRPN. Most
-   of them can also be changed in this way.
-   To access this functionality, set NRPN MSB (CC 99) to 64 and NRPN LSB (CC
-   98) to 2 (8130).
+   require a restart can now be viewed by sending the appropriate NRPN.
+   Most of them can also be changed in this way.
+   To access this functionality, set NRPN MSB (CC 99) to 64 and NRPN LSB
+   (CC 98) to 2 (8130).
 
    After that send the following DATA values. Commands with LSB x don't
    actually use DATA LSB, but one still needs to send it (unless it has
@@ -516,7 +521,6 @@
   80    & root      & Set which CC will control Root path change (\textgreater119 disables) \\
   81    & bank      & Set wich CC will control Bank change (\textgreater119 disables) \\
   82    & \textgreater63       & Enable Program change otherwise disable \\
-  83    & \textgreater63       & Enable activation of part when program changed \\
   84    & extended  & Set CC control Extended program change (\textgreater119 disables) \\
   85    & parts     & Set number of available parts (16, 32 or 64) \\
   86    & x         & Save all dynamic settings \\

@@ -213,7 +213,7 @@
 
    \itempar{Part name}{parts!name}
    Instrument name. Click on this box to change the instrument (it will
-   open up the \textbf{Edit} window.
+   open up the current \textbf{Bank} window if it wasn't already open.
 
    \itempar{Volume Slider}{parts!volume}
    Volume Bar.
@@ -247,15 +247,15 @@
 
    \itempar{Edit}{parts!edit}
    The Edit button provides two function
-   Left mouse button: Part select.
-   Right mouse button: Instrument edit.
+   Left mouse button: Makes this the currently selected part.
+   Right mouse button: As above, but also opens the part edit window.
    This setup is a bit unintuitive, but the tooltips make it clear
    which click one might want to use.
 
    \itempar{Solo}{parts!solo}
    \index{channel switcher}
    \index{parts!channel switcher}
-   There are two basic commands that change the way
+   There are several basic commands that change the way
    \textsl{Yoshimi} responds to incoming MIDI,
    so that only one of a group of instruments will see note-on events, but all
    of the group will see note-off ones. These commands
@@ -277,8 +277,7 @@
    For these modes, if one has a programmable MIDI controller, one can set it
    up to activate a specific part, or to increment/decrement which part in the
    set is active.  The \textbf{Solo} drop-down list enables the feature for
-   either \textbf{Row} or \textbf{Col}umn mode, and also makes the CC spin-box
-   visible.
+   one of these mode, and also makes the CC spin-box visible.
    One uses this spin-box to set which incoming CC changes the part that gets
    new notes.
    The \textsl{value} this CC sends performs the actual change, instantly and
