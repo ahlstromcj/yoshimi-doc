@@ -243,7 +243,7 @@
       \item \textbf{Str}
       \item \textbf{Freq}
       \item \textbf{Scale}
-      \item \textbf{Full/Upper/Lower}
+      \item \textbf{Profile}
       \item \textbf{AmpMultiplier}
       \item \textbf{AmpMode}
       \item \textbf{Par1}
@@ -313,18 +313,10 @@
 
    Values: \texttt{0 to 127}
 
-   \itempar{Scale}{padsynth!harmonic scale}
-   Harmonic Scale.
-   Increasing this value preserves the shape of the spectrum, but widens it.
-
-   Values: \texttt{0 to 127}
-
-   \itempar{Full/Upper/Lower}{padsynth!harmonic fup}
+   \itempar{Profile}{padsynth!harmonic fup}
    Harmonic Sidebands.
    These menu entries select the full spectrum, or filter in only
    the upper sidebands of the spectrum, or the lower sidebands.
-
-   Values: \texttt{0 to 127}
 
 \begin{figure}[H]
    \centering
@@ -697,13 +689,20 @@
    This export dialog is a file dialog similar to other file dialogs
    in \textsl{Yoshimi}.
    It is a filer window for exporting a complete wavetable with the total number
-   of samples one has currently set. These don't include any changes in the sound
-   produced by controls in the envelopes window.
+   of samples one has currently set. These don't include any changes in the
+   sound produced by controls in the envelopes window.
 
 \subsubsection{PADsynth / Harmonic Structure / Retrigger}
 \label{subsubsec:padsynth_harmonic_structure_retrigger}
    This button opens a window for Random regeneration of the wavetable.
-   This dialog (new in \textsl{Yoshimi} V2.2.0) has yet to be described.
+
+   The sound from PadSynth can be soft and scintillating, yet after playing some
+   time, one will notice recurring patterns. This is due to the fixed
+   wavetables, which are built once and then looped for performance reasons.
+   However, each new set of wavetables will re-shuffle the phase information
+   randomly, and so we'll get a completely new patterning, whenever building all
+   wavetables from scratch. This is an expensive operation, but fortunately it
+   suffices to do it occasionally.
 
 \begin{figure}[H]
    \centering
@@ -711,6 +710,39 @@
    \caption{Random Walk Editor}
    \label{fig:padsynth_random_walk_editor}
 \end{figure}
+
+   \begin{enumber}
+      \item \textbf{Retrigger}
+      \item \textbf{Detune}
+      \item \textbf{Filter Freq}
+      \item \textbf{Bandwidth}
+      \item \textbf{Line Width}
+      \item \textbf{Profile Stretch}
+   \end{enumber}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+   \itempar{Retrigger} {} The sample time before recomputing, from 200ms to
+   60sec. Zero (left) disables retriggering completely.
+
+   At the above times the settings of the following controls will be read. They
+   each randomly change one characteristic of the wavetable by a varable amount
+   between 0 (off) and 599\%
+
+\itempar{Detune} {}Slightly change the note pitch
+
+\itempar{Filter freq} {}Nominal frequency of the filter, rsp. vowel position of
+the formant filter
+
+\itempar{Bandwidth} {}Spread of the harmonic profile
+
+\itempar{Line Width} {}Width of a single peak within the profile
+
+\itempar{Profile Stretch} {}Stretch out and modulate
+
+
+\textbf{Note}
+This extension to PadSynth is still experimental, and the precise control
+behaviour and ranges may change following experience and feedback from users.
 
 \subsubsection{PADsynth / Harmonic Structure / Resonance}
 \label{subsubsec:padsynth_harmonic_structure_resonance}

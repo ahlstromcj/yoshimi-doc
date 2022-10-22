@@ -628,20 +628,29 @@
 \subsubsection{Menu / Instrument / Clear}
 \label{subsubsec:menu_instrument_clear}
 
-   This menu entry simply clears the instrument that is loaded into the current
-   Part.  This converts the instrument to a
+   Normally this menu entry simply clears the instrument that is loaded into
+   the current Part.  This converts the instrument to a
    \textsl{Simple Sound} patch.
-   This menu entry brings up a prompt to clear the parameters of the
-   instrument that is currently loaded in the current part.
+   However, if the Ctrl key is held down when clicking on the entry, the entire
+   part will be returned to default values, including Controllers etc.
+
+   In either case, the menu entry brings up a prompt with details of exactly what
+   will be cleared.
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{2.0/ClearInstrument.png}
+   \includegraphics[scale=0.75]{2.2.2/ClearInstrument.png}
    \caption{Clear Instrument Dialog}
    \label{fig:clear_instrument_dialog}
 \end{figure}
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.75]{2.2.2/ClearPart.png}
+   \caption{Clear Part Dialog}
+   \label{fig:clear_part_dialog}
+\end{figure}
 
-   \textbf{No} is now the default action.
+   \textbf{No} is the default action.
 
 \subsubsection{Menu / Instrument / Search}
 \label{subsubsec:menu_instrument_search}
