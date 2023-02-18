@@ -24,8 +24,8 @@
    all aspects of the application can be controlled via text commands.
    This mode is useful for blind people, those with motor control problems
    and for programmers, for example.
-   These text commands can be put into a script file, and that script can then
-   be run.
+   These text commands can also be put into a script file, and that script
+   can then be run with full error checking.
 
    To access the command-line mode,
    add the \texttt{-i} or \texttt{--no-gui} command-line
@@ -484,7 +484,7 @@
 \texttt{?,  Help [s]} &
    Show commands (optional 's' = context level). \\
 \texttt{List [s]} &
-   List current information (optional 'ss = topic). \\
+   List current information (optional 's = topic). \\
 \texttt{STop} &
    All sound off.  Stop!  Panic! \\
 \texttt{RESet [s]} &
@@ -643,6 +643,8 @@
    current configuration \\
 \texttt{MLearn [s <n>]} &
    midi learned controls ('@' n for full details on one line) \\
+\texttt{SECtion ...} &
+   Copy/Paste section presets available for the current context. \\
 \texttt{History [s]} &
    recent files (Patchsets, SCales, STates, Vectors, MLearn) \\
 \texttt{Effects [s]} &
@@ -1589,12 +1591,14 @@ Note: Some envelopes have limited controls.
    Frequency tracking.  \\
 \texttt{Range [s]} &
    Extended tracking (ON, {other}) - goes from 0 to 198. \\
-\texttt{CAtegory [s]} &
-   Analog, Formant, State variable. \\
 \texttt{STages [n]} &
    filter stages (1 to 5). \\
+\texttt{CAtegory [s]} &
+   Analog, Formant, State variable. \\
 \texttt{TYpe [s]} &
    Category dependent, and not formant filters.  See the filter types below.   \\
+\texttt{EDit ...} &
+   Formant filter only. Enter the format editor. See below.   \\
       \end{tabular}
    \end{table}
 
@@ -1630,9 +1634,9 @@ Note: Some envelopes have limited controls.
 
 \texttt{Invert [s]} &
    Invert effect of LFOs, envelopes (ON, OFF). \\
-\texttt{FCenter [n]} &
+\texttt{CEnter [n]} &
    Center frequency of sequence. \\
-\texttt{FRange [n]} &
+\texttt{Range [n]} &
    Octave range of formant. \\
 \texttt{Expand [n]} &
    Stretch overall sequence time. \\
@@ -1647,16 +1651,16 @@ Note: Some envelopes have limited controls.
 \texttt{VOwel [n]} &
    Vowel being processed. \\
 \texttt{Point [n1] [n2]} &
-   Vowel n1 at sequence position n2. \\
+   Sequence position n1 vowel n2. \\
 \texttt{Formant [n]} &
    Formant being processed. \\
 \texttt{per formant} &
     \\
-\texttt{-  FFormant [n]} &
+\texttt{-  FRequency [n]} &
    Center frequency of formant. \\
-\texttt{-  FQ [n]} &
+\texttt{-  Q [n]} &
    Bandwidth of formant. \\
-\texttt{-  FGain} &
+\texttt{-  Gain} &
    Amplitude of formant. \\
       \end{tabular}
    \end{table}
@@ -2107,7 +2111,7 @@ Distortion presets:
 \texttt{- Q [n]} &
    Filter Q. \\
 \texttt{- STAges [n]} &
-   The number of filter stages. \\
+   The number of \textsl{extra} filter stages. \\
       \end{tabular}
    \end{table}
 EQ has no presets.

@@ -1596,13 +1596,12 @@ These parameters are:
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=1.0]{subpanels/Filter_Env.png}
+%   \includegraphics[scale=1.0]{subpanels/Filter_Env.png}
+    \includegraphics[scale=0.5]{2.2.3/filtenv.png}
    \caption[Filter Envelope Sub-Panel]{Filter Envelope Sub-Panel}
    \label{fig:filter_env}
 \end{figure}
 
-   The newest version of this panel spells out "Filter Envelope".
-   Not worth a new screen-shot.
    The items in this panel are:
 
    \begin{enumber}
@@ -1683,10 +1682,13 @@ These parameters are:
    sub-panel) value to \textsl{Formant}, and then clicking
    the \textbf{Edit} button that sits below the category drop-down list.
 
+   One should keep in mind that these controls are an \textsl{addition} to the
+   parent filter ones.
+
 \begin{figure}[H]
    \centering
 %  \includegraphics[scale=0.75]{zyn/formant_filter.png}
-   \includegraphics[scale=0.7]{2.0/AddSynthFormantFilter.png}
+   \includegraphics[scale=0.5]{2.2.3/formant.png}
    \caption[Formant Filter Editor]{Formant Filter Editor Dialog}
    \label{fig:formant_filter_editor}
 \end{figure}
@@ -1708,7 +1710,7 @@ These parameters are:
       \item \textbf{Seq.Size}
       \item \textbf{S.Pos.}
       \item \textbf{Vowel}
-      \item \textbf{Strtch}
+      \item \textbf{Stretch}
       \item \textbf{Neg Input}
    \end{enumber}
 
@@ -1745,8 +1747,25 @@ These parameters are:
    While making changes, one sees the respective knobs/sliders moving
    too; these are still fully functional.
 
+   Even though there may only be three or four formants per vowel enabled
+   and active, \textsl{Yoshimi} will store (and recover) all twelve possible
+   formants per vowel.
+   All six vowels are always available, and from the \textbf{main} filter
+   window a preset stores all of them, their formants and the sequence
+   information.
+
+   One should be aware though, that when actually in the formant editing
+   window itself \textbf{only} the formants of the currently selected vowel
+   will be stored as a preset. No other data at all.
+
+   Another trap for the unwary is that one can still edit vowels that are
+   not currently in use... and wonder why nothing seems to change. From
+   \textsl{Yoshimi} V 2.2.3 there is now a warning of this in the form of
+   a redish patch that appears behind the vowel number if it's not in use,
+   i.e. not seen in any sequence position.
+
    An important detail is that, uniquely, there is no 'default' value for
-   formant frequency. This value will be set randomly, but, once saved, will be
+   formant frequency. This value will be set randomly, but once saved, will be
    fixed like all the other controls.
 
    \itempar{Formants}{formants!number of}
@@ -1756,7 +1775,7 @@ These parameters are:
 
    \itempar{Fr.Sl}{formants!slowness}
    Formant Slowness.
-   This parameters prevents too-fast morphing between vowels.
+   This parameter prevents too-fast morphing between vowels.
 
    Values:  \texttt{0 to 127, 64*}
 
@@ -1769,15 +1788,15 @@ These parameters are:
 
    \itempar{C.f}{formants!cf}
    Center Frequency.
-   This slider control changes the center frequency of the graph, in relative
-   units.  Not quite sure how to describe this one, so play with the slider and
-   see (and hear) for oneself.
+   This slider changes the center frequency of the entire filter, in relative
+   units.
 
    Values:  \texttt{0.09 to 10.00, 1.0*}
 
    \itempar{Oct}{formants!octaves}
    Number of Octaves.
-   This slider controls the number of octaves shown in the graph.
+   This slider controls the frequency range of the entire filter shifting and
+   expanding / compressing each formant by a scaled amount.
 
    Values:  \texttt{0 to 10}
 
@@ -1788,18 +1807,18 @@ These parameters are:
    Vowel Number.
    The number of the current vowel.
    Each number represents a different vowel, and leads to a gross change in the
-   shape of the formant spectrum.
-   We do not yet have a mapping between the numbers and which vowel is
-   represented.
+   shape of the formant spectrum. The display only shows the formants of the
+   currently seleved vowel, and the yellow line identifies which one is being
+   managed. There is no overal view.
 
-   Values:  \texttt{0 to 5}
+   Values:  \texttt{1 to 6}
 
    \itempar{Formant}{formants!number}
    Formant Number.
    The current formant to be emphasised or modified.  The vertical marker in
    the graph moves as this value is changed.
 
-   Values:  \texttt{0 to 11}
+   Values:  \texttt{1 to 12}
 
    \itempar{freq}{formants!frequency}
    Formant Frequency.
@@ -1826,38 +1845,37 @@ These parameters are:
 \paragraph{Formant Sequence Parameters}
 \label{paragraph:formant_sequence_parameters}
 
-   The sequence represents what vowel is selected to sound according to the
-   input from the filter envelopes and LFO's.
-   We need to learn a bit about how this setup actually works.
+   The sequence represents the order in which each vowel will sound when
+   traversing the input from the filter envelopes and LFO's.
 
    \itempar{Seq Size}{formants!seq size}
    Sequence Size.
    The number of vowels in the sequence.
 
-   Values:  \texttt{1 to 7}
+   Values:  \texttt{1 to 6}
 
    \itempar{S.Pos}{formants!seq position}
    Sequence Position.
    The current position of the sequence.
 
-   Values:  \texttt{0 to 6}
+   Values:  \texttt{1 to 8}
 
    \itempar{Vowel}{formants!vowel position}
    Vowel Position.
-   The vowel from the current position.
+   The vowel used at the current position.
 
-   Values:  \texttt{0 to 5}
+   Values:  \texttt{1 to 6}
 
-   \itempar{Strtch}{formants!seq stretch}
+   \itempar{Stretch}{formants!seq stretch}
    How the sequence is stretched.
-   This number probably means that the duration of the sequence decreases as
-   the pitch of the selected notes increase.
+   This number gives the duration of the sequence relative to
+   the pitch of the notes playing.
 
    Values:  \texttt{0 to 127}
 
    \itempar{Neg Input}{formants!reversed}
    Negative Input.
-   If enabled, the input from the envelope or LFO control is reversed.
+   If enabled, the input from the envelope or LFO control is reversed. The effect of this can be quite subtle.
 
    Values:  \texttt{off, on}
 
