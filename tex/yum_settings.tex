@@ -176,21 +176,29 @@
    These controls pack better without looking crowded, are easier to manage,
    with clearer indication.
 
+   Since version 2.3.0 one will see colour changes of knob pointers and slider 'peg' centres if the controls are not at their default positions. The defaults are with black knob pointers and green slider pegs.
+   \begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.75]{2.3.0/defaults.png}
+   \caption{Controls Changed}
+   \label{fig:changed_controls}
+\end{figure}
+
 \subsubsection{Presets}
 \label{subsubsec:stock_settings_elements_presets}
 
    \index{preset}
    The \textsl{Yoshimi} concept of presets is very powerful.
 
-   Absolutely every user-interface section that has blue \textbf{C}
+   Absolutely every user-interface section that has dark blue \textbf{C}
    and \textbf{P} buttons can be
    stored in the \texttt{presets} directory. That includes entire Addsynth
    engines! When one looks at the copy/paste buffer, one sees only items that
    are relevant to the group that the C/P buttons are in.
 
    As one wants to save, as well as load, these presets, it makes sense to copy
-   all the default ones to a location such as
-   \texttt{\textasciitilde/.config/yoshimi/presets}.
+   all the default ones to preferred location
+   \texttt{\textasciitilde/.local/share/yoshimi/presets}.
    That makes them fully accessible, but
    tucked away out of sight.  \textsl{Yoshimi} creates this directory at first
    time start up.
@@ -198,7 +206,7 @@
    settings for any of the components which support copy/paste operations.
    This is done with preset files (\texttt{.xpz}), which get stored in the
    folders indicated by \textbf{Paths / Preset Dirs...}.
-   Note that the number of preset directories that can be set is limited to 1000 (unlike roots and banks).
+   Note that the number of preset directories that can be set is limited to 128 (like roots and banks).
 
 \subsubsection{Automation}
 \label{subsubsec:stock_settings_elements_automation}

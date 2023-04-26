@@ -49,14 +49,14 @@
 \makeindex
 
 \begin{document}
-\title{Yoshimi Advanced Reference Manual, v 2.2.3}
+\title{Yoshimi Advanced Reference Manual, v 2.3.0}
 \author{Chris Ahlstrom \texttt{(ahlstromcj@gmail.com)} with Will J. Godfrey}
 \date{\today}
 \maketitle
-
+PROVISIONAL
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.60]{2.2.0/Main.png}
+   \includegraphics[scale=0.60]{2.3.0/Main.png}
 \end{figure}
 
 \clearpage                             % moves Contents to next page
@@ -140,6 +140,16 @@
    There are new features for the command-line interface, and many internal
    fixes to reduce the likelihood of "xruns", static, clicks, or other
    performance issues.
+
+\subsubsection{New for Version 2.3.0}
+\label{subsubsec:new_features_2_3_0}
+The most obvious development with this release is the ability to create and select different colour themes covering the whole of the graphic interface. These can be applied immediately on a running \textsl{Yoshimi} instance. At the same time \textsl{action} and \textsl{link} buttons have been changed to make them more obviously different. On advice received, identification uses both colour and button shape.
+
+It was noticed that some users were not aware that many buttons were MIDI-learnable, so the way these are represented has also been changed. All sliders are learnable as are all rotary 'knobs' (as before). Now, all check boxes, buttons, menus, spin boxes and number rollers that have blue bold italic labels are learnable. This is much more obvious than previously.
+
+Additionally, sliders and knobs now identify when they are at their default setting. With knobs, the pointer is black, and red when at any other position. With slider the 'peg' has a green centre which again becomes red when changed.
+
+Under the hood is a less obvious but highly significant improvement. A range of controls that were saved as stepped 0 to 127 values are now saved as high resolution values. However this is done in a way that is completely both forward and backward compatible. Old files can be accurately read, and new files can be read by older \textsl{Yoshimi} verisons at their native resolution.
 
 \subsubsection{New for Version 2.2.0}
 \label{subsubsec:new_features_2_2_0}
@@ -602,7 +612,7 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=1.0]{1.7.2/CompatibilityWarning.png}
+   \includegraphics[scale=1.0]{2.3.0/compatibilitywarning.png}
    \caption{Compatibility Warning}
    \label{fig:compatibiilty_warning}
 \end{figure}
@@ -746,7 +756,7 @@
 \begin{figure}[H]
    \centering
 %  \includegraphics[scale=0.60]{2.0/Front.png}
-   \includegraphics[scale=0.60]{2.2.0/Main.png}
+   \includegraphics[scale=0.60]{2.3.0/Main.png}
    \caption{Yoshimi Main Screen}
    \label{fig:yoshimi_main_screen}
 \end{figure}
@@ -757,24 +767,14 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{1.5.11/first_time_info.png}
+   \includegraphics[scale=1.0]{2.3.0/firsttime.png}
    \caption{First Time Prompt}
    \label{fig:first_time_info}
 \end{figure}
 
-
    Note that, if one presses the \texttt{Space} bar while the main window has
-   keyboard focus (right after starting \textsl{Yoshimi}), the following prompt
-   appears:
+   keyboard focus The AddSynth engine of Part 1 is toggled on or off. With other windows various checkboxes are likely to be toggled. This is under investigation!
 
-\begin{figure}[H]
-   \centering
-   \includegraphics[scale=0.75]{2.0/DefaultWarn.png}
-   \caption{Space Bar Prompt}
-   \label{fig:yoshimi_main_spacebar_prompt}
-\end{figure}
-
-   Be careful!
    For this manual, the main window is composed of the following sections:
 
 \begin{enumber}
