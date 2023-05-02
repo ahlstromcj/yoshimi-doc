@@ -418,16 +418,12 @@
       \item \textbf{Close}
    \end{enumber}
 
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
    \itempar{Pwh}{vkdb!pitch bend}
    Pitch bend knob. Pitch wheel.
    This item is now a slider control.  To reset it to the middle position,
    right-click within the slider.
-
-%  Press the \textbf{R} button to reset it.
-%
-%  \itempar{R}{vkdb!reset pitch bend}
-%  Reset Pitch Bend.
-
    \itempar{Midi Channel}{vkdb!midi channel}
    MIDI Channel.
    Sets the MIDI channel for the virtual keyboard.
@@ -467,11 +463,13 @@
 
    \itempar{Controller}{vkdb!controller}
    Keyboard Controller.
-
-   Values: \texttt{01:Mod.Wheel, 07:Volume, 10:Panning,
+   \begin{quote}
+   Values:\\
+   \texttt{01:Mod.Wheel, 07:Volume, 10:Panning,
       11:Expression, 64:Sustain, 65:Portamento, 71:Filter Q,
       74:Filter Freq*, 75:Bandwidth, 76:FM Gain,
       77:Res.c.freq, 78:Res.bw.}
+    \end{quote}
 
    Sets the controller to be changed according to the \textbf{Cval}
    controller.
@@ -480,12 +478,11 @@
    \itempar{Cval}{vkdb!controller value}
    Controller value.
    Changes the controller value.
-   This item consists of two parts.  The top part shows a tiny
-   number representing the current value of the selected controller.
-   The bottom part is a combination value-bar and slider that one
-   can move up and down with the mouse, to change the controller value.
-   Note that the \textbf{Cval} value might not reflect the
-   internal value of the controller when one changes the controller.
+   This item is a combination value-bar and slider that one
+   can move up and down with the mouse, to change the controller value. The
+   numeric value is indicated with a dynamic tooltip. Note that the value might
+   not reflect the internal value of the controller when one changes the
+   controller.
 
    Values: \texttt{1 to 127, 96*}
 

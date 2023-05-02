@@ -455,40 +455,41 @@
 
    Values: \texttt{11 to 100, 12*}
 
-   % VVV not since V 1.5.6!
-%   \index{reports!middle-click}
-%   An interesting feature of the console window is that one can identify
-%   user-interface elements of the \textsl{Yoshimi} configuration in this window
-%   by a middle-click on the user-interface element.
-%   (Unfortunately, those new single-button touchpads make it impossible to
-%   provide a middle-click, so one would need a mouse!)
+\iffalse
+    VVV not since V 1.5.6!
+   \index{reports!middle-click}
+   An interesting feature of the console window is that one can identify
+   user-interface elements of the \textsl{Yoshimi} configuration in this window
+   by a middle-click on the user-interface element.
+   (Unfortunately, those new single-button touchpads make it impossible to
+   provide a middle-click, so one would need a mouse!)
 
-%  The console window figure shows the results of middle-clicking on the
-%  following bottom-panel knobs in order:
+  The console window figure shows the results of middle-clicking on the
+  following bottom-panel knobs in order:
 
-%  \begin{enumerate}
-%     \item Velocity Sense (left-click)
-%     \item Velocity Offset
-%     \item Pan
-%     \item Volume
-%  \end{enumerate}
+  \begin{enumerate}
+     \item Velocity Sense (left-click)
+     \item Velocity Offset
+     \item Pan
+     \item Volume
+  \end{enumerate}
 
-%   \index{reports!middle-click}
-%   Information about each knob middle-clicked is pushed to the top of the
-%   windows in reverse order.
-%   \index{reports!left-click}
-%   \index{reports!right-click}
-%   Information about an earlier left-click is shown at the bottom of the figure.
-%%   Each left-click ("Button 1") will increase the parameter represented by the
-%   knob, and each right-click ("Button3") will decrease the parameter
-%   represented by the knob, and each change is reported in the console window.
-%   And, of course, each middle-click changes nothing, but reports the current
-%   value in the console window.
-%   This feature lets one gather the information needed to
-%   control the parameter from the command-line.
-%   The output can be selected, copied, and pasted to a script or archive text
-%   file for safe-keeping.
-
+   \index{reports!middle-click}
+   Information about each knob middle-clicked is pushed to the top of the
+   windows in reverse order.
+   \index{reports!left-click}
+   \index{reports!right-click}
+   Information about an earlier left-click is shown at the bottom of the figure.
+   Each left-click ("Button 1") will increase the parameter represented by the
+   knob, and each right-click ("Button3") will decrease the parameter
+   represented by the knob, and each change is reported in the console window.
+   And, of course, each middle-click changes nothing, but reports the current
+   value in the console window.
+   This feature lets one gather the information needed to
+   control the parameter from the command-line.
+   The output can be selected, copied, and pasted to a script or archive text
+   file for safe-keeping.
+\fi
    \itempar{Saved instrument Format}{Main Settings!instrument file format}
    This new (1.5.5) feature provides a choice between the old instrument
    format and a new format.
@@ -1079,37 +1080,6 @@
 
    Values: \texttt{Off, On*}
 
-   From \textsl{Yoshimi} Version 2.3.0 one can change the colours of almost all parts of all windows. A slight variation of the original colours is now called 'classic', and this will always be available. There is also quite an extreme demonstration of what is possible.
-\paragraph{Menu / Yoshimi / Settings / Theme}
-\label{paragraph:menu_yoshimi_settings_themes}
-
-\begin{figure}[H]
-   \centering
-   \includegraphics[scale=0.5]{2.3.0/theme.png}
-   \caption[Theme Options]{The New Theme Tab}
-   \label{fig:yoshimi_settings_themes}
-\end{figure}
-
-   The following items are provided by the Theme settings tab:
-
-   \begin{enumber}
-      \item \textbf{Installed Themes Menu}
-      \item \textbf{Import Theme}
-      \item \textbf{Default Theme Display}
-      \item \textbf{Current Theme Display}
-      \item \textbf{Make Default}
-   \end{enumber}
-
-   \textbf{Installed Themes Menu} A click on an entry will immediately switch to that theme.
-
-   \textbf{Import Theme} Themes can be found via the file manager and installed with this button. Any new themes one installs will show in the menu next time the window is refreshed.
-
-   \textbf{Default Theme Display} Shows the name of the theme currently set as the default one.
-
-    \textbf{Current Theme Display} Shows the currently selected theme (which may be different to the default).
-
-   \textbf{Make Default} Sets the currently displayed theme as the new default one.
-
 \subsubsection{Menu / Yoshimi / MIDI Learn...}
 \label{subsubsec:menu_yoshimi_midi_learn}
 
@@ -1121,6 +1091,15 @@
    There's enough to say about this topic so that we describe it in a section
    of its own.
    See \sectionref{sec:midi_learn}\hspace{4pt}for details.
+
+\subsubsection{Menu / Yoshimi / Themes...}
+\label{subsubsec:menu_yoshimi_themes}
+    From \textsl{Yoshimi} Version 2.3.0 one can change the colours of almost
+    all parts of all windows. A slight variation of the original colours is now
+    called 'classic', and this will always be available. There is also quite an
+    extreme demonstration of what is possible.
+
+    See \sectionref{sec:themes}\hspace{4pt}for full details.
 
 \subsubsection{Menu / Yoshimi / View Manual...}
 \label{subsubsec:menu_yoshimi_view_manual}
