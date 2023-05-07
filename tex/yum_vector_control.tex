@@ -125,7 +125,7 @@
 \begin{figure}[H]
    \centering
 %  \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-dialog.png}
-   \includegraphics[scale=0.75]{1.4.1/Vectors.png}
+   \includegraphics[scale=0.75]{2.3.0/vector.png}
    \caption{Yoshimi Vectors Dialog}
    \label{fig:yoshimi_vectors_dialog}
 \end{figure}
@@ -191,7 +191,7 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-options.png}
+   \includegraphics[scale=0.75]{2.3.0/vector_options.png}
    \caption{Yoshimi Vectors Options}
    \label{fig:yoshimi_vectors_options}
 \end{figure}
@@ -240,9 +240,21 @@
    If 0, the section (\textbf{X} or \textbf{Y}) that this value is in, is
    disabled.  Otherwise, the number is the MIDI continuous controller (CC)
    event value that is to be used to control the mix of the two parts involved
-   in this vector.
+   in this vector. If the number of parts was 16, this will be changed to 32.
 
    Values: \texttt{0, 14 to 119, 0*}
+
+   \itempar{Y Vector}{Vectors!y}
+   The Y Vector.
+   This vector provides the maximal setup for a vector.  This setup requires
+   \textsl{Yoshimi} to be configured for 64 parts, to be able to support an
+   additional two-part vector for every MIDI channel.  This section is
+   disabled until a \textbf{Controller} event value has been selected for it.
+   At this point, if number of parts was 32 or 16 it will be set to 64.
+
+   Other than that, the \textbf{Y} vector acts like the \textbf{X} vector, and
+   all of the sub-items have the same functionality as in the
+   \textbf{X} vector.
 
    \itempar{Part 1}{Vectors!part 1}
    Part 1.
@@ -268,7 +280,7 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-feature-1.png}
+   \includegraphics[scale=0.75]{2.3.0/vector_feature_1.png}
    \caption{Yoshimi Vectors, Feature 1}
    \label{fig:yoshimi_vectors_feature_1}
 \end{figure}
@@ -288,7 +300,7 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-feature-2.png}
+   \includegraphics[scale=0.75]{2.3.0/vector_feature_2.png}
    \caption{Yoshimi Vectors, Feature 2}
    \label{fig:yoshimi_vectors_feature_2}
 \end{figure}
@@ -300,14 +312,14 @@
    Brightness here refers to the application of a low-pass filter
    with a varying cutoff frequency.
    This feature can be disabled, enabled, or reversed.
-   When enabled, it acts similarly to volume, changing the brightness
-   from left to right as the data value increases.
-   When reversed, it changes the brightness from right to left as the data
-   value increases.
+   When enabled, it acts similarly to volume, changing the brightness but as
+   this is shown for the Y axis movement will be down to up as the data value
+   increases.  When reversed, it changes the brightness from up to down as the
+   data value increases.
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-feature-3.png}
+   \includegraphics[scale=0.75]{2.3.0/vector_feature_3.png}
    \caption{Yoshimi Vectors, Feature 3}
    \label{fig:yoshimi_vectors_feature_3}
 \end{figure}
@@ -319,34 +331,23 @@
    Modulation here refers to the application of an LFO
    (for amplitude or frequency) with a varying modulation depth.
    This feature can be disabled, enabled, or reversed.
-   When enabled, it acts similarly to volume, changing the modulation
-   from left to right as the data value increases.
-   When reversed, it changes the modulation from right to left as the data
-   value increases.
+   When enabled, it acts similarly to volume, changing the modulation but as
+   this is shown for the Y axis movement will be down to up as the data value
+   increases.  When reversed, it changes the modulation from up to down as the
+   data value increases.
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-feature-4.png}
+   \includegraphics[scale=0.75]{2.3.0/vector_feature_4.png}
    \caption{Yoshimi Vectors, Feature 4}
    \label{fig:yoshimi_vectors_feature_4}
 \end{figure}
 
    Values: \texttt{Off*, Mod, Mod R}
 
-   \itempar{Y Vector}{Vectors!y}
-   The Y Vector.
-   This vector provides the maximal setup for a vector.  This setup requires
-   \textsl{Yoshimi} to be configured for 64 parts, to be able to support an
-   additional two-part vector for every MIDI channel.  This section is
-   disabled until a \textbf{Controller} event value has been selected for it.
-
-   Other than that, the \textbf{Y} vector acts like the \textbf{X} vector, and
-   all of the sub-items have the same functionality as in the
-   \textbf{X} vector.
-
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{1.4.0/yoshimi-vectors-saved.png}
+   \includegraphics[scale=0.75]{2.3.0/vector_saved.png}
    \caption{Yoshimi Vectors Saved as "My First Vector"}
    \label{fig:yoshimi_vectors_saved}
 \end{figure}

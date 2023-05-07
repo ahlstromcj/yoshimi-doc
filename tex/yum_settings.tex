@@ -176,21 +176,29 @@
    These controls pack better without looking crowded, are easier to manage,
    with clearer indication.
 
+   Since version 2.3.0 one will see colour changes of knob pointers and slider 'peg' centres if the controls are not at their default positions. The defaults are with black knob pointers and green slider pegs.
+   \begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.75]{2.3.0/defaults.png}
+   \caption{Controls Changed}
+   \label{fig:changed_controls}
+\end{figure}
+
 \subsubsection{Presets}
 \label{subsubsec:stock_settings_elements_presets}
 
    \index{preset}
    The \textsl{Yoshimi} concept of presets is very powerful.
 
-   Absolutely every user-interface section that has blue \textbf{C}
+   Absolutely every user-interface section that has dark blue \textbf{C}
    and \textbf{P} buttons can be
    stored in the \texttt{presets} directory. That includes entire Addsynth
    engines! When one looks at the copy/paste buffer, one sees only items that
    are relevant to the group that the C/P buttons are in.
 
    As one wants to save, as well as load, these presets, it makes sense to copy
-   all the default ones to a location such as
-   \texttt{\textasciitilde/.config/yoshimi/presets}.
+   all the default ones to preferred location
+   \texttt{\textasciitilde/.local/share/yoshimi/presets}.
    That makes them fully accessible, but
    tucked away out of sight.  \textsl{Yoshimi} creates this directory at first
    time start up.
@@ -198,7 +206,7 @@
    settings for any of the components which support copy/paste operations.
    This is done with preset files (\texttt{.xpz}), which get stored in the
    folders indicated by \textbf{Paths / Preset Dirs...}.
-   Note that the number of preset directories that can be set is limited to 1000 (unlike roots and banks).
+   Note that the number of preset directories that can be set is limited to 128 (like roots and banks).
 
 \subsubsection{Automation}
 \label{subsubsec:stock_settings_elements_automation}
@@ -682,7 +690,7 @@
 \begin{figure}[H]
    \centering
 %  \includegraphics[scale=0.8]{2.0/Resonance.png}
-   \includegraphics[scale=0.5]{2.1.2/resonance.png}
+   \includegraphics[scale=0.75]{2.3.0/resonance.png}
    \caption{ADDsynth/PADsynth Resonance}
    \label{fig:addsynth_resonance}
 \end{figure}
@@ -766,7 +774,7 @@
 
    \begin{figure}[H]
       \centering
-      \includegraphics[scale=0.8]{2.0/ResonanceSource.png}
+      \includegraphics[scale=0.8]{2.3.0/resonance_source.png}
       \caption{ADDsynth/PADsynth Resonance Edit}
       \label{fig:addsynth_resonance_edit}
    \end{figure}
@@ -778,7 +786,7 @@
 
    \begin{figure}[H]
       \centering
-      \includegraphics[scale=0.8]{2.0/ResonanceInterpolated.png}
+      \includegraphics[scale=0.8]{2.3.0/resonance_interpolated.png}
       \caption{ADDsynth/PADsynth Resonance Interpolated}
       \label{fig:addsynth_resonance_interpolated}
    \end{figure}
@@ -820,7 +828,7 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.8]{2.0/ResonanceSmoothed.png}
+   \includegraphics[scale=0.8]{2.3.0/resonance_smoothed.png}
    \caption{ADDsynth/PADsynth Resonance Smoothed}
    \label{fig:addsynth_resonance_smoothed}
 \end{figure}
@@ -1316,12 +1324,12 @@ These parameters are:
 \subsubsection{Envelope Settings}
 \label{subsubsec:envelope_settings}
 
-   This section describes the \textbf{Amplitude Envelope Editing} window.
+   This section describes the \textbf{Amplitude Envelope Editing} window. The behaviour of the Filter and Frequency envelopes is identical.
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.8]{2.0/AddSynthAmpEnv.png}
-   \caption{Amplitude/Filter/Frequency Envelope Editor}
+   \includegraphics[scale=0.8]{2.3.0/freemode_off.png}
+   \caption{Amplitude Envelope Editor}
    \label{fig:amplitude_envelope_editor}
 \end{figure}
 
@@ -1365,8 +1373,8 @@ These parameters are:
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.8]{2.0/AddSynthAmpEnvFree.png}
-   \caption{Amplitude/Filter/Frequency Envelope Freemode Editor}
+   \includegraphics[scale=0.8]{2.3.0/freemode_edit.png}
+   \caption{Amplitude Envelope Freemode Editor}
    \label{fig:amplitude_envelope_freemode}
 \end{figure}
 
@@ -1688,7 +1696,7 @@ These parameters are:
 \begin{figure}[H]
    \centering
 %  \includegraphics[scale=0.75]{zyn/formant_filter.png}
-   \includegraphics[scale=0.5]{2.2.3/formant.png}
+   \includegraphics[scale=0.75]{2.3.0/formant.png}
    \caption[Formant Filter Editor]{Formant Filter Editor Dialog}
    \label{fig:formant_filter_editor}
 \end{figure}
@@ -1937,7 +1945,7 @@ These parameters are:
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{1.6.0/Filter_Copy.png}
+   \includegraphics[scale=0.75]{2.3.0/copy.png}
    \caption[Copy to Clipboard/Presets]{Copy to Clipboard/Presets}
    \label{fig:copy_to_clipboard/presets}
 \end{figure}
@@ -1946,7 +1954,7 @@ These parameters are:
 
    \itempar{Type}{clipboard!copy type}
    Section type for copying.
-   This field indicates the context (e.g "envfilter" - a filter envelope), also the
+   This field indicates the context (e.g "effect" - an effect envelope), also the
    name of the section from which the data will be copied.
    If the preset is saved/copied to a file, this field becomes the second part of
    the preset's file-name.
@@ -1970,7 +1978,7 @@ These parameters are:
    Be sure to set up a current preset directory where ordinary users have
    write permissions!
    A good choice for a preset directory is
-   \texttt{\textasciitilde/.config/yoshimi/presets}.
+   \texttt{\textasciitilde/.local/share/yoshimi/presets}.
    \index{preset files!.ADnoteParameters.xpz}
    The file-name of the of the preset will be a non-hidden file such as
 
@@ -2013,7 +2021,7 @@ These parameters are:
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{1.6.0/Frequency_Paste.png}
+   \includegraphics[scale=0.75]{2.3.0/paste.png}
    \caption[Paste from Preset]{Paste from Preset}
    \label{fig:paste_to_clipboard}
 \end{figure}
@@ -2029,7 +2037,7 @@ These parameters are:
 
    \itempar{Type}{clipboard!paste type}
    Clipboard/Preset type for pasting.
-   This field indicates the context (e.g "envfrequency") or name of the
+   This field indicates the context (e.g "effect") or name of the
    section to which the data will be copied.
 
    \itempar{Preset list}{preset!list}

@@ -149,8 +149,8 @@
    The mixer provides a global view of the most important
    adjustable parameters of all of the defined parts.
    There are two views, a 2x8 view and a 2x16 view.
-   See \figureref{fig:yoshimi_part_panel_2x8}, which
-   shows the 2x8 view.
+   See \figureref{fig:yoshimi_part_panel_1x16}, which
+   shows the 1x16 view.
 
    The Mixer Panel Window acts like a mixer and allows one to edit some important
    part parameters, such as Instrument choice, Volume, Panning, etc.\\
@@ -190,12 +190,12 @@
 %  \includegraphics[scale=0.75]{top-panel/yoshimi-panel-2x8-1_5.jpg}
 %  \includegraphics[scale=0.75]{1.5.0/Mixer8.png}
 %  \includegraphics[scale=0.75]{1.5.7/Mixer8.png}
-   \includegraphics[scale=0.75]{1.5.11/Mixer8.png}
-   \caption[Yoshimi Mixer Panel]{Yoshimi Mixer Panel, 2x8 View}
-   \label{fig:yoshimi_part_panel_2x8}
+   \includegraphics[scale=0.75]{2.3.0/mixer.png}
+   \caption[Yoshimi Mixer Panel]{Yoshimi Mixer Panel, 1x16 View}
+   \label{fig:yoshimi_part_panel_1x16}
 \end{figure}
 
-   Note that there is also a 1x16 version of this dialog (not shown).
+   Note that there is also a 2x8 version of this dialog (not shown).
    This dialog has been further updated; as well as the \textbf{Solo}
    control, (described below) it now presents separate left and right
    VU meter bars.
@@ -262,7 +262,7 @@
    are both in the \textbf{Mixer Panel}, as shown below.
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{1.5.11/MixerSwitch8.png}
+   \includegraphics[scale=0.55]{2.3.0/solo.png}
    \caption[Yoshimi Mixer Panel]{Yoshimi Mixer Panel, Solo}
    \label{fig:yoshimi_part_panel_solo}
 \end{figure}
@@ -396,7 +396,7 @@
 \begin{figure}[H]
    \centering
 %  \includegraphics[scale=1.0]{top-panel/yoshimi-virtual-keyboard.jpg}
-   \includegraphics[scale=1.0]{1.5.0/Keyboard.png}
+   \includegraphics[scale=1.0]{2.3.0/keyboard.png}
    \caption{Yoshimi Virtual Keyboard}
    \label{fig:yoshimi_virtual_keyboard}
 \end{figure}
@@ -418,16 +418,12 @@
       \item \textbf{Close}
    \end{enumber}
 
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
    \itempar{Pwh}{vkdb!pitch bend}
    Pitch bend knob. Pitch wheel.
    This item is now a slider control.  To reset it to the middle position,
    right-click within the slider.
-
-%  Press the \textbf{R} button to reset it.
-%
-%  \itempar{R}{vkdb!reset pitch bend}
-%  Reset Pitch Bend.
-
    \itempar{Midi Channel}{vkdb!midi channel}
    MIDI Channel.
    Sets the MIDI channel for the virtual keyboard.
@@ -467,11 +463,13 @@
 
    \itempar{Controller}{vkdb!controller}
    Keyboard Controller.
-
-   Values: \texttt{01:Mod.Wheel, 07:Volume, 10:Panning,
+   \begin{quote}
+   Values:\\
+   \texttt{01:Mod.Wheel, 07:Volume, 10:Panning,
       11:Expression, 64:Sustain, 65:Portamento, 71:Filter Q,
       74:Filter Freq*, 75:Bandwidth, 76:FM Gain,
       77:Res.c.freq, 78:Res.bw.}
+    \end{quote}
 
    Sets the controller to be changed according to the \textbf{Cval}
    controller.
@@ -480,12 +478,11 @@
    \itempar{Cval}{vkdb!controller value}
    Controller value.
    Changes the controller value.
-   This item consists of two parts.  The top part shows a tiny
-   number representing the current value of the selected controller.
-   The bottom part is a combination value-bar and slider that one
-   can move up and down with the mouse, to change the controller value.
-   Note that the \textbf{Cval} value might not reflect the
-   internal value of the controller when one changes the controller.
+   This item is a combination value-bar and slider that one
+   can move up and down with the mouse, to change the controller value. The
+   numeric value is indicated with a dynamic tooltip. Note that the value might
+   not reflect the internal value of the controller when one changes the
+   controller.
 
    Values: \texttt{1 to 127, 96*}
 
