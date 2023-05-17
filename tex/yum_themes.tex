@@ -6,7 +6,7 @@
 % \library     Documents
 % \author      Will Godfrey
 % \date        2023-05-01
-% \update      2023-05-01
+% \update      2023-05-17
 % \version     $Revision$
 % \license     $XPC_GPL_LICENSE$
 %
@@ -111,6 +111,23 @@
    The first entry (Grey scale) is placed here as it will significantly affect
    most of the others, so one should decide on this first. Notice it can be
    reversed such that light and dark shades are swapped.
+
+   If the greyscale min and max are both set to 127, Yoshimi becomes entirely
+   monochrome and all features are scaled according to the average of their
+   R,G,B settings. This is particularly useful for assessing the likely
+   appearance under poor lighting conditions. Alternatively one can add on
+   three R,G,B values to the greyscale line which will then provide a colour
+   tint to elements that have a grey content.
+
+   It's not possible to have both color and monochrome together, but the theme
+   can be tinted to a single color..
+   As an example:
+
+   \begin{verbatim}
+    0,255,240,160,80, Grey scale min-max (can be reversed) optional + R,G,B, (tint)
+   \end{verbatim}
+
+   This gives a sort of brick-orange tint to everything.
 
    For all the following entries, and as hinted on the 'Panels' line, (and given
    as an example on the Knob highlight line) one can use either R, G, B, numbers
