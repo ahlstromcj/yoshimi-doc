@@ -546,7 +546,7 @@
    a pretty good description of how the vowels and formants interact and are
    laid out, there is an extremely important bit of information missing!  The
    filter lays out the sequence (or sequences if there are multiple vowels) but
-   it is the filter \textsl{envelope} that set the rate and degree to which
+   it is the filter \textsl{envelope} that sets the rate and degree to which
    these are traversed. Also, the richer the original harmonic content the more
    pronounced the effect will be (quite useless on sine wave).
 
@@ -581,7 +581,7 @@
    \itempar{C.freq}{cutoff frequency}
    \index{center frequency}
    Cutoff frequency or center frequency.
-   This items has various definitions in the literature.
+   This item has various definitions in the literature.
    Usually it refers to the frequency at which the level
    drops to 3dB below the maximum level.
    In various dialogs, this value is the
@@ -1773,8 +1773,10 @@ These parameters are:
    i.e. not seen in any sequence position.
 
    An important detail is that, uniquely, there is no 'default' value for
-   formant frequency. This value will be set randomly, but once saved, will be
-   fixed like all the other controls.
+   formant frequency. This value will be set randomly when the filter
+   is created, and a pseudo-default value is set. When saved, it is the
+   \textbf{current} postion that becomes the default value just for the
+   saved copy.
 
    \itempar{Formants}{formants!number of}
    Number of Formants Used.
@@ -1783,7 +1785,9 @@ These parameters are:
 
    \itempar{Fr.Sl}{formants!slowness}
    Formant Slowness.
-   This parameter prevents too-fast morphing between vowels.
+   Technically, this parameter prevents too-fast morphing between
+   individual formants of adjacent vowels, but the user perception is
+   that the vowels morph as a whole.
 
    Values:  \texttt{0 to 127, 64*}
 
@@ -1870,7 +1874,8 @@ These parameters are:
 
    \itempar{Vowel}{formants!vowel position}
    Vowel Position.
-   The vowel used at the current position.
+   The vowel used at the current position. One should keep in mind the same
+   vowel can be used at several sequence postions!
 
    Values:  \texttt{1 to 6}
 
