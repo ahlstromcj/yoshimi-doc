@@ -438,7 +438,8 @@
 
    BPM is new from \textsl{Yoshimi} V 2.1.0 and locks the frequency control to the
    incoming MIDI clock. See \sectionref{subsubsec:bpm_and_frequency}\ for further details.
-
+\iffalse
+this was changed quite a few versions ago and is no longer true
    In \textbf{DynFilter}, the \textbf{Gain} control, and most of the formant
    filter ones only operate as one \textsl{releases} the mouse button, and the
    scroll wheel cannot be used at all.  Investigating, it was found that this
@@ -453,6 +454,13 @@
    (2) Noise only when the control is released, no scroll wheel, filter graphs
    only updated on control release.
    To be determined.
+\fi
+
+   \noindent \textbf{NOTE:}\\
+   One should be aware that DynFilter sets its own (quite different) default values for
+   almost all the actual filter controls. For VocalMorph1 and VocalMorph2 this includes
+   the formant elements themselves:\\ Per vowel, Per formant! This became more obvious
+   with the default indication provided since V 2.3.0
 
    Let's start with the user-interface elements present in the
    System/Insertion variation of this effect.
