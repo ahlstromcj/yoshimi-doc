@@ -13,7 +13,7 @@
 %     Provides the Top Panel section of the manual.
 %
 %-------------------------------------------------------------------------------
-
+This seems to reset the base function to a sine wave, converting the original waveform to sine waves of apropriate amplitude and phase angle at each harmonic position.
 \section{Top Panel}
 \label{sec:top_panel}
 
@@ -186,10 +186,6 @@
 
 \begin{figure}[H]
    \centering
-%  \includegraphics[scale=0.75]{top-panel/yoshimi-panel-2x8.jpg}
-%  \includegraphics[scale=0.75]{top-panel/yoshimi-panel-2x8-1_5.jpg}
-%  \includegraphics[scale=0.75]{1.5.0/Mixer8.png}
-%  \includegraphics[scale=0.75]{1.5.7/Mixer8.png}
    \includegraphics[scale=0.75]{2.3.0/mixer.png}
    \caption[Yoshimi Mixer Panel]{Yoshimi Mixer Panel, 1x16 View}
    \label{fig:yoshimi_part_panel_1x16}
@@ -246,9 +242,11 @@
    Values: \texttt{Main, Part, or Both}
 
    \itempar{Edit}{parts!edit}
-   The Edit button provides two function
-   Left mouse button: Makes this the currently selected part.
-   Right mouse button: As above, but also opens the part edit window.
+   The Edit button provides two functions.
+   \begin{itemize}
+      \item Left mouse button: Makes this the currently selected part.
+      \item Right mouse button: As above, but also opens the part edit window.
+   \end{itemize}
    This setup is a bit unintuitive, but the tooltips make it clear
    which click one might want to use.
 
@@ -259,7 +257,7 @@
    \textsl{Yoshimi} responds to incoming MIDI,
    so that only one of a group of instruments will see note-on events, but all
    of the group will see note-off ones. These commands
-   are both in the \textbf{Mixer Panel}, as shown below.
+   are in the \textbf{Mixer Panel}, as shown below.
 \begin{figure}[H]
    \centering
    \includegraphics[scale=0.55]{2.3.0/solo.png}
@@ -272,7 +270,7 @@
 
    Since \textsl{Yoshimi} V 1.7.1 a new mode of operation has been available, so the complete list is:
 
-   Values: \texttt{Off*, Row, Col, Loop, TwoWay, Channel}
+   Values: \texttt{Off*, Row, Column, Loop, TwoWay, Channel}
 
    For these modes, if one has a programmable MIDI controller, one can set it
    up to activate a specific part, or to increment/decrement which part in the
@@ -281,8 +279,8 @@
    One uses this spin-box to set which incoming CC changes the part that gets
    new notes.
    The \textsl{value} this CC sends performs the actual change, instantly and
-   silently. Most importantly it leaves any existing notes sounding through a
-   note off release and the effects tail.
+   silently. Most importantly it leaves any existing notes sounding, though a
+   note off will release them and set the effects tail.
 
    \index{solo!row}
    \textbf{Row} means that all of the first 16 channels will be set to channel
@@ -496,9 +494,8 @@
    keyboards can be used to produce notes.
    The computer keyboard layout is shown in
    \figureref{fig:qwerty_virtual_keyboard},
-   From lowest octave to highest, the colours are blue, then green, then red.
-   The "white" keys are the light colours, and the "black" keys are the
-   deeper colours.
+   The "white" keys are the light shade, and the "black" keys are the
+   darker shade.
    The range of the keys on the "zxcvb..." row is C3 to E4.
    The range of the keys on the "qwert..." row is C4 to A5.
    These octave ranges can be adjusted.

@@ -56,8 +56,8 @@
    enabled) but the other three can be any valid CC, and can also be reversed.
    The vector 'sweep' CCs are split out very early in the MIDI chain, and the
    new CCs created are fed back in before any other processing. The result of
-   this is that once we eventually get MIDI-learn implemented, the control
-   possibilities will expand dramatically.
+   this is that (in combination with MIDI-learn) the control possibilities
+   expand dramatically.
 
    In vector mode, parts will still play together but the vector controls can
    change their volume, pan, filter cutoff in pairs, controlled by user-defined
@@ -561,7 +561,7 @@
 \fi
 
    \index{vector!morph}
-   If one now sweeps the the controller assigned to CC 14,
+   If one now sweeps the controller assigned to CC 14,
    the sound will morph between these two instruments.
 
    To continue on to using the other axis as well, one needs to have 64 parts

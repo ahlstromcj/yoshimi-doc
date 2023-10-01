@@ -100,7 +100,7 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.8]{2.3.0/pietro.png}
+   \includegraphics[scale=0.8]{2.3.1/pietro.png}
    \caption{Yoshimi Menu, Scales Settings}
    \label{fig:yoshimi_scales_settings}
 \end{figure}
@@ -113,6 +113,10 @@
    The last entry in the tunings list represents one octave.
    All other notes are deduced from these settings.
 
+   \textbf{Note}
+   The above is not quite correct. One can have scales covering
+   multiple octaves. We don't yet know the full implications of that!
+
    \begin{enumber}
       \item \textbf{Enable Microtonal}
       \item \textbf{(Ref.) Freq.}
@@ -123,7 +127,6 @@
       \item \textbf{Shift}
       \item \textbf{Comment}
       \item \textbf{Tunings}
-      \item \textbf{Retune}
       \item \textbf{Keyboard Mapping}
       \item \textbf{ON}
       \item \textbf{First note}
@@ -131,9 +134,10 @@
       \item \textbf{Last note}
       \item \textbf{nts./oct.}
       \item \textbf{Import .scl file}
+      \item \textbf{Export .scl file}
       \item \textbf{Map Size}
       \item \textbf{Import .kbm file}
-      \item \textbf{Close}
+      \item \textbf{Export .kbm file}
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
@@ -176,9 +180,9 @@
 
    Values: \texttt{0 to 127, 60*}
 
-   \itempar{Name}{mapping}
-   Name of the Mapping.
-   For example, the default mapping is called "12tET".
+   \itempar{Name}{scale}
+   Name of the Scale.
+   For example, the default scale is called "12tET".
 
    \itempar{Shift}{key shift}
    Key Shift.
@@ -188,7 +192,7 @@
    Values: \texttt{-63 to 64, 0*}
 
    \itempar{Comment}{comment}
-   Comment for Key Mapping.
+   Comment for Scale.
    Provides a comment or a description of the scale.
    By default, this is "Equal Temperament 12 notes per octave".
 
@@ -211,21 +215,13 @@ One can enter the tunings in two ways:
    The items related to the \textbf{Keyboard Mapping} are discussed
    separately in the next section.
 
-   \itempar{Retune}{retune}
-   Retune button.
-   This button retunes the synthesizer according to the settings of
-   the \textbf{Tunings} and \textbf{Keyboard Mapping} lists.
-   The \textbf{Retune} button is needed if one
-   changes any of the actual scale settings. However, it's not needed for key
-   mappings or any other controls, all of which operate immediately.
-
    \itempar{Notes/oct}{Notes per Octave}
    Notes Per Octave.
-   This value is affected by changes to the \textbf{Tunings} mapping.
+   This value is affected by changes to the \textbf{Tunings}.
 
    Values: \texttt{12*}
 
-   \itempar{Import .SCL file}{scale file}
+   \itempar{Import .SCL file}{scala file}
    Import Scala files.
    Scala is a powerful application for experimentation with musical tunings
    (intonation scales, micro-tonal,...etc.). From its home page \cite{scala},
@@ -263,9 +259,15 @@ One can enter the tunings in two ways:
    \label{fig:yoshimi_scales_import_keyboard_map}
 \end{figure}
 
+   \index{new!scala export}
+   \itempar{Export .SCL file}{scale file}
+   As of \textsl{Yoshimi} V2.3.1 one can export Scala compatible scales using
+   the same dialogs as for importing.
+
    \itempar{Map Size}{scales!map size}
    Map Size.
-   This value is affected by changes to the \textbf{Keyboard Mapping}.
+   As of \textsl{Yoshimi} V2.3.1 this value independent of the actual
+   \textbf{Keyboard Mapping}.
 
    Values: \texttt{12*}
 
@@ -273,7 +275,9 @@ One can enter the tunings in two ways:
    This item is a standard file dialog for reading
    a \texttt{*.kbm} file.
 
-   \itempar{Close, Scales Dialog}{close scales}
+   \index{new!keymap export}
+   \itempar{Export .kbm file}{kbm file}
+   As of \textsl{Yoshimi} V2.3.1 it is now possible to export a Scala compatible keymap.
 
 \subsubsection{Keyboard Mapping}
 \label{subsubsec:scales_keyboard_mapping}
@@ -328,18 +332,63 @@ One can enter the tunings in two ways:
    If one doesn't want a key to be mapped, one enters an "x" instead of a
    number.
 
-   Values: \texttt{0 to 11}
+   Values: \texttt{0 to 127, 11*}
 
    \itempar{Map Size}{scales!map size}
    Provides the size of the scale-map.
 
-   Values: \texttt{12}
+   Values: \texttt{0 to 128, 12*}
+   The map size can be different to the number of entries. If the size is
+   greater, the 'missing' entries are regarded as not mapped, in the same way
+   as being set to "x". However, if it is smaller than the list entries, those
+   beyond will simply be ignored (and not saved either).
 
+   A zero size map is a special case. It is regarded as no mapping but
+   \textsl{First Note, Middle Note, Last Note} are still active. Additionally
+   the \textsl{Reference Note} and \textsl{Reference Frequency} are still
+   considered as part of the keymap and will be exported along with the rest.
+
+   As of \textsl{Yoshimi} V2.3.1 one can add comments to any of the tuning or
+   mapping lines for extra information.
+
+   e.g.
+   \\
+   5/4 ! mixed ratios and floats
+
+\subsection{Scales / Bottom Line}
+\label{subsec:scales_bottom_line}
+
+   \begin{enumber}
+      \item \textbf{Clear All}
+      \item \textbf{Retune}
+      \item \textbf{Close}
+   \end{enumber}
+
+   \setcounter{ItemCounter}{0}
+
+      \itempar{Clear All}{clear all}
+      Clear Button.
+      This will clear all scale settings and disable microtonal control,
+      returning one to the default scale.
+
+      \itempar{Retune}{retune}
+      Retune button.
+      This button retunes the synthesizer according to the settings of
+      the \textbf{Tunings} and \textbf{Keyboard Mapping} lists.
+
+      The \textbf{Retune} button is needed if one
+      changes any of the actual scale settings or key mapping. However, it is
+      not needed for any other controls, all of which operate immediately.
+
+      \itempar{Close, Scales Dialog}{close scales}
+
+
+\iffalse
    In the current version of \textsl{Yoshimi}, up to 25 recently used scales are
    now stored in the new history file
    (\texttt{yoshimi.history}), and can be quickly reinstalled with a
    mini-browser in exactly the same way as patch sets.
-
+\fi
 \subsection{Scales / Load}
 \label{subsec:scales_load}
 
@@ -403,32 +452,34 @@ One can enter the tunings in two ways:
    A note about relationships between the reference note frequency, note number
    and key shifts.
 
-   The reference note frequency should be regarded as an absolute value, with the
-   note number being specifically a MIDI representation.
+   The reference note frequency should be regarded as an absolute value, with
+   the note number being specifically a MIDI representation.
    Master keyshift, and Part keyshifts are relative values that modify this for
    convenience.
 
-   As an example, some very old wood-framed pianos were tuned with C4=256 cycles
-   per second (Hz). This can't be changed as the frame couldn't withstand the
-   extra stress, so to play alongside such a piano one would have to set the
-   absolute value 'A' frequency at 430.581Hz. Better still would be to set note
-   number 60 to a frequency of 256! If you have the reports window open you will see the following responses, making it quite clear what has changed.
+   As an example, some very old wood-framed pianos were tuned with C4=256
+   cycles per second (Hz). This can't be changed as the frame couldn't
+   withstand the extra stress, so to play alongside such a piano one would have
+   to set the absolute value 'A' frequency at 430.581Hz. Better still would be
+   to set note number 60 to a frequency of 256! If you have the reports window
+   open you will see the following responses, making it quite clear what has
+   changed.
 
    \begin{verbatim}
       Scales Ref note 60 (C4)
       Scales (C4) Frequency Value 256.000000
    \end{verbatim}
 
-   A singer might then say they couldn't sing at that pitch, so one would then use
-   the Master Keyshift to change to a key they were more comfortable with.
+   A singer might then say they couldn't sing at that pitch, so one would then
+   use the Master Keyshift to change to a key they were more comfortable with.
 
    When playing \textsl{Yoshimi} in a band where there is a minor pitch
    discrepancy it would be best to use the Master Detune to match, rather than
    altering the reference frequency.
 
-   Since V 1.5.11 reference frequency range has been limited, and revised further
-   since V 1.6. The range is 30Hz to 1100Hz which covers
-   the range B0 to C6. Previously it could be set anywhere between 1Hz and 2000Hz.
+   Since V 1.5.11 reference frequency range has been limited, and revised
+   further since V 1.6. The range is 30Hz to 1100Hz which covers the range B0
+   to C6. Previously it could be set anywhere between 1Hz and 2000Hz.
    Not only did this put most notes right out of the audio spectrum, but it was
    potentially damaging for some audio equipment.
 

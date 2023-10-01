@@ -68,8 +68,6 @@
    volume}.
 
    The command-line mode provides extensive error checking and feedback.
-   Note the change in nomenclature from "Parameters" to "Patch Set", which is
-   visible in the main screen, and also reflected in the command line.
    \index{command level}
    The prompt will always show what \textsl{command level}
    one is on, along with relevant information.
@@ -313,7 +311,7 @@
       \item \textbf{Bank}
       \item \textbf{Scales (microtonal)}
       \item \textbf{Vector}
-      \item \textbf{Controllers}
+      \item \textbf{Config}
       \item \textbf{Synth Engines}
       \begin{itemize}
          \item \textbf{Addsynth}
@@ -1746,9 +1744,9 @@ Filter types (s parameter, LFO oscillator shape):
          restores this line.
       \item \texttt{SEven} will interpret a learned NRPN as a 7-bit value.
       \item \texttt{CC [n]} will set the incoming controller value that will
-         be recognised.  This command can re-order the list.
+         be recognised.  This command might re-order the list.
       \item \texttt{CHan [n]} will set the incoming channel number that will
-         be recognised.  This command can re-order the list.
+         be recognised.  This command might re-order the list.
       \item \texttt{MIn [n]} will set the conversion for the incoming
          value to a minimum percentage.
       \item \texttt{MAx [n]} will set the conversion for the incoming
@@ -1782,7 +1780,7 @@ Filter types (s parameter, LFO oscillator shape):
    could easily forget having edited this - especially if saving everything and
    coming back to it some days later.
 
-   In the latest master there is now a '?' on the end of the line if any of the
+   In more recent \textsl{Yoshimi} versions there is a '?' on the end of the line if any of the
    controls on that preset are not the default values.
    So:
    \begin{verbatim}
@@ -2162,7 +2160,7 @@ DynFilter presets:
 
    During the development of \textsl{Yoshimi} V 1.6 it was realised that
    the command line had little control of instrument bank management.
-   This has now been expanded in V 1.6.1. One can read the list of
+   This was expanded in V 1.6.1. One can read the list of
    \textbf{Bank} commands from any level with '? b'.
 
    \begin{verbatim}
@@ -2279,6 +2277,12 @@ DynFilter presets:
 \begin{longtable}{p{4cm} p{10cm}}
 \caption[Yoshimi Scales Commands]{Yoshimi Scales Commands} \\
 
+\texttt{[ON/OFF]} & Enable/disable microtonal tuning. \\
+\texttt{IMPort [s1] [s2]} &
+   Import Scala file s2 to s1 TUNing or KEYmap.  \\
+\texttt{EXPort [s1] [s2]} &
+   Export s1 TUNing or KEYmap to Scala file s2. \\
+
 \texttt{FRequency [n]} &
    Set the reference note's actual frequency to n, usually 69 (A4) to 440 Hz. \\
 \texttt{NOte [n]} &
@@ -2299,21 +2303,15 @@ DynFilter presets:
    Set the middle note number to be mapped to n. \\
 \texttt{Last [n]} &
    Set the last note number to be mapped to n. \\
-\texttt{Tuning [s1] [s2]} &
+\texttt{Tuning [s1]} &
    Set the CSV tuning values.
    Tuning sets the CSV tuning values, which are decimal numbers or ratios
-   (n1.n1 or n1/n1, n2.n2 or n2/n2, etc.).
-   The s2 parameter requests an 'IMPort' from a named file, which is
-   \index{.scl}
-   \index{config!.scl}
-   a \texttt{.scl} file. \\
-\texttt{Keymap [s1] [s2]} &
-   Set the CSV keymap (n1, n2, n3, etc.); s2 = 'IMPort' from named file.
-   Keymap either sets the keyboard mapping values as a comma separated list, or
-   imports a
-   \index{.kbm}
-   \index{config!.kbm}
-   \texttt{.kbm} file from a named file [s2]. \\
+   (n1.n1 or n1/n1, n2.n2 or n2/n2, etc.).\\
+\texttt{Keymap [s]} &
+   Set the CSV keymap (n1, n2, n3, etc.)
+   Keymap sets the keyboard mapping values as a comma separated list. \\
+\texttt{SIze [n]} &
+   Sets the actual keymap size. \\
 \texttt{NAme [s]} &
    Set the internal name for this scale. \\
 \texttt{DEscription [s]} &
@@ -2330,8 +2328,7 @@ DynFilter presets:
    One can now clearly see which items can be listed with:
 
    \begin{verbatim}
-      yoshimi> ? li
-      yoshimi> ? list
+      yoshimi> list
       yoshimi> help
    \end{verbatim}
 
@@ -2388,12 +2385,13 @@ DynFilter presets:
 A few more detailed descriptions occur in the following sections, where there
 is not enough room in the table above.
 
-\subsubsection{Group List [s]}
+\subsubsection{List Group [s]}
 \label{subsec:command_line_instrument_group_list}
-   By itself, \textbf{Groups} will show what instrument types are available.
-   Repeating the command with one of these names will then search the entire
-   bank structure listing the ones of that type, along with an index number.
-   Assuming one is at part level, load this instrument into the current part with:
+   By itself, \textbf{List Group} or \textbf{L G} will show what instrument types
+   are available. Repeating the command with one of these names will then search
+   the entire bank structure listing the ones of that type, along with an index
+   number. Assuming one is at part level, load this instrument into the current
+   part with:
    \begin{verbatim}
       set instrument group (n)
    \end{verbatim}
@@ -2402,7 +2400,7 @@ is not enough room in the table above.
    \textbf{undefined} list is the longest (although with revision
    of banks in V 2.0, this has reduced somewhat).
 
-\subsection{History List [s]}
+\subsection{List History [s]}
 \label{subsec:command_line_list_history}
 
    Show the recent history of the following items [s]:
@@ -2434,7 +2432,7 @@ is not enough room in the table above.
    afresh would not have seen the older file, so now, saving
    will offer the home directory to put a new name in.
 
-\subsubsection{Load/Save List}
+\subsubsection{List Load/Save}
 \label{subsec:command_line_loadsave_list}
 
    And the same for load and save:
@@ -2506,7 +2504,7 @@ is not enough room in the table above.
 \subsubsection{Config Commands}
 \label{subsec:command_line_config_list}
 
-   Finally there is the new and shiny (and quite big) COnfig command level:
+   Finally there is the (quite big) COnfig command level:
 
    \begin{verbatim}
       yoshimi> ? con
@@ -2587,7 +2585,7 @@ is not enough room in the table above.
 \texttt{Cli [s]} &
    * run with CLI (Enable, Disable).
    Run with the command-line interface enabled. \\
-\texttt{Lock [s1][s2]} &
+\texttt{LOCk [s1][s2]} &
    Lock history of group s1 (ON, OFF).
    Groups - INstrument, PAtchset, SCale, STate, VEctor, MLearn. \\
 \texttt{MIdi [s]} &

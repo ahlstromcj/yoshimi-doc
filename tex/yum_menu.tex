@@ -240,8 +240,8 @@
    The following settings exist in the \textsl{Main settings} tab:
 
    \begin{enumber}
-      \item \textbf{AddSynth Oscillator Size}
       \item \textbf{Internal Buffer Size}
+      \item \textbf{AddSynth Oscillator Size}
       \item \textbf{PadSynth Interpolation}
       \item \textbf{PadSynth Wavetable Build Mode}
       \item \textbf{Virtual Keyboard Layout}
@@ -253,6 +253,34 @@
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Internal Buffer Size}{Main Settings!buffer size}
+   This item was updated with version 1.3.6.  It is actually the old
+   \textbf{Period Size} field from the \textbf{Alsa} tab.
+   It sets the granularity of the sound generation.
+   To find out the internal delay in milliseconds, divide the
+   buffer-size value by the sample-rate, then multiply the result by 1000:
+   For example, \(256 / 44100 * 1000 = 5.8 ms\).
+
+   The default internal buffer size has been reduced from 1024 to 256.  One
+   gets better latency that way.  Almost all modern computers can run
+   \textsl{Yoshimi} with the current default (smaller) buffer-size value, and
+   many will do so at 64 frames (and even 16 frames!)
+   without any special precautions.
+
+   Note that, for ALSA, if the audio destination is "default",
+   then ALSA decides on the buffer size (among other settings), and
+   \textsl{Yoshimi} will set it's internal buffer size to match,
+   which always seems to be 1024.
+
+   Values: \texttt{64, 128, 256*, 512, 1024, 2048, 4096, 8192}
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.75]{2.3.1/main_internal_size.png}
+   \caption[Internal Size Values]{AddSynth Internal Buffer Size)}
+   \label{fig:yoshimi_internalsize_values}
+\end{figure}
 
    \itempar{AddSynth Oscillator Size}{Main Settings!oscillator size}
    ADDsynth Oscillator Size (in samples).  This item used to be called
@@ -286,36 +314,6 @@
    \label{fig:yoshimi_oscilsize_values}
 \end{figure}
 
-   \itempar{Internal Buffer Size}{Main Settings!buffer size}
-   This item was updated with version 1.3.6.  It is actually the old
-   \textbf{Period Size} field from the \textbf{Alsa} tab.
-   It sets the granularity of the sound generation.
-   To find out the internal delay in milliseconds, divide the
-   buffer-size value by the sample-rate, then multiply the result by 1000:
-   For example, \(256 / 44100 * 1000 = 5.8 ms\).
-
-   The default internal buffer size has been reduced from 1024 to 256.  One
-   gets better latency that way.  Almost all modern computers can run
-   \textsl{Yoshimi} with the current default (smaller) buffer-size value, and
-   many will do so at 64 frames (and even 16 frames!)
-   without any special precautions.
-
-   Note that, for ALSA, if the audio destination is "default",
-   then ALSA decides on the buffer size (among other settings), and
-   \textsl{Yoshimi} will set it's internal buffer size to match,
-   which always seems to be 1024.
-
-   Values: \texttt{64, 128, 256*, 512, 1024, 2048, 4096, 8192}
-
-\begin{figure}[H]
-   \centering
-   \includegraphics[scale=0.75]{menu/Yoshimi/main-internalsize.jpg}
-   \caption[Internal Size Values]{AddSynth Internal Buffer Size (old)}
-   \label{fig:yoshimi_internalsize_values}
-\end{figure}
-
-   Note that there are two more values, not shown in this old diagram.
-
    \itempar{PADsynth Interpolation}{Main Settings!PADsynth Interpolation}
    See \figureref{fig:padsynth_interpolation}, shown below,
    for the interpolation values.
@@ -324,14 +322,14 @@
    a well designed audio setup, a PADsynth instrument with a fair amount of
    high-frequency content... and good hearing!
 
+   Values: \texttt{Linear(fast)*, Cubic(slow)}
+
 \begin{figure}[H]
    \centering
    \includegraphics[scale=1.0]{menu/Yoshimi/main-padsynth-interpolation.jpg}
    \caption[PADSynth Interpolation]{PADSynth Interpolation Values}
    \label{fig:padsynth_interpolation}
 \end{figure}
-
-   Values: \texttt{Linear(fast)*, Cubic(slow)}
 
    \itempar{PadSynth Wavetable Build Mode}{Main Settings!PadSynth Wavetable Build Mode}
 
@@ -359,11 +357,9 @@
    \label{fig:qwerty_virtual_keyboard}
 \end{figure}
 
-   See \figref{fig:qwerty_virtual_keyboard},
-   for the mapping of the computer keyboard to the
-   virtual keyboard.
-   Three octaves (blue, green, and red) are available, with the dark keys of
-   each colour representing the "black" keys.
+   See \figref{fig:qwerty_virtual_keyboard}, for the mapping of the computer keyboard to
+   the virtual keyboard. Three octaves are available, with the dark keys of each colour
+   representing the "black" keys.
    Note that this is a QWERTY layout.
    \textsl{Yoshimi} also supports other keyboard layouts.
    See \figureref{fig:virtual_kbd_layout},
@@ -428,8 +424,6 @@
 
 \begin{figure}[H]
    \centering
-%  \includegraphics[scale=1.0]{1.3.9/console-window.png}
-%  \includegraphics[scale=1.0]{1.5.0/console-window.png}
    \includegraphics[scale=1.0]{1.6.0/Console.png}
    \caption[Yoshimi Console Window]{Console Window}
    \label{fig:console_window}
@@ -439,10 +433,10 @@
    not 0.
 
    \begin{verbatim}
-		Loaded 65 "Hyper Arpeggio" to Part 1
-		Loaded 10 "Arpeggio11" to Part 2
-		Loaded 41 "Soft Arpeggio4" to Part 3
-		Loaded 67 "Glass Arpeggio1" to Part 4
+        Loaded 65 "Hyper Arpeggio" to Part 1
+        Loaded 10 "Arpeggio11" to Part 2
+        Loaded 41 "Soft Arpeggio4" to Part 3
+        Loaded 67 "Glass Arpeggio1" to Part 4
    \end{verbatim}
 
    \itempar{Console Text Size}{Main Settings!Console text Size}
@@ -455,41 +449,6 @@
 
    Values: \texttt{11 to 100, 12*}
 
-\iffalse
-    VVV not since V 1.5.6!
-   \index{reports!middle-click}
-   An interesting feature of the console window is that one can identify
-   user-interface elements of the \textsl{Yoshimi} configuration in this window
-   by a middle-click on the user-interface element.
-   (Unfortunately, those new single-button touchpads make it impossible to
-   provide a middle-click, so one would need a mouse!)
-
-  The console window figure shows the results of middle-clicking on the
-  following bottom-panel knobs in order:
-
-  \begin{enumerate}
-     \item Velocity Sense (left-click)
-     \item Velocity Offset
-     \item Pan
-     \item Volume
-  \end{enumerate}
-
-   \index{reports!middle-click}
-   Information about each knob middle-clicked is pushed to the top of the
-   windows in reverse order.
-   \index{reports!left-click}
-   \index{reports!right-click}
-   Information about an earlier left-click is shown at the bottom of the figure.
-   Each left-click ("Button 1") will increase the parameter represented by the
-   knob, and each right-click ("Button3") will decrease the parameter
-   represented by the knob, and each change is reported in the console window.
-   And, of course, each middle-click changes nothing, but reports the current
-   value in the console window.
-   This feature lets one gather the information needed to
-   control the parameter from the command-line.
-   The output can be selected, copied, and pasted to a script or archive text
-   file for safe-keeping.
-\fi
    \itempar{Saved instrument Format}{Main Settings!instrument file format}
    This new (1.5.5) feature provides a choice between the old instrument
    format and a new format.
@@ -544,8 +503,6 @@
 
 \begin{figure}[H]
    \centering
-%  \includegraphics[scale=0.75]{1.4.1/SettingsSwitches.png}
-%  \includegraphics[scale=0.75]{1.5.0/SettingsSwitches.png}
    \includegraphics[scale=0.5]{2.3.0/switches.png}
    \caption{Yoshimi Switches Tab}
    \label{fig:yoshimi_settings_switches_tab}
@@ -555,33 +512,22 @@
 
    \begin{enumber}
       \item \textbf{Enable Bank Highlight}
-      \item \textbf{Start With Default State}
       \item \textbf{Hide Non Fatal Errors}
       \item \textbf{Show Splash Screen}
+      \item \textbf{Log XML Headers}
       \item \textbf{Log Load times}
-      \item \textbf{Log XML headers}
-      \item \textbf{Include disabled data in XML files}
+      \item \textbf{Retain all data}
       \item \textbf{Enable GUI}
       \item \textbf{Enable CLI}
       \item \textbf{Enable Auto Instance}
       \item \textbf{Enable Single Master}
+      \item \textbf{Start With Default State}
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
     \index{new!Enable Bank Highlight}
    \itempar{Enable Bank Highlight}{Switches!Enable Bank Highlight}
    Setting this will highlight the most recent instrument either loaded from, or saved to a bank. It will be printed in bold text so will really stand out. This is especially useful where instruments have a different internal name to their filename.
-
-   \itempar{Start With Default State}{Switches!Start With Default State}
-   Requires \textsl{Yoshimi} to be restarted, to take effect.
-   This setting allows \textsl{Yoshimi} to be initialised with one's own
-   initial state file that matches one's usual work setup.
-   The default state file is named
-   \texttt{\textasciitilde/.config/yoshimi/yoshimi.state}.
-
-   If the \textbf{Reset} button on the main screen is clicked, then this file
-   is loaded, instead of reverting to the first-run default state of
-   \textsl{Yoshimi}.
 
    \itempar{Hide Non Fatal Errors}{Main Settings!Hide Non-Fatal Errors}
    Especially when running from the command line (with reports going there
@@ -595,19 +541,19 @@
    This item will speed up the start-up of \textsl{Yoshimi} slightly
    if unchecked, by not showing the splash screen while files are being loaded.
 
-   \itempar{Log Load times}{Switches!Log Load times}
-   Provides a way of noting problematic patch sets, which may take a long
-   enough time to load so as to affect the smoothness of playback.
-
-   \itempar{Log XML headers}{Main Settings!Log XML headers}
+   \itempar{Log XML Headers}{Main Settings!Log XML headers}
    This item sends the information to the console window
    (or \texttt{stderr}) so that
    one can then see what \textsl{Yoshimi}
    version created the file.
 
-   \itempar{Include disabled data in XML files}{Main Settings!Include disabled
-   data} Allows disabled data to be stored in the XML file.
-   This makes it a lot easier to re-enable a setting later.
+   \itempar{Log Load times}{Switches!Log Load times}
+   Provides a way of noting problematic patch sets, which may take a long
+   enough time to load so as to affect the smoothness of playback.
+
+   \itempar{Retain all Data}{Main Settings!Retain all data} Allows disabled data
+   to be stored in the XML file. This makes it a lot easier to re-enable a setting
+   later. However, the file size will be significantly greater.
 
    \itempar{Enable GUI}{Switches!Enable GUI}
    If checked, the user-interface is enabled.  This setting is normally what one
@@ -641,6 +587,17 @@
       the currently running one. This is both more efficient use of resources,
       and ensures consistency because top-level instances cannot communicate
       independently changed configuration settings. (new from V 1.6.0)
+
+   \itempar{Start With Default State}{Switches!Start With Default State}
+   Requires \textsl{Yoshimi} to be restarted, to take effect.
+   This setting allows \textsl{Yoshimi} to be initialised with one's own
+   initial state file that matches one's usual work setup.
+   The default state file is named
+   \texttt{\textasciitilde/.config/yoshimi/yoshimi.state}.
+
+   If the \textbf{Reset} button on the main screen is clicked, then this file
+   is loaded, instead of reverting to the first-run default state of
+   \textsl{Yoshimi}.
 
    \paragraph{Menu / Yoshimi / Settings / Switches / History Locks}
    \label{paragraph:menu_yoshimi_settings_historylocks}
