@@ -24,10 +24,6 @@
 
 \begin{figure}[H]
    \centering
-%  \includegraphics[scale=0.9]{bottom-panel/instrument-edit/SUB/SUBsynth-parameters.jpg}
-%  \includegraphics[scale=0.9]{1.4.0/SUBsynth-parameters.png}
-%  \includegraphics[scale=0.9]{1.5.0/SubSynth.png}
-%  \includegraphics[scale=0.9]{1.7.2/SubSynth.png}
    \includegraphics[scale=0.65]{2.3.0/sub.png}
    \caption{SUBsynth Edit Dialog}
    \label{fig:subsynth_edit_dialog}
@@ -61,9 +57,8 @@
       \item \textbf{Width}
 
        The controls above are discussed in detail in
-       \sectionref{subsec:volume_panning}. However their values for SUBsynth
-       are as below.
-      \item \textbf{Reset (panning)} (red button)
+       \sectionref{subsec:volume_panning}. However their values for
+       SUBsynth are as below.
       \item \textbf{Amplitude Env} (stock sub-panel)
    \end{enumber}
 
@@ -108,15 +103,19 @@
    \itempar{BandWidth}{subsynth!bandwidth}
    SUBsynth Bandwidth.
    Sets the bandwidth of each harmonic.
+   At the default setting the \textsl{equivalent} multiplier is 8.731 (as
+   indicated by the tooltip) although the control value is zero. Left of center
+   reduces the bandwidth and right of center increases it.
 
    Values: \texttt{1 to 127, 40*}
 
    \itempar{B.Width Scale}{subsynth!bandwidth scale}
    SUBsynth Bandwidth Scale.
-   Sets how the bandwidth of each harmonic is increased according to the
-   frequency. The default (0) increases the bandwidth linearly according to
-   the frequency.
-   This setting is kind of a "frequency stretch" parameter.
+   This provides a factor to alter the ratio of the bandwidth related to the
+   frequency of the harmonic. When the dial is centered the ratio is 1:1 as
+   indicated by the tooltip, so effectively unchanged. Left of center reduces
+   the LF bandwidth and increases the HF bandwith (relative to 1kHz) and right
+   of center has the reverse action.
 
    Values: \texttt{-64 to 63, 0*}
 
@@ -143,14 +142,17 @@
 
    \itempar{A.val}{bandwidth!attack value}
    Attack value.
-   We need to figure out what this means.
+   The value of the multiplier is shown in the tooltip in the GUI interface.
+   The default of 100 provides an equivalent multiplier of 49.351 for the
+   initial bandwidth (as swown by the tooltip). The bandwidth will gradually
+   resolve to its original setting at a rate set by A dt.
 
-   Values: \texttt{0 to 127, 64*}
+   Values: \texttt{0 to 127, 100*}
 
    \itempar{A.dt}{bandwidth!attack time}
    Attack duration. Attack time.
 
-   Values: \texttt{0 to 127, 40*}
+   Values: \texttt{0 to 127, 70*}
 
    \itempar{R.dt}{bandwidth!release time}
    Release time.
@@ -164,19 +166,18 @@
    Values: \texttt{0 to 127, 64*}
 
    \itempar{Stretch}{bandwidth!stretch}
-   Bandwidth Stretch. On lower notes make the bandwidth lower.
+   Bandwidth Stretch. On lower notes make the bandwidth wider.
 
    Values: \texttt{0 to 127, 64*}
 
    \itempar{frcR}{bandwidth!forced release}
    Forced release.
-   If this option is turned on, the release will go to the
-   final value, even if the sustain level is not reached.
+   If this option is turned on, the release will go to the final value, even if
+   the sustain level is not reached.
 
-   Also present in this sub-panel are the usual \textbf{C}opy
-   and \textbf{P}aste buttons that call up a copy-parameters or
-   paste-parameters dialog, as well as a button
-   to bring up the editor window.
+   Also present in this sub-panel are the usual \textbf{C}opy and \textbf{P}aste
+   buttons that call up a copy-parameters or paste-parameters dialog, as well as
+   a button to bring up the editor window.
 
    Values: \texttt{Off, On*}
 
@@ -208,8 +209,8 @@
 
    \itempar{Bend}{voice parameters!bend}
    Bend.
-   It modifies the pitch bend control.  It is possible to make the pitch
-   bend control work in the opposite direction.
+   It modifies the pitch bend control.  It is possible to make the pitch bend
+   control work in the opposite direction.
 
    \itempar{Offset}{voice parameters!offset}
    Offset.
@@ -271,7 +272,9 @@
 
    \itempar{Overtones Position}{subsynth!overtone position}
    Subsynth Overtones Position.
-   Sets the type of overtone variation. For \textsl{Harmonic} there is no control, so the other parameters are inactive. Similarly \textsl{par2} does nothing for \textsl{Shift} so is disabled for that variation.
+   Sets the type of overtone variation. For \textsl{Harmonic} there is no
+   control, so the other parameters are inactive. Similarly \textsl{par2} does
+   nothing for \textsl{Shift} so is disabled for that variation.
 
    Values: \texttt{Harmonic*, ShiftU, ShiftL, PowerU, PowerL, Sine, Power, Shift}
 
@@ -296,7 +299,8 @@
 
    \itempar{ForceH}{subsynth!overtone forceh}
    Subsynth Overtones ForceH.
-   Moves the shifted harmonics by a variable amount towards to the nearest actual multiple of the fundamental.
+   Moves the shifted harmonics by a variable amount towards to the nearest actual
+   multiple of the fundamental.
 
    Values: \texttt{0* to 127}
 

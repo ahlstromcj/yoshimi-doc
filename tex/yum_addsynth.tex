@@ -183,9 +183,7 @@
    The punch strength of a note in ADDsynth is a constant amplification to
    the output at the start of the note, with its length determined by the
    punch time and stretch and the amplitude being determined by the punch
-   strength and velocity sensing. The \textbf{relBW}
-   control in the frequency panel is
-   effectively a multiplier for detuning all voices within an ADnote.
+   strength and velocity sensing.
 
    Values: \texttt{0* to 127}
 
@@ -835,7 +833,7 @@
    \label{fig:voice_oscillator_pink_noise}
 \end{figure}
 
-\index{new!spot noise}
+\index{spot noise}
    If the cyan (spot) \textbf{Noise} entry is selected,
    then the waveform graph simply announces
    "Spot Noise".  Also, the \textbf{Unison, Frequency, Modulator} controls are
@@ -1047,8 +1045,8 @@
       \item \textbf{Coarse Det.}
          Coarse Detune.
          Values: \texttt{-64 to 63, 0*}
-      \item \textbf{Filter Env, Stock + Enable}
-         See \sectionref{subsubsec:envelope_settings_for_filter}.
+      \item \textbf{Frequency Env, Stock + Enable}
+         See \sectionref{subsubsec:envelope_settings_for_frequency}.
    \end{enumber}
 
    \itempar{Local Oscillator}{modulator!oscillator}
@@ -1206,8 +1204,6 @@
    Note that this picture isn't updated if the voice is edited, until the voice
    list is closed and reopened.
 
-% TODO FOR 1.6.0:  Uncomment the commented text.
-
   \itempar{Modulation Icon}{voice list!modulation icon}
   Modulation Icon.
   The modulation icon shows a rough rendering of the actual shape of the voice
@@ -1233,7 +1229,7 @@
    \itempar{Res}{voice list!resonance}
    Resonance On/Off.
    Enable/disable the resonance effect of a voice.
-   Note that the resonance is configured in by the Resonance dialog brought
+   Note that the resonance is configured by the Resonance dialog brought
    up by the \textbf{Resonance} button at the bottom of the ADDsynth main
    dialog.  The resonance dialog has its own Enable button, as well.
    This is provided so individual voices can bypass the resonance filter.

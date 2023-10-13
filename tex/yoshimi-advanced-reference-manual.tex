@@ -49,7 +49,7 @@
 \makeindex
 
 \begin{document}
-\title{Yoshimi Advanced Reference Manual, v 2.3.0}
+\title{Yoshimi Advanced Reference Manual, v 2.3.1}
 \author{Chris Ahlstrom \texttt{(ahlstromcj@gmail.com)} with Will J. Godfrey}
 \date{\today}
 \maketitle
@@ -58,7 +58,8 @@
    \centering
    \includegraphics[scale=0.60]{2.3.0/Main.png}
 \end{figure}
-
+\vfill
+Proof reading: Art Horan (and others)
 \clearpage                             % moves Contents to next page
 
 \tableofcontents
@@ -143,13 +144,17 @@
    fixes to reduce the likelihood of "xruns", static, clicks, or other
    performance issues.
 
+\subsubsection{New for Version 2.3.1}
+\label{subsubsec:new_features_2_3_1}
+There has been some revision of microtonal scales. The most noticable is that you can now export both tunings and keymaps. A little less obvious is the Map Size in now editable.
+
 \subsubsection{New for Version 2.3.0}
 \label{subsubsec:new_features_2_3_0}
 The most obvious development with this release is the ability to create and select different colour themes covering the whole of the graphic interface. These can be applied immediately on a running \textsl{Yoshimi} instance. At the same time \textsl{action} and \textsl{link} buttons have been changed to make them more obviously different. On advice received, identification uses both colour and button shape.
 
 It was noticed that some users were not aware that many buttons were MIDI-learnable, so the way these are represented has also been changed. All sliders are learnable as are all rotary 'knobs' (as before). Now, all check boxes, buttons, menus, spin boxes and number rollers that have blue bold italic labels are learnable. This is much more obvious than previously.
 
-Additionally, sliders and knobs now identify when they are at their default setting. With knobs, the pointer is black, and red when at any other position. With slider the 'peg' has a green centre which again becomes red when changed.
+Additionally, sliders and knobs now identify when they are at their default setting. With knobs, the pointer is black, and red when at any other position. With sliders the 'peg' has a green centre which again becomes red when changed.
 
 Under the hood is a less obvious but highly significant improvement. A range of controls that were saved as stepped 0 to 127 values are now saved as high resolution values. However this is done in a way that is completely both forward and backward compatible. Old files can be accurately read, and new files can be read by older \textsl{Yoshimi} verisons at their native resolution.
 
@@ -157,9 +162,9 @@ Under the hood is a less obvious but highly significant improvement. A range of 
 \label{subsubsec:new_features_2_2_0}
    A major development here concerns the PadSynth engine. It is now
    possible to make changes deep within this structure without interruption
-   while notes are sounding. There is setting to enable the sound to
+   while notes are sounding. There is a setting to enable the sound to
    smoothly fade from one setting to the next over a few milliseconds.
-   Alternatively one can set new control in the PadSynth engine itself to
+   Alternatively one can set a new control in the PadSynth engine itself to
    spread the change over several seconds for a unique musical effect.
 
    Another much requested feature is a comprehensive Undo/Redo capability.
@@ -168,7 +173,7 @@ Under the hood is a less obvious but highly significant improvement. A range of 
 
    When we first implemented BPM sync for LFOs etc. we had to provide a
    fallback in case there was no incoming MIDI clock to sync to. We set
-   this to the standard 120BPM. Now, however there is a control so that it
+   this to the standard 120 BPM. Now, however there is a control so that it
    can be set over a wide range to get exactly the wanted effect.
 
 \subsubsection{New for Version 2.1.1, 2.1.2}
@@ -442,9 +447,6 @@ Under the hood is a less obvious but highly significant improvement. A range of 
    The CLI prompt always
    shows what level one is on, and the help-lists are also
    context-sensitive, so one doesn't see a lot of irrelevant clutter.
-%   \textsl{Yoshimi} instrument patches are fully
-%   compatible with \textsl{ZynAddSubFX} patches, and we have ported across
-%   new refinements with thanks to the Zyn authors.
    See \sectionref{sec:command_line}, for more information.
 
 \subsubsection{Audio Support}
@@ -492,7 +494,6 @@ Under the hood is a less obvious but highly significant improvement. A range of 
    \textsl{ZynAddSubFX},
    the doctype and all other details are identified as purely for
    \textsl{Yoshimi}.
-%  However, see \sectionref{subsec:file_compatibility}.
 
    One can direct messages to either \texttt{stderr}
    (the error output of a terminal console) or the \textbf{Reports} window
@@ -505,7 +506,7 @@ Under the hood is a less obvious but highly significant improvement. A range of 
 
    All rotary controls and sliders will return
    to their home positions if right-clicked anywhere in the control.
-%  In the case of sliders not the peg itself.
+
    As of version 1.5.8 switches, buttons and
    selectors will also home with a right-click.
 

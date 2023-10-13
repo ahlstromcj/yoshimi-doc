@@ -1138,9 +1138,9 @@ behaviour and ranges may change following experience and feedback from users.
 
    Values: \texttt{-100\%, 0*, 100\%}
 
-   \itempar{Harmonics Bandwidth}{padsynth!harmonics bandwidth}
-   Harmonics Bandwidth.
-   Provides 128 sliders for the bandwidth of harmonics.
+   \itempar{Harmonics Phase}{padsynth!harmonics phase}
+   Harmonics Phase.
+   Provides 128 sliders for the phase of harmonics relative to the base function.
 
    Values: \texttt{-88.6, 0*, 90} (degrees)
 
@@ -1162,7 +1162,6 @@ behaviour and ranges may change following experience and feedback from users.
    \itempar{Adpt.Harm}{padsynth!harmonics}
    Adaptive Harmonics.
    Changes the type of the adaptive harmonics.
-   (The tooltip spells "adaptive" wrong.)
 
 \begin{figure}[H]
    \centering
@@ -1183,7 +1182,7 @@ behaviour and ranges may change following experience and feedback from users.
 
    \itempar{Adpt.Harm. baseF}{padsynth!harmonics basef}
    Adaptive Harmonics Base Frequency.
-   If something other that \texttt{OFF} is selected,
+   If something other than \texttt{OFF} is selected,
    then this knob changes the waveform appearance.
    Even more informative is the change in the spectrum that is shown.
    This setting is also something to play with while listening to the
@@ -1191,7 +1190,7 @@ behaviour and ranges may change following experience and feedback from users.
 
    \itempar{Adpt.Harm. pow}{padsynth!harmonics pow}
    Adaptive Harmonics Power.
-   If something other that \texttt{OFF} is selected,
+   If something other than \texttt{OFF} is selected,
    then this knob changes the waveform appearance.
    Even more informative is the change in the spectrum that is shown.
    Again, this setting is something to play with while listening to the
@@ -1203,8 +1202,10 @@ behaviour and ranges may change following experience and feedback from users.
 
    \itempar{Sine}{padsynth!harmonics sine}
    Harmonics Sine.
-   The user is prompted to "Convert to sine?"
-   This seems simply to reset the base function to a sine wave.
+   The user is prompted to "Convert to sine"
+   This resets the base function to a sine wave, converting the
+   original waveform to sine waves of apropriate amplitude and phase
+   angle at each harmonic position.
 
    \itempar{C}{padsynth!harmonics copy}
    Harmonics Copy.
@@ -1232,7 +1233,7 @@ behaviour and ranges may change following experience and feedback from users.
 \begin{figure}[H]
    \centering
 %  \includegraphics[scale=1.0]{2.0/PadSynthEnvelopes.png}
-   \includegraphics[scale=0.8]{2.3.0/padenvelope.png}
+   \includegraphics[scale=0.8]{2.3.1/padenvelope.png}
    \caption{PADSynth Parameters, Envelopes and LFOs}
    \label{fig:padsynth_parameters_envelopes_and_lfos}
 \end{figure}
