@@ -281,7 +281,7 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{2.3.0/part_effect.png}
+   \includegraphics[scale=0.75]{2.3.0/effects.png}
    \caption{Sample Instrument Effects Dialog}
    \label{fig:sample_instrument_effects_dialog}
 \end{figure}
@@ -303,7 +303,11 @@
 
    From here on we only show the effects inserts themselves, as they are identical
    across Part, Insertion, and System. The only difference being \textbf{D/W} becoming
-   \textbf{Vol} in System effects.
+   \textbf{Vol} in System effects. Also, note that EQ has a \textbf{Gain} control
+   instead of \textbf{Vol}
+
+   All effects (apart from EQ) also have a panning control, which behaves in the same
+   way as everywhere else, permitting the effect to appear to have an off-center position.
 
 \subsection{Effects / Upgrade}
 \label{subsec:effects_upgrade}
@@ -787,6 +791,8 @@ This section details the value supported by the AlienWah effect.
 \end{figure}
 
    \begin{enumber}
+      \item \textbf{Vol} or \textbf{D/W}
+      \item \textbf{Pan}
       \item \textbf{Freq}
       \item \textbf{Rnd}
       \item \textbf{BPM}
@@ -945,6 +951,8 @@ This section details the value supported by the Chorus effect.
 \end{figure}
 
    \begin{enumber}
+      \item \textbf{Vol} or \textbf{D/W}
+      \item \textbf{Pan}
       \item \textbf{Drive}
       \item \textbf{Level}
       \item \textbf{Type}
@@ -1035,15 +1043,16 @@ This section details the value supported by the Chorus effect.
 \begin{figure}[H]
    \centering
 %  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-echo.jpg}
-   \includegraphics[scale=0.75]{2.3.0/echo.png}
+   \includegraphics[scale=0.75]{2.3.2/echo.png}
    \caption{Effects Edit, Echo}
    \label{fig:effects_edit_echo}
 \end{figure}
 
-   TODO (yoshimi):  Pan lets one apply panning of the input.
-
    \begin{enumber}
+      \item \textbf{Vol} or \textbf{D/W}
+      \item \textbf{Pan}
       \item \textbf{Delay}
+      \item \textbf{Separate}
       \item \textbf{LRdl.}
       \item \textbf{LRc.}
       \item \textbf{Fb.}
@@ -1055,6 +1064,10 @@ This section details the value supported by the Chorus effect.
 
    \itempar {Delay}{echo!delay}
    The delay time of one echo.
+
+   \itempar {Separate} {echo!separate}
+   Changes the \textbf{Delay} and and \textbf{Left-Right-Delay} to
+   independent \textbf{Left delay} and \textbf{Right Delay}
 
    \itempar {LRdl}{echo!l/r delay}
    Left-Right-Delay.
@@ -1304,6 +1317,8 @@ This section details the value supported by the Chorus effect.
 
    \begin{enumber}
       \item \textbf{Preset.}
+      \item \textbf{Vol} or \textbf{D/W}
+      \item \textbf{Pan}
       \item \textbf{Phase}
       \item \textbf{Depth}
       \item \textbf{L/R}
