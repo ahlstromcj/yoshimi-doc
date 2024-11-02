@@ -614,6 +614,10 @@
         \index{presets}
         User defined presets (or snapshots) are stored as individual files in
         the \texttt{presets subdirectory}.
+   \item \texttt{clipboard}
+        \index{clipboard}
+        Unnamed presets are stored in the \texttt{clipboard subdirectory} for
+        immediate copying to a different location.
    \item \texttt{recent}
          \index{recent}
          Recent instruments, patch sets, etc. are stored in the \texttt{recent}
@@ -623,6 +627,10 @@
         \index{found}
         Editable copies of all the banks found in the \texttt{\textbackslash usr}
         installed locations are stored here.
+    \item \texttt{theme}
+        \index{theme}
+        Imported Yoshimi GUI colour themes are stored in this subdirectory, along
+        with the 'Classic' example file.
     \item \texttt{\textasciitilde/.yoshimi\_history}
          \index{\textasciitilde/.yoshimi\_history}
          Specific to command line use, this holds the command-line history.
@@ -669,6 +677,23 @@
    \textsl{Yoshimi} instances can, of course, have their own current root, but
    the list of directories is common to all.
 
+\subsection{Local Data Files / Clipboard}
+\label{subsec:local_data_clipboard}
+
+   \index{.xpz}
+   \index{clipboard}
+   \index{file!clipboard}
+   Since \textsl{Yoshimi} V 2.3.2 a clipboard copy is held as a file is rather
+   than holding it in memory. This means all presets are handled exactly the
+   same way. Also, the last used copy of any section will be retained over
+   \textsl{Yoshimi} restarts. Over time one ends up with a collection of these
+   representing the last used entry of that type.
+
+   The clipboard has two benefits. One can quickly copy an entry then paste that
+   copy to any number of same-type sub-setting. Also if one has to respond to an
+   interruption, on the next time \textsl{Yoshimi} is started one can carry on
+   where they left off.
+
 \subsection{Local Data Files / Recent}
 \label{subsec:local_data_recent}
 
@@ -709,6 +734,15 @@
    them. From V 1.7.1, the first time these banks are seen they are copied into
    the local directory which \textbf{is} writable. For further details see
    \sectionref{subsubsec:banks_and_roots_bank_directories}
+
+\subsection{Local Data Files / Themes}
+\label{subsec:local_data_themes}
+   \index{new!Themes}
+
+   \textsl{Yoshimi's} themes allow dramatic changes to be easily made to personalise
+   the GUI appearance without in any way interfering with its functionality. This
+   includes in-line editing of the current displayed user theme. Full details can be
+   found in \sectionref{sec:themes}.
 
 \subsection{Local Data Files / CLI history}
 \label{subsec:local_data_cli_history}

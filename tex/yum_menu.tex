@@ -96,10 +96,6 @@
 
 \begin{figure}[H]
    \centering
-%  \includegraphics[scale=1.0]{menu/Yoshimi/yoshimi-about.jpg}
-%  \includegraphics[scale=1.0]{1.3.8/yoshimi-about.jpg}
-%  \includegraphics[scale=1.0]{1.5.0/yoshimi-about.jpg}
-%  \includegraphics[scale=1.0]{1.5.0/About_1-5-1.png}
    \includegraphics[scale=0.8]{2.3.0/about.png}
    \caption{Yoshimi Menu, About Dialog}
    \label{fig:yoshimi_about_dialog}
@@ -174,39 +170,18 @@
 \label{subsubsec:menu_yoshimi_settings}
 
    The \textsl{Yoshimi Settings} dialog contains five tabs that control the
-   major and overall settings of \textsl{Yoshimi}.  At the bottom of this
-   dialog are two buttons:
-   \textbf{Save and Close} and \textbf{Close Unsaved}.
-   \index{Save and Close}
-   \index{Close Unsaved}
+   major and overall settings of \textsl{Yoshimi}.
 
-   Please note that the \textbf{Save and Close} and \textbf{Close Unsaved}
-   buttons apply to the \textsl{whole}
    \textbf{Settings} window.
-   Furthermore, the "saving" does \textsl{not} refer to preserving the changes
-   that have been made
-   in any of the tabs for the current \textsl{Yoshimi} session.  Any changes
-   made in \textbf{Settings} always remain in place for the current
-   \textsl{Yoshimi} session.
-   However, the changes to the settings are saved to
-   the state file \textsl{only} if \textbf{Save and Close} is clicked.
 
-   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
-
-   \itempar{Save and Close}{Settings!Save and Close}
-   This selection saves the settings made in \textbf{all} of the tabs to the
-   state file, and closes the \textsl{Yoshimi} settings dialog.
-
-   \itempar{Close Unsaved}{Settings!Close Unsaved}
-   Close Unsaved, Main Settings.
-
-   This selection closes the \textsl{Yoshimi} settings dialog.
-   However, note that any changes made in the tabs
-   \textsl{are preserved}.  They are preserved for the current
-   \textsl{Yoshimi} session, but are not saved to the filesystem.
+   At the bottom of this dialog is a \textbf{Close} button which closes the
+   \textsl{Yoshimi} settings dialog. There used to be a \textbf{Save and Close}
+   button as well, but since \textsl{Yoshimi} version 2.3.3 that is no longer
+   needed, as all configuration changes are saved immediately. This simplifies
+   a number of technical issues, as well as being more convenient for users.
 
    Here are the tabs included in the main settings of \textsl{Yoshimi}
-   as of version 1.4.1; each is described in its own section.
+   as of version 2.3.3; each is described in its own section.
 
    \begin{itemize}
       \item \textbf{Main settings}
@@ -231,8 +206,7 @@
 
 \begin{figure}[H]
    \centering
-%  \includegraphics[scale=0.75]{1.4.1/SettingsMain.png}
-   \includegraphics[scale=0.5]{2.3.0/settings.png}
+   \includegraphics[scale=0.5]{2.3.3/settings.png}
    \caption{Yoshimi Main Settings Tab}
    \label{fig:yoshimi_main_settings_tab}
 \end{figure}
@@ -503,7 +477,7 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.5]{2.3.0/switches.png}
+   \includegraphics[scale=0.5]{2.3.3/switches.png}
    \caption{Yoshimi Switches Tab}
    \label{fig:yoshimi_settings_switches_tab}
 \end{figure}
@@ -644,10 +618,7 @@
 
 \begin{figure}[H]
    \centering
-%  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-jack.jpg}
-%  \includegraphics[scale=0.75]{1.3.8/yoshimi-settings-jack.jpg}
-%  \includegraphics[scale=0.75]{1.3.9/yoshimi-settings-jack.png}
-   \includegraphics[scale=0.5]{2.3.0/jack.png}
+   \includegraphics[scale=0.5]{2.3.3/jack.png}
    \caption[JACK Settings]{JACK Settings Tab}
    \label{fig:yoshimi_settings_jack_tab}
 \end{figure}
@@ -777,9 +748,7 @@
 
 \begin{figure}[H]
    \centering
-%  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-alsa.jpg}
-%  \includegraphics[scale=0.75]{1.3.8/yoshimi-settings-alsa.png}
-   \includegraphics[scale=0.5]{2.3.0/alsa.png}
+   \includegraphics[scale=0.5]{2.3.3/alsa.png}
    \caption[ALSA Settings]{ALSA Settings Tab}
    \label{fig:yoshimi_settings_alsa_tab}
 \end{figure}
@@ -890,15 +859,7 @@
 
 \begin{figure}[H]
    \centering
-%  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-ccs.jpg}
-%  \includegraphics[scale=0.75]{1.3.8/yoshimi-settings-midi.png}
-%  \includegraphics[scale=0.75]{1.3.9/yoshimi-settings-ccs.jpg}
-%  \includegraphics[scale=0.75]{1.4.1/SettingsMidi.png}
-%  \includegraphics[scale=0.75]{1.5.0/SettingsMidi.png}
-%  \includegraphics[scale=0.75]{1.5.4/SettingsMidi.png}
-%  \includegraphics[scale=0.75]{1.5.11/Settings_Midi.png}
-%  \includegraphics[scale=0.75]{2.1.1/midi-cc.png}
-   \includegraphics[scale=0.5]{2.3.0/midi.png}
+   \includegraphics[scale=0.5]{2.3.3/midi.png}
    \caption[MIDI Preferences]{MIDI Preferences Tab}
    \label{fig:yoshimi_settings_cc}
 \end{figure}
@@ -909,8 +870,7 @@
 
 \begin{figure}[H]
    \centering
-%  \includegraphics[scale=0.75]{1.5.11/Settings_Pending.png}
-   \includegraphics[scale=1.0]{2.3.0/midi_cc_pending.png}
+   \includegraphics[scale=0.5]{2.3.3/midi_cc_pending.png}
    \caption[MIDI Settings Pending]{MIDI Settings Pending}
    \label{fig:yoshimi_settings_pending}
 \end{figure}
