@@ -14,12 +14,12 @@
 %
 %-------------------------------------------------------------------------------
 
-\subsection{Menu / Patch Sets}
+\subsection{Menu / PatchSet}
 \label{subsubsec:menu_patch_sets}
 
    This new menu entry is part of the very nice reorganisation and simplification
    of the handling of roots and banks in the new \textsl{Yoshimi}.  The
-   \textbf{Patch Sets} menu replaces the old \textbf{Parameters} menu.  Do you
+   \textbf{PatchSet} menu replaces the old \textbf{Parameters} menu.  Do you
    like the new name?  The patch set saves all of the settings, including effects
    and instruments.  Patch sets will save all other instruments regardless of
    whether they are activated or not.  Default instruments are never saved, not
@@ -35,7 +35,7 @@
    \figureref{fig:instruments_show_stored},
    for managing instruments in a selected bank.
 
-\subsubsection{Menu / Patch Sets / Show Patch Banks...}
+\subsubsection{Menu / PatchSets / Show Patch Banks...}
 \label{subsubsec:menu_patch_sets_show_patch_banks}
 
    The \textbf{Banks} window has had some button shuffling, and one can
@@ -142,7 +142,7 @@
    described in the discussion at
    \sectionref{subsubsec:menu_instrument_show}.
 
-\subsubsection{Menu / Patch Sets / Load External...}
+\subsubsection{Menu / PatchSet / Load External...}
 \label{subsubsec:menu_patch_sets_load}
 
    This menu entry simply brings up a file dialog, allowing the user to
@@ -165,7 +165,7 @@
    being necessary for a given tune, rather than by being located in a
    particular bank.
 
-\subsubsection{Menu / Patch Sets / Save External...}
+\subsubsection{Menu / PatchSet / Save External...}
 \label{subsubsec:menu_patch_sets_save}
 
    This menu entry simply brings up a file dialog, allowing the user to
@@ -195,79 +195,16 @@
    \label{fig:yoshimi_menu_nothing_to_save_parameters}
 \end{figure}
 
-\subsubsection{Menu / Patch Sets / Recent Sets}
+\subsubsection{Menu / PatchSet / Recent Sets}
 \label{subsubsec:menu_patch_sets_recent_sets}
 
    This menu entry brings up a dialog box with a list of the recent patch sets
    that have been loaded.  This item makes it easy to move around one's
    frequently-used banks.
 
-\subsubsection{Menu / Patch Sets / Patch Bank Roots}
+\subsubsection{Menu / PatchSets / Patch Bank Roots}
 \label{subsubsec:menu_patch_sets_patch_bank_roots}
-
-   \textsl{Yoshimi} (as installed by Debian Linux) provides a default bank at
-   \texttt{/usr/share/yoshimi/banks}.
-   To add one's own directory, click on the \textbf{Roots} button.
-   It brings up the following dialog.
-
-\begin{figure}[H]
-   \centering
-   \includegraphics[scale=0.75]{2.3.0/roots.png}
-   \caption{Bank Root Paths}
-   \label{fig:bank_root_paths}
-\end{figure}
-
-   This dialog has a number of buttons, some of which will be disabled if no
-   directory in the list is selected.
-
-%   Then click on the "Add root directory..." button.  In the file dialog that
-%   appear, one can use the \textbf{Create Directory} button to make a new
-%   directory, if desired:
-
-\begin{figure}[H]
-   \centering
-   \includegraphics[scale=0.8]{2.3.0/new_bank_root.png}
-   \caption{New Root Directory}
-   \label{fig:new_root_directory}
-\end{figure}
-
-%   Otherwise, once can add an existing directory to the list.
-
-   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
-
-   \itempar{Add root directory...}{Root Paths!add directory}
-   Bank Root Paths, Add Root Directory.
-
-   Once selected, one will see that
-   \texttt{/usr/share/yoshimi/banks} or
-   \texttt{/usr/local/share/yoshimi/banks}
-   is marked with an asterisk.  One can select the new root directory via the
-   file dialog that appears, and then make it the current root by clicking the
-   \textbf{Make current} button.  Then the Banks dialog will show all the banks
-   in that directory, one bank per subdirectory (each subdirectory "is" a
-   bank).
-
-   \itempar{Remove root directory...}{Root Paths!remove directory}
-   Bank Root Paths, Remove Root Directory.
-   If a path is selected, then this button is active, and can be used to
-   delete the selected path from the "root paths" list. Note that this does
-   \textbf{not} delete actual files, just removes the entry from the list.
-
-   \itempar{Make current}{Root Paths!make current}
-   Bank Root Paths, Make Current.
-   \index{current!root}
-   This button marks the currently-selected path as the "current root" path.
-
-   \itempar{Open current}{Root Paths!open current}
-   Bank Root Paths, Open Current.
-   This button opens the current root path.
-
-   \itempar{Change ID}{Root Paths!change ID}
-   Bank Root Paths, Change ID.
-   This ID can be used to make the bank selectable via an extended MIDI
-   control.
-
-   Values: \texttt{0* to 127}
+   This entry no longer exists. Bank Roots are now accessed via \sectionref{subsec:menu_paths}.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex

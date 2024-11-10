@@ -1053,22 +1053,77 @@
 
 \input{yum_menu_patch_sets}
 
-% Removed.  Basically replaced by the Patch Sets menu.
-%
-% \subsection{Menu / Parameters}
-
 \subsection{Menu / Paths}
 \label{subsec:menu_paths}
 
-   This menu entry provides a more direct way to set up the Bank Root and
-   the Presets directories.  It contains the following items:
+\textsl{Yoshimi} (as installed by Debian Linux) provides a default bank at
+   \texttt{/usr/share/yoshimi/banks}.
+   To add one's own directory, click on the \textbf{Bank Root Dirs...} entry.
+   It brings up the following dialog.
 
    \begin{enumber}
       \item \textbf{Bank Root Dirs...}.
-         The Paths Bank Root Dirs dialog is described in
-         \sectionref{subsubsec:menu_patch_sets_patch_bank_roots},
-         which shows
-         \figureref{fig:bank_root_paths}, and describes this dialog in full.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.75]{2.3.0/roots.png}
+   \caption{Bank Root Paths}
+   \label{fig:bank_root_paths}
+\end{figure}
+
+   This dialog has a number of buttons, some of which will be disabled if no
+   directory in the list is selected.
+
+%   Then click on the "Add root directory..." button.  In the file dialog that
+%   appear, one can use the \textbf{Create Directory} button to make a new
+%   directory, if desired:
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.8]{2.3.0/new_bank_root.png}
+   \caption{New Root Directory}
+   \label{fig:new_root_directory}
+\end{figure}
+
+%   Otherwise, once can add an existing directory to the list.
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Add root directory...}{Root Paths!add directory}
+   Bank Root Paths, Add Root Directory.
+
+   Once selected, one will see that
+   \texttt{/usr/share/yoshimi/banks} or
+   \texttt{/usr/local/share/yoshimi/banks}
+   is marked with an asterisk.  One can select the new root directory via the
+   file dialog that appears, and then make it the current root by clicking the
+   \textbf{Make current} button.  Then the Banks dialog will show all the banks
+   in that directory, one bank per subdirectory (each subdirectory "is" a
+   bank).
+
+   \itempar{Remove root directory...}{Root Paths!remove directory}
+   Bank Root Paths, Remove Root Directory.
+   If a path is selected, then this button is active, and can be used to
+   delete the selected path from the "root paths" list. Note that this does
+   \textbf{not} delete actual files, just removes the entry from the list.
+
+   \itempar{Make current}{Root Paths!make current}
+   Bank Root Paths, Make Current.
+   \index{current!root}
+   This button marks the currently-selected path as the "current root" path.
+
+   \itempar{Open current}{Root Paths!open current}
+   Bank Root Paths, Open Current.
+   This button opens the current root path.
+
+   \itempar{Change ID}{Root Paths!change ID}
+   Bank Root Paths, Change ID.
+   This ID can be used to make the bank selectable via an extended MIDI
+   control.
+
+   Values: \texttt{0* to 127}
+
+
       \item \textbf{Preset Dirs...}.
          The \textsl{Yoshimi} preset directories are the locations where
          presets can be found.  See below for details.
@@ -1085,7 +1140,7 @@
    \end{verbatim}
 
    The user can provide additional directories for the presets, up to a
-   limit of 1000 directories (unlike roots and banks).
+   limit of 128 directories (like roots and banks).
    These directories are useful for containing copies of the system
    presets that one can modify safely, and for providing custom
    presets designed by the user.
@@ -1097,8 +1152,7 @@
       \item \textbf{Add preset directory...}
       \item \textbf{Remove preset directory...}
       \item \textbf{Make Current}
-      \item \textbf{Save and Close}
-      \item \textbf{Close Unsaved}
+      \item \textbf{Close}
    \end{enumber}
 
 \begin{figure}[H]
@@ -1153,22 +1207,13 @@
    directories.  It is removed immediately, with no need to confirm the
    deletion, click an OK button, or click a Save button.
 
-   \itempar{Make current presets}{Yoshimi Presets!Make Current}
-   Make Current Presets Directory.
+   \itempar{Make current preset}{Yoshimi Presets!Make Current}
+   Make Current.
    Select one of the preset directories in the preset list, then press this
    button to make the preset directory the currently visible preset directory.
    It should be a directory for which one has write permissions.
    By default, it is \texttt{\textasciitilde/.config/yoshimi/presets}.
-\iffalse
-\subsection{Menu / Scales}
-\label{subsec:menu_scales}
 
-   \textsl{Yoshimi} is a microtonal synthesizer, and is capable of a wide
-   range of microtonal scales.  Improvement to its features and the accuracy of
-   the scales have been made in the 1.5.0 series of \textsl{Yoshimi}.
-   Scales are discussed in detail in
-   \sectionref{sec:Scales}.
-\fi
 \subsection{Menu / State}
 \label{subsec:menu_state}
 
@@ -1178,11 +1223,6 @@
    \textsl{Yoshimi} "state" will include the system settings, as well as all
    patches. Some of these settings (such as Oscillator Size) can only be
    realised on a reload if loading via the command line at startup.
-
-%  However,
-%  the ones that can't be dynamically changed will be set, and if the
-%  configuration is then saved, will be set on the next load -- this is not
-%  ideal. We are working on it, but don't expect improvements soon!
 
    \begin{enumber}
       \item \textbf{Load}

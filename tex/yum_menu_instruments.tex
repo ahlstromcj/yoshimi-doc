@@ -110,7 +110,7 @@
    As \figureref{fig:instruments_show_stored},
    shows, this is a very complex dialog with a lot of options.
    The figure shows a default setup, with the bank of instruments at location
-   30, \textbf{30. Misc}, listed.
+   30, \textbf{30. Cormi Sound}, listed.
    If one drops this list down (shown later), one also observes that the banks
    are numbered in increments of 5, to make it easier for a user to insert his
    or her own bank(s) of instruments. The default set of banks are spaced 5
@@ -378,7 +378,8 @@
    Instruments DELETE.
    Selecting this button and clicking an empty bank entry does nothing.
    Selecting this button and clicking an existing bank entry brings up a
-   small dialog asking one if this bank is really to be deleted.
+   small dialog asking one if this instrument is really to be deleted from
+   the bank.
 
    \begin{verbatim}
       ? Clear the slot no. 68?  [No/Yes]
@@ -409,30 +410,8 @@
       Arpeggio3.xiz Permission denied
    \end{verbatim}
 
-%   \itempar{Show synth engines}{instruments!show engines}
-%   If enabled, then the usage of each of the \textsl{Yoshimi} synthesis
-%   engines is indicated by color coding, as shown in the figure above.
-
-%   \textbf{Note} This also affects the new search feature, as at startup there
-%    is a scan of all banks checking for the instrument engines and type.
-
    \itempar{Close}{instruments!Close}
    Closes the window.
-
-%  Here is a more conventional view of instruments, supplied with
-%  \textsl{Yoshimi}, shown in
-%  \figureref{fig:show_pads_bank}.
-%
-% \begin{figure}[H]
-%    \centering
-% %  \includegraphics[scale=0.75]{menu/Instrument/show-pads-bank.jpg}
-%    \includegraphics[scale=0.75]{1.3.6/show_pads_bank.png}
-%    \caption[Show Pads Instruments]{Show Pads Instruments}
-%    \label{fig:show_pads_bank}
-% \end{figure}
-%
-%    Note that many of these Pads instruments also use the Add and Sub
-%    components as well.
 
 \subsubsection{Menu / Instrument / Load External...}
 \label{subsubsec:menu_instrument_load}
@@ -465,132 +444,7 @@
 
    For further details see \sectionref{subsec:interface_filer}.
 
-\iffalse
-   \begin{enumber}
-      \item \textbf{Show}
-      \item \textbf{Favorites}
-      \item \textbf{Create a new directory}
-      \item \textbf{Instrument List}
-      \item \textbf{XML Preview}
-      \item \textbf{Preview}
-      \item \textbf{Show hidden files}
-      \item \textbf{Directory Bar}
-      \item \textbf{Filename}
-      \item \textbf{OK}
-      \item \textbf{Cancel}
-   \end{enumber}
 
-   These elements are used in a number of different places in
-   \textsl{Yoshimi}.
-   Therefore, we will explain them all once, here.
-
-   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
-
-   \itempar{Show}{Load External!show}
-   Show types of files.
-   This item shows a file filter for selecting instrument files.
-   The types of filters are as follows (screen shot not available):
-
-   \begin{enumber}
-      \item \textbf{(\{*.xiz\})} (compressed XML files)
-      \item \textbf{All Files (*)}
-      \item \textbf{Custom Filter}
-   \end{enumber}
-
-   \itempar{Favorites}{Load External!favorites}
-   Favourite directories.
-   Provides a list of options and favourite directories in which to find
-   instrument files.
-
-\begin{figure}[H]
-   \centering
-   \includegraphics[scale=0.75]{menu/Instrument/favorites-dropdown.jpg}
-   \caption{Manage Favorites Drop-Down List}
-   \label{fig:open_instrument_favorites}
-\end{figure}
-
-   \begin{enumber}
-      \item \textbf{Add to Favorites}
-      \item \textbf{Manage Favorites}
-      \item \textbf{File Systems}
-      \item \textbf{\textsl{(current favourite directories)}}
-   \end{enumber}
-
-   \index{Add to Favorites}
-   \textbf{Add to Favorites}
-   simply adds the currently selected directory shown in the instrument list
-   to the list of favourites.
-
-   To add favourites in the file dialog, navigate to the desired directory.
-   Then click \textbf{Favorites}, and select \textbf{Add to Favorites}.
-
-   Once one has a number of favourites set up,
-   there is a \textbf{Manage Favorites} that can be used.
-   For example, if one needs to get rid of a directory, one can use the
-   \textbf{Manage Favorites}
-   \index{Manage Favorites}
-   dialog, shown in
-   \figureref{fig:manage_instrument_favorites} below,
-   to do that.
-
-\begin{figure}[H]
-   \centering
-   \includegraphics[scale=0.75]{menu/Instrument/manage-favorites.png}
-   \caption{Manage Favorites Dialog}
-   \label{fig:manage_instrument_favorites}
-\end{figure}
-
-   \textbf{File Systems} \index{File Systems}
-   Provides a list of all file systems starting at root ("\texttt{/}").
-   This list can be pretty confusing, with a lot of entries.
-   But note that one navigates to ("\texttt{/}"), and from there to
-   \texttt{/usr/share/yoshimi/banks} to get easy access to all the
-   instruments that are preinstalled with
-   \textsl{Yoshimi}.
-   Generally, one will want to use only
-   \textbf{Add to Favorites} and \textbf{Manage Favorites}.
-
-   \itempar{Create Directory}{Load External!create new directory}
-   Creates a New Directory.
-   This little symbol brings up a small "New Directory?" dialog (not shown
-   here, it is very simple and stock) into which one can type a directory
-   name to be added to the current directory of the instrument list.
-
-   \itempar{Instrument List}{Load External!instrument list}
-   Provides a list of the instrument files available in the current
-   directory.  Also shown are sub-directories (if available)
-   that might contain more instruments, and a ("\texttt{../}") entry
-   to navigate to the parent directory.
-
-   \itempar{Preview}{Load External!preview checkbox}
-   If one thinks the preview feature is not useful, uncheck this check-box.
-   so that one doesn't see the preview window.  As a bonus, one can see more
-   of a long instrument file-name.
-
-   \itempar{Preview pane}{Load External!preview pane}
-   XML Preview.
-   This box can show the beginning of the XML data of an instrument file.
-   \textbf{Bug:}
-   \index{bugs!compressed XML preview}
-   The XML preview feature shows the XML only if the XML is not compressed.
-
-   \itempar{Show hidden files}{Load External!show hidden files}
-   Shows file that are hidden.  Not sure how useful this feature is;
-   who would hide a \textsl{Yoshimi} instrument file?
-
-   \itempar{Directory Bar}{Load External!directory bar}
-   Provides an alternate way to move up through the directory structure.
-   Click on each of the small bevelled rectangles to move around in the
-   directory hierarchy.
-
-   \itempar{Filename}{Load External!filename}
-   File Name.
-   Provides the full path specification for the instrument file.
-
-   \itempar{OK/Cancel}{Load External!ok/cancel}
-   We don't really need to discuss the \textbf{OK} and \textbf{Cancel}
-   buttons, do we?  OK, we'll cancel that discussion.
-\fi
 \subsubsection{Menu / Instrument / Save External...}
 \label{subsubsec:menu_instrument_save}
 
