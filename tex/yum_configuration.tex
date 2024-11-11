@@ -437,8 +437,8 @@
 
    At startup, after all the configuration is complete, the banks are loaded and
    installed.  On a per instance basis, the first thing this process does is
-   look for a \texttt{yoshimi(-n).banks} file, if it can't, find that it then
-   hunts for a \texttt{yoshimi(-n).config} file, and if that fails it does a
+   look for a \texttt{yoshimi(-n).banks} file. If it can't find that it then
+   hunts for a \texttt{yoshimi(-n).config} file. Finally, if that fails it does a
    re-scan for banks. In this way it should be completely backward compatible
    with any previous config files.
 
