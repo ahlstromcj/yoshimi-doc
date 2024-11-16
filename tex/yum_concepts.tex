@@ -54,15 +54,21 @@
 
 \subsubsection{Concepts / Terms / Frame}
 \label{subsubsec:concepts_terms_frame}
+   The audio \textbf{sample}
+   \index{sample}
+   is the instantaneous value of an audio stream taken at a specific time.
+   In software, this is usually represented as a float (floating point
+   value), but in hardware will be a 24 or 32 bit integer, or a short (16
+   bit integer).
 
    The audio \textbf{frame}
    \index{frame}
-   is a single sample of however many channels an application is handling.
+   is a sample group of however many channels an application is handling.
    If one is using JACK, a mono signal will have frames of 1 float, 2 floats
    for stereo, etc.  A six-channel device will have six samples in a single
    frame.  An audio or JACK buffer will contain more than one frame of data.
-   Buffers generally range in size from 16 to 1024 frames.  Low values provide
-   less latency, but make the CPU work harder.
+   Buffers generally range in size from 16 to 1024 frames.  Low values
+   provide less latency (time delay), but make the CPU work harder.
 
 \subsubsection{Concepts / Terms / Instrument}
 \label{subsubsec:concepts_terms_instrument}
@@ -493,7 +499,7 @@
          Applied to all parts, one can set how much signal
          is routed through a system effect.
       \item \textbf{Master mixer}.
-         Mixes all outputs of Parts Mixers and System Effects.
+         Mixes all outputs of Parts, Mixers and System Effects.
    \end{enumber}
 
 \subsubsection{Concepts / Basic Synthesis / Filters}
@@ -568,9 +574,9 @@
 \subsubsection{Concepts / Basic Synthesis / Formants}
 \label{subsubsec:concepts_basics_formants}
 
-   Formants are basically peaks in the spectrum of the human voice cause by
-   the various resonant features of the human vocal tract.  They can be used in
-   \textsl{Yoshimi} to produce human-like sounds.
+   Formants are basically peaks in the spectrum of the human voice that are
+   created by the various resonant features of the human vocal tract.  They
+   can be used in \textsl{Yoshimi} to produce human-like sounds.
    Paul Nasca describes formants:
 
    \begin{quotation}
