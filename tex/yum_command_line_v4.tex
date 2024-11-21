@@ -288,9 +288,9 @@
    The organisation of these features may be adjusted slightly, based on
    comments from users.
 
-   If any configuration settings are changed, either at the command-line or
-   in the graphical user-interface, one will be given a warning when
-   exiting, with the option to continue running so one can save the changes.
+%   If any configuration settings are changed, either at the command-line or
+%   in the graphical user-interface, one will be given a warning when
+%   exiting, with the option to continue running so one can save the changes.
 
 \subsection{Command Level}
 \label{subsec:command_line_command_level}
@@ -474,7 +474,7 @@
 
    Note that there are a number of commands common to all command levels.
    We describe them here.
-
+\iffalse
 \begin{center}
 \begin{longtable}{p{3cm} p{12cm}}
 \caption[Yoshimi Common Commands]{Yoshimi Common Commands} \\
@@ -507,6 +507,7 @@
 
 \end{longtable}
 \end{center}
+\fi
 
 \begin{center}
 \begin{longtable}{p{6cm} p{10cm}}
@@ -784,27 +785,27 @@ The idea of having a list of common commands is now deprecated. This is
 because although originally intended to keep the individual command lists to
 manageable proportions, it actually made it more confusing when trying
 to see what controls were available in each context.
-
+\newpage
 \subsubsection{Part Commands}
 \label{subsec:command_line_part_commands}
 
    Note that the table below assumes one is already at part level.
 
 \begin{center}
-\begin{longtable}{p{3cm} p{15cm}}
+\begin{longtable}[l]{ ll}
 \caption[Part Commands]{Part Commands} \\
    \label{table:yoshimi_part_commands}
-\texttt{(part) [n]} &
+\texttt{(part)~[n]} &
    Change part number.  \\
 \texttt{[ON/OFF]} &
    Enables / Disables the part. \\
-\texttt{Volume [n]} &
+\texttt{Volume~[n]} &
    Volume.  \\
-\texttt{Pan [n]} &
+\texttt{Pan~[n]} &
    Panning.\\
-\texttt{VElocity [n]} &
+\texttt{VElocity~[n]} &
    Velocity sensing sensitivity. \\
-\texttt{LEvel [n]} &
+\texttt{LEvel~[n]} &
    Velocity sense offset level.  \\
 \texttt{MIn [[s][n]]} &
    Minimum MIDI last seen, or note value.   \\
@@ -828,9 +829,9 @@ to see what controls were available in each context.
    Effect type.   \\
  \texttt{(effect) PREset [n]} &
    Numbered effect preset to n. \\
- \texttt{(effect) Send [n1] [n2]} &
+ \texttt{(effect)~Send~[n1]~[n2]} &
    Current part to system effect n1 at volume n2. \\
-\texttt{PRogram [s]/[[s] [n]]} &
+\texttt{PRogram~[s]/[[s]~[n]]} &
    Instrument ID / Group (n) loads from search list. \\
 \texttt{LAtest} &
    The most recent bank instrument loaded or saved. \\
@@ -850,9 +851,9 @@ to see what controls were available in each context.
   Resets the part to the default 'Simple Sound'. \\
 \texttt{Channel [n]} &
    CHannel (32 disables, 16 note off only).   \\
-\texttt{AFtertouch Chan <s1> [s2]} &
+\texttt{AFtertouch~Chan~<s1>~[s2]} &
    Off, Filter (Down) + Peak (Down) + Bend (Down) + Modulation + Volume. \\
-\texttt{AFtertouch Key <s1> [s2]} &
+\texttt{AFtertouch~Key~<s1>~[s2]} &
    Off, Filter (Down) + Peak (Down) + Bend (Down) + Modulation. \\
 \texttt{Destination [s]} &
    JACK audio destination (Main, Part, Both).  \\
@@ -933,7 +934,7 @@ to see what controls were available in each context.
 \texttt{MRange [n]} &
    relative modulation control range. \\
 \texttt{EXpression [s]} &
-   enables/disables volume control (OFF / other). \\
+   enables/disables expression control (OFF / other). \\
 \texttt{SUstain [s]} &
    enables/disables sustain control (OFF / other). \\
 \texttt{PWheel [n]} &
