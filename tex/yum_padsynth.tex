@@ -48,7 +48,7 @@
 \subsection{PADsynth / Algorithm}
 \label{subsec:padsynth_algorithm}
 
-   The complexity of the PADsynth dailog reflects the complexity of the
+   The complexity of the PADsynth dialog reflects the complexity of the
    PADsynth algorithms themselves.
 
 \subsubsection{PADsynth / Algorithm / General}
@@ -400,7 +400,7 @@
       \item \textbf{Crossfade}
       \item \textbf{Retrigger} (section)
       \item \textbf{Resonance} (section)
-      \item \textbf{Change} (section)
+      \item \textbf{Waveform} (section)
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
@@ -609,7 +609,7 @@
          overtone.
       \item \textbf{Sine}.
          Harmonics are alternatingly shifted up or down, causing them to cluster;
-         par2 defines the frequency and thus the density of these overtone.
+         par2 defines the frequency and thus the density of these overtones.
    \end{itemize}
 
 \begin{figure}[H]
@@ -786,7 +786,7 @@ behaviour and ranges may change following experience and feedback from users.
       \item \textbf{Harmonic} (section)
    \end{enumber}
 
-\paragraph{PADsynth / Harmonic Structure / Change / Oscillator}
+\paragraph{PADsynth / Harmonic Structure / Waveform / Oscillator}
 \label{paragraph:padsynth_harmonic_structure_change_oscillator}
 
    \begin{enumber}
@@ -840,7 +840,7 @@ behaviour and ranges may change following experience and feedback from users.
     \textbf{H. rnd} - Harmonic Randomness is very noticeable and (we think) changes the
     \textsl{amplitude} of the harmonics.
 
-\paragraph{PADsynth / Harmonic Structure / Change / Base Function}
+\paragraph{PADsynth / Harmonic Structure / Waveform / Base Function}
 \label{paragraph:padsynth_harmonic_structure_change_base_function}
 
    \begin{enumber}
@@ -911,7 +911,7 @@ behaviour and ranges may change following experience and feedback from users.
    \texttt{None}, this modifies one (unknown at this time) parameter of the
    modulation selection.
 
-\paragraph{PADsynth / Harmonic Structure / Change / Middle}
+\paragraph{PADsynth / Harmonic Structure / Waveform / Middle}
 \label{paragraph:padsynth_harmonic_structure_change_middle}
 
    \begin{enumber}
@@ -1092,7 +1092,7 @@ behaviour and ranges may change following experience and feedback from users.
    Adjust the spectrum of the waveform.
 
    RMS normalize. Enables the RMS normalization method (recommended); this
-   keeps the same loudness regardless the harmonic content.
+   keeps the same loudness regardless of the harmonic content.
 
    Below are the harmonics and their phases. One can use them to add to
    oscillator harmonics that has the waveform of the base function.
@@ -1111,7 +1111,7 @@ behaviour and ranges may change following experience and feedback from users.
    \itempar{Sp.adj. Wheel}{padsynth!harm editor spadj wheel}
    Harmonic Editor Spectrum Adjust Wheel.
 
-\paragraph{PADsynth / Harmonic Structure / Change / Harmonic}
+\paragraph{PADsynth / Harmonic Structure / Waveform / Harmonic}
 \label{paragraph:padsynth_harmonic_structure_change_harmonic}
 
    \begin{enumber}
@@ -1119,7 +1119,6 @@ behaviour and ranges may change following experience and feedback from users.
       \item \textbf{Harmonics Bandwidth}
       \item \textbf{Harmonics Scrollbar}
       \item \textbf{Harmonic Shift}
-      \item \textbf{Harmonic Shift R}
       \item \textbf{Harmonic Shift preH}
       \item \textbf{Adpt.Harm.}
       \item \textbf{Adpt.Harm. Slider}
@@ -1149,11 +1148,6 @@ behaviour and ranges may change following experience and feedback from users.
 
    \itempar{Harmonic Shift}{padsynth!harmonics shift}
    Harmonics Shift.
-
-   \itempar{Harmonic Shift R}{padsynth!harmonics shift r}
-   Harmonics Shift Reset.
-   Pressing this button resets the \textbf{Harmonic Shift} value to zero
-   (0).
 
    \itempar{Harmonic Shift preH}{padsynth!harmonics shift preh}
    Harmonics Shift preH.
@@ -1247,9 +1241,9 @@ behaviour and ranges may change following experience and feedback from users.
       \item \textbf{Close}
    \end{enumber}
 
-   Note the "Filter Envelope" section in the figure.  This is a free-edit
-   version of the envelope.  The non-free-edit view can be seen in
-   \figureref{fig:filter_env}, which describes this user-interface item in more
+   Note the "Amplitude Envelope" section in the figure.  This is a free-edit
+   version of the envelope.  A non-free-edit view can be seen in
+   \figureref{fig:amplitude_env}, which describes this user-interface item in more
    detail.
 
    \itempar{AMPLITUDE}{padsynth!amplitude section}
