@@ -227,16 +227,22 @@
 
    \itempar{Detune Type}{addsynth!detune type}
    ADDsynth Detune Type.
-   The menu options control the amount of detune of the slider and whether it is a
-   linear change or exponential (i.e. has more effect the further away it is from
-   the centre position).
+   This value defines the number of cents that define the range of the
+   \textbf{FREQUENCY} slider below and above the main frequency.
+   The values are 35 cents, 10 cents, 100 cents (one semitone), or
+   1200 cents (1 octave),  The default is 35 cents.  The 1200-cents
+   setting provides a whole octave of detuning in either direction.
+
 
    Values: \texttt{0 to 127, 72*}
 
    \itempar{Coarse Detune}{addsynth!coarse detune}
    ADDsynth Coarse Detune.
-   The inner single arrows make a coarse step change to the detune, and the outer
-   double ones change by ten times as much.
+   The single-arrow buttons change the value by one.
+   "One" depends on the detune type.
+   If the detune type is 100 cents it is one semitone,
+   At 1200 cents it's seven semitones.
+   The double-arrow buttons change the value by ten.
 
    Values: \texttt{0 to 127, 72*}
 
@@ -302,13 +308,13 @@
 \end{figure}
 
    This value defines the number of cents that define the range of the
-   \textbf{FREQUENCY} slider, that is 35 cents, 10 cents, 100 cents (one
-   semitone), or 1200 cents (1 octave), below and above the main
-   frequency.  The default is 35 cents.  The 1200-cents setting provides a
-   whole octave of detuning in either direction.
+   \textbf{FREQUENCY} slider below and above the main frequency.
+   The values are 35 cents, 10 cents, 100 cents (one semitone), or
+   1200 cents (1 octave),  The default is 35 cents.  The 1200-cents
+   setting provides a whole octave of detuning in either direction.
 
-   The "L" stands for "linear", and the "E" for "exponential", to
-   describe how the detune slider acts.
+   The "L" stands for "linear", and the "E" for "exponential", describing
+   how the detune slider acts.
 
    Values: \texttt{Default*, L35cents, L10cents, E100cents, E1200cents}
 
@@ -347,18 +353,24 @@
 
    \itempar{Detune Type}{addsynth!detune type}
    Frequency Detune Type.
-   This setting provides a coarse detuning.
-   We would welcome an explanation of exactly is meant by the numbers and
-   the "E" versus "L" designation.
+   This value defines the number of cents that define the range of the
+   \textbf{FREQUENCY} slider below and above the main frequency.
+   The values are 35 cents, 10 cents, 100 cents (one semitone), or
+   1200 cents (1 octave),  The default is 35 cents.  The 1200-cents
+   setting provides a whole octave of detuning in either direction.
+
+   The "L" stands for "linear", and the "E" for "exponential", describing
+   how the detune slider acts.
 
    Values: \texttt{L35cents, L10cents, E100cents, E1200cents}
 
    \itempar{Coarse det}{addsynth!coarse detune}
    Coarse Detune, "C.detune".
-   The one-arrow buttons change the value by one.
-   The two-arrow buttons change the value by ten.
-   Again, we need a way to explain the interactions of the slider, the
-   octave setting, the detune type, and the coarse detune settings.
+   The single-arrow buttons change the value by one.
+   "One" depends on the detune type.
+   If the detune type is 100 cents it is one semitone,
+   At 1200 cents it's seven semitones.
+   The double-arrow buttons change the value by ten.
 
    Values: \texttt{-64 to 63, 0*}
 
@@ -671,8 +683,6 @@
 
    \itempar{Coarse det}{voice parameters!coarse detune}
    Coarse Detune.
-   Is this setting in units of semitones?
-   \index{todo!coarse detune units}
 
    Values: \texttt{-64 to 63, 0*}
 
@@ -892,7 +902,7 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/modulator-type.jpg}
+     \includegraphics[scale=0.5]{2.3.3/modtype.png}
    \caption{Voice Modulator Type}
    \label{fig:voice_modulator_type}
 \end{figure}
@@ -1298,6 +1308,13 @@
    Oscillator Magnitude Type.
    Sets how the magnitudes from the user interface behave.  See the values
    below.
+
+   \begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.75]{2.3.3/magtype.png}
+   \caption{ADDsynth Oscillator Magnitude Type}
+   \label{fig:addsynth_magtype}
+\end{figure}
 
    \itempar{Phase Randomness}{addsynth!rnd}
    Phase Randomness. Sets the randomness of the oscillator phase which is
