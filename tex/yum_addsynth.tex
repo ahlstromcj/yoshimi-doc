@@ -114,10 +114,6 @@
       \item \textbf{P.Stc.}
       \item \textbf{P.Vel.}
       \item \textbf{Detune}
-      \item \textbf{Octave}
-      \item \textbf{relBW}
-      \item \textbf{Detune Type}
-      \item \textbf{Coarse Detune}
    \end{enumber}
 
    Note the two sub-panels, mentioned above, that are described elsewhere.
@@ -206,46 +202,6 @@
 
    Values: \texttt{0 to 127, 72*}
 
-   \itempar{Detune}{addsynth!detune}
-   ADDsynth Detune.
-   Detunes the engine by a small amount.
-
-   Values: \texttt{0 to 127, 72*}
-
-   \itempar{Octave}{addsynth!octave}
-   ADDsynth Octave.
-   Allows a change of the overall pitch up or down by up to eight octaves.
-
-   Values: \texttt{0 to 8, 0*}
-
-   \itempar{relBW}{addsynth!relbw}
-   ADDsynth relBW (relative bandwidth).
-   Modifies the amount individual voice and unison detunes can deviate
-   from the overall value.
-
-   Values: \texttt{0 to 127, 72*}
-
-   \itempar{Detune Type}{addsynth!detune type}
-   ADDsynth Detune Type.
-   This value defines the number of cents that define the range of the
-   \textbf{FREQUENCY} slider below and above the main frequency.
-   The values are 35 cents, 10 cents, 100 cents (one semitone), or
-   1200 cents (1 octave),  The default is 35 cents.  The 1200-cents
-   setting provides a whole octave of detuning in either direction.
-
-
-   Values: \texttt{0 to 127, 72*}
-
-   \itempar{Coarse Detune}{addsynth!coarse detune}
-   ADDsynth Coarse Detune.
-   The single-arrow buttons change the value by one.
-   "One" depends on the detune type.
-   If the detune type is 100 cents it is one semitone,
-   At 1200 cents it's seven semitones.
-   The double-arrow buttons change the value by ten.
-
-   Values: \texttt{0 to 127, 72*}
-
 \subsection{ADDsynth / FILTER}
 \label{subsec:addsynth_filter}
 
@@ -279,7 +235,7 @@
 \label{subsec:addsynth_frequency}
 
    \begin{enumber}
-      \item \textbf{Detune}
+      \item \textbf{Detune [value]}
       \item \textbf{FREQUENCY slider}
       \item \textbf{Octave}
       \item \textbf{RelBW}
@@ -300,29 +256,12 @@
    This display box shows the value of the detune as selected by the
    frequency slider described below.
 
-\begin{figure}[H]
-   \centering
-   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/frequency-detune-type.jpg}
-   \caption{ADDsynth Frequency Detune Type}
-   \label{fig:addsynth_freq_detune_type}
-\end{figure}
-
-   This value defines the number of cents that define the range of the
-   \textbf{FREQUENCY} slider below and above the main frequency.
-   The values are 35 cents, 10 cents, 100 cents (one semitone), or
-   1200 cents (1 octave),  The default is 35 cents.  The 1200-cents
-   setting provides a whole octave of detuning in either direction.
-
-   The "L" stands for "linear", and the "E" for "exponential", describing
-   how the detune slider acts.
-
-   Values: \texttt{Default*, L35cents, L10cents, E100cents, E1200cents}
-
    \itempar{FREQUENCY slider}{addsynth!freq slider}
    ADDsynth Fine Detune (cents), a slider control.
    While the detune type dropdown and the octave selection provide a coarse
    selection of detune, the slider allows for a finer selection of detune,
-   up to roughly one-third of a semitone.
+   up to roughly one-third of a semitone at the default detune type of 35
+   cents. It will be proportionally greater at the other settings.
 
    Values:
       \texttt{-35.00 to 35.00},
@@ -353,7 +292,7 @@
 
    \itempar{Detune Type}{addsynth!detune type}
    Frequency Detune Type.
-   This value defines the number of cents that define the range of the
+   This dropdown sets the number of cents that define the range of the
    \textbf{FREQUENCY} slider below and above the main frequency.
    The values are 35 cents, 10 cents, 100 cents (one semitone), or
    1200 cents (1 octave),  The default is 35 cents.  The 1200-cents
@@ -363,6 +302,13 @@
    how the detune slider acts.
 
    Values: \texttt{L35cents, L10cents, E100cents, E1200cents}
+
+   \begin{figure}[H]
+   \centering
+   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/frequency-detune-type.jpg}
+   \caption{ADDsynth Frequency Detune Type}
+   \label{fig:addsynth_freq_detune_type}
+\end{figure}
 
    \itempar{Coarse det}{addsynth!coarse detune}
    Coarse Detune, "C.detune".
@@ -374,10 +320,21 @@
 
    Values: \texttt{-64 to 63, 0*}
 
+   \subsection{ADDsynth / Links}
+   \label{subsec:addsynth_links}
+   \setcounter{ItemCounter}{0}
    \itempar{Show Voice Parameters}{addsynth!voice parameters}
    ADDsynth Show Voice Parameters.
-   This button brings up the "voice parameters" dialog discussed in the next
-   section.
+   This button brings up the "voice parameters" dialog discussed in
+   \sectionref{subsec:addsynth_voice_parameters}.
+
+   \itempar{Show Voice List}{addsynth!voice list}
+   ADDsynth Show Voice List.
+   This button brings up the "voice list" dialog which gives one a list of all
+   voices with some abridged editing. See \sectionref{subsec:addsynth_voice_list}.
+
+   \itempar{Resonance}{addsynth!resonance}
+   This button brings up the "resonance" dialog. Details of this can be found in \sectionref{subsec:stock_resonance_settings}.
 
 \subsection{ADDsynth / Voice Parameters}
 \label{subsec:addsynth_voice_parameters}
