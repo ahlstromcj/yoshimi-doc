@@ -261,7 +261,8 @@
    While the detune type dropdown and the octave selection provide a coarse
    selection of detune, the slider allows for a finer selection of detune,
    up to roughly one-third of a semitone at the default detune type of 35
-   cents. It will be proportionally greater at the other settings.
+   cents. It will be proportionally less at 10 cents and greater at the
+   other settings.
 
    Values:
       \texttt{-35.00 to 35.00},
@@ -735,7 +736,7 @@
       \item \textbf{Phase}
       \item \textbf{C}
       \item \textbf{P}
-      \item \textbf{Close Window}
+      \item \textbf{Close}
    \end{enumber}
 
 
@@ -760,7 +761,7 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=1.0]{1.6.0/voice_oscillator_sound_dropdown.png}
+   \includegraphics[scale=0.5]{2.3.3/soundtype.png}
    \caption{Voice Oscillator Choices}
    \label{fig:voice_oscillator_choices}
 \end{figure}
@@ -874,7 +875,7 @@
          The morph modulator works by combining the output of the voice oscillator
          and the modulator oscillator into one sound, with the amplitude envelope
          translating between one waveform and the other. It is important that the
-         amplitude envelope is enabled, otherwise no change will take place.
+         amplitude envelope is enabled, otherwise no movement between the voice and modulation oscillators will happen. Instead there will be a static mix of them dependent on the Volume and Velocity controls.
 
       \item \textbf{RING}
          \index{RING}
@@ -1030,7 +1031,7 @@
       \item \textbf{Use}
          Oscillator to Use.
          See the paragraph below.
-         Values: \texttt{Internal*, Other oscillators?}
+         Values: \texttt{Internal*, (Available Others)}
       \item \textbf{Phase}
          Oscillator Phase.
 
@@ -1110,12 +1111,12 @@
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{C}{voice oscillator!copy}
-   Copy D note parameters ("DnoteParameters").
+   Opens the Copy window with "AddSynth Voice" as the type.
 
    \itempar{P}{voice oscillator!paste}
-   Paste D note parameters ("DnoteParameters").
+   Opens the Paste window with "AddSynth Voice" as the type.
 
-   \itempar{Close Window}{voice oscillator!close}
+   \itempar{Close}{voice oscillator!close}
    Close.
 
 
@@ -1143,9 +1144,10 @@
       \item \textbf{Vol}
       \item \textbf{Pan}
       \item \textbf{Res}
+      \item \textbf{Detune Value}
       \item \textbf{Detune}
       \item \textbf{Vibrato Depth}
-      \item \textbf{Hide Voice List}
+      \item \textbf{Close}
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
@@ -1197,8 +1199,8 @@
    Enable/disable the resonance effect of a voice.
    Note that the resonance is configured by the Resonance dialog brought
    up by the \textbf{Resonance} button at the bottom of the ADDsynth main
-   dialog.  The resonance dialog has its own Enable button, as well.
-   This is provided so individual voices can bypass the resonance filter.
+   dialog.  The resonance dialog has its own global Enable button, but this
+   one is provided so individual voices can bypass the resonance filter.
 
    Values: \texttt{Off, On*}
 
@@ -1218,9 +1220,8 @@
 
    Values: \texttt{0 to 127, 40*}
 
-   \itempar{Hide Voice List}{voice list!hide}
-   Hide Voice List.  A Close button, really, and that is what it is in the
-   latest version of \textsl{Yoshimi}.
+   \itempar{Close}{voice list!close}
+   A Close button.
 
 \subsection{ADDsynth / Oscillator}
 \label{subsec:addsynth_oscillator}
