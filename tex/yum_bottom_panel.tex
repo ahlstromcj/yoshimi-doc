@@ -272,6 +272,12 @@
    default volume for SUB parts is 90; the ADD voice volume is 100; and
    effects volumes vary heavily with the effect.
 
+   \itempar{Controllers} {section}
+   See \sectionref{subsec:bottom_panel_controllers}
+
+   \itempar{MIDI CCs} {section}
+   see\sectionref{subsubsec:bottom_panel_controllers_midi_controls}
+
    \itempar{Pan Law}{bottom panel!panlaw}
    Session panning behaviour.
 
@@ -334,7 +340,7 @@
    \sectionref{sec:top_panel}\hspace{4pt}for more information.
 
    \itempar{Key Limit}{bottom panel!key limit}
-   Maximum keys to be allocated for this part.
+   Maximum keys (i.e. concurrent notes) available to this part.
 
    Values: \texttt{0 to 60, 20*}
 
@@ -393,7 +399,7 @@
    Another item which helps a lot is compression (for example, the Calf
    multiband compressor is amazingly good.
 
-\subsection{Bottom Panel / Controllers and MIDI CCs}
+\subsection{Bottom Panel / MIDI Controllers}
 \label{subsec:bottom_panel_controllers}
 
 \begin{figure}[H]
@@ -449,16 +455,10 @@
 
    Values: \texttt{0 to 127, 64*}
 
-   \itempar{Exp BW}{controllers!bandwidth depth}
-   Exponential Bandwidth.
-   Changes the bandwidth scale to exponential.
+   \itempar{PanWdth}{controllers!panning width}
+   Panning Width.
 
    Values: \texttt{0 to 127, 64*}
-
-   \itempar{PanDpth}{controllers!panning depth}
-   Panning Depth.
-
-   Values: \texttt{0 to 64*}
 
    \itempar{FltQ}{controllers!filter Q depth}
    Filter Q (resonance) Depth.
@@ -473,7 +473,7 @@
    \itempar{Vol Rng}{controllers!volume range}
    Volume Range.
 
-   Values: \texttt{64 to 127, 64*}
+   Values: \texttt{64 to 127, 96*}
 
    \itempar{PWheelB.Rng}{controllers!pitch wheel range}
    Pitch Wheel Bend Range (cents).
@@ -521,109 +521,22 @@
 
    Values: \texttt{Off, On*}
 
+   \itempar{Resonance} {section}
+   See \sectionref{subsubsec:bottom_panel_controllers_resonance}
+
+   \itempar{Portamento} {section}
+   See \sectionref{subsubsec:bottom_panel_controllers_portamento}
+
    \itempar{Reset all controllers}{controllers!reset all}
-   Reset All Controllers.
+   Reset all controllers to their default settings.
 
    \itempar{Aftertouch}{controllers!aftertouch}
    Open Aftertouch window.
+   \sectionref{subsubsec:bottom_panel_controllers_aftertouch}
 
    \itempar{Close}{controllers!close}
    Close Window.
 
-\subsubsection{Bottom Panel / Controllers / Aftertouch}
-\label{subsubsec:bottom_panel_controllers_aftertouch}
-
-   Completely new to \textsl{Yoshimi V 1.7.1}. Clicking on the button
-   in \textbf{Controllers} opens the window below.
-
-\begin{figure}[H]
-   \centering
-   \includegraphics[scale=0.6]{2.3.3/aftertouch.png}
-   \caption{The MIDI Aftertouch Window}
-   \label{fig:instrument_midi_aftertouch}
-\end{figure}
-
-This feature is so new that it may well change dependent on user feedback.
-
-Both types of aftertouch are supported, \textsl{Channel} and \textsl{Key}. Many
-keyboards only have \textsl{Channel} aftertouch, but \textsl{Key} is becoming
-more common. \textsl{Key} is where the aftertouch
-behaviour only affects the note produced by the key being pressed harder.
-
-Currently, both forms support \textbf{Filter Cutoff} point,
-\textbf{Filter Q}, and
-\textbf{Pitch Bend}. Also note the extra checkboxes where these can be set to
-move the controls down instead of up.
-
-Also there is \textbf{Modulation}, and finally, \textbf{Volume} is only available
-to \textbf{Channel} pressure.
-
-One can have multiple actions such as
-\textbf{Filter Q} and \textbf{Pitch Bend},
-but one cannot have the same control on both
-\textbf{Channel} and \textbf{Key}.
-
-\subsubsection{Bottom Panel / Controllers / MIDI Controls}
-\label{subsubsec:bottom_panel_controllers_midi_controls}
-
-   There is a new button in the main window for access to the small MIDI CCs
-   window. Access to this window used to require a right click on the
-   Controllers button, but many people never knew it was available!  These
-   controls can be used when one doesn't have a MIDI source connected, and they
-   can also be learned and combined with others for greater expression.  This
-   window has five controls that are MIDI-learnable.
-
-\begin{figure}[H]
-   \centering
-   \includegraphics[scale=0.8]{2.3.0/midiCCs.png}
-   \caption{MIDI Controls from MIDI CCs Button}
-   \label{fig:instrument_midi_controllers}
-\end{figure}
-
-   \begin{enumber}
-      \item \textbf{Modulation}
-      \item \textbf{Expression}
-      \item \textbf{Filter Q}
-      \item \textbf{Filter Cutoff}
-      \item \textbf{Bandwidth}
-   \end{enumber}
-
-   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
-
-   Will has one keyboard that sends aftertouch messages, and all of these work
-   correctly with it. An interesting effect was to have a sawtooth wave set up
-   in \textbf{AddSynth} and the frequency LFO level turned up.  Then, he
-   learned \textbf{Modulation}, \textbf{Expression}, and \textbf{Filter
-   Cutoff}, all on aftertouch. He then reduced their ranges in the MIDI learn
-   window and the effect was very interesting.  Try it!
-
-   Because of the way this is implemented, these controls are also accessible
-   via command line (CLI) direct access for both for read and write, and the
-   knobs will respond to this, as well as to learned controls.
-
-   \itempar{Modulation}{controllers!modulation}
-   Affects the (amplitude) modulation of all engines in the part.
-
-   \itempar{Expression}{controllers!expression}
-   Affects the "expression" of all engines in the part.
-
-   \itempar{Filter Q}{controllers!filter Q}
-   Affects the sharpness of the filtering of all engines in the part.
-
-   \itempar{Filter Cutoff}{controllers!filter cutoff}
-   \index{brightness}
-   Affects the brightness of all engines in the part by increasing or reducing
-   the corner frequency.
-
-   \itempar{Bandwidth}{controllers!bandwidth}
-   \index{Master Bandwidth}
-   The master bandwidth control affects all engines in a part, and is
-   real-time. It is also highly dependent on the harmonic structure, so is most
-   effective on SubSynth sounds.  Like all of these MIDI controls, it is a part
-   control, not an instrument setting, and is never saved.
-   It is available in the window shown above, the command-line,
-   and it is learnable.
-   It considerably "expands" some instruments.
 
 \subsubsection{Bottom Panel / Controllers / Resonance}
 \label{subsubsec:bottom_panel_controllers_resonance}
@@ -641,6 +554,7 @@ but one cannot have the same control on both
    Resonance Bandwidth Controller Depth.
 
    Values: \texttt{0 to 127, 64*}
+
 
 \subsubsection{Bottom Panel / Controllers / Portamento}
 \label{subsubsec:bottom_panel_controllers_portamento}
@@ -708,6 +622,103 @@ but one cannot have the same control on both
    The difference from nonproportional portamento.
 
    Values: \texttt{0 to 127, 90*}, requires \textbf{Proprt.} = \texttt{On}
+
+
+\subsubsection{Bottom Panel / Controllers / Aftertouch}
+\label{subsubsec:bottom_panel_controllers_aftertouch}
+
+   Completely new to \textsl{Yoshimi V 1.7.1}. Clicking on the button
+   in \textbf{Controllers} opens the window below.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.6]{2.3.3/aftertouch.png}
+   \caption{The MIDI Aftertouch Window}
+   \label{fig:instrument_midi_aftertouch}
+\end{figure}
+
+This feature is so new that it may well change dependent on user feedback.
+
+Both types of aftertouch are supported, \textsl{Channel} and \textsl{Key}. Many
+keyboards only have \textsl{Channel} aftertouch, but \textsl{Key} is becoming
+more common. \textsl{Key} is where the aftertouch
+behaviour only affects the note produced by the key being pressed harder.
+
+Currently, both forms support \textbf{Filter Cutoff} point,
+\textbf{Filter Q}, and
+\textbf{Pitch Bend}. Also note the extra checkboxes where these can be set to
+move the controls down instead of up.
+
+Also there is \textbf{Modulation}, and finally, \textbf{Volume} is only available
+to \textbf{Channel} pressure.
+
+One can have multiple actions such as
+\textbf{Filter Q} and \textbf{Pitch Bend},
+but one cannot have the same control on both
+\textbf{Channel} and \textbf{Key}.
+
+\subsubsection{Bottom Panel / MIDI CCs}
+\label{subsubsec:bottom_panel_controllers_midi_controls}
+
+   There is a new button in the main window for access to the small MIDI CCs
+   window. Access to this window used to require a right click on the
+   Controllers button, but many people never knew it was available!  These
+   controls can be used when one doesn't have a MIDI source connected, and they
+   can also be learned and combined with others for greater expression.  This
+   window has five controls that are MIDI-learnable.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.8]{2.3.0/midiCCs.png}
+   \caption{MIDI Controls from MIDI CCs Button}
+   \label{fig:instrument_midi_controllers}
+\end{figure}
+
+   \begin{enumber}
+      \item \textbf{Modulation}
+      \item \textbf{Expression}
+      \item \textbf{Filter Q}
+      \item \textbf{Filter Cutoff}
+      \item \textbf{Bandwidth}
+   \end{enumber}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   Will has one keyboard that sends aftertouch messages, and all of these work
+   correctly with it. An interesting effect was to have a sawtooth wave set up
+   in \textbf{AddSynth} and the frequency LFO level turned up.  Then, he
+   learned \textbf{Modulation}, \textbf{Expression}, and \textbf{Filter
+   Cutoff}, all on aftertouch. He then reduced their ranges in the MIDI learn
+   window and the effect was very interesting.  Try it!
+
+   Because of the way this is implemented, these controls are also accessible
+   via command line (CLI) direct access for both for read and write, and the
+   knobs will respond to this, as well as to learned controls.
+
+   \itempar{Modulation}{controllers!modulation}
+   Affects the (amplitude) modulation of all engines in the part.
+
+   \itempar{Expression}{controllers!expression}
+   Affects the "expression" of all engines in the part.
+
+   \itempar{Filter Q}{controllers!filter Q}
+   Affects the sharpness of the filtering of all engines in the part.
+
+   \itempar{Filter Cutoff}{controllers!filter cutoff}
+   \index{brightness}
+   Affects the brightness of all engines in the part by increasing or reducing
+   the corner frequency.
+
+   \itempar{Bandwidth}{controllers!bandwidth}
+   \index{Master Bandwidth}
+   The master bandwidth control affects all engines in a part, and is
+   real-time. It is also highly dependent on the harmonic structure, so is most
+   effective on SubSynth sounds.  Like all of these MIDI controls, it is a part
+   control, not an instrument setting, and is never saved.
+   It is available in the window shown above, the command-line,
+   and it is learnable.
+   It considerably "expands" some instruments.
+
 
 \subsection{Bottom Panel Instrument Edit}
 \label{subsec:bottom_panel_instrument_edit}
@@ -780,7 +791,7 @@ but one cannot have the same control on both
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=1.0]{bottom-panel/edit-instrument-type.jpg}
+   \includegraphics[scale=0.5]{2.3.3/instrumenttypes.png}
    \caption{Instrument Type Drop-down List}
    \label{fig:instrument_type_dropdown}
 \end{figure}
