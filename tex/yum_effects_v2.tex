@@ -62,6 +62,9 @@
    Insertion effects are described in
    \sectionref{subsubsec:effects_paneltypes_insertion}.
 
+   All of these effects can also be managed by \textsl{Yoshimi's} NRPNs\newline
+   For details, see \sectionref{subsection:effects_nrpn_values}
+
 \subsection{Effects / Panel Types}
 \label{subsec:effects_paneltypes}
 
@@ -537,16 +540,6 @@ this was changed quite a few versions ago and is no longer true
    frequency instead of increasing it. Note that this will not have much
    effect if the effects input is not very loud.
 
-\subsubsection{Effects / DynFilter / NRPN Values}
-\label{subsubsec:effects_edit_dynfilter_nrpn}
-
-   Effects can be controlled via "non-registered parameter numbers", or NRPNs.
-   This section will eventually (we hope)
-   detail the NRPN values supported by the DynFilter effect.
-
-   For more information on the concept of NRPNs, see
-   \sectionref{subsubsec:concepts_midi_nrpn}.
-
 % ----------------------------------------------------------
 
 \subsection{Effects / AlienWah}
@@ -716,12 +709,6 @@ this was changed quite a few versions ago and is no longer true
    \itempar{Subtract}{alienwah!subtract}
    The output is inverted
 
-\subsubsection{Effects / AlienWah / NRPN Values}
-\label{subsubsec:effects_edit_alienwah_nrpn}
-
-Effects can be controlled via "non-registered parameter numbers", or NRPNs.
-This section details the value supported by the AlienWah effect.
-
 \subsection{Effects / Chorus}
 \label{subsec:effects_edit_chorus}
 
@@ -845,12 +832,6 @@ This section details the value supported by the AlienWah effect.
 
    \itempar{Subtract}{chorus!subtract}
    The Chorus output is inverted
-
-\subsubsection{Effects / Chorus / NRPN Values}
-\label{subsubsec:effects_edit_chorus_nrpn}
-
-Effects can be controlled via "non-registered parameter numbers", or NRPNs.
-This section details the value supported by the Chorus effect.
 
 \subsection{Effects / Distortion}
 \label{subsec:effects_edit_distortion}
@@ -984,12 +965,6 @@ This section details the value supported by the Chorus effect.
    \itempar{St}{distortion!stereo}
    Set the distortion mode (stereo or mono, checked is stereo).
 
-\subsubsection{Effects / Distortion / NRPN Values}
-\label{subsubsec:effects_edit_distortion_nrpn}
-
-   Effects can be controlled via "non-registered parameter numbers", or NRPNs.
-   This section details the value supported by the Distortion effect.
-
 \subsection{Effects / Echo}
 \label{subsec:effects_edit_echo}
 
@@ -1096,12 +1071,6 @@ This section details the value supported by the Chorus effect.
    Locks the delay time to the incoming MIDI clock. New from
    \textsl{Yoshimi} V 2.1.0 See
    \sectionref{subsubsec:bpm_and_frequency}\ for further details.
-
-\subsubsection{Effects / Echo / NRPN Values}
-\label{subsubsec:effects_edit_echo_nrpn}
-
-   Effects can be controlled via "non-registered parameter numbers", or NRPNs.
-   This section details the value supported by the Echo effect.  TODO.
 
 \subsection{Effects / EQ}
 \label{subsec:effects_edit_eq}
@@ -1212,14 +1181,6 @@ This section details the value supported by the Chorus effect.
    having multiple copies of the same filter in sequence.
 
    Values: \texttt{0*, 1, ... 4}
-
-\subsubsection{Effects / EQ / NRPN Values}
-\label{subsubsec:effects_edit_eq_nrpn}
-
-   Effects can be controlled via "non-registered parameter numbers", or NRPNs.
-   This section details the value supported by the EQ effect.
-
-   TODO.
 
 \subsection{Effects / Phaser}
 \label{subsec:effects_edit_phaser}
@@ -1379,13 +1340,13 @@ This section details the value supported by the Chorus effect.
    Values: \texttt{0\% to 100\%}
 
    \itempar{Depth}{phaser!depth}
-   Phaser Depth. The amount of shft there is from the phase of the
-   incomming signal.
+   Phaser Depth. The amount of shift there is from the phase of the
+   incoming signal.
 
    Values: \texttt{0\% to 100\%}
 
    \itempar{BPM}{phaser!BPM}
-   Locks the paser LFO to the incoming MIDI clock.
+   Locks the phaser LFO to the incoming MIDI clock.
 
    Values: \texttt{Off* to On}
 
@@ -1440,12 +1401,6 @@ This section details the value supported by the Chorus effect.
    Phaser Stages.
 
    Values: \texttt{1*, 2, ... 12}
-
-\subsubsection{Effects / Phaser / NRPN Values}
-\label{subsubsec:effects_edit_phaser_nrpn}
-
-Effects can be controlled via "non-registered parameter numbers", or NRPNs.
-This section details the value supported by the Phaser effect.
 
 \subsection{Effects / Reverb}
 \label{subsec:effects_edit_reverb}
@@ -1597,15 +1552,6 @@ This section details the value supported by the Phaser effect.
    Damp determines how high frequencies are damped during the
    reverberation.  Increasing the setting of the dampening control (Damp)
    progressively 'tilts' the almount of feedback towards lower frequencies.
-
-\subsubsection{Effects / Reverb / NRPN Values}
-\label{subsubsec:effects_edit_reverb_nrpn}
-
-   Effects can be controlled via "non-registered parameter numbers", or NRPNs.
-   This section details the values supported by the Reverb effect.
-
-   TODO:  detail the values supported by the Reverb effect.
-   \index{todo!reverb nrpn values}
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex
