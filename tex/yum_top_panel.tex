@@ -13,7 +13,6 @@
 %     Provides the Top Panel section of the manual.
 %
 %-------------------------------------------------------------------------------
-This seems to reset the base function to a sine wave, converting the original waveform to sine waves of apropriate amplitude and phase angle at each harmonic position.
 \section{Top Panel}
 \label{sec:top_panel}
 
@@ -48,8 +47,8 @@ This seems to reset the base function to a sine wave, converting the original wa
    Stop!
    This button causes \textsl{Yoshimi} to
    "Cease all sound immediately!"
-   Useful when MIDI input suddenly stops resulting in 'stuck' notes, most
-   likely due to a bug in the MIDI source .
+   Useful when MIDI input suddenly stops, resulting in 'stuck' notes, most
+   likely due to a bug in the MIDI source.
 
    \itempar{Reset}{top panel!reset}
    \index{master reset}
@@ -95,13 +94,13 @@ This seems to reset the base function to a sine wave, converting the original wa
 
    \itempar{Undo}{top panel!undo}
    Undo Button.
-   This reverts the last control change made. More details are...
+   This reverts the last control change made. More details are found in \sectionref{subsec:undo_redo}.
    This is new from V 2.2.0.
 
    \itempar{Undo}{top panel!redo}
    Redo Button.
    This re-applies control change that was most recently 'undone'.
-   More details are...
+   More details are found in \sectionref{subsec:undo_redo}.
    This is new from V 2.2.0.
 
    \itempar{Detune}{top panel!detune}
@@ -139,7 +138,6 @@ This seems to reset the base function to a sine wave, converting the original wa
    This is new from V 2.2.0.
 
    Values: \texttt{32 to 480, 120*}
-
 
 \subsection{Mixer Panel Window}
 \label{subsec:mixer_panel_window}
@@ -275,7 +273,7 @@ This seems to reset the base function to a sine wave, converting the original wa
    For these modes, if one has a programmable MIDI controller, one can set it
    up to activate a specific part, or to increment/decrement which part in the
    set is active.  The \textbf{Solo} drop-down list enables the feature for
-   one of these mode, and also makes the CC spin-box visible.
+   one of these modes, and also makes the CC spin-box visible.
    One uses this spin-box to set which incoming CC changes the part that gets
    new notes.
    The \textsl{value} this CC sends performs the actual change, instantly and
@@ -372,6 +370,28 @@ This seems to reset the base function to a sine wave, converting the original wa
    \itempar{Close}{parts!close}
    Close the window.
 
+\subsection{Undo Redo}
+\label{subsec:undo_redo}
+\index{Undo Redo}
+   These two controls provide one with the ability to correct mistakes, or simply
+   switch between different settings to see which works best.
+   There is some intelligence built in. For example, adusting a control several
+   times without actually playing a note, will only store the last change made.
+
+   There are also some group settings. A good example is in the resonance window.
+   Here, if one uses the Rnd1, Rnd2, Rnd3 buttons then Undo and Redo will reset
+   the entire graph. However changing the resonance shape by dragging in the graph
+   itself makes a series of point-by-point changes which would then have to be
+   undone/redone one at a time.
+
+   If one has stepped back through the undo stack and then alters a control, it is
+   no longer possible to redo any of the settings that were made after that one
+   was originally made, but all settings prior to this can still be undone.
+
+   A few settings would be impractical, or even impossible to undo. In these
+   cases one is warned this is so, and that the entire undo stack will have to
+   be cleared if one proceeds.
+
 \subsection{Virtual Keyboard}
 \label{subsec:virtual_keyboard}
 
@@ -407,7 +427,7 @@ This seems to reset the base function to a sine wave, converting the original wa
 %     \item \textbf{R}
       \item \textbf{Midi Channel}
       \item \textbf{Velocity}
-      \item \textbf{Velocity}
+      \item \textbf{Vrnd}
       \item \textbf{Octave}
       \item \textbf{Key Oct}
       \item \textbf{Maps Oct}
@@ -434,7 +454,7 @@ This seems to reset the base function to a sine wave, converting the original wa
 
    Values: \texttt{1 to 127, 100*}
 
-   \itempar{Velocity}{vkdb!velocity randomness}
+   \itempar{Vrnd}{vkdb!velocity randomness}
    Velocity Randomness.
 
    Values: \texttt{0* to 127}
@@ -480,9 +500,9 @@ This seems to reset the base function to a sine wave, converting the original wa
    can move up and down with the mouse, to change the controller value. The
    numeric value is indicated with a dynamic tooltip. Note that the value might
    not reflect the internal value of the controller when one changes the
-   controller.
+   controller. The default value changes depending on the controller type.
 
-   Values: \texttt{1 to 127, 96*}
+   Values: \texttt{1 to 127}
 
    \itempar{Close}{vkdb!close}
    Close button.
@@ -526,7 +546,7 @@ This seems to reset the base function to a sine wave, converting the original wa
    \end{enumber}
 
       The following figure shows the corresponding drop-down list of controller
-      values, each preceded by its MIDI control number, re 1.
+      values, each preceded by its MIDI control number, the default being 74: Filter Freq.
 
 \begin{figure}[H]
    \centering
