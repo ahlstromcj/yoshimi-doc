@@ -260,7 +260,7 @@
    \itempar{Vector control}{automation!vector control}
    Vector control is based on these parts columns, giving one either 2 (X
    only) or 4 (X + Y) instruments in this channel. Currently the vector
-   CCs one set up can (as inverse pairs) vary any combination of volume, pan,
+   CCs one sets up can (as inverse pairs) vary any combination of volume, pan,
    and filter cut-off.  More will be added.  To keep the processor load
    reasonable it pays to use fairly simple instruments, but if one has
    sufficient processing power, it would be theoretically possible to set up
@@ -507,12 +507,12 @@
       \item \textbf{Category}
       \item \textbf{Filter Type}
       \item \textbf{C.freq}
-      \item \textbf{St}
+      \item \textbf{St.}
       \item \textbf{Q}
-      \item \textbf{V.SnsA}
-      \item \textbf{V.Sns}
+      \item \textbf{V.Sns.}
+      \item \textbf{VF.Sns.}
       \item \textbf{Gain}
-      \item \textbf{Freq.tr}
+      \item \textbf{Freq.tr.}
       \item \textbf{0/+}
    \end{enumber}
 
@@ -590,7 +590,7 @@
 
    Values: \texttt{0 to 127, 90*}
 
-   \itempar{St}{filter!stages}
+   \itempar{St.}{filter!stages}
    Filter stages.
    The more filter stages applied to a signal, the stronger (in general) the
    filtering.
@@ -617,13 +617,13 @@
    affect for the filter.
    Note that some filter types might ignore this parameter.
 
-   \itempar{V.SnsA}{velocity sensing amount}
+   \itempar{V.Sns.}{velocity sensing amount}
    Velocity sensing amount for filter cutoff.
    Velocity sensing amount of the filter.
 
    Values: \texttt{0 to 127, 64*}
 
-   \itempar{V.Sns}{velocity sensing function}
+   \itempar{VF.Sns.}{velocity sensing function}
    \index{filter!velocity sensing function}
    Velocity sensing function of the filter.
    Set the amplitude of the velocity sensing.
@@ -637,7 +637,7 @@
 
    Values: \texttt{0 to 127, 64*}
 
-   \itempar{Freq.tr}{frequency tracking amount}
+   \itempar{Freq.tr.}{frequency tracking amount}
    \index{filter!frequency tracking amount}
    Filter Frequency Tracking Amount.
    When this parameter is positive, higher note
@@ -647,13 +647,14 @@
 
    Values: \texttt{0 to 127, 64*}
 
-   \itempar{0/+}{filter!0/+}
+   \itempar{-/+}{filter!-/+}
    Filter tracking upgrade.
    \index{filter!tracking}
    Filter tracking could never quite reach 100\%,
    so if using it to get "notes" from noise it would go slightly out-of-tune.
    \textsl{Yoshimi} now has this new check box that changes its range so that
    instead of -100\% : 98.4\% it will track 0\% : 198.4\%.
+   The icon will change to "0/+".
 
    This new feature is one of the first that actually change instrument files.
    However, the format is backwards compatible; older versions of
@@ -725,14 +726,14 @@
 
    Values: \texttt{Off*, On}
 
-   \itempar{Max dB (wheel)}{resonance!max db}
+   \itempar{Max dB}{resonance!max db}
    The Maximum Amplitude (dB) wheel.
    Sets the amount of resonance: lower values have little effect. Use the
    roller below to set it.
 
    Values: \texttt{1 to 90, 20*}
 
-   \itempar{C.f. (knob)}{resonance!cf}
+   \itempar{C.f.}{resonance!cf}
    Center Frequency (kHz).
    Sets the center frequency of the graph.
    The value is shown in the read-only text-box to the left.
@@ -857,7 +858,7 @@
 \subsection{LFO Settings}
 \label{subsec:lfo_settings}
 
-   \textsl{Yoshimi} provides LFOs for it amplitude, frequency, and filtering
+   \textsl{Yoshimi} provides LFOs for its amplitude, frequency, and filtering
    functions.
    "LFO" means Low Frequency Oscillator. These oscillators are not used to make
    sounds by themselves, but they change parameters cyclically as a sound
@@ -1158,7 +1159,7 @@ These parameters are:
 
    Envelopes control how the amplitude, the frequency, or the filter changes
    over time.  The general envelope generator has four sections:
-
+   \label{ref:ADSR}
    \begin{enumber}
       \item \textbf{Attack}.
          \label{ref:attack}
@@ -1302,7 +1303,9 @@ These parameters are:
    \itempar{frcR}{envelope!forced release}
    Forced release.
    If this option is turned on, the release will go to the final value, even
-   if the sustain stage is not reached. Usually, this must be set.
+   if the sustain stage is not reached, otherwise the normal release behaviour
+   will be observed. Usually, this must be set.
+
    Also present in this sub-panel are the usual \textbf{C}opy
    and \textbf{P}aste buttons that call up a copy-parameters or
    paste-parameters dialog.
@@ -1322,7 +1325,7 @@ These parameters are:
 \subsubsection{Envelope Settings}
 \label{subsubsec:envelope_settings}
 
-   This section describes the \textbf{Amplitude Envelope Editing} window. The behaviour of the Filter and Frequency envelopes is identical.
+   This section describes the \textbf{Amplitude Envelope Editing} window.
 
 \begin{figure}[H]
    \centering
@@ -1358,13 +1361,12 @@ These parameters are:
    Sustain, where the envelopes freezes until a Note Off event.  The Freemode
    envelope editor has a separate window to set the parameters and controls.
 
-   The main concept of the freemode editor window is the
-   \textsl{control point}.
-   \index{control point}
-   One can move the points using the mouse. In the right on the
-   window, it shows the total duration of the envelope. If the mouse button
-   is pressed on a control point, it will be shown the duration of the
-   stage where the point is.
+   The main concept of the freemode editor window is the \textsl{control point}.
+   \index{control point} One can move the points using the mouse. On the right
+   side of the window, the total duration of the envelope is shown. If the
+   mouse button is pressed on a control point, the duration of the stage at that
+   point will be shown. The amplitude of these points (in decibels) will also be
+   shown at the top right of the window.
 
    For an example of the stock Freemode envelope editor, with
    Freemode enabled, see \figureref{fig:amplitude_envelope_freemode}.
@@ -1380,8 +1382,6 @@ These parameters are:
 
    \begin{enumber}
       \item \textbf{Graph Window}
-      \item \textbf{Add point}
-      \item \textbf{E}
       \item \textbf{FreeMode}
       \item \textbf{Add point}
       \item \textbf{Delete point}
@@ -1389,9 +1389,9 @@ These parameters are:
       \item \textbf{Stretch}
       \item \textbf{L}
       \item \textbf{frcR}
-      \item \textbf{Close}
       \item \textbf{C}
       \item \textbf{P}
+      \item \textbf{Close}
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
@@ -1410,13 +1410,14 @@ These parameters are:
    Notice that
    \textsl{only the line \textbf{before} the currently edited point of the
    envelope} changes its duration.
-   As the point is dragged, the text on the right shows the duration of
-   the line before it. Otherwise, the text shows the total duration of the
-   envelope.
+   As the point is dragged, the text on the right shows the duration of the
+   line before it. It will contine to show that value until either the
+   first point is clcked, or one of the rotary controls is touched, when it
+   will revert to showing the total envelope time.
 
    If the envelope doesn't have the FreeMode mode enabled, it doesn't allow
-   one to move the points; the envelope window is then useful only to see
-   what happens if one changes the ADSR settings.
+   one to move the points directly; the envelope window is then useful only
+   to see what happens if one changes the ADSR settings.
 
    \itempar{FreeMode}{envelope!freemode}
    FreeMode.  Provides a mode where completely arbitrary envelopes may be
@@ -1445,25 +1446,25 @@ These parameters are:
    Sets the sustain point.
    The sustain point is shown using the yellow line.
    If the point is at 0, then sustain is disabled.
-   It is difficult to determine the difference between 1 and 2.
 
    \begin{enumber}
-      \item{0} means that sustain is disabled, and the envelope immediately
-      starts dying, even if the note is held.
-      \item{1} seems to mean the sustain curve follows its course while the
-      note is held.
-      \item{2} seems to mean that extra sustain kicks in after the note is
-      released.
+      \item{0} means that sustain is disabled, and the envelope goes through
+      the entire sequence without being held at any point.
+      \item{1} means the note is sustained at the end of the attack curve
+      \item{2} means the note is sustained at the end of decay curve.
    \end{enumber}
 
-   Values: \texttt{0, 1, 2*}
+   Values: \texttt{0, 1, 2*, (more)}
+
+   In fact you can add up to 40 envelope points and the sustain point can be
+   at any except the last one.
 
    \itempar{Stretch}{envelope!stretch}
    Envelope Stretch.
    How the envelope is stretched according the note. On the higher notes the
-   envelopes are shorter than lower notes. At the leftmost value, the
-   stretch is zero. The rightmost sets a stretch of 200\%; this means that the
-   envelope is stretched about four times/octave.
+   envelopes are shorter than lower notes, pivoting at 440Hz. At the leftmost
+   value, the stretch is zero. The rightmost sets a stretch of 200\%; this
+   means that the envelope is stretched about four times/octave.
 
    \itempar{L}{envelope!linear}
    Envelope Linear.
@@ -1476,36 +1477,32 @@ These parameters are:
    \itempar{frcR}{envelope!forced release}
    Forced Release.
    This means that if this option is turned on, the release will go
-   immediately to the final value, even if the sustain stage is not reached.
+   immediately to the final value, even if the sustain stage is not reached,
+   otherwise there will be the full release time.
    Usually, this must be set.
-   When the key is released, the position of the envelope jumps directly to
-   the point after the release point. If the release is disabled, the
-   envelope position jumps to the last point on release.
 
    Values: \texttt{Off*, On}
+
+   \itempar{C/P}{envelope!copy/paste}
+   the usual \textbf{C}opy and \textbf{P}aste buttons that call up a copy-parameters or paste-parameters dialogs.
 
    \itempar{Close}{envelope!close dialog}
    Close Dialog.
 
-   Also present in this sub-panel are the usual \textbf{C}opy
-   and \textbf{P}aste buttons that call up a copy-parameters or
-   paste-parameters dialog, as well as a button
-   to bring up the editor window.
-
 \subsubsection{Envelope Settings, Frequency}
 \label{subsubsec:envelope_settings_for_frequency}
 
-   These envelopes controls the frequency (more exactly, the pitch) of the
+   These envelopes control the frequency (more exactly, the pitch) of the
    oscillators.
    Observe \figureref{fig:asr_envelope_depiction}.
    It depicts the stages of these envelopes.
    The dotted line represents the real pitch of the sound without the envelope.
 
-   The frequency envelopes are divided into 3 stages:
-   attack (see \ref{ref:attack});
-   sustain (see \ref{ref:sustain});
-   and
-   release (see \ref{ref:release}).
+   \noindent
+   The frequency envelopes are divided into 3 stages: \newline
+   attack (see \ref{ref:ADSR} item \ref{ref:attack}); \newline
+   sustain (see \ref{ref:ADSR} item \ref{ref:sustain}); \newline
+   release (see \ref{ref:ADSR} item \ref{ref:release}).
 
    One question to answer is:
    can the attack and release go in the opposite directions, or do the knob
@@ -1520,10 +1517,10 @@ These parameters are:
 
    \begin{enumber}
       \item \textbf{Enable} (present on some versions of this sub-panel).
-      \item \textbf{A.value} or \textbf{A.val}
+      \item \textbf{A.val}
       \item \textbf{A.dt}
       \item \textbf{R.dt}
-      \item \textbf{R.val} (present on some versions of this sub-panel).
+      \item \textbf{R.val}
       \item \textbf{Stretch}
       \item \textbf{frcR}
       \item \textbf{C}
@@ -1536,11 +1533,10 @@ These parameters are:
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{Enable}{envelope!enable}
-   Enable the panel.  (Present on some versions of this sub-panel).
+   Enable the panel.
 
    \itempar{A.val}{envelope!attack value}
    Attack value.
-   We need to figure out what this means.
 
    Values: \texttt{0 to 127, 64*}
 
@@ -1556,20 +1552,20 @@ These parameters are:
 
    \itempar{R.val}{envelope!release value}
    Release Value.
-   Actually present only on the Frequency Env sub-panel.
 
    Values: \texttt{0 to 127, 64*}
 
    \itempar{Stretch}{envelope!stretch}
    Envelope Stretch.
-   Envelope Stretch (on lower notes make the envelope longer).
+   Envelope Stretch (make the envelope longer on low notes and shorter on high
+   ones, pivoting at 440Hz).
 
    Values: \texttt{0 to 127, 64*}
 
    \itempar{frcR}{envelope!forced release}
    Forced release.
-   If this option is turned on, the release will go to the
-   final value, even if the sustain level is not reached.
+   If this option is turned on, the release will go immediately to the final
+   value, otherwise the full release behaviour will be observed.
 
    Values: \texttt{Off, On*}
 
@@ -1581,24 +1577,12 @@ These parameters are:
 \subsubsection{Envelope Settings for Filter}
 \label{subsubsec:envelope_settings_for_filter}
 
-   This envelope controls the cutoff frequency of the filters.
-   The filter envelopes are divided into 4 stages:
-
-   \begin{enumber}
-      \item \textbf{Attack}.
-         It begins at the Note On.
-         The cutoff frequency starts from a certain value and glides to another
-         value.
-      \item \textbf{Decay}.
-         The cutoff frequency continues to glide to the real cutoff frequency
-         value of the filter (dotted line).
-      \item \textbf{Sustain}.
-         The cutoff frequency stays the same during the sustain period (dotted
-         line).
-      \item \textbf{Release}.
-         This stage begins on Note Off and glides the filter cutoff frequency
-         of the note to a certain value.
-   \end{enumber}
+   \noindent
+   These filter envelopes are divided into 4 stages: \newline
+     attack (see \ref{ref:ADSR} item \ref{ref:attack}); \newline
+     decay (see \ref{ref:ADSR} item \ref{ref:decay}); \newline
+     sustain (see \ref{ref:ADSR} item \ref{ref:sustain}); \newline
+     release (see \ref{ref:ADSR} item \ref{ref:release}).
 
 \begin{figure}[H]
    \centering
@@ -1616,9 +1600,9 @@ These parameters are:
       \item \textbf{D.val}
       \item \textbf{D.dt}
       \item \textbf{R.dt}
+      \item \textbf{R.val}
       \item \textbf{Stretch}
       \item \textbf{frcR}
-      \item \textbf{L}
    \end{enumber}
 
    Filter Envelopes has the following parameters:
@@ -1651,18 +1635,23 @@ These parameters are:
 
    Values: \texttt{0 to 127, 60*}
 
+   \itempar{R.val}{envelope!release value}
+   Release Value.
+
+   Values: \texttt{0 to 127, 64*}
+
    \itempar{Stretch}{envelope!stretch}
    Stretch.
-   Envelope Stretch (on lower notes make the envelope longer).
+   Envelope Stretch (makes the envelope longer at low notes and shorter
+   on high ones, pivoting at 440Hz).
 
    Values: \texttt{0 to 127, 64*}
 
    \itempar{frcR}{envelope!forced release}
    Forced Release.
-   If this option is turned on, the release will go to the
-   final value, even if the sustain level is not reached.
-
-   Values: \texttt{Off, On*}
+   If this option is turned on, the release will go immediately to the final value,
+   otherwise the full release behaviour will be observed. For the frequency envelope
+   this is usually textbf{not} set.
 
    Also present in this sub-panel are the usual \textbf{C}opy
    and \textbf{P}aste buttons that call up a copy-parameters or
@@ -1682,11 +1671,12 @@ These parameters are:
 \label{subsubsec:formant_filter_settings}
 
    This window allows one to change most of the parameters of the formant
-   filter.   It is reached by enabling a \textbf{FILTER} panel in an AddSynth
-   part,
-   changing the \textbf{Category} (top right in the \textbf{Filter Params}
-   sub-panel) value to \textsl{Formant}, and then clicking
-   the \textbf{Edit} button that sits below the category drop-down list.
+   filter.
+   The formant filter is available in any filter panel by changing the
+   \textbf{Category} to 'Formant', and then clicking the \textbf{Edit}
+   button that will appear below the category drop-down list. (The filter
+   panel must first be enabled if editing an AddSynth voice or SubSynth
+   part.)
 
    One should keep in mind that these controls are an \textsl{addition} to the
    parent filter ones.
@@ -1727,7 +1717,8 @@ These parameters are:
    The graph window shows the formant frequency envelope in red,
    and one or more vertical yellow lines at each formant's center frequency.
    As the mouse pointer is moved over the graph, other formant center
-   frequencies may appear, highlighted in yellow.
+   frequencies may appear, highlighted in yellow these actually represent the
+   formant that would be selected if one were to click the left mouse button.
    Various mouse actions will modify the formant graph in a manner that might
    be more intuitive than frobbing the spin and knob controls.
 
@@ -1735,12 +1726,11 @@ These parameters are:
    One can control some of the parameters by placing the mouse pointer over
    the yellow lines representing each formant.
    \index{formants!center frequency}
-   Hold down the left or right mouse button and move the mouse sideways:
-   this action will change the formant's center frequency.
+   Hold down the left: this action will change the formant's center frequency.
    \index{formants!amplitude control}
    The Left button down: moving vertically will change the amplitude.
    \index{formants!Q control}
-   The Right button down: moving vertically changes the formant's Q factor.
+   Holding the \texttt{Shift} key down: moving vertically changes the formant's Q factor.
    \index{formants!range control}
    Anywhere on the graph: the scroll-wheel changes the octave range, and
    holding \texttt{Shift} at the same time changes the center frequency.
