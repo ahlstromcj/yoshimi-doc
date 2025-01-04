@@ -513,7 +513,7 @@
       \item \textbf{VF.Sns.}
       \item \textbf{Gain}
       \item \textbf{Freq.tr.}
-      \item \textbf{0/+}
+      \item \textbf{-/+}
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
@@ -704,7 +704,7 @@
       \item \textbf{InterpPk}
       \item \textbf{KHz}
       \item \textbf{dB}
-      \item \textbf{Zero}
+      \item \textbf{Clear}
       \item \textbf{Smooth}
       \item \textbf{RND1}
       \item \textbf{RND2}
@@ -789,12 +789,6 @@
       \caption{ADDsynth/PADsynth Resonance Interpolated}
       \label{fig:addsynth_resonance_interpolated}
    \end{figure}
-
-%  Obsolete:
-%  If one presses the
-%  \textbf{InterpPk} with the right mouse button, the interpolation will be
-%  linear, and if one uses the left button, the interpolation will be
-%  smooth.
 
    Please do not confuse this "smoothing" with the processing done using the
    \textbf{Smooth} button discussed below.
@@ -1226,7 +1220,7 @@ These parameters are:
 
    \begin{enumber}
       \item \textbf{Attack}.
-      It begins at the Note On. The frequency starts from a certain value and
+      This begins at the Note On. The frequency starts from a certain value and
       glides to the real frequency of the note.
       \item \textbf{Sustain}.
       The frequency stays the same during the sustain period.
@@ -1285,7 +1279,7 @@ These parameters are:
 
    \itempar{Str}{envelope!stretch}
    Stretch.
-   How the envelope is stretched according the note.
+   How the envelope is stretched according to the note.
    Envelope Stretch means that, on lower notes, the envelope will be longer.
    On the higher notes the envelopes are shorter than lower notes. In the
    leftmost value, the stretch is zero. The rightmost use a stretch of 200\%;
@@ -1329,7 +1323,7 @@ These parameters are:
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.8]{2.3.0/freemode_off.png}
+   \includegraphics[scale=0.8]{2.3.0/FreeMode_off.png}
    \caption{Amplitude Envelope Editor}
    \label{fig:amplitude_envelope_editor}
 \end{figure}
@@ -1344,38 +1338,38 @@ These parameters are:
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
-   \itempar{FreeMode}{envelope!freemode enable}
-   Freemode Enable.
+   \itempar{FreeMode}{envelope!FreeMode enable}
+   FreeMode Enable.
    Enables the envelope editor's Free Mode.
    See the next section for details.
 
    Values: \texttt{Off*, On} \\
 
-\subsubsection{Freemode Envelope Settings}
-\label{subsubsec:freemode_envelope_settings}
+\subsubsection{FreeMode Envelope Settings}
+\label{subsubsec:FreeMode_envelope_settings}
 
    The envelope panels are parts that control a parameter (such as the
    frequencies) of a sound.  For all envelopes, there is a mode that allows the
    user to set an arbitrary number of stages and control points. This mode is
-   called \textsl{Freemode}.  The only stage that always remains defined is the
-   Sustain, where the envelopes freezes until a Note Off event.  The Freemode
+   called \textsl{FreeMode}.  The only stage that always remains defined is the
+   Sustain, where the envelopes freezes until a Note Off event.  The FreeMode
    envelope editor has a separate window to set the parameters and controls.
 
-   The main concept of the freemode editor window is the \textsl{control point}.
+   The main concept of the FreeMode editor window is the \textsl{control point}.
    \index{control point} One can move the points using the mouse. On the right
    side of the window, the total duration of the envelope is shown. If the
    mouse button is pressed on a control point, the duration of the stage at that
    point will be shown. The amplitude of these points (in decibels) will also be
    shown at the top right of the window.
 
-   For an example of the stock Freemode envelope editor, with
-   Freemode enabled, see \figureref{fig:amplitude_envelope_freemode}.
+   For an example of the stock FreeMode envelope editor, with
+   FreeMode enabled, see \figureref{fig:amplitude_envelope_FreeMode}.
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.8]{2.3.0/freemode_edit.png}
-   \caption{Amplitude Envelope Freemode Editor}
-   \label{fig:amplitude_envelope_freemode}
+   \includegraphics[scale=0.8]{2.3.0/FreeMode_edit.png}
+   \caption{Amplitude Envelope FreeMode Editor}
+   \label{fig:amplitude_envelope_FreeMode}
 \end{figure}
 
    All of the envelope editors have some common controls.
@@ -1399,47 +1393,52 @@ These parameters are:
    \itempar{E}{envelope!editor}
    Editor.  Graph Window.
    Shows a window with the real envelope shape and the option to convert to
-   Freemode to edit it.
+   FreeMode to edit it.
    The envelope editor shows a window in which one can view and modify the
-   detailed envelope shape, or convert it to Freemode to edit it almost
+   detailed envelope shape, or convert it to FreeMode to edit it almost
    without restriction.
-   By default, only the \textsl{Freemode} button/checkbox is visible.
+   By default, only the \textsl{FreeMode} button/checkbox is visible.
 
-   If an envelope has FreeMode enabled, it allows one to edit the
-   graph of the envelope directly. Select a point from the graph and move it.
-   Notice that
-   \textsl{only the line \textbf{before} the currently edited point of the
-   envelope} changes its duration.
-   As the point is dragged, the text on the right shows the duration of the
-   line before it. It will contine to show that value until either the
-   first point is clcked, or one of the rotary controls is touched, when it
-   will revert to showing the total envelope time.
+   If an envelope has FreeMode enabled, one can edit the graph of the
+   envelope directly, select a point from the graph and move it. Notice that
+   the original envelope panel then becomes a minimized version of the graph
+   window. In this mini-graph, points can still be dragged and when doing so,
+   the full size panel shows the total envelope time, while the mini-graph
+   shows the segment time (although one can only read the mini-graph values
+   if the enclosing window is considerably enlarged).
 
-   If the envelope doesn't have the FreeMode mode enabled, it doesn't allow
-   one to move the points directly; the envelope window is then useful only
+   In the FreeMode window only the line \textbf{before} the currently
+   edited point of the envelope changes its duration. As the point is
+   dragged, the text on the right shows the duration of this line. It will
+   continue to show that value until another point is clicked. If the first
+   point (or one of the duplicate points in the mini-display) is touched,
+   the FreeMode graph will revert to showing the total envelope time.
+
+   If the envelope doesn't have FreeMode mode enabled, it doesn't allow one
+   to move the points directly; the envelope window is then useful only
    to see what happens if one changes the ADSR settings.
 
-   \itempar{FreeMode}{envelope!freemode}
+   \itempar{FreeMode}{envelope!FreeMode}
    FreeMode.  Provides a mode where completely arbitrary envelopes may be
    drawn.
    Actually, the envelopes aren't completely arbitrary, as the sustain
    section is always flat, and its duration corresponds with the duration
    the note is held down.
    When this mode is enabled, the rest of the controls shown in
-   \figureref{fig:amplitude_envelope_freemode}\hspace{4pt}appear, and are
+   \figureref{fig:amplitude_envelope_FreeMode}\hspace{4pt}appear, and are
    described in the following paragraphs.
 
    Values: \texttt{Off*, On}
 
    \itempar{Add point}{envelope!add point}
    Add point.
-   Provides a way to add a data point to the Freemode envelope.
+   Provides a way to add a data point to the FreeMode envelope.
    It adds the point after the currently-selected point. One can select a
    point by clicking on it.
 
    \itempar{Delete point}{envelope!delete point}
    Delete point.
-   Provides a way to delete the current data point from the Freemode envelope.
+   Provides a way to delete the current data point from the FreeMode envelope.
 
    \itempar{Sust}{envelope!sustain}
    Sustain point.
@@ -1536,7 +1535,7 @@ These parameters are:
    Enable the panel.
 
    \itempar{A.val}{envelope!attack value}
-   Attack value.
+   Attack value. Starting Value.
 
    Values: \texttt{0 to 127, 64*}
 
@@ -1611,7 +1610,6 @@ These parameters are:
 
    \itempar{A.value}{envelope!attack value}
    Attack Value.  Starting Value.
-   We need to figure out what this means.
 
    Values: \texttt{0 to 127, 64*}
 
@@ -1657,15 +1655,6 @@ These parameters are:
    and \textbf{P}aste buttons that call up a copy-parameters or
    paste-parameters dialog, as well as a button that bring up the editor
    window.
-
-%  Additional picture and GUI items for ADDsynth version?
-%  Figure: bottom-panel/instrument-edit/ADD/ADDsynth-filter-envelope.jpg
-
-   \itempar{L}{envelope!linearity}
-   If this option is set, the envelope is linear, otherwise, it will be
-   logarithmic.
-
-   Values: \texttt{Off*, On}
 
 \subsubsection{Formant Filter Settings}
 \label{subsubsec:formant_filter_settings}
@@ -1889,7 +1878,7 @@ These parameters are:
 %   VVV doesn't make sense to me (will)
 %    , and \textbf{E}.
 %    \textbf{E} is the editor window, discussed in
-%   section \ref{subsubsec:freemode_envelope_settings}
+%   section \ref{subsubsec:FreeMode_envelope_settings}
 
    \textbf{C} and \textbf{P} are the clipboard/preset copy and paste
    dialogs, respectively.
