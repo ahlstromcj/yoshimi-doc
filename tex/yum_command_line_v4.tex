@@ -21,18 +21,15 @@
    \index{cmd}
    \index{command line}
    \textsl{Yoshimi} provides a command-line mode of operation where almost
-   all aspects of the application can be controlled via text commands.
-   This mode is useful for blind people, those with motor control problems
-   and for programmers, for example.
-   These text commands can also be put into a script file, and that script
-   can then be run with full error checking.
+   all aspects of the application can be controlled via text commands. This
+   mode is useful for blind people, those with motor control problems and for
+   programmers, for example. These text commands can also be put into a
+   script file, and that script can then be run with full error checking.
 
-   To access the command-line mode,
-   add the \texttt{-i} or \texttt{--no-gui} command-line
-   option when starting \textsl{Yoshimi} on the command-line.  But note that,
-   when starting \textsl{Yoshimi} on the command-line without the "no gui"
-   option, the "command-line" mode
-   of operation is available at the same time as the GUI, as well.
+   By default, starting \textsl{Yoshimi} from a terminal window will enable
+   both the command line and the GUI at the same time. However you can
+   specifically disable the GUI at the terminal prompt as you start with:
+   yoshimi -i or yoshimi --no-gui
 
    One of the main features of recent \textsl{Yoshimi} releases
    is improved non-GUI accessibility.  In fact,
@@ -43,12 +40,12 @@
    the 'forced exit' and can be used by the system for other cleanups and a
    shut down.
 
-   For full details of NRPNs see \sectionref{subsection:nrpns_midi_nrpn_basics}
+   For full details of NRPNs see
+   \sectionref{subsection:nrpns_midi_nrpn_basics}
 
-   In a command line environment, all the 'running' commands are
-   available, and now all of the instrument editing ones are too.
-   Also, the whole of vector control, and MIDI-learn, is exposed
-   to the command line.
+   In a command line environment, all the 'running' commands are available,
+   and now all of the instrument editing ones are too. Also, the whole of
+   vector control, and MIDI-learn, is exposed to the command line.
 
    One can decide what MIDI/audio setup is wanted, list and set roots and
    banks, load instruments into any part, change a part's channel, set main
@@ -76,12 +73,11 @@
 \label{subsec:command_line_command_depth}
 
    Recent developments in \textsl{Yoshimi} have made it possible to greatly
-   (one could say dramatically) extend command-line access deep into
-   the synth structures.
-   This creates a problem where the command line itself could become
-   unmanageably long.
-   Thus, now only the current context level is printed in full.
-   The levels higher up the tree are minimised:
+   (one could say dramatically) extend command-line access deep into the
+   synth structures. This creates a problem where the command line itself
+   could become unmanageably long.
+   Thus, now only the current context level is printed in full. The levels
+   higher up the tree are minimised:
 
    \begin{verbatim}
       yoshimi Part 1+>
@@ -90,10 +86,10 @@
       yoshimi P1+, S+, Filter analog>
    \end{verbatim}
 
-   Rather than stating that a switch is on or off,
-   there is now just a \texttt{+} sign for "on", and nothing for "off".
-   This is clearer than using a \textsl{-}, and the
-   slight shift in the line gives the user another visual clue.
+   Rather than stating that a switch is on or off, there is now just a
+   \texttt{+} sign for "on", and nothing for "off". This is clearer than
+   using a \textsl{-}, and the slight shift in the line gives the user
+   another visual clue.
 
    There is a new command in the "config" context that controls where this is
    displayed, or whether it is shown at all.
@@ -143,8 +139,8 @@
    This command \textbf{s}ets \textbf{p}art number 2 to \textbf{pr}ogram
    number 107 from the \textsl{current} instrument bank.
    \textsl{Yoshimi} is now on part 2 as the current part (indicated by the
-   prompt), and all subsequent commands will relate to this "level".
-   At this level, one can change the current part simply with:
+   prompt), and all subsequent commands will relate to this "level". At this
+   level, one can change the current part simply with:
 
    \begin{verbatim}
       yoshimi part 2+ > s 4 on
@@ -160,13 +156,13 @@
       yoshimi p4+ eff 1 reverb-1 >
    \end{verbatim}
 
-   This command \textbf{s}ets the part's \textbf{ef}fect 1 (implicit) to
-   the \textbf{re}verb type.
+   This command \textbf{s}ets the part's \textbf{ef}fect 1 (implicit) to the
+   \textbf{re}verb type.
 
-   Note that many settings parameters are optional, and if omitted,
-   either a default or last-used value will be assumed. Also, names are
-   truncated to 6 characters so the prompt line doesn't get unmanageably long.
-   From here one can set a preset for this effect:
+   Note that many settings parameters are optional, and if omitted, either a
+   default or last-used value will be assumed. Also, names are truncated to
+   6 characters so the prompt line doesn't get unmanageably long. From here
+   one can set a preset for this effect:
 
    \begin{verbatim}
       yoshimi 4+ eff 1 reverb-1 > s pre 3
@@ -174,9 +170,9 @@
 
    Since V 1.5.0 the \textbf{pre}sets have been shown in the prompt, and one
    will still get a confirmation message. Also, it used to be necessary to
-   enter \textbf{ty}pe for an effect but since V 1.5.10 the name is entered directly.
-   Note that when entering effects, there will always be a preset. It will be number 1
-   unless it is changed.
+   enter \textbf{ty}pe for an effect but since V 1.5.10 the name is entered
+   directly. Note that when entering effects, there will always be a preset.
+   It will be number 1 unless it is changed.
 
    Many settings that follow in a direct command "path" through several
    levels can be made all at once, and one will be left at the appropriate
@@ -195,8 +191,8 @@
    \end{verbatim}
    This warning will be there as soon as one changes any of the effect
    controls until either another preset or effect is selected. It will also
-   show if a patchset or instrument is loaded that was previously saved
-   with altered effects controls.
+   show if a patchset or instrument is loaded that was previously saved with
+   altered effects controls.
 
    One cannot combine \texttt{type} and \texttt{preset} as they
    are both at the same level.
@@ -216,8 +212,8 @@
       yoshimi >
    \end{verbatim}
 
-   These two special level-movement commands can also be put on the front
-   of any other command.  Starting where we were before:
+   These two special level-movement commands can also be put on the front of
+   any other command.  Starting where we were before:
 
    \begin{verbatim}
       yoshimi p4+ eff 2 reverb-1 > .. s vol 70
@@ -234,16 +230,16 @@
    As well as an immediate history, \textsl{Yoshimi} maintains a single
    command history file for all instances of \textsl{Yoshimi} that records
    any non-duplicated loads or save.  Thus, provided one makes a normal
-   command-line exit, the last commands will be available on the next run
-   of \textsl{Yoshimi}.
+   command-line exit, the last commands will be available on the next run of
+   \textsl{Yoshimi}.
 
-   The command-line now has formal methods of opening, selecting and
-   closing additional instances.
+   The command-line now has formal methods of opening, selecting and closing
+   additional instances.
 
-   When loading external files from the command line, there is an
-   alternative to entering the full name if \textsl{Yoshimi} has already
-   seen this file and it is in the history list. In this situation one
-   enters '@' followed by the list number.
+   When loading external files from the command line, there is an alternative
+   to entering the full name if \textsl{Yoshimi} has already seen this file
+   and it is in the history list. In this situation one enters '@' followed
+   by the list number.
 
    \begin{verbatim}
       yoshimi> l h v
@@ -263,34 +259,29 @@
    external instrument from the command-line still requires a full pathname.
 
    The 'recent history' lists can load MIDI-learned files, patchsets, or
-   vector files numerically from the associated list,
-   instead of having to type the names out.
+   vector files numerically from the associated list, instead of having to
+   type the names out.
    \index{cmd!at-sign}
    This uses the '@' (list number) operator.
 
-   Commands with "*" in the description need the setup to be saved,
-   and \textsl{Yoshimi} restarted to be activated.
+   Commands with "*" in the description need the setup to be saved, and
+   \textsl{Yoshimi} restarted to be activated.
 
    Note that \textsl{Yoshimi}'s command-line can also load and save states,
-   patchsets, and scales, and can list recent histories.
-   Vector load and save is also supported from the command-line.
-   That's a complete vector set, with all mappings, instruments, etc.
-   One can independently decide which
-   channel to load and save from, so that one
-   can actually build up a vector set in
-   (say) channel 3, then later decide to use it in channel 7.
-   It has the extension \texttt{.xvy}, standing for "Xml/Vector/Yoshimi".
+   patchsets, and scales, and can list recent histories. Vector load and save
+   is also supported from the command-line. That's a complete vector set,
+   with all mappings, instruments, etc.
+   One can independently decide which channel to load and save from, so that
+   one can actually build up a vector set in (say) channel 3, then later
+   decide to use it in channel 7. It has the extension \texttt{.xvy},
+   standing for "Xml/Vector/Yoshimi".
    Since V 1.5.9 this has also been integrated with the saved states.
 
-   Another small detail is that all of the minimum command-line
-   abbreviations are now \textbf{C}apitalised in the help lists.
+   Another small detail is that all of the minimum command-line abbreviations
+   are now \textbf{C}apitalised in the help lists.
 
    The organisation of these features may be adjusted slightly, based on
    comments from users.
-
-%   If any configuration settings are changed, either at the command-line or
-%   in the graphical user-interface, one will be given a warning when
-%   exiting, with the option to continue running so one can save the changes.
 
 \subsection{Command Level}
 \label{subsec:command_line_command_level}
@@ -322,16 +313,14 @@
       \end{itemize}
    \end{itemize}
 
-   Any level that has direct numerical content can be changed with
-   "set (n)" once at that level.  The level is
-   indicated by the text in the \textsl{Yoshimi} prompt.
+   Any level that has direct numerical content can be changed with "set (n)"
+   once at that level.  The level is indicated by the text in the
+   \textsl{Yoshimi} prompt.
    For example, one can set 1 to 16 vector channels, so, from the
-   \textsl{Top} level, the following command
-   will set the default (1, or the last-used number).
-   The second command will, given this level (the \textsl{Vector} level),
-   switch to vector channel 5.
-   However, at the start, one could have gone straight to 5 with the third
-   command.
+   \textsl{Top} level, the following command will set the default (1, or the
+   last-used number). The second command will, given this level (the
+   \textsl{Vector} level), switch to vector channel 5. However, at the start,
+   one could have gone straight to 5 with the third command.
 
    \begin{verbatim}
       set vector                          # or "s ve"; sets the context
@@ -348,20 +337,20 @@
    \textsl{Yoshimi} command-line users can run plain-text scripts that behave
    in exactly the same way as if the commands had been entered from the
    command-line directly.
-   The actual script command can be initiated from any context/level
-   and is simply:
+   The actual script command can be initiated from any context/level and is
+   simply:
 
    \begin{verbatim}
       RUN {filepath-of-script}
    \end{verbatim}
 
-   To avoid confusion, the script routine first sets the context to the
-   top level, then performs all the commands, following context level
-   changes. If there is a fault in the script, it will be reported along with
-   the number of the line where the error occurred. Due to the buffering
-   used, the script will return before many of the actions have actually
-   taken place. Therefore an error report is likely to be some way up the
-   responses. Typically it will be something like:
+   To avoid confusion, the script routine first sets the context to the top
+   level, then performs all the commands, following context level changes. If
+   there is a fault in the script, it will be reported along with the number
+   of the line where the error occurred. Due to the buffering used, the
+   script will return before many of the actions have actually taken place.
+   Therefore an error report is likely to be some way up the responses.
+   Typically it will be something like:
 
    \begin{verbatim}
     *** Error: Which Operation? @ line 13 ***
@@ -382,16 +371,15 @@
    voice are on, and finally sets its volume to 45.
 
    Although this process starts from the top level, it will use the
-   parameters that were last set.
-   Thus, if one had been working on part 7, addsynth voice 2,
-   then that is the one that will have its volume adjusted.
-   This means one can set up generic preferences,
-   then apply them to any part, engine, etc.
+   parameters that were last set. Thus, if one had been working on part 7,
+   addsynth voice 2, then that is the one that will have its volume adjusted.
+   This means one can set up generic preferences, then apply them to any
+   part, engine, etc.
 
-   The script routine honours any normal abbreviations.
-   Blank lines are ignored. A '\#' at the start of a line marks it
-   as a comment so will also be ignored. However, both of these kinds
-   of lines will be in the line count if an error is reported.
+   The script routine honours any normal abbreviations. Blank lines are
+   ignored. A '\#' at the start of a line marks it as a comment so will also
+   be ignored. However, both of these kinds of lines will be in the line
+   count if an error is reported.
 
    Buffering can also cause commands to go out of sequence if a buffered one
    is immediately followed by a related direct one. For this reason there is
@@ -430,10 +418,10 @@
    When running from the command line, commands can be entered after the
    'up and running' message. Commands are \textsl{not} case-sensitive.
    Commands can be abbreviated to the first three letters of each command,
-   or, in some cases, just one letter.  This is indicated by
-   uppercase letters in command descriptions.
-   The commands available depend on the current "context" of the command
-   line. However, there is a group of commands always available:
+   or, in some cases, just one letter.  This is indicated by uppercase
+   letters in command descriptions. The commands available depend on the
+   current "context" of the command line. However, there is a group of
+   commands always available:
 
    \begin{itemize}
       \item \texttt{\textbf{?}} or \texttt{\textbf{help}}
@@ -442,31 +430,34 @@
       \item \texttt{\textbf{EX}it}
    \end{itemize}
 
-   Apart from these commands, the command line works on a system of
-   context levels, and normally only the commands relevant to that "level"
+   Apart from these commands, the command line works on a system of context
+   levels, and normally only the commands relevant to that "level"
    will be available.
 
-   We describe the command lists here. These lists are relative to
-   a particular context, and what one sees if one enters
-   \textbf{?} while at that level, to get help.
-   However the command lists can all be called \textsl{specifically} from any
-   level and the normal abbreviations are accepted. For example:
+   We describe the command lists here. These lists are relative to a
+   particular context, and what one sees if one enters \textbf{?} while at
+   that level, to get help. However the command lists can all be called
+   \textsl{specifically} from any level and the normal abbreviations are
+   accepted. For example, to list just the part commands regardless of what
+   context it is called from:
    \begin{verbatim}
       yoshimi> ? p
    \end{verbatim}
-   This will list just the part commands regardless of what context it is
-   called from.
+   \noindent With all of the following commands \newline
+   Optional parameters are shown as: [ n ] for numbers or [ s ] for text strings \newline
+   Compulsory parameters are shown as: \begin{math} \langle \end{math} n \begin{math} \rangle \end{math} for numbers or \begin{math} \langle \end{math} s \begin{math} \rangle \end{math} for text
+   strings.
 
-   Also, from any level, \textbf{? ?} will show the top level one.
+   \noindent Also, from any level, \textbf{? ?} will show the top level one.
+
 
 \subsubsection{Top Commands}
 \label{subsec:command_line_top_command_list}
 
-   These commands are part of the Top context/command level.
-   First, one gets the default options, always available.
-   Then there are several options that have ellipsis (...);
-   these are the context submenus.
-   After that come all the actual top level controls; there are still a lot!
+   These commands are part of the Top context/command level. First, one gets
+   the default options, always available. Then there are several options that
+   have ellipsis (...); these are the context submenus. After that come all
+   the actual top level controls; there are still a lot!
 
    \begin{verbatim}
       yoshimi> ?
@@ -474,40 +465,6 @@
 
    Note that there are a number of commands common to all command levels.
    We describe them here.
-\iffalse
-\begin{center}
-\begin{longtable}{p{3cm} p{12cm}}
-\caption[Yoshimi Common Commands]{Yoshimi Common Commands} \\
-
-\texttt{?,  Help [s]} &
-   Show commands (optional 's' = context level). \\
-\texttt{List [s]} &
-   List current information (optional 's = topic). \\
-\texttt{STop} &
-   All sound off.  Stop!  Panic! \\
-\texttt{RESet [s]} &
-   Return to start-up conditions - ALL includes Midi Learn (if answering
-   'y' to the prompt).
-   The \textbf{RESet} command asks for confirmation, and, if allowed, will
-   reset \textsl{Yoshimi} to startup conditions.
-   However, this will \textsl{not} clear any MIDI-learned lines, unless
-   the \textbf{ALL} is included in the command.\\
-\texttt{EXit [s]} &
-   Tidy up and close \textsl{Yoshimi} (if 'y' to the prompt), 'FOrce'
-   instant with no checks and exit value of 16 \\
-\texttt{RUN [s]} &
-   Execute a simple named script file, first setting top level.
-   This script can also include time delays with a \textbf{WAIT} command.\\
-\texttt{RUNLocal [s]} &
-   As above but starting from the current context level.\\
-\texttt{..} &
-   Step up one command level. \\
-\texttt{/} &
-   Step up to the top command level. \\
-
-\end{longtable}
-\end{center}
-\fi
 
 \begin{center}
 \begin{longtable}{p{6cm} p{10cm}}
@@ -534,40 +491,38 @@
    Save various files. \\
 \texttt{ADD} &
    Add paths and files. \\
-\texttt{- Root [s]} &
-   Add a root path [s] to the root list. \\
-\texttt{- Bank [s]} &
-   Add a bank [s] to the current root. \\
+\texttt{- Root <s>} &
+   Add a root path named s to the root list. \\
+\texttt{- Bank <s>} &
+   Add a bank named s to the current root. \\
 \texttt{- YOshimi [n]} &
-   Start a new instance. \\
-\texttt{IMport [s [n1]] [n2] [s]} &
-   Imports a bank. \\
-\texttt{EXport [s [n1]] [n2] [s]} &
-   Exports a bank. \\
+   Start a new instance optionally with ID n. \\
+\texttt{IMport [s <n1>] <n2> <s>} &
+   Imports a named directory to slot n2 of current root, (or 'Root' n1). \\
+\texttt{EXPort [s <n1>] <n2> <s>} &
+   Exports a bank at slot n2 of current root, (or 'Root' n1) to named directory
+ \\
 \texttt{REMove} &
    Remove paths, files, and entries. \\
-\texttt{- Root [n]} &
-   De-list root path ID [n]. \\
-\texttt{- Bank [n]} &
-   Delete bank ID [n] (and all contents) from the current root. \\
-\texttt{- Instrument [n]} &
-   Restore instrument [n] to the default state. \\
-\texttt{- YOshimi [n]} &
-   Close an instance. \\
-\texttt{- MLearn [s] [n]} &
-   Delete MIDI learned values: \\
-\texttt{ } &
-   'ALL' removes whole list, or select line [n]. \\
-\texttt{ } & \\
+\texttt{- Root <n>} &
+   De-list root path ID n. \\
+\texttt{- Bank <n1> [s <n2>]} &
+   Delete bank ID n1 (and all instruments) from current root (or 'Root' n2). \\
+\texttt{- Instrument <n>} &
+   Delete instrument from slot (n) in current bank. \\
+\texttt{- YOshimi <n>} &
+   Close instance n. \\
+\texttt{- MLearn <s> [n]} &
+   Delete midi learned 'ALL' whole list, or '@' line n \\
 
 \texttt{Set/Read/MLearn} &
    Set, read or learn all the following main parameters. \\
 \texttt{MINimum/MAXimum/DEFault} &
    Or find ranges (mostly in the part context). \\
    \texttt{Part [n] ...} &
-   Enter context level. \\
+   Enter context level. Optionally to part n\\
 \texttt{VEctor [n] ...} &
-   Enter context level. \\
+   Enter context level. Optionally to vector n\\
 \texttt{SCale ...} &
    Enter context level. \\
 \texttt{MLearn ...} &
@@ -584,30 +539,30 @@
    Switches the main audio output to mono (ON / other). \\
 
 \texttt{SYStem effects [n]} &
-   Enter system effect [n] context. \\
-\texttt{- SEnd [n1] [n2]} &
-   Send this effect to effect [n1] at volume [n2]. \\
+   Enter system effect context. Optionally to n. \\
+\texttt{- SEnd <n1> <n2>} &
+   Send this effect to effect n1 at volume n2. \\
 \texttt{...} &
    Effect dependent controls. \\
 \texttt{INSert effects [n]} &
-   Enter insertion effect [n] context. \\
-\texttt{- SEnd [s]/[n]} &
+   Enter insertion effect context. Optionally to n. \\
+\texttt{- SEnd <s>/<n>} &
    Send effect destination to (Master, Off or part number). \\
 \texttt{...} &
    Effect dependent controls. \\
 
-\texttt{AVailable [n]} &
-   The available number of parts, [n] = 16, 32, 64. \\
-\texttt{Volume [n]} &
-   Read Master volume or set to [n]. \\
-\texttt{SHift [n]} &
-   Master key shift in semitones [n] (0 no shift). \\
-\texttt{DEtune [n]} &
-   Master fine detune to [n] to match other sound sources. \\
+\texttt{AVailable <n>} &
+   Read available number of parts or set to n = 16, 32, 64. \\
+\texttt{Volume <n>} &
+   Read Master volume or set to n. \\
+\texttt{SHift <n>} &
+   Read Master key shift in semitones or set to n (0 no shift). \\
+\texttt{DEtune <n>} &
+   Read Master fine detune or set to n to match other sound sources. \\
 \texttt{SOlo [s]} &
-   Set the 'solo' switcher (OFF, Row, Column, Loop) \\
+   Read 'solo' switcher or set to (OFF, Row, Column, Loop) \\
 \texttt{SOlo CC [n]} &
-   Set incoming 'solo' channel number to [n]. \\
+   Read incoming 'solo' channel number or set to n. \\
 
 \end{longtable}
 \end{center}
@@ -650,6 +605,8 @@
    effect types ('all' include preset numbers and names) \\
 \texttt{PREsets } &
   all the presets for the currently selected effect \\
+\texttt{SECtion } &
+  all the internal C/P presets for the current section \\
 \end{longtable}
 \end{center}
 \paragraph{MONo}
