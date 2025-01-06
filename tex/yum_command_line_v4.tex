@@ -417,18 +417,45 @@
 
    When running from the command line, commands can be entered after the
    'up and running' message. Commands are \textsl{not} case-sensitive.
-   Commands can be abbreviated to the first three letters of each command,
+
+   \noindent With all of the following commands \newline
+   Optional parameters are shown as: [ n ] for numbers or [ s ] for text strings \newline
+   Compulsory parameters are shown as: \begin{math} \langle \end{math} n \begin{math} \rangle \end{math} for numbers or \begin{math} \langle \end{math} s \begin{math} \rangle \end{math} for text
+   strings.
+
+   \noindent Commands can be abbreviated to the first three letters of each command,
    or, in some cases, just one letter.  This is indicated by uppercase
    letters in command descriptions. The commands available depend on the
    current "context" of the command line. However, there is a group of
    commands always available:
 
-   \begin{itemize}
-      \item \texttt{\textbf{?}} or \texttt{\textbf{help}}
-      \item \texttt{\textbf{L}ist}
-      \item \texttt{\textbf{RES}et}
-      \item \texttt{\textbf{EX}it}
-   \end{itemize}
+\begin{center}
+\begin{longtable}{p{3cm} p{12cm}}
+\caption[Yoshimi Universial Commands]{Yoshimi Universal Commands} \\
+\texttt{? Help} &
+   Show commands. \\
+\texttt{List} &
+   List current settings. \\
+\texttt{GUide} &
+   Show location of most recent HTML guide. \\
+\texttt{STop} &
+   All sound off. \\
+\texttt{RESet [s]} &
+   Return to startup conditions. 'ALL' clear MIDI-learn (if 'y'). \\
+\texttt{EXit [s]} &
+   Tidy up and close Yoshimi (if 'y'), 'FOrce' instant exit regardless. \\
+\texttt{RUN <s>} &
+   Execute named command script forcing top level start.\\
+\texttt{RUNLocal <s>} &
+   Execute named command from current context level.\\
+\texttt{  WAIT <n>} &
+   1ms to 30,000mS delay - within script only.\\
+\texttt{..} &
+   Step back one context level.\\
+\texttt{/} &
+   Step back to top level.\\
+\end{longtable}
+\end{center}
 
    Apart from these commands, the command line works on a system of context
    levels, and normally only the commands relevant to that "level"
@@ -443,28 +470,20 @@
    \begin{verbatim}
       yoshimi> ? p
    \end{verbatim}
-   \noindent With all of the following commands \newline
-   Optional parameters are shown as: [ n ] for numbers or [ s ] for text strings \newline
-   Compulsory parameters are shown as: \begin{math} \langle \end{math} n \begin{math} \rangle \end{math} for numbers or \begin{math} \langle \end{math} s \begin{math} \rangle \end{math} for text
-   strings.
-
-   \noindent Also, from any level, \textbf{? ?} will show the top level one.
-
+   \noindent Also, from any level, \textbf{? ?} will show the top level ones.
 
 \subsubsection{Top Commands}
 \label{subsec:command_line_top_command_list}
 
    These commands are part of the Top context/command level. First, one gets
-   the default options, always available. Then there are several options that
-   have ellipsis (...); these are the context submenus. After that come all
-   the actual top level controls; there are still a lot!
+   the universal options, always available. Then there are several options
+   that have ellipsis (...); these are the context submenus. After that come
+   all the actual top level controls; there are still a lot!
+   Indenting is used to show command grouping.
 
    \begin{verbatim}
       yoshimi> ?
    \end{verbatim}
-
-   Note that there are a number of commands common to all command levels.
-   We describe them here.
 
 \begin{center}
 \begin{longtable}{p{6cm} p{10cm}}
@@ -500,14 +519,16 @@
 \texttt{IMport [s <n1>] <n2> <s>} &
    Imports a named directory to slot n2 of current root, (or 'Root' n1). \\
 \texttt{EXPort [s <n1>] <n2> <s>} &
-   Exports a bank at slot n2 of current root, (or 'Root' n1) to named directory
+   Exports a bank at slot n2 of current root, (or 'Root' n1) to named
+   directory
  \\
 \texttt{REMove} &
    Remove paths, files, and entries. \\
 \texttt{- Root <n>} &
    De-list root path ID n. \\
 \texttt{- Bank <n1> [s <n2>]} &
-   Delete bank ID n1 (and all instruments) from current root (or 'Root' n2). \\
+   Delete bank ID n1 (and all instruments) from current root
+   (or 'Root' n2). \\
 \texttt{- Instrument <n>} &
    Delete instrument from slot (n) in current bank. \\
 \texttt{- YOshimi <n>} &
@@ -605,8 +626,6 @@
    effect types ('all' include preset numbers and names) \\
 \texttt{PREsets } &
   all the presets for the currently selected effect \\
-\texttt{SECtion } &
-  all the internal C/P presets for the current section \\
 \end{longtable}
 \end{center}
 \paragraph{MONo}
@@ -618,14 +637,15 @@
 \paragraph{SOlo}
 \label{paragraph:command_line_solo}
    The \textbf{SOlo [s]} and \textbf{SOlo CC [n]}
-   commands enable and set \textsl{Yoshimi}'s 'Solo' feature,
-   whereby one can silently switch MIDI input to different parts.
-   The 'Row' and 'Loop' types use the first 16 parts, while
-   'Column' type can use all possible 64 parts.
+   commands enable and set \textsl{Yoshimi}'s 'Solo' feature, whereby one can
+   silently switch MIDI input to different parts.
+   The 'Row', 'Loop' and 'TwoWay' types use the first 16 parts, while the
+   'Column' type works \textsl{vertically} across the parts e.g. 1, 17, 33
+   and 49. Finally Channel mode can use all possible 64 parts.
 
    The type setting has to be decided before setting 'CC', which then
    determines which MIDI controller to listen to for performing the actual
-   switch. See \sectionref{subsec:mixer_panel_window}; it goes into more
+   switch. See \sectionref{subsec:mixer_panel_window}~which goes into more
    details about this setting, at a graphical user interface level.
 
 \paragraph{Set / Read / MLearn Context Levels}
@@ -679,9 +699,8 @@
 
    \textsl{Yoshimi} has a number of commands for controlling and configuring
    the synth engines from the command-line. First of all there is the part
-   kit structure.
-   There are three modes (i.e. settings) that the kits of the engines
-   can take:
+   kit structure. There are three modes (i.e. settings) that the kits of the
+   engines can take:
 
    \begin{enumerate}
       \item MUlti
@@ -689,10 +708,10 @@
       \item CRossfade
    \end{enumerate}
 
-   These forms are exactly the same as the graphical controls,
-   and can be set once in the part context.
-   Starting at the part level prompt, this command will return the setting
-   on the line after the command, and show a new context level prompt:
+   These forms are exactly the same as the graphical controls, and can be set
+   once in the part context. Starting at the part level prompt, this command
+   will return the setting on the line after the command, and show a new
+   context level prompt:
 
    \begin{verbatim}
       yoshimi Part 1+> set multi
@@ -702,8 +721,7 @@
 
    This setting is at the kit item 1 (which is always enabled).
    Let's change to kit item 4, and, since it hasn't yet been enabled,
-   let's enable it and turn on the
-   SubSynth engine so that it will sound:
+   Let's enable it and turn on the SubSynth engine so that it will sound:
 
    \begin{verbatim}
       yoshimi p1+, Multi 1+> set 4
@@ -712,15 +730,14 @@
       yoshimi p1+, M4+ Sub+>
    \end{verbatim}
 
-   Note how the prompt line is more compact, and indicates via the
-   plus-signs that the part, kit, and subsynth are all on.
+   Note how the prompt line is more compact, and indicates via the plus-signs
+   that the part, kit, and subsynth are all on.
 
    These new controls are shown in the part context help list.
-   The synth engines, AddSynth, Voice, SubSynth and PadSynth also have
-   their own contexts with appropriate help lists.
-   Also, LFO, Filter, Envelope and Resonance have their own contexts
-   above whichever engine they are sitting on, so again have their own
-   help lists.
+   The synth engines, AddSynth, Voice, SubSynth and PadSynth also have their
+   own contexts with appropriate help lists.
+   Also, LFO, Filter, Envelope and Resonance have their own contexts above
+   whichever engine they are sitting on, so again have their own help lists.
    A fairly deep context is:
 
    \begin{verbatim}
@@ -736,13 +753,13 @@
    The need for compression is obvious, and once at this level, the
    \texttt{?} command will list the LFO controls.
 
-\subsubsection{Part Common Commands}
+\iffalse \subsubsection{Part Common Commands}
 \label{subsec:command_line_part_common_commands}
 The idea of having a list of common commands is now deprecated. This is
 because although originally intended to keep the individual command lists to
 manageable proportions, it actually made it more confusing when trying
 to see what controls were available in each context.
-\newpage
+\newpage \fi
 \subsubsection{Part Commands}
 \label{subsec:command_line_part_commands}
 
@@ -752,67 +769,67 @@ to see what controls were available in each context.
 \begin{longtable}[l]{ ll}
 \caption[Part Commands]{Part Commands} \\
    \label{table:yoshimi_part_commands}
-\texttt{(part)~[n]} &
-   Change part number.  \\
-\texttt{[ON/OFF]} &
+\texttt{(part) <n>} &
+   (the number by itself) Change part number.  \\
+\texttt{<ON/OFF>} &
    Enables / Disables the part. \\
-\texttt{Volume~[n]} &
+\texttt{Volume <n>} &
    Volume.  \\
-\texttt{Pan~[n]} &
+\texttt{Pan <n>} &
    Panning.\\
-\texttt{VElocity~[n]} &
+\texttt{VElocity <n>} &
    Velocity sensing sensitivity. \\
-\texttt{LEvel~[n]} &
+\texttt{LEvel <n>} &
    Velocity sense offset level.  \\
-\texttt{MIn [[s][n]]} &
+\texttt{MIn <[s][n]>} &
    Minimum MIDI last seen, or note value.   \\
-\texttt{MAx [[s][n]]} &
+\texttt{MAx <[s][n]>} &
    Maximum MIDI last seen, or note value.   \\
 \texttt{FUll} &
    Restore full key range.   \\
-\texttt{POrtamento [s]} &
+\texttt{POrtamento <s>} &
    (ON / other).   \\
-\texttt{Mode [s]} &
+\texttt{Mode <s>} &
    Mode (Poly, Mono, Legato). \\
-\texttt{Note [n]} &
+\texttt{Note <n>} &
    Polyphony.  \\
-\texttt{SHift [n]} &
+\texttt{SHift <n>} &
    Shift semitones (0 no shift). \\
-\texttt{BYpass [n] [s]} &
+\texttt{BYpass <n> <s>} &
    bypass part effect number n, (ON / other).  \\
 \texttt{EFfects [n]} &
    Enter effects context level and optionally change number.  \\
- \texttt{(effect) [s]} &
+ \texttt{(effect) <s>} &
    Effect type.   \\
- \texttt{(effect) PREset [n]} &
+ \texttt{(effect) PREset <n>} &
    Numbered effect preset to n. \\
- \texttt{(effect)~Send~[n1]~[n2]} &
+ \texttt{(effect) Send <n1> <n2>} &
    Current part to system effect n1 at volume n2. \\
-\texttt{PRogram~[s]/[[s]~[n]]} &
+\texttt{PRogram <s>/[s] <n>]} &
    Instrument ID / Group (n) loads from search list. \\
 \texttt{LAtest} &
    The most recent bank instrument loaded or saved. \\
-\texttt{TYPe [s]} &
-   The instrument type, i.e. Piano, Guitar etc. \\
-\texttt{NAme [s]} &
+\texttt{NAme <s>} &
    The display name the part can be saved with. \\
-\texttt{COPyright [s]} &
+\texttt{TYPe <s>} &
+   The instrument type, i.e. Piano, Guitar etc. \\
+\texttt{COPyright <s>} &
    The copyright message. \\
-\texttt{INFo [s]} &
+\texttt{INFo <s>} &
    Additional information, use suggestions. \\
-\texttt{Humanise Pitch [n]} &
+\texttt{Humanise Pitch <n>} &
    A small random detune. \\
-\texttt{Humanise Velocity [n]} &
+\texttt{Humanise Velocity <n>} &
    A small random velocity reduction. \\
-\texttt{CLear} &
-  Resets the part to the default 'Simple Sound'. \\
-\texttt{Channel [n]} &
-   CHannel (32 disables, 16 note off only).   \\
-\texttt{AFtertouch~Chan~<s1>~[s2]} &
+\texttt{CLear [s]} &
+  Resets the part to the default 'Simple Sound'. 'ALL, includes controllers etc. \\
+\texttt{Channel <n>} &
+   CHannel (16 to 33 note off only, 32 to 63 disables).   \\
+\texttt{AFtertouch Chan <s1> [s2]} &
    Off, Filter (Down) + Peak (Down) + Bend (Down) + Modulation + Volume. \\
-\texttt{AFtertouch~Key~<s1>~[s2]} &
+\texttt{AFtertouch Key <s1> [s2]} &
    Off, Filter (Down) + Peak (Down) + Bend (Down) + Modulation. \\
-\texttt{Destination [s]} &
+\texttt{Destination <s>} &
    JACK audio destination (Main, Part, Both).  \\
 \texttt{MUlti} &
    Set kit mode and allow kit item overlaps. \\
@@ -822,26 +839,32 @@ to see what controls were available in each context.
    Set kit mode and cross fade item pairs. \\
 \texttt{KIT} &
    Re-enter kit mode editing if it is enabled. \\
-\texttt{NORmal} &
-   Return to normal (not kit) mode. \\
-   \texttt{(kit mode) [n]} &
+   \texttt{(kit mode) MUlti} &
+      change to allow kit item overlaps. \\
+   \texttt{(kit mode) SIngle} &
+      change to only lowest numbered item in key range. \\
+   \texttt{(kit mode) CRoss} &
+      change to cross fade item pairs. \\
+   \texttt{(kit mode) <n>} &
       Kit item number (1-16). \\
-   \texttt{(kit mode) [ON/OFF]} &
+   \texttt{(kit item) <ON/OFF>} &
       Enables / Disables and removes the kit item. \\
-   \texttt{(kit mode) QUiet [s]} &
-      Mute this kit item without changing it's features (ON, {other}). \\
+   \texttt{(kit item) QUiet <s>} &
+      Mute this kit item without changing it's features (OFF, {other}). \\
    \texttt{(kit item) MIn [[s][n]]} &
       Minimum MIDI last seen, or note value   \\
    \texttt{(kit item) MAx [[s][n]]} &
       Maximum MIDI last seen, or note value.   \\
    \texttt{(kit item) FUll} &
       Restore full key range.   \\
-   \texttt{(kit item) EFfect [n]} &
+   \texttt{(kit item) EFfect <n>} &
       Effect for this item (0-none, 1-3). \\
-   \texttt{(kit item) NAme [s]} &
+   \texttt{(kit item) NAme <s>} &
       The name of this item. \\
-    \texttt{DRum [s]} &
+    \texttt{DRum <s>} &
       Kit to drum mode (ON, {other}). \\
+    \texttt{NORmal} &
+      Return to normal (not kit) mode. \\
 \texttt{ADDsynth ...} &
    Enter AddSynth context. \\
 \texttt{SUBsynth ...} &
