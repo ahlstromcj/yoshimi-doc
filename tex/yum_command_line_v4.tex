@@ -896,60 +896,60 @@ to see what controls were available in each context.
    command must be used, as the \textbf{ON/OFF} commands refer to individual
    kit items.
 
-\paragraph{Part MIDI Controllers}
+\paragraph{Part MIDI Controllers \scriptsize \{Set MCOntrol\} \normalsize}
 \label{paragraph:command_line_part_midi_commands}
    \begin{table}[H]
       \centering
       \caption{Part MIDI Controllers}
       \label{table:yoshimi_part_midi_commands}
       \begin{tabular}{l l}
-\texttt{VOlume [s]} &
+\texttt{VOlume <s>} &
    enables/disables volume control (OFF / other). \\
-\texttt{VRange [n]} &
+\texttt{VRange <n>} &
    relative degree of volume control. \\
-\texttt{PAn [n]} &
+\texttt{PAn <n>} &
    relative range (width) of panning control. \\
-\texttt{MOdwheel [s]} &
+\texttt{MOdwheel <s>} &
    enables/disables exponential modulation (ON / other). \\
-\texttt{MRange [n]} &
+\texttt{MRange <n>} &
    relative modulation control range. \\
-\texttt{EXpression [s]} &
+\texttt{EXpression <s>} &
    enables/disables expression control (OFF / other). \\
-\texttt{SUstain [s]} &
+\texttt{SUstain <s>} &
    enables/disables sustain control (OFF / other). \\
-\texttt{PWheel [n]} &
+\texttt{PWheel <n>} &
    relative pitch wheel control range. \\
-\texttt{BReath [s]} &
+\texttt{BReath <s>} &
    enables/disables breath control (OFF / other). \\
-\texttt{CUtoff [n]} &
+\texttt{CUtoff <n>} &
    relative filter cutoff control range. \\
-\texttt{Q [n]} &
+\texttt{Q <n>} &
    relative filter Q control range. \\
-\texttt{BANdwidth [s]} &
+\texttt{BANdwidth <s>} &
    enables/disables exponential bandwidth (ON / other). \\
-\texttt{BARange [n]} &
+\texttt{BARange <n>} &
    relative bandwidth control range. \\
-\texttt{FMamplitude [s]} &
+\texttt{FMamplitude <s>} &
    enables/disables FM amplitude control (OFF / other). \\
-\texttt{RCenter [n]} &
+\texttt{RCenter <n>} &
    resonance center frequency. \\
-\texttt{RBand [n]} &
+\texttt{RBand <n>} &
    resonance bandwidth. \\
-\texttt{POrtamento [s]} &
+\texttt{POrtamento <s>} &
    enables/disables portamento control (OFF / other). \\
-\texttt{PGate [n]} &
+\texttt{PGate <n>} &
    point where portamento starts or ends. \\
-\texttt{PForm [s]} &
+\texttt{PForm <s>} &
    whether portamento is from or to (Start, End). \\
-\texttt{PTime [n]} &
+\texttt{PTime <n>} &
    portamento sweep speed. \\
-\texttt{PDownup [n]} &
+\texttt{PDownup <n>} &
    portamento up/down speed ratio. \\
-\texttt{PProportional [s]} &
+\texttt{PProportional <s>} &
    enables/disables proportional portamento (ON / other). \\
-\texttt{PExtent [n]} &
+\texttt{PExtent <n>} &
    distance to double change. \\
-\texttt{PRange [n]} &
+\texttt{PRange <n>} &
    difference from non proportional. \\
 \texttt{CLear} &
    set all controllers to defaults. \\
@@ -965,17 +965,17 @@ to see what controls were available in each context.
       \caption{MIDI Emulators}
       \label{table:yoshimi_part_midi_emulators}
       \begin{tabular}{l l}
-\texttt{E Modulation [n]} &
+\texttt{E Modulation <n>} &
    emulate modulation controller. \\
-\texttt{E Expression [n]} &
+\texttt{E Expression <n>} &
    emulate expression controller. \\
-\texttt{E BReath [n]} &
+\texttt{E BReath <n>} &
    emulate breath controller (MIDI and CLI only). \\
-\texttt{E Cutoff [n]} &
-   emulate filter cutoff controller. \\
-\texttt{E Q [n]} &
+\texttt{E Q <n>} &
    emulate filter Q controller. \\
-\texttt{E BAndwidth [n]} &
+\texttt{E Cutoff <n>} &
+   emulate filter cutoff controller. \\
+\texttt{E BAndwidth <n>} &
    emulate bandwidth controller. \\
       \end{tabular}
    \end{table}
@@ -990,43 +990,43 @@ to see what controls were available in each context.
       \caption{Part AddSynth Commands}
       \label{table:yoshimi_part_addsynth_commands}
       \begin{tabular}{l l}
-\texttt{[ON/OFF]} &
+\texttt{<ON/OFF>} &
    Enables / Disables the AddSynth engine. \\
-\texttt{Volume [n]} &
+\texttt{Volume <n>} &
    AddSynth Volume.  \\
-\texttt{Pan [n]} &
+\texttt{Pan <n>} &
    Panning position.\\
-\texttt{PRandom [s]} &
+\texttt{PRandom <s>} &
    Enable random panning (ON / other).\\
-\texttt{PWidth [n]} &
+\texttt{PWidth <n>} &
    Random panning range.\\
-\texttt{VElocity [n]} &
+\texttt{VElocity <n>} &
    Velocity sensing sensitivity. \\
-\texttt{STEreo [s]} &
+\texttt{STEreo <s>} &
    Sets this engine as stereo or mono (ON / other). \\
-\texttt{DEPop [n]} &
+\texttt{DEPop <n>} &
    Initial attack slope.   \\
-\texttt{PUnch Power [n]} &
+\texttt{PUnch Power <n>} &
    Attack boost amplitude. \\
-\texttt{PUnch Duration [n]} &
+\texttt{PUnch Duration <n>} &
    Attack boost time.   \\
-\texttt{PUnch Stretch [n]} &
+\texttt{PUnch Stretch <n>} &
    Attack boost extend. \\
-\texttt{PUnch Velocity [n]} &
+\texttt{PUnch Velocity <n>} &
    Attack boost velocity sensitivity.  \\
-\texttt{DETune Fine [n]} &
+\texttt{DETune Fine <n>} &
    Fine frequency.   \\
-\texttt{DETune Coarse [n]} &
+\texttt{DETune Coarse <n>} &
    Coarse stepped frequency.  \\
-\texttt{DETune Type [s]} &
+\texttt{DETune Type <s>} &
    Type of coarse stepping. (DEFault, L35, L10, E100, E1200)  \\
-\texttt{OCTave [n]} &
+\texttt{OCTave <n>} &
    Shift octaves up or down.  \\
-\texttt{GRoup [s]} &
+\texttt{GRoup <s>} &
    Disables harmonic amplitude randomness of voices \\
 \texttt{ } &
              with a common oscillator (ON / other). \\
-\texttt{Bandwidth [n]} &
+\texttt{Bandwidth <n>} &
    Modifies the relative fine detune of voices. \\
 \texttt{VOice ...} &
    Enter the Addsynth voice context. \\
@@ -1045,67 +1045,67 @@ to see what controls were available in each context.
       \caption{AddSynth Voice Commands}
       \label{table:yoshimi_part_addsynth_voice_commands}
       \begin{tabular}{l l}
-\texttt{(voice) [n]} &
+\texttt{(voice) <n>} &
    Change voice number.  \\
-\texttt{[ON/OFF]} &
+\texttt{<ON/OFF>} &
    Enables / Disables the Voice. \\
-\texttt{Volume [n]} &
+\texttt{Volume <n>} &
    Voice Volume.  \\
-\texttt{Pan [n]} &
+\texttt{Pan <n>} &
    Panning position.\\
-\texttt{PRandom [s]} &
+\texttt{PRandom <s>} &
    Enable random panning (ON / other).\\
-\texttt{PWidth [n]} &
+\texttt{PWidth <n>} &
    Random panning range.\\
-\texttt{VElocity [n]} &
+\texttt{VElocity <n>} &
    Velocity sensing sensitivity. \\
-\texttt{BENd Adjust [n]} &
+\texttt{BENd Adjust <n>} &
    Pitch bend range. \\
-\texttt{BENd Offset [n]} &
+\texttt{BENd Offset <n>} &
    Pitch bend shift. \\
-\texttt{DETune Fine [n]} &
+\texttt{DETune Fine <n>} &
    Fine frequency.   \\
-\texttt{DETune Coarse [n]} &
+\texttt{DETune Coarse <n>} &
    Coarse stepped frequency.  \\
-\texttt{DETune Type [n]} &
+\texttt{DETune Type <n>} &
    Type of coarse stepping.   \\
-\texttt{OCTave [n]} &
+\texttt{OCTave <n>} &
    Shift octaves up or down.  \\
-\texttt{FIXed [s]} &
+\texttt{FIXed <s>} &
    Set base frequency to 440Hz (ON / other).  \\
-\texttt{EQUal [n]} &
+\texttt{EQUal <n>} &
    Equal temper variation. \\
-\texttt{Type [s]} &
+\texttt{Type <s>} &
    Sound type (Oscillator, White noise, Pink noise, Spot noise). \\
-\texttt{SOurce [n]} &
+\texttt{SOurce <[s][n]>} &
    Voice source number (Local for self). \\
-\texttt{OSCillator [n]} &
+\texttt{OSCillator <[s][n]>} &
    Oscillator source number (Internal for self). \\
-\texttt{Phase [n]} &
+\texttt{Phase <n>} &
    Relative voice phase. \\
-\texttt{Minus [s]} &
+\texttt{Minus <s>} &
    Invert entire voice (ON / other). \\
-\texttt{DELay [n]} &
+\texttt{DELay <n>} &
    Delay before this voice starts. \\
-\texttt{Resonance [s]} &
+\texttt{Resonance <s>} &
    Enable resonance for this voice (ON / other). \\
-\texttt{Bypass [s]} &
+\texttt{Bypass <s>} &
    Bypass global filter for this voice (ON / other). \\
-\texttt{Unison [s]} &
+\texttt{Unison <s>} &
    (ON, OFF). \\
-\texttt{Unison Size[n]} &
+\texttt{Unison Size<n>} &
    Number of unison elements. \\
-\texttt{Unison Frequency[n]} &
+\texttt{Unison Frequency <n>} &
    Frequency spread of elements. \\
-\texttt{Unison Phase[n]} &
+\texttt{Unison Phase <n>} &
    Phase randomness of elements. \\
-\texttt{Unison Width[n]} &
+\texttt{Unison Width <n>} &
    Stereo width. \\
-\texttt{Unison Vibrato[n]} &
+\texttt{Unison Vibrato <n>} &
    Vibrato depth. \\
-\texttt{Unison Rate[n]} &
+\texttt{Unison Rate <n>} &
    Vibrato speed. \\
-\texttt{Unison Invert [s]} &
+\texttt{Unison Invert <s>} &
    Phase inversion type (None, Random, Half, Third, Quarter, Fifth). \\
 \texttt{MOdulator ...} &
    Enter the modulator context. \\
@@ -1124,24 +1124,47 @@ to see what controls were available in each context.
       \caption{Voice Modulator Commands}
       \label{table:yoshimi_part_addsynth_voice_modulator_commands}
       \begin{tabular}{l l}
-\texttt{[s]} &
-   Directly set the type (OFF, Morph, Ring, Phase, Frequency, Pulse width). \\
-\texttt{SOurce [[s]/[n]]} &
-   Oscillator source (Local, voice number). \\
-\texttt{Volume [n]} &
-   Modulator depth.  \\
-\texttt{VElocity [n]} &
-   Velocity sensing sensitivity. \\
-\texttt{Damping [n]} &
-   Higher frequency relative damping. \\
-\texttt{OSCillator [[s]/[n]]} &
-   Modulation oscillator (Internal, modulator number). \\
-\texttt{FOLlow [s]} &
-   Use source oscillator detune (ON / other). \\
-\texttt{SHift [n]} &
-   Oscillator relative phase. \\
+
+\texttt{ - category - } &
+  \\
+\texttt{<s> OFF} &
+   disable modulator\\
+\texttt{<s> MORph} &
+   fade between oscillators\\
+\texttt{<s> RINg} &
+  \\
+\texttt{<s> PHAse} &
+  \\
+\texttt{<s> FREquency} &
+   pulse frequency\\
+\texttt{<s> Pulse} &
+   pulse width\\
+\texttt{} &
+   \\ % force blank line in table
+\texttt{Volume <n>} &
+   modulator depth  \\
+\texttt{VElocity <n>} &
+   velocity sensing sensitivity \\
+\texttt{Damping <n>} &
+   higher frequency relative damping \\
+\texttt{Detune Fine <n>} &
+   fine frequency detune \\
+\texttt{Detune Coarse <n>} &
+   coarse frequency detune. \\
+\texttt{Detune Type <s>} &
+   type of coarse stepping (DEFault, L35, L10, E100, E1200) \\
+\texttt{SOurce <[s]/[n]>} &
+    oscilator source (Local, \{voice number\}) \\
+\texttt{OSCillator <[s]/[n]>} &
+   modulation oscillator (Internal, \{modulator number\}) \\
+\texttt{FIXed <s>} &
+   set modulator freqency to 440Hz (ON / other) \\
+\texttt{FOLlow <s>} &
+   use source oscillator detune (ON / other) \\
+\texttt{SHift <n>} &
+   oscillator relative phase \\
 \texttt{WAveform ...} &
-   Enter the modulator waveform context. \\
+   enter the modulator waveform context \\
       \end{tabular}
    \end{table}
 
