@@ -822,7 +822,8 @@ to see what controls were available in each context.
 \texttt{Humanise Velocity <n>} &
    A small random velocity reduction. \\
 \texttt{CLear [s]} &
-  Resets the part to the default 'Simple Sound'. 'ALL, includes controllers etc. \\
+  Resets the part to the default 'Simple Sound'. 'ALL, includes controllers
+  etc. \\
 \texttt{Channel <n>} &
    CHannel (16 to 33 note off only, 32 to 63 disables).   \\
 \texttt{AFtertouch Chan <s1> [s2]} &
@@ -877,9 +878,9 @@ to see what controls were available in each context.
 \end{center}
 
    Kit mode is an unusual form of context level as it either modifies some
-   part level controls or adds new ones. At the same time it still allows
-   all the other part controls. The examples below show how kit mode
-   interacts with part, and how one is informed of the exact status.
+   part level controls or adds new ones. At the same time it still allows all
+   the other part controls. The examples below show how kit mode interacts
+   with part, and how one is informed of the exact status.
 
    \begin{verbatim}
       yoshimi Part 1+> set multi
@@ -1176,129 +1177,131 @@ to see what controls were available in each context.
       \caption{Part PadSynth Commands}
       \label{table:yoshimi_part_padsynth_commands}
       \begin{tabular}{l l}
-\texttt{[ON/OFF]} &
-   Enables / Disables the PadSynth engine. \\
-\texttt{Volume [n]} &
-   PadSynth Volume. \\
-\texttt{Pan [n]} &
-   Panning position.\\
-\texttt{PRandom [s]} &
-   Enable random panning (ON / other).\\
-\texttt{PWidth [n]} &
-   Random panning range.\\
-\texttt{VElocity [n]} &
-   Velocity sensing sensitivity. \\
-\texttt{STEreo [s]} &
-   Sets this engine as stereo or mono (ON / other). \\
+\texttt{<ON/OFF>} &
+   enables / Disables the PadSynth engine \\
+\texttt{Apply} &
+   use of 1st entry and on harmonic changes \\
+\texttt{Volume <n>} &
+   padSynth Volume \\
+\texttt{Pan <n>} &
+   panning position \\
+\texttt{PRandom <s>} &
+   enable random panning (ON / other) \\
+\texttt{PWidth <n>} &
+   random panning range \\
+\texttt{VElocity <n>} &
+   velocity sensing sensitivity \\
+\texttt{STEreo <s>} &
+   sets this engine as stereo or mono (ON / other) \\
 \texttt{DEPop [n]} &
-   Initial attack slope.   \\
-\texttt{PUnch Power [n]} &
-   Attack boost amplitude. \\
-\texttt{PUnch Duration [n]} &
-   Attack boost time. \\
-\texttt{PUnch Stretch [n]} &
-   Attack boost extend. \\
-\texttt{PUnch Velocity [n]} &
-   Attack boost velocity sensitivity. \\
-\texttt{BENd Adjust [n]} &
-   Pitch bend range. \\
-\texttt{BENd Offset [n]} &
-   Pitch bend shift. \\
-\texttt{DETune Fine [n]} &
-   Fine frequency. \\
-\texttt{DETune Coarse [n]} &
-   Coarse stepped frequency. \\
-\texttt{DETune Type [n]} &
-   Type of coarse stepping. \\
-\texttt{OCTave [n]} &
-   Shift octaves up or down. \\
-\texttt{FIXed [s]} &
-   Set base frequency to 440Hz (ON / other). \\
+   initial attack slope \\
+\texttt{PUnch Power <n>} &
+   attack boost amplitude \\
+\texttt{PUnch Duration <n>} &
+   attack boost time \\
+\texttt{PUnch Stretch <n>} &
+   attack boost extend \\
+\texttt{PUnch Velocity <n>} &
+   attack boost velocity sensitivity \\
+\texttt{BENd Adjust <n>} &
+   pitch bend range \\
+\texttt{BENd Offset <n>} &
+   pitch bend shift \\
+\texttt{DETune Fine <n>} &
+   fine frequency \\
+\texttt{DETune Coarse <n>} &
+   coarse stepped frequency \\
+\texttt{DETune Type <s>} &
+   type of coarse stepping (DEFault, L35, L10, E100, E1200 \\
+\texttt{OCTave <n>} &
+   shift octaves up or down \\
+\texttt{FIXed <s>} &
+   set base frequency to 440Hz (ON / other) \\
 \texttt{EQUal [n]} &
-   Equal temper variation. \\
-\texttt{PRofile [s]} &
-   The shape of harmonic profile (Gauss, Square Double exponent). \\
-\texttt{WIdth [n]} &
-   Width of the harmonic profile. \\
-\texttt{COunt [n]} &
-   Number of profile repetitions. \\
-\texttt{EXpand [n]} &
-   Adds harmonics and changes the distribution. \\
-\texttt{FRequency [n]} &
-   Further modifies distribution (dependent on stretch). \\
-\texttt{SIze [n]} &
-   Changes harmonic width while retaining shape. \\
-\texttt{CRoss [s]} &
-   Cross section of profile (Full, Upper, Lower). \\
-\texttt{MUltiplier [s]} &
-   amplitude multiplier (Off, Gauss, Sine, Flat). \\
-\texttt{MOde [s]} &
-   Amplitude mode (Sum, Mult, D1, D2). \\
-\texttt{CEnter [n]} &
-   Changes the central harmonic component width. \\
-\texttt{RELative [n]} &
-   Changes central component relative amplitude. \\
-\texttt{AUto [s]} &
-   Autoscaling (ON / other). \\
-\texttt{BASe [s]} &
-   Base profile distribution (C2, G2, C3, G3, C4, G4, C5, G5, G6). \\
-\texttt{SAmples [n]} &
-   Samples per octave (0.5, 1, 2, 3, 4, 6, 12). \\
-\texttt{RAnge [n]} &
-   Number of octaves (1 to 8). \\
-\texttt{LEngth [n]} &
-   Length of one sample in k (16, 32, 64, 128, 256, 512, 1024). \\
-\texttt{BAndwidth [n]} &
-   Overall bandwidth. \\
-\texttt{SCale [s]} &
-   Bandwidth scale. (Normal, Equalhz, Quarter, Half, Three Quarter,\\
+   equal temper variation \\
+\texttt{OVertone Position <s>} &
+   relationship to fundamental (HArmonic, SIne, POwer, SHift, \\
 \texttt{} &
-   One and a half, Double, Inverse Half).\\
-\texttt{SPectrum [s]} &
-   Spectrum mode (Bandwidth, Discrete, Continuous). \\
-\texttt{OVertone Position [s]} &
-   Relationship to fundamental (HArmonic, SIne,\\
+   UShift, LShift, UPower, LPower) \\
+\texttt{OVertone First <n>} &
+   degree of first parameter \\
+\texttt{OVertone Second <n>} &
+   degree of second parameter\\
+\texttt{OVertone Harmonic <n>} &
+   amount harmonics are forced\\
+\texttt{PRofile <s>} &
+   shape of harmonic profile (Gauss, Square Double exponent) \\
+\texttt{WIdth <n>} &
+   width of single peak within harmonic profile \\
+\texttt{COunt <n>} &
+   number of profile repetitions. \\
+\texttt{EXpand <n>} &
+  stretch and add harmonics and change distribution \\
+\texttt{FRequency <n>} &
+   further modifies distribution (dependent on stretch) \\
+\texttt{SIze <n>} &
+   scale harmonic profile as a whole \\
+\texttt{CRoss <s>} &
+   Cross section of profile (Full, Upper, Lower) \\
+\texttt{MUltiplier <s>} &
+   amplitude multiplier (Off, Gauss, Sine, Flat) \\
+\texttt{MOde <s>} &
+   amplitude mode (Sum, Mult, D1, D2). \\
+\texttt{CEnter <n>} &
+   changes the central harmonic component width \\
+\texttt{RELative <n>} &
+   changes central component relative amplitude \\
+\texttt{AUto <s>} &
+   autoscaling (ON / other) \\
+\texttt{BASe <s>} &
+   base profile distribution (C2, G2, C3, G3, C4, G4, C5, G5, G6) \\
+\texttt{SAmples <n>} &
+   samples per octave (0.5, 1, 2, 3, 4, 6, 12) \\
+\texttt{RAnge <n>} &
+   number of octaves (1 to 8) \\
+\texttt{LEngth <n>} &
+   length of one sample in k (16, 32, 64, 128, 256, 512, 1024) \\
+\texttt{BAndwidth <n>} &
+   overall bandwidth \\
+\texttt{SCale <s>} &
+   bandwidth scale (Normal, Equalhz, Quarter, Half, Threequarter,\\
 \texttt{} &
-   POwer, SHift, UShift, LShift, UPower, LPower). \\
-\texttt{OVertone First [n]} &
-   Degree of first parameter. \\
-\texttt{OVertone Second [n]} &
-   Degree of second parameter.   \\
-\texttt{OVertone Harmonic [n]} &
-   Amount harmonics are forced.  \\
+   Oneandahalf, Double, Inversehalf)\\
+\texttt{SPectrum <s>} &
+   spectrum mode (Bandwidth, Discrete, Continuous) \\
       \end{tabular}
    \end{table}
 
    \begin{table}
       \begin{tabular}{l l}
-\texttt{XFadeupdate [n]} &
-   Cross fade (millisec) after building new wavetable. \\
-\texttt{BUildtrigger [n]} &
-   Re-trigger wavetable build after n millisec. \\
-\texttt{RWDetune [n]} &
-   Random walk spread of voice detune on re-triggered build (0 off 96 factor 2). \\
-\texttt{RWBandwidth [n]} &
-   Random walk spread of line bandwidth. \\
-\texttt{RWFilterFreq [n]} &
-   Random walk spread of filter cutoff frequency. \\
-\texttt{RWWidthProfile [n]} &
-   Random walk spread of profile line width. \\
-\texttt{RWStretchProfile [n]} &
-   Random walk spread of profile modulation stretch. \\
+\texttt{XFadeupdate <n>} &
+   cross fade (millisec) after building new wavetable \\
+\texttt{BUildtrigger <n>} &
+   re-trigger wavetable build after n millisec \\
+\texttt{RWDetune <n>} &
+   random walk spread of voice detune on re-triggered build (0 off 96 factor 2) \\
+\texttt{RWBandwidth <n>} &
+   random walk spread of line bandwidth \\
+\texttt{RWFilterFreq <n>} &
+   random walk spread of filter cutoff frequency \\
+\texttt{RWWidthProfile <n>} &
+   random walk spread of profile line width \\
+\texttt{RWStretchProfile <n>} &
+   random walk spread of profile modulation stretch \\
 \texttt{APply} &
-   Puts the latest changes into the wavetable. \\
+   puts the latest changes into the wavetable \\
 \texttt{XPort} &
-   Export the current sample set to named file. \\
+   export the current sample set to named file \\
 \texttt{WAveform ...} &
-   Enter the oscillator waveform context. \\
+   enter the oscillator waveform context \\
 \texttt{LFO ...} &
-   Enter LFO insert context.  \\
+   enter LFO insert context  \\
 \texttt{FILter ...} &
-   Enter Filter insert context.  \\
+   enter Filter insert context  \\
 \texttt{ENVelope ...} &
-   Enter Envelope insert context.   \\
+   enter Envelope insert context   \\
 \texttt{REsonance ...} &
-   Enter the PadSynth resonance context. \\
+   enter the PadSynth resonance context \\
       \end{tabular}
    \end{table}
 
@@ -1312,63 +1315,63 @@ to see what controls were available in each context.
       \label{table:yoshimi_part_subsynth_commands}
       \begin{tabular}{l l}
 \texttt{[ON/OFF]} &
-   Enables / Disables the SubSynth engine. \\
-\texttt{Volume [n]} &
-   SubSynth Volume.  \\
-\texttt{Pan [n]} &
-   Panning position.\\
-\texttt{PRandom [s]} &
-   Enable random panning (ON / other).\\
-\texttt{PWidth [n]} &
-   Random panning range.\\
-\texttt{VElocity [n]} &
-   Velocity sensing sensitivity. \\
-\texttt{STEreo [s]} &
-   Sets this engine as stereo or mono (ON / other). \\
-\texttt{BENd Adjust [n]} &
-   Pitch bend range. \\
-\texttt{BENd Offset [n]} &
-   Pitch bend shift. \\
-\texttt{DETune Fine [n]} &
-   Fine frequency.   \\
-\texttt{DETune Coarse [n]} &
-   Coarse stepped frequency.  \\
-\texttt{DETune Type [n]} &
-   Type of coarse stepping. (DEFault, L35, L10, E100, E1200)  \\
-\texttt{OCTave [n]} &
-   Shift octaves up or down.  \\
-\texttt{FIXed [s]} &
-   Set base frequency to 440Hz (ON / other).  \\
-\texttt{EQUal [n]} &
-   Equal temper variation. \\
-\texttt{HArmonic [n1] Amp [n2]} &
-   Set harmonic n1 to n2 intensity. \\
-\texttt{HArmonic [n1] Band [n2]} &
-   Set harmonic n1 to n2 width. \\
-\texttt{HArmonic Stages [n]} &
-   Number of stages. \\
-\texttt{HArmonic Mag [s]} &
-   Harmonics filtering type. (Linear, 40dB, 60dB, 80dB, 100dB)\\
-\texttt{HArmonic Position [s]} &
-   Start position. (Zero, Random, Maximum)\\
-\texttt{BAnd Width [n]} &
-   Common bandwidth. \\
-\texttt{BAnd Scale [n]} &
-   Bandwidth slope versus frequency. \\
-\texttt{OVertone Position [s]} &
-   Relationship to fundamental (HArmonic, SIne,\\
+   enables / disables the SubSynth engine \\
+\texttt{Volume <n>} &
+   Volume \\
+\texttt{Pan <n>} &
+   panning position \\
+\texttt{PRandom <s>} &
+   enable random panning (ON / \{other\}) \\
+\texttt{PWidth <n>} &
+   random panning range\\
+\texttt{VElocity <n>} &
+   velocity sensing sensitivity \\
+\texttt{STEreo <s>} &
+   sets engine as stereo (ON / \{other\}) \\
+\texttt{BENd Adjust <n>} &
+   pitch bend range \\
+\texttt{BENd Offset <n>} &
+   pitch bend shift \\
+\texttt{DETune Fine <n>} &
+   fine frequency \\
+\texttt{DETune Coarse <n>} &
+   coarse stepped frequency \\
+\texttt{DETune Type <s>} &
+   type of coarse stepping (DEFault, L35, L10, E100, E1200) \\
+\texttt{OCTave <n>} &
+   shift octaves up or down \\
+\texttt{FIXed <s>} &
+   set base frequency to 440Hz (ON / \{other\}) \\
+\texttt{EQUal <n>} &
+   equal temper variation \\
+\texttt{OVertone Position <s>} &
+   relationship to fundamental (HArmonic, SIne,\\
 \texttt{} &
-   POwer, SHift, UShift, LShift, UPower, LPower).\\
-\texttt{OVertone First [n]} &
-   Degree of first parameter. \\
-\texttt{OVertone Second [n]} &
-   Degree of second parameter.   \\
-\texttt{OVertone Harmonic [n]} &
-   Amount harmonics are forced.  \\
+   POwer, SHift, UShift, LShift, UPower, LPower)\\
+\texttt{OVertone First <n>} &
+   degree of first parameter \\
+\texttt{OVertone Second <n>} &
+   degree of second parameter \\
+\texttt{OVertone Harmonic <n>} &
+   amount harmonics are forced  \\
+\texttt{HArmonic <n1> Amp <n2>} &
+   set harmonic n1 to n2 intensity \\
+\texttt{HArmonic <n1> Band <n2>} &
+   set harmonic n1 to n2 width \\
+\texttt{HArmonic Stages <n>} &
+   number of stages \\
+\texttt{HArmonic Mag <s>} &
+   harmonics filtering type (Linear, 40dB, 60dB, 80dB, 100dB)\\
+\texttt{HArmonic Position <s>} &
+   start position (Zero, Random, Maximum)\\
+\texttt{BAnd Width <n>} &
+   common bandwidth \\
+\texttt{BAnd Scale <n>} &
+   bandwidth slope versus frequency \\
 \texttt{FILter ...} &
-   Enter Filter insert context.  \\
+   enter Filter insert context \\
 \texttt{ENVelope ...} &
-   Enter Envelope insert context.   \\
+   enter Envelope insert context \\
       \end{tabular}
    \end{table}
 
