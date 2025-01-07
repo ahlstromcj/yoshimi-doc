@@ -1383,98 +1383,35 @@ to see what controls were available in each context.
       \caption{Resonance Commands}
       \label{table:part_resonance_commands}
       \begin{tabular}{l l}
-   \texttt{(enable) [s]} &
-      Activate resonance (ON / other). \\
-    \texttt{PRotect [s]} &
-      Leave fundamental unchanged (ON / other). \\
-   \texttt{Maxdb [n]} &
-      Set the maximum attenuation of points. \\
-   \texttt{Random [s]} &
-      Set a random distribution (Coarse, Medium, Fine). \\
-   \texttt{CEnter [n]} &
-      Set the center frequency of the resonance range. \\
-   \texttt{Octaves [n]} &
-      The number of octaves covered. \\
-   \texttt{Interpolate [s]} &
-      Turn isolated peaks into lines or curves (Linear, Smooth). \\
+   \texttt{(enable) <s>} &
+      activate resonance (ON / \{other\}) \\
+    \texttt{PRotect <s>} &
+      leave fundamental unchanged (ON / \{other\}) \\
+   \texttt{Maxdb <n>} &
+      maximum attenuation of points \\
+   \texttt{Random <s>} &
+      set a random distribution (Coarse, Medium, Fine) \\
+   \texttt{CEnter <n>} &
+      center frequency of range \\
+   \texttt{Octaves <n>} &
+      number of octaves covered \\
+   \texttt{Interpolate <s>} &
+      turn isolated peaks into lines or curves (Linear, Smooth) \\
    \texttt{Smooth} &
-      Reduce range and sharpness of peaks. \\
+      reduce range and sharpness of peaks \\
    \texttt{CLear} &
-      Set all points to the mid level. \\
-   \texttt{POints [[n1] [n2]]} &
-      Show all or read n1 or set n1 to n2 \\
+      set all points to mid level \\
+   \texttt{POints [<n1> [n2]]} &
+      show all or set/read n1 to n2 \\
+   \texttt{APply} &
+      fix settings (only for PadSynth) \\
       \end{tabular}
    \end{table}
 
 \paragraph{Part Waveform Commands}
 \label{paragraph:command_line_part_waveform_commands}
 
-   \begin{table}[H]
-      \centering
-      \caption{Part Waveform Commands}
-      \label{table:yoshimi_part_waveform_commands}
-      \begin{tabular}{l l}
-   \texttt{[s]} &
-      Directly set the basic waveform type by name. \\
-   \texttt{HArmonic [n1] Amp [n2]} &
-      Set harmonic n1 to n2 intensity. \\
-   \texttt{HArmonic [n1] Phase [n2]} &
-      Set harmonic n1 to n2 phase. \\
-   \texttt{Harmonic Shift [n]} &
-      Amount harmonics are moved. \\
-   \texttt{Harmonic Before [s]} &
-      Shift before waveshaping and filtering (ON other). \\
-   \texttt{COnvert} &
-       Change resultant wave to groups of sine waves. \\
-   \texttt{CLear} &
-      Clear harmonic settings. \\
-   \texttt{Base Par [n]} &
-      Basic wave parameter. \\
-   \texttt{Base Mod Type [s]} &
-      Basic modulation type (OFF, Rev, Sine Power). \\
-   \texttt{Base Mod Par [n1] [n2]} &
-       Parameter number n1 (1 - 3) set to n2 value. \\
-   \texttt{Base Convert [s]} &
-       Use resultant wave as basic waveform type. \\
-   \texttt{} &
-      Also clear modifiers and harmonics (OFF other). \\
-   \texttt{SHape Type [s] } &
-      Wave shape modifier type. (OFF, ATAn, ASYm1, POWer, SINe,\\
-   \texttt{} &
-       QNTs, ZIGzag, LMT, ULMt, LLMt, ILMt, CLIp, AS2, PO2, SGM) \\
-   \texttt{SHape Par [n]} &
-      Wave shape modifier amount. \\
-   \texttt{Filter Type [s]} &
-      (OFF, LP1, HPA1, HPB1, BP1, BS1, LP2, HP2, BP2, BS2, \\
-      \texttt{} &
-      COS, SIN, LSH, SGM)\\
-   \texttt{Filter Par [n1] [n2]} &
-      Filter parameters  n1 (1/2) set to n2 value. \\
-   \texttt{Filter Before [s]} &
-      Do filtering before waveshaping (ON other). \\
-   \texttt{Modulation Par [n1] [n2]} &
-      Overall modulation parameter n1 (1 - 3) set to n2 value. \\
-   \texttt{SPectrum Type [s]} &
-       Spectrum adjust type (OFF, Power, Down/Up threshold). \\
-   \texttt{SPectrum Par } &
-      Spectrum adjust amount. \\
-   \texttt{ADdaptive Type [s]} &
-      Adaptive harmonics (OFF, ON, SQUare, 2XSub, 2XAdd, \\
-   \texttt{} &
-       3XSub, 3XAdd, 4XSub, 4XAdd) \\
-   \texttt{ADdaptive Base [n]} &
-      Adaptive base frequency. \\
-   \texttt{ADdaptive Level [n]} &
-      Adaptive power. \\
-   \texttt{ADdaptive Par [n]} &
-      Adaptive parameter amount. \\
-
-   \texttt{APply} &
-      Fix settings (only for PadSynth). \\
-      \end{tabular}
-   \end{table}
-
-   This list shows the "basic waveform type" settings available.
+This list shows the "basic waveform type" settings available.
 
    \begin{itemize}
       \item SINe
@@ -1493,62 +1430,128 @@ to see what controls were available in each context.
       \item SQUare
       \item SPIke
       \item CIRcle
+      \item HYPersec
    \end{itemize}
+
+   \begin{table}[H]
+      \centering
+      \caption{Part Waveform Commands}
+      \label{table:yoshimi_part_waveform_commands}
+      \begin{tabular}{l l}
+   \texttt{<s>} &
+      set basic waveform by above list \\
+   \texttt{HArmonic <n1> Amp <n2>} &
+      harmonic n1 to n2 intensity \\
+   \texttt{HArmonic <n1> Phase <n2>} &
+      harmonic n1 to n2 phase \\
+   \texttt{Harmonic Shift <n>} &
+      amount harmonics are moved \\
+   \texttt{Harmonic Before <s>} &
+      shift before waveshaping and filtering (ON \{other\}) \\
+   \texttt{COnvert} &
+       change resultant wave to groups of sine waves \\
+   \texttt{CLear} &
+      clear harmonic settings \\
+   \texttt{Base Par <n>} &
+      basic wave parameter \\
+   \texttt{Base Mod Type <s>} &
+      basic modulation type (OFF, Rev, Sine Power) \\
+   \texttt{Base Mod Par <n1> <n2>} &
+       parameter number n1 (1 - 3) set to n2 value \\
+   \texttt{Base Convert [s]} &
+       use resultant wave as basic waveform type \\
+   \texttt{} &
+      also clear modifiers and harmonics (OFF \{other\}). \\
+   \texttt{SHape Type <s> } &
+      Wave shape modifier type (OFF, ATAn, ASYm1, POWer, SINe,\\
+   \texttt{} &
+       QNTs, ZIGzag, LMT, ULMt, LLMt, ILMt, CLIp, AS2, PO2, SGM) \\
+   \texttt{SHape Par [n]} &
+      wave shape modifier amount \\
+   \texttt{Filter Type <s>} &
+      (OFF, LP1, HPA1, HPB1, BP1, BS1, LP2, HP2, BP2, BS2, \\
+      \texttt{} &
+      COS, SIN, LSH, SGM)\\
+   \texttt{Filter Par <n1> <n2>} &
+      filter parameters  n1 (1/2) to n2 value \\
+   \texttt{Filter Before <s>} &
+      do filtering before waveshaping (ON\{other\}) \\
+   \texttt{Modulation Par <n1> <n2>} &
+      overall modulation parameter n1 (1 - 3) to n2 value \\
+   \texttt{SPectrum Type <s>} &
+       spectrum adjust type (OFF, Power, Down/Up threshold) \\
+   \texttt{SPectrum Par <n>} &
+      spectrum adjust amount \\
+   \texttt{ADdaptive Type <s>} &
+      adaptive harmonics (OFF, ON, SQUare, 2XSub, 2XAdd, \\
+   \texttt{} &
+       3XSub, 3XAdd, 4XSub, 4XAdd) \\
+   \texttt{ADdaptive Base <n>} &
+      adaptive base frequency \\
+   \texttt{ADdaptive Level <n>} &
+      adaptive power \\
+   \texttt{ADdaptive Par <n>} &
+      adaptive parameter amount \\
+
+   \texttt{APply} &
+      fix settings (only for PadSynth) \\
+      \end{tabular}
+   \end{table}
 
 \subsubsection{Engine Envelopes}
 \label{subsec:command_line_engine_envelopes}
 
    \begin{table}[H]
       \centering
-      \caption{Engine Envelopes, Type}
+      \caption{Engine Envelopes, category}
       \label{table:yoshimi_engine_envelopes_types}
       \begin{tabular}{l l}
 \texttt{AMplitude} &
-   Amplitude type. \\
+   amplitude type \\
 \texttt{FRequency} &
-   Frequency type. \\
+   frequency type \\
 \texttt{FIlter} &
-   Filter type. \\
+   filter type \\
 \texttt{BAndwidth} &
-   Bandwidth type (SubSynth only). \\
+   bandwidth type (SubSynth only) \\
       \end{tabular}
    \end{table}
 
    \begin{table}[H]
       \centering
-      \caption{Engine Envelopes, Controls}
+      \caption{Engine Envelopes, common}
       \label{table:yoshimi_engine_envelopes_controls}
       \begin{tabular}{l l}
-\texttt{Expand [n]} &
-   Envelope time on lower notes. \\
-\texttt{Force [s]} &
-   Force release (ON / other). \\
-\texttt{Linear [s]} &
-   Linear slopes (ON / other). \\
-\texttt{FMode [s]} &
-   Set as Freemode (ON / other). \\
+\texttt{Expand <n>} &
+   envelope time on lower notes \\
+\texttt{Force <s>} &
+   force release (ON / \{other\}) \\
+\texttt{Linear <s>} &
+   linear slopes (ON / \{other\}) \\
+\texttt{FMode <s>} &
+   set as Freemode (ON / \{other\}) \\
       \end{tabular}
    \end{table}
 
    \begin{table}[H]
       \centering
-      \caption{Engine Envelopes, Fixed}
+      \caption{Engine Envelopes, fixed}
       \label{table:yoshimi_engine_envelopes_fixed}
       \begin{tabular}{l l}
-\texttt{Attack Level [n]} &
-   Initial attack level. \\
-\texttt{Attack Time [n]} &
-   Time before decay point. \\
-\texttt{Decay Level [n]} &
-   Initial decay level. \\
-\texttt{Decay Time [n]} &
-   Time before sustain point. \\
-\texttt{Sustain [n]} &
-   Sustain level. \\
-\texttt{Release Time [n]} &
-   Time to actual release. \\
-\texttt{Release Level [n]} &
-   Level at envelope end. \\
+\texttt{Attack Level <n>} &
+   initial attack level. \\
+\texttt{Attack Time <n>} &
+   time before decay point. \\
+\texttt{Decay Level <n>} &
+   initial decay level. \\
+\texttt{Decay Time <n>} &
+   time before sustain point. \\
+\texttt{Sustain <n>} &
+   sustain level. \\
+\texttt{Release Time <n>} &
+   time to actual release. \\
+\texttt{Release Level <n>} &
+   level at envelope end. \\
       \end{tabular}
    \end{table}
 
@@ -1558,19 +1561,19 @@ Note: Some envelopes have limited controls.
 
    \begin{table}[H]
       \centering
-      \caption{Engine Envelopes, Freemode}
+      \caption{Engine Envelopes, freemode}
       \label{table:yoshimi_engine_envelopes_freemode}
       \begin{tabular}{l l}
 \texttt{Points} &
-   Number of defined points (read only). \\
-\texttt{Sustain [n]} &
-   Point number where sustain starts. \\
-\texttt{Insert [n1] [n2] [n3]} &
-   Insert point at n1 with X increment n2, Y value n3. \\
-\texttt{Delete [n]} &
-   Remove point n. \\
-\texttt{Change [n1] [n2] [n3]} &
-   Change point n1 to X increment n2, Y value n3. \\
+   number of defined points (read only). \\
+\texttt{Sustain <n>} &
+   point number where sustain starts. \\
+\texttt{Insert <n1> <n2> <n3>} &
+   insert point at n1 with X increment n2, Y value n3. \\
+\texttt{Delete <n>} &
+   remove point n. \\
+\texttt{Change <n1> <n2> <n3>} &
+   change point n1 to X increment n2, Y value n3. \\
       \end{tabular}
    \end{table}
 
@@ -1582,26 +1585,27 @@ Note: Some envelopes have limited controls.
       \caption{Engine Filters}
       \label{table:yoshimi_engine_filters}
       \begin{tabular}{l l}
-\texttt{CEnter [n]} &
-   Center frequency. \\
-\texttt{Q [n]} &
+\texttt{CEnter <n>} &
+   center frequency. \\
+\texttt{Q <n>} &
    Q factor.   \\
-\texttt{Velocity [n]} &
-   Velocity sensitivity.   \\
-\texttt{SLope [n]} &
-   Velocity curve.   \\
-\texttt{Gain [n]} &
-   Overall amplitude.   \\
-\texttt{TRacking [n]} &
-   Frequency tracking.  \\
-\texttt{Range [s]} &
-   Extended tracking (ON, {other}) - goes from 0 to 198. \\
-\texttt{STages [n]} &
+\texttt{Velocity <n>} &
+   velocity sensitivity.   \\
+\texttt{SLope <n>} &
+   velocity curve.   \\
+\texttt{Gain <n>} &
+   overall amplitude.   \\
+\texttt{TRacking <n>} &
+   frequency tracking.  \\
+\texttt{Range <s>} &
+   extended tracking (ON, {other}) - goes from 0 to 198. \\
+\texttt{STages <n>} &
    filter stages (1 to 5). \\
-\texttt{CAtegory [s]} &
-   Analog, Formant, State variable. \\
-\texttt{TYpe [s]} &
-   Category dependent, and not formant filters.  See the filter types below.   \\
+\texttt{CAtegory <s>} &
+   analog, Formant, State variable. \\
+\texttt{TYpe <s>} &
+   category dependent, and not formant filters.
+   See the filter types below.   \\
 \texttt{EDit ...} &
    Formant filter only. Enter the format editor. See below.   \\
       \end{tabular}
@@ -1612,61 +1616,62 @@ Note: Some envelopes have limited controls.
    \begin{itemize}
       \item Analog filters:
       \begin{itemize}
-          \item \textbf{l1}. One stage low pass.
-          \item \textbf{h1}. One stage high pass.
-          \item \textbf{l2}. Two stage low pass.
-          \item \textbf{h2}. Two stage high pass.
-          \item \textbf{band}. Two stage band pass.
-          \item \textbf{stop}. Two stage band stop.
-          \item \textbf{peak}. Two stage peak.
-          \item \textbf{lshelf}. Two stage low shelf.
-          \item \textbf{hshelf}. Two stage high shelf.
+          \item \textbf{l1} - one stage low pass
+          \item \textbf{h1} - one stage high pass
+          \item \textbf{l2} - two stage low pass
+          \item \textbf{h2} - two stage high pass
+          \item \textbf{band} - two stage band pass
+          \item \textbf{stop} - two stage band stop
+          \item \textbf{peak} - two stage peak
+          \item \textbf{lshelf} - two stage low shelf
+          \item \textbf{hshelf} - two stage high shelf
       \end{itemize}
       \item State variable filters:
       \begin{itemize}
-         \item \textbf{low}. Low pass.
-         \item \textbf{high}. High pass.
-         \item \textbf{band}. Band pass.
-         \item \textbf{stop}. Band stop.
+         \item \textbf{low} - low pass
+         \item \textbf{high} - high pass
+         \item \textbf{band} - band pass
+         \item \textbf{stop} - band stop
       \end{itemize}
    \end{itemize}
 
    \begin{table}[H]
       \centering
       \caption{Engine Filters, Formant Editor}
+      (shows 'V' current vowel, and 'F' current formant)
       \label{table:yoshimi_engine_filters_formant_editor}
       \begin{tabular}{l l}
 
-\texttt{Invert [s]} &
-   Invert effect of LFOs, envelopes (ON, OFF). \\
-\texttt{CEnter [n]} &
-   Center frequency of sequence. \\
-\texttt{Range [n]} &
-   Octave range of formant. \\
-\texttt{Expand [n]} &
-   Stretch overall sequence time. \\
-\texttt{Lucidity [n]} &
-   Clarity of vowels. \\
-\texttt{Morph [n]} &
-   Speed of change between formants. \\
-\texttt{SIze [n]} &
-   Number of vowels in sequence. \\
-\texttt{COunt [n]} &
-   Number of formants in vowels. \\
-\texttt{VOwel [n]} &
-   Vowel being processed. \\
+\texttt{Invert <s>} &
+   invert effect of LFOs, envelopes (ON, OFF) \\
+\texttt{CEnter <n>} &
+   center frequency of sequence \\
+\texttt{Range <n>} &
+   octave range of formant \\
+\texttt{Expand <n>} &
+   stretch overall sequence time \\
+\texttt{Lucidity <n>} &
+   clarity of vowels. \\
+\texttt{Morph <n>} &
+   speed of change between formants \\
+\texttt{SIze <n>} &
+   number of vowels in sequence \\
+\texttt{COunt <n>} &
+   number of formants in vowels \\
+\texttt{VOwel <n>} &
+   vowel being processed \\
 \texttt{Point [n1] [n2]} &
-   Sequence position n1 vowel n2. \\
-\texttt{Formant [n]} &
-   Formant being processed. \\
+   sequence position n1 vowel n2 \\
+\texttt{Formant <n>} &
+   formant being processed \\
 \texttt{per formant} &
     \\
-\texttt{-  FRequency [n]} &
-   Center frequency of formant. \\
-\texttt{-  Q [n]} &
-   Bandwidth of formant. \\
+\texttt{-  FRequency <n>} &
+   center frequency of formant \\
+\texttt{-  Q <n>} &
+   bandwidth of formant \\
 \texttt{-  Gain} &
-   Amplitude of formant. \\
+   amplitude of formant \\
       \end{tabular}
    \end{table}
 
@@ -1680,37 +1685,36 @@ Note: Some envelopes have limited controls.
       \begin{tabular}{l l}
 
 \texttt{AMplitude} &
-   Amplitude type. \\
+   amplitude type. \\
 \texttt{FRequency} &
-   Frequency type. \\
+   frequency type. \\
 \texttt{FIlter} &
-   Filter type. \\
+   filter type. \\
 \texttt{ - Controls - } & \\
-\texttt{Rate [n]} &
-   Frequency. \\
-\texttt{Intensity [n]} &
-   Amount of effect. \\
-\texttt{Start [n]} &
-   Start position in cycle. \\
-\texttt{Delay [n]} &
-   Time before effect. \\
-\texttt{Expand [n]} &
-   Rate / note pitch. \\
-\texttt{BPM [s]} &
-   Sync frequency to MIDI clock (ON / other). \\
+\texttt{Rate <n>} &
+   frequency. \\
+\texttt{Intensity <n>} &
+   amount of effect. \\
+\texttt{Start <n>} &
+   start position in cycle. \\
+\texttt{Delay <n>} &
+   time before effect. \\
+\texttt{Expand <n>} &
+   rate / note pitch. \\
+\texttt{BPM <s>} &
+   sync frequency to MIDI clock (ON / other). \\
 \texttt{Continuous [s]} &
-   Free running - ignore start position (ON / other). \\
-\texttt{Type [s]} &
+   free running - ignore start position (ON / other). \\
+\texttt{AR <n>} &
+   amplitude randomness. \\
+\texttt{RR <n>} &
+   rate (frequency) randomness. \\
+\texttt{Type <s>} &
    LFO oscillator shape. See the list below. \\
-\texttt{AR [n]} &
-   Amplitude randomness. \\
-\texttt{RR [n]} &
-   Rate (frequency) randomness. \\
 
       \end{tabular}
    \end{table}
 
-Example: "S FI T RU" sets the filter type, ramp up.
 Filter types (s parameter, LFO oscillator shape):
 
    \begin{itemize}
@@ -1725,6 +1729,8 @@ Filter types (s parameter, LFO oscillator shape):
       \item RSU (random square up)
       \item RSD(random square down)
    \end{itemize}
+
+   Example: "S FI T RU" sets the filter type, ramp up.
 
 \subsection{MLearn}
 \label{subsec:command_line_mlearn}
