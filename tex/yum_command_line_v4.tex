@@ -763,7 +763,7 @@ to see what controls were available in each context.
 \subsubsection{Part Commands}
 \label{subsec:command_line_part_commands}
 
-   Note that the table below assumes one is already at part level.
+\textsl{{min. command line to list}} Part: '? par'
 
 \begin{center}
 \begin{longtable}[l]{ ll}
@@ -980,11 +980,12 @@ to see what controls were available in each context.
    emulate bandwidth controller. \\
       \end{tabular}
    \end{table}
-
+\pagebreak
    The following commands are available once in the context for the various
    types of synth engines:
 
 \paragraph{Part AddSynth Commands}
+\textsl{{min. command line to list}} AddSynth: '? add'
 \label{paragraph:command_line_part_addsynth_commands}
    \begin{table}[H]
       \centering
@@ -1041,7 +1042,8 @@ to see what controls were available in each context.
    Enter the AddSynth resonance context. \\
       \end{tabular}
    \end{table}
-
+\pagebreak
+   \textsl{{min. command line to list}} AddSynth Voice: '? voi'
    \begin{table}[H]
       \caption{AddSynth Voice Commands}
       \label{table:yoshimi_part_addsynth_voice_commands}
@@ -1121,6 +1123,9 @@ to see what controls were available in each context.
       \end{tabular}
    \end{table}
 
+\pagebreak
+   \textsl{min. command line to list} AddSynth Modulator: '? mod'
+
    \begin{table}[h]
       \caption{Voice Modulator Commands}
       \label{table:yoshimi_part_addsynth_voice_modulator_commands}
@@ -1169,14 +1174,14 @@ to see what controls were available in each context.
       \end{tabular}
    \end{table}
 
+\pagebreak
 \paragraph{Part PadSynth Commands}
 \label{paragraph:command_line_part_padsynth_commands}
+\textsl{min. command line to list} PadSynth: '? pad'
+\begin{center}
+\begin{longtable}{p{5cm} p{13cm}}
 
-   \begin{table}[H]
-      \centering
-      \caption{Part PadSynth Commands}
-      \label{table:yoshimi_part_padsynth_commands}
-      \begin{tabular}{l l}
+\caption[Part PadSynth Commands]{Part PadSynth Commands} \\
 \texttt{<ON/OFF>} &
    enables / Disables the PadSynth engine \\
 \texttt{Apply} &
@@ -1269,11 +1274,7 @@ to see what controls were available in each context.
    Oneandahalf, Double, Inversehalf)\\
 \texttt{SPectrum <s>} &
    spectrum mode (Bandwidth, Discrete, Continuous) \\
-      \end{tabular}
-   \end{table}
-
-   \begin{table}
-      \begin{tabular}{l l}
+\texttt{} & \\ % blank line
 \texttt{XFadeupdate <n>} &
    cross fade (millisec) after building new wavetable \\
 \texttt{BUildtrigger <n>} &
@@ -1302,13 +1303,15 @@ to see what controls were available in each context.
    enter Envelope insert context   \\
 \texttt{REsonance ...} &
    enter the PadSynth resonance context \\
-      \end{tabular}
-   \end{table}
 
+\end{longtable}
+\end{center}
 
+\pagebreak
 \paragraph{Part SubSynth Commands}
 \label{paragraph:command_line_part_subsynth_commands}
 
+   \textsl{{min. command line to list}} SubSynth: '? sub'
    \begin{table}[H]
       \centering
       \caption{Part SubSynth Commands}
@@ -1375,9 +1378,10 @@ to see what controls were available in each context.
       \end{tabular}
    \end{table}
 
+\pagebreak
 \paragraph{Part Resonance Commands}
 \label{paragraph:command_line_part_resonance_commands}
-
+   \textsl{{min. command line to list}} Resonance: '? res'
    \begin{table}[H]
       \centering
       \caption{Resonance Commands}
@@ -1410,7 +1414,7 @@ to see what controls were available in each context.
 
 \paragraph{Part Waveform Commands}
 \label{paragraph:command_line_part_waveform_commands}
-
+\textsl{{min. command line to list}} Waveform: '? wav'
 This list shows the "basic waveform type" settings available.
 
    \begin{itemize}
@@ -1500,7 +1504,7 @@ This list shows the "basic waveform type" settings available.
 
 \subsubsection{Engine Envelopes}
 \label{subsec:command_line_engine_envelopes}
-
+   \textsl{{min. command line to list}} Envelope: '? env'
    \begin{table}[H]
       \centering
       \caption{Engine Envelopes, category}
@@ -1579,7 +1583,7 @@ Note: Some envelopes have limited controls.
 
 \subsubsection{Engine Filters}
 \label{subsec:command_line_engine_filters}
-
+   \textsl{{min. command line to list}} Filter: '? fil'
    \begin{table}[H]
       \centering
       \caption{Engine Filters}
@@ -1611,6 +1615,7 @@ Note: Some envelopes have limited controls.
       \end{tabular}
    \end{table}
 
+\pagebreak
    The list of filter types:
 
    \begin{itemize}
@@ -1675,9 +1680,10 @@ Note: Some envelopes have limited controls.
       \end{tabular}
    \end{table}
 
+\pagebreak
 \subsubsection{Engine LFOs}
 \label{subsec:command_line_engine_lfos}
-
+   \textsl{{min. command line to list}} LFO: '? lfo'
    \begin{table}[H]
       \centering
       \caption{Engine LFOs}
@@ -1715,7 +1721,7 @@ Note: Some envelopes have limited controls.
       \end{tabular}
    \end{table}
 
-Filter types (s parameter, LFO oscillator shape):
+LFO Filter types (s parameter, LFO oscillator shape):
 
    \begin{itemize}
       \item SIne
@@ -1732,11 +1738,14 @@ Filter types (s parameter, LFO oscillator shape):
 
    Example: "S FI T RU" sets the filter type, ramp up.
 
+\pagebreak
 \subsection{MLearn}
 \label{subsec:command_line_mlearn}
    There are actually two entry points for MLearn. The first takes the same form
    as set/read and initiates the MIDI learning process for a given control.
    The second is within 'set' and is for editing current lines.
+
+   \textsl{{min. command line to list}} MLearn: '? mle'
 
    To enter the context for the second form start out with:
    \begin{verbatim}
@@ -1793,6 +1802,7 @@ Filter types (s parameter, LFO oscillator shape):
    could easily forget having edited this - especially if saving everything and
    coming back to it some days later.
 
+\pagebreak
    In more recent \textsl{Yoshimi} versions there is a '?' on the end of the line if any of the
    controls on that preset are not the default values.
    So:
@@ -1828,11 +1838,10 @@ Filter types (s parameter, LFO oscillator shape):
       \item DYnfilter
    \end{itemize}
 
-\pagebreak
    Here, in detail are the controls available for each effect:
 
 % Reverb
-    \textsl{command line entry for} Reverb:  '? rev'
+    \textsl{{min. command line to list}} Reverb:  '? rev'
    \begin{table}[H]
       \centering
       \caption{Reverb}
@@ -1881,9 +1890,9 @@ Filter types (s parameter, LFO oscillator shape):
       \item very long 2
     \end{enumerate}
 
-\pagebreak
 % Echo
-    \textsl{command line entry for} Echo:  '? ech'
+\vspace{6em}
+    \textsl{{min. command line to list}} Echo:  '? ech'
    \begin{table}[H]
       \centering
       \caption{Echo}
@@ -1925,7 +1934,7 @@ Echo presets:
 
 \pagebreak
 % Chorus
-    \textsl{command line entry for} Chorus:  '? cho'
+    \textsl{{min. command line to list}} Chorus:  '? cho'
    \begin{table}[H]
       \centering
       \caption{Chorus}
@@ -1977,7 +1986,7 @@ Chorus presets:
 
 \pagebreak
 % Phaser
-   \textsl{command line entry for} Phaser:  '? pha'
+   \textsl{{min. command line to list}} Phaser:  '? pha'
    \begin{table}[H]
       \centering
       \caption{Phaser}
@@ -2039,7 +2048,7 @@ Phaser presets:
 
 \pagebreak
 % Alienwah
-   \textsl{command line entry for} AlienWah:  '? ali'
+   \textsl{{min. command line to list}} AlienWah:  '? ali'
    \begin{table}[H]
       \centering
       \caption{Alienwah}
@@ -2083,7 +2092,7 @@ AlienWah presets:
 
 \pagebreak
 % Distortion
-   \textsl{command line entry for} Distortion:  '? dis'
+   \textsl{{min. command line to list}} Distortion:  '? dis'
    \begin{table}[H]
       \centering
       \caption{Distortion}
@@ -2128,7 +2137,7 @@ Distortion presets:
    \end{enumerate}
 
 % EQ
-   \textsl{command line entry for} EQ:  '? eq'
+   \textsl{{min. command line to list}} EQ:  '? eq'
    \begin{table}[H]
       \centering
       \caption{EQ}
@@ -2153,7 +2162,7 @@ EQ has no presets.
 
 \pagebreak
 % DynFilter
-   \textsl{command line entry for} DynFilter:  '? dyn'
+   \textsl{{min. command line to list}} DynFilter:  '? dyn'
    \begin{table}[H]
       \centering
       \caption{Dynfilter}
