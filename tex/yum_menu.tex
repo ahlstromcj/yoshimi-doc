@@ -1004,20 +1004,16 @@
 \subsubsection{Menu / Yoshimi / Exit}
 \label{subsubsec:menu_yoshimi_exit}
 
-   Simply exits from \textsl{Yoshimi}.
-   The user is prompted if unsaved changes exist, as shown in
-   \figureref{fig:yoshimi_change_exit}.
-
-   One can sometimes get a false parameters-changed warning if one
-   scrolls through one of the menu type entries without actually changing it.
-   Better safe than sorry!
-
+   Simply exits from \textsl{Yoshimi}. There used to be a warning if there were
+   unsaved changes, but since \textsl{Yoshimi} Version 2.3.2 all configuration
+   changes are saved as they are made.
+\iffalse
 \begin{figure}[H]
    \centering
    \includegraphics[scale=0.8]{2.3.0/settings_changed.png}
    \caption[Yoshimi Menu, Exit]{Yoshimi Menu, Exit}
    \label{fig:yoshimi_change_exit}
-\end{figure}
+\end{figure} \fi
 
 \input{yum_menu_instruments}
 
