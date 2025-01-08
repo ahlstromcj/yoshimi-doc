@@ -1828,35 +1828,39 @@ Filter types (s parameter, LFO oscillator shape):
       \item DYnfilter
    \end{itemize}
 
+\pagebreak
    Here, in detail are the controls available for each effect:
+
 % Reverb
+    \textsl{command line entry for} Reverb:  '? rev'
    \begin{table}[H]
       \centering
       \caption{Reverb}
       \begin{tabular}{l l}
-\texttt{LEVel [n]} &
-   Amount of the effect. \\
-\texttt{PANning [n]} &
-   Left-right panning. \\
-\texttt{TIMe [n]} &
-   Reverb time. \\
-\texttt{DELay [n]} &
-   Initial delay. \\
-\texttt{FEEdback [n]} &
-   Delay feedback. \\
-\texttt{LOW [n]} &
-   Low pass filter. \\
-\texttt{HIGh [n]} &
-   High pass filter. \\
-\texttt{DAMp [n]} &
-   Feedback damping. \\
-\texttt{TYPe [s]} &
-   Reverb type (Random, Freeverb, Bandwidth). \\
-\texttt{ROOm [n]} &
-   Room size. \\
-\texttt{BANdwidth [n]} &
-   Actual bandwidth (only for bandwidth type). \\
-\texttt{PREset [n]} &
+\texttt{LEVel <n>} &
+   amount applied \\
+\texttt{PANning <n>} &
+   left-right panning \\
+\texttt{TIMe <n>} &
+   reverb time \\
+\texttt{DELay <n>} &
+   initial delay \\
+\texttt{FEEdback <n>} &
+   delay feedback \\
+\texttt{LOW <n>} &
+   low pass filter \\
+\texttt{HIGh <n>} &
+   high pass filter \\
+\texttt{DAMp <n>} &
+   feedback damping \\
+\texttt{TYPe <s>} &
+   reverb type (Random, Freeverb, Bandwidth) \\
+\texttt{ROOm <n>} &
+   room size \\
+\texttt{BANdwidth <n>} &
+   actual bandwidth (only for bandwidth type) \\
+\texttt{} & \\ % blank line
+\texttt{PREset <n>} &
    Select numbered preset (sets all above controls). \\
       \end{tabular}
    \end{table}
@@ -1877,30 +1881,33 @@ Filter types (s parameter, LFO oscillator shape):
       \item very long 2
     \end{enumerate}
 
+\pagebreak
 % Echo
+    \textsl{command line entry for} Echo:  '? ech'
    \begin{table}[H]
       \centering
       \caption{Echo}
       \begin{tabular}{l l}
-\texttt{LEVel [n]} &
-   Amount of the effect. \\
-\texttt{PANning [n]} &
-   Left-right panning. \\
-\texttt{DELay [n]} &
-   Initial delay. \\
-\texttt{LRDelay [n]} &
-   Left-right delay. \\
-\texttt{CROssover [n]} &
-   Left-right crossover. \\
-\texttt{FEEdback [n]} &
-   Echo feedback. \\
-\texttt{DAMp [n]} &
-   Feedback damping. \\
+\texttt{LEVel <n>} &
+   amount applied \\
+\texttt{PANning <n>} &
+   left-right panning \\
+\texttt{DELay <n>} &
+   initial delay, left delay only if separate \\
+\texttt{LRDelay <n>} &
+   left-right delay, right delay if separate \\
+\texttt{CROssover <n>} &
+   left-right crossover \\
+\texttt{FEEdback <n>} &
+   echo feedback \\
+\texttt{DAMp <n>} &
+   feedback damping \\
 \texttt{SEPerate} &
-   Change DELay to left delay and LRDelay to right delay. \\
+   separate left-right delays (ON \{other\}) \\
 \texttt{BPM [s>]} &
    delay BPM sync (ON / other) \\
-\texttt{PREset [n]} &
+\texttt{} & \\ % blank line
+\texttt{PREset <n>} &
    Select numbered preset (sets all above controls). \\
       \end{tabular}
    \end{table}
@@ -1916,38 +1923,41 @@ Echo presets:
       \item feedback echo
     \end{enumerate}
 
+\pagebreak
 % Chorus
+    \textsl{command line entry for} Chorus:  '? cho'
    \begin{table}[H]
       \centering
       \caption{Chorus}
       \begin{tabular}{l l}
-\texttt{LEVel [n]} &
-   Amount of the effect. \\
-\texttt{PANning [n]} &
-   Left-right panning. \\
-\texttt{FREquency [n]} &
-   LFO frequency. \\
-\texttt{RANdom [n]} &
-   LFO randomness. \\
-\texttt{WAVe [s]} &
-   LFO waveshape (sine, triangle). \\
-\texttt{SHIft [n]} &
-   Left-right phase shift. \\
-\texttt{DEPth [n]} &
-   LFO depth. \\
-\texttt{DELay [n]} &
-   LFO delay. \\
-\texttt{FEEdback [n]} &
-   Chorus feedback. \\
-\texttt{CROssover [n]} &
-   Left-right routing. \\
-\texttt{SUBtract [s]} &
-   Invert output (ON / other). \\
-\texttt{BPM [s]} &
-   LFO BPM sync (ON / other). \\
-\texttt{STArt [n]} &
-   LFO BPM phase start. \\
-\texttt{PREset [n]} &
+\texttt{LEVel <n>} &
+   amount applied \\
+\texttt{PANning <n>} &
+   left-right panning \\
+\texttt{FREquency <n>} &
+   LFO frequency \\
+\texttt{RANdom <n>} &
+   LFO randomness \\
+\texttt{WAVe <s>} &
+   LFO waveshape (sine, triangle) \\
+\texttt{SHIft <n>} &
+   left-right phase shift \\
+\texttt{DEPth <n>} &
+   LFO depth \\
+\texttt{DELay <n>} &
+   LFO delay.\\
+\texttt{FEEdback <n>} &
+   chorus feedback \\
+\texttt{CROssover <n>} &
+   left-right routing \\
+\texttt{SUBtract <s>} &
+   invert output (ON / \{other\}) \\
+\texttt{BPM <s>} &
+   LFO BPM sync (ON / \{other\}) \\
+\texttt{STArt <n>} &
+   LFO BPM phase start \\
+\texttt{} & \\ % blank line
+\texttt{PREset <n>} &
    Select numbered preset (sets all above controls). \\
       \end{tabular}
    \end{table}
@@ -1965,44 +1975,49 @@ Chorus presets:
       \item flange 5
    \end{enumerate}
 
+\pagebreak
 % Phaser
+   \textsl{command line entry for} Phaser:  '? pha'
    \begin{table}[H]
       \centering
       \caption{Phaser}
       \begin{tabular}{l l}
-\texttt{LEVel [n]} &
-   Amount of the effect. \\
-\texttt{PANning [n]} &
-   Left-right panning. \\
-\texttt{FREquency [n]} &
-   LFO frequency. \\
-\texttt{RANdom [n]} &
-   LFO randomness. \\
-\texttt{WAVe [s]} &
-   LFO waveshape (sine, triangle). \\
-\texttt{SHIft [n]} &
-   Left-right phase shift. \\
-\texttt{DEPth [n]} &
-   LFO depth. \\
-\texttt{FEEdback [n]} &
-   Phaser feedback. \\
-\texttt{STAges [n]} &
-   The number of filter stages. \\
-\texttt{CROssover [n]} &
-   Left-right routing. \\
-\texttt{SUBtract [s]} &
-   Invert output against source (ON / other). \\
-\texttt{HYPer [s]} &
-   Hyper-sine (ON / other). \\
-\texttt{OVErdrive [n]} &
-   Distortion. \\
-\texttt{ANAlog [s]} &
-   Analog emulation  (ON / other). \\
-\texttt{BPM [s]} &
-   LFO BPM sync (ON / other). \\
-\texttt{STArt [n]} &
-   LFO BPM phase start. \\
-\texttt{PREset [n]} &
+\texttt{LEVel <n>} &
+   amount applied \\
+\texttt{PANning <n>} &
+   left-right panning \\
+\texttt{FREquency <n>} &
+   LFO frequency \\
+\texttt{RANdom <n>} &
+   LFO randomness \\
+\texttt{WAVe <s>} &
+   LFO waveshape (sine, triangle) \\
+\texttt{SHIft <n>} &
+   left-right phase shift \\
+\texttt{DEPth <n>} &
+   LFO depth \\
+\texttt{FEEdback <n>} &
+   phaser feedback \\
+\texttt{STAges <n>} &
+   number of filter stages \\
+\texttt{CROssover <n>} &
+   left-right routing \\
+\texttt{SUBtract <s>} &
+   invert output (ON / \{other\}) \\
+\texttt{RELative <n>} &
+   relative phase \\
+\texttt{HYPer <s>} &
+   hyper-sine (ON / \{other\}) \\
+\texttt{OVErdrive <n>} &
+   distortion \\
+\texttt{ANAlog <s>} &
+   analog emulation  (ON / \{other\}). \\
+\texttt{BPM <s>} &
+   LFO BPM sync (ON / \{other\}) \\
+\texttt{STArt <n>} &
+   LFO BPM phase start \\
+\texttt{} & \\ % blank line
+\texttt{PREset <n>} &
    Select numbered preset (sets all above controls). \\
       \end{tabular}
    \end{table}
@@ -2022,36 +2037,39 @@ Phaser presets:
    \item aphaser 6
    \end{enumerate}
 
+\pagebreak
 % Alienwah
+   \textsl{command line entry for} AlienWah:  '? ali'
    \begin{table}[H]
       \centering
       \caption{Alienwah}
       \begin{tabular}{l l}
-\texttt{LEVel [n]} &
-   Amount of the effect. \\
-\texttt{PANning [n]} &
-   Left-right panning. \\
-\texttt{FREquency [n]} &
-   LFO frequency. \\
-\texttt{WAVe [s]} &
-   LFO waveshape (sine, triangle). \\
-\texttt{SHIft [n]} &
+\texttt{LEVel <n>} &
+   amount applied \\
+\texttt{PANning <n>} &
+   left-right panning \\
+\texttt{FREquency <n>} &
+   LFO frequency \\
+\texttt{WAVe <s>} &
+   LFO waveshape (sine, triangle) \\
+\texttt{SHIft <n>} &
    Left-right phase shift. \\
-\texttt{DEPth [n]} &
-   LFO depth. \\
-\texttt{FEEdback [n]} &
+\texttt{DEPth <n>} &
+   LFO depth \\
+\texttt{FEEdback <n>} &
    Filter feedback. \\
-\texttt{DELay [n]} &
-   LFO delay. \\
-\texttt{CROssover [n]} &
-   Left-right routing. \\
-\texttt{RELative [n]} &
-   Relative phase. \\
-\texttt{BPM [s]} &
-   LFO BPM sync (ON / other). \\
-\texttt{STArt [n]} &
-   LFO BPM phase start. \\
-\texttt{PREset [n]} &
+\texttt{DELay <n>} &
+   LFO delay \\
+\texttt{CROssover <n>} &
+   left-right routing \\
+\texttt{RELative <n>} &
+   relative phase \\
+\texttt{BPM <s>} &
+   LFO BPM sync (ON / \{other\}) \\
+\texttt{STArt <n>} &
+   LFO BPM phase start \\
+\texttt{} & \\ % blank line
+\texttt{PREset <n>} &
    Select numbered preset (sets all above controls). \\
       \end{tabular}
    \end{table}
@@ -2063,36 +2081,39 @@ AlienWah presets:
    \item alienwah 4
    \end{enumerate}
 
+\pagebreak
 % Distortion
+   \textsl{command line entry for} Distortion:  '? dis'
    \begin{table}[H]
       \centering
       \caption{Distortion}
       \begin{tabular}{l l}
-\texttt{LEVel [n]} &
-   Amount of the effect. \\
-\texttt{PANning [n]} &
-   Left-right panning. \\
-\texttt{MIX [n]} &
-   Left-right mix. \\
-\texttt{DRIve [n]} &
-   Input level. \\
-\texttt{OUTput [n]} &
-   Output balance. \\
-\texttt{WAVe [s]} &
-   Function waveshape (ATAn, ASYm1, POWer, SINe, QNTs,\\
+\texttt{LEVel <n>} &
+   amount applied \\
+\texttt{PANning <n>} &
+   left-right panning \\
+\texttt{MIX <n>} &
+   left-right mix \\
+\texttt{DRIve <n>} &
+   input level \\
+\texttt{OUTput <n>} &
+   output balance \\
+\texttt{WAVe <s>} &
+   function waveshape (ATAn, ASYm1, POWer, SINe, QNTs,\\
 \texttt{ } &
     ZIGzag, LMT, ULMt, LLMt, ILMt, CLIp, AS2, PO2, SGM) \\
-\texttt{INvert [s]} &
-   Invert ?  (ON / other). \\
-\texttt{LOW [n]} &
-   Low pass filter. \\
-\texttt{HIGh [n]} &
-   High pass filter. \\
-\texttt{STEreo [s]} &
-   Stereo (ON / other). \\
-\texttt{FILter [s]} &
-   Filter before distortion (ON / other). \\
-\texttt{PREset [n]} &
+\texttt{INvert <s>} &
+   suptracts from main signal, otherwise adds (ON / \{other\}) \\
+\texttt{LOW <n>} &
+   low pass filter \\
+\texttt{HIGh <n>} &
+   high pass filter \\
+\texttt{STEreo <s>} &
+   stereo (ON / \{other\}) \\
+\texttt{FILter <s>} &
+   Filter before distortion (ON / other) \\
+\texttt{} & \\ % blank line
+\texttt{PREset <n>} &
    Select numbered preset (sets all above controls). \\
       \end{tabular}
    \end{table}
@@ -2107,58 +2128,64 @@ Distortion presets:
    \end{enumerate}
 
 % EQ
+   \textsl{command line entry for} EQ:  '? eq'
    \begin{table}[H]
       \centering
       \caption{EQ}
       \begin{tabular}{l l}
-\texttt{LEVel [n]} &
-   Amount of the effect. \\
-\texttt{BANd [n]} &
-   EQ band number for following controls. \\
-\texttt{- FILter [s]} &
+\texttt{LEVel <n>} &
+   amount applied \\
+\texttt{BANd <n>} &
+   EQ band number for following controls \\
+\texttt{- FILter <s>} &
    Filter type (LP1, HP1, LP2, HP2, NOT, PEA, LOW, HIG). \\
-\texttt{- FREquency [n]} &
-   Cutoff/band frequency. \\
-\texttt{- GAIn [n]} &
-   Makeup gain. \\
-\texttt{- Q [n]} &
-   Filter Q. \\
-\texttt{- STAges [n]} &
-   The number of \textsl{extra} filter stages. \\
+\texttt{- FREquency <n>} &
+   cutoff/band frequency \\
+\texttt{- GAIn <n>} &
+   makeup gain \\
+\texttt{- Q <n>} &
+   filter Q \\
+\texttt{- STAges <n>} &
+   number of extra filter stages \\
       \end{tabular}
    \end{table}
 EQ has no presets.
 
+\pagebreak
 % DynFilter
+   \textsl{command line entry for} DynFilter:  '? dyn'
    \begin{table}[H]
       \centering
       \caption{Dynfilter}
       \begin{tabular}{l l}
-\texttt{LEVel [n]} &
-   Amount of the effect. \\
-\texttt{PANning [n]} &
-   Left-right panning. \\
-\texttt{FREquency [n]} &
-   LFO frequency. \\
-\texttt{RANdom [n]} &
-   LFO randomness. \\
-\texttt{WAVe [s]} &
-   LFO waveshape (sine, triangle). \\
-\texttt{SHIft [n]} &
-   Left-right phase shift. \\
-\texttt{DEPth [n]} &
-   LFO depth. \\
-\texttt{INVert [s]} &
-   Reverse effect of sensitivity (ON / other). \\
-\texttt{RATe [n]} &
-   Speed of filter change with amplitude. \\
+\texttt{LEVel <n>} &
+   amount applied \\
+\texttt{PANning <n>} &
+   left-right panning \\
+\texttt{FREquency <n>} &
+   LFO frequency \\
+\texttt{RANdom <n>} &
+   LFO randomness \\
+\texttt{WAVe <s>} &
+   LFO waveshape (sine, triangle) \\
+\texttt{SHIft <n>} &
+   left-right phase shift \\
+\texttt{DEPth <n>} &
+   LFO depth \\
+\texttt{SENsitivity} &
+   amount amplitude changes filter \\
+\texttt{INVert <s>} &
+   reverse effect of sensitivity (ON / \{other\}) \\
+\texttt{RATe <n>} &
+   rpeed of filter change with amplitude \\
 \texttt{FILter ...} &
-   Enter the dynamic filter context. (a stock filter)\\
-\texttt{BPM [s]} &
-   LFO BPM sync (ON / other). \\
-\texttt{STArt [n]} &
-   LFO BPM phase start. \\
-\texttt{PREset [n]} &
+   enter the dynamic filter context - ? FIL for controls\\
+\texttt{BPM <s>} &
+   LFO BPM sync (ON / \{other\}) \\
+\texttt{STArt <n>} &
+   LFO BPM phase start \\
+\texttt{} & \\ % blank line
+\texttt{PREset <n>} &
    Select numbered preset (sets all above controls). \\
       \end{tabular}
    \end{table}
