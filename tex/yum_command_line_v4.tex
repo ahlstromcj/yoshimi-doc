@@ -57,9 +57,9 @@
    This will be given the next free ID. A future upgrade will allow the ID to
    be set to any valid one when it is created, mirroring the GUI behaviour.
 
-   Once running, all configuration can be done within the terminal
-   window.  There is also extensive control of roots, banks, parts and
-   instruments including the ability to list and set all of these.
+   Once running, all configuration can be done within the terminal window.
+   There is also extensive control of roots, banks, parts and instruments
+   including the ability to list and set all of these.
    Additional controls that are frequently taken for granted in the GUI, but
    otherwise get forgotten, are \textsl{master key shift} and \textsl{master
    volume}.
@@ -264,8 +264,8 @@
    \index{cmd!at-sign}
    This uses the '@' (list number) operator.
 
-   Commands with "*" in the description need the setup to be saved, and
-   \textsl{Yoshimi} restarted to be activated.
+   Commands with "*" in the description need \textsl{Yoshimi} restarted to be
+   activated.
 
    Note that \textsl{Yoshimi}'s command-line can also load and save states,
    patchsets, and scales, and can list recent histories. Vector load and save
@@ -419,41 +419,44 @@
    'up and running' message. Commands are \textsl{not} case-sensitive.
 
    \noindent With all of the following commands \newline
-   Optional parameters are shown as: [ n ] for numbers or [ s ] for text strings \newline
-   Compulsory parameters are shown as: \begin{math} \langle \end{math} n \begin{math} \rangle \end{math} for numbers or \begin{math} \langle \end{math} s \begin{math} \rangle \end{math} for text
+   Optional parameters are shown as: [ n ] for numbers or [ s ] for text
+   strings \newline
+   Compulsory parameters are shown as: \begin{math} \langle \end{math} n
+   \begin{math} \rangle \end{math} for numbers or \begin{math} \langle
+   \end{math} s \begin{math} \rangle \end{math} for text
    strings.
 
-   \noindent Commands can be abbreviated to the first three letters of each command,
-   or, in some cases, just one letter.  This is indicated by uppercase
-   letters in command descriptions. The commands available depend on the
-   current "context" of the command line. However, there is a group of
+   \noindent Commands can be abbreviated to the first three letters of each
+   command, or, in some cases, just one letter.  This is indicated by
+   uppercase letters in command descriptions. The commands available depend
+   on the current "context" of the command line. However, there is a group of
    commands always available:
 
 \begin{center}
 \begin{longtable}{p{3cm} p{12cm}}
 \caption[Yoshimi Universial Commands]{Yoshimi Universal Commands} \\
 \texttt{? Help} &
-   Show commands. \\
+   show commands \\
 \texttt{List} &
-   List current settings. \\
+   list current settings \\
 \texttt{GUide} &
-   Show location of most recent HTML guide. \\
+   show location of most recent HTML guides \\
 \texttt{STop} &
-   All sound off. \\
+   all sound off \\
 \texttt{RESet [s]} &
-   Return to startup conditions. 'ALL' clear MIDI-learn (if 'y'). \\
+   return to startup conditions, 'ALL' clear MIDI-learn (if 'y') \\
 \texttt{EXit [s]} &
-   Tidy up and close Yoshimi (if 'y'), 'FOrce' instant exit regardless. \\
+   tidy up and close Yoshimi (if 'y'), 'FOrce' instant exit regardless \\
 \texttt{RUN <s>} &
-   Execute named command script forcing top level start.\\
+   execute named command script forcing top level start \\
 \texttt{RUNLocal <s>} &
-   Execute named command from current context level.\\
+   execute named command from current context level \\
 \texttt{  WAIT <n>} &
-   1ms to 30,000mS delay - within script only.\\
+   1ms to 30,000mS delay - within script only \\
 \texttt{..} &
-   Step back one context level.\\
+   step back one context level \\
 \texttt{/} &
-   Step back to top level.\\
+   step back to top level \\
 \end{longtable}
 \end{center}
 
@@ -470,7 +473,11 @@
    \begin{verbatim}
       yoshimi> ? p
    \end{verbatim}
-   \noindent Also, from any level, \textbf{? ?} will show the top level ones.
+
+   \noindent The most significant help lists only require the initial letter
+   to be identified. For all the others one needs to enter the first three
+   letters. Also, from any other level, \textbf{? ?} will show the top level
+   ones.
 
 \subsubsection{Top Commands}
 \label{subsec:command_line_top_command_list}
@@ -496,7 +503,7 @@
    Enter context level. \\
 \texttt{SCale ...} &
    Enter context level. \\
-\texttt{MLearn ...} &
+\texttt{MLearn [n] ...} &
    Edit learned lines. \\
 \texttt{COnfig ...} &
    Enter context level. \\
@@ -508,82 +515,98 @@
    Load various files. \\
 \texttt{SAve ...} &
    Save various files. \\
+\texttt{} & \\ % blank line
 \texttt{ADD} &
-   Add paths and files. \\
+   add paths and files \\
 \texttt{- Root <s>} &
-   Add a root path named s to the root list. \\
+   add a root path named s to the root list \\
 \texttt{- Bank <s>} &
-   Add a bank named s to the current root. \\
+   make a new bank named s to the current root \\
 \texttt{- YOshimi [n]} &
-   Start a new instance optionally with ID n. \\
+   start a new instance, optionally with ID n \\
 \texttt{IMport [s <n1>] <n2> <s>} &
-   Imports a named directory to slot n2 of current root, (or 'Root' n1). \\
+   imports a named directory to slot n2 of current root, (or 'Root' n1). \\
 \texttt{EXPort [s <n1>] <n2> <s>} &
-   Exports a bank at slot n2 of current root, (or 'Root' n1) to named
-   directory
- \\
+   exports a bank at slot n2 of current root, (or 'Root' n1) to named
+   directory \\
 \texttt{REMove} &
-   Remove paths, files, and entries. \\
+   remove paths, files, and entries \\
 \texttt{- Root <n>} &
-   De-list root path ID n. \\
+   de-list root path ID n \\
 \texttt{- Bank <n1> [s <n2>]} &
-   Delete bank ID n1 (and all instruments) from current root
-   (or 'Root' n2). \\
+   delete bank ID n1 (and all instruments) from current root
+   (or 'Root' n2) \\
 \texttt{- Instrument <n>} &
-   Delete instrument from slot (n) in current bank. \\
+   delete instrument from slot (n) in current bank \\
 \texttt{- YOshimi <n>} &
-   Close instance n. \\
+   close instance ID n \\
 \texttt{- MLearn <s> [n]} &
-   Delete midi learned 'ALL' whole list, or '@' line n \\
+   delete midi learned 'ALL' whole list, or '@' (n) line \\
 
 \texttt{Set/Read/MLearn} &
-   Set, read or learn all the following main parameters. \\
+   set, read or learn all the following main parameters \\
 \texttt{MINimum/MAXimum/DEFault} &
-   Or find ranges (mostly in the part context). \\
+   find command ranges \\
    \texttt{Part [n] ...} &
-   Enter context level. Optionally to part n\\
+   enter context level, optionally to part n \\
 \texttt{VEctor [n] ...} &
-   Enter context level. Optionally to vector n\\
+   enter context level, optionally to vector n \\
 \texttt{SCale ...} &
-   Enter context level. \\
+   enter context level \\
 \texttt{MLearn ...} &
-   Edit learned lines. \\
-\texttt{COnfig ...} &
-   Enter context level. \\
+   enter editor context level \\
 \texttt{BAnk ...} &
-   Enter context level. \\
-
-
-\texttt{YOshimi [n]} &
-   Read the current instance or change to [n]. \\
-\texttt{MONo [s]} &
-   Switches the main audio output to mono (ON / other). \\
-
+   enter context level \\
+\texttt{COnfig ...} &
+   enter context level \\
+\texttt{TESt} &
+   launch test calculations (for developers) \\
+\texttt{YOshimi <n>} &
+   read the current instance or change to n \\
+\texttt{MONo <s>} &
+   switches the main audio output to mono (ON / \{other\}) \\
+\texttt{} & \\ % blank line
 \texttt{SYStem effects [n]} &
-   Enter system effect context. Optionally to n. \\
+   enter system effect context, optionally to n \\
+\texttt{<ON/OFF} &
+   non-destructively enables/disables the effect \\
 \texttt{- SEnd <n1> <n2>} &
-   Send this effect to effect n1 at volume n2. \\
-\texttt{...} &
-   Effect dependent controls. \\
+   send system effect to effect n1 at volume n2 \\
+\texttt{(effect) <s>} &
+   the effect type \\
+\texttt{PREset <n>} &
+   numbered effect preset to n \\
+\texttt{} & \\ % blank line
 \texttt{INSert effects [n]} &
-   Enter insertion effect context. Optionally to n. \\
+   enter insertion effect context, optionally to n \\
 \texttt{- SEnd <s>/<n>} &
-   Send effect destination to (Master, Off or part number). \\
-\texttt{...} &
-   Effect dependent controls. \\
-
+   where (Master, Off or part number) \\
+\texttt{(effect) <s>} &
+   the effect type \\
+\texttt{PREset} &
+   numbered effect preset to n \\
+\texttt{} & \\ % blank line
 \texttt{AVailable <n>} &
-   Read available number of parts or set to n = 16, 32, 64. \\
+   available parts (16, 32, 64) \\
 \texttt{Volume <n>} &
-   Read Master volume or set to n. \\
+   master volume to n \\
 \texttt{SHift <n>} &
-   Read Master key shift in semitones or set to n (0 no shift). \\
+   Master key shift in semitones to n (0 no shift) \\
+\texttt{BPM} &
+   default BPM (if none from MIDI \\
 \texttt{DEtune <n>} &
-   Read Master fine detune or set to n to match other sound sources. \\
-\texttt{SOlo [s]} &
-   Read 'solo' switcher or set to (OFF, Row, Column, Loop) \\
-\texttt{SOlo CC [n]} &
-   Read incoming 'solo' channel number or set to n. \\
+   Master fine detune to n \\
+\texttt{SOlo <s>} &
+   'solo' switcher switch type (OFF, ROw, COlumn, LOop, TWoway, CHannel,
+   \{other\} off) \\
+\texttt{SOlo CC <n>} &
+   incoming 'solo' channel number (type mast be set first) \\
+\texttt{CLear <n>} &
+   restore instrument on part n to default settings \\
+\texttt{UNDo} &
+   revert last control change \\
+\texttt{REDo} &
+   re-apply last control change \\
 
 \end{longtable}
 \end{center}
@@ -753,17 +776,10 @@
    The need for compression is obvious, and once at this level, the
    \texttt{?} command will list the LFO controls.
 
-\iffalse \subsubsection{Part Common Commands}
-\label{subsec:command_line_part_common_commands}
-The idea of having a list of common commands is now deprecated. This is
-because although originally intended to keep the individual command lists to
-manageable proportions, it actually made it more confusing when trying
-to see what controls were available in each context.
-\newpage \fi
 \subsubsection{Part Commands}
 \label{subsec:command_line_part_commands}
 
-\textsl{{min. command line to list}} Part: '? par'
+\textsl{min. entry to list commands for} Part: '? p'
 
 \begin{center}
 \begin{longtable}[l]{ ll}
@@ -899,6 +915,7 @@ to see what controls were available in each context.
 
 \paragraph{Part MIDI Controllers \scriptsize \{Set MCOntrol\} \normalsize}
 \label{paragraph:command_line_part_midi_commands}
+\textsl{min. entry to list commands for} MLearn:  '? m'
    \begin{table}[H]
       \centering
       \caption{Part MIDI Controllers}
@@ -985,7 +1002,7 @@ to see what controls were available in each context.
    types of synth engines:
 
 \paragraph{Part AddSynth Commands}
-\textsl{{min. command line to list}} AddSynth: '? add'
+\textsl{min. entry to list commands for} AddSynth: '? add'
 \label{paragraph:command_line_part_addsynth_commands}
    \begin{table}[H]
       \centering
@@ -1043,7 +1060,7 @@ to see what controls were available in each context.
       \end{tabular}
    \end{table}
 \pagebreak
-   \textsl{{min. command line to list}} AddSynth Voice: '? voi'
+   \textsl{min. entry to list commands for} AddSynth Voice: '? voi'
    \begin{table}[H]
       \caption{AddSynth Voice Commands}
       \label{table:yoshimi_part_addsynth_voice_commands}
@@ -1124,7 +1141,7 @@ to see what controls were available in each context.
    \end{table}
 
 \pagebreak
-   \textsl{min. command line to list} AddSynth Modulator: '? mod'
+   \textsl{min. entry to list commands for} AddSynth Modulator: '? mod'
 
    \begin{table}[h]
       \caption{Voice Modulator Commands}
@@ -1174,10 +1191,9 @@ to see what controls were available in each context.
       \end{tabular}
    \end{table}
 
-\pagebreak
 \paragraph{Part PadSynth Commands}
 \label{paragraph:command_line_part_padsynth_commands}
-\textsl{min. command line to list} PadSynth: '? pad'
+\textsl{min. entry to list commands for} PadSynth: '? pad'
 \begin{center}
 \begin{longtable}{p{5cm} p{13cm}}
 
@@ -1311,7 +1327,7 @@ to see what controls were available in each context.
 \paragraph{Part SubSynth Commands}
 \label{paragraph:command_line_part_subsynth_commands}
 
-   \textsl{{min. command line to list}} SubSynth: '? sub'
+   \textsl{min. entry to list commands for} SubSynth: '? sub'
    \begin{table}[H]
       \centering
       \caption{Part SubSynth Commands}
@@ -1381,7 +1397,7 @@ to see what controls were available in each context.
 \pagebreak
 \paragraph{Part Resonance Commands}
 \label{paragraph:command_line_part_resonance_commands}
-   \textsl{{min. command line to list}} Resonance: '? res'
+   \textsl{min. entry to list commands for} Resonance: '? res'
    \begin{table}[H]
       \centering
       \caption{Resonance Commands}
@@ -1414,8 +1430,9 @@ to see what controls were available in each context.
 
 \paragraph{Part Waveform Commands}
 \label{paragraph:command_line_part_waveform_commands}
-\textsl{{min. command line to list}} Waveform: '? wav'
-This list shows the "basic waveform type" settings available.
+\textsl{min. entry to list commands for} Waveform: '? wav'
+
+   This list shows the "basic waveform type" settings available.
 
    \begin{itemize}
       \item SINe
@@ -1504,7 +1521,7 @@ This list shows the "basic waveform type" settings available.
 
 \subsubsection{Engine Envelopes}
 \label{subsec:command_line_engine_envelopes}
-   \textsl{{min. command line to list}} Envelope: '? env'
+   \textsl{min. entry to list commands for} Envelope: '? env'
    \begin{table}[H]
       \centering
       \caption{Engine Envelopes, category}
@@ -1583,7 +1600,7 @@ Note: Some envelopes have limited controls.
 
 \subsubsection{Engine Filters}
 \label{subsec:command_line_engine_filters}
-   \textsl{{min. command line to list}} Filter: '? fil'
+   \textsl{min. entry to list commands for} Filter: '? fil'
    \begin{table}[H]
       \centering
       \caption{Engine Filters}
@@ -1683,7 +1700,7 @@ Note: Some envelopes have limited controls.
 \pagebreak
 \subsubsection{Engine LFOs}
 \label{subsec:command_line_engine_lfos}
-   \textsl{{min. command line to list}} LFO: '? lfo'
+   \textsl{min. entry to list commands for} LFO: '? lfo'
    \begin{table}[H]
       \centering
       \caption{Engine LFOs}
@@ -1741,11 +1758,11 @@ LFO Filter types (s parameter, LFO oscillator shape):
 \pagebreak
 \subsection{MLearn}
 \label{subsec:command_line_mlearn}
-   There are actually two entry points for MLearn. The first takes the same form
-   as set/read and initiates the MIDI learning process for a given control.
-   The second is within 'set' and is for editing current lines.
+   There are actually two entry points for MLearn. The first takes the same
+   form as set/read and initiates the MIDI learning process for a given
+   control. The second is within 'set' and is for editing current lines.
 
-   \textsl{{min. command line to list}} MLearn: '? mle'
+   \textsl{min. entry to list commands for} MLearn: '? m'
 
    To enter the context for the second form start out with:
    \begin{verbatim}
@@ -1762,8 +1779,8 @@ LFO Filter types (s parameter, LFO oscillator shape):
    The available commands are:
 
    \begin{itemize}
-      \item \texttt{MUte [s]}, Set to ON disables or, for any other provided token
-         restores this line.
+      \item \texttt{MUte [s]}, Set to ON disables or, for any other provided
+      token restores this line.
       \item \texttt{SEven} will interpret a learned NRPN as a 7-bit value.
       \item \texttt{CC [n]} will set the incoming controller value that will
          be recognised.  This command might re-order the list.
@@ -1776,8 +1793,8 @@ LFO Filter types (s parameter, LFO oscillator shape):
       \item \texttt{LImit [s]} set to Enable will use limiting instead of
          compression.  The conversion uses the minimum and maximum limits.
       \item \texttt{BLock [s]} set to ON, prevents this CC/channel pair from
-        being passed on to any other lines or system controls.  It has no effect
-        if the line has been muted.
+        being passed on to any other lines or system controls.  It has no
+        effect if the line has been muted.
    \end{itemize}
 
 \subsection{EFfects Commands}
@@ -1790,21 +1807,22 @@ LFO Filter types (s parameter, LFO oscillator shape):
    System effects where it behaves as a volume control, without changing the
    'through' content.
 
-   While part effects are 'immediate', in that one hears the results as soon as
-   an effect type is selected, System effects need the part's \textbf{send} level
-   to be increased, as it defaults to zero. Insertion effects however, need to
-   have a \textbf{send} route selected as well as the effect type.
+   While part effects are 'immediate', in that one hears the results as soon
+   as an effect type is selected, System effects need the part's
+   \textbf{send} level to be increased, as it defaults to zero. Insertion
+   effects however, need to have a \textbf{send} route selected as well as
+   the effect type.
 
    There is some extra information given in V 1.5.11.
-   When one chooses a new effect the first preset is always selected, which can
-   then be edited to taste. Up to now, there was no indication that it had
-   been altered apart from checking each control against its default. One
-   could easily forget having edited this - especially if saving everything and
-   coming back to it some days later.
+   When one chooses a new effect the first preset is always selected, which
+   can then be edited to taste. Up to now, there was no indication that it
+   had been altered apart from checking each control against its default. One
+   could easily forget having edited this - especially if saving everything
+   and coming back to it some days later.
 
 \pagebreak
-   In more recent \textsl{Yoshimi} versions there is a '?' on the end of the line if any of the
-   controls on that preset are not the default values.
+   In more recent \textsl{Yoshimi} versions there is a '?' on the end of the
+   line if any of the controls on that preset are not the default values.
    So:
    \begin{verbatim}
       yoshimi> s sys 2 rev
@@ -1820,8 +1838,8 @@ LFO Filter types (s parameter, LFO oscillator shape):
    settings, and would be an easy mistake if there was no warning.
 
    Just leaving the effects to work on another part of \textsl{Yoshimi}, then
-   returning to them won't change anything of course, and will again correctly
-   show whether the current one has been altered.
+   returning to them won't change anything of course, and will again
+   correctly show whether the current one has been altered.
 
 \subsubsection{Effects List}
 \label{subsubsec:command_line_effects_list}
@@ -1841,7 +1859,7 @@ LFO Filter types (s parameter, LFO oscillator shape):
    Here, in detail are the controls available for each effect:
 
 % Reverb
-    \textsl{{min. command line to list}} Reverb:  '? rev'
+    \textsl{min. entry to list commands for} Reverb:  '? rev'
    \begin{table}[H]
       \centering
       \caption{Reverb}
@@ -1892,7 +1910,7 @@ LFO Filter types (s parameter, LFO oscillator shape):
 
 % Echo
 \vspace{6em}
-    \textsl{{min. command line to list}} Echo:  '? ech'
+    \textsl{min. entry to list commands for} Echo:  '? ech'
    \begin{table}[H]
       \centering
       \caption{Echo}
@@ -1934,7 +1952,7 @@ Echo presets:
 
 \pagebreak
 % Chorus
-    \textsl{{min. command line to list}} Chorus:  '? cho'
+    \textsl{min. entry to list commands for} Chorus:  '? cho'
    \begin{table}[H]
       \centering
       \caption{Chorus}
@@ -1986,7 +2004,7 @@ Chorus presets:
 
 \pagebreak
 % Phaser
-   \textsl{{min. command line to list}} Phaser:  '? pha'
+   \textsl{min. entry to list commands for} Phaser:  '? pha'
    \begin{table}[H]
       \centering
       \caption{Phaser}
@@ -2048,7 +2066,7 @@ Phaser presets:
 
 \pagebreak
 % Alienwah
-   \textsl{{min. command line to list}} AlienWah:  '? ali'
+   \textsl{min. entry to list commands for} AlienWah:  '? ali'
    \begin{table}[H]
       \centering
       \caption{Alienwah}
@@ -2092,7 +2110,7 @@ AlienWah presets:
 
 \pagebreak
 % Distortion
-   \textsl{{min. command line to list}} Distortion:  '? dis'
+   \textsl{min. entry to list commands for} Distortion:  '? dis'
    \begin{table}[H]
       \centering
       \caption{Distortion}
@@ -2137,7 +2155,7 @@ Distortion presets:
    \end{enumerate}
 
 % EQ
-   \textsl{{min. command line to list}} EQ:  '? eq'
+   \textsl{min. entry to list commands for} EQ:  '? eq'
    \begin{table}[H]
       \centering
       \caption{EQ}
@@ -2162,7 +2180,7 @@ EQ has no presets.
 
 \pagebreak
 % DynFilter
-   \textsl{{min. command line to list}} DynFilter:  '? dyn'
+   \textsl{min. entry to list commands for} DynFilter:  '? dyn'
    \begin{table}[H]
       \centering
       \caption{Dynfilter}
@@ -2211,21 +2229,14 @@ DynFilter presets:
 
    During the development of \textsl{Yoshimi} V 1.6 it was realised that
    the command line had little control of instrument bank management.
-   This was expanded in V 1.6.1. One can read the list of
-   \textbf{Bank} commands from any level with '? b'.
+   This was expanded in V 1.6.1.
 
-   \begin{verbatim}
-      yoshimi> ? b
-   \end{verbatim}
-
-   In the table that follows, we leave off the commands already noted
-   above in the first table
-   (see \sectionref{subsec:command_line_top_command_list}).
+\textsl{min. entry to list commands for} Banks:  '? b'
 
    \begin{table}[H]
       \centering
       \caption{Yoshimi Bank Commands}
-      \label{table:yoshimi_text_bank_commands}
+\label{table:yoshimi_text_bank_commands}
       \begin{tabular}{l l}
 
    \texttt{Bank} &
@@ -2247,27 +2258,18 @@ DynFilter presets:
 
         \end{tabular}
    \end{table}
-
+\pagebreak
 \subsection{Vector Commands}
 \label{subsec:command_line_vector_command_list}
-
-   Although \textbf{Vector} is a top-level control, one can read the list of
-   commands from any level with '? ve'.
-
-   \begin{verbatim}
-      yoshimi part 1+> ? ve
-   \end{verbatim}
    A vector can be set on any standard MIDI channel, and allows a two or four
    part column to be managed as pairs for the given controls.
    The commands at this level deal with control of an X axis and a Y axis.
    The CC for the X axis must be set before everything else.  Then the CC for
    the Y axis must be set.  Finally, the other Y controls can be set.
 
-   In the table that follows, we leave off the commands already noted
-   above in the first table
-   (see \sectionref{subsec:command_line_top_command_list}).
-
    Note that for vectors, n by itself is the base channel.
+
+   \textsl{min. entry to list commands for} Vector:  '? v'
 
    \begin{table}[H]
       \centering
@@ -2282,7 +2284,8 @@ DynFilter presets:
 \texttt{[X/Y] CC [n]} &
    CC n is used for the X or Y axis sweep. \\
 \texttt{[X/Y] Features [n] [s]} &
-   Sets X or Y features n = 1 to 4 (s = "Enable", "Reverse", other = off).  \\
+   Sets X or Y features n = 1 to 4 (s = "Enable", "Reverse", other = off).
+   \\
 \texttt{[X] PRogram [l/r] [n]} &
    Sets X program change ID n for left or right part. \\
 \texttt{[Y] PRogram [d/u] [n]} &
@@ -2302,27 +2305,17 @@ DynFilter presets:
 
    The \textbf{X/Y Control [n1] [n2]} command
    sets the n2 CC to use for the X or Y feature n1 = 2 to 4.
-   This allows a change of the actual CC associated with features 2 through 4.
-   They can be any CC that \textsl{Yoshimi} recognises.
+   This allows a change of the actual CC associated with features 2 through
+   4. They can be any CC that \textsl{Yoshimi} recognises.
 
-   Feature 1 is always fixed as Volume, and cannot be reversed. It is arranged
-   such that it will try to maintian a constant overall volume from the paired
-   instruments.
+   Feature 1 is always fixed as Volume, and cannot be reversed. It is
+   arranged such that it will try to maintian a constant overall volume from
+   the paired instruments.
 
 \subsection{Scales Commands}
 \label{subsec:command_line_scales_command_list}
 
-   A fairly new one is the scales list:
-
-   \begin{verbatim}
-      yoshimi> ? sc
-   \end{verbatim}
-
-   In the table that follows, we leave off the following commands, already noted
-   above in the first table
-   (see \sectionref{subsec:command_line_top_command_list}):
-   \textbf{?}, \textbf{Help}, \textbf{STop}, \textbf{RESet},
-   \textbf{EXit}, \textbf{..}, and \textbf{/}.
+\textsl{min. entry to list commands for} Scales:  '? s'
 
 \begin{center}
 \begin{longtable}{p{4cm} p{10cm}}
@@ -2335,7 +2328,8 @@ DynFilter presets:
    Export s1 TUNing or KEYmap to Scala file s2. \\
 
 \texttt{FRequency [n]} &
-   Set the reference note's actual frequency to n, usually 69 (A4) to 440 Hz. \\
+   Set the reference note's actual frequency to n, usually 69 (A4) to 440 Hz.
+   \\
 \texttt{NOte [n]} &
    Set the reference note's number to n. \\
 \texttt{Invert [s]} &
@@ -2372,7 +2366,6 @@ DynFilter presets:
 \end{longtable}
 \end{center}
 
-
 \subsection{Help List}
 \label{subsec:command_line_help_list}
 
@@ -2380,18 +2373,14 @@ DynFilter presets:
 
    \begin{verbatim}
       yoshimi> list
-      yoshimi> help
    \end{verbatim}
 
-   In general \textbf{?} and \textbf{help} indicate what can be changed, while
-   \textbf{list} reports what the current status is. In fact in most contexts just 'L' by itself works!
-
-   In the table that follows, we leave off commands noted above
-   (see \sectionref{subsec:command_line_top_command_list}).
+   In general while \textbf{?} and \textbf{help} indicate what can be
+   changed, \textbf{l} and \textbf{list} report the current status.
 
 \begin{center}
 \begin{longtable}{p{4cm} p{10cm}}
-\caption[Yoshimi Help Commands]{Yoshimi Help Commands} \\
+\caption[Yoshimi List Commands]{Yoshimi List Commands} \\
 
 \texttt{Roots} &
    List all available root paths. \\
@@ -2404,15 +2393,14 @@ DynFilter presets:
    This command shows all of the instruments present in either the numbered
    (n) bank root, or in the current one (if no number is provided).  \\
 \texttt{Group [s1] [s2]} &
-   List instruments types, s1 (name) list all of that type with list number, \\
+   List instruments types, s1 (name) list all of that type with list number,
+   \\
 \texttt{ } &
    s2 'Location' include root, bank, instrument numbers. \\
 \texttt{Parts} &
    List parts with instruments installed. ('More' for extra details)\\
 \texttt{Vectors} &
    List settings for all enabled vectors. \\
-\texttt{Config} &
-   List dynamic configuration. \\
 \texttt{Tuning} &
    Microtonal scale tunings. See the Scales section. \\
 \texttt{Keymap} &
@@ -2421,12 +2409,14 @@ DynFilter presets:
    Show the current configuration. See the Config section. \\
 \texttt{MLearn [s[n]]} &
    MIDI learned controls ('@ n' for full details on one line). \\
+\texttt{SECtion} &
+   Show saved copy/paste presets. \\
 \texttt{History [s]} &
    Show recent files. See the extensive description below. \\
 \texttt{Effects [s]} &
    List the effect types ([s] = 'all' includes preset numbers and names).
-   If this command is called from the Effects level, then one see only the name
-   of the current effect and the number of presets. \\
+   If this command is called from the Effects level, then one see only the
+   name of the current effect and the number of presets. \\
 \texttt{PREsets} &
    Show all the presets for the currently selected effect. \\
 
@@ -2438,11 +2428,11 @@ is not enough room in the table above.
 
 \subsubsection{List Group [s]}
 \label{subsec:command_line_instrument_group_list}
-   By itself, \textbf{List Group} or \textbf{L G} will show what instrument types
-   are available. Repeating the command with one of these names will then search
-   the entire bank structure listing the ones of that type, along with an index
-   number. Assuming one is at part level, load this instrument into the current
-   part with:
+   By itself, \textbf{List Group} or \textbf{L G} will show what instrument
+   types are available. Repeating the command with one of these names will
+   then search the entire bank structure listing the ones of that type, along
+   with an index number. Assuming one is at part level, load this instrument
+   into the current part with:
    \begin{verbatim}
       set instrument group (n)
    \end{verbatim}
@@ -2458,19 +2448,19 @@ is not enough room in the table above.
    Instruments, Patchsets, SCales, STates, Vectors, and MLearn).
    If no parameter is provided, show them all.
 
-   The last-used file in any section is now always at the top of its history list,
-   so it's easier to pick up where one left off.
-   Instruments, patch sets, vectors, scales, MIDI-learn and state all offer the
-   most recent entry whenever one wants to load or save.  On first-time use (when
-   there is no history) the home directory will be offered as a location,
+   The last-used file in any section is now always at the top of its history
+   list, so it's easier to pick up where one left off. Instruments, patch
+   sets, vectors, scales, MIDI-learn and state all offer the most recent
+   entry whenever one wants to load or save.  On first-time use (when there
+   is no history) the home directory will be offered as a location,
    regardless of where \textsl{Yoshimi} was called from.
 
-   In the specific case of instruments, when \textsl{saving},
-   one is offered the instrument in the currently-selected part to the home
-   directory, otherwise, when saving these 'managed' files,
-   one won't be offered the previous last-used entry unless it was seen on that
-   session, either by being loaded, or saved by name. This is to give some
-   protection against accidental overwrites.
+   In the specific case of instruments, when \textsl{saving}, one is offered
+   the instrument in the currently-selected part to the home directory,
+   otherwise, when saving these 'managed' files, one won't be offered the
+   previous last-used entry unless it was seen on that session, either by
+   being loaded, or saved by name. This is to give some protection against
+   accidental overwrites.
 
    For example:
    You have been working on the 'foo' instrument
@@ -2492,9 +2482,6 @@ is not enough room in the table above.
       yoshimi> ? lo
       yoshimi> ? sa
    \end{verbatim}
-
-   In the tables that follow, we leave off the commands noted above
-   (see \sectionref{subsec:command_line_top_command_list}).
 
    \begin{table}[H]
       \centering
@@ -2518,12 +2505,12 @@ is not enough room in the table above.
       \end{tabular}
    \end{table}
 
-   For the \textbf{Load Instrument} command, the instrument is enabled if it is
-   configured to be enabled.  For the \textbf{Load Vector} command, if there is
-   no number parameter, the vector is loaded to the channel it was originally
-   saved from.
-   For the \textbf{Load Patchset} command, all instruments, scales, and vectors
-   are loaded from the named file.
+   For the \textbf{Load Instrument} command, the instrument is enabled if it
+   is configured to be enabled.  For the \textbf{Load Vector} command, if
+   there is no number parameter, the vector is loaded to the channel it was
+   originally saved from.
+   For the \textbf{Load Patchset} command, all instruments, scales, and
+   vectors are loaded from the named file.
    For the \textbf{Load STate} command, all configuration, system settings,
    patch sets, and MIDI-learned lines are loaded from the named file.
    These notes also apply to the \textbf{Save} version of these commands.
@@ -2561,9 +2548,7 @@ is not enough room in the table above.
       yoshimi> ? con
    \end{verbatim}
 
-   In the table that follows, we leave off the commands noted above
-   (see \sectionref{subsec:command_line_top_command_list}).  Also
-   note that more complete descriptions follow this table.
+   Note that more complete descriptions follow this table.
 
 \begin{center}
 \begin{longtable}{p{4cm} p{10cm}}
@@ -2576,19 +2561,20 @@ is not enough room in the table above.
 \texttt{BUffer [n]} &
    * Internal size (power 2 16-4096).
    This is the size of the audio buffer that \textsl{Yoshimi} uses.  For ALSA
-   audio, it will always be the same size as ALSA's buffering, but for JACK it
-   can be the same, bigger, or smaller. It is always a power of 2. \\
+   audio, it will always be the same size as ALSA's buffering, but for JACK
+   it can be the same, bigger, or smaller. It is always a power of 2. \\
 \texttt{PAdsynth [s]} &
    Interpolation type (Linear, other = cubic).
-   Sets the quality of the interpolation that PadSynth uses on its wavetables.
+   Sets the quality of the interpolation that PadSynth uses on its
+   wavetables.
    'Linear' is faster, but 'Cubic' is (potentially) very slightly better
    quality. \\
 \texttt{BUIldpad [s]} &
    PADSynth wavetable build mode (Muted, Background, Autoapply)\\
 \texttt{Virtual [n]} &
    Keyboard layout (0 = QWERTY, 1 = Dvorak, 2 = QWERTZ, 3 = AZERTY).
-   This setting controls the layout of the virtual keyboard, and can match the
-   commonest computer keyboards. \\
+   This setting controls the layout of the virtual keyboard, and can match
+   the commonest computer keyboards. \\
 \texttt{Xml [n]} &
    Set the XML compression level to [n] (0-9).
    This is the amount of compression used on all
@@ -2597,8 +2583,8 @@ is not enough room in the table above.
    can be read in an ordinary text editor. \\
 \texttt{REports [s]} &
    Destination for reporting (Stdout, other = console).
-   Determines where almost all information and error messages will be sent. A
-   few will always go to \texttt{stderr} (such as the ones reporting a GUI
+   Determines where almost all information and error messages will be sent.
+   A few will always go to \texttt{stderr} (such as the ones reporting a GUI
    problem). \\
 \texttt{SAved [s]} &
    Saved instrument type. (Legacy - .xiz, Yoshimi - .xiy, Both).\\
@@ -2675,8 +2661,8 @@ is not enough room in the table above.
    start-up time. \\
 \texttt{ROot [s]} &
    Root CC (Msb, Lsb, Off).
-   Provides the MIDI CC that \textsl{Yoshimi} expects bank root changes to come
-   from.  \\
+   Provides the MIDI CC that \textsl{Yoshimi} expects bank root changes to
+   come from.  \\
 \texttt{BAnk [s]} &
    Bank CC (Msb, Lsb, Off).
    Provides the MIDI CC that \textsl{Yoshimi} expects
@@ -2727,16 +2713,16 @@ is not enough room in the table above.
    \itempar{".."}{cmd!up one level}
       \index{cmd!..}
       Step back up one command context level.
-      This command can immediately precede another command, so that the second
-      command takes places at the context above the current context.
+      This command can immediately precede another command, so that the
+      second command takes places at the context above the current context.
       Note that it is like the OS's "cd .." command to change to the parent
       directory.
 
    \itempar{/}{cmd!to top level}
       \index{cmd!/}
       Step back up to the top command context level.
-      This command can immediately precede another command, so that the second
-      command takes places at the top context.
+      This command can immediately precede another command, so that the
+      second command takes places at the top context.
       Note that it is like the OS's "cd /" command to change to the root
       directory.
 
@@ -2750,13 +2736,14 @@ is not enough room in the table above.
 
    \itempar{export bank [s [n1]] [n2] [s]}{cmd!export bank}
       The command line now has two commands to provide access to the new bank
-      export and import controls. These are top level controls and are used as
-      below.  The command above is used to export a bank. The square bracket term
-      is optional, and enables one to select a different root to export from and
-      would be in the form:
+      export and import controls. These are top level controls and are used
+      as below.  The command above is used to export a bank. The square
+      bracket term is optional, and enables one to select a different root to
+      export from and would be in the form:
 
 \begin{verbatim}
-   EXport Root (root ID number) (bank ID number) (full path name to export to)
+   EXport Root (root ID number) (bank ID number)
+   (full path name to export to)
 \end{verbatim}
 
    If one is happy to export from the currently selected root, then this
@@ -2774,13 +2761,14 @@ is not enough room in the table above.
    im r 5 25 /home/will/downloads/some new bank
 \end{verbatim}
 
-      This will look for the directory "some new bank" (spaces are accepted) in
-      the download directory of user "will". It will then copy it into bank number
-      25 of root number 5. It first checks to ensure that the new named bank
-      exists, root 5 exists, and bank 25 is empty.
+      This will look for the directory "some new bank" (spaces are accepted)
+      in the download directory of user "will". It will then copy it into
+      bank number 25 of root number 5. It first checks to ensure that the new
+      named bank exists, root 5 exists, and bank 25 is empty.
 
    \itempar{add root [s]}{cmd!add root}
-      Define a new root path, \textsl{s}, and add it to the list of root paths.
+      Define a new root path, \textsl{s}, and add it to the list of root
+      paths.
 
    \itempar{remove root [s]}{cmd!remove root}
       De-list the root path named \textsl{s}, but doesn't alter the contents.
@@ -2799,15 +2787,16 @@ is not enough room in the table above.
       Displays the recently-used files, including patchsets, scales, and
       states.  If no parameter is given, then this command lists all three
       files in sequence.  The shortest version of this command is
-      \texttt{l h p} (for patchsets, which returns the last-seen patchset list).
+      \texttt{l h p} (for patchsets, which returns the last-seen patchset
+      list).
 
       \index{at-sign}
       \index{cmd!at-sign}
       \index{cmd!list operator}
       Once that list is displayed,
       the \texttt{@} operator can be used to access
-      the item by number.  For example, to load the patch set at location 4 in
-      the list:
+      the item by number.  For example, to load the patch set at location 4
+      in the list:
 
       \begin{verbatim}
          yoshimi> lo p @4
@@ -2817,9 +2806,9 @@ is not enough room in the table above.
       List all instruments and IDs in bank \textsl{n}
       or the current bank/root.
       Listing instruments will identify the current one with an asterisk, and
-      shows the current bank and root one is listing from, and adds a suffix to
-      the entry with \textbf{A}, \textbf{S}, or \textbf{P}
-      depending on the combination of AddSynth, SubSynth, and PadSynth.
+      shows the current bank and root one is listing from, and adds a suffix
+      to the entry with \textbf{A}, \textbf{S}, or \textbf{P} depending on
+      the combination of AddSynth, SubSynth, and PadSynth.
 
    \itempar{list parts}{cmd!list parts}
       Lists the number of parts available and parts with instruments
@@ -2829,8 +2818,8 @@ is not enough room in the table above.
       \textsl{-} = disabled or unavailable.
       This way one can tell if an instrument patch is installed even if it is
       not currently usable.
-      To avoid unnecessary list length, the default "Simple Sound" is not shown
-      unless it is enabled.
+      To avoid unnecessary list length, the default "Simple Sound" is not
+      shown unless it is enabled.
 
    \itempar{list roots}{cmd!list roots}
       Displays all defined root paths.
@@ -2899,8 +2888,8 @@ is not enough room in the table above.
       Set the MIDI CC for root path changes ((Msb, Lsb, Off)).
 
    \itempar{set extend [n]}{cmd!set extend}
-      Set CC value for extended program change (values above 119 disables this
-      feature).
+      Set CC value for extended program change (values above 119 disables
+      this feature).
 
    \itempar{set insert effect [n]}{cmd!set insert effects}
       Set insertion effect for editing. Where \textsl{n} is from 1 to 8.
@@ -2943,9 +2932,9 @@ is not enough room in the table above.
       Set MIDI program change (0 disables, anything else enables).
 
    \itempar{set reports [n]}{cmd!set reports}
-      Sets the report destination or where messages are displayed, and, to some
-      extent, which messages are displayed.  Here are the variations on this
-      command that are supported:
+      Sets the report destination or where messages are displayed, and, to
+      some extent, which messages are displayed.  Here are the variations on
+      this command that are supported:
 
       \begin{itemize}
          \item \texttt{set reports gui} or \texttt{s r g}.
@@ -2990,12 +2979,12 @@ is not enough room in the table above.
       The vector is just about the only command-line
       entry that starts from 1.
 
-      The original system where bits were ORred together was done to make NRPN
-      control as efficient as possible. That hasn't changed, but log messages
-      refer to the command-line numbering.
+      The original system where bits were ORred together was done to make
+      NRPN control as efficient as possible. That hasn't changed, but log
+      messages refer to the command-line numbering.
 
-      A more detailed discussion of command-line vector control is presented in
-      \sectionref{subsection:vector_command_line}.
+      A more detailed discussion of command-line vector control is presented
+      in \sectionref{subsection:vector_command_line}.
 
    \itempar{set vector [n1] x/y features [n2]}{cmd!set vector features}
       Sets channel \textsl{n1} X or Y features to \textsl{n2}.
@@ -3007,11 +2996,11 @@ is not enough room in the table above.
    \itempar{set vector [n1] x/y control [n2] [n3]}{cmd!set vector control}
       Sets \texttt{n3} CC to use for X or Y feature \texttt{n2} (2, 4, 8).
       \textsl{n3} is the CC to be used for feature number \textsl{n2} on X
-      vector channel \textsl{n1}. The \textsl{x} is a sort of hidden parameter
-      as the code uses an offset dependent on whether it is \textsl{x} or
-      \textsl{y}. Also \textsl{n1} can be omitted in which case it will use the
-      last defined channel number. Using alternate words and numbers gives a
-      great deal of flexibility like this.
+      vector channel \textsl{n1}. The \textsl{x} is a sort of hidden
+      parameter as the code uses an offset dependent on whether it is
+      \textsl{x} or \textsl{y}. Also \textsl{n1} can be omitted in which case
+      it will use the last defined channel number. Using alternate words and
+      numbers gives a great deal of flexibility like this.
 
    \itempar{set vector [n] [off]}{cmd!set vector}
       Disables vector control for channel \textsl{n}.
@@ -3044,13 +3033,9 @@ is not enough room in the table above.
    crash \textsl{Yoshimi} with out of range values.
    It mostly updates the GUI too.
 
-%   Since V1.5.11 users are strongly discouraged from using it as numerical
-%   values will be changing and all available controls are now provided in a
-%   fully protected manner by the above listed commands.
-
-    Since V 1.6.0 direct access has been disabled as it no longer produces
-    valid data. Also, all available controls are now provided in a fully
-    protected manner.
+   Since V 1.6.0 direct access has been disabled as it no longer produces
+   valid data. Also, all available controls are now provided in a fully
+   protected manner.
 
    For developers there is relevant information within the source code.
 
