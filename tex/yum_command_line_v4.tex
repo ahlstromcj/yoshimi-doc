@@ -484,8 +484,8 @@
 
    These commands are part of the Top context/command level. First, one gets
    the universal options, always available. Then there are several options
-   that have ellipsis (...); these are the context submenus. After that come
-   all the actual top level controls; there are still a lot!
+   that have an ellipsis (...); these are the context submenus. After that
+   come all the actual top level controls; there are still a lot!
    Indenting is used to show command grouping.
 
    \begin{verbatim}
@@ -724,7 +724,7 @@
    the synth engines from the command-line. First of all there is the part
    kit structure. There are three modes (i.e. settings) that the kits of the
    engines can take:
-
+\pagebreak
    \begin{enumerate}
       \item MUlti
       \item SIngle
@@ -997,7 +997,7 @@
    emulate bandwidth controller. \\
       \end{tabular}
    \end{table}
-\pagebreak
+
    The following commands are available once in the context for the various
    types of synth engines:
 
@@ -2108,7 +2108,6 @@ AlienWah presets:
    \item alienwah 4
    \end{enumerate}
 
-\pagebreak
 % Distortion
    \textsl{min. entry to list commands for} Distortion:  '? dis'
    \begin{table}[H]
@@ -2144,6 +2143,7 @@ AlienWah presets:
    Select numbered preset (sets all above controls). \\
       \end{tabular}
    \end{table}
+\pagebreak
 Distortion presets:
    \begin{enumerate}
    \item overdrive 1
@@ -2176,9 +2176,9 @@ Distortion presets:
    number of extra filter stages \\
       \end{tabular}
    \end{table}
+
 EQ has no presets.
 
-\pagebreak
 % DynFilter
    \textsl{min. entry to list commands for} DynFilter:  '? dyn'
    \begin{table}[H]
@@ -2415,7 +2415,7 @@ DynFilter presets:
    Show recent files. See the extensive description below. \\
 \texttt{Effects [s]} &
    List the effect types ([s] = 'all' includes preset numbers and names).
-   If this command is called from the Effects level, then one see only the
+   If this command is called from the Effects level, then one sees only the
    name of the current effect and the number of presets. \\
 \texttt{PREsets} &
    Show all the presets for the currently selected effect. \\
@@ -2657,7 +2657,7 @@ is not enough room in the table above.
    Sets the name of an audio server to which JACK will try to connect. \\
 \texttt{Jack Auto [s]} &
    * Connect JACK on start (Enable; other = disable).
-   Determines whether JACK will try to connect the main L=R audio outputs at
+   Determines whether JACK will try to connect the main L-R audio outputs at
    start-up time. \\
 \texttt{ROot [s]} &
    Root CC (Msb, Lsb, Off).
@@ -2862,7 +2862,7 @@ is not enough room in the table above.
 
    \itempar{set activate [n]}{cmd!set activate}
       Set part-activate on MIDI program change.
-      \textsl{n}=0 disables this feature, and
+      \textsl{n} = 0 disables this feature, and
       1 or any non-zero value enables this feature.
       This feature applies to command line program change as well.
 
