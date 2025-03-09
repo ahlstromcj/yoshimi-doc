@@ -71,13 +71,6 @@
    (for this item see
    \sectionref{paragraph:menu_yoshimi_settings_main_settings}.)
 
-% Now fixed!
-%
-%  \textbf{Bug:}
-%  \index{bugs!menu hot keys don't work}
-%  There seems to be a bug in that the expected menu hot-keys
-%  (Alt-Y, Alt-I, Alt-P, and Alt-S) do not work (Yoshimi 1.3.5).
-
    \index{new!View Manual}
    \textbf{View Manual} This currently requires that a PDF viewer
    be installed.
@@ -96,10 +89,6 @@
 
 \begin{figure}[H]
    \centering
-%  \includegraphics[scale=1.0]{menu/Yoshimi/yoshimi-about.jpg}
-%  \includegraphics[scale=1.0]{1.3.8/yoshimi-about.jpg}
-%  \includegraphics[scale=1.0]{1.5.0/yoshimi-about.jpg}
-%  \includegraphics[scale=1.0]{1.5.0/About_1-5-1.png}
    \includegraphics[scale=0.8]{2.3.0/about.png}
    \caption{Yoshimi Menu, About Dialog}
    \label{fig:yoshimi_about_dialog}
@@ -126,7 +115,6 @@
    In a non-JACK setup it won't fail, but in the absence of any specific
    setting, it will have null audio, but (probably) will still connect to ALSA
    MIDI.
-%  Not too useful, but we should test that sometime.
 
    It is important to note that each instance of \textsl{Yoshimi} has its
    own configuration file.  Each also has its own MIDI and audio ports.
@@ -173,40 +161,19 @@
 \subsubsection{Menu / Yoshimi / Settings...}
 \label{subsubsec:menu_yoshimi_settings}
 
-   The \textsl{Yoshimi Settings} dialog contains five tabs that control the
-   major and overall settings of \textsl{Yoshimi}.  At the bottom of this
-   dialog are two buttons:
-   \textbf{Save and Close} and \textbf{Close Unsaved}.
-   \index{Save and Close}
-   \index{Close Unsaved}
+   The \textsl{Yoshimi Settings} dialog contains six tabs that control the
+   major and overall settings of \textsl{Yoshimi}.
 
-   Please note that the \textbf{Save and Close} and \textbf{Close Unsaved}
-   buttons apply to the \textsl{whole}
    \textbf{Settings} window.
-   Furthermore, the "saving" does \textsl{not} refer to preserving the changes
-   that have been made
-   in any of the tabs for the current \textsl{Yoshimi} session.  Any changes
-   made in \textbf{Settings} always remain in place for the current
-   \textsl{Yoshimi} session.
-   However, the changes to the settings are saved to
-   the state file \textsl{only} if \textbf{Save and Close} is clicked.
 
-   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
-
-   \itempar{Save and Close}{Settings!Save and Close}
-   This selection saves the settings made in \textbf{all} of the tabs to the
-   state file, and closes the \textsl{Yoshimi} settings dialog.
-
-   \itempar{Close Unsaved}{Settings!Close Unsaved}
-   Close Unsaved, Main Settings.
-
-   This selection closes the \textsl{Yoshimi} settings dialog.
-   However, note that any changes made in the tabs
-   \textsl{are preserved}.  They are preserved for the current
-   \textsl{Yoshimi} session, but are not saved to the filesystem.
+   At the bottom of this dialog is a \textbf{Close} button which closes the
+   \textsl{Yoshimi} settings dialog. There used to be a \textbf{Save and Close}
+   button as well, but since \textsl{Yoshimi} version 2.3.3 that is no longer
+   needed, as all configuration changes are saved immediately. This simplifies
+   a number of technical issues, as well as being more convenient for users.
 
    Here are the tabs included in the main settings of \textsl{Yoshimi}
-   as of version 1.4.1; each is described in its own section.
+   as of version 2.3.3; each is described in its own section.
 
    \begin{itemize}
       \item \textbf{Main settings}
@@ -214,6 +181,7 @@
       \item \textbf{Jack}
       \item \textbf{Alsa}
       \item \textbf{MIDI}
+      \item \textbf{Theme}
    \end{itemize}
 
 \paragraph{Menu / Yoshimi / Settings / Main Settings}
@@ -231,8 +199,7 @@
 
 \begin{figure}[H]
    \centering
-%  \includegraphics[scale=0.75]{1.4.1/SettingsMain.png}
-   \includegraphics[scale=0.5]{2.3.0/settings.png}
+   \includegraphics[scale=0.5]{2.3.3/settings.png}
    \caption{Yoshimi Main Settings Tab}
    \label{fig:yoshimi_main_settings_tab}
 \end{figure}
@@ -388,11 +355,10 @@
    one's system is tight on disk space, higher levels of compression can be
    specified.  Using XML compression can also save file access time which may
    be beneficial if one's computer is borderline on latency.  This setting
-   should stay at 3 if one is going make instruments publicly available, as
-   some older versions of Yoshimi don't recognise uncompressed
-   files. This also applies if one is going to save large patchsets that will
-   be loaded while running. Uncompressing is \textsl{much} faster than file
-   loading.
+   should stay at 3 if one is going to make instruments publicly available, as
+   some older versions of Yoshimi don't recognise uncompressed files. This
+   also applies if one is going to save large patchsets that will be loaded
+   while running. Uncompressing is \textsl{much} faster than file loading.
 
    Values: \texttt{0 to 9, 3*}
 
@@ -503,7 +469,7 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.5]{2.3.0/switches.png}
+   \includegraphics[scale=0.5]{2.3.3/switches.png}
    \caption{Yoshimi Switches Tab}
    \label{fig:yoshimi_settings_switches_tab}
 \end{figure}
@@ -639,15 +605,12 @@
    \sectionref{subsec:mixer_panel_window},
    and the settings are saved with all the other parameters.
 
-   Direct part outputs carry the Part and Insertion effects, but not the
-   System ones.
+   Direct part outputs are only available to Jack, and include the Part and
+   Insertion effects, but not the System ones.
 
 \begin{figure}[H]
    \centering
-%  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-jack.jpg}
-%  \includegraphics[scale=0.75]{1.3.8/yoshimi-settings-jack.jpg}
-%  \includegraphics[scale=0.75]{1.3.9/yoshimi-settings-jack.png}
-   \includegraphics[scale=0.5]{2.3.0/jack.png}
+   \includegraphics[scale=0.5]{2.3.3/jack.png}
    \caption[JACK Settings]{JACK Settings Tab}
    \label{fig:yoshimi_settings_jack_tab}
 \end{figure}
@@ -705,8 +668,9 @@
    \itempar{Autoconnect audio}{JACK!autoconnect audio}
    Sets \textsl{Yoshimi} to connect automatically to the JACK server, just like
    the \texttt{-K} command-line option does.
-   (However, note that the command-line has no way to disable this feature it
+   (However, note that the command-line has no way to disable this feature if
    the configuration has been saved.)
+% the above my need revision
 
 \paragraph{Menu / Yoshimi / Settings / Alsa}
 \label{paragraph:menu_yoshimi_settings_alsa_tab}
@@ -741,9 +705,9 @@
    Go to the ALSA settings tab illustrated below, and in
    \textsl{Alsa Audio Device} enter, for example, "hw:PCH".
    This ensures one will always connect to this card at startup regardless of
-   the order this and other ones.  Another benefit of using this hardware name
+   the order this and of other cards.  Another benefit of using this hardware name
    is that ALSA will now use \textsl{Yoshimi}'s internal
-   buffer size (256), otherwise ALSA will force \textsl{Yoshimi} to accept its
+   buffer size (default 256), otherwise ALSA will force \textsl{Yoshimi} to accept its
    default size (usually 1024).
 
    One can also set the sample rate, but bear in mind that not all cards can use
@@ -777,9 +741,7 @@
 
 \begin{figure}[H]
    \centering
-%  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-alsa.jpg}
-%  \includegraphics[scale=0.75]{1.3.8/yoshimi-settings-alsa.png}
-   \includegraphics[scale=0.5]{2.3.0/alsa.png}
+   \includegraphics[scale=0.5]{2.3.3/alsa.png}
    \caption[ALSA Settings]{ALSA Settings Tab}
    \label{fig:yoshimi_settings_alsa_tab}
 \end{figure}
@@ -859,7 +821,7 @@
    As well as from the GUI, this setting can be set (for instance 0) from the
    command line, both at start-up and once running.
 
-   \itempar{Samplerate}{ALSA!sample rate}
+   \itempar{Sample Rate}{ALSA!sample rate}
    Sample Rate.
    Sets the quality of the sound, higher is better, but it uses more CPU.  One
    can select from a list.  Note that both ALSA and JACK will support the
@@ -873,16 +835,12 @@
    Note that any of these setting changes require a restart of \textsl{Yoshimi}
    to take effect.
 
-%  \textsl{ZynAddSubFX}: if one wants a sample-rate that
-%  is not in the list, select "Custom" and change the value from the right.
-%  Default is 44100.
-
    Values: \texttt{192000, 96000, 48000*, 44100}
 
-\paragraph{Menu / Yoshimi / Settings / MIDI}
+\paragraph{Menu / Yoshimi / Settings / MIDI CCs}
 \label{paragraph:menu_yoshimi_settings_ccs}
 
-   The CC settings tab has been renamed the "MIDI" tab.
+   The CC settings tab has been renamed to "MIDI CCs" tab.
    This tab, shown in
    \figureref{fig:yoshimi_settings_cc},
    presents MIDI bank-root, bank, program change, and extended program
@@ -890,15 +848,7 @@
 
 \begin{figure}[H]
    \centering
-%  \includegraphics[scale=0.75]{menu/Yoshimi/yoshimi-settings-ccs.jpg}
-%  \includegraphics[scale=0.75]{1.3.8/yoshimi-settings-midi.png}
-%  \includegraphics[scale=0.75]{1.3.9/yoshimi-settings-ccs.jpg}
-%  \includegraphics[scale=0.75]{1.4.1/SettingsMidi.png}
-%  \includegraphics[scale=0.75]{1.5.0/SettingsMidi.png}
-%  \includegraphics[scale=0.75]{1.5.4/SettingsMidi.png}
-%  \includegraphics[scale=0.75]{1.5.11/Settings_Midi.png}
-%  \includegraphics[scale=0.75]{2.1.1/midi-cc.png}
-   \includegraphics[scale=0.5]{2.3.0/midi.png}
+   \includegraphics[scale=0.5]{2.3.3/midi.png}
    \caption[MIDI Preferences]{MIDI Preferences Tab}
    \label{fig:yoshimi_settings_cc}
 \end{figure}
@@ -909,8 +859,7 @@
 
 \begin{figure}[H]
    \centering
-%  \includegraphics[scale=0.75]{1.5.11/Settings_Pending.png}
-   \includegraphics[scale=1.0]{2.3.0/midi_cc_pending.png}
+   \includegraphics[scale=0.5]{2.3.3/midi_cc_pending.png}
    \caption[MIDI Settings Pending]{MIDI Settings Pending}
    \label{fig:yoshimi_settings_pending}
 \end{figure}
@@ -969,29 +918,26 @@
    Controller 32 = CC32 = Bank Select LSB. Also a Bank (and Bank Root)
    selection simply makes these available for the next Program Change event.
    The program doesn't change after changing a bank, until an actual Program
-   Change is sent.
-   Bank/Root changes can be completely disabled; some hardware synthesizers
-   don't play nice with banks.
+   Change is sent. Bank/Root changes can be completely disabled, as some
+   hardware synthesizers don't play nice with banks when used to send MIDI.
 
    \itempar{Enable Program Change}{MIDI settings!enable program change}
 
    Values: \texttt{Off*, On}
 
    Enables/disables MIDI program change.
-   Program changes can be completely disabled, but some hardware synths don't
-   play nice!
-
-%  \itempar{Enable Part On Program Change}{MIDI settings!enable part change}
-%  Values: \texttt{Off*, On}
+   Program changes can be completely disabled, as some hardware synths don't
+   play nice when used to send MIDI.
 
    The part is automatically enabled if the MIDI program was changed on this
    part.  There is no longer an option to disable this enabling.
 
-   \itempar{Enable Extended Program Change}{MIDI settings!enable extended program change}
+   \itempar{Enable Extended Program Change}{MIDI settings!enable extended
+   program change}
 
    Values: \texttt{Off*, On}
 
-   \itempar{Extended Program Change}{MIDI settings!extended change}
+   \itempar{Extended Program Change CC}{MIDI settings!extended change}
    If enabled, a new reddish button, \textbf{Pending}, appears.
    Once the change has been made in the scroll list, click this button
    to set the change.
@@ -1023,7 +969,7 @@
 
    Values: \texttt{Off*, On}
 
-   \itempar{Log Incoming CCs}{MIDI settings!Log Incoming CCs}
+   \itempar{Log Incoming Events}{MIDI settings!Log Incoming MIDI Events}
    This setting is now saved (in the \texttt{config} file). It is there
    as an aid for when \textsl{Yoshimi} appears to ignore MIDI commands,
    as it tells one exactly what \textsl{Yoshimi} thinks it received.
@@ -1037,26 +983,15 @@
 
    Values: \texttt{Off, On*}
 
-\subsubsection{Menu / Yoshimi / MIDI Learn...}
-\label{subsubsec:menu_yoshimi_midi_learn}
-
-   The \textbf{MIDI Learn} functionality of \textsl{Yoshimi} gives it the
-   ability to redirect MIDI input from physical controllers to various
-   user-interface controls in \textsl{Yoshimi}, so that the user can basically
-   control \textsl{Yoshimi}'s knobs and sliders via MIDI equipment.
-
-   There's enough to say about this topic so that we describe it in a section
-   of its own.
-   See \sectionref{sec:midi_learn}\hspace{4pt}for details.
-
-\subsubsection{Menu / Yoshimi / Themes...}
-\label{subsubsec:menu_yoshimi_themes}
+\paragraph{Menu / Yoshimi / Settings / Themes}
+\label{paragraph:menu_yoshimi_settings_themes}
     From \textsl{Yoshimi} Version 2.3.0 one can change the colours of almost
     all parts of all windows. A slight variation of the original colours is now
     called 'classic', and this will always be available. There is also quite an
     extreme demonstration of what is possible.
 
-    See \sectionref{sec:themes}\hspace{4pt}for full details.
+    There is enough new information to justify a separate discussion of this, so
+    full details can be found in \sectionref{sec:themes}\hspace{4pt}.
 
 \subsubsection{Menu / Yoshimi / View Manual...}
 \label{subsubsec:menu_yoshimi_view_manual}
@@ -1069,46 +1004,86 @@
 \subsubsection{Menu / Yoshimi / Exit}
 \label{subsubsec:menu_yoshimi_exit}
 
-   Simply exits from \textsl{Yoshimi}.
-   The user is prompted if unsaved changes exist, as shown in
-   \figureref{fig:yoshimi_change_exit}.
-
-   One can sometimes get a false parameters-changed warning if one
-   scrolls through one of the menu type entries without actually changing it.
-   Better safe than sorry!
-
+   Simply exits from \textsl{Yoshimi}. There used to be a warning if there were
+   unsaved changes, but since \textsl{Yoshimi} Version 2.3.2 all configuration
+   changes are saved as they are made.
+\iffalse
 \begin{figure}[H]
    \centering
    \includegraphics[scale=0.8]{2.3.0/settings_changed.png}
    \caption[Yoshimi Menu, Exit]{Yoshimi Menu, Exit}
    \label{fig:yoshimi_change_exit}
-\end{figure}
-
-% We moved some out-of-date menu entries into the following document, and
-% created additional sub-sections to include, with up-to-date information.
-%
-% \include{yum_menu_instruments_old}
+\end{figure} \fi
 
 \input{yum_menu_instruments}
 
 \input{yum_menu_patch_sets}
 
-% Removed.  Basically replaced by the Patch Sets menu.
-%
-% \subsection{Menu / Parameters}
-
 \subsection{Menu / Paths}
 \label{subsec:menu_paths}
 
-   This menu entry provides a more direct way to set up the Bank Root and
-   the Presets directories.  It contains the following items:
+\textsl{Yoshimi} (as installed by Debian Linux) provides a default bank at
+   \texttt{/usr/share/yoshimi/banks}.
+   To add one's own directory, click on the \textbf{Bank Root Dirs...} entry.
+   It brings up the following dialog.
 
    \begin{enumber}
       \item \textbf{Bank Root Dirs...}.
-         The Paths Bank Root Dirs dialog is described in
-         \sectionref{subsubsec:menu_patch_sets_patch_bank_roots},
-         which shows
-         \figureref{fig:bank_root_paths}, and describes this dialog in full.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.75]{2.3.0/roots.png}
+   \caption{Bank Root Paths}
+   \label{fig:bank_root_paths}
+\end{figure}
+
+   This dialog has a number of buttons, some of which will be disabled if no
+   directory in the list is selected.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.8]{2.3.0/new_bank_root.png}
+   \caption{New Root Directory}
+   \label{fig:new_root_directory}
+\end{figure}
+
+   \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
+
+   \itempar{Add root directory...}{Root Paths!add directory}
+   Bank Root Paths, Add Root Directory.
+
+   Once selected, one will see that
+   \texttt{/usr/share/yoshimi/banks} or
+   \texttt{/usr/local/share/yoshimi/banks}
+   is marked with an asterisk.  One can select the new root directory via the
+   file dialog that appears, and then make it the current root by clicking the
+   \textbf{Make current} button.  Then the Banks dialog will show all the banks
+   in that directory, one bank per subdirectory (each subdirectory "is" a
+   bank).
+
+   \itempar{Remove root directory...}{Root Paths!remove directory}
+   Bank Root Paths, Remove Root Directory.
+   If a path is selected, then this button is active, and can be used to
+   delete the selected path from the "root paths" list. Note that this does
+   \textbf{not} delete actual files, just removes the entry from the list.
+
+   \itempar{Make current}{Root Paths!make current}
+   Bank Root Paths, Make Current.
+   \index{current!root}
+   This button marks the currently-selected path as the "current root" path.
+
+   \itempar{Open current}{Root Paths!open current}
+   Bank Root Paths, Open Current.
+   This button opens the current root path.
+
+   \itempar{Change ID}{Root Paths!change ID}
+   Bank Root Paths, Change ID.
+   This ID can be used to make the bank selectable via an extended MIDI
+   control.
+
+   Values: \texttt{0* to 127}
+
+
       \item \textbf{Preset Dirs...}.
          The \textsl{Yoshimi} preset directories are the locations where
          presets can be found.  See below for details.
@@ -1125,7 +1100,7 @@
    \end{verbatim}
 
    The user can provide additional directories for the presets, up to a
-   limit of 1000 directories (unlike roots and banks).
+   limit of 128 directories (like roots and banks).
    These directories are useful for containing copies of the system
    presets that one can modify safely, and for providing custom
    presets designed by the user.
@@ -1137,8 +1112,7 @@
       \item \textbf{Add preset directory...}
       \item \textbf{Remove preset directory...}
       \item \textbf{Make Current}
-      \item \textbf{Save and Close}
-      \item \textbf{Close Unsaved}
+      \item \textbf{Close}
    \end{enumber}
 
 \begin{figure}[H]
@@ -1193,22 +1167,13 @@
    directories.  It is removed immediately, with no need to confirm the
    deletion, click an OK button, or click a Save button.
 
-   \itempar{Make current presets}{Yoshimi Presets!Make Current}
-   Make Current Presets Directory.
+   \itempar{Make current preset}{Yoshimi Presets!Make Current}
+   Make Current.
    Select one of the preset directories in the preset list, then press this
    button to make the preset directory the currently visible preset directory.
    It should be a directory for which one has write permissions.
    By default, it is \texttt{\textasciitilde/.config/yoshimi/presets}.
-\iffalse
-\subsection{Menu / Scales}
-\label{subsec:menu_scales}
 
-   \textsl{Yoshimi} is a microtonal synthesizer, and is capable of a wide
-   range of microtonal scales.  Improvement to its features and the accuracy of
-   the scales have been made in the 1.5.0 series of \textsl{Yoshimi}.
-   Scales are discussed in detail in
-   \sectionref{sec:Scales}.
-\fi
 \subsection{Menu / State}
 \label{subsec:menu_state}
 
@@ -1218,11 +1183,6 @@
    \textsl{Yoshimi} "state" will include the system settings, as well as all
    patches. Some of these settings (such as Oscillator Size) can only be
    realised on a reload if loading via the command line at startup.
-
-%  However,
-%  the ones that can't be dynamically changed will be set, and if the
-%  configuration is then saved, will be set on the next load -- this is not
-%  ideal. We are working on it, but don't expect improvements soon!
 
    \begin{enumber}
       \item \textbf{Load}
@@ -1248,8 +1208,6 @@
 \end{figure}
 
    This item is a standard \textsl{Yoshimi} file dialog.
-%   Note that XML text is shown in the preview pane, but, if XML compression is
-%   set, then a large question mark is all that would be shown.
 
    \itempar{State Save}{State!Save}
    Provides a way to save a new or modified \textsl{Yoshimi} state file.

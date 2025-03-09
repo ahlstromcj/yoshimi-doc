@@ -27,12 +27,13 @@
    \sectionref{subsec:concepts_banks_and_roots}.
 
    At one time, one could in theory have 1000 roots, 1000 banks and 1000
-   presets.  However, now roots and banks have been trimmed to what can be
-   addressed from MIDI. One can supposedly still have 1000 presets, though.
+   preset directories.  However, now roots and banks have been trimmed to what
+   can be addressed from MIDI. More recently preset directories was also reduced
+   to 128 preset directories.
    Anyway, 128x128x160 = 2621440 instruments should be enough for anyone.
 
    All root, bank, and instrument IDs are used by MIDI controls, and as of
-   version 1.3.6 will also be accessible to the command line.
+   version 1.3.6 was made accessible to the command line.
 
    The file \texttt{Banks.txt} in the \textsl{Yoshimi} source-code bundle
    makes an important point about a transition (in newer versions)
@@ -195,17 +196,17 @@
    See also \sectionref{subsubsec:menu_patch_sets}, and
    \sectionref{sec:banks_collection}, for further information.
 
-   During development of \textsl{Yoshimi} V 1.7.1 there has been further
+   During development of \textsl{Yoshimi} V 1.7.1 there was further
    restructuring of banks to make them not only more efficient, but also provide
    additional protections and capability.
 
    The first of these restructuring actions copies all banks found in the
    non-editable locations \texttt{/usr} and \texttt{/usr/local} into the users
    hidden home directory \texttt{.local/share}. It only does this copying if the
-   banks are not already there, and, for first-time users, silently adds these to
-   priority locations in the recognised bank roots. One now has the best of both
-   worlds -- fully editable banks and roots, but also the protected non-writable
-   ones.
+   banks are not already there, and, for first-time users, silently adds these
+   to priority locations in the recognised bank roots. One now has the best of
+   both worlds -- fully editable banks and roots, but also the protected
+   non-writable ones.
 
    For long-time users, the copying process takes place, but the banks are not
    automatically installed. Instead, one is presented with the following dialog.
@@ -220,11 +221,11 @@
    With either 'Yes' or 'No' one will not be asked again, so if in doubt it is
    advisable to select 'Ask Later'
 
-   Another upgrade resolves a problem where it is possible to start with no banks
-   at all. This could be due to an accidental deletion, or, for a new user, an
-   installer may not have included them. In this situation
-   \textsl{Yoshimi} generates a new bank root, bank, and instrument,
-   and makes these available.
+   Another upgrade resolves a problem where it is possible to start with no
+   banks at all. This could be due to an accidental deletion, or, for a new
+   user, an installer may not have included them. In this situation
+   \textsl{Yoshimi} generates a new bank root, bank, and instrument, and makes
+   these available.
 
    A similar problem happens when one tries to add a new bank root that doesn't
    actually exist. Previously, \textsl{Yoshimi} would just report this and close
@@ -246,10 +247,10 @@
    The last improvement provided by \textsl{Yoshimi} V 1.7.1 concerns banks
    having additional entries installed by external means, such as from the OS
    filing system. This is always advised against, partly because one doesn't
-   necessarily know exactly what is there, but also because, previously, it would
-   cause \textsl{Yoshimi} to regenerate the entire bank root,
-   which would result in different IDs for existing ones, thus breaking one's
-   older projects.
+   necessarily know exactly what is there, but also because, previously, it
+   would cause \textsl{Yoshimi} to regenerate the entire bank root, which would
+   result in different IDs for existing ones, thus breaking one's older
+   projects.
 
    The new behaviour is to first install banks \textsl{Yoshimi} already knows
    about, and then test validity and install any new ones in spaces between the

@@ -62,15 +62,18 @@
    Insertion effects are described in
    \sectionref{subsubsec:effects_paneltypes_insertion}.
 
+   All of these effects can also be managed by \textsl{Yoshimi's} NRPNs\newline
+   For details, see \sectionref{subsection:effects_nrpn_values}
+
 \subsection{Effects / Panel Types}
 \label{subsec:effects_paneltypes}
 
    There are three variations of Effects sub-panels:
 
    \begin{itemize}
-      \item \textbf{System Effects}.
-      \item \textbf{Insertion Effects}.
-      \item \textbf{Part/Instrument Effects}.
+      \item \textbf{System Effects}. (up to 4 effects)
+      \item \textbf{Insertion Effects}. (up to 8 effects)
+      \item \textbf{Part/Instrument Effects}. (up to 3 effects)
    \end{itemize}
 
    Here are the major elements of the main effects panel, which shows the
@@ -103,7 +106,8 @@
 
    \itempar{Effect Number}{effects!number}
    Effect Number.
-   Up to 8 effects can be supported at one time by one part.
+   There are 4 available system effects, and these can be independently
+   be reached from all parts.
 
    \itempar{Effect Name}{effects!name}
    Effect Name.
@@ -129,7 +133,7 @@
    Each knob controls how much of the system effect indicated by the left
    number is sent to the system effect indicated by the right number.
 
-   Values: \texttt{Next Effect, Part Out, Dry Out}
+   Values: \texttt{0\%*, 100\%}
 
 \begin{figure}[H]
    \centering
@@ -223,10 +227,11 @@
       \item \textbf{P}
    \end{enumber}
 
-   The insertion effects apply to one part or to the master output.
-   One may use more    than one insertion effect for one part or the
-   master output. If using more than one effect, the effects with smaller
-   indexes will be applied first (first, insertion effect 1 occurs, then
+   There are up to 8 Insertion effects available. These are each applied to
+   one part or to the master output and one may use more than one insertion
+   effect for one part or the  master output. If using more than one effect,
+   the effects with smaller indexes will be applied first (first, insertion
+   effect 1 occurs, then
    effect 2, and so on).
 
    \setcounter{ItemCounter}{0}     % Reset the ItemCounter for this list.
@@ -252,12 +257,12 @@
    There is also a "part" or "instrument" effects window which is accessed
    by going to the main window, clicking the \textbf{Edit} button in the
    bottom panel to open the edit dialog, and then clicking the
-   \textbf{Effects} button there.  The part effects window has the
-   same layout as System and Insertion effects; it is now almost identical
-   to Insertion effects.
+   \textbf{Effects} button there.
 
-   It contains the standard controls for the given effect, plus the
-   following interface items.
+   The part effects window has the same layout as System and Insertion effects;
+   it is now almost identical to Insertion effects, but there are only 3 effects
+   available for for each part. There are the standard controls for the given effect,
+   plus the following interface items.
 
    \begin{enumber}
       \item \textbf{Effect number}
@@ -281,7 +286,7 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{2.3.0/effects.png}
+   \includegraphics[scale=0.75]{2.3.3/effects.png}
    \caption{Sample Instrument Effects Dialog}
    \label{fig:sample_instrument_effects_dialog}
 \end{figure}
@@ -317,7 +322,7 @@
    \begin{figure}[H]
    \centering
    \includegraphics[scale=0.75]{2.3.0/effects_warning.png}
-%   \caption{Effects Edit, No Effect}
+   \caption{Effects Edit, No Effect}
    \label{fig:effects_warning}
 \end{figure}
 
@@ -513,17 +518,14 @@ this was changed quite a few versions ago and is no longer true
 
    \itempar{St.df}{dynfilter!lfo stdf}
    DynFilter LFO.
-   Left/right channel phase shift.
+   Left/right channel phase shift. Towards the extremes 'widens' the sound.
 
    \itempar{LfoD}{dynfilter!lfo depth}
    DynFilter LFO Depth.
-   This control is one that helps define the mix of the LFO and the
-   amplitude.
+   This control sets the degree to which the LFO modifies the amplitude.
 
    \itempar{A.S}{dynfilter!a.s.}
    DynFilter A.S.
-   This control is one that helps define the mix of the LFO and the
-   amplitude.
    A.S sets the Amplitude Sensing (i.e. how much influence the amplitude
    shall have).
 
@@ -537,16 +539,6 @@ this was changed quite a few versions ago and is no longer true
    If set, negates the (absolute) RMS value. This will lower the filter
    frequency instead of increasing it. Note that this will not have much
    effect if the effects input is not very loud.
-
-\subsubsection{Effects / DynFilter / NRPN Values}
-\label{subsubsec:effects_edit_dynfilter_nrpn}
-
-   Effects can be controlled via "non-registered parameter numbers", or NRPNs.
-   This section will eventually (we hope)
-   detail the NRPN values supported by the DynFilter effect.
-
-   For more information on the concept of NRPNs, see
-   \sectionref{subsubsec:concepts_midi_nrpn}.
 
 % ----------------------------------------------------------
 
@@ -717,12 +709,6 @@ this was changed quite a few versions ago and is no longer true
    \itempar{Subtract}{alienwah!subtract}
    The output is inverted
 
-\subsubsection{Effects / AlienWah / NRPN Values}
-\label{subsubsec:effects_edit_alienwah_nrpn}
-
-Effects can be controlled via "non-registered parameter numbers", or NRPNs.
-This section details the value supported by the AlienWah effect.
-
 \subsection{Effects / Chorus}
 \label{subsec:effects_edit_chorus}
 
@@ -846,12 +832,6 @@ This section details the value supported by the AlienWah effect.
 
    \itempar{Subtract}{chorus!subtract}
    The Chorus output is inverted
-
-\subsubsection{Effects / Chorus / NRPN Values}
-\label{subsubsec:effects_edit_chorus_nrpn}
-
-Effects can be controlled via "non-registered parameter numbers", or NRPNs.
-This section details the value supported by the Chorus effect.
 
 \subsection{Effects / Distortion}
 \label{subsec:effects_edit_distortion}
@@ -985,12 +965,6 @@ This section details the value supported by the Chorus effect.
    \itempar{St}{distortion!stereo}
    Set the distortion mode (stereo or mono, checked is stereo).
 
-\subsubsection{Effects / Distortion / NRPN Values}
-\label{subsubsec:effects_edit_distortion_nrpn}
-
-   Effects can be controlled via "non-registered parameter numbers", or NRPNs.
-   This section details the value supported by the Distortion effect.
-
 \subsection{Effects / Echo}
 \label{subsec:effects_edit_echo}
 
@@ -1097,12 +1071,6 @@ This section details the value supported by the Chorus effect.
    Locks the delay time to the incoming MIDI clock. New from
    \textsl{Yoshimi} V 2.1.0 See
    \sectionref{subsubsec:bpm_and_frequency}\ for further details.
-
-\subsubsection{Effects / Echo / NRPN Values}
-\label{subsubsec:effects_edit_echo_nrpn}
-
-   Effects can be controlled via "non-registered parameter numbers", or NRPNs.
-   This section details the value supported by the Echo effect.  TODO.
 
 \subsection{Effects / EQ}
 \label{subsec:effects_edit_eq}
@@ -1214,14 +1182,6 @@ This section details the value supported by the Chorus effect.
 
    Values: \texttt{0*, 1, ... 4}
 
-\subsubsection{Effects / EQ / NRPN Values}
-\label{subsubsec:effects_edit_eq_nrpn}
-
-   Effects can be controlled via "non-registered parameter numbers", or NRPNs.
-   This section details the value supported by the EQ effect.
-
-   TODO.
-
 \subsection{Effects / Phaser}
 \label{subsec:effects_edit_phaser}
 
@@ -1319,18 +1279,16 @@ This section details the value supported by the Chorus effect.
       \item \textbf{Preset.}
       \item \textbf{Vol} or \textbf{D/W}
       \item \textbf{Pan}
-      \item \textbf{Phase}
-      \item \textbf{Depth}
-      \item \textbf{L/R}
-      \item \textbf{Dist}
-      \item \textbf{D/W}
-      \item \textbf{Pan}
       \item \textbf{Freq}
       \item \textbf{Start}
+      \item \textbf{Phase}
       \item \textbf{Rnd}
+      \item \textbf{Depth}
       \item \textbf{BPM}
       \item \textbf{LFO type}
+      \item \textbf{L/R}
       \item \textbf{St.df}
+      \item \textbf{Dist}
       \item \textbf{Fb}
       \item \textbf{Analog}
       \item \textbf{Hyper}
@@ -1338,10 +1296,6 @@ This section details the value supported by the Chorus effect.
       \item \textbf{Stages}
 
    \end{enumber}
-
-%   The extra fields that are shown if the effect is an insertion effect are
-%   not shown.  They are still need to be described.
-%   What extra fields ???
 
 \setcounter{ItemCounter}{0}
 
@@ -1356,35 +1310,10 @@ This section details the value supported by the Chorus effect.
 \end{figure}
    Values: \texttt{Phaser 1 - 6, APhaser 1 - 6}
 
-   \itempar{Phase}{phaser!phase}
-   Phaser Phase.
-
-   Values: \texttt{0\% to 100\%}
-
-   \itempar{Depth}{phaser!depth}
-   Phaser Depth. Phaser LFO Depth?
-
-   Values: \texttt{0\% to 100\%}
-
-   \itempar{L/R}{phaser!l/r}
-   L/R. How the left/right channels are routed to output:
-
-      \begin{enumber}
-         \item leftmost. Left to left and right to right.
-         \item middle. Left+right to mono.
-         \item rightmost. Left to right, and right to left.
-      \end{enumber}
-
-   \itempar{Dist}{phaser!dist}
-   Phaser Distortion.
-   Ranges from 0\% to 100\%.
-
    \itempar{D/W}{phaser!dry/wet}
-   Phaser Dry/Wet.
-   This knob sets the effect volume.  The dry value ranges from 0 dB down to
-   "inf" (infinity) dB, while the wet value is the complementary range, from
-   "inf" dB to 0 dB.  Confusing?  The tooltip tells the user exactly what the
-   settings are.
+   Phaser Dry/Wet Setting.
+   This setting controls how much of the original signal is mixed
+   with the phaser effect.
 
    \itempar{Pan}{phaser!pan}
    Phaser Panning.
@@ -1405,21 +1334,45 @@ This section details the value supported by the Chorus effect.
    Set the Phaser LFO randomness.
    Ranges from 0.0\% to 100\% percent.
 
-   \itempar{BPM}{phaser!lfo sync}
-   Locks the frequency control to the incoming MIDI clock. New from
-   \textsl{Yoshimi} V 2.1.0 See
-   \sectionref{subsubsec:bpm_and_frequency}\ for further details.
+   \itempar{Phase}{phaser!phase}
+   Phaser Phase.
+
+   Values: \texttt{0\% to 100\%}
+
+   \itempar{Depth}{phaser!depth}
+   Phaser Depth. The amount of shift there is from the phase of the
+   incoming signal.
+
+   Values: \texttt{0\% to 100\%}
+
+   \itempar{BPM}{phaser!BPM}
+   Locks the phaser LFO to the incoming MIDI clock.
+
+   Values: \texttt{Off* to On}
 
    \itempar{LFO}{phaser!lfo type}
    Phaser LFO Type.
 
-   Values: \texttt{SINE, TRI}
+   Values: \texttt{Sine*, Tri}
+
+   \itempar{L/R}{phaser!l/r}
+   L/R. How the left/right channels are routed to output:
+
+      \begin{enumber}
+         \item leftmost. Left to left and right to right.
+         \item middle. Left+right to mono.
+         \item rightmost. Left to right, and right to left.
+      \end{enumber}
 
    \itempar{St.df}{phaser!stereo phase diff}
    Left/Right Channel Phase Shift.
    The phase difference between LFO for left/right channels.
-   Ranges from -180 degrees (left 180) to equal to +180 degrees (right 180).
-   The actual end values can differ a little from 180.
+   Ranges from -180 degrees (left 180) to equal to +180 degrees
+   (right 180). The actual end values can differ a little from 180.
+
+   \itempar{Dist}{phaser!dist}
+   Phaser Distortion.
+   Ranges from 0\% to 100\%.
 
    \itempar{Fb}{phaser!feedback}
    Phaser Feedback.
@@ -1439,7 +1392,8 @@ This section details the value supported by the Chorus effect.
 
    \itempar{Sub.}{phaser!Subtract}
    Phaser Subtract.
-   Checking this box inverts the output so it tends to subtract from the incoming rather than adding.
+   Checking this box inverts the output so it tends to subtract from the
+   incoming rather than adding.
 
    Values: \texttt{Off*, On}
 
@@ -1447,12 +1401,6 @@ This section details the value supported by the Chorus effect.
    Phaser Stages.
 
    Values: \texttt{1*, 2, ... 12}
-
-\subsubsection{Effects / Phaser / NRPN Values}
-\label{subsubsec:effects_edit_phaser_nrpn}
-
-Effects can be controlled via "non-registered parameter numbers", or NRPNs.
-This section details the value supported by the Phaser effect.
 
 \subsection{Effects / Reverb}
 \label{subsec:effects_edit_reverb}
@@ -1489,11 +1437,7 @@ This section details the value supported by the Phaser effect.
 
    The user-interface for the Reverb effect depends on whether it is used as a
    System effect or an Insertion effect. When used as a System effect \textbf{D/W} becomes \textbf{Vol}.
-\iffalse
-   Observr \figureref{fig:effects_edit_reverb}, where
-   the Insertion mode is shown.  In the System mode, only the light-blue
-   portion of the user-interface appears.
-\fi
+
 \begin{figure}[H]
    \centering
 %  \includegraphics[scale=1.0]{bottom-panel/instrument-edit/Effects/effects-edit-reverb.jpg}
@@ -1517,21 +1461,7 @@ This section details the value supported by the Phaser effect.
       \item \textbf{HPF}
       \item \textbf{Damp}
    \end{enumber}
-\iffalse
-???
-  There is a fourth type we have screen captures for, but we can't seem
-  to navigate to them now!  Are these now out-of-date screen captures?
-This belongs elsewhere
-   \begin{enumber}
-      \item \textbf{FX No.}
-      \item \textbf{bypass}
-      \item \textbf{EffType}
-      \item \textbf{Send To}
-      \item \textbf{C}
-      \item \textbf{P}
-      \item \textbf{Close}
-   \end{enumber}
-\fi
+
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{Preset}{reverb!preset}
@@ -1576,7 +1506,7 @@ This belongs elsewhere
 
    \itempar{D/W}{reverb!dry/wet}
    Reverb Dry/Wet Setting.
-   This setting controls much of the original signal is mixed with the
+   This setting controls how much of the original signal is mixed with the
    reverb effect.
 
    \itempar{Pan}{reverb!pan}
@@ -1620,50 +1550,8 @@ This belongs elsewhere
    \itempar{Damp}{reverb!damp}
    Reverb Damp.
    Damp determines how high frequencies are damped during the
-   reverberation.  The dampening control (Damp) currently only allows to
-   damp low frequencies. Its parameters are used by the comb and allpass
-   filters.
-\iffalse
-??? This doesn't belong here.
-   \itempar{FX No}{reverb!fx no.}
-   Reverb FX Number.
-
-   Values: \texttt{1 to 8?}
-
-   \itempar{bypass}{reverb!fx bypass}
-   Reverb FX Bypass.
-
-   Values: \texttt{Off*, On}
-
-   \itempar{EffType}{reverb!eff type}
-   Reverb Effect Type.
-
-   Values: \texttt{Reverb, EQ, Echo, etc. TODO}
-
-   \itempar{Send To}{reverb!send to}
-   Reverb Send To.
-   This user-interface drop-down is shown only in the
-   \textbf{Part / Edit / Effects} version of the effects panel.
-
-   Values: \texttt{Next Effect, Part Out, Dry Out}
-
-   \itempar{C}{reverb!copy}
-   Reverb Copy.
-
-   \itempar{P}{reverb!paste}
-   Reverb Paste.
-
-   \itempar{Close}{reverb!close}
-   Close Window.
-\fi
-\subsubsection{Effects / Reverb / NRPN Values}
-\label{subsubsec:effects_edit_reverb_nrpn}
-
-   Effects can be controlled via "non-registered parameter numbers", or NRPNs.
-   This section details the values supported by the Reverb effect.
-
-   TODO:  detail the values supported by the Reverb effect.
-   \index{todo!reverb nrpn values}
+   reverberation.  Increasing the setting of the dampening control (Damp)
+   progressively 'tilts' the almount of feedback towards lower frequencies.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex

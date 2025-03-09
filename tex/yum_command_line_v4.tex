@@ -21,18 +21,15 @@
    \index{cmd}
    \index{command line}
    \textsl{Yoshimi} provides a command-line mode of operation where almost
-   all aspects of the application can be controlled via text commands.
-   This mode is useful for blind people, those with motor control problems
-   and for programmers, for example.
-   These text commands can also be put into a script file, and that script
-   can then be run with full error checking.
+   all aspects of the application can be controlled via text commands. This
+   mode is useful for blind people, those with motor control problems and for
+   programmers, for example. These text commands can also be put into a
+   script file, and that script can then be run with full error checking.
 
-   To access the command-line mode,
-   add the \texttt{-i} or \texttt{--no-gui} command-line
-   option when starting \textsl{Yoshimi} on the command-line.  But note that,
-   when starting \textsl{Yoshimi} on the command-line without the "no gui"
-   option, the "command-line" mode
-   of operation is available at the same time as the GUI, as well.
+   By default, starting \textsl{Yoshimi} from a terminal window will enable
+   both the command line and the GUI at the same time. However you can
+   specifically disable the GUI at the terminal prompt as you start with:
+   yoshimi -i or yoshimi --no-gui
 
    One of the main features of recent \textsl{Yoshimi} releases
    is improved non-GUI accessibility.  In fact,
@@ -43,12 +40,12 @@
    the 'forced exit' and can be used by the system for other cleanups and a
    shut down.
 
-   For full details of NRPNs see \sectionref{subsection:nrpns_midi_nrpn_basics}
+   For full details of NRPNs see
+   \sectionref{subsection:nrpns_midi_nrpn_basics}
 
-   In a command line environment, all the 'running' commands are
-   available, and now all of the instrument editing ones are too.
-   Also, the whole of vector control, and MIDI-learn, is exposed
-   to the command line.
+   In a command line environment, all the 'running' commands are available,
+   and now all of the instrument editing ones are too. Also, the whole of
+   vector control, and MIDI-learn, is exposed to the command line.
 
    One can decide what MIDI/audio setup is wanted, list and set roots and
    banks, load instruments into any part, change a part's channel, set main
@@ -60,9 +57,9 @@
    This will be given the next free ID. A future upgrade will allow the ID to
    be set to any valid one when it is created, mirroring the GUI behaviour.
 
-   Once running, all configuration can be done within the terminal
-   window.  There is also extensive control of roots, banks, parts and
-   instruments including the ability to list and set all of these.
+   Once running, all configuration can be done within the terminal window.
+   There is also extensive control of roots, banks, parts and instruments
+   including the ability to list and set all of these.
    Additional controls that are frequently taken for granted in the GUI, but
    otherwise get forgotten, are \textsl{master key shift} and \textsl{master
    volume}.
@@ -76,12 +73,11 @@
 \label{subsec:command_line_command_depth}
 
    Recent developments in \textsl{Yoshimi} have made it possible to greatly
-   (one could say dramatically) extend command-line access deep into
-   the synth structures.
-   This creates a problem where the command line itself could become
-   unmanageably long.
-   Thus, now only the current context level is printed in full.
-   The levels higher up the tree are minimised:
+   (one could say dramatically) extend command-line access deep into the
+   synth structures. This creates a problem where the command line itself
+   could become unmanageably long.
+   Thus, now only the current context level is printed in full. The levels
+   higher up the tree are minimised:
 
    \begin{verbatim}
       yoshimi Part 1+>
@@ -90,10 +86,10 @@
       yoshimi P1+, S+, Filter analog>
    \end{verbatim}
 
-   Rather than stating that a switch is on or off,
-   there is now just a \texttt{+} sign for "on", and nothing for "off".
-   This is clearer than using a \textsl{-}, and the
-   slight shift in the line gives the user another visual clue.
+   Rather than stating that a switch is on or off, there is now just a
+   \texttt{+} sign for "on", and nothing for "off". This is clearer than
+   using a \textsl{-}, and the slight shift in the line gives the user
+   another visual clue.
 
    There is a new command in the "config" context that controls where this is
    displayed, or whether it is shown at all.
@@ -143,8 +139,8 @@
    This command \textbf{s}ets \textbf{p}art number 2 to \textbf{pr}ogram
    number 107 from the \textsl{current} instrument bank.
    \textsl{Yoshimi} is now on part 2 as the current part (indicated by the
-   prompt), and all subsequent commands will relate to this "level".
-   At this level, one can change the current part simply with:
+   prompt), and all subsequent commands will relate to this "level". At this
+   level, one can change the current part simply with:
 
    \begin{verbatim}
       yoshimi part 2+ > s 4 on
@@ -160,13 +156,13 @@
       yoshimi p4+ eff 1 reverb-1 >
    \end{verbatim}
 
-   This command \textbf{s}ets the part's \textbf{ef}fect 1 (implicit) to
-   the \textbf{re}verb type.
+   This command \textbf{s}ets the part's \textbf{ef}fect 1 (implicit) to the
+   \textbf{re}verb type.
 
-   Note that many settings parameters are optional, and if omitted,
-   either a default or last-used value will be assumed. Also, names are
-   truncated to 6 characters so the prompt line doesn't get unmanageably long.
-   From here one can set a preset for this effect:
+   Note that many settings parameters are optional, and if omitted, either a
+   default or last-used value will be assumed. Also, names are truncated to
+   6 characters so the prompt line doesn't get unmanageably long. From here
+   one can set a preset for this effect:
 
    \begin{verbatim}
       yoshimi 4+ eff 1 reverb-1 > s pre 3
@@ -174,9 +170,9 @@
 
    Since V 1.5.0 the \textbf{pre}sets have been shown in the prompt, and one
    will still get a confirmation message. Also, it used to be necessary to
-   enter \textbf{ty}pe for an effect but since V 1.5.10 the name is entered directly.
-   Note that when entering effects, there will always be a preset. It will be number 1
-   unless it is changed.
+   enter \textbf{ty}pe for an effect but since V 1.5.10 the name is entered
+   directly. Note that when entering effects, there will always be a preset.
+   It will be number 1 unless it is changed.
 
    Many settings that follow in a direct command "path" through several
    levels can be made all at once, and one will be left at the appropriate
@@ -195,8 +191,8 @@
    \end{verbatim}
    This warning will be there as soon as one changes any of the effect
    controls until either another preset or effect is selected. It will also
-   show if a patchset or instrument is loaded that was previously saved
-   with altered effects controls.
+   show if a patchset or instrument is loaded that was previously saved with
+   altered effects controls.
 
    One cannot combine \texttt{type} and \texttt{preset} as they
    are both at the same level.
@@ -216,8 +212,8 @@
       yoshimi >
    \end{verbatim}
 
-   These two special level-movement commands can also be put on the front
-   of any other command.  Starting where we were before:
+   These two special level-movement commands can also be put on the front of
+   any other command.  Starting where we were before:
 
    \begin{verbatim}
       yoshimi p4+ eff 2 reverb-1 > .. s vol 70
@@ -234,16 +230,16 @@
    As well as an immediate history, \textsl{Yoshimi} maintains a single
    command history file for all instances of \textsl{Yoshimi} that records
    any non-duplicated loads or save.  Thus, provided one makes a normal
-   command-line exit, the last commands will be available on the next run
-   of \textsl{Yoshimi}.
+   command-line exit, the last commands will be available on the next run of
+   \textsl{Yoshimi}.
 
-   The command-line now has formal methods of opening, selecting and
-   closing additional instances.
+   The command-line now has formal methods of opening, selecting and closing
+   additional instances.
 
-   When loading external files from the command line, there is an
-   alternative to entering the full name if \textsl{Yoshimi} has already
-   seen this file and it is in the history list. In this situation one
-   enters '@' followed by the list number.
+   When loading external files from the command line, there is an alternative
+   to entering the full name if \textsl{Yoshimi} has already seen this file
+   and it is in the history list. In this situation one enters '@' followed
+   by the list number.
 
    \begin{verbatim}
       yoshimi> l h v
@@ -263,34 +259,29 @@
    external instrument from the command-line still requires a full pathname.
 
    The 'recent history' lists can load MIDI-learned files, patchsets, or
-   vector files numerically from the associated list,
-   instead of having to type the names out.
+   vector files numerically from the associated list, instead of having to
+   type the names out.
    \index{cmd!at-sign}
    This uses the '@' (list number) operator.
 
-   Commands with "*" in the description need the setup to be saved,
-   and \textsl{Yoshimi} restarted to be activated.
+   Commands with "*" in the description need \textsl{Yoshimi} restarted to be
+   activated.
 
    Note that \textsl{Yoshimi}'s command-line can also load and save states,
-   patchsets, and scales, and can list recent histories.
-   Vector load and save is also supported from the command-line.
-   That's a complete vector set, with all mappings, instruments, etc.
-   One can independently decide which
-   channel to load and save from, so that one
-   can actually build up a vector set in
-   (say) channel 3, then later decide to use it in channel 7.
-   It has the extension \texttt{.xvy}, standing for "Xml/Vector/Yoshimi".
+   patchsets, and scales, and can list recent histories. Vector load and save
+   is also supported from the command-line. That's a complete vector set,
+   with all mappings, instruments, etc.
+   One can independently decide which channel to load and save from, so that
+   one can actually build up a vector set in (say) channel 3, then later
+   decide to use it in channel 7. It has the extension \texttt{.xvy},
+   standing for "Xml/Vector/Yoshimi".
    Since V 1.5.9 this has also been integrated with the saved states.
 
-   Another small detail is that all of the minimum command-line
-   abbreviations are now \textbf{C}apitalised in the help lists.
+   Another small detail is that all of the minimum command-line abbreviations
+   are now \textbf{C}apitalised in the help lists.
 
    The organisation of these features may be adjusted slightly, based on
    comments from users.
-
-   If any configuration settings are changed, either at the command-line or
-   in the graphical user-interface, one will be given a warning when
-   exiting, with the option to continue running so one can save the changes.
 
 \subsection{Command Level}
 \label{subsec:command_line_command_level}
@@ -322,16 +313,14 @@
       \end{itemize}
    \end{itemize}
 
-   Any level that has direct numerical content can be changed with
-   "set (n)" once at that level.  The level is
-   indicated by the text in the \textsl{Yoshimi} prompt.
+   Any level that has direct numerical content can be changed with "set (n)"
+   once at that level.  The level is indicated by the text in the
+   \textsl{Yoshimi} prompt.
    For example, one can set 1 to 16 vector channels, so, from the
-   \textsl{Top} level, the following command
-   will set the default (1, or the last-used number).
-   The second command will, given this level (the \textsl{Vector} level),
-   switch to vector channel 5.
-   However, at the start, one could have gone straight to 5 with the third
-   command.
+   \textsl{Top} level, the following command will set the default (1, or the
+   last-used number). The second command will, given this level (the
+   \textsl{Vector} level), switch to vector channel 5. However, at the start,
+   one could have gone straight to 5 with the third command.
 
    \begin{verbatim}
       set vector                          # or "s ve"; sets the context
@@ -348,20 +337,20 @@
    \textsl{Yoshimi} command-line users can run plain-text scripts that behave
    in exactly the same way as if the commands had been entered from the
    command-line directly.
-   The actual script command can be initiated from any context/level
-   and is simply:
+   The actual script command can be initiated from any context/level and is
+   simply:
 
    \begin{verbatim}
       RUN {filepath-of-script}
    \end{verbatim}
 
-   To avoid confusion, the script routine first sets the context to the
-   top level, then performs all the commands, following context level
-   changes. If there is a fault in the script, it will be reported along with
-   the number of the line where the error occurred. Due to the buffering
-   used, the script will return before many of the actions have actually
-   taken place. Therefore an error report is likely to be some way up the
-   responses. Typically it will be something like:
+   To avoid confusion, the script routine first sets the context to the top
+   level, then performs all the commands, following context level changes. If
+   there is a fault in the script, it will be reported along with the number
+   of the line where the error occurred. Due to the buffering used, the
+   script will return before many of the actions have actually taken place.
+   Therefore an error report is likely to be some way up the responses.
+   Typically it will be something like:
 
    \begin{verbatim}
     *** Error: Which Operation? @ line 13 ***
@@ -382,16 +371,15 @@
    voice are on, and finally sets its volume to 45.
 
    Although this process starts from the top level, it will use the
-   parameters that were last set.
-   Thus, if one had been working on part 7, addsynth voice 2,
-   then that is the one that will have its volume adjusted.
-   This means one can set up generic preferences,
-   then apply them to any part, engine, etc.
+   parameters that were last set. Thus, if one had been working on part 7,
+   addsynth voice 2, then that is the one that will have its volume adjusted.
+   This means one can set up generic preferences, then apply them to any
+   part, engine, etc.
 
-   The script routine honours any normal abbreviations.
-   Blank lines are ignored. A '\#' at the start of a line marks it
-   as a comment so will also be ignored. However, both of these kinds
-   of lines will be in the line count if an error is reported.
+   The script routine honours any normal abbreviations. Blank lines are
+   ignored. A '\#' at the start of a line marks it as a comment so will also
+   be ignored. However, both of these kinds of lines will be in the line
+   count if an error is reported.
 
    Buffering can also cause commands to go out of sequence if a buffered one
    is immediately followed by a related direct one. For this reason there is
@@ -429,84 +417,80 @@
 
    When running from the command line, commands can be entered after the
    'up and running' message. Commands are \textsl{not} case-sensitive.
-   Commands can be abbreviated to the first three letters of each command,
-   or, in some cases, just one letter.  This is indicated by
-   uppercase letters in command descriptions.
-   The commands available depend on the current "context" of the command
-   line. However, there is a group of commands always available:
 
-   \begin{itemize}
-      \item \texttt{\textbf{?}} or \texttt{\textbf{help}}
-      \item \texttt{\textbf{L}ist}
-      \item \texttt{\textbf{RES}et}
-      \item \texttt{\textbf{EX}it}
-   \end{itemize}
+   \noindent With all of the following commands \newline
+   Optional parameters are shown as: [ n ] for numbers or [ s ] for text
+   strings \newline
+   Compulsory parameters are shown as: \begin{math} \langle \end{math} n
+   \begin{math} \rangle \end{math} for numbers or \begin{math} \langle
+   \end{math} s \begin{math} \rangle \end{math} for text
+   strings.
 
-   Apart from these commands, the command line works on a system of
-   context levels, and normally only the commands relevant to that "level"
+   \noindent Commands can be abbreviated to the first three letters of each
+   command, or, in some cases, just one letter.  This is indicated by
+   uppercase letters in command descriptions. The commands available depend
+   on the current "context" of the command line. However, there is a group of
+   commands always available:
+
+\begin{center}
+\begin{longtable}{p{3cm} p{12cm}}
+\caption[Yoshimi Universial Commands]{Yoshimi Universal Commands} \\
+\texttt{? Help} &
+   show commands \\
+\texttt{List} &
+   list current settings \\
+\texttt{GUide} &
+   show location of most recent HTML guides \\
+\texttt{STop} &
+   all sound off \\
+\texttt{RESet [s]} &
+   return to startup conditions, 'ALL' clear MIDI-learn (if 'y') \\
+\texttt{EXit [s]} &
+   tidy up and close Yoshimi (if 'y'), 'FOrce' instant exit regardless \\
+\texttt{RUN <s>} &
+   execute named command script forcing top level start \\
+\texttt{RUNLocal <s>} &
+   execute named command from current context level \\
+\texttt{  WAIT <n>} &
+   1ms to 30,000mS delay - within script only \\
+\texttt{..} &
+   step back one context level \\
+\texttt{/} &
+   step back to top level \\
+\end{longtable}
+\end{center}
+
+   Apart from these commands, the command line works on a system of context
+   levels, and normally only the commands relevant to that "level"
    will be available.
 
-   We describe the command lists here. These lists are relative to
-   a particular context, and what one sees if one enters
-   \textbf{?} while at that level, to get help.
-   However the command lists can all be called \textsl{specifically} from any
-   level and the normal abbreviations are accepted. For example:
+   We describe the command lists here. These lists are relative to a
+   particular context, and what one sees if one enters \textbf{?} while at
+   that level, to get help. However the command lists can all be called
+   \textsl{specifically} from any level and the normal abbreviations are
+   accepted. For example, to list just the part commands regardless of what
+   context it is called from:
    \begin{verbatim}
       yoshimi> ? p
    \end{verbatim}
-   This will list just the part commands regardless of what context it is
-   called from.
 
-   Also, from any level, \textbf{? ?} will show the top level one.
+   \noindent The most significant help lists only require the initial letter
+   to be identified. For all the others one needs to enter the first three
+   letters. Also, from any other level, \textbf{? ?} will show the top level
+   ones.
 
 \subsubsection{Top Commands}
 \label{subsec:command_line_top_command_list}
 
-   These commands are part of the Top context/command level.
-   First, one gets the default options, always available.
-   Then there are several options that have ellipsis (...);
-   these are the context submenus.
-   After that come all the actual top level controls; there are still a lot!
+   These commands are part of the Top context/command level. First, one gets
+   the universal options, always available. Then there are several options
+   that have an ellipsis (...); these are the context submenus. After that
+   come all the actual top level controls; there are still a lot!
+   Indenting is used to show command grouping.
 
    \begin{verbatim}
       yoshimi> ?
    \end{verbatim}
-
-   Note that there are a number of commands common to all command levels.
-   We describe them here.
-
-\begin{center}
-\begin{longtable}{p{3cm} p{12cm}}
-\caption[Yoshimi Common Commands]{Yoshimi Common Commands} \\
-
-\texttt{?,  Help [s]} &
-   Show commands (optional 's' = context level). \\
-\texttt{List [s]} &
-   List current information (optional 's = topic). \\
-\texttt{STop} &
-   All sound off.  Stop!  Panic! \\
-\texttt{RESet [s]} &
-   Return to start-up conditions - ALL includes Midi Learn (if answering
-   'y' to the prompt).
-   The \textbf{RESet} command asks for confirmation, and, if allowed, will
-   reset \textsl{Yoshimi} to startup conditions.
-   However, this will \textsl{not} clear any MIDI-learned lines, unless
-   the \textbf{ALL} is included in the command.\\
-\texttt{EXit [s]} &
-   Tidy up and close \textsl{Yoshimi} (if 'y' to the prompt), 'FOrce'
-   instant with no checks and exit value of 16 \\
-\texttt{RUN [s]} &
-   Execute a simple named script file, first setting top level.
-   This script can also include time delays with a \textbf{WAIT} command.\\
-\texttt{RUNLocal [s]} &
-   As above but starting from the current context level.\\
-\texttt{..} &
-   Step up one command level. \\
-\texttt{/} &
-   Step up to the top command level. \\
-
-\end{longtable}
-\end{center}
 
 \begin{center}
 \begin{longtable}{p{6cm} p{10cm}}
@@ -519,7 +503,7 @@
    Enter context level. \\
 \texttt{SCale ...} &
    Enter context level. \\
-\texttt{MLearn ...} &
+\texttt{MLearn [n] ...} &
    Edit learned lines. \\
 \texttt{COnfig ...} &
    Enter context level. \\
@@ -531,82 +515,98 @@
    Load various files. \\
 \texttt{SAve ...} &
    Save various files. \\
+\texttt{} & \\ % blank line
 \texttt{ADD} &
-   Add paths and files. \\
-\texttt{- Root [s]} &
-   Add a root path [s] to the root list. \\
-\texttt{- Bank [s]} &
-   Add a bank [s] to the current root. \\
+   add paths and files \\
+\texttt{- Root <s>} &
+   add a root path named s to the root list \\
+\texttt{- Bank <s>} &
+   make a new bank named s to the current root \\
 \texttt{- YOshimi [n]} &
-   Start a new instance. \\
-\texttt{IMport [s [n1]] [n2] [s]} &
-   Imports a bank. \\
-\texttt{EXport [s [n1]] [n2] [s]} &
-   Exports a bank. \\
+   start a new instance, optionally with ID n \\
+\texttt{IMport [s <n1>] <n2> <s>} &
+   imports a named directory to slot n2 of current root, (or 'Root' n1). \\
+\texttt{EXPort [s <n1>] <n2> <s>} &
+   exports a bank at slot n2 of current root, (or 'Root' n1) to named
+   directory \\
 \texttt{REMove} &
-   Remove paths, files, and entries. \\
-\texttt{- Root [n]} &
-   De-list root path ID [n]. \\
-\texttt{- Bank [n]} &
-   Delete bank ID [n] (and all contents) from the current root. \\
-\texttt{- Instrument [n]} &
-   Restore instrument [n] to the default state. \\
-\texttt{- YOshimi [n]} &
-   Close an instance. \\
-\texttt{- MLearn [s] [n]} &
-   Delete MIDI learned values: \\
-\texttt{ } &
-   'ALL' removes whole list, or select line [n]. \\
-\texttt{ } & \\
+   remove paths, files, and entries \\
+\texttt{- Root <n>} &
+   de-list root path ID n \\
+\texttt{- Bank <n1> [s <n2>]} &
+   delete bank ID n1 (and all instruments) from current root
+   (or 'Root' n2) \\
+\texttt{- Instrument <n>} &
+   delete instrument from slot (n) in current bank \\
+\texttt{- YOshimi <n>} &
+   close instance ID n \\
+\texttt{- MLearn <s> [n]} &
+   delete midi learned 'ALL' whole list, or '@' (n) line \\
 
 \texttt{Set/Read/MLearn} &
-   Set, read or learn all the following main parameters. \\
+   set, read or learn all the following main parameters \\
 \texttt{MINimum/MAXimum/DEFault} &
-   Or find ranges (mostly in the part context). \\
+   find command ranges \\
    \texttt{Part [n] ...} &
-   Enter context level. \\
+   enter context level, optionally to part n \\
 \texttt{VEctor [n] ...} &
-   Enter context level. \\
+   enter context level, optionally to vector n \\
 \texttt{SCale ...} &
-   Enter context level. \\
+   enter context level \\
 \texttt{MLearn ...} &
-   Edit learned lines. \\
-\texttt{COnfig ...} &
-   Enter context level. \\
+   enter editor context level \\
 \texttt{BAnk ...} &
-   Enter context level. \\
-
-
-\texttt{YOshimi [n]} &
-   Read the current instance or change to [n]. \\
-\texttt{MONo [s]} &
-   Switches the main audio output to mono (ON / other). \\
-
+   enter context level \\
+\texttt{COnfig ...} &
+   enter context level \\
+\texttt{TESt} &
+   launch test calculations (for developers) \\
+\texttt{YOshimi <n>} &
+   read the current instance or change to n \\
+\texttt{MONo <s>} &
+   switches the main audio output to mono (ON / \{other\}) \\
+\texttt{} & \\ % blank line
 \texttt{SYStem effects [n]} &
-   Enter system effect [n] context. \\
-\texttt{- SEnd [n1] [n2]} &
-   Send this effect to effect [n1] at volume [n2]. \\
-\texttt{...} &
-   Effect dependent controls. \\
+   enter system effect context, optionally to n \\
+\texttt{<ON/OFF} &
+   non-destructively enables/disables the effect \\
+\texttt{- SEnd <n1> <n2>} &
+   send system effect to effect n1 at volume n2 \\
+\texttt{(effect) <s>} &
+   the effect type \\
+\texttt{PREset <n>} &
+   numbered effect preset to n \\
+\texttt{} & \\ % blank line
 \texttt{INSert effects [n]} &
-   Enter insertion effect [n] context. \\
-\texttt{- SEnd [s]/[n]} &
-   Send effect destination to (Master, Off or part number). \\
-\texttt{...} &
-   Effect dependent controls. \\
-
-\texttt{AVailable [n]} &
-   The available number of parts, [n] = 16, 32, 64. \\
-\texttt{Volume [n]} &
-   Read Master volume or set to [n]. \\
-\texttt{SHift [n]} &
-   Master key shift in semitones [n] (0 no shift). \\
-\texttt{DEtune [n]} &
-   Master fine detune to [n] to match other sound sources. \\
-\texttt{SOlo [s]} &
-   Set the 'solo' switcher (OFF, Row, Column, Loop) \\
-\texttt{SOlo CC [n]} &
-   Set incoming 'solo' channel number to [n]. \\
+   enter insertion effect context, optionally to n \\
+\texttt{- SEnd <s>/<n>} &
+   where (Master, Off or part number) \\
+\texttt{(effect) <s>} &
+   the effect type \\
+\texttt{PREset} &
+   numbered effect preset to n \\
+\texttt{} & \\ % blank line
+\texttt{AVailable <n>} &
+   available parts (16, 32, 64) \\
+\texttt{Volume <n>} &
+   master volume to n \\
+\texttt{SHift <n>} &
+   Master key shift in semitones to n (0 no shift) \\
+\texttt{BPM} &
+   default BPM (if none from MIDI \\
+\texttt{DEtune <n>} &
+   Master fine detune to n \\
+\texttt{SOlo <s>} &
+   'solo' switcher switch type (OFF, ROw, COlumn, LOop, TWoway, CHannel,
+   \{other\} off) \\
+\texttt{SOlo CC <n>} &
+   incoming 'solo' channel number (type mast be set first) \\
+\texttt{CLear <n>} &
+   restore instrument on part n to default settings \\
+\texttt{UNDo} &
+   revert last control change \\
+\texttt{REDo} &
+   re-apply last control change \\
 
 \end{longtable}
 \end{center}
@@ -660,14 +660,15 @@
 \paragraph{SOlo}
 \label{paragraph:command_line_solo}
    The \textbf{SOlo [s]} and \textbf{SOlo CC [n]}
-   commands enable and set \textsl{Yoshimi}'s 'Solo' feature,
-   whereby one can silently switch MIDI input to different parts.
-   The 'Row' and 'Loop' types use the first 16 parts, while
-   'Column' type can use all possible 64 parts.
+   commands enable and set \textsl{Yoshimi}'s 'Solo' feature, whereby one can
+   silently switch MIDI input to different parts.
+   The 'Row', 'Loop' and 'TwoWay' types use the first 16 parts, while the
+   'Column' type works \textsl{vertically} across the parts e.g. 1, 17, 33
+   and 49. Finally Channel mode can use all possible 64 parts.
 
    The type setting has to be decided before setting 'CC', which then
    determines which MIDI controller to listen to for performing the actual
-   switch. See \sectionref{subsec:mixer_panel_window}; it goes into more
+   switch. See \sectionref{subsec:mixer_panel_window}~which goes into more
    details about this setting, at a graphical user interface level.
 
 \paragraph{Set / Read / MLearn Context Levels}
@@ -721,20 +722,19 @@
 
    \textsl{Yoshimi} has a number of commands for controlling and configuring
    the synth engines from the command-line. First of all there is the part
-   kit structure.
-   There are three modes (i.e. settings) that the kits of the engines
-   can take:
-
+   kit structure. There are three modes (i.e. settings) that the kits of the
+   engines can take:
+\pagebreak
    \begin{enumerate}
       \item MUlti
       \item SIngle
       \item CRossfade
    \end{enumerate}
 
-   These forms are exactly the same as the graphical controls,
-   and can be set once in the part context.
-   Starting at the part level prompt, this command will return the setting
-   on the line after the command, and show a new context level prompt:
+   These forms are exactly the same as the graphical controls, and can be set
+   once in the part context. Starting at the part level prompt, this command
+   will return the setting on the line after the command, and show a new
+   context level prompt:
 
    \begin{verbatim}
       yoshimi Part 1+> set multi
@@ -744,8 +744,7 @@
 
    This setting is at the kit item 1 (which is always enabled).
    Let's change to kit item 4, and, since it hasn't yet been enabled,
-   let's enable it and turn on the
-   SubSynth engine so that it will sound:
+   Let's enable it and turn on the SubSynth engine so that it will sound:
 
    \begin{verbatim}
       yoshimi p1+, Multi 1+> set 4
@@ -754,15 +753,14 @@
       yoshimi p1+, M4+ Sub+>
    \end{verbatim}
 
-   Note how the prompt line is more compact, and indicates via the
-   plus-signs that the part, kit, and subsynth are all on.
+   Note how the prompt line is more compact, and indicates via the plus-signs
+   that the part, kit, and subsynth are all on.
 
    These new controls are shown in the part context help list.
-   The synth engines, AddSynth, Voice, SubSynth and PadSynth also have
-   their own contexts with appropriate help lists.
-   Also, LFO, Filter, Envelope and Resonance have their own contexts
-   above whichever engine they are sitting on, so again have their own
-   help lists.
+   The synth engines, AddSynth, Voice, SubSynth and PadSynth also have their
+   own contexts with appropriate help lists.
+   Also, LFO, Filter, Envelope and Resonance have their own contexts above
+   whichever engine they are sitting on, so again have their own help lists.
    A fairly deep context is:
 
    \begin{verbatim}
@@ -778,83 +776,77 @@
    The need for compression is obvious, and once at this level, the
    \texttt{?} command will list the LFO controls.
 
-\subsubsection{Part Common Commands}
-\label{subsec:command_line_part_common_commands}
-The idea of having a list of common commands is now deprecated. This is
-because although originally intended to keep the individual command lists to
-manageable proportions, it actually made it more confusing when trying
-to see what controls were available in each context.
-
 \subsubsection{Part Commands}
 \label{subsec:command_line_part_commands}
 
-   Note that the table below assumes one is already at part level.
+\textsl{min. entry to list commands for} Part: '? p'
 
 \begin{center}
-\begin{longtable}{p{3cm} p{15cm}}
+\begin{longtable}[l]{ ll}
 \caption[Part Commands]{Part Commands} \\
    \label{table:yoshimi_part_commands}
-\texttt{(part) [n]} &
-   Change part number.  \\
-\texttt{[ON/OFF]} &
+\texttt{(part) <n>} &
+   (the number by itself) Change part number.  \\
+\texttt{<ON/OFF>} &
    Enables / Disables the part. \\
-\texttt{Volume [n]} &
+\texttt{Volume <n>} &
    Volume.  \\
-\texttt{Pan [n]} &
+\texttt{Pan <n>} &
    Panning.\\
-\texttt{VElocity [n]} &
+\texttt{VElocity <n>} &
    Velocity sensing sensitivity. \\
-\texttt{LEvel [n]} &
+\texttt{LEvel <n>} &
    Velocity sense offset level.  \\
-\texttt{MIn [[s][n]]} &
+\texttt{MIn <[s][n]>} &
    Minimum MIDI last seen, or note value.   \\
-\texttt{MAx [[s][n]]} &
+\texttt{MAx <[s][n]>} &
    Maximum MIDI last seen, or note value.   \\
 \texttt{FUll} &
    Restore full key range.   \\
-\texttt{POrtamento [s]} &
+\texttt{POrtamento <s>} &
    (ON / other).   \\
-\texttt{Mode [s]} &
+\texttt{Mode <s>} &
    Mode (Poly, Mono, Legato). \\
-\texttt{Note [n]} &
+\texttt{Note <n>} &
    Polyphony.  \\
-\texttt{SHift [n]} &
+\texttt{SHift <n>} &
    Shift semitones (0 no shift). \\
-\texttt{BYpass [n] [s]} &
+\texttt{BYpass <n> <s>} &
    bypass part effect number n, (ON / other).  \\
 \texttt{EFfects [n]} &
    Enter effects context level and optionally change number.  \\
- \texttt{(effect) [s]} &
+ \texttt{(effect) <s>} &
    Effect type.   \\
- \texttt{(effect) PREset [n]} &
+ \texttt{(effect) PREset <n>} &
    Numbered effect preset to n. \\
- \texttt{(effect) Send [n1] [n2]} &
+ \texttt{(effect) Send <n1> <n2>} &
    Current part to system effect n1 at volume n2. \\
-\texttt{PRogram [s]/[[s] [n]]} &
+\texttt{PRogram <s>/[s] <n>]} &
    Instrument ID / Group (n) loads from search list. \\
 \texttt{LAtest} &
    The most recent bank instrument loaded or saved. \\
-\texttt{TYPe [s]} &
-   The instrument type, i.e. Piano, Guitar etc. \\
-\texttt{NAme [s]} &
+\texttt{NAme <s>} &
    The display name the part can be saved with. \\
-\texttt{COPyright [s]} &
+\texttt{TYPe <s>} &
+   The instrument type, i.e. Piano, Guitar etc. \\
+\texttt{COPyright <s>} &
    The copyright message. \\
-\texttt{INFo [s]} &
+\texttt{INFo <s>} &
    Additional information, use suggestions. \\
-\texttt{Humanise Pitch [n]} &
+\texttt{Humanise Pitch <n>} &
    A small random detune. \\
-\texttt{Humanise Velocity [n]} &
+\texttt{Humanise Velocity <n>} &
    A small random velocity reduction. \\
-\texttt{CLear} &
-  Resets the part to the default 'Simple Sound'. \\
-\texttt{Channel [n]} &
-   CHannel (32 disables, 16 note off only).   \\
+\texttt{CLear [s]} &
+  Resets the part to the default 'Simple Sound'. 'ALL, includes controllers
+  etc. \\
+\texttt{Channel <n>} &
+   CHannel (16 to 33 note off only, 32 to 63 disables).   \\
 \texttt{AFtertouch Chan <s1> [s2]} &
    Off, Filter (Down) + Peak (Down) + Bend (Down) + Modulation + Volume. \\
 \texttt{AFtertouch Key <s1> [s2]} &
    Off, Filter (Down) + Peak (Down) + Bend (Down) + Modulation. \\
-\texttt{Destination [s]} &
+\texttt{Destination <s>} &
    JACK audio destination (Main, Part, Both).  \\
 \texttt{MUlti} &
    Set kit mode and allow kit item overlaps. \\
@@ -864,26 +856,32 @@ to see what controls were available in each context.
    Set kit mode and cross fade item pairs. \\
 \texttt{KIT} &
    Re-enter kit mode editing if it is enabled. \\
-\texttt{NORmal} &
-   Return to normal (not kit) mode. \\
-   \texttt{(kit mode) [n]} &
+   \texttt{(kit mode) MUlti} &
+      change to allow kit item overlaps. \\
+   \texttt{(kit mode) SIngle} &
+      change to only lowest numbered item in key range. \\
+   \texttt{(kit mode) CRoss} &
+      change to cross fade item pairs. \\
+   \texttt{(kit mode) <n>} &
       Kit item number (1-16). \\
-   \texttt{(kit mode) [ON/OFF]} &
+   \texttt{(kit item) <ON/OFF>} &
       Enables / Disables and removes the kit item. \\
-   \texttt{(kit mode) QUiet [s]} &
-      Mute this kit item without changing it's features (ON, {other}). \\
+   \texttt{(kit item) QUiet <s>} &
+      Mute this kit item without changing it's features (OFF, {other}). \\
    \texttt{(kit item) MIn [[s][n]]} &
       Minimum MIDI last seen, or note value   \\
    \texttt{(kit item) MAx [[s][n]]} &
       Maximum MIDI last seen, or note value.   \\
    \texttt{(kit item) FUll} &
       Restore full key range.   \\
-   \texttt{(kit item) EFfect [n]} &
+   \texttt{(kit item) EFfect <n>} &
       Effect for this item (0-none, 1-3). \\
-   \texttt{(kit item) NAme [s]} &
+   \texttt{(kit item) NAme <s>} &
       The name of this item. \\
-    \texttt{DRum [s]} &
+    \texttt{DRum <s>} &
       Kit to drum mode (ON, {other}). \\
+    \texttt{NORmal} &
+      Return to normal (not kit) mode. \\
 \texttt{ADDsynth ...} &
    Enter AddSynth context. \\
 \texttt{SUBsynth ...} &
@@ -896,9 +894,9 @@ to see what controls were available in each context.
 \end{center}
 
    Kit mode is an unusual form of context level as it either modifies some
-   part level controls or adds new ones. At the same time it still allows
-   all the other part controls. The examples below show how kit mode
-   interacts with part, and how one is informed of the exact status.
+   part level controls or adds new ones. At the same time it still allows all
+   the other part controls. The examples below show how kit mode interacts
+   with part, and how one is informed of the exact status.
 
    \begin{verbatim}
       yoshimi Part 1+> set multi
@@ -915,60 +913,61 @@ to see what controls were available in each context.
    command must be used, as the \textbf{ON/OFF} commands refer to individual
    kit items.
 
-\paragraph{Part MIDI Controllers}
+\paragraph{Part MIDI Controllers \scriptsize \{Set MCOntrol\} \normalsize}
 \label{paragraph:command_line_part_midi_commands}
+\textsl{min. entry to list commands for} MLearn:  '? m'
    \begin{table}[H]
       \centering
       \caption{Part MIDI Controllers}
       \label{table:yoshimi_part_midi_commands}
       \begin{tabular}{l l}
-\texttt{VOlume [s]} &
+\texttt{VOlume <s>} &
    enables/disables volume control (OFF / other). \\
-\texttt{VRange [n]} &
+\texttt{VRange <n>} &
    relative degree of volume control. \\
-\texttt{PAn [n]} &
+\texttt{PAn <n>} &
    relative range (width) of panning control. \\
-\texttt{MOdwheel [s]} &
+\texttt{MOdwheel <s>} &
    enables/disables exponential modulation (ON / other). \\
-\texttt{MRange [n]} &
+\texttt{MRange <n>} &
    relative modulation control range. \\
-\texttt{EXpression [s]} &
-   enables/disables volume control (OFF / other). \\
-\texttt{SUstain [s]} &
+\texttt{EXpression <s>} &
+   enables/disables expression control (OFF / other). \\
+\texttt{SUstain <s>} &
    enables/disables sustain control (OFF / other). \\
-\texttt{PWheel [n]} &
+\texttt{PWheel <n>} &
    relative pitch wheel control range. \\
-\texttt{BReath [s]} &
+\texttt{BReath <s>} &
    enables/disables breath control (OFF / other). \\
-\texttt{CUtoff [n]} &
+\texttt{CUtoff <n>} &
    relative filter cutoff control range. \\
-\texttt{Q [n]} &
+\texttt{Q <n>} &
    relative filter Q control range. \\
-\texttt{BANdwidth [s]} &
+\texttt{BANdwidth <s>} &
    enables/disables exponential bandwidth (ON / other). \\
-\texttt{BARange [n]} &
+\texttt{BARange <n>} &
    relative bandwidth control range. \\
-\texttt{FMamplitude [s]} &
+\texttt{FMamplitude <s>} &
    enables/disables FM amplitude control (OFF / other). \\
-\texttt{RCenter [n]} &
+\texttt{RCenter <n>} &
    resonance center frequency. \\
-\texttt{RBand [n]} &
+\texttt{RBand <n>} &
    resonance bandwidth. \\
-\texttt{POrtamento [s]} &
+\texttt{POrtamento <s>} &
    enables/disables portamento control (OFF / other). \\
-\texttt{PGate [n]} &
+\texttt{PGate <n>} &
    point where portamento starts or ends. \\
-\texttt{PForm [s]} &
+\texttt{PForm <s>} &
    whether portamento is from or to (Start, End). \\
-\texttt{PTime [n]} &
+\texttt{PTime <n>} &
    portamento sweep speed. \\
-\texttt{PDownup [n]} &
+\texttt{PDownup <n>} &
    portamento up/down speed ratio. \\
-\texttt{PProportional [s]} &
+\texttt{PProportional <s>} &
    enables/disables proportional portamento (ON / other). \\
-\texttt{PExtent [n]} &
+\texttt{PExtent <n>} &
    distance to double change. \\
-\texttt{PRange [n]} &
+\texttt{PRange <n>} &
    difference from non proportional. \\
 \texttt{CLear} &
    set all controllers to defaults. \\
@@ -984,17 +983,17 @@ to see what controls were available in each context.
       \caption{MIDI Emulators}
       \label{table:yoshimi_part_midi_emulators}
       \begin{tabular}{l l}
-\texttt{E Modulation [n]} &
+\texttt{E Modulation <n>} &
    emulate modulation controller. \\
-\texttt{E Expression [n]} &
+\texttt{E Expression <n>} &
    emulate expression controller. \\
-\texttt{E BReath [n]} &
+\texttt{E BReath <n>} &
    emulate breath controller (MIDI and CLI only). \\
-\texttt{E Cutoff [n]} &
-   emulate filter cutoff controller. \\
-\texttt{E Q [n]} &
+\texttt{E Q <n>} &
    emulate filter Q controller. \\
-\texttt{E BAndwidth [n]} &
+\texttt{E Cutoff <n>} &
+   emulate filter cutoff controller. \\
+\texttt{E BAndwidth <n>} &
    emulate bandwidth controller. \\
       \end{tabular}
    \end{table}
@@ -1003,49 +1002,50 @@ to see what controls were available in each context.
    types of synth engines:
 
 \paragraph{Part AddSynth Commands}
+\textsl{min. entry to list commands for} AddSynth: '? add'
 \label{paragraph:command_line_part_addsynth_commands}
    \begin{table}[H]
       \centering
       \caption{Part AddSynth Commands}
       \label{table:yoshimi_part_addsynth_commands}
       \begin{tabular}{l l}
-\texttt{[ON/OFF]} &
+\texttt{<ON/OFF>} &
    Enables / Disables the AddSynth engine. \\
-\texttt{Volume [n]} &
+\texttt{Volume <n>} &
    AddSynth Volume.  \\
-\texttt{Pan [n]} &
+\texttt{Pan <n>} &
    Panning position.\\
-\texttt{PRandom [s]} &
+\texttt{PRandom <s>} &
    Enable random panning (ON / other).\\
-\texttt{PWidth [n]} &
+\texttt{PWidth <n>} &
    Random panning range.\\
-\texttt{VElocity [n]} &
+\texttt{VElocity <n>} &
    Velocity sensing sensitivity. \\
-\texttt{STEreo [s]} &
+\texttt{STEreo <s>} &
    Sets this engine as stereo or mono (ON / other). \\
-\texttt{DEPop [n]} &
+\texttt{DEPop <n>} &
    Initial attack slope.   \\
-\texttt{PUnch Power [n]} &
+\texttt{PUnch Power <n>} &
    Attack boost amplitude. \\
-\texttt{PUnch Duration [n]} &
+\texttt{PUnch Duration <n>} &
    Attack boost time.   \\
-\texttt{PUnch Stretch [n]} &
+\texttt{PUnch Stretch <n>} &
    Attack boost extend. \\
-\texttt{PUnch Velocity [n]} &
+\texttt{PUnch Velocity <n>} &
    Attack boost velocity sensitivity.  \\
-\texttt{DETune Fine [n]} &
+\texttt{DETune Fine <n>} &
    Fine frequency.   \\
-\texttt{DETune Coarse [n]} &
+\texttt{DETune Coarse <n>} &
    Coarse stepped frequency.  \\
-\texttt{DETune Type [s]} &
+\texttt{DETune Type <s>} &
    Type of coarse stepping. (DEFault, L35, L10, E100, E1200)  \\
-\texttt{OCTave [n]} &
+\texttt{OCTave <n>} &
    Shift octaves up or down.  \\
-\texttt{GRoup [s]} &
+\texttt{GRoup <s>} &
    Disables harmonic amplitude randomness of voices \\
 \texttt{ } &
              with a common oscillator (ON / other). \\
-\texttt{Bandwidth [n]} &
+\texttt{Bandwidth <n>} &
    Modifies the relative fine detune of voices. \\
 \texttt{VOice ...} &
    Enter the Addsynth voice context. \\
@@ -1059,72 +1059,73 @@ to see what controls were available in each context.
    Enter the AddSynth resonance context. \\
       \end{tabular}
    \end{table}
-
+\pagebreak
+   \textsl{min. entry to list commands for} AddSynth Voice: '? voi'
    \begin{table}[H]
       \caption{AddSynth Voice Commands}
       \label{table:yoshimi_part_addsynth_voice_commands}
       \begin{tabular}{l l}
-\texttt{(voice) [n]} &
+\texttt{(voice) <n>} &
    Change voice number.  \\
-\texttt{[ON/OFF]} &
+\texttt{<ON/OFF>} &
    Enables / Disables the Voice. \\
-\texttt{Volume [n]} &
+\texttt{Volume <n>} &
    Voice Volume.  \\
-\texttt{Pan [n]} &
+\texttt{Pan <n>} &
    Panning position.\\
-\texttt{PRandom [s]} &
+\texttt{PRandom <s>} &
    Enable random panning (ON / other).\\
-\texttt{PWidth [n]} &
+\texttt{PWidth <n>} &
    Random panning range.\\
-\texttt{VElocity [n]} &
+\texttt{VElocity <n>} &
    Velocity sensing sensitivity. \\
-\texttt{BENd Adjust [n]} &
+\texttt{BENd Adjust <n>} &
    Pitch bend range. \\
-\texttt{BENd Offset [n]} &
+\texttt{BENd Offset <n>} &
    Pitch bend shift. \\
-\texttt{DETune Fine [n]} &
+\texttt{DETune Fine <n>} &
    Fine frequency.   \\
-\texttt{DETune Coarse [n]} &
+\texttt{DETune Coarse <n>} &
    Coarse stepped frequency.  \\
-\texttt{DETune Type [n]} &
+\texttt{DETune Type <n>} &
    Type of coarse stepping.   \\
-\texttt{OCTave [n]} &
+\texttt{OCTave <n>} &
    Shift octaves up or down.  \\
-\texttt{FIXed [s]} &
+\texttt{FIXed <s>} &
    Set base frequency to 440Hz (ON / other).  \\
-\texttt{EQUal [n]} &
+\texttt{EQUal <n>} &
    Equal temper variation. \\
-\texttt{Type [s]} &
+\texttt{Type <s>} &
    Sound type (Oscillator, White noise, Pink noise, Spot noise). \\
-\texttt{SOurce [n]} &
+\texttt{SOurce <[s][n]>} &
    Voice source number (Local for self). \\
-\texttt{OSCillator [n]} &
+\texttt{OSCillator <[s][n]>} &
    Oscillator source number (Internal for self). \\
-\texttt{Phase [n]} &
+\texttt{Phase <n>} &
    Relative voice phase. \\
-\texttt{Minus [s]} &
+\texttt{Minus <s>} &
    Invert entire voice (ON / other). \\
-\texttt{DELay [n]} &
+\texttt{DELay <n>} &
    Delay before this voice starts. \\
-\texttt{Resonance [s]} &
+\texttt{Resonance <s>} &
    Enable resonance for this voice (ON / other). \\
-\texttt{Bypass [s]} &
+\texttt{Bypass <s>} &
    Bypass global filter for this voice (ON / other). \\
-\texttt{Unison [s]} &
+\texttt{Unison <s>} &
    (ON, OFF). \\
-\texttt{Unison Size[n]} &
+\texttt{Unison Size<n>} &
    Number of unison elements. \\
-\texttt{Unison Frequency[n]} &
+\texttt{Unison Frequency <n>} &
    Frequency spread of elements. \\
-\texttt{Unison Phase[n]} &
+\texttt{Unison Phase <n>} &
    Phase randomness of elements. \\
-\texttt{Unison Width[n]} &
+\texttt{Unison Width <n>} &
    Stereo width. \\
-\texttt{Unison Vibrato[n]} &
+\texttt{Unison Vibrato <n>} &
    Vibrato depth. \\
-\texttt{Unison Rate[n]} &
+\texttt{Unison Rate <n>} &
    Vibrato speed. \\
-\texttt{Unison Invert [s]} &
+\texttt{Unison Invert <s>} &
    Phase inversion type (None, Random, Half, Third, Quarter, Fifth). \\
 \texttt{MOdulator ...} &
    Enter the modulator context. \\
@@ -1139,333 +1140,297 @@ to see what controls were available in each context.
       \end{tabular}
    \end{table}
 
+\pagebreak
+   \textsl{min. entry to list commands for} AddSynth Modulator: '? mod'
+
    \begin{table}[h]
       \caption{Voice Modulator Commands}
       \label{table:yoshimi_part_addsynth_voice_modulator_commands}
       \begin{tabular}{l l}
-\texttt{[s]} &
-   Directly set the type (OFF, Morph, Ring, Phase, Frequency, Pulse width). \\
-\texttt{SOurce [[s]/[n]]} &
-   Oscillator source (Local, voice number). \\
-\texttt{Volume [n]} &
-   Modulator depth.  \\
-\texttt{VElocity [n]} &
-   Velocity sensing sensitivity. \\
-\texttt{Damping [n]} &
-   Higher frequency relative damping. \\
-\texttt{OSCillator [[s]/[n]]} &
-   Modulation oscillator (Internal, modulator number). \\
-\texttt{FOLlow [s]} &
-   Use source oscillator detune (ON / other). \\
-\texttt{SHift [n]} &
-   Oscillator relative phase. \\
+
+\texttt{ - category - } &
+  \\
+\texttt{<s> OFF} &
+   disable modulator\\
+\texttt{<s> MORph} &
+   fade between oscillators\\
+\texttt{<s> RINg} &
+  \\
+\texttt{<s> PHAse} &
+  \\
+\texttt{<s> FREquency} &
+   pulse frequency\\
+\texttt{<s> Pulse} &
+   pulse width\\
+\texttt{} &
+   \\ % force blank line in table
+\texttt{Volume <n>} &
+   modulator depth  \\
+\texttt{VElocity <n>} &
+   velocity sensing sensitivity \\
+\texttt{Damping <n>} &
+   higher frequency relative damping \\
+\texttt{Detune Fine <n>} &
+   fine frequency detune \\
+\texttt{Detune Coarse <n>} &
+   coarse frequency detune. \\
+\texttt{Detune Type <s>} &
+   type of coarse stepping (DEFault, L35, L10, E100, E1200) \\
+\texttt{SOurce <[s]/[n]>} &
+    oscilator source (Local, \{voice number\}) \\
+\texttt{OSCillator <[s]/[n]>} &
+   modulation oscillator (Internal, \{modulator number\}) \\
+\texttt{FIXed <s>} &
+   set modulator freqency to 440Hz (ON / other) \\
+\texttt{FOLlow <s>} &
+   use source oscillator detune (ON / other) \\
+\texttt{SHift <n>} &
+   oscillator relative phase \\
 \texttt{WAveform ...} &
-   Enter the modulator waveform context. \\
+   enter the modulator waveform context \\
       \end{tabular}
    \end{table}
 
 \paragraph{Part PadSynth Commands}
 \label{paragraph:command_line_part_padsynth_commands}
+\textsl{min. entry to list commands for} PadSynth: '? pad'
+\begin{center}
+\begin{longtable}{p{5cm} p{13cm}}
 
-   \begin{table}[H]
-      \centering
-      \caption{Part PadSynth Commands}
-      \label{table:yoshimi_part_padsynth_commands}
-      \begin{tabular}{l l}
-\texttt{[ON/OFF]} &
-   Enables / Disables the PadSynth engine. \\
-\texttt{Volume [n]} &
-   PadSynth Volume. \\
-\texttt{Pan [n]} &
-   Panning position.\\
-\texttt{PRandom [s]} &
-   Enable random panning (ON / other).\\
-\texttt{PWidth [n]} &
-   Random panning range.\\
-\texttt{VElocity [n]} &
-   Velocity sensing sensitivity. \\
-\texttt{STEreo [s]} &
-   Sets this engine as stereo or mono (ON / other). \\
+\caption[Part PadSynth Commands]{Part PadSynth Commands} \\
+\texttt{<ON/OFF>} &
+   enables / Disables the PadSynth engine \\
+\texttt{Apply} &
+   use of 1st entry and on harmonic changes \\
+\texttt{Volume <n>} &
+   padSynth Volume \\
+\texttt{Pan <n>} &
+   panning position \\
+\texttt{PRandom <s>} &
+   enable random panning (ON / other) \\
+\texttt{PWidth <n>} &
+   random panning range \\
+\texttt{VElocity <n>} &
+   velocity sensing sensitivity \\
+\texttt{STEreo <s>} &
+   sets this engine as stereo or mono (ON / other) \\
 \texttt{DEPop [n]} &
-   Initial attack slope.   \\
-\texttt{PUnch Power [n]} &
-   Attack boost amplitude. \\
-\texttt{PUnch Duration [n]} &
-   Attack boost time. \\
-\texttt{PUnch Stretch [n]} &
-   Attack boost extend. \\
-\texttt{PUnch Velocity [n]} &
-   Attack boost velocity sensitivity. \\
-\texttt{BENd Adjust [n]} &
-   Pitch bend range. \\
-\texttt{BENd Offset [n]} &
-   Pitch bend shift. \\
-\texttt{DETune Fine [n]} &
-   Fine frequency. \\
-\texttt{DETune Coarse [n]} &
-   Coarse stepped frequency. \\
-\texttt{DETune Type [n]} &
-   Type of coarse stepping. \\
-\texttt{OCTave [n]} &
-   Shift octaves up or down. \\
-\texttt{FIXed [s]} &
-   Set base frequency to 440Hz (ON / other). \\
+   initial attack slope \\
+\texttt{PUnch Power <n>} &
+   attack boost amplitude \\
+\texttt{PUnch Duration <n>} &
+   attack boost time \\
+\texttt{PUnch Stretch <n>} &
+   attack boost extend \\
+\texttt{PUnch Velocity <n>} &
+   attack boost velocity sensitivity \\
+\texttt{BENd Adjust <n>} &
+   pitch bend range \\
+\texttt{BENd Offset <n>} &
+   pitch bend shift \\
+\texttt{DETune Fine <n>} &
+   fine frequency \\
+\texttt{DETune Coarse <n>} &
+   coarse stepped frequency \\
+\texttt{DETune Type <s>} &
+   type of coarse stepping (DEFault, L35, L10, E100, E1200 \\
+\texttt{OCTave <n>} &
+   shift octaves up or down \\
+\texttt{FIXed <s>} &
+   set base frequency to 440Hz (ON / other) \\
 \texttt{EQUal [n]} &
-   Equal temper variation. \\
-\texttt{PRofile [s]} &
-   The shape of harmonic profile (Gauss, Square Double exponent). \\
-\texttt{WIdth [n]} &
-   Width of the harmonic profile. \\
-\texttt{COunt [n]} &
-   Number of profile repetitions. \\
-\texttt{EXpand [n]} &
-   Adds harmonics and changes the distribution. \\
-\texttt{FRequency [n]} &
-   Further modifies distribution (dependent on stretch). \\
-\texttt{SIze [n]} &
-   Changes harmonic width while retaining shape. \\
-\texttt{CRoss [s]} &
-   Cross section of profile (Full, Upper, Lower). \\
-\texttt{MUltiplier [s]} &
-   amplitude multiplier (Off, Gauss, Sine, Flat). \\
-\texttt{MOde [s]} &
-   Amplitude mode (Sum, Mult, D1, D2). \\
-\texttt{CEnter [n]} &
-   Changes the central harmonic component width. \\
-\texttt{RELative [n]} &
-   Changes central component relative amplitude. \\
-\texttt{AUto [s]} &
-   Autoscaling (ON / other). \\
-\texttt{BASe [s]} &
-   Base profile distribution (C2, G2, C3, G3, C4, G4, C5, G5, G6). \\
-\texttt{SAmples [n]} &
-   Samples per octave (0.5, 1, 2, 3, 4, 6, 12). \\
-\texttt{RAnge [n]} &
-   Number of octaves (1 to 8). \\
-\texttt{LEngth [n]} &
-   Length of one sample in k (16, 32, 64, 128, 256, 512, 1024). \\
-\texttt{BAndwidth [n]} &
-   Overall bandwidth. \\
-\texttt{SCale [s]} &
-   Bandwidth scale. (Normal, Equalhz, Quarter, Half, Three Quarter,\\
+   equal temper variation \\
+\texttt{OVertone Position <s>} &
+   relationship to fundamental (HArmonic, SIne, POwer, SHift, \\
 \texttt{} &
-   One and a half, Double, Inverse Half).\\
-\texttt{SPectrum [s]} &
-   Spectrum mode (Bandwidth, Discrete, Continuous). \\
-\texttt{OVertone Position [s]} &
-   Relationship to fundamental (HArmonic, SIne,\\
+   UShift, LShift, UPower, LPower) \\
+\texttt{OVertone First <n>} &
+   degree of first parameter \\
+\texttt{OVertone Second <n>} &
+   degree of second parameter\\
+\texttt{OVertone Harmonic <n>} &
+   amount harmonics are forced\\
+\texttt{PRofile <s>} &
+   shape of harmonic profile (Gauss, Square Double exponent) \\
+\texttt{WIdth <n>} &
+   width of single peak within harmonic profile \\
+\texttt{COunt <n>} &
+   number of profile repetitions. \\
+\texttt{EXpand <n>} &
+  stretch and add harmonics and change distribution \\
+\texttt{FRequency <n>} &
+   further modifies distribution (dependent on stretch) \\
+\texttt{SIze <n>} &
+   scale harmonic profile as a whole \\
+\texttt{CRoss <s>} &
+   Cross section of profile (Full, Upper, Lower) \\
+\texttt{MUltiplier <s>} &
+   amplitude multiplier (Off, Gauss, Sine, Flat) \\
+\texttt{MOde <s>} &
+   amplitude mode (Sum, Mult, D1, D2). \\
+\texttt{CEnter <n>} &
+   changes the central harmonic component width \\
+\texttt{RELative <n>} &
+   changes central component relative amplitude \\
+\texttt{AUto <s>} &
+   autoscaling (ON / other) \\
+\texttt{BASe <s>} &
+   base profile distribution (C2, G2, C3, G3, C4, G4, C5, G5, G6) \\
+\texttt{SAmples <n>} &
+   samples per octave (0.5, 1, 2, 3, 4, 6, 12) \\
+\texttt{RAnge <n>} &
+   number of octaves (1 to 8) \\
+\texttt{LEngth <n>} &
+   length of one sample in k (16, 32, 64, 128, 256, 512, 1024) \\
+\texttt{BAndwidth <n>} &
+   overall bandwidth \\
+\texttt{SCale <s>} &
+   bandwidth scale (Normal, Equalhz, Quarter, Half, Threequarter,\\
 \texttt{} &
-   POwer, SHift, UShift, LShift, UPower, LPower). \\
-\texttt{OVertone First [n]} &
-   Degree of first parameter. \\
-\texttt{OVertone Second [n]} &
-   Degree of second parameter.   \\
-\texttt{OVertone Harmonic [n]} &
-   Amount harmonics are forced.  \\
-      \end{tabular}
-   \end{table}
-
-   \begin{table}
-      \begin{tabular}{l l}
-\texttt{XFadeupdate [n]} &
-   Cross fade (millisec) after building new wavetable. \\
-\texttt{BUildtrigger [n]} &
-   Re-trigger wavetable build after n millisec. \\
-\texttt{RWDetune [n]} &
-   Random walk spread of voice detune on re-triggered build (0 off 96 factor 2). \\
-\texttt{RWBandwidth [n]} &
-   Random walk spread of line bandwidth. \\
-\texttt{RWFilterFreq [n]} &
-   Random walk spread of filter cutoff frequency. \\
-\texttt{RWWidthProfile [n]} &
-   Random walk spread of profile line width. \\
-\texttt{RWStretchProfile [n]} &
-   Random walk spread of profile modulation stretch. \\
+   Oneandahalf, Double, Inversehalf)\\
+\texttt{SPectrum <s>} &
+   spectrum mode (Bandwidth, Discrete, Continuous) \\
+\texttt{} & \\ % blank line
+\texttt{XFadeupdate <n>} &
+   cross fade (millisec) after building new wavetable \\
+\texttt{BUildtrigger <n>} &
+   re-trigger wavetable build after n millisec \\
+\texttt{RWDetune <n>} &
+   random walk spread of voice detune on re-triggered build (0 off 96 factor 2) \\
+\texttt{RWBandwidth <n>} &
+   random walk spread of line bandwidth \\
+\texttt{RWFilterFreq <n>} &
+   random walk spread of filter cutoff frequency \\
+\texttt{RWWidthProfile <n>} &
+   random walk spread of profile line width \\
+\texttt{RWStretchProfile <n>} &
+   random walk spread of profile modulation stretch \\
 \texttt{APply} &
-   Puts the latest changes into the wavetable. \\
+   puts the latest changes into the wavetable \\
 \texttt{XPort} &
-   Export the current sample set to named file. \\
+   export the current sample set to named file \\
 \texttt{WAveform ...} &
-   Enter the oscillator waveform context. \\
+   enter the oscillator waveform context \\
 \texttt{LFO ...} &
-   Enter LFO insert context.  \\
+   enter LFO insert context  \\
 \texttt{FILter ...} &
-   Enter Filter insert context.  \\
+   enter Filter insert context  \\
 \texttt{ENVelope ...} &
-   Enter Envelope insert context.   \\
+   enter Envelope insert context   \\
 \texttt{REsonance ...} &
-   Enter the PadSynth resonance context. \\
-      \end{tabular}
-   \end{table}
+   enter the PadSynth resonance context \\
 
+\end{longtable}
+\end{center}
 
+\pagebreak
 \paragraph{Part SubSynth Commands}
 \label{paragraph:command_line_part_subsynth_commands}
 
+   \textsl{min. entry to list commands for} SubSynth: '? sub'
    \begin{table}[H]
       \centering
       \caption{Part SubSynth Commands}
       \label{table:yoshimi_part_subsynth_commands}
       \begin{tabular}{l l}
 \texttt{[ON/OFF]} &
-   Enables / Disables the SubSynth engine. \\
-\texttt{Volume [n]} &
-   SubSynth Volume.  \\
-\texttt{Pan [n]} &
-   Panning position.\\
-\texttt{PRandom [s]} &
-   Enable random panning (ON / other).\\
-\texttt{PWidth [n]} &
-   Random panning range.\\
-\texttt{VElocity [n]} &
-   Velocity sensing sensitivity. \\
-\texttt{STEreo [s]} &
-   Sets this engine as stereo or mono (ON / other). \\
-\texttt{BENd Adjust [n]} &
-   Pitch bend range. \\
-\texttt{BENd Offset [n]} &
-   Pitch bend shift. \\
-\texttt{DETune Fine [n]} &
-   Fine frequency.   \\
-\texttt{DETune Coarse [n]} &
-   Coarse stepped frequency.  \\
-\texttt{DETune Type [n]} &
-   Type of coarse stepping. (DEFault, L35, L10, E100, E1200)  \\
-\texttt{OCTave [n]} &
-   Shift octaves up or down.  \\
-\texttt{FIXed [s]} &
-   Set base frequency to 440Hz (ON / other).  \\
-\texttt{EQUal [n]} &
-   Equal temper variation. \\
-\texttt{HArmonic [n1] Amp [n2]} &
-   Set harmonic n1 to n2 intensity. \\
-\texttt{HArmonic [n1] Band [n2]} &
-   Set harmonic n1 to n2 width. \\
-\texttt{HArmonic Stages [n]} &
-   Number of stages. \\
-\texttt{HArmonic Mag [s]} &
-   Harmonics filtering type. (Linear, 40dB, 60dB, 80dB, 100dB)\\
-\texttt{HArmonic Position [s]} &
-   Start position. (Zero, Random, Maximum)\\
-\texttt{BAnd Width [n]} &
-   Common bandwidth. \\
-\texttt{BAnd Scale [n]} &
-   Bandwidth slope versus frequency. \\
-\texttt{OVertone Position [s]} &
-   Relationship to fundamental (HArmonic, SIne,\\
+   enables / disables the SubSynth engine \\
+\texttt{Volume <n>} &
+   Volume \\
+\texttt{Pan <n>} &
+   panning position \\
+\texttt{PRandom <s>} &
+   enable random panning (ON / \{other\}) \\
+\texttt{PWidth <n>} &
+   random panning range\\
+\texttt{VElocity <n>} &
+   velocity sensing sensitivity \\
+\texttt{STEreo <s>} &
+   sets engine as stereo (ON / \{other\}) \\
+\texttt{BENd Adjust <n>} &
+   pitch bend range \\
+\texttt{BENd Offset <n>} &
+   pitch bend shift \\
+\texttt{DETune Fine <n>} &
+   fine frequency \\
+\texttt{DETune Coarse <n>} &
+   coarse stepped frequency \\
+\texttt{DETune Type <s>} &
+   type of coarse stepping (DEFault, L35, L10, E100, E1200) \\
+\texttt{OCTave <n>} &
+   shift octaves up or down \\
+\texttt{FIXed <s>} &
+   set base frequency to 440Hz (ON / \{other\}) \\
+\texttt{EQUal <n>} &
+   equal temper variation \\
+\texttt{OVertone Position <s>} &
+   relationship to fundamental (HArmonic, SIne,\\
 \texttt{} &
-   POwer, SHift, UShift, LShift, UPower, LPower).\\
-\texttt{OVertone First [n]} &
-   Degree of first parameter. \\
-\texttt{OVertone Second [n]} &
-   Degree of second parameter.   \\
-\texttt{OVertone Harmonic [n]} &
-   Amount harmonics are forced.  \\
+   POwer, SHift, UShift, LShift, UPower, LPower)\\
+\texttt{OVertone First <n>} &
+   degree of first parameter \\
+\texttt{OVertone Second <n>} &
+   degree of second parameter \\
+\texttt{OVertone Harmonic <n>} &
+   amount harmonics are forced  \\
+\texttt{HArmonic <n1> Amp <n2>} &
+   set harmonic n1 to n2 intensity \\
+\texttt{HArmonic <n1> Band <n2>} &
+   set harmonic n1 to n2 width \\
+\texttt{HArmonic Stages <n>} &
+   number of stages \\
+\texttt{HArmonic Mag <s>} &
+   harmonics filtering type (Linear, 40dB, 60dB, 80dB, 100dB)\\
+\texttt{HArmonic Position <s>} &
+   start position (Zero, Random, Maximum)\\
+\texttt{BAnd Width <n>} &
+   common bandwidth \\
+\texttt{BAnd Scale <n>} &
+   bandwidth slope versus frequency \\
 \texttt{FILter ...} &
-   Enter Filter insert context.  \\
+   enter Filter insert context \\
 \texttt{ENVelope ...} &
-   Enter Envelope insert context.   \\
+   enter Envelope insert context \\
       \end{tabular}
    \end{table}
 
+\pagebreak
 \paragraph{Part Resonance Commands}
 \label{paragraph:command_line_part_resonance_commands}
-
+   \textsl{min. entry to list commands for} Resonance: '? res'
    \begin{table}[H]
       \centering
       \caption{Resonance Commands}
       \label{table:part_resonance_commands}
       \begin{tabular}{l l}
-   \texttt{(enable) [s]} &
-      Activate resonance (ON / other). \\
-    \texttt{PRotect [s]} &
-      Leave fundamental unchanged (ON / other). \\
-   \texttt{Maxdb [n]} &
-      Set the maximum attenuation of points. \\
-   \texttt{Random [s]} &
-      Set a random distribution (Coarse, Medium, Fine). \\
-   \texttt{CEnter [n]} &
-      Set the center frequency of the resonance range. \\
-   \texttt{Octaves [n]} &
-      The number of octaves covered. \\
-   \texttt{Interpolate [s]} &
-      Turn isolated peaks into lines or curves (Linear, Smooth). \\
+   \texttt{(enable) <s>} &
+      activate resonance (ON / \{other\}) \\
+    \texttt{PRotect <s>} &
+      leave fundamental unchanged (ON / \{other\}) \\
+   \texttt{Maxdb <n>} &
+      maximum attenuation of points \\
+   \texttt{Random <s>} &
+      set a random distribution (Coarse, Medium, Fine) \\
+   \texttt{CEnter <n>} &
+      center frequency of range \\
+   \texttt{Octaves <n>} &
+      number of octaves covered \\
+   \texttt{Interpolate <s>} &
+      turn isolated peaks into lines or curves (Linear, Smooth) \\
    \texttt{Smooth} &
-      Reduce range and sharpness of peaks. \\
+      reduce range and sharpness of peaks \\
    \texttt{CLear} &
-      Set all points to the mid level. \\
-   \texttt{POints [[n1] [n2]]} &
-      Show all or read n1 or set n1 to n2 \\
+      set all points to mid level \\
+   \texttt{POints [<n1> [n2]]} &
+      show all or set/read n1 to n2 \\
+   \texttt{APply} &
+      fix settings (only for PadSynth) \\
       \end{tabular}
    \end{table}
 
 \paragraph{Part Waveform Commands}
 \label{paragraph:command_line_part_waveform_commands}
-
-   \begin{table}[H]
-      \centering
-      \caption{Part Waveform Commands}
-      \label{table:yoshimi_part_waveform_commands}
-      \begin{tabular}{l l}
-   \texttt{[s]} &
-      Directly set the basic waveform type by name. \\
-   \texttt{HArmonic [n1] Amp [n2]} &
-      Set harmonic n1 to n2 intensity. \\
-   \texttt{HArmonic [n1] Phase [n2]} &
-      Set harmonic n1 to n2 phase. \\
-   \texttt{Harmonic Shift [n]} &
-      Amount harmonics are moved. \\
-   \texttt{Harmonic Before [s]} &
-      Shift before waveshaping and filtering (ON other). \\
-   \texttt{COnvert} &
-       Change resultant wave to groups of sine waves. \\
-   \texttt{CLear} &
-      Clear harmonic settings. \\
-   \texttt{Base Par [n]} &
-      Basic wave parameter. \\
-   \texttt{Base Mod Type [s]} &
-      Basic modulation type (OFF, Rev, Sine Power). \\
-   \texttt{Base Mod Par [n1] [n2]} &
-       Parameter number n1 (1 - 3) set to n2 value. \\
-   \texttt{Base Convert [s]} &
-       Use resultant wave as basic waveform type. \\
-   \texttt{} &
-      Also clear modifiers and harmonics (OFF other). \\
-   \texttt{SHape Type [s] } &
-      Wave shape modifier type. (OFF, ATAn, ASYm1, POWer, SINe,\\
-   \texttt{} &
-       QNTs, ZIGzag, LMT, ULMt, LLMt, ILMt, CLIp, AS2, PO2, SGM) \\
-   \texttt{SHape Par [n]} &
-      Wave shape modifier amount. \\
-   \texttt{Filter Type [s]} &
-      (OFF, LP1, HPA1, HPB1, BP1, BS1, LP2, HP2, BP2, BS2, \\
-      \texttt{} &
-      COS, SIN, LSH, SGM)\\
-   \texttt{Filter Par [n1] [n2]} &
-      Filter parameters  n1 (1/2) set to n2 value. \\
-   \texttt{Filter Before [s]} &
-      Do filtering before waveshaping (ON other). \\
-   \texttt{Modulation Par [n1] [n2]} &
-      Overall modulation parameter n1 (1 - 3) set to n2 value. \\
-   \texttt{SPectrum Type [s]} &
-       Spectrum adjust type (OFF, Power, Down/Up threshold). \\
-   \texttt{SPectrum Par } &
-      Spectrum adjust amount. \\
-   \texttt{ADdaptive Type [s]} &
-      Adaptive harmonics (OFF, ON, SQUare, 2XSub, 2XAdd, \\
-   \texttt{} &
-       3XSub, 3XAdd, 4XSub, 4XAdd) \\
-   \texttt{ADdaptive Base [n]} &
-      Adaptive base frequency. \\
-   \texttt{ADdaptive Level [n]} &
-      Adaptive power. \\
-   \texttt{ADdaptive Par [n]} &
-      Adaptive parameter amount. \\
-
-   \texttt{APply} &
-      Fix settings (only for PadSynth). \\
-      \end{tabular}
-   \end{table}
+\textsl{min. entry to list commands for} Waveform: '? wav'
 
    This list shows the "basic waveform type" settings available.
 
@@ -1486,62 +1451,128 @@ to see what controls were available in each context.
       \item SQUare
       \item SPIke
       \item CIRcle
+      \item HYPersec
    \end{itemize}
+
+   \begin{table}[H]
+      \centering
+      \caption{Part Waveform Commands}
+      \label{table:yoshimi_part_waveform_commands}
+      \begin{tabular}{l l}
+   \texttt{<s>} &
+      set basic waveform by above list \\
+   \texttt{HArmonic <n1> Amp <n2>} &
+      harmonic n1 to n2 intensity \\
+   \texttt{HArmonic <n1> Phase <n2>} &
+      harmonic n1 to n2 phase \\
+   \texttt{Harmonic Shift <n>} &
+      amount harmonics are moved \\
+   \texttt{Harmonic Before <s>} &
+      shift before waveshaping and filtering (ON \{other\}) \\
+   \texttt{COnvert} &
+       change resultant wave to groups of sine waves \\
+   \texttt{CLear} &
+      clear harmonic settings \\
+   \texttt{Base Par <n>} &
+      basic wave parameter \\
+   \texttt{Base Mod Type <s>} &
+      basic modulation type (OFF, Rev, Sine Power) \\
+   \texttt{Base Mod Par <n1> <n2>} &
+       parameter number n1 (1 - 3) set to n2 value \\
+   \texttt{Base Convert [s]} &
+       use resultant wave as basic waveform type \\
+   \texttt{} &
+      also clear modifiers and harmonics (OFF \{other\}). \\
+   \texttt{SHape Type <s> } &
+      Wave shape modifier type (OFF, ATAn, ASYm1, POWer, SINe,\\
+   \texttt{} &
+       QNTs, ZIGzag, LMT, ULMt, LLMt, ILMt, CLIp, AS2, PO2, SGM) \\
+   \texttt{SHape Par [n]} &
+      wave shape modifier amount \\
+   \texttt{Filter Type <s>} &
+      (OFF, LP1, HPA1, HPB1, BP1, BS1, LP2, HP2, BP2, BS2, \\
+      \texttt{} &
+      COS, SIN, LSH, SGM)\\
+   \texttt{Filter Par <n1> <n2>} &
+      filter parameters  n1 (1/2) to n2 value \\
+   \texttt{Filter Before <s>} &
+      do filtering before waveshaping (ON\{other\}) \\
+   \texttt{Modulation Par <n1> <n2>} &
+      overall modulation parameter n1 (1 - 3) to n2 value \\
+   \texttt{SPectrum Type <s>} &
+       spectrum adjust type (OFF, Power, Down/Up threshold) \\
+   \texttt{SPectrum Par <n>} &
+      spectrum adjust amount \\
+   \texttt{ADdaptive Type <s>} &
+      adaptive harmonics (OFF, ON, SQUare, 2XSub, 2XAdd, \\
+   \texttt{} &
+       3XSub, 3XAdd, 4XSub, 4XAdd) \\
+   \texttt{ADdaptive Base <n>} &
+      adaptive base frequency \\
+   \texttt{ADdaptive Level <n>} &
+      adaptive power \\
+   \texttt{ADdaptive Par <n>} &
+      adaptive parameter amount \\
+
+   \texttt{APply} &
+      fix settings (only for PadSynth) \\
+      \end{tabular}
+   \end{table}
 
 \subsubsection{Engine Envelopes}
 \label{subsec:command_line_engine_envelopes}
-
+   \textsl{min. entry to list commands for} Envelope: '? env'
    \begin{table}[H]
       \centering
-      \caption{Engine Envelopes, Type}
+      \caption{Engine Envelopes, category}
       \label{table:yoshimi_engine_envelopes_types}
       \begin{tabular}{l l}
 \texttt{AMplitude} &
-   Amplitude type. \\
+   amplitude type \\
 \texttt{FRequency} &
-   Frequency type. \\
+   frequency type \\
 \texttt{FIlter} &
-   Filter type. \\
+   filter type \\
 \texttt{BAndwidth} &
-   Bandwidth type (SubSynth only). \\
+   bandwidth type (SubSynth only) \\
       \end{tabular}
    \end{table}
 
    \begin{table}[H]
       \centering
-      \caption{Engine Envelopes, Controls}
+      \caption{Engine Envelopes, common}
       \label{table:yoshimi_engine_envelopes_controls}
       \begin{tabular}{l l}
-\texttt{Expand [n]} &
-   Envelope time on lower notes. \\
-\texttt{Force [s]} &
-   Force release (ON / other). \\
-\texttt{Linear [s]} &
-   Linear slopes (ON / other). \\
-\texttt{FMode [s]} &
-   Set as Freemode (ON / other). \\
+\texttt{Expand <n>} &
+   envelope time on lower notes \\
+\texttt{Force <s>} &
+   force release (ON / \{other\}) \\
+\texttt{Linear <s>} &
+   linear slopes (ON / \{other\}) \\
+\texttt{FMode <s>} &
+   set as Freemode (ON / \{other\}) \\
       \end{tabular}
    \end{table}
 
    \begin{table}[H]
       \centering
-      \caption{Engine Envelopes, Fixed}
+      \caption{Engine Envelopes, fixed}
       \label{table:yoshimi_engine_envelopes_fixed}
       \begin{tabular}{l l}
-\texttt{Attack Level [n]} &
-   Initial attack level. \\
-\texttt{Attack Time [n]} &
-   Time before decay point. \\
-\texttt{Decay Level [n]} &
-   Initial decay level. \\
-\texttt{Decay Time [n]} &
-   Time before sustain point. \\
-\texttt{Sustain [n]} &
-   Sustain level. \\
-\texttt{Release Time [n]} &
-   Time to actual release. \\
-\texttt{Release Level [n]} &
-   Level at envelope end. \\
+\texttt{Attack Level <n>} &
+   initial attack level. \\
+\texttt{Attack Time <n>} &
+   time before decay point. \\
+\texttt{Decay Level <n>} &
+   initial decay level. \\
+\texttt{Decay Time <n>} &
+   time before sustain point. \\
+\texttt{Sustain <n>} &
+   sustain level. \\
+\texttt{Release Time <n>} &
+   time to actual release. \\
+\texttt{Release Level <n>} &
+   level at envelope end. \\
       \end{tabular}
    \end{table}
 
@@ -1551,121 +1582,125 @@ Note: Some envelopes have limited controls.
 
    \begin{table}[H]
       \centering
-      \caption{Engine Envelopes, Freemode}
+      \caption{Engine Envelopes, freemode}
       \label{table:yoshimi_engine_envelopes_freemode}
       \begin{tabular}{l l}
 \texttt{Points} &
-   Number of defined points (read only). \\
-\texttt{Sustain [n]} &
-   Point number where sustain starts. \\
-\texttt{Insert [n1] [n2] [n3]} &
-   Insert point at n1 with X increment n2, Y value n3. \\
-\texttt{Delete [n]} &
-   Remove point n. \\
-\texttt{Change [n1] [n2] [n3]} &
-   Change point n1 to X increment n2, Y value n3. \\
+   number of defined points (read only). \\
+\texttt{Sustain <n>} &
+   point number where sustain starts. \\
+\texttt{Insert <n1> <n2> <n3>} &
+   insert point at n1 with X increment n2, Y value n3. \\
+\texttt{Delete <n>} &
+   remove point n. \\
+\texttt{Change <n1> <n2> <n3>} &
+   change point n1 to X increment n2, Y value n3. \\
       \end{tabular}
    \end{table}
 
 \subsubsection{Engine Filters}
 \label{subsec:command_line_engine_filters}
-
+   \textsl{min. entry to list commands for} Filter: '? fil'
    \begin{table}[H]
       \centering
       \caption{Engine Filters}
       \label{table:yoshimi_engine_filters}
       \begin{tabular}{l l}
-\texttt{CEnter [n]} &
-   Center frequency. \\
-\texttt{Q [n]} &
+\texttt{CEnter <n>} &
+   center frequency. \\
+\texttt{Q <n>} &
    Q factor.   \\
-\texttt{Velocity [n]} &
-   Velocity sensitivity.   \\
-\texttt{SLope [n]} &
-   Velocity curve.   \\
-\texttt{Gain [n]} &
-   Overall amplitude.   \\
-\texttt{TRacking [n]} &
-   Frequency tracking.  \\
-\texttt{Range [s]} &
-   Extended tracking (ON, {other}) - goes from 0 to 198. \\
-\texttt{STages [n]} &
+\texttt{Velocity <n>} &
+   velocity sensitivity.   \\
+\texttt{SLope <n>} &
+   velocity curve.   \\
+\texttt{Gain <n>} &
+   overall amplitude.   \\
+\texttt{TRacking <n>} &
+   frequency tracking.  \\
+\texttt{Range <s>} &
+   extended tracking (ON, {other}) - goes from 0 to 198. \\
+\texttt{STages <n>} &
    filter stages (1 to 5). \\
-\texttt{CAtegory [s]} &
-   Analog, Formant, State variable. \\
-\texttt{TYpe [s]} &
-   Category dependent, and not formant filters.  See the filter types below.   \\
+\texttt{CAtegory <s>} &
+   analog, Formant, State variable. \\
+\texttt{TYpe <s>} &
+   category dependent, and not formant filters.
+   See the filter types below.   \\
 \texttt{EDit ...} &
    Formant filter only. Enter the format editor. See below.   \\
       \end{tabular}
    \end{table}
 
+\pagebreak
    The list of filter types:
 
    \begin{itemize}
       \item Analog filters:
       \begin{itemize}
-          \item \textbf{l1}. One stage low pass.
-          \item \textbf{h1}. One stage high pass.
-          \item \textbf{l2}. Two stage low pass.
-          \item \textbf{h2}. Two stage high pass.
-          \item \textbf{band}. Two stage band pass.
-          \item \textbf{stop}. Two stage band stop.
-          \item \textbf{peak}. Two stage peak.
-          \item \textbf{lshelf}. Two stage low shelf.
-          \item \textbf{hshelf}. Two stage high shelf.
+          \item \textbf{l1} - one stage low pass
+          \item \textbf{h1} - one stage high pass
+          \item \textbf{l2} - two stage low pass
+          \item \textbf{h2} - two stage high pass
+          \item \textbf{band} - two stage band pass
+          \item \textbf{stop} - two stage band stop
+          \item \textbf{peak} - two stage peak
+          \item \textbf{lshelf} - two stage low shelf
+          \item \textbf{hshelf} - two stage high shelf
       \end{itemize}
       \item State variable filters:
       \begin{itemize}
-         \item \textbf{low}. Low pass.
-         \item \textbf{high}. High pass.
-         \item \textbf{band}. Band pass.
-         \item \textbf{stop}. Band stop.
+         \item \textbf{low} - low pass
+         \item \textbf{high} - high pass
+         \item \textbf{band} - band pass
+         \item \textbf{stop} - band stop
       \end{itemize}
    \end{itemize}
 
    \begin{table}[H]
       \centering
       \caption{Engine Filters, Formant Editor}
+      (shows 'V' current vowel, and 'F' current formant)
       \label{table:yoshimi_engine_filters_formant_editor}
       \begin{tabular}{l l}
 
-\texttt{Invert [s]} &
-   Invert effect of LFOs, envelopes (ON, OFF). \\
-\texttt{CEnter [n]} &
-   Center frequency of sequence. \\
-\texttt{Range [n]} &
-   Octave range of formant. \\
-\texttt{Expand [n]} &
-   Stretch overall sequence time. \\
-\texttt{Lucidity [n]} &
-   Clarity of vowels. \\
-\texttt{Morph [n]} &
-   Speed of change between formants. \\
-\texttt{SIze [n]} &
-   Number of vowels in sequence. \\
-\texttt{COunt [n]} &
-   Number of formants in vowels. \\
-\texttt{VOwel [n]} &
-   Vowel being processed. \\
+\texttt{Invert <s>} &
+   invert effect of LFOs, envelopes (ON, OFF) \\
+\texttt{CEnter <n>} &
+   center frequency of sequence \\
+\texttt{Range <n>} &
+   octave range of formant \\
+\texttt{Expand <n>} &
+   stretch overall sequence time \\
+\texttt{Lucidity <n>} &
+   clarity of vowels. \\
+\texttt{Morph <n>} &
+   speed of change between formants \\
+\texttt{SIze <n>} &
+   number of vowels in sequence \\
+\texttt{COunt <n>} &
+   number of formants in vowels \\
+\texttt{VOwel <n>} &
+   vowel being processed \\
 \texttt{Point [n1] [n2]} &
-   Sequence position n1 vowel n2. \\
-\texttt{Formant [n]} &
-   Formant being processed. \\
+   sequence position n1 vowel n2 \\
+\texttt{Formant <n>} &
+   formant being processed \\
 \texttt{per formant} &
     \\
-\texttt{-  FRequency [n]} &
-   Center frequency of formant. \\
-\texttt{-  Q [n]} &
-   Bandwidth of formant. \\
+\texttt{-  FRequency <n>} &
+   center frequency of formant \\
+\texttt{-  Q <n>} &
+   bandwidth of formant \\
 \texttt{-  Gain} &
-   Amplitude of formant. \\
+   amplitude of formant \\
       \end{tabular}
    \end{table}
 
+\pagebreak
 \subsubsection{Engine LFOs}
 \label{subsec:command_line_engine_lfos}
-
+   \textsl{min. entry to list commands for} LFO: '? lfo'
    \begin{table}[H]
       \centering
       \caption{Engine LFOs}
@@ -1673,38 +1708,37 @@ Note: Some envelopes have limited controls.
       \begin{tabular}{l l}
 
 \texttt{AMplitude} &
-   Amplitude type. \\
+   amplitude type. \\
 \texttt{FRequency} &
-   Frequency type. \\
+   frequency type. \\
 \texttt{FIlter} &
-   Filter type. \\
+   filter type. \\
 \texttt{ - Controls - } & \\
-\texttt{Rate [n]} &
-   Frequency. \\
-\texttt{Intensity [n]} &
-   Amount of effect. \\
-\texttt{Start [n]} &
-   Start position in cycle. \\
-\texttt{Delay [n]} &
-   Time before effect. \\
-\texttt{Expand [n]} &
-   Rate / note pitch. \\
-\texttt{BPM [s]} &
-   Sync frequency to MIDI clock (ON / other). \\
+\texttt{Rate <n>} &
+   frequency. \\
+\texttt{Intensity <n>} &
+   amount of effect. \\
+\texttt{Start <n>} &
+   start position in cycle. \\
+\texttt{Delay <n>} &
+   time before effect. \\
+\texttt{Expand <n>} &
+   rate / note pitch. \\
+\texttt{BPM <s>} &
+   sync frequency to MIDI clock (ON / other). \\
 \texttt{Continuous [s]} &
-   Free running - ignore start position (ON / other). \\
-\texttt{Type [s]} &
+   free running - ignore start position (ON / other). \\
+\texttt{AR <n>} &
+   amplitude randomness. \\
+\texttt{RR <n>} &
+   rate (frequency) randomness. \\
+\texttt{Type <s>} &
    LFO oscillator shape. See the list below. \\
-\texttt{AR [n]} &
-   Amplitude randomness. \\
-\texttt{RR [n]} &
-   Rate (frequency) randomness. \\
 
       \end{tabular}
    \end{table}
 
-Example: "S FI T RU" sets the filter type, ramp up.
-Filter types (s parameter, LFO oscillator shape):
+LFO Filter types (s parameter, LFO oscillator shape):
 
    \begin{itemize}
       \item SIne
@@ -1719,11 +1753,16 @@ Filter types (s parameter, LFO oscillator shape):
       \item RSD(random square down)
    \end{itemize}
 
+   Example: "S FI T RU" sets the filter type, ramp up.
+
+\pagebreak
 \subsection{MLearn}
 \label{subsec:command_line_mlearn}
-   There are actually two entry points for MLearn. The first takes the same form
-   as set/read and initiates the MIDI learning process for a given control.
-   The second is within 'set' and is for editing current lines.
+   There are actually two entry points for MLearn. The first takes the same
+   form as set/read and initiates the MIDI learning process for a given
+   control. The second is within 'set' and is for editing current lines.
+
+   \textsl{min. entry to list commands for} MLearn: '? m'
 
    To enter the context for the second form start out with:
    \begin{verbatim}
@@ -1740,8 +1779,8 @@ Filter types (s parameter, LFO oscillator shape):
    The available commands are:
 
    \begin{itemize}
-      \item \texttt{MUte [s]}, Set to ON disables or, for any other provided token
-         restores this line.
+      \item \texttt{MUte [s]}, Set to ON disables or, for any other provided
+      token restores this line.
       \item \texttt{SEven} will interpret a learned NRPN as a 7-bit value.
       \item \texttt{CC [n]} will set the incoming controller value that will
          be recognised.  This command might re-order the list.
@@ -1754,8 +1793,8 @@ Filter types (s parameter, LFO oscillator shape):
       \item \texttt{LImit [s]} set to Enable will use limiting instead of
          compression.  The conversion uses the minimum and maximum limits.
       \item \texttt{BLock [s]} set to ON, prevents this CC/channel pair from
-        being passed on to any other lines or system controls.  It has no effect
-        if the line has been muted.
+        being passed on to any other lines or system controls.  It has no
+        effect if the line has been muted.
    \end{itemize}
 
 \subsection{EFfects Commands}
@@ -1768,20 +1807,22 @@ Filter types (s parameter, LFO oscillator shape):
    System effects where it behaves as a volume control, without changing the
    'through' content.
 
-   While part effects are 'immediate', in that one hears the results as soon as
-   an effect type is selected, System effects need the part's \textbf{send} level
-   to be increased, as it defaults to zero. Insertion effects however, need to
-   have a \textbf{send} route selected as well as the effect type.
+   While part effects are 'immediate', in that one hears the results as soon
+   as an effect type is selected, System effects need the part's
+   \textbf{send} level to be increased, as it defaults to zero. Insertion
+   effects however, need to have a \textbf{send} route selected as well as
+   the effect type.
 
    There is some extra information given in V 1.5.11.
-   When one chooses a new effect the first preset is always selected, which can
-   then be edited to taste. Up to now, there was no indication that it had
-   been altered apart from checking each control against its default. One
-   could easily forget having edited this - especially if saving everything and
-   coming back to it some days later.
+   When one chooses a new effect the first preset is always selected, which
+   can then be edited to taste. Up to now, there was no indication that it
+   had been altered apart from checking each control against its default. One
+   could easily forget having edited this - especially if saving everything
+   and coming back to it some days later.
 
-   In more recent \textsl{Yoshimi} versions there is a '?' on the end of the line if any of the
-   controls on that preset are not the default values.
+\pagebreak
+   In more recent \textsl{Yoshimi} versions there is a '?' on the end of the
+   line if any of the controls on that preset are not the default values.
    So:
    \begin{verbatim}
       yoshimi> s sys 2 rev
@@ -1797,8 +1838,8 @@ Filter types (s parameter, LFO oscillator shape):
    settings, and would be an easy mistake if there was no warning.
 
    Just leaving the effects to work on another part of \textsl{Yoshimi}, then
-   returning to them won't change anything of course, and will again correctly
-   show whether the current one has been altered.
+   returning to them won't change anything of course, and will again
+   correctly show whether the current one has been altered.
 
 \subsubsection{Effects List}
 \label{subsubsec:command_line_effects_list}
@@ -1816,34 +1857,37 @@ Filter types (s parameter, LFO oscillator shape):
    \end{itemize}
 
    Here, in detail are the controls available for each effect:
+
 % Reverb
+    \textsl{min. entry to list commands for} Reverb:  '? rev'
    \begin{table}[H]
       \centering
       \caption{Reverb}
       \begin{tabular}{l l}
-\texttt{LEVel [n]} &
-   Amount of the effect. \\
-\texttt{PANning [n]} &
-   Left-right panning. \\
-\texttt{TIMe [n]} &
-   Reverb time. \\
-\texttt{DELay [n]} &
-   Initial delay. \\
-\texttt{FEEdback [n]} &
-   Delay feedback. \\
-\texttt{LOW [n]} &
-   Low pass filter. \\
-\texttt{HIGh [n]} &
-   High pass filter. \\
-\texttt{DAMp [n]} &
-   Feedback damping. \\
-\texttt{TYPe [s]} &
-   Reverb type (Random, Freeverb, Bandwidth). \\
-\texttt{ROOm [n]} &
-   Room size. \\
-\texttt{BANdwidth [n]} &
-   Actual bandwidth (only for bandwidth type). \\
-\texttt{PREset [n]} &
+\texttt{LEVel <n>} &
+   amount applied \\
+\texttt{PANning <n>} &
+   left-right panning \\
+\texttt{TIMe <n>} &
+   reverb time \\
+\texttt{DELay <n>} &
+   initial delay \\
+\texttt{FEEdback <n>} &
+   delay feedback \\
+\texttt{LOW <n>} &
+   low pass filter \\
+\texttt{HIGh <n>} &
+   high pass filter \\
+\texttt{DAMp <n>} &
+   feedback damping \\
+\texttt{TYPe <s>} &
+   reverb type (Random, Freeverb, Bandwidth) \\
+\texttt{ROOm <n>} &
+   room size \\
+\texttt{BANdwidth <n>} &
+   actual bandwidth (only for bandwidth type) \\
+\texttt{} & \\ % blank line
+\texttt{PREset <n>} &
    Select numbered preset (sets all above controls). \\
       \end{tabular}
    \end{table}
@@ -1865,29 +1909,32 @@ Filter types (s parameter, LFO oscillator shape):
     \end{enumerate}
 
 % Echo
+\vspace{6em}
+    \textsl{min. entry to list commands for} Echo:  '? ech'
    \begin{table}[H]
       \centering
       \caption{Echo}
       \begin{tabular}{l l}
-\texttt{LEVel [n]} &
-   Amount of the effect. \\
-\texttt{PANning [n]} &
-   Left-right panning. \\
-\texttt{DELay [n]} &
-   Initial delay. \\
-\texttt{LRDelay [n]} &
-   Left-right delay. \\
-\texttt{CROssover [n]} &
-   Left-right crossover. \\
-\texttt{FEEdback [n]} &
-   Echo feedback. \\
-\texttt{DAMp [n]} &
-   Feedback damping. \\
+\texttt{LEVel <n>} &
+   amount applied \\
+\texttt{PANning <n>} &
+   left-right panning \\
+\texttt{DELay <n>} &
+   initial delay, left delay only if separate \\
+\texttt{LRDelay <n>} &
+   left-right delay, right delay if separate \\
+\texttt{CROssover <n>} &
+   left-right crossover \\
+\texttt{FEEdback <n>} &
+   echo feedback \\
+\texttt{DAMp <n>} &
+   feedback damping \\
 \texttt{SEPerate} &
-   Change DELay to left delay and LRDelay to right delay. \\
+   separate left-right delays (ON \{other\}) \\
 \texttt{BPM [s>]} &
    delay BPM sync (ON / other) \\
-\texttt{PREset [n]} &
+\texttt{} & \\ % blank line
+\texttt{PREset <n>} &
    Select numbered preset (sets all above controls). \\
       \end{tabular}
    \end{table}
@@ -1903,38 +1950,41 @@ Echo presets:
       \item feedback echo
     \end{enumerate}
 
+\pagebreak
 % Chorus
+    \textsl{min. entry to list commands for} Chorus:  '? cho'
    \begin{table}[H]
       \centering
       \caption{Chorus}
       \begin{tabular}{l l}
-\texttt{LEVel [n]} &
-   Amount of the effect. \\
-\texttt{PANning [n]} &
-   Left-right panning. \\
-\texttt{FREquency [n]} &
-   LFO frequency. \\
-\texttt{RANdom [n]} &
-   LFO randomness. \\
-\texttt{WAVe [s]} &
-   LFO waveshape (sine, triangle). \\
-\texttt{SHIft [n]} &
-   Left-right phase shift. \\
-\texttt{DEPth [n]} &
-   LFO depth. \\
-\texttt{DELay [n]} &
-   LFO delay. \\
-\texttt{FEEdback [n]} &
-   Chorus feedback. \\
-\texttt{CROssover [n]} &
-   Left-right routing. \\
-\texttt{SUBtract [s]} &
-   Invert output (ON / other). \\
-\texttt{BPM [s]} &
-   LFO BPM sync (ON / other). \\
-\texttt{STArt [n]} &
-   LFO BPM phase start. \\
-\texttt{PREset [n]} &
+\texttt{LEVel <n>} &
+   amount applied \\
+\texttt{PANning <n>} &
+   left-right panning \\
+\texttt{FREquency <n>} &
+   LFO frequency \\
+\texttt{RANdom <n>} &
+   LFO randomness \\
+\texttt{WAVe <s>} &
+   LFO waveshape (sine, triangle) \\
+\texttt{SHIft <n>} &
+   left-right phase shift \\
+\texttt{DEPth <n>} &
+   LFO depth \\
+\texttt{DELay <n>} &
+   LFO delay.\\
+\texttt{FEEdback <n>} &
+   chorus feedback \\
+\texttt{CROssover <n>} &
+   left-right routing \\
+\texttt{SUBtract <s>} &
+   invert output (ON / \{other\}) \\
+\texttt{BPM <s>} &
+   LFO BPM sync (ON / \{other\}) \\
+\texttt{STArt <n>} &
+   LFO BPM phase start \\
+\texttt{} & \\ % blank line
+\texttt{PREset <n>} &
    Select numbered preset (sets all above controls). \\
       \end{tabular}
    \end{table}
@@ -1952,44 +2002,49 @@ Chorus presets:
       \item flange 5
    \end{enumerate}
 
+\pagebreak
 % Phaser
+   \textsl{min. entry to list commands for} Phaser:  '? pha'
    \begin{table}[H]
       \centering
       \caption{Phaser}
       \begin{tabular}{l l}
-\texttt{LEVel [n]} &
-   Amount of the effect. \\
-\texttt{PANning [n]} &
-   Left-right panning. \\
-\texttt{FREquency [n]} &
-   LFO frequency. \\
-\texttt{RANdom [n]} &
-   LFO randomness. \\
-\texttt{WAVe [s]} &
-   LFO waveshape (sine, triangle). \\
-\texttt{SHIft [n]} &
-   Left-right phase shift. \\
-\texttt{DEPth [n]} &
-   LFO depth. \\
-\texttt{FEEdback [n]} &
-   Phaser feedback. \\
-\texttt{STAges [n]} &
-   The number of filter stages. \\
-\texttt{CROssover [n]} &
-   Left-right routing. \\
-\texttt{SUBtract [s]} &
-   Invert output against source (ON / other). \\
-\texttt{HYPer [s]} &
-   Hyper-sine (ON / other). \\
-\texttt{OVErdrive [n]} &
-   Distortion. \\
-\texttt{ANAlog [s]} &
-   Analog emulation  (ON / other). \\
-\texttt{BPM [s]} &
-   LFO BPM sync (ON / other). \\
-\texttt{STArt [n]} &
-   LFO BPM phase start. \\
-\texttt{PREset [n]} &
+\texttt{LEVel <n>} &
+   amount applied \\
+\texttt{PANning <n>} &
+   left-right panning \\
+\texttt{FREquency <n>} &
+   LFO frequency \\
+\texttt{RANdom <n>} &
+   LFO randomness \\
+\texttt{WAVe <s>} &
+   LFO waveshape (sine, triangle) \\
+\texttt{SHIft <n>} &
+   left-right phase shift \\
+\texttt{DEPth <n>} &
+   LFO depth \\
+\texttt{FEEdback <n>} &
+   phaser feedback \\
+\texttt{STAges <n>} &
+   number of filter stages \\
+\texttt{CROssover <n>} &
+   left-right routing \\
+\texttt{SUBtract <s>} &
+   invert output (ON / \{other\}) \\
+\texttt{RELative <n>} &
+   relative phase \\
+\texttt{HYPer <s>} &
+   hyper-sine (ON / \{other\}) \\
+\texttt{OVErdrive <n>} &
+   distortion \\
+\texttt{ANAlog <s>} &
+   analog emulation  (ON / \{other\}). \\
+\texttt{BPM <s>} &
+   LFO BPM sync (ON / \{other\}) \\
+\texttt{STArt <n>} &
+   LFO BPM phase start \\
+\texttt{} & \\ % blank line
+\texttt{PREset <n>} &
    Select numbered preset (sets all above controls). \\
       \end{tabular}
    \end{table}
@@ -2009,36 +2064,39 @@ Phaser presets:
    \item aphaser 6
    \end{enumerate}
 
+\pagebreak
 % Alienwah
+   \textsl{min. entry to list commands for} AlienWah:  '? ali'
    \begin{table}[H]
       \centering
       \caption{Alienwah}
       \begin{tabular}{l l}
-\texttt{LEVel [n]} &
-   Amount of the effect. \\
-\texttt{PANning [n]} &
-   Left-right panning. \\
-\texttt{FREquency [n]} &
-   LFO frequency. \\
-\texttt{WAVe [s]} &
-   LFO waveshape (sine, triangle). \\
-\texttt{SHIft [n]} &
+\texttt{LEVel <n>} &
+   amount applied \\
+\texttt{PANning <n>} &
+   left-right panning \\
+\texttt{FREquency <n>} &
+   LFO frequency \\
+\texttt{WAVe <s>} &
+   LFO waveshape (sine, triangle) \\
+\texttt{SHIft <n>} &
    Left-right phase shift. \\
-\texttt{DEPth [n]} &
-   LFO depth. \\
-\texttt{FEEdback [n]} &
+\texttt{DEPth <n>} &
+   LFO depth \\
+\texttt{FEEdback <n>} &
    Filter feedback. \\
-\texttt{DELay [n]} &
-   LFO delay. \\
-\texttt{CROssover [n]} &
-   Left-right routing. \\
-\texttt{RELative [n]} &
-   Relative phase. \\
-\texttt{BPM [s]} &
-   LFO BPM sync (ON / other). \\
-\texttt{STArt [n]} &
-   LFO BPM phase start. \\
-\texttt{PREset [n]} &
+\texttt{DELay <n>} &
+   LFO delay \\
+\texttt{CROssover <n>} &
+   left-right routing \\
+\texttt{RELative <n>} &
+   relative phase \\
+\texttt{BPM <s>} &
+   LFO BPM sync (ON / \{other\}) \\
+\texttt{STArt <n>} &
+   LFO BPM phase start \\
+\texttt{} & \\ % blank line
+\texttt{PREset <n>} &
    Select numbered preset (sets all above controls). \\
       \end{tabular}
    \end{table}
@@ -2051,38 +2109,41 @@ AlienWah presets:
    \end{enumerate}
 
 % Distortion
+   \textsl{min. entry to list commands for} Distortion:  '? dis'
    \begin{table}[H]
       \centering
       \caption{Distortion}
       \begin{tabular}{l l}
-\texttt{LEVel [n]} &
-   Amount of the effect. \\
-\texttt{PANning [n]} &
-   Left-right panning. \\
-\texttt{MIX [n]} &
-   Left-right mix. \\
-\texttt{DRIve [n]} &
-   Input level. \\
-\texttt{OUTput [n]} &
-   Output balance. \\
-\texttt{WAVe [s]} &
-   Function waveshape (ATAn, ASYm1, POWer, SINe, QNTs,\\
+\texttt{LEVel <n>} &
+   amount applied \\
+\texttt{PANning <n>} &
+   left-right panning \\
+\texttt{MIX <n>} &
+   left-right mix \\
+\texttt{DRIve <n>} &
+   input level \\
+\texttt{OUTput <n>} &
+   output balance \\
+\texttt{WAVe <s>} &
+   function waveshape (ATAn, ASYm1, POWer, SINe, QNTs,\\
 \texttt{ } &
     ZIGzag, LMT, ULMt, LLMt, ILMt, CLIp, AS2, PO2, SGM) \\
-\texttt{INvert [s]} &
-   Invert ?  (ON / other). \\
-\texttt{LOW [n]} &
-   Low pass filter. \\
-\texttt{HIGh [n]} &
-   High pass filter. \\
-\texttt{STEreo [s]} &
-   Stereo (ON / other). \\
-\texttt{FILter [s]} &
-   Filter before distortion (ON / other). \\
-\texttt{PREset [n]} &
+\texttt{INvert <s>} &
+   suptracts from main signal, otherwise adds (ON / \{other\}) \\
+\texttt{LOW <n>} &
+   low pass filter \\
+\texttt{HIGh <n>} &
+   high pass filter \\
+\texttt{STEreo <s>} &
+   stereo (ON / \{other\}) \\
+\texttt{FILter <s>} &
+   Filter before distortion (ON / other) \\
+\texttt{} & \\ % blank line
+\texttt{PREset <n>} &
    Select numbered preset (sets all above controls). \\
       \end{tabular}
    \end{table}
+\pagebreak
 Distortion presets:
    \begin{enumerate}
    \item overdrive 1
@@ -2094,58 +2155,64 @@ Distortion presets:
    \end{enumerate}
 
 % EQ
+   \textsl{min. entry to list commands for} EQ:  '? eq'
    \begin{table}[H]
       \centering
       \caption{EQ}
       \begin{tabular}{l l}
-\texttt{LEVel [n]} &
-   Amount of the effect. \\
-\texttt{BANd [n]} &
-   EQ band number for following controls. \\
-\texttt{- FILter [s]} &
+\texttt{LEVel <n>} &
+   amount applied \\
+\texttt{BANd <n>} &
+   EQ band number for following controls \\
+\texttt{- FILter <s>} &
    Filter type (LP1, HP1, LP2, HP2, NOT, PEA, LOW, HIG). \\
-\texttt{- FREquency [n]} &
-   Cutoff/band frequency. \\
-\texttt{- GAIn [n]} &
-   Makeup gain. \\
-\texttt{- Q [n]} &
-   Filter Q. \\
-\texttt{- STAges [n]} &
-   The number of \textsl{extra} filter stages. \\
+\texttt{- FREquency <n>} &
+   cutoff/band frequency \\
+\texttt{- GAIn <n>} &
+   makeup gain \\
+\texttt{- Q <n>} &
+   filter Q \\
+\texttt{- STAges <n>} &
+   number of extra filter stages \\
       \end{tabular}
    \end{table}
+
 EQ has no presets.
 
 % DynFilter
+   \textsl{min. entry to list commands for} DynFilter:  '? dyn'
    \begin{table}[H]
       \centering
       \caption{Dynfilter}
       \begin{tabular}{l l}
-\texttt{LEVel [n]} &
-   Amount of the effect. \\
-\texttt{PANning [n]} &
-   Left-right panning. \\
-\texttt{FREquency [n]} &
-   LFO frequency. \\
-\texttt{RANdom [n]} &
-   LFO randomness. \\
-\texttt{WAVe [s]} &
-   LFO waveshape (sine, triangle). \\
-\texttt{SHIft [n]} &
-   Left-right phase shift. \\
-\texttt{DEPth [n]} &
-   LFO depth. \\
-\texttt{INVert [s]} &
-   Reverse effect of sensitivity (ON / other). \\
-\texttt{RATe [n]} &
-   Speed of filter change with amplitude. \\
+\texttt{LEVel <n>} &
+   amount applied \\
+\texttt{PANning <n>} &
+   left-right panning \\
+\texttt{FREquency <n>} &
+   LFO frequency \\
+\texttt{RANdom <n>} &
+   LFO randomness \\
+\texttt{WAVe <s>} &
+   LFO waveshape (sine, triangle) \\
+\texttt{SHIft <n>} &
+   left-right phase shift \\
+\texttt{DEPth <n>} &
+   LFO depth \\
+\texttt{SENsitivity} &
+   amount amplitude changes filter \\
+\texttt{INVert <s>} &
+   reverse effect of sensitivity (ON / \{other\}) \\
+\texttt{RATe <n>} &
+   rpeed of filter change with amplitude \\
 \texttt{FILter ...} &
-   Enter the dynamic filter context. (a stock filter)\\
-\texttt{BPM [s]} &
-   LFO BPM sync (ON / other). \\
-\texttt{STArt [n]} &
-   LFO BPM phase start. \\
-\texttt{PREset [n]} &
+   enter the dynamic filter context - ? FIL for controls\\
+\texttt{BPM <s>} &
+   LFO BPM sync (ON / \{other\}) \\
+\texttt{STArt <n>} &
+   LFO BPM phase start \\
+\texttt{} & \\ % blank line
+\texttt{PREset <n>} &
    Select numbered preset (sets all above controls). \\
       \end{tabular}
    \end{table}
@@ -2162,21 +2229,14 @@ DynFilter presets:
 
    During the development of \textsl{Yoshimi} V 1.6 it was realised that
    the command line had little control of instrument bank management.
-   This was expanded in V 1.6.1. One can read the list of
-   \textbf{Bank} commands from any level with '? b'.
+   This was expanded in V 1.6.1.
 
-   \begin{verbatim}
-      yoshimi> ? b
-   \end{verbatim}
-
-   In the table that follows, we leave off the commands already noted
-   above in the first table
-   (see \sectionref{subsec:command_line_top_command_list}).
+\textsl{min. entry to list commands for} Banks:  '? b'
 
    \begin{table}[H]
       \centering
       \caption{Yoshimi Bank Commands}
-      \label{table:yoshimi_text_bank_commands}
+\label{table:yoshimi_text_bank_commands}
       \begin{tabular}{l l}
 
    \texttt{Bank} &
@@ -2198,27 +2258,18 @@ DynFilter presets:
 
         \end{tabular}
    \end{table}
-
+\pagebreak
 \subsection{Vector Commands}
 \label{subsec:command_line_vector_command_list}
-
-   Although \textbf{Vector} is a top-level control, one can read the list of
-   commands from any level with '? ve'.
-
-   \begin{verbatim}
-      yoshimi part 1+> ? ve
-   \end{verbatim}
    A vector can be set on any standard MIDI channel, and allows a two or four
    part column to be managed as pairs for the given controls.
    The commands at this level deal with control of an X axis and a Y axis.
    The CC for the X axis must be set before everything else.  Then the CC for
    the Y axis must be set.  Finally, the other Y controls can be set.
 
-   In the table that follows, we leave off the commands already noted
-   above in the first table
-   (see \sectionref{subsec:command_line_top_command_list}).
-
    Note that for vectors, n by itself is the base channel.
+
+   \textsl{min. entry to list commands for} Vector:  '? v'
 
    \begin{table}[H]
       \centering
@@ -2233,7 +2284,8 @@ DynFilter presets:
 \texttt{[X/Y] CC [n]} &
    CC n is used for the X or Y axis sweep. \\
 \texttt{[X/Y] Features [n] [s]} &
-   Sets X or Y features n = 1 to 4 (s = "Enable", "Reverse", other = off).  \\
+   Sets X or Y features n = 1 to 4 (s = "Enable", "Reverse", other = off).
+   \\
 \texttt{[X] PRogram [l/r] [n]} &
    Sets X program change ID n for left or right part. \\
 \texttt{[Y] PRogram [d/u] [n]} &
@@ -2253,27 +2305,17 @@ DynFilter presets:
 
    The \textbf{X/Y Control [n1] [n2]} command
    sets the n2 CC to use for the X or Y feature n1 = 2 to 4.
-   This allows a change of the actual CC associated with features 2 through 4.
-   They can be any CC that \textsl{Yoshimi} recognises.
+   This allows a change of the actual CC associated with features 2 through
+   4. They can be any CC that \textsl{Yoshimi} recognises.
 
-   Feature 1 is always fixed as Volume, and cannot be reversed. It is arranged
-   such that it will try to maintian a constant overall volume from the paired
-   instruments.
+   Feature 1 is always fixed as Volume, and cannot be reversed. It is
+   arranged such that it will try to maintian a constant overall volume from
+   the paired instruments.
 
 \subsection{Scales Commands}
 \label{subsec:command_line_scales_command_list}
 
-   A fairly new one is the scales list:
-
-   \begin{verbatim}
-      yoshimi> ? sc
-   \end{verbatim}
-
-   In the table that follows, we leave off the following commands, already noted
-   above in the first table
-   (see \sectionref{subsec:command_line_top_command_list}):
-   \textbf{?}, \textbf{Help}, \textbf{STop}, \textbf{RESet},
-   \textbf{EXit}, \textbf{..}, and \textbf{/}.
+\textsl{min. entry to list commands for} Scales:  '? s'
 
 \begin{center}
 \begin{longtable}{p{4cm} p{10cm}}
@@ -2286,7 +2328,8 @@ DynFilter presets:
    Export s1 TUNing or KEYmap to Scala file s2. \\
 
 \texttt{FRequency [n]} &
-   Set the reference note's actual frequency to n, usually 69 (A4) to 440 Hz. \\
+   Set the reference note's actual frequency to n, usually 69 (A4) to 440 Hz.
+   \\
 \texttt{NOte [n]} &
    Set the reference note's number to n. \\
 \texttt{Invert [s]} &
@@ -2323,7 +2366,6 @@ DynFilter presets:
 \end{longtable}
 \end{center}
 
-
 \subsection{Help List}
 \label{subsec:command_line_help_list}
 
@@ -2331,18 +2373,14 @@ DynFilter presets:
 
    \begin{verbatim}
       yoshimi> list
-      yoshimi> help
    \end{verbatim}
 
-   In general \textbf{?} and \textbf{help} indicate what can be changed, while
-   \textbf{list} reports what the current status is. In fact in most contexts just 'L' by itself works!
-
-   In the table that follows, we leave off commands noted above
-   (see \sectionref{subsec:command_line_top_command_list}).
+   In general while \textbf{?} and \textbf{help} indicate what can be
+   changed, \textbf{l} and \textbf{list} report the current status.
 
 \begin{center}
 \begin{longtable}{p{4cm} p{10cm}}
-\caption[Yoshimi Help Commands]{Yoshimi Help Commands} \\
+\caption[Yoshimi List Commands]{Yoshimi List Commands} \\
 
 \texttt{Roots} &
    List all available root paths. \\
@@ -2355,15 +2393,14 @@ DynFilter presets:
    This command shows all of the instruments present in either the numbered
    (n) bank root, or in the current one (if no number is provided).  \\
 \texttt{Group [s1] [s2]} &
-   List instruments types, s1 (name) list all of that type with list number, \\
+   List instruments types, s1 (name) list all of that type with list number,
+   \\
 \texttt{ } &
    s2 'Location' include root, bank, instrument numbers. \\
 \texttt{Parts} &
    List parts with instruments installed. ('More' for extra details)\\
 \texttt{Vectors} &
    List settings for all enabled vectors. \\
-\texttt{Config} &
-   List dynamic configuration. \\
 \texttt{Tuning} &
    Microtonal scale tunings. See the Scales section. \\
 \texttt{Keymap} &
@@ -2372,12 +2409,14 @@ DynFilter presets:
    Show the current configuration. See the Config section. \\
 \texttt{MLearn [s[n]]} &
    MIDI learned controls ('@ n' for full details on one line). \\
+\texttt{SECtion} &
+   Show saved copy/paste presets. \\
 \texttt{History [s]} &
    Show recent files. See the extensive description below. \\
 \texttt{Effects [s]} &
    List the effect types ([s] = 'all' includes preset numbers and names).
-   If this command is called from the Effects level, then one see only the name
-   of the current effect and the number of presets. \\
+   If this command is called from the Effects level, then one sees only the
+   name of the current effect and the number of presets. \\
 \texttt{PREsets} &
    Show all the presets for the currently selected effect. \\
 
@@ -2389,11 +2428,11 @@ is not enough room in the table above.
 
 \subsubsection{List Group [s]}
 \label{subsec:command_line_instrument_group_list}
-   By itself, \textbf{List Group} or \textbf{L G} will show what instrument types
-   are available. Repeating the command with one of these names will then search
-   the entire bank structure listing the ones of that type, along with an index
-   number. Assuming one is at part level, load this instrument into the current
-   part with:
+   By itself, \textbf{List Group} or \textbf{L G} will show what instrument
+   types are available. Repeating the command with one of these names will
+   then search the entire bank structure listing the ones of that type, along
+   with an index number. Assuming one is at part level, load this instrument
+   into the current part with:
    \begin{verbatim}
       set instrument group (n)
    \end{verbatim}
@@ -2409,19 +2448,19 @@ is not enough room in the table above.
    Instruments, Patchsets, SCales, STates, Vectors, and MLearn).
    If no parameter is provided, show them all.
 
-   The last-used file in any section is now always at the top of its history list,
-   so it's easier to pick up where one left off.
-   Instruments, patch sets, vectors, scales, MIDI-learn and state all offer the
-   most recent entry whenever one wants to load or save.  On first-time use (when
-   there is no history) the home directory will be offered as a location,
+   The last-used file in any section is now always at the top of its history
+   list, so it's easier to pick up where one left off. Instruments, patch
+   sets, vectors, scales, MIDI-learn and state all offer the most recent
+   entry whenever one wants to load or save.  On first-time use (when there
+   is no history) the home directory will be offered as a location,
    regardless of where \textsl{Yoshimi} was called from.
 
-   In the specific case of instruments, when \textsl{saving},
-   one is offered the instrument in the currently-selected part to the home
-   directory, otherwise, when saving these 'managed' files,
-   one won't be offered the previous last-used entry unless it was seen on that
-   session, either by being loaded, or saved by name. This is to give some
-   protection against accidental overwrites.
+   In the specific case of instruments, when \textsl{saving}, one is offered
+   the instrument in the currently-selected part to the home directory,
+   otherwise, when saving these 'managed' files, one won't be offered the
+   previous last-used entry unless it was seen on that session, either by
+   being loaded, or saved by name. This is to give some protection against
+   accidental overwrites.
 
    For example:
    You have been working on the 'foo' instrument
@@ -2443,9 +2482,6 @@ is not enough room in the table above.
       yoshimi> ? lo
       yoshimi> ? sa
    \end{verbatim}
-
-   In the tables that follow, we leave off the commands noted above
-   (see \sectionref{subsec:command_line_top_command_list}).
 
    \begin{table}[H]
       \centering
@@ -2469,12 +2505,12 @@ is not enough room in the table above.
       \end{tabular}
    \end{table}
 
-   For the \textbf{Load Instrument} command, the instrument is enabled if it is
-   configured to be enabled.  For the \textbf{Load Vector} command, if there is
-   no number parameter, the vector is loaded to the channel it was originally
-   saved from.
-   For the \textbf{Load Patchset} command, all instruments, scales, and vectors
-   are loaded from the named file.
+   For the \textbf{Load Instrument} command, the instrument is enabled if it
+   is configured to be enabled.  For the \textbf{Load Vector} command, if
+   there is no number parameter, the vector is loaded to the channel it was
+   originally saved from.
+   For the \textbf{Load Patchset} command, all instruments, scales, and
+   vectors are loaded from the named file.
    For the \textbf{Load STate} command, all configuration, system settings,
    patch sets, and MIDI-learned lines are loaded from the named file.
    These notes also apply to the \textbf{Save} version of these commands.
@@ -2512,9 +2548,7 @@ is not enough room in the table above.
       yoshimi> ? con
    \end{verbatim}
 
-   In the table that follows, we leave off the commands noted above
-   (see \sectionref{subsec:command_line_top_command_list}).  Also
-   note that more complete descriptions follow this table.
+   Note that more complete descriptions follow this table.
 
 \begin{center}
 \begin{longtable}{p{4cm} p{10cm}}
@@ -2527,19 +2561,20 @@ is not enough room in the table above.
 \texttt{BUffer [n]} &
    * Internal size (power 2 16-4096).
    This is the size of the audio buffer that \textsl{Yoshimi} uses.  For ALSA
-   audio, it will always be the same size as ALSA's buffering, but for JACK it
-   can be the same, bigger, or smaller. It is always a power of 2. \\
+   audio, it will always be the same size as ALSA's buffering, but for JACK
+   it can be the same, bigger, or smaller. It is always a power of 2. \\
 \texttt{PAdsynth [s]} &
    Interpolation type (Linear, other = cubic).
-   Sets the quality of the interpolation that PadSynth uses on its wavetables.
+   Sets the quality of the interpolation that PadSynth uses on its
+   wavetables.
    'Linear' is faster, but 'Cubic' is (potentially) very slightly better
    quality. \\
 \texttt{BUIldpad [s]} &
    PADSynth wavetable build mode (Muted, Background, Autoapply)\\
 \texttt{Virtual [n]} &
    Keyboard layout (0 = QWERTY, 1 = Dvorak, 2 = QWERTZ, 3 = AZERTY).
-   This setting controls the layout of the virtual keyboard, and can match the
-   commonest computer keyboards. \\
+   This setting controls the layout of the virtual keyboard, and can match
+   the commonest computer keyboards. \\
 \texttt{Xml [n]} &
    Set the XML compression level to [n] (0-9).
    This is the amount of compression used on all
@@ -2548,8 +2583,8 @@ is not enough room in the table above.
    can be read in an ordinary text editor. \\
 \texttt{REports [s]} &
    Destination for reporting (Stdout, other = console).
-   Determines where almost all information and error messages will be sent. A
-   few will always go to \texttt{stderr} (such as the ones reporting a GUI
+   Determines where almost all information and error messages will be sent.
+   A few will always go to \texttt{stderr} (such as the ones reporting a GUI
    problem). \\
 \texttt{SAved [s]} &
    Saved instrument type. (Legacy - .xiz, Yoshimi - .xiy, Both).\\
@@ -2622,12 +2657,12 @@ is not enough room in the table above.
    Sets the name of an audio server to which JACK will try to connect. \\
 \texttt{Jack Auto [s]} &
    * Connect JACK on start (Enable; other = disable).
-   Determines whether JACK will try to connect the main L=R audio outputs at
+   Determines whether JACK will try to connect the main L-R audio outputs at
    start-up time. \\
 \texttt{ROot [s]} &
    Root CC (Msb, Lsb, Off).
-   Provides the MIDI CC that \textsl{Yoshimi} expects bank root changes to come
-   from.  \\
+   Provides the MIDI CC that \textsl{Yoshimi} expects bank root changes to
+   come from.  \\
 \texttt{BAnk [s]} &
    Bank CC (Msb, Lsb, Off).
    Provides the MIDI CC that \textsl{Yoshimi} expects
@@ -2678,16 +2713,16 @@ is not enough room in the table above.
    \itempar{".."}{cmd!up one level}
       \index{cmd!..}
       Step back up one command context level.
-      This command can immediately precede another command, so that the second
-      command takes places at the context above the current context.
+      This command can immediately precede another command, so that the
+      second command takes places at the context above the current context.
       Note that it is like the OS's "cd .." command to change to the parent
       directory.
 
    \itempar{/}{cmd!to top level}
       \index{cmd!/}
       Step back up to the top command context level.
-      This command can immediately precede another command, so that the second
-      command takes places at the top context.
+      This command can immediately precede another command, so that the
+      second command takes places at the top context.
       Note that it is like the OS's "cd /" command to change to the root
       directory.
 
@@ -2701,13 +2736,14 @@ is not enough room in the table above.
 
    \itempar{export bank [s [n1]] [n2] [s]}{cmd!export bank}
       The command line now has two commands to provide access to the new bank
-      export and import controls. These are top level controls and are used as
-      below.  The command above is used to export a bank. The square bracket term
-      is optional, and enables one to select a different root to export from and
-      would be in the form:
+      export and import controls. These are top level controls and are used
+      as below.  The command above is used to export a bank. The square
+      bracket term is optional, and enables one to select a different root to
+      export from and would be in the form:
 
 \begin{verbatim}
-   EXport Root (root ID number) (bank ID number) (full path name to export to)
+   EXport Root (root ID number) (bank ID number)
+   (full path name to export to)
 \end{verbatim}
 
    If one is happy to export from the currently selected root, then this
@@ -2725,13 +2761,14 @@ is not enough room in the table above.
    im r 5 25 /home/will/downloads/some new bank
 \end{verbatim}
 
-      This will look for the directory "some new bank" (spaces are accepted) in
-      the download directory of user "will". It will then copy it into bank number
-      25 of root number 5. It first checks to ensure that the new named bank
-      exists, root 5 exists, and bank 25 is empty.
+      This will look for the directory "some new bank" (spaces are accepted)
+      in the download directory of user "will". It will then copy it into
+      bank number 25 of root number 5. It first checks to ensure that the new
+      named bank exists, root 5 exists, and bank 25 is empty.
 
    \itempar{add root [s]}{cmd!add root}
-      Define a new root path, \textsl{s}, and add it to the list of root paths.
+      Define a new root path, \textsl{s}, and add it to the list of root
+      paths.
 
    \itempar{remove root [s]}{cmd!remove root}
       De-list the root path named \textsl{s}, but doesn't alter the contents.
@@ -2750,15 +2787,16 @@ is not enough room in the table above.
       Displays the recently-used files, including patchsets, scales, and
       states.  If no parameter is given, then this command lists all three
       files in sequence.  The shortest version of this command is
-      \texttt{l h p} (for patchsets, which returns the last-seen patchset list).
+      \texttt{l h p} (for patchsets, which returns the last-seen patchset
+      list).
 
       \index{at-sign}
       \index{cmd!at-sign}
       \index{cmd!list operator}
       Once that list is displayed,
       the \texttt{@} operator can be used to access
-      the item by number.  For example, to load the patch set at location 4 in
-      the list:
+      the item by number.  For example, to load the patch set at location 4
+      in the list:
 
       \begin{verbatim}
          yoshimi> lo p @4
@@ -2768,9 +2806,9 @@ is not enough room in the table above.
       List all instruments and IDs in bank \textsl{n}
       or the current bank/root.
       Listing instruments will identify the current one with an asterisk, and
-      shows the current bank and root one is listing from, and adds a suffix to
-      the entry with \textbf{A}, \textbf{S}, or \textbf{P}
-      depending on the combination of AddSynth, SubSynth, and PadSynth.
+      shows the current bank and root one is listing from, and adds a suffix
+      to the entry with \textbf{A}, \textbf{S}, or \textbf{P} depending on
+      the combination of AddSynth, SubSynth, and PadSynth.
 
    \itempar{list parts}{cmd!list parts}
       Lists the number of parts available and parts with instruments
@@ -2780,8 +2818,8 @@ is not enough room in the table above.
       \textsl{-} = disabled or unavailable.
       This way one can tell if an instrument patch is installed even if it is
       not currently usable.
-      To avoid unnecessary list length, the default "Simple Sound" is not shown
-      unless it is enabled.
+      To avoid unnecessary list length, the default "Simple Sound" is not
+      shown unless it is enabled.
 
    \itempar{list roots}{cmd!list roots}
       Displays all defined root paths.
@@ -2824,7 +2862,7 @@ is not enough room in the table above.
 
    \itempar{set activate [n]}{cmd!set activate}
       Set part-activate on MIDI program change.
-      \textsl{n}=0 disables this feature, and
+      \textsl{n} = 0 disables this feature, and
       1 or any non-zero value enables this feature.
       This feature applies to command line program change as well.
 
@@ -2850,8 +2888,8 @@ is not enough room in the table above.
       Set the MIDI CC for root path changes ((Msb, Lsb, Off)).
 
    \itempar{set extend [n]}{cmd!set extend}
-      Set CC value for extended program change (values above 119 disables this
-      feature).
+      Set CC value for extended program change (values above 119 disables
+      this feature).
 
    \itempar{set insert effect [n]}{cmd!set insert effects}
       Set insertion effect for editing. Where \textsl{n} is from 1 to 8.
@@ -2894,9 +2932,9 @@ is not enough room in the table above.
       Set MIDI program change (0 disables, anything else enables).
 
    \itempar{set reports [n]}{cmd!set reports}
-      Sets the report destination or where messages are displayed, and, to some
-      extent, which messages are displayed.  Here are the variations on this
-      command that are supported:
+      Sets the report destination or where messages are displayed, and, to
+      some extent, which messages are displayed.  Here are the variations on
+      this command that are supported:
 
       \begin{itemize}
          \item \texttt{set reports gui} or \texttt{s r g}.
@@ -2941,12 +2979,12 @@ is not enough room in the table above.
       The vector is just about the only command-line
       entry that starts from 1.
 
-      The original system where bits were ORred together was done to make NRPN
-      control as efficient as possible. That hasn't changed, but log messages
-      refer to the command-line numbering.
+      The original system where bits were ORred together was done to make
+      NRPN control as efficient as possible. That hasn't changed, but log
+      messages refer to the command-line numbering.
 
-      A more detailed discussion of command-line vector control is presented in
-      \sectionref{subsection:vector_command_line}.
+      A more detailed discussion of command-line vector control is presented
+      in \sectionref{subsection:vector_command_line}.
 
    \itempar{set vector [n1] x/y features [n2]}{cmd!set vector features}
       Sets channel \textsl{n1} X or Y features to \textsl{n2}.
@@ -2958,11 +2996,11 @@ is not enough room in the table above.
    \itempar{set vector [n1] x/y control [n2] [n3]}{cmd!set vector control}
       Sets \texttt{n3} CC to use for X or Y feature \texttt{n2} (2, 4, 8).
       \textsl{n3} is the CC to be used for feature number \textsl{n2} on X
-      vector channel \textsl{n1}. The \textsl{x} is a sort of hidden parameter
-      as the code uses an offset dependent on whether it is \textsl{x} or
-      \textsl{y}. Also \textsl{n1} can be omitted in which case it will use the
-      last defined channel number. Using alternate words and numbers gives a
-      great deal of flexibility like this.
+      vector channel \textsl{n1}. The \textsl{x} is a sort of hidden
+      parameter as the code uses an offset dependent on whether it is
+      \textsl{x} or \textsl{y}. Also \textsl{n1} can be omitted in which case
+      it will use the last defined channel number. Using alternate words and
+      numbers gives a great deal of flexibility like this.
 
    \itempar{set vector [n] [off]}{cmd!set vector}
       Disables vector control for channel \textsl{n}.
@@ -2995,13 +3033,9 @@ is not enough room in the table above.
    crash \textsl{Yoshimi} with out of range values.
    It mostly updates the GUI too.
 
-%   Since V1.5.11 users are strongly discouraged from using it as numerical
-%   values will be changing and all available controls are now provided in a
-%   fully protected manner by the above listed commands.
-
-    Since V 1.6.0 direct access has been disabled as it no longer produces
-    valid data. Also, all available controls are now provided in a fully
-    protected manner.
+   Since V 1.6.0 direct access has been disabled as it no longer produces
+   valid data. Also, all available controls are now provided in a fully
+   protected manner.
 
    For developers there is relevant information within the source code.
 

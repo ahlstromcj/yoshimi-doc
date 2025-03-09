@@ -62,8 +62,7 @@
 
 \begin{figure}[H]
    \centering
-%  \includegraphics[scale=1.0]{2.0/AddSynth.png}
-   \includegraphics[scale=0.65]{2.3.0/global.png}
+   \includegraphics[scale=0.5]{2.3.3/global.png}
    \caption{ADDsynth Edit/Global Dialog}
    \label{fig:addsynth_edit_dialog}
 \end{figure}
@@ -115,10 +114,6 @@
       \item \textbf{P.Stc.}
       \item \textbf{P.Vel.}
       \item \textbf{Detune}
-      \item \textbf{Octave}
-      \item \textbf{relBW}
-      \item \textbf{Detune Type}
-      \item \textbf{Coarse Detune}
    \end{enumber}
 
    Note the two sub-panels, mentioned above, that are described elsewhere.
@@ -207,40 +202,6 @@
 
    Values: \texttt{0 to 127, 72*}
 
-   \itempar{Detune}{addsynth!detune}
-   ADDsynth Detune.
-   Detunes the engine by a small amount.
-
-   Values: \texttt{0 to 127, 72*}
-
-   \itempar{Octave}{addsynth!octave}
-   ADDsynth Octave.
-   Allows a change of the overall pitch up or down by up to eight octaves.
-
-   Values: \texttt{0 to 8, 0*}
-
-   \itempar{relBW}{addsynth!relbw}
-   ADDsynth relBW (relative bandwidth).
-   Modifies the amount individual voice and unison detunes can deviate
-   from the overall value.
-
-   Values: \texttt{0 to 127, 72*}
-
-   \itempar{Detune Type}{addsynth!detune type}
-   ADDsynth Detune Type.
-   The menu options control the amount of detune of the slider and whether it is a
-   linear change or exponential (i.e. has more effect the further away it is from
-   the centre position).
-
-   Values: \texttt{0 to 127, 72*}
-
-   \itempar{Coarse Detune}{addsynth!coarse detune}
-   ADDsynth Coarse Detune.
-   The inner single arrows make a coarse step change to the detune, and the outer
-   double ones change by ten times as much.
-
-   Values: \texttt{0 to 127, 72*}
-
 \subsection{ADDsynth / FILTER}
 \label{subsec:addsynth_filter}
 
@@ -274,7 +235,7 @@
 \label{subsec:addsynth_frequency}
 
    \begin{enumber}
-      \item \textbf{Detune}
+      \item \textbf{Detune [value]}
       \item \textbf{FREQUENCY slider}
       \item \textbf{Octave}
       \item \textbf{RelBW}
@@ -295,29 +256,13 @@
    This display box shows the value of the detune as selected by the
    frequency slider described below.
 
-\begin{figure}[H]
-   \centering
-   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/frequency-detune-type.jpg}
-   \caption{ADDsynth Frequency Detune Type}
-   \label{fig:addsynth_freq_detune_type}
-\end{figure}
-
-   This value defines the number of cents that define the range of the
-   \textbf{FREQUENCY} slider, that is 35 cents, 10 cents, 100 cents (one
-   semitone), or 1200 cents (1 octave), below and above the main
-   frequency.  The default is 35 cents.  The 1200-cents setting provides a
-   whole octave of detuning in either direction.
-
-   The "L" stands for "linear", and the "E" for "exponential", to
-   describe how the detune slider acts.
-
-   Values: \texttt{Default*, L35cents, L10cents, E100cents, E1200cents}
-
    \itempar{FREQUENCY slider}{addsynth!freq slider}
    ADDsynth Fine Detune (cents), a slider control.
    While the detune type dropdown and the octave selection provide a coarse
    selection of detune, the slider allows for a finer selection of detune,
-   up to roughly one-third of a semitone.
+   up to roughly one-third of a semitone at the default detune type of 35
+   cents. It will be proportionally less at 10 cents and greater at the
+   other settings.
 
    Values:
       \texttt{-35.00 to 35.00},
@@ -348,25 +293,49 @@
 
    \itempar{Detune Type}{addsynth!detune type}
    Frequency Detune Type.
-   This setting provides a coarse detuning.
-   We would welcome an explanation of exactly is meant by the numbers and
-   the "E" versus "L" designation.
+   This dropdown sets the number of cents that define the range of the
+   \textbf{FREQUENCY} slider below and above the main frequency.
+   The values are 35 cents, 10 cents, 100 cents (one semitone), or
+   1200 cents (1 octave),  The default is 35 cents.  The 1200-cents
+   setting provides a whole octave of detuning in either direction.
+
+   The "L" stands for "linear", and the "E" for "exponential", describing
+   how the detune slider acts.
 
    Values: \texttt{L35cents, L10cents, E100cents, E1200cents}
 
+   \begin{figure}[H]
+   \centering
+   \includegraphics[scale=1.0]{bottom-panel/instrument-edit/ADD/frequency-detune-type.jpg}
+   \caption{ADDsynth Frequency Detune Type}
+   \label{fig:addsynth_freq_detune_type}
+\end{figure}
+
    \itempar{Coarse det}{addsynth!coarse detune}
    Coarse Detune, "C.detune".
-   The one-arrow buttons change the value by one.
-   The two-arrow buttons change the value by ten.
-   Again, we need a way to explain the interactions of the slider, the
-   octave setting, the detune type, and the coarse detune settings.
+   The single-arrow buttons change the value by one.
+   "One" depends on the detune type.
+   If the detune type is 100 cents it is one semitone,
+   At 1200 cents it's seven semitones.
+   The double-arrow buttons change the value by ten.
 
    Values: \texttt{-64 to 63, 0*}
 
+   \subsection{ADDsynth / Links}
+   \label{subsec:addsynth_links}
+   \setcounter{ItemCounter}{0}
    \itempar{Show Voice Parameters}{addsynth!voice parameters}
    ADDsynth Show Voice Parameters.
-   This button brings up the "voice parameters" dialog discussed in the next
-   section.
+   This button brings up the "voice parameters" dialog discussed in
+   \sectionref{subsec:addsynth_voice_parameters}.
+
+   \itempar{Show Voice List}{addsynth!voice list}
+   ADDsynth Show Voice List.
+   This button brings up the "voice list" dialog which gives one a list of all
+   voices with some abridged editing. See \sectionref{subsec:addsynth_voice_list}.
+
+   \itempar{Resonance}{addsynth!resonance}
+   This button brings up the stock "resonance" dialog which is shared in common with the PADsynth editor. Details of this can be found in \sectionref{subsec:stock_resonance_settings}.
 
 \subsection{ADDsynth / Voice Parameters}
 \label{subsec:addsynth_voice_parameters}
@@ -672,8 +641,6 @@
 
    \itempar{Coarse det}{voice parameters!coarse detune}
    Coarse Detune.
-   Is this setting in units of semitones?
-   \index{todo!coarse detune units}
 
    Values: \texttt{-64 to 63, 0*}
 
@@ -769,7 +736,7 @@
       \item \textbf{Phase}
       \item \textbf{C}
       \item \textbf{P}
-      \item \textbf{Close Window}
+      \item \textbf{Close}
    \end{enumber}
 
 
@@ -787,14 +754,14 @@
    Sound/Noise choice.
    Select the mode of the oscillator (sound versus white noise).
 
-   Values: \texttt{Sound* (green), Noise (black), Noise (pink), Noise (cyan)}
+   Values: \texttt{Sound*, Noise, Noise, Noise}
 
    The noise types are, respectively, white noise, pink noise, and spot noise, as
    explained below.
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=1.0]{1.6.0/voice_oscillator_sound_dropdown.png}
+   \includegraphics[scale=0.7]{2.3.3/soundtype.png}
    \caption{Voice Oscillator Choices}
    \label{fig:voice_oscillator_choices}
 \end{figure}
@@ -893,7 +860,7 @@
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.75]{bottom-panel/instrument-edit/ADD/modulator-type.jpg}
+     \includegraphics[scale=0.5]{2.3.3/modtype.png}
    \caption{Voice Modulator Type}
    \label{fig:voice_modulator_type}
 \end{figure}
@@ -908,7 +875,7 @@
          The morph modulator works by combining the output of the voice oscillator
          and the modulator oscillator into one sound, with the amplitude envelope
          translating between one waveform and the other. It is important that the
-         amplitude envelope is enabled, otherwise no change will take place.
+         amplitude envelope is enabled, otherwise no movement between the voice and modulation oscillators will happen. Instead there will be a static mix of them dependent on the Volume and Velocity controls.
 
       \item \textbf{RING}
          \index{RING}
@@ -1064,7 +1031,7 @@
       \item \textbf{Use}
          Oscillator to Use.
          See the paragraph below.
-         Values: \texttt{Internal*, Other oscillators?}
+         Values: \texttt{Internal*, (Available Others)}
       \item \textbf{Phase}
          Oscillator Phase.
 
@@ -1144,12 +1111,12 @@
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
 
    \itempar{C}{voice oscillator!copy}
-   Copy D note parameters ("DnoteParameters").
+   Opens the Copy window with "AddSynth Voice" as the type.
 
    \itempar{P}{voice oscillator!paste}
-   Paste D note parameters ("DnoteParameters").
+   Opens the Paste window with "AddSynth Voice" as the type.
 
-   \itempar{Close Window}{voice oscillator!close}
+   \itempar{Close}{voice oscillator!close}
    Close.
 
 
@@ -1177,9 +1144,10 @@
       \item \textbf{Vol}
       \item \textbf{Pan}
       \item \textbf{Res}
+      \item \textbf{Detune Value}
       \item \textbf{Detune}
       \item \textbf{Vibrato Depth}
-      \item \textbf{Hide Voice List}
+      \item \textbf{Close}
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
@@ -1231,8 +1199,8 @@
    Enable/disable the resonance effect of a voice.
    Note that the resonance is configured by the Resonance dialog brought
    up by the \textbf{Resonance} button at the bottom of the ADDsynth main
-   dialog.  The resonance dialog has its own Enable button, as well.
-   This is provided so individual voices can bypass the resonance filter.
+   dialog.  The resonance dialog has its own global Enable button, but this
+   one is provided so individual voices can bypass the resonance filter.
 
    Values: \texttt{Off, On*}
 
@@ -1252,9 +1220,8 @@
 
    Values: \texttt{0 to 127, 40*}
 
-   \itempar{Hide Voice List}{voice list!hide}
-   Hide Voice List.  A Close button, really, and that is what it is in the
-   latest version of \textsl{Yoshimi}.
+   \itempar{Close}{voice list!close}
+   A Close button.
 
 \subsection{ADDsynth / Oscillator}
 \label{subsec:addsynth_oscillator}
@@ -1300,6 +1267,13 @@
    Sets how the magnitudes from the user interface behave.  See the values
    below.
 
+   \begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.75]{2.3.3/magtype.png}
+   \caption{ADDsynth Oscillator Magnitude Type}
+   \label{fig:addsynth_magtype}
+\end{figure}
+
    \itempar{Phase Randomness}{addsynth!rnd}
    Phase Randomness. Sets the randomness of the oscillator phase which is
    settable from -64 (-90 deg) to 63 (+90 deg).
@@ -1327,7 +1301,7 @@
 \label{subsec:addsynth_voice-warning}
    As of V 1.5.11 there is a warning about editing waveforms.
 
-   When editing an AddSynth voice that is taking it's waveform from another one
+   When editing an AddSynth voice that is taking its waveform from another one
    the 'Waveform' text turns blue as a warning. However when actually entering
    the waveform window itself, until now there was no indication that one was
    likely to change a shared oscillator. This is put right since V 1.5.11 and
@@ -1342,13 +1316,6 @@
 
    As can be seen, not only does one see the warning, but also exactly which
    voice (or modulator) is being edited.
-
-\subsection{ADDsynth / Resonance}
-\label{subsec:addsynth_resonance}
-
-   This dialog, shared in common with the PADsynth editor, is a stock
-   user-interface element described in
-   \sectionref{subsec:stock_resonance_settings}.
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex

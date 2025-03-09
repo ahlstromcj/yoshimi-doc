@@ -20,14 +20,14 @@
    \index{Themes}
    \index{themes}
    This section details the new (with \textsl{Yoshimi} V2.3.0) \textbf{Themes}
-   feature, that gives access to virtually all colour elements.
+   feature. This gives access to virtually all colour elements.
 
-\paragraph{Menu / Yoshimi / Settings / Theme}
-\label{paragraph:menu_yoshimi_settings_themes}
+%\paragraph{Menu / Yoshimi / Settings / Theme}
+%\label{paragraph:menu_yoshimi_settings_themes}
 
 \begin{figure}[H]
    \centering
-   \includegraphics[scale=0.5]{2.3.0/theme.png}
+   \includegraphics[scale=0.5]{2.3.3/theme.png}
    \caption[Theme Options]{The New Theme Tab}
    \label{fig:yoshimi_settings_themes}
 \end{figure}
@@ -41,6 +41,7 @@
       \item \textbf{Default Theme Display}
       \item \textbf{Current Theme Display}
       \item \textbf{Make Default}
+      \item \textbf{Monochrome}
    \end{enumber}
 
    \setcounter{ItemCounter}{0}      % Reset the ItemCounter for this list.
@@ -65,6 +66,9 @@
    \itempar{Make Default} {}Sets the currently displayed theme as the new default
    one.
 
+   \itempar{Monochrome} {}Converts the current theme to it's grey equivalent. This
+   setting is not saved.
+
 \paragraph{Menu / Yoshimi / Themes / Editing}
 \label{paragraph:menu_yoshimi_themes_editing}
    Manually editing themes to suit ones own purposes is quite practical, and it
@@ -80,17 +84,17 @@
     Don't add or remove lines between and including dashes.
     This would corrupt the colour map.
     ------------------ data start marker
-    0,255, Grey scale min-max (can be reversed)
+    0,255, Grey scale min-max (can be reversed) optional + R,G,B, (tint)
     0,255,255, Panels (R,G,B or #rrggbb)
     0,0,0, RESERVED
-    186,198,211, Knob shadow
-    #e7ebef, Knob highlight (231,235,239)
+    186,198,211, Knob shadow (#bac6d3)
+    231,235,239, Knob highlight (#e7ebef)
     51,51,51, Knob ring
     0,197,255, Knob ring lit
     61,61,61, Knob pointer default
-    180,0,0, Knob pointer changed
+    225,75,75, Knob pointer changed
     0,0,0, Slider track
-    63,218,0, Slider peg default
+    0,170,0, Slider peg default
     ..
     ..
     ..
@@ -112,15 +116,9 @@
    most of the others, so one should decide on this first. Notice it can be
    reversed such that light and dark shades are swapped.
 
-   If the greyscale min and max are both set to 127, Yoshimi becomes entirely
-   monochrome and all features are scaled according to the average of their
-   R,G,B settings. This is particularly useful for assessing the likely
-   appearance under poor lighting conditions. Alternatively one can add on
-   three R,G,B values to the greyscale line which will then provide a colour
+   One can add on three R,G,B values to the greyscale line which will then provide a colour
    tint to elements that have a grey content.
 
-   It's not possible to have both color and monochrome together, but the theme
-   can be tinted to a single color..
    As an example:
 
    \begin{verbatim}
@@ -129,13 +127,14 @@
 
    This gives a sort of brick-orange tint to everything.
 
-   For all the following entries, and as hinted on the 'Panels' line, (and given
-   as an example on the Knob highlight line) one can use either R, G, B, numbers
-   in the range 0 to 255, or as hexadacimal entries preceeded with the 'hash'
-   character such as '\#090a0b,' which corresponds to '9,10,11,'.
+   For all the following entries, and as hinted in the 'Panels', Knob shadow
+   and Knob highlight lines, one can use either R, G, B, numbers in the range
+   0 to 255, or as hexadacimal entries preceeded with the 'hash' character such
+   as '\#090a0b,' which corresponds to '9,10,11,'.
 
-   There is quite extensive error checking, with errors reporting the line
-   number. The faulty line and all following ones are then ignored.
+   There is quite extensive error checking, with errors reporting the actual
+   line number in the source text. The faulty line and all following ones are
+   then ignored.
 
    In addition to 'classic', there is a 'demo' theme. This uses quite extreme
    settings to give an idea of the range of possibilities. Both of these will be
@@ -149,15 +148,20 @@
 
    The files are plain text. There is a reference one called 'classic.clr' and a
    rather extreme example called 'demo.clr'.
-   'classic' is auto-generated when you run the latest yoshimi from github or
-   sourceforge. and 'demo' will be transferred from:
+   'classic' is auto-generated on the first run of the latest yoshimi from github
+   or sourceforge. and 'demo' will be transferred from:
 
    \texttt{/home/user/yoshimi-code/doc/examples/themes}.
 
+   A number of other themes may be added to 'examples' from time to time/
+
    Their normal location is \texttt{/home/user/.local/share/yoshimi/themes}.
-   There is more information in the HTML user guide that comes with these recent
-   Yoshimi 2.3.0 builds.
-   It's in 'Settings'.
+
+   Since \textsl{Yoshimi} V2.3.3 it has been possible to edit the selected theme
+   (with the exception of 'classic') in situ with an external text editor, and for
+   as long as the themes window is visible, the changes to the file will be
+   immediately activated. Also, the theme list will be immediately updated if one
+   adds or removes files from:\\ \texttt{/home/user/.local/share/yoshimi/themes}
 
 %-------------------------------------------------------------------------------
 % vim: ts=3 sw=3 et ft=tex
